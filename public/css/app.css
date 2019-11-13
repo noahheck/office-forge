@@ -22273,6 +22273,11 @@ a.text-dark:focus {
   border-left: 3px solid transparent;
 }
 
+.application-sidebar ul li a.current {
+  border-left-color: #3490dc;
+  background-color: #2e3339;
+}
+
 .application-sidebar ul li a:hover {
   text-decoration: none;
   background-color: #394047;

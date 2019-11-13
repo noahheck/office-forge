@@ -75,11 +75,17 @@
                 padding: 10px 8px;
                 border-left: 3px solid transparent;
 
+                &.current {
+                    border-left-color: $blue;
+                    background-color: darken(#394047, 5%);
+                }
+                
                 &:hover {
                     text-decoration: none;
                     background-color: #394047;
                     border-left: 3px solid $blue;
                 }
+
             }
 
         }

@@ -1,3 +1,6 @@
+@php
+$currentRouteName = Route::currentRouteName();
+@endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -23,6 +26,11 @@
     <div class="application-sidebar" id="applicationSidebar">
         <ul>
             <li>
+                <a href="{{ route('home') }}" class="{{ ($currentRouteName === 'home') ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-home"></span> Home
+                </a>
+            </li>
+            <li>
                 <a href="#">
                     <span class="fa-fw far fa-envelope"></span> Messages
                 </a>
@@ -38,9 +46,6 @@
                 </a>
             </li>
             <li class="divider">
-                {{--<hr>
-            </li>
-            <li>--}}
                 <a href="#">
                     <span class="fa-fw fas fa-cog"></span> Settings
                 </a>
@@ -51,9 +56,6 @@
                 </a>
             </li>
             <li class="divider">
-                {{--<hr>
-            </li>
-            <li>--}}
                 <a href="{{ route('logout') }}">
                     <span class="fa-fw fas fa-sign-out-alt"></span> Log Out
                 </a>
