@@ -22207,6 +22207,8 @@ a.text-dark:focus {
   border: 1px solid #adb5bd;
   margin-right: 3px;
   margin-left: 3px;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
 
 .toggle-application-sidebar-button:hover {
@@ -22234,11 +22236,11 @@ a.text-dark:focus {
 .application-sidebar {
   -webkit-transition: width 0.2s;
   transition: width 0.2s;
-  box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
-  padding-top: 56px;
+  padding-top: 55px;
   width: 210px;
   overflow-x: hidden;
   white-space: nowrap;
@@ -22261,21 +22263,28 @@ a.text-dark:focus {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  border-top: 1px solid #3490dc;
 }
 
 .application-sidebar ul li a {
+  color: #eee;
   display: block;
-  padding: 7px 8px;
-  border-bottom: 1px solid #191919;
+  padding: 10px 8px;
+  border-left: 3px solid transparent;
 }
 
 .application-sidebar ul li a:hover {
   text-decoration: none;
+  background-color: #394047;
+  border-left: 3px solid #3490dc;
+}
+
+.application-sidebar ul li.divider {
+  border-top: 1px solid #3490dc;
 }
 
 .header-navbar {
   background-color: #282923;
-  border-bottom: 1px solid #191919;
 }
 
 .main-content {

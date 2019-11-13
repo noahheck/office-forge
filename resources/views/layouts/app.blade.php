@@ -37,7 +37,23 @@
                     <span class="fa-fw fas fa-file"></span> Documents
                 </a>
             </li>
+            <li class="divider">
+                {{--<hr>
+            </li>
+            <li>--}}
+                <a href="#">
+                    <span class="fa-fw fas fa-cog"></span> Settings
+                </a>
+            </li>
             <li>
+                <a href="#">
+                    <span class="fa-fw far fa-question-circle"></span> Help
+                </a>
+            </li>
+            <li class="divider">
+                {{--<hr>
+            </li>
+            <li>--}}
                 <a href="{{ route('logout') }}">
                     <span class="fa-fw fas fa-sign-out-alt"></span> Log Out
                 </a>

@@ -13,6 +13,8 @@
     border: 1px solid $gray-500;
     margin-right: 3px;
     margin-left: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 
     &:hover {
         color: $white;
@@ -40,7 +42,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    padding-top: 56px;
+    padding-top: 55px;
     width: 210px;
     overflow-x: hidden;
     white-space: nowrap;
@@ -63,18 +65,27 @@
         margin: 0;
         padding: 0;
 
+        border-top: 1px solid $blue;
+
         li {
 
             a {
+                color: #eee;
                 display: block;
-                padding: 7px 8px;
-                border-bottom: 1px solid $navbar-border;
+                padding: 10px 8px;
+                border-left: 3px solid transparent;
 
                 &:hover {
                     text-decoration: none;
+                    background-color: #394047;
+                    border-left: 3px solid $blue;
                 }
             }
 
+        }
+
+        li.divider {
+            border-top: 1px solid $blue;
         }
     }
 }

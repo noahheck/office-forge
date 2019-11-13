@@ -71,7 +71,7 @@
     @include border-radius(1500px);
 }
 
-@mixin shadow($offsetX: 2px, $offsetY: 4px, $blurRadius: 5px, $spreadRadius: 0, $color: rgba(0,0,0,0.25)) {
+@mixin shadow($offsetX: 2px, $offsetY: 4px, $blurRadius: 5px, $spreadRadius: 0, $color: rgba(0,0,0,0.5)) {
     -webkit-box-shadow: $offsetX $offsetY $blurRadius $spreadRadius $color;
     -moz-box-shadow: $offsetX $offsetY $blurRadius $spreadRadius $color;
     box-shadow: $offsetX $offsetY $blurRadius $spreadRadius $color;
