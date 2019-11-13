@@ -1,0 +1,80 @@
+/**
+ * sass/_sidebar.scss
+ */
+
+@import '~bootstrap/scss/bootstrap';
+@import '_mixins.scss';
+
+.toggle-application-sidebar-button {
+
+    @include border-radius();
+    background-color: transparent;
+    color: $white;
+    border: 1px solid $gray-500;
+    margin-right: 3px;
+    margin-left: 3px;
+
+    &:hover {
+        color: $white;
+    }
+    @include media-breakpoint-up(lg) {
+        display: none;
+    }
+}
+
+.main-content {
+    @include margin-transition();
+
+    margin-left: 0;
+
+    @include media-breakpoint-up(lg) {
+        margin-left: 210px;
+    }
+}
+
+.application-sidebar {
+
+    @include width-transition();
+    @include shadow();
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 56px;
+    width: 210px;
+    overflow-x: hidden;
+    white-space: nowrap;
+
+    height: 100%;
+    z-index: 1029;
+
+    background-color: $navbar-bg;
+
+    @include media-breakpoint-down(md) {
+        width: 0;
+
+        .sidebar-shown & {
+            width: 210px;
+        }
+    }
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+
+            a {
+                display: block;
+                padding: 7px 8px;
+                border-bottom: 1px solid $navbar-border;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+
+        }
+    }
+}

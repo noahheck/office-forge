@@ -1,8 +1,22 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+//@import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
 @import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+@import '_sidebar.scss';
+
+.header-navbar {
+    background-color: $navbar-bg;
+    border-bottom: 1px solid $navbar-border;
+}
+
+.main-content {
+    margin-top: 60px;
+}

@@ -36918,7 +36918,19 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+/**
+ * js/app.js
+ */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+$(function () {
+  var $body = $('body');
+  $('#toggleApplicationSidebarButton').click(function () {
+    $body.toggleClass('sidebar-shown');
+  });
+});
 
 /***/ }),
 

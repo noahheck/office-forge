@@ -1,0 +1,141 @@
+/**
+ * sass/_mixins.scss
+ */
+
+@mixin overflow-ellipsis {
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+}
+
+@mixin no-text-select {
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+}
+
+@mixin color-transition($time: .2s) {
+    -webkit-transition: color $time;
+    transition: color $time;
+}
+
+@mixin border-color-transition($time: .2s) {
+    -webkit-transition: border-color $time;
+    transition: border-color $time;
+}
+
+@mixin background-color-transition($time: .2s) {
+    -webkit-transition: background-color $time;
+    transition: background-color $time;
+}
+
+@mixin margin-transition($time: .2s) {
+    -webkit-transition: margin $time;
+    transition: margin $time;
+}
+
+@mixin padding-transition($time: .2s) {
+    -webkit-transition: padding $time;
+    transition: padding $time;
+}
+
+@mixin width-transition($time: .2s) {
+    -webkit-transition: width $time;
+    transition: width $time;
+}
+
+@mixin shadow-transition($time: .2s) {
+    -webkit-transition: box-shadow $time ease-in-out;
+    transition: box-shadow $time ease-in-out;
+}
+
+@mixin border-radius($radius: 3px) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin border-top-radius($radius: 3px) {
+    -webkit-border-top-left-radius: $radius;
+    -webkit-border-top-right-radius: $radius;
+    -moz-border-radius-topleft: $radius;
+    -moz-border-radius-topright: $radius;
+    border-top-left-radius: $radius;
+    border-top-right-radius: $radius;
+}
+
+@mixin border-rounded {
+    @include border-radius(1500px);
+}
+
+@mixin shadow($offsetX: 2px, $offsetY: 4px, $blurRadius: 5px, $spreadRadius: 0, $color: rgba(0,0,0,0.25)) {
+    -webkit-box-shadow: $offsetX $offsetY $blurRadius $spreadRadius $color;
+    -moz-box-shadow: $offsetX $offsetY $blurRadius $spreadRadius $color;
+    box-shadow: $offsetX $offsetY $blurRadius $spreadRadius $color;
+}
+
+
+
+
+
+// A map of breakpoints.
+$min-breakpoints: (
+    tablet: 768px,
+    computer: 992px,
+    large: 1200px,
+    widescreen: 1920px
+);
+
+$max-breakpoints: (
+    mobile: 768px,
+    tablet: 992px,
+    computer: 1200px,
+    large: 1920px
+);
+
+
+@mixin min-screen($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($min-breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($min-breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (min-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    } @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
+
+
+@mixin max-screen($breakpoint) {
+
+    // If the breakpoint exists in the map.
+    @if map-has-key($max-breakpoints, $breakpoint) {
+
+        // Get the breakpoint value.
+        $breakpoint-value: map-get($max-breakpoints, $breakpoint);
+
+        // Write the media query.
+        @media (max-width: $breakpoint-value) {
+            @content;
+        }
+
+        // If the breakpoint doesn't exist in the map.
+    } @else {
+
+        // Log a warning.
+        @warn 'Invalid breakpoint: #{$breakpoint}.';
+    }
+}
