@@ -14,4 +14,6 @@ $(function() {
         $body.toggleClass('sidebar-shown');
     });
 
+    $('.dt-table').DataTable();
+
 });

@@ -1,5 +1,6 @@
 @php
-$currentRouteName = Route::currentRouteName();
+$__currentRouteName = Route::currentRouteName();
+$__isAdminRoute = Str::startsWith($__currentRouteName, 'admin.');
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -12,7 +13,10 @@ $currentRouteName = Route::currentRouteName();
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+
     <!-- Scripts -->
+    @script('js/manifest.js')
+    @script('js/vendor.js')
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
@@ -21,12 +25,13 @@ $currentRouteName = Route::currentRouteName();
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @stack('styles')
 </head>
 <body>
     <div class="application-sidebar" id="applicationSidebar">
         <ul>
             <li>
-                <a href="{{ route('home') }}" class="{{ ($currentRouteName === 'home') ? 'current' : '' }}">
+                <a href="{{ route('home') }}" class="{{ ($__currentRouteName === 'home') ? 'current' : '' }}">
                     <span class="fa-fw fas fa-home"></span> Home
                 </a>
             </li>
@@ -50,6 +55,13 @@ $currentRouteName = Route::currentRouteName();
                     <span class="fa-fw fas fa-cog"></span> Settings
                 </a>
             </li>
+            @admin
+                <li>
+                    <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
+                        <span class="fa-fw fas fa-cogs"></span> Admin
+                    </a>
+                </li>
+            @endadmin
             <li>
                 <a href="#">
                     <span class="fa-fw far fa-question-circle"></span> Help
@@ -124,7 +136,9 @@ $currentRouteName = Route::currentRouteName();
     </nav>
 
     <main id="mainContent" class="main-content">
-        @yield('content')
+        <div class="container-fluid">
+            @yield('content')
+        </div>
     </main>
 
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
@@ -132,5 +146,6 @@ $currentRouteName = Route::currentRouteName();
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
     <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    @stack('scripts')
 </body>
 </html>

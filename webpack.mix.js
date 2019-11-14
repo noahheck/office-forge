@@ -12,6 +12,19 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/admin.scss', 'public/css')
+
+    .extract([
+        'jquery',
+        'popper.js',
+        'bootstrap',
+        'datatables.net',
+        'datatables.net-buttons',
+        'datatables.net-bs4',
+        'lodash',
+        'axios'
+    ])
+;
 
 mix.disableNotifications();

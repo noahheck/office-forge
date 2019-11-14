@@ -15,7 +15,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes(['register' => false]);
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::middleware(['auth'])->group(function() {
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
+
+    Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
+
+        Route::get('/', 'AdminController@index')->name('index');
+
+        Route::resource('/users', 'UserController');//->name('users');
+
+    });
+
+});
