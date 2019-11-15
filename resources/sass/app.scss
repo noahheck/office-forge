@@ -1,5 +1,6 @@
-// Fonts
-//@import url('https://fonts.googleapis.com/css?family=Nunito');
+/**
+ * sass/app.scss
+ */
 
 // Variables
 @import 'variables';
@@ -14,6 +15,7 @@
 @import '~datatables.net-bs4';
 @import '~datatables.net-buttons-bs4';
 
+@import '_utilities.scss';
 @import '_sidebar.scss';
 
 .header-navbar {
@@ -22,4 +24,16 @@
 
 .main-content {
     margin-top: 60px;
+}
+
+
+.form-group.required label::after {
+    content: ' *';
+    color: $red;
+}
+
+.custom-control-label,
+.custom-control-label::before,
+.custom-control-label::after {
+    cursor: pointer;
 }

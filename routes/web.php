@@ -19,7 +19,7 @@ Auth::routes(['register' => false]);
 Route::get('/logout', 'Auth\LoginController@logout');
 
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 

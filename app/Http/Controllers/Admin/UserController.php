@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\User\Store as StoreRequest;
+use App\Jobs\User\Create;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -29,18 +31,34 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $user = new User();
+        $user->active = true;
+
+        return $this->view('admin.users.create', compact('user'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  StoreRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($userCreated = new Create(
+            $request->name,
+            $request->email,
+            $request->timezone,
+            $request->job_title,
+            $request->password,
+            $request->has('active'),
+            $request->has('administrator'),
+            $request->has('system_administrator')
+        ));
+
+        $user = $userCreated->getUser();
+
+        return redirect()->route('admin.users.index');
     }
 
     /**

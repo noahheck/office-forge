@@ -7,31 +7,31 @@
 
     <div class="card">
         <div class="card-body">
-            {{--<ul>
-                <li>
-                    <a href="{{ route('admin.users.index') }}"><span class="fa-fw fas fa-users"></span> Users</a> - Setup the users of the system
-                </li>
-            </ul>--}}
-
+            <div class="text-right">
+                <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
+                    <span class="fas fa-user-plus"></span> New User
+                </a>
+            </div>
+            <hr>
             <div class="table-responsive">
-                <table id="users" class="table table-striped dt-table">
+                <table id="users" class="table table-striped table-bordered dt-table">
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Title</th>
-                            <th>Administrator</th>
+                            <th class="w-50p">Active</th>
+                            <th class="w-50p">Administrator</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for($x = 0; $x < 15; $x++)
-                            @foreach($users as $user)
-                                <tr>
-                                    <td><a href="{{ route('admin.users.edit', [$user]) }}">{{ Arr::random(['Noah Heck', 'Heidi Heck', 'Scott Jones', 'Percival Anaroty', 'Peter Wilson']) }}{{--{{ $user->name }}--}}</a></td>
-                                    <td>{{ Arr::random(['CEO', 'Programmer', 'Developer', 'Owner', 'Director of Development', 'Store Manager']) }}</td>
-                                    <td>1</td>
-                                </tr>
-                            @endforeach
-                        @endfor
+                        @foreach($users as $user)
+                            <tr>
+                                <td><a href="{{ route('admin.users.edit', [$user]) }}">{{ $user->name }}</a></td>
+                                <td>{{ $user->job_title }}</td>
+                                <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}"><span class="far fa{{ ($user->active) ? '-check' : '' }}-square"></span></td>
+                                <td class="text-center" data-order="{{ $user->administrator ? '1' : '0' }}"><span class="far fa{{ ($user->administrator) ? '-check' : '' }}-square"></span></td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

@@ -85,5 +85,13 @@ EOT;
 <?php echo "<script type='text/javascript' src='" . mix({$expression}) . "'></script>"; ?>
 EOT;
         });
+
+
+
+        \Blade::include('_form/text',            'textField');
+        \Blade::include('_form/email',           'emailField');
+        \Blade::include('_form/password',        'passwordField');
+        \Blade::include('_form/select',          'selectField');
+        \Blade::include('_form/checkboxSwitch',  'checkboxSwitchField');
     }
 }
