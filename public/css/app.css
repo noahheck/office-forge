@@ -22775,3 +22775,14 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
+.btn-warning {
+  background-color: #f6993f;
+  color: #fff;
+}
+
+.btn-warning:hover,
+.btn-warning:focus {
+  background-color: #f47f0e;
+  color: #fff;
+}
+

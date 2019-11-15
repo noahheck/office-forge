@@ -10,15 +10,15 @@ $__currentRouteName = Route::currentRouteName();
 
 @section('content')
 
-    <h2><span class="fas fa-cog"></span> My Settings</h2>
+    <h1><span class="fas fa-cog"></span> My Settings</h1>
 
     <div class="row settings">
 
         <div class="col-12 col-sm-5 col-md-4 col-lg-3">
             <div class="list-group settings-nav">
-                <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.index') ? 'current' : '' }}" href="{{ route('my-settings.index') }}">Details</a>
-                {{--<a class="list-group-item list-group-item-action" href="#">Password</a>
-                <a class="list-group-item list-group-item-action" href="#">Photo</a>
+                <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.index') ? 'current' : '' }}" href="{{ route('my-settings.index') }}"><span class="fa-fw far fa-address-card"></span> Details</a>
+                <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.password') ? 'current' : '' }}" href="{{ route('my-settings.password') }}"><span class="fa-fw fas fa-user-shield"></span> Password</a>
+                {{--<a class="list-group-item list-group-item-action" href="#">Photo</a>
                 <a class="list-group-item list-group-item-action" href="#">Settings</a>--}}
             </div>
         </div>

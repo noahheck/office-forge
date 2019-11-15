@@ -37,3 +37,14 @@
 .custom-control-label::after {
     cursor: pointer;
 }
+
+.btn-warning {
+    background-color: $warning-orange;
+    color: $white;
+
+    &:hover,
+    &:focus {
+        background-color: darken($warning-orange, 10%);
+        color: $white;
+    }
+}

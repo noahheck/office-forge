@@ -3,6 +3,7 @@
  */
 
 .settings .settings-nav .current {
+  padding-left: 17px;
   border-left: 3px solid #3490dc;
   font-weight: bold;
 }

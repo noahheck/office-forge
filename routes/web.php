@@ -27,6 +27,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::get('/', 'SettingsController@index')->name('index');
         Route::post('/', 'SettingsController@update')->name('update');
+
+        Route::get('/password', 'PasswordController@index')->name('password');
+        Route::post('/password', 'PasswordController@update')->name('password.update');
     });
 
 
