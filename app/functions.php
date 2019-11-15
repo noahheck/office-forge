@@ -14,3 +14,7 @@ function timezone_options() {
         'Pacific/Honolulu'    => 'Hawaii (no DST)',
     ];
 }
+
+function timezone_name($timezone) {
+    return timezone_options()[$timezone] ?? '';
+}

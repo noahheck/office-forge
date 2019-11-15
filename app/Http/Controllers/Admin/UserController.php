@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\Store as StoreRequest;
+use App\Http\Requests\Admin\User\Update as UpdateRequest;
 use App\Jobs\User\Create;
+use App\Jobs\User\Update;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -69,7 +71,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return $this->view('admin.users.show', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -80,7 +84,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return $this->view('admin.users.edit', [
+            'user' => $user,
+        ]);
     }
 
     /**
@@ -90,9 +96,21 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(UpdateRequest $request, User $user)
     {
-        //
+        $this->dispatchNow($userUpdated = new Update(
+            $user,
+            $request->name,
+            $request->email,
+            $request->timezone,
+            $request->job_title,
+            $request->has('active'),
+            $request->has('administrator'),
+            $request->has('system_administrator'),
+            $request->password ?? ''
+        ));
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
