@@ -31,13 +31,13 @@
                                     {!!
                                         ($user->administrator)
                                         ? "<span class='fa-fw fas fa-user-tie' title='Administrator'></span>"
-                                        : "<span class='fa-fw fas'></span>"
+                                        : ""
                                     !!}
 
                                     {!!
                                         ($user->system_administrator)
                                         ? "<span class='fa-fw fas fa-user-cog' title='System Administrator'></span>"
-                                        : "<span class='fa-fw fas'></span>"
+                                        : ""
                                     !!}
 
                                 </td>

@@ -1,0 +1,17 @@
+/**
+ * sass/settings.scss
+ */
+
+@import 'variables';
+
+.settings {
+
+    .settings-nav {
+
+        .current {
+            border-left: 3px solid $blue;
+            font-weight: bold;
+        }
+
+    }
+}

@@ -23,6 +23,12 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
+
+        Route::get('/', 'SettingsController@index')->name('index');
+        Route::post('/', 'SettingsController@update')->name('update');
+    });
+
 
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
 

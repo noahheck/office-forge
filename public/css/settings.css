@@ -1,0 +1,9 @@
+/**
+ * sass/settings.scss
+ */
+
+.settings .settings-nav .current {
+  border-left: 3px solid #3490dc;
+  font-weight: bold;
+}
+

@@ -1,6 +1,7 @@
 @php
 $__currentRouteName = Route::currentRouteName();
-$__isAdminRoute = Str::startsWith($__currentRouteName, 'admin.');
+$__isAdminRoute     = Str::startsWith($__currentRouteName, 'admin.');
+$__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -51,7 +52,7 @@ $__isAdminRoute = Str::startsWith($__currentRouteName, 'admin.');
                 </a>
             </li>
             <li class="divider">
-                <a href="#">
+                <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
                     <span class="fa-fw fas fa-cog"></span> Settings
                 </a>
             </li>
