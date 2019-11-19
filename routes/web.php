@@ -30,6 +30,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::get('/password', 'PasswordController@index')->name('password');
         Route::post('/password', 'PasswordController@update')->name('password.update');
+
+        Route::get('/teams', 'TeamsController@index')->name('teams');
     });
 
 

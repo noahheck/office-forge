@@ -21,6 +21,10 @@ $__currentRouteName = Route::currentRouteName();
                 <a class="list-group-item list-group-item-action" href="#"><span class="fa-fw fas fa-portrait"></span> Photo</a>
                 {{--<a class="list-group-item list-group-item-action" href="#">Settings</a>--}}
             </div>
+
+            <div class="list-group settings-nav mt-3">
+                <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.teams') ? 'current' : '' }}" href="{{ route('my-settings.teams') }}"><span class="fa-fw fas fa-user-friends"></span> Teams</a>
+            </div>
         </div>
 
         <div class="col-12 col-sm-8 col-md-9 mt-4 mt-sm-0">
