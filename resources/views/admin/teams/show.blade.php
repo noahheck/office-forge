@@ -3,7 +3,6 @@
 @section('content')
     <h1>
         <span class="fas fa-user-friends"></span>
-{{--        {!! $team->icon() !!}--}}
         {{ $team->name }}
     </h1>
 
