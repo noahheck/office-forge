@@ -94,6 +94,7 @@
 
             @checkboxSwitchField([
                 'name' => 'active',
+                'id' => 'active',
                 'label' => 'Active',
                 'details' => 'Allow this user to log in and access the system',
                 'checked' => old('active', $user->active),
@@ -103,6 +104,7 @@
 
             @checkboxSwitchField([
                 'name' => 'administrator',
+                'id' => 'administrator',
                 'label' => 'Administrator',
                 'details' => 'This user is an administrator. They\'re able to make changes to how the system functions, including managing users.',
                 'checked' => old('administrator', $user->administrator),
@@ -112,6 +114,7 @@
 
             @checkboxSwitchField([
                 'name' => 'system_administrator',
+                'id' => 'system_administrator',
                 'label' => 'System Administrator',
                 'details' => 'This user is able to configure technical aspects of the system, including installing and activating/deactivating modules, and downloading or restoring backups.',
                 'checked' => old('system_administrator', $user->system_administrator),

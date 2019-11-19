@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @push('styles')
-    @script('/css/admin.css')
+    @style('/css/admin.css')
 @endpush

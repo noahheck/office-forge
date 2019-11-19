@@ -22786,3 +22786,31 @@ a.text-dark:focus {
   color: #fff;
 }
 
+.team-icon {
+  border-radius: 3px;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  color: #090909;
+  margin-right: 6px;
+  padding: 7px;
+  display: inline-block;
+}
+
+.user-icon {
+  border-radius: 1500px;
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -o-user-select: none;
+  -moz-user-select: none;
+  color: #f9f9f9;
+  margin-right: 6px;
+  padding: 7px;
+  display: inline-block;
+}
+

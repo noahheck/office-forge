@@ -11,6 +11,9 @@
                 <li>
                     <a href="{{ route('admin.users.index') }}"><span class="fa-fw fas fa-users"></span> Users</a> - Setup the users of the system
                 </li>
+                <li>
+                    <a href="{{ route('admin.teams.index') }}"><span class="fa-fw fas fa-user-friends"></span> Teams</a> - Organize your staff members into functional groups
+                </li>
             </ul>
         </div>
     </div>

@@ -2,3 +2,20 @@
  * sass/admin.scss
  */
 
+/**
+ * sass/_mixins.scss
+ */
+
+.empty-resource {
+  text-align: center;
+}
+
+.empty-resource .empty-resource-icon {
+  border-radius: 15px;
+  font-size: 96px;
+  color: #3490dc;
+  border: 1px solid #ccc;
+  padding: 50px;
+  margin-bottom: 40px;
+}
+

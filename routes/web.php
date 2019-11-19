@@ -37,7 +37,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::get('/', 'AdminController@index')->name('index');
 
-        Route::resource('/users', 'UserController');//->name('users');
+        Route::resource('/users', 'UserController');
+
+        Route::resource('/teams', 'TeamController');
 
     });
 

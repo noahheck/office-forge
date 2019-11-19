@@ -18,6 +18,7 @@ class AddAdminFieldsToUserTable extends Migration
             $table->boolean('force_password_change')->after('password')->default(false);
             $table->string('job_title')->nullable();
             $table->string('timezone');
+            $table->string('color');
             $table->boolean('active')->default(true);
             $table->boolean('administrator')->default(false);
             $table->boolean('system_administrator')->default(false);

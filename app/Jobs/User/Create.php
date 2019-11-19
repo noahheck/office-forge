@@ -3,6 +3,7 @@
 namespace App\Jobs\User;
 
 use App\User;
+use App\Utility\RandomColorGenerator;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -69,6 +70,8 @@ class Create
         $user->email = $this->email;
         $user->timezone = $this->timezone;
         $user->job_title = $this->job_title;
+
+        $user->color = RandomColorGenerator::generateHex(RandomColorGenerator::COLOR_DARK);
 
         $user->password = $hasher->make($this->password);
 

@@ -42,7 +42,9 @@
 
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.users.edit', [$user]) }}">{{ $user->name }}</a>
+                                    <a href="{{ route('admin.users.edit', [$user]) }}">
+                                        {!! $user->icon() !!}{{ $user->name }}
+                                    </a>
                                 </td>
                                 <td>{{ $user->job_title }}</td>
                                 <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}"><span class="far fa{{ ($user->active) ? '-check' : '' }}-square"></span></td>

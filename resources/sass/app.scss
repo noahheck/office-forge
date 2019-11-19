@@ -48,3 +48,27 @@
         color: $white;
     }
 }
+
+
+
+
+
+
+.team-icon {
+    @include border-radius();
+    @include no-text-select();
+    color: #090909;
+    margin-right: 6px;
+    padding: 7px;
+
+    display: inline-block;
+}
+
+.user-icon {
+    @include border-rounded();
+    @include no-text-select();
+    color: #f9f9f9;
+    margin-right: 6px;
+    padding: 7px;
+    display: inline-block;
+}
