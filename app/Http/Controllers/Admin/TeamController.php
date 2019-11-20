@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Team\Store as StoreRequest;
+use App\Http\Requests\Admin\Team\Update as UpdateRequest;
 use App\Team;
 use App\User;
 use App\Utility\RandomColorGenerator;
@@ -45,7 +47,7 @@ class TeamController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         $team = new Team;
 
@@ -97,7 +99,7 @@ class TeamController extends Controller
      * @param  \App\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(UpdateRequest $request, Team $team)
     {
         $team->name = $request->name;
 
