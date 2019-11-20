@@ -2,10 +2,10 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-friends"></span> Edit Team
+        <span class="fas fa-user-friends"></span> {{ __('admin.editTeam') }}
     </h1>
 
-    <p class="text-muted">Edit a Team</p>
+    <p class="text-muted">{{ __('admin.editTeam_shortDescription') }}</p>
 
     <div class="card">
         <div class="card-body">

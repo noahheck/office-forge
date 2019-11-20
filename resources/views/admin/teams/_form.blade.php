@@ -13,9 +13,9 @@
 
             @textField([
                 'name' => 'name',
-                'label' => 'Name',
+                'label' => __('team.name'),
                 'value' => old('name', $team->name),
-                'placeholder' => 'Sales, Executive Team, South Campus Supervisors, etc...',
+                'placeholder' => __('team.nameExamples'),
                 'required' => true,
                 'autofocus' => true,
                 'error' => $errors->has('name'),
@@ -33,9 +33,9 @@
                     <tr>
                         <th class="w-50p">&nbsp;</th>
                         <th class="w-50p">&nbsp;</th>
-                        <th>Name</th>
-                        <th>Title</th>
-                        <th class="w-50p">Active</th>
+                        <th>{{ __('user.name') }}</th>
+                        <th>{{ __('user.jobTitle') }}</th>
+                        <th class="w-50p">{{ __('user.active') }}</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -56,13 +56,13 @@
 
                                     {!!
                                         ($user->administrator)
-                                        ? "<span class='fa-fw fas fa-user-tie' title='Administrator'></span>"
+                                        ? "<span class='fa-fw fas fa-user-tie' title='" . __('user.administrator') . "'></span>"
                                         : ""
                                     !!}
 
                                     {!!
                                         ($user->system_administrator)
-                                        ? "<span class='fa-fw fas fa-user-cog' title='System Administrator'></span>"
+                                        ? "<span class='fa-fw fas fa-user-cog' title='" . __('user.systemAdministrator') . "'></span>"
                                         : ""
                                     !!}
 
@@ -86,11 +86,11 @@
     <hr>
 
     <button type="submit" class="btn btn-primary">
-        Save
+        {{ __('app.save') }}
     </button>
 
     <a class="btn btn-secondary" href="{{ url()->previous(route('admin.teams.index')) }}">
-        Cancel
+        {{ __('app.cancel') }}
     </a>
 
 </form>

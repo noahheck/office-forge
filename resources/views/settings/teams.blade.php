@@ -2,12 +2,10 @@
 
 @section('my-settings-content')
 
-    <h3>Teams</h3>
-
-    <hr>
+    <h2>{{ __('app.teams') }}</h2>
 
     @if($teams->count() > 0)
-        <p>You are a member of the following teams:</p>
+        <p>{{ __('settings.memberOfTheseTeams') }}</p>
 
         <ul class="list-group">
             @foreach ($teams as $team)
@@ -18,7 +16,7 @@
         </ul>
 
     @else
-        <p>You are not a member of any teams.</p>
+        <p>{{ __('settings.notAMemberOfAnyTeams') }}</p>
     @endif
 
 @endsection

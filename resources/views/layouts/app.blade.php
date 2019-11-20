@@ -12,7 +12,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Office Forge') }}</title>
 
 
     <!-- Scripts -->
@@ -33,44 +33,44 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
         <ul>
             <li>
                 <a href="{{ route('home') }}" class="{{ ($__currentRouteName === 'home') ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-home"></span> Home
+                    <span class="fa-fw fas fa-home"></span> {{ __('app.home') }}
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="fa-fw far fa-envelope"></span> Messages
+                    <span class="fa-fw far fa-envelope"></span> {{ __('app.messages') }}
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="fa-fw fas fa-project-diagram"></span> Projects
+                    <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <span class="fa-fw fas fa-file"></span> Documents
+                    <span class="fa-fw fas fa-file"></span> {{ __('app.documents') }}
                 </a>
             </li>
             <li class="divider">
                 <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-cog"></span> Settings
+                    <span class="fa-fw fas fa-cog"></span> {{ __('app.settings') }}
                 </a>
             </li>
             @admin
                 <li>
                     <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
-                        <span class="fa-fw fas fa-cogs"></span> Admin
+                        <span class="fa-fw fas fa-cogs"></span> {{ __('app.admin') }}
                     </a>
                 </li>
             @endadmin
             <li>
                 <a href="#">
-                    <span class="fa-fw far fa-question-circle"></span> Help
+                    <span class="fa-fw far fa-question-circle"></span> {{ __('app.help') }}
                 </a>
             </li>
             <li class="divider">
                 <a href="{{ route('logout') }}">
-                    <span class="fa-fw fas fa-sign-out-alt"></span> Log Out
+                    <span class="fa-fw fas fa-sign-out-alt"></span> {{ __('app.logout') }}
                 </a>
             </li>
         </ul>
@@ -82,7 +82,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
             <span>
                 <button type="button" id="toggleApplicationSidebarButton" class="btn toggle-application-sidebar-button">
                     <span class="fas fa-bars"></span>
-                    <span class="sr-only">Show Navigation Menu</span>
+                    <span class="sr-only">{{ __('app.showNavigationMenu') }}</span>
                 </button>
 
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -90,7 +90,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
                 </a>
             </span>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('toggleNavigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -105,11 +105,11 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
                     <!-- Authentication Links -->
                     @guest
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('app.login') }}</a>
                         </li>
                         @if (Route::has('register'))
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('app.register') }}</a>
                             </li>
                         @endif
                     @else
@@ -122,7 +122,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('app.logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

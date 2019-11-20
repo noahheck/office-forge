@@ -13,9 +13,9 @@
 
             @textField([
                 'name' => 'name',
-                'label' => 'Name',
+                'label' => __('user.name'),
                 'value' => old('name', $user->name),
-                'placeholder' => 'John Doe',
+                'placeholder' => __('user.nameExample'),
                 'required' => true,
                 'autofocus' => true,
                 'error' => $errors->has('name'),
@@ -23,9 +23,9 @@
 
             @textField([
                 'name' => 'job_title',
-                'label' => 'Job Title',
+                'label' => __('user.jobTitle'),
                 'value' => old('job_title', $user->job_title),
-                'placeholder' => 'President',
+                'placeholder' => __('user.jobTitleExample'),
                 'required' => false,
                 'autofocus' => false,
                 'error' => $errors->has('job_title'),
@@ -33,9 +33,9 @@
 
             @emailField([
                 'name' => 'email',
-                'label' => 'Email',
+                'label' => __('user.email'),
                 'value' => old('email', $user->email),
-                'placeholder' => 'john.doe@example.com',
+                'placeholder' => __('user.emailExample'),
                 'required' => true,
                 'autofocus' => false,
                 'error' => $errors->has('email'),
@@ -43,7 +43,7 @@
 
             @selectField([
                 'name' => 'timezone',
-                'label' => 'Timezone',
+                'label' => __('user.timezone'),
                 'value' => old('timezone', $user->timezone),
                 'options' => \App\timezone_options(),
                 'required' => true,
@@ -69,9 +69,9 @@
 
                     @passwordField([
                         'name' => 'password',
-                        'label' => 'Password',
+                        'label' => __('user.password'),
                         'value' => '',
-                        'placeholder' => 'Choose a strong password',
+                        'placeholder' => __('user.chooseStrongPassword'),
                         'required' => $passwordRequired ?? true,
                         'autofocus' => false,
                         'error' => $errors->has('password'),
@@ -79,9 +79,9 @@
 
                     @passwordField([
                         'name' => 'password_confirmation',
-                        'label' => 'Confirm Password',
+                        'label' => __('user.confirmPassword'),
                         'value' => '',
-                        'placeholder' => 'Same as above',
+                        'placeholder' => __('user.sameAsAbove'),
                         'required' => $passwordRequired ?? true,
                         'autofocus' => false,
                         'error' => $errors->has('password_confirmation'),
@@ -95,8 +95,8 @@
             @checkboxSwitchField([
                 'name' => 'active',
                 'id' => 'active',
-                'label' => 'Active',
-                'details' => 'Allow this user to log in and access the system',
+                'label' => __('user.active'),
+                'details' => __('admin.active_shortDescription'),
                 'checked' => old('active', $user->active),
                 'required' => false,
                 'error' => false,
@@ -105,8 +105,8 @@
             @checkboxSwitchField([
                 'name' => 'administrator',
                 'id' => 'administrator',
-                'label' => 'Administrator',
-                'details' => 'This user is an administrator. They\'re able to make changes to how the system functions, including managing users.',
+                'label' => __('user.administrator'),
+                'details' => __('admin.administrator_shortDescription'),
                 'checked' => old('administrator', $user->administrator),
                 'required' => false,
                 'error' => false,
@@ -115,8 +115,8 @@
             @checkboxSwitchField([
                 'name' => 'system_administrator',
                 'id' => 'system_administrator',
-                'label' => 'System Administrator',
-                'details' => 'This user is able to configure technical aspects of the system, including installing and activating/deactivating modules, and downloading or restoring backups.',
+                'label' => __('user.systemAdministrator'),
+                'details' => __('admin.systemAdministrator_shortDescription'),
                 'checked' => old('system_administrator', $user->system_administrator),
                 'required' => false,
                 'error' => false,
@@ -129,11 +129,11 @@
     <hr>
 
     <button type="submit" class="btn btn-primary">
-        Save
+        {{ __('app.save') }}
     </button>
 
     <a class="btn btn-secondary" href="{{ url()->previous(route('admin.users.index')) }}">
-        Cancel
+        {{ __('app.cancel') }}
     </a>
 
 </form>

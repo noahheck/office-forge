@@ -2,9 +2,7 @@
 
 @section('my-settings-content')
 
-    <h3>Details</h3>
-
-    <hr>
+    <h2>{{ __('settings.details') }}</h2>
 
     <form action="{{ route('my-settings.update') }}" method="POST" class="bold-labels">
         @csrf
@@ -13,9 +11,9 @@
 
         @textField([
             'name' => 'name',
-            'label' => 'Name',
+            'label' => __('user.name'),
             'value' => old('name', $user->name),
-            'placeholder' => 'John Doe',
+            'placeholder' => __('user.nameExample'),
             'required' => true,
             'autofocus' => true,
             'error' => $errors->has('name'),
@@ -23,9 +21,9 @@
 
         @textField([
             'name' => 'job_title',
-            'label' => 'Job Title',
+            'label' => __('user.jobTitle'),
             'value' => old('job_title', $user->job_title),
-            'placeholder' => 'President',
+            'placeholder' => __('user.jobTitleExample'),
             'required' => false,
             'autofocus' => false,
             'error' => $errors->has('job_title'),
@@ -33,9 +31,9 @@
 
         @emailField([
             'name' => 'email',
-            'label' => 'Email',
+            'label' => __('user.email'),
             'value' => old('email', $user->email),
-            'placeholder' => 'john.doe@example.com',
+            'placeholder' => __('user.emailExample'),
             'required' => true,
             'autofocus' => false,
             'error' => $errors->has('email'),
@@ -43,7 +41,7 @@
 
         @selectField([
             'name' => 'timezone',
-            'label' => 'Timezone',
+            'label' => __('user.timezone'),
             'value' => old('timezone', $user->timezone),
             'options' => \App\timezone_options(),
             'required' => true,
@@ -54,7 +52,7 @@
         <hr>
 
         <button type="submit" class="btn btn-primary">
-            Save
+            {{ __('app.save') }}
         </button>
 
     </form>

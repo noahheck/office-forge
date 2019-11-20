@@ -2,14 +2,14 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-users-cog"></span> Users
+        <span class="fas fa-users-cog"></span> {{ __('admin.users') }}
     </h1>
 
     <div class="card">
         <div class="card-body">
             <div class="text-right">
                 <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
-                    <span class="fas fa-user-plus"></span> New User
+                    <span class="fas fa-user-plus"></span> {{ __('admin.newUser') }}
                 </a>
             </div>
             <hr>
@@ -18,9 +18,9 @@
                     <thead>
                         <tr>
                             <th class="w-50p">&nbsp;</th>
-                            <th>Name</th>
-                            <th>Title</th>
-                            <th class="w-50p">Active</th>
+                            <th>{{ __('user.name') }}</th>
+                            <th>{{ __('user.jobTitle') }}</th>
+                            <th class="w-50p">{{ __('user.active') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,13 +30,13 @@
 
                                     {!!
                                         ($user->administrator)
-                                        ? "<span class='fa-fw fas fa-user-tie' title='Administrator'></span>"
+                                        ? "<span class='fa-fw fas fa-user-tie' title='" . __('user.administrator') . "'></span>"
                                         : ""
                                     !!}
 
                                     {!!
                                         ($user->system_administrator)
-                                        ? "<span class='fa-fw fas fa-user-cog' title='System Administrator'></span>"
+                                        ? "<span class='fa-fw fas fa-user-cog' title='" . __('user.systemAdministrator') . "'></span>"
                                         : ""
                                     !!}
 

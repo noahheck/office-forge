@@ -10,7 +10,7 @@
         <div class="card-body">
             <div class="text-right">
                 <a href="{{ route('admin.teams.edit', [$team]) }}" class="btn btn-primary">
-                    <span class="fas fa-edit"></span> Edit Team
+                    <span class="fas fa-edit"></span> {{ __('admin.editTeam') }}
                 </a>
             </div>
 

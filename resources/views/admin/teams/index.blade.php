@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-friends"></span> Teams
+        <span class="fas fa-user-friends"></span> {{ __('app.teams') }}
     </h1>
 
     <div class="card">
@@ -10,7 +10,7 @@
             @if($teams->count() > 0)
                 <div class="text-right">
                     <a href="{{ route('admin.teams.create') }}" class="btn btn-primary">
-                        <span class="fas fa-plus-circle"></span> New Team
+                        <span class="fas fa-plus-circle"></span> {{ __('admin.newTeam') }}
                     </a>
                 </div>
                 <hr>
@@ -18,8 +18,8 @@
                     <table id="users" class="table table-striped table-bordered dt-table">
                         <thead>
                             <tr>
-                                <th>Team</th>
-                                <th>Members</th>
+                                <th>{{ __('app.team') }}</th>
+                                <th>{{ __('app.members') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,12 +53,12 @@
                                 <span class="fas fa-user-friends empty-resource-icon"></span>
                             </div>
 
-                            <p>Teams help you organize your staff members into functional groups so they can work together better. Teams help you communicate more effectively, and are used to help organize access to information.</p>
-                            <p>You can create as many teams as you need!</p>
+                            <p>{{ __('admin.team_description') }}</p>
+                            <p>{{ __('admin.team_createAsManyAsWanted') }}</p>
 
                             <hr>
 
-                            <a class="btn btn-primary" href="{{ route('admin.teams.create') }}">Create your first team now!</a>
+                            <a class="btn btn-primary" href="{{ route('admin.teams.create') }}">{{ __('admin.team_createFirstTeamNow') }}</a>
                         </div>
                     </div>
 

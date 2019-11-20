@@ -2,9 +2,7 @@
 
 @section('my-settings-content')
 
-    <h3>Change your password</h3>
-
-    <hr>
+    <h2>{{ __('settings.changeYourPassword') }}</h2>
 
     <form action="{{ route('my-settings.password.update') }}" method="POST" class="bold-labels">
         @csrf
@@ -13,9 +11,9 @@
 
         @passwordField([
             'name' => 'current_password',
-            'label' => 'Current Password',
+            'label' => __('user.currentPassword'),
             'value' => '',
-            'placeholder' => 'Current password',
+            'placeholder' => __('user.currentPassword'),
             'required' => true,
             'autofocus' => false,
             'error' => $errors->has('current_password'),
@@ -23,9 +21,9 @@
 
         @passwordField([
             'name' => 'new_password',
-            'label' => 'New Password',
+            'label' => __('user.newPassword'),
             'value' => '',
-            'placeholder' => 'Choose a strong password',
+            'placeholder' => __('user.chooseStrongPassword'),
             'required' => true,
             'autofocus' => false,
             'error' => $errors->has('new_password'),
@@ -33,9 +31,9 @@
 
         @passwordField([
             'name' => 'new_password_confirmation',
-            'label' => 'Confirm Password',
+            'label' => __('user.confirmPassword'),
             'value' => '',
-            'placeholder' => 'Same as above',
+            'placeholder' => __('user.sameAsAbove'),
             'required' => true,
             'autofocus' => false,
             'error' => $errors->has('new_password_confirmation'),
@@ -44,7 +42,7 @@
         <hr>
 
         <button type="submit" class="btn btn-warning">
-            Update Password
+            {{ __('user.updatePassword') }}
         </button>
 
     </form>
