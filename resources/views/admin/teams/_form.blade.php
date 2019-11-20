@@ -27,11 +27,13 @@
 
             <hr>
 
+            <p><strong>{{ __('app.members') }}</strong>: {{ __('admin.team_selectMembers') }}</p>
+
             <div class="table-responsive">
-                <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 2, "asc" ]]' data-columns='[{"orderable": false}, {"orderable": false}, null, null, null]'>
+                <table id="users" class="table table-sm table-striped table-bordered dt-table" data-order='[[ 2, "asc" ]]' data-columns='[{"orderable": false}, {"orderable": false}, null, null, null]'>
                     <thead>
                     <tr>
-                        <th class="w-50p">&nbsp;</th>
+                        <th class="w-50p text-center">{{ __('app.member') }}</th>
                         <th class="w-50p">&nbsp;</th>
                         <th>{{ __('user.name') }}</th>
                         <th>{{ __('user.jobTitle') }}</th>
@@ -41,7 +43,7 @@
                     <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td>
+                                <td class="text-center">
                                     @checkboxSwitchField([
                                         'name' => 'members[]',
                                         'id' => 'member_' . $user->id,
