@@ -18,7 +18,7 @@ return [
     'messages' => 'Messages',
     'projects' => 'Projects',
     'documents' => 'Documents',
-    'settings' => 'Settings',
+    'mySettings' => 'My Settings',
     'admin' => 'Admin',
     'help' => 'Help',
 

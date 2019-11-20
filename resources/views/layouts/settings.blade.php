@@ -10,7 +10,7 @@ $__currentRouteName = Route::currentRouteName();
 
 @section('content')
 
-    <h1><span class="fas fa-cog"></span> {{ __('settings.mySettings') }}</h1>
+    <h1><span class="fas fa-cog"></span> {{ __('app.mySettings') }}</h1>
 
     <div class="row settings">
 

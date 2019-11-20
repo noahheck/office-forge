@@ -1,8 +1,6 @@
 <?php
 
 return [
-    'mySettings' => 'My Settings',
-
     'details' => 'Details',
     'password' => 'Password',
     'photo' => 'Photo',

@@ -53,7 +53,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
             </li>
             <li class="divider">
                 <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-cog"></span> {{ __('app.settings') }}
+                    <span class="fa-fw fas fa-cog"></span> {{ __('app.mySettings') }}
                 </a>
             </li>
             @admin
