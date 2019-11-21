@@ -18,7 +18,7 @@ $__currentRouteName = Route::currentRouteName();
             <div class="list-group settings-nav">
                 <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.index') ? 'current' : '' }}" href="{{ route('my-settings.index') }}"><span class="fa-fw far fa-address-card"></span> {{ __('settings.details') }}</a>
                 <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.password') ? 'current' : '' }}" href="{{ route('my-settings.password') }}"><span class="fa-fw fas fa-user-shield"></span> {{ __('settings.password') }}</a>
-                <a class="list-group-item list-group-item-action" href="#"><span class="fa-fw fas fa-portrait"></span> {{ __('settings.photo') }}</a>
+                <a class="list-group-item list-group-item-action {{ ($__currentRouteName == 'my-settings.photo') ? 'current' : '' }}" href="{{ route('my-settings.photo') }}"><span class="fa-fw fas fa-portrait"></span> {{ __('settings.photo') }}</a>
                 {{--<a class="list-group-item list-group-item-action" href="#">Settings</a>--}}
             </div>
 

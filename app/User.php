@@ -2,12 +2,13 @@
 
 namespace App;
 
+use App\Interfaces\Headshottable;
 use App\Traits\GetsInitialsFromName;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements Headshottable
 {
     use Notifiable,
         GetsInitialsFromName;
@@ -60,6 +61,15 @@ class User extends Authenticatable
     }
 
 
+
+
+
+
+    // Probably extracting this to the HasHeadShots trait
+    public function headshots()
+    {
+        return $this->morphMany(HeadShot::class, 'headshottable');
+    }
 
     public function icon()
     {

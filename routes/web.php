@@ -31,7 +31,11 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::get('/password', 'PasswordController@index')->name('password');
         Route::post('/password', 'PasswordController@update')->name('password.update');
 
+        Route::get('/photo', 'PhotoController@index')->name('photo');
+        Route::post('/photo', 'PhotoController@update')->name('photo.update');
+
         Route::get('/teams', 'TeamsController@index')->name('teams');
+
     });
 
 
