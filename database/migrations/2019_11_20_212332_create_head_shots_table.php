@@ -18,11 +18,13 @@ class CreateHeadShotsTable extends Migration
 
             $table->morphs('headshottable');
 
+            $table->boolean('current')->default(false);
             $table->string('filename')->nullable();
             $table->string('thumb_filename')->nullable();
             $table->string('icon_filename')->nullable();
             $table->string('original_filename')->nullable();
             $table->string('type');
+            $table->string('extension');
             $table->bigInteger('uploaded_by');
 
             $table->timestamps();

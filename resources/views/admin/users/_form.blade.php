@@ -9,6 +9,12 @@
 
         <div class="col-12 col-md-6">
 
+            @if ($user->hasHeadshot())
+                <div class="user-photo">
+                    {!! $user->thumbnail(['rounded', 'shadow']) !!}
+                </div>
+            @endif
+
             @errors('name', 'job_title', 'email', 'timezone')
 
             @textField([

@@ -6,6 +6,17 @@
  * sass/_mixins.scss
  */
 
+.dt-table td {
+  vertical-align: middle;
+}
+
+.user-photo {
+  text-align: center;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
 .empty-resource {
   text-align: center;
 }

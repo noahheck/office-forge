@@ -69,7 +69,7 @@
                                     !!}
 
                                 </td>
-                                <td>
+                                <td data-sort="{{ $user->name }}">
                                     {!! $user->icon() !!} {{ $user->name }}
                                 </td>
                                 <td>{{ $user->job_title }}</td>

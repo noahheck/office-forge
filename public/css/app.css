@@ -22760,6 +22760,11 @@ a.text-dark:focus {
   background-color: #282923;
 }
 
+.header-navbar .icon {
+  max-width: 21px;
+  max-height: 21px;
+}
+
 .main-content {
   margin-top: 60px;
 }

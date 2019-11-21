@@ -9,6 +9,10 @@ class HeadShot extends Model
 {
     use SoftDeletes;
 
+    protected $casts = [
+        'current' => 'boolean',
+    ];
+
     public function headshottable()
     {
         return $this->morphTo();

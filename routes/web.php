@@ -23,6 +23,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::get('/home', 'HomeController@index')->name('home');
 
+    Route::get('/headshot/{headshot}/{size}/{filename}', 'HeadShotController@photo')->name('headshot');
+
     Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
 
         Route::get('/', 'SettingsController@index')->name('index');

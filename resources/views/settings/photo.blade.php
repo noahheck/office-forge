@@ -7,8 +7,10 @@
     <form action="{{ route('my-settings.photo.update') }}" method="POST" enctype="multipart/form-data" class="bold-labels">
         @csrf
 
+        @errors('new_profile_photo')
+
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="new_profile_photo" name="new_profile_photo">
+            <input type="file" class="custom-file-input" id="new_profile_photo" name="new_profile_photo" required>
             <label class="custom-file-label" for="new_profile_photo">{{ __('settings.photo_selectPhoto') }}</label>
         </div>
 

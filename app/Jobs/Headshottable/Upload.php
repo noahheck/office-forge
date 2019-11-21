@@ -63,20 +63,31 @@ class Upload
         $uploadedFile  = $this->uploadedFile;
         $uploadedBy    = $this->uploadedBy;
 
+        $extension = $uploadedFile->getClientOriginalExtension();
+
+        $currentHeadShot = $headshottable->currentHeadshot();
+
         $headshot = new HeadShot;
         $headshot->headshottable_type = get_class($headshottable);
         $headshot->headshottable_id   = $headshottable->id;
 
+        $headshot->current           = true;
         $headshot->original_filename = $uploadedFile->getClientOriginalName();
         $headshot->type              = $uploadedFile->getMimeType();
+        $headshot->extension         = $extension;
 
         $headshot->uploaded_by = $uploadedBy->id;
 
         $headshot->save();
 
+        // If we make it here, we'll set the formerly current headshot as no longer current
+        if ($currentHeadShot) {
+            $currentHeadShot->current = false;
+            $currentHeadShot->save();
+        }
+
         $baseFileName = $headshot->id;
 
-        $extension = $uploadedFile->getClientOriginalExtension();
 
         $photoName     = $baseFileName . '.'           . $extension;
         $thumbFileName = $baseFileName . '.thumbnail.' . $extension;

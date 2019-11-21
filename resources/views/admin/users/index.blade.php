@@ -41,9 +41,9 @@
                                     !!}
 
                                 </td>
-                                <td>
+                                <td data-sort="{{ $user->name }}">
                                     <a href="{{ route('admin.users.edit', [$user]) }}">
-                                        {!! $user->icon() !!}{{ $user->name }}
+                                        {!! $user->icon() !!} {{ $user->name }}
                                     </a>
                                 </td>
                                 <td>{{ $user->job_title }}</td>
