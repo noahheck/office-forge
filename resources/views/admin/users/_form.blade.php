@@ -9,11 +9,9 @@
 
         <div class="col-12 col-md-6">
 
-            @if ($user->hasHeadshot())
-                <div class="user-photo">
-                    {!! $user->thumbnail(['rounded', 'shadow']) !!}
-                </div>
-            @endif
+            <div class="user-photo">
+                {!! $user->thumbnail(['rounded', 'shadow']) !!}
+            </div>
 
             @errors('name', 'job_title', 'email', 'timezone')
 

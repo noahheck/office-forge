@@ -115,9 +115,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
                     @else
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if (Auth::user()->hasHeadshot())
-                                    {!! Auth::user()->icon() !!}
-                                @endif
+                                {!! Auth::user()->iconPhoto() !!}
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
 

@@ -81,6 +81,27 @@ class User extends Authenticatable implements Headshottable
         return !is_null($this->currentHeadshot());
     }
 
+    /**
+     * Differs from $this->icon() in that this will always return an img tag; src will be user icon photo instead of
+     * text-style colored icon if there is no headshot for this user
+     *
+     * @param array $withClasses
+     * @return string
+     */
+    public function iconPhoto($withClasses = []): string
+    {
+        $source = "/images/user.icon.png";
+        $classes = implode(' ', array_unique(array_merge($withClasses, ['icon', 'rounded-circle'])));
+
+        if ($headshot = $this->currentHeadshot()) {
+            $source = route('headshot', [$headshot->id, 'thumb', $headshot->thumb_filename]);
+            $classes .= ' headshot';
+        }
+
+
+        return "<img class='" . $classes . "' src='" . $source . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
+    }
+
     public function icon($withClasses = []): string
     {
         if ($headshot = $this->currentHeadshot()) {
@@ -94,24 +115,30 @@ class User extends Authenticatable implements Headshottable
 
     public function thumbnail($withClasses = []): string
     {
-        if (!$headshot = $this->currentHeadshot()) {
-            return '';
+        $source = "/images/user.thumb.png";
+        $classes = implode(' ', array_unique(array_merge($withClasses, ['thumbnail'])));
+
+        if ($headshot = $this->currentHeadshot()) {
+            $source = route('headshot', [$headshot->id, 'thumb', $headshot->thumb_filename]);
+            $classes .= ' headshot';
         }
 
-        $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'thumbnail'])));
 
-        return "<img class='" . $classes . "' src='" . route('headshot', [$headshot->id, 'thumb', $headshot->thumb_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
+        return "<img class='" . $classes . "' src='" . $source . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
     }
 
     public function photo($withClasses = []): string
     {
-        if (!$headshot = $this->currentHeadshot()) {
-            return '';
+        $source = "/images/user.png";
+        $classes = implode(' ', array_unique(array_merge($withClasses, ['photo'])));
+
+        if ($headshot = $this->currentHeadshot()) {
+            $source = route('headshot', [$headshot->id, 'base', $headshot->filename]);
+            $classes .= ' headshot';
         }
 
-        $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'photo'])));
 
-        return "<img class='" . $classes . "' src='" . route('headshot', [$headshot->id, 'base', $headshot->filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
+        return "<img class='" . $classes . "' src='" . $source . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
     }
 
 
