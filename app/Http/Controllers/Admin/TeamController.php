@@ -20,7 +20,7 @@ class TeamController extends Controller
     public function index()
     {
         $teams = Team::orderBy('name')->get();
-        $teams->load('members');
+        $teams->load('members', 'members.headshots');
 
         return $this->view('admin.teams.index', [
             'teams' => $teams,
@@ -37,6 +37,8 @@ class TeamController extends Controller
         $team = new Team;
 
         $users = User::orderBy('name')->get();
+
+        $users->load('headshots');
 
         return $this->view('admin.teams.create', compact('team', 'users'));
     }
@@ -69,7 +71,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        $team->load('members');
+        $team->load('members', 'members.headshots');
 
         return $this->view('admin.teams.show', [
             'team' => $team,
@@ -87,7 +89,7 @@ class TeamController extends Controller
         $team->load('members');
 
         $users = User::orderBy('name')->get();
-        $users->load('teams');
+        $users->load('teams', 'headshots');
 
         return $this->view('admin.teams.edit', compact('team', 'users'));
     }

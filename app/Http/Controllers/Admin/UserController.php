@@ -21,6 +21,8 @@ class UserController extends Controller
     {
         $users = User::orderBy('name')->get();
 
+        $users->load('headshots');
+
         return $this->view('admin.users.index', [
             'users' => $users,
         ]);

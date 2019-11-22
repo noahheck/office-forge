@@ -73,7 +73,7 @@ class User extends Authenticatable implements Headshottable
 
     public function currentHeadshot()
     {
-        return $this->headshots->where('current', true)->first();
+        return $this->headshots->firstWhere('current', true);
     }
 
     public function hasHeadshot(): bool
