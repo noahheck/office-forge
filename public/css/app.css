@@ -22674,9 +22674,10 @@ a.text-dark:focus {
   color: #fff;
   border: 1px solid #adb5bd;
   margin-right: 3px;
-  margin-left: 3px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  margin-left: 13px;
+  padding-top: 4px;
+  margin-top: -4px;
+  padding-bottom: 4px;
 }
 
 .toggle-application-sidebar-button:hover {
@@ -22788,6 +22789,32 @@ a.text-dark:focus {
 .btn-warning:hover,
 .btn-warning:focus {
   background-color: #f47f0e;
+  color: #fff;
+}
+
+.skip-to-content-link {
+  -webkit-border-top-right-radius: 3px;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  -moz-border-radius-bottomRight: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  -webkit-transition: left 0.2s;
+  transition: left 0.2s;
+  position: fixed;
+  top: 10px;
+  left: -100px;
+  background-color: #282923;
+  border: 1px solid #666;
+  border-left: none;
+  padding: 4px;
+  padding-right: 24px;
+  color: #fff;
+}
+
+.skip-to-content-link:hover,
+.skip-to-content-link:focus {
+  left: 0;
   color: #fff;
 }
 

@@ -42,6 +42,11 @@
     transition: padding $time;
 }
 
+@mixin position-transition($direction, $time: .2s) {
+    -webkit-transition: $direction $time;
+    transition: $direction $time;
+}
+
 @mixin width-transition($time: .2s) {
     -webkit-transition: width $time;
     transition: width $time;
@@ -65,6 +70,15 @@
     -moz-border-radius-topright: $radius;
     border-top-left-radius: $radius;
     border-top-right-radius: $radius;
+}
+
+@mixin border-right-radius($radius: 3px) {
+    -webkit-border-top-right-radius: $radius;
+    -webkit-border-bottom-right-radius: $radius;
+    -moz-border-radius-topright: $radius;
+    -moz-border-radius-bottomRight: $radius;
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
 }
 
 @mixin border-rounded {

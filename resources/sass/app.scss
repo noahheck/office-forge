@@ -56,6 +56,27 @@
 
 
 
+.skip-to-content-link {
+    @include border-right-radius();
+    @include position-transition(left);
+
+    position: fixed;
+    top: 10px;
+    left: -100px;
+    background-color: $navbar-bg;
+    border: 1px solid $dark-gray;
+    border-left: none;
+    padding: 4px;
+    padding-right: 24px;
+
+    color: $white;
+
+    &:hover,
+    &:focus {
+        left: 0;
+        color: $white;
+    }
+}
 
 
 

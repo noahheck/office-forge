@@ -29,57 +29,12 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
     @stack('styles')
 </head>
 <body>
-    <div class="application-sidebar" id="applicationSidebar">
-        <ul>
-            <li>
-                <a href="{{ route('home') }}" class="{{ ($__currentRouteName === 'home') ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-home"></span> {{ __('app.home') }}
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="fa-fw far fa-envelope"></span> {{ __('app.messages') }}
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <span class="fa-fw fas fa-file"></span> {{ __('app.documents') }}
-                </a>
-            </li>
-            <li class="divider">
-                <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-cog"></span> {{ __('app.mySettings') }}
-                </a>
-            </li>
-            @admin
-                <li>
-                    <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
-                        <span class="fa-fw fas fa-cogs"></span> {{ __('app.admin') }}
-                    </a>
-                </li>
-            @endadmin
-            <li>
-                <a href="#">
-                    <span class="fa-fw far fa-question-circle"></span> {{ __('app.help') }}
-                </a>
-            </li>
-            <li class="divider">
-                <a href="{{ route('logout') }}">
-                    <span class="fa-fw fas fa-sign-out-alt"></span> {{ __('app.logout') }}
-                </a>
-            </li>
-        </ul>
-    </div>
 
     <nav class="navbar fixed-top navbar-expand-md navbar-dark header-navbar">
         <div class="container-fluid">
 
             <span>
+                <a href="#mainContent" class="skip-to-content-link">Skip to content</a>
                 <button type="button" id="toggleApplicationSidebarButton" class="btn toggle-application-sidebar-button">
                     <span class="fas fa-bars"></span>
                     <span class="sr-only">{{ __('app.showNavigationMenu') }}</span>
@@ -137,13 +92,60 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
         </div>
     </nav>
 
+    <div class="application-sidebar" id="applicationSidebar">
+        <ul>
+            <li>
+                <a href="{{ route('home') }}" class="{{ ($__currentRouteName === 'home') ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-home"></span> {{ __('app.home') }}
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="fa-fw far fa-envelope"></span> {{ __('app.messages') }}
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="fa-fw fas fa-file"></span> {{ __('app.documents') }}
+                </a>
+            </li>
+            <li class="divider">
+                <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-cog"></span> {{ __('app.mySettings') }}
+                </a>
+            </li>
+            @admin
+            <li>
+                <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-cogs"></span> {{ __('app.admin') }}
+                </a>
+            </li>
+            @endadmin
+            <li>
+                <a href="#">
+                    <span class="fa-fw far fa-question-circle"></span> {{ __('app.help') }}
+                </a>
+            </li>
+            <li class="divider">
+                <a href="{{ route('logout') }}">
+                    <span class="fa-fw fas fa-sign-out-alt"></span> {{ __('app.logout') }}
+                </a>
+            </li>
+        </ul>
+    </div>
+
     <main id="mainContent" class="main-content">
         <div class="container-fluid">
             @yield('content')
         </div>
     </main>
 
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+{{--    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>--}}
     @stack('scripts')
 </body>
 </html>
