@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\Project\Create;
+use App\Jobs\Project\Update;
 use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Requests\Project\Store as StoreRequest;
+use App\Http\Requests\Project\Update as UpdateRequest;
 
 class ProjectController extends Controller
 {
@@ -68,7 +70,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return $this->view('projects.show', [
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -79,7 +83,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        return $this->view('projects.edit', [
+            'project' => $project,
+        ]);
     }
 
     /**
@@ -89,9 +95,16 @@ class ProjectController extends Controller
      * @param  \App\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Project $project)
+    public function update(UpdateRequest $request, Project $project)
     {
-        //
+        $this->dispatchNow($projectUpdated = new Update(
+            $project,
+            $request->name,
+            $request->due_date,
+            $request->details
+        ));
+
+        return redirect()->route('projects.show', [$project]);
     }
 
     /**

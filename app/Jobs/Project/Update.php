@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class Create
+class Update
 {
     use Dispatchable, Queueable;
 
@@ -29,12 +29,12 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $due_date, $details, $creator)
+    public function __construct(Project $project, $name, $due_date, $details)
     {
+        $this->project = $project;
         $this->name = $name;
         $this->due_date = $due_date;
         $this->details = $details;
-        $this->creator = $creator;
     }
 
     public function getProject(): Project
@@ -49,11 +49,11 @@ class Create
      */
     public function handle()
     {
-        $project = new Project;
+        $project = $this->project;
         $project->name = $this->name;
         $project->details = $this->details;
-        $project->created_by = $this->creator->id;
 
+        $project->due_date = null;
         if ($this->due_date) {
             $project->due_date = Carbon::parse($this->due_date);
         }
@@ -61,7 +61,5 @@ class Create
         $project->active = true;
 
         $project->save();
-
-        $this->project = $project;
     }
 }

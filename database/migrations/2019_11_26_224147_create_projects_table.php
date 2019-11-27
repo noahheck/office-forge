@@ -21,7 +21,8 @@ class CreateProjectsTable extends Migration
             $table->bigInteger('owner_id')->nullable();
             $table->longText('details')->nullable();
             $table->boolean('active')->default(true);
-            $table->boolean('completed')->default(false);
+            $table->timestamp('completed')->nullable();
+            $table->bigInteger('completed_by')->nullable();
 
             $table->bigInteger('created_by');
             $table->timestamps();
