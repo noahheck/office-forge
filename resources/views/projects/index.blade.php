@@ -23,7 +23,7 @@
                         <table id="projects" class="table table-striped table-bordered dt-table">
                             <thead>
                                 <tr>
-                                    <th>{{ __('project.dueDate') }}</th>
+                                    <th class="w-75p">{{ __('project.dueDate') }}</th>
                                     <th>{{ __('project.name') }}</th>
                                     <th>{{ __('project.owner') }}</th>
                                 </tr>
@@ -42,7 +42,7 @@
                                     </a>
                                 </td>
                                 <td>
-{{--                                    {!! $project->owner->icon() !!}--}}
+                                    {!! ($project->owner) ? $project->owner->icon() : '' !!}
                                 </td>
                             </tr>
 

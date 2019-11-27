@@ -11,17 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes(['register' => false]);
-Route::get('/logout', 'Auth\LoginController@logout');
 
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::middleware(['auth', 'user.active'])->group(function() {
 
-    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('/headshot/{headshot}/{size}/{filename}', 'HeadShotController@photo')->name('headshot');
 
