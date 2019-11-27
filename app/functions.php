@@ -18,3 +18,8 @@ function timezone_options() {
 function timezone_name($timezone) {
     return timezone_options()[$timezone] ?? '';
 }
+
+function format_date($date = null)
+{
+    return ($date) ? $date->format('m/d/Y') : '';
+}

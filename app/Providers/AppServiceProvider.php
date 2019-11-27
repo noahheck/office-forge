@@ -124,5 +124,6 @@ EOT;
         \Blade::include('_form/select',          'selectField');
         \Blade::include('_form/checkboxSwitch',  'checkboxSwitchField');
         \Blade::include('_form/date',            'dateField');
+        \Blade::include('_form/textarea',        'textareaField');
     }
 }

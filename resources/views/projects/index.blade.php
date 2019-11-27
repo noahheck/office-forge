@@ -34,15 +34,15 @@
 
                             <tr>
                                 <td>
-                                    {{ $project->due_date }}
+                                    {{ App\format_date($project->due_date) }}
                                 </td>
                                 <td>
                                     <a href="{{ route('projects.show', [$project]) }}">
-                                        {{ $project->title }}
+                                        {{ $project->name }}
                                     </a>
                                 </td>
                                 <td>
-                                    {!! $project->owner->icon() !!}
+{{--                                    {!! $project->owner->icon() !!}--}}
                                 </td>
                             </tr>
 

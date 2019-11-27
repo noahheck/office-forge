@@ -41,6 +41,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     });
 
 
+    Route::resource('/projects', 'ProjectController');
+
+
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
 
         Route::get('/', 'AdminController@index')->name('index');

@@ -63,6 +63,17 @@ class User extends Authenticatable implements Headshottable
 
 
 
+    public function ownedProjects()
+    {
+        return $this->hasMany(Project::class, 'owner_id');
+    }
+
+    public function createdProjects()
+    {
+        return $this->hasMany(Project::class, 'created_by');
+    }
+
+
 
 
     // Probably extracting this to the HasHeadShots trait
