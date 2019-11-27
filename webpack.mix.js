@@ -24,7 +24,8 @@ mix.js('resources/js/app.js', 'public/js')
         'datatables.net-buttons',
         'datatables.net-bs4',
         'lodash',
-        'axios'
+        'axios',
+        'bootstrap-datepicker'
     ])
 ;
 

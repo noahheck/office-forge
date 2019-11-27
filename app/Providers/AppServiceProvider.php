@@ -123,5 +123,6 @@ EOT;
         \Blade::include('_form/password',        'passwordField');
         \Blade::include('_form/select',          'selectField');
         \Blade::include('_form/checkboxSwitch',  'checkboxSwitchField');
+        \Blade::include('_form/date',            'dateField');
     }
 }

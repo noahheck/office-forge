@@ -16,4 +16,13 @@ $(function() {
 
     $('.dt-table').DataTable();
 
+    $('.datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        disableTouchKeyboard: true,
+        todayBtn: 'linked',
+        clearBtn: true,
+        zIndexOffset: 1031,
+    });
+
 });

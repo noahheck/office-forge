@@ -40,31 +40,31 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        @else
-            <div class="row justify-content-center">
+            @else
+                <div class="row justify-content-center">
 
-                <div class="col-12 col-md-6 col-lg-6 col-xl-5">
+                    <div class="col-12 col-md-6 col-lg-6 col-xl-5">
 
-                    <div class="card">
-                        <div class="card-body text-center">
+                        <div class="card">
+                            <div class="card-body text-center">
 
-                            <div class="empty-resource">
-                                <span class="fas fa-user-friends empty-resource-icon"></span>
+                                <div class="empty-resource">
+                                    <span class="fas fa-user-friends empty-resource-icon"></span>
+                                </div>
+
+                                <p>{{ __('admin.team_description') }}</p>
+                                <p>{{ __('admin.team_createAsManyAsWanted') }}</p>
+
+                                <hr>
+
+                                <a class="btn btn-primary" href="{{ route('admin.teams.create') }}">{{ __('admin.team_createFirstTeamNow') }}</a>
                             </div>
-
-                            <p>{{ __('admin.team_description') }}</p>
-                            <p>{{ __('admin.team_createAsManyAsWanted') }}</p>
-
-                            <hr>
-
-                            <a class="btn btn-primary" href="{{ route('admin.teams.create') }}">{{ __('admin.team_createFirstTeamNow') }}</a>
                         </div>
+
                     </div>
 
                 </div>
-
-            </div>
-        @endif
+            @endif
+        </div>
     </div>
 @endsection

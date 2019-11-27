@@ -360,6 +360,14 @@ $(function () {
     $body.toggleClass('sidebar-shown');
   });
   $('.dt-table').DataTable();
+  $('.datepicker').datepicker({
+    autoclose: true,
+    todayHighlight: true,
+    disableTouchKeyboard: true,
+    todayBtn: 'linked',
+    clearBtn: true,
+    zIndexOffset: 1031
+  });
 });
 
 /***/ }),
@@ -383,6 +391,8 @@ try {
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
+
+  __webpack_require__(/*! bootstrap-datepicker */ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
 
   var $ = window.$;
 

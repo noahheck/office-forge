@@ -105,7 +105,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('projects.index') }}">
                     <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
                 </a>
             </li>
