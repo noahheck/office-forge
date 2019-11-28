@@ -30,3 +30,20 @@
   margin-bottom: 40px;
 }
 
+a.admin-module-link {
+  text-align: center;
+  color: #090909;
+  margin-bottom: 10px;
+}
+
+a.admin-module-link .module-icon {
+  display: block;
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+a.admin-module-link:hover {
+  text-decoration: none;
+  color: #3490dc;
+}
+
