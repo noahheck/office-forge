@@ -6,6 +6,8 @@ require('./bootstrap');
 
 let $ = require('jquery');
 
+require('Services/meta');
+
 $(function() {
 
     let $body = $('body');

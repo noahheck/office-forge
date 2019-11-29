@@ -1376,6 +1376,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
+__webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
+
 $(function () {
   var $body = $('body');
   $('#toggleApplicationSidebarButton').click(function () {
@@ -1398,8 +1400,13 @@ $(function () {
 /*!***********************************!*\
   !*** ./resources/js/bootstrap.js ***!
   \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
@@ -1417,12 +1424,21 @@ try {
   __webpack_require__(/*! bootstrap-datepicker */ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
 
   var $ = window.$;
-  /*let trix = require('trix');
-             require('Component/trix');*/
-  // (async function() {
 
-  __webpack_require__(/*! Component/trix */ "./resources/js/component/trix.js"); // })();
+  (function _callee() {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            __webpack_require__(/*! Component/trix */ "./resources/js/component/trix.js");
 
+          case 1:
+          case "end":
+            return _context.stop();
+        }
+      }
+    });
+  })();
 
   var dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
@@ -1612,6 +1628,46 @@ addEventListener("trix-attachment-remove", function _callee2(event) {
     }
   });
 });
+
+/***/ }),
+
+/***/ "./resources/js/services/meta.js":
+/*!***************************************!*\
+  !*** ./resources/js/services/meta.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/services/meta.js
+ *
+ * Loads content from html meta tags with the data-piglet attribute (i.e. those created with the Blade directive)
+ * - loads all tags into memory on page load and wraps in the closure to prevent modification
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var metaData = {};
+var meta = {};
+
+meta.get = function (name, fallback) {
+  return metaData[name] ? metaData[name] : fallback;
+};
+
+$(function () {
+  $("meta").each(function () {
+    var $this = $(this);
+    var name = $this.attr('name');
+    var content = $this.attr('content');
+
+    if ($this.data('json')) {
+      content = JSON.parse(content);
+    }
+
+    metaData[name] = content;
+  });
+});
+window.meta = meta;
+module.exports = meta;
 
 /***/ }),
 

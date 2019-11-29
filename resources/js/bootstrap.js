@@ -15,12 +15,9 @@ try {
 
     let $ = window.$;
 
-    /*let trix = require('trix');
-               require('Component/trix');*/
-
-    // (async function() {
+    (async function() {
         require('Component/trix');
-    // })();
+    })();
 
     let dt = require('datatables.net-bs4');
     let buttons = require('datatables.net-buttons-bs4');

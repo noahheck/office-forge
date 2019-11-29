@@ -35,7 +35,7 @@ mix.disableNotifications();
 mix.webpackConfig({
     resolve: {
         alias: {
-            // Services : path.resolve(__dirname, "resources/js/services"),
+            Services : path.resolve(__dirname, "resources/js/services"),
             Component: path.resolve(__dirname, "resources/js/component"),
             // Css      : path.resolve(__dirname, "resources/sass"),
             // Modules  : path.resolve(__dirname, "node_modules")

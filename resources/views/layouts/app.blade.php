@@ -2,15 +2,18 @@
 $__currentRouteName = Route::currentRouteName();
 $__isAdminRoute     = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
+$__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @meta('charset', 'utf-8')
+    @meta('viewport', 'width=device-width, initial-scale=1')
 
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @meta('csrf-token', csrf_token())
+
+    @stack('meta')
 
     <title>{{ config('app.name', 'Office Forge') }}</title>
 
@@ -105,7 +108,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
                 </a>
             </li>
             <li>
-                <a href="{{ route('projects.index') }}">
+                <a href="{{ route('projects.index') }}" class="{{ ($__isProjectsRoute) ? 'current' : '' }}">
                     <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
                 </a>
             </li>
