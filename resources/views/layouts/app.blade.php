@@ -18,7 +18,7 @@ $__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
     <!-- Scripts -->
     @script('js/manifest.js')
     @script('js/vendor.js')
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}

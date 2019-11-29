@@ -32,7 +32,9 @@
 
                     <hr>
 
-                    {!! nl2br($project->details) !!}
+                    <div class="editor-content">
+                        {!! App\safe_text_editor_content($project->details) !!}
+                    </div>
 
                 </div>
             </div>

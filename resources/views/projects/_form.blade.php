@@ -28,7 +28,7 @@
         'error' => $errors->has('due_date'),
     ])
 
-    @textareaField([
+    {{--@textareaField([
         'name' => 'details',
         'label' => __('project.details'),
         'value' => old('details', $project->details),
@@ -36,6 +36,18 @@
         'required' => false,
         'autofocus' => false,
         'error' => $errors->has('details'),
+    ])--}}
+
+    @textEditorField([
+        'name' => 'details',
+        'id' => 'details',
+        'label' => __('project.details'),
+        'required' => false,
+        'value' => old('details', $project->details),
+        'placeholder' => __('project.detailsExample'),
+        'toolbar' => 'full',
+        'resourceType' => get_class($project),
+        'resourceId' => $project->id,
     ])
 
     <hr>

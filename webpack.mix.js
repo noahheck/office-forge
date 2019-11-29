@@ -25,8 +25,21 @@ mix.js('resources/js/app.js', 'public/js')
         'datatables.net-bs4',
         'lodash',
         'axios',
-        'bootstrap-datepicker'
+        'bootstrap-datepicker',
+        'trix'
     ])
 ;
 
 mix.disableNotifications();
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            // Services : path.resolve(__dirname, "resources/js/services"),
+            Component: path.resolve(__dirname, "resources/js/component"),
+            // Css      : path.resolve(__dirname, "resources/sass"),
+            // Modules  : path.resolve(__dirname, "node_modules")
+            // NodeModules  : path.resolve(__dirname, 'node_modules')
+        }
+    }
+});
