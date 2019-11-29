@@ -17,6 +17,18 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::middleware(['auth', 'user.active'])->group(function() {
 
+    Route::post('/ajaxTest', function(\Illuminate\Http\Request $request) {
+
+        return new \App\Http\Response\AjaxResponse(true, $request->all(), []);
+
+    });
+
+    Route::delete('/ajaxTest', function(\Illuminate\Http\Request $request) {
+
+        return new \App\Http\Response\AjaxResponse(false, $request->all(), ['Can\'t delete this resource']);
+
+    });
+
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('/headshot/{headshot}/{size}/{filename}', 'HeadShotController@photo')->name('headshot');

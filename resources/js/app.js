@@ -7,6 +7,7 @@ require('./bootstrap');
 let $ = require('jquery');
 
 require('Services/meta');
+require('Services/ajax');
 
 $(function() {
 

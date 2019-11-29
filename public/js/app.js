@@ -1378,6 +1378,8 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 
 __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
 
+__webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
+
 $(function () {
   var $body = $('body');
   $('#toggleApplicationSidebarButton').click(function () {
@@ -1628,6 +1630,97 @@ addEventListener("trix-attachment-remove", function _callee2(event) {
     }
   });
 });
+
+/***/ }),
+
+/***/ "./resources/js/services/ajax.js":
+/*!***************************************!*\
+  !*** ./resources/js/services/ajax.js ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/services/ajax.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // let routing = require('Services/routing');
+
+
+var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js"); // let notify  = require('Services/notify');
+
+
+var ajax = {};
+
+function ajaxRequest(method, route, data, multipart, additionalProperties) {
+  additionalProperties = typeof additionalProperties === "undefined" ? {} : additionalProperties;
+  return new Promise(function (resolve, reject) {
+    url = route;
+    var ajaxData = {
+      url: url,
+      dataType: 'json',
+      data: data,
+      type: method,
+      success: function success(response) {
+        if (!response.success) {
+          if (response.errors.length > 0) {
+            alert(response.errors.join("\n")); // notify.error(response.errors.join("\n"));
+          }
+
+          reject(response);
+        }
+
+        resolve(response);
+      },
+      error: function error(obj, _error, exc) {
+        // Probably want to do something more than this
+        reject();
+      },
+      complete: function complete() {}
+    };
+
+    if (multipart) {
+      ajaxData.processData = false;
+      ajaxData.contentType = false;
+    }
+
+    ajaxData = Object.assign(ajaxData, additionalProperties);
+    $.ajax(ajaxData);
+  });
+}
+
+var csrf_token;
+
+ajax.post = function (route, data, multipart, additionalProperties) {
+  csrf_token = csrf_token ? csrf_token : meta.get('csrf-token');
+  data = data ? data : {};
+  /**
+   * Ensure the csrf token is sent back with POST requests
+   */
+
+  if (data instanceof FormData) {
+    if (!data.get('_token')) {
+      data.append('_token', csrf_token);
+    }
+  } else {
+    data._token = csrf_token;
+  }
+
+  return ajaxRequest('POST', route, data, multipart, additionalProperties);
+};
+
+ajax["delete"] = function (route) {
+  var data = {
+    _method: 'DELETE'
+  };
+  return ajax.post(route, data);
+};
+
+ajax.get = function (route, data) {
+  return ajaxRequest('GET', route, data);
+};
+
+window.ajax = ajax;
+module.exports = ajax;
 
 /***/ }),
 
