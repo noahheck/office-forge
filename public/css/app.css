@@ -24131,3 +24131,62 @@ a.text-dark:focus {
   display: inline-block;
 }
 
+.notifications {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 10000;
+}
+
+.notifications .toast {
+  min-width: 200px;
+  border-radius: 0px;
+  border: none;
+  border-left: 3px solid transparent;
+  background-color: #fff;
+}
+
+.notifications .toast-header {
+  border: none;
+}
+
+.notifications .toast.success {
+  border-left-color: #38c172;
+}
+
+.notifications .toast.success .toast-icon {
+  color: #38c172;
+}
+
+.notifications .toast.info {
+  border-left-color: #3490dc;
+}
+
+.notifications .toast.info .toast-icon {
+  color: #3490dc;
+}
+
+.notifications .toast.warning {
+  border-left-color: #f6993f;
+}
+
+.notifications .toast.warning .toast-icon {
+  color: #f6993f;
+}
+
+.notifications .toast.error {
+  border-left-color: #e3342f;
+  background-color: #fff3f3;
+  color: #e3342f;
+}
+
+.notifications .toast.error .close {
+  color: #e3342f;
+}
+
+.notifications .toast.error .toast-header {
+  background-color: #fff3f3;
+  color: #e3342f;
+  font-weight: bold;
+}
+

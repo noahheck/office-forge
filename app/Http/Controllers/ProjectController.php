@@ -59,6 +59,8 @@ class ProjectController extends Controller
 
         $project = $projectCreated->getProject();
 
+        \App\flash_success(__('project.projectCreated'));
+
         return redirect()->route('projects.show', [$project]);
     }
 
@@ -103,6 +105,8 @@ class ProjectController extends Controller
             $request->due_date,
             $request->details
         ));
+
+        \App\flash_success(__('project.projectUpdated'));
 
         return redirect()->route('projects.show', [$project]);
     }

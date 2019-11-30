@@ -2,6 +2,25 @@
 
 namespace App;
 
+use Illuminate\Support\Str;
+
+function flash_message($category, $message) {
+    return \Session::push($category, $message);
+}
+function flash_success($message) {
+    return flash_message('success', $message);
+}
+function flash_info($message) {
+    return flash_message('info', $message);
+}
+function flash_warning($message) {
+    return flash_message('warning', $message);
+}
+function flash_error($message) {
+    return flash_message('error', $message);
+}
+
+
 function timezone_options() {
     return [
         'America/New_York'    => __('app.timezone_America/New_York'),
@@ -25,7 +44,7 @@ function format_date($date = null)
 }
 
 function temp_id() {
-    return \Str::uuid();
+    return Str::uuid();
 }
 
 function safe_text_editor_content($content) {

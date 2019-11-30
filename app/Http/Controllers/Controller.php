@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Response\AjaxResponse;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -14,5 +15,10 @@ class Controller extends BaseController
     protected function view($view, $data = [], $mergeData = [])
     {
         return view($view, $data, $mergeData);
+    }
+
+    protected function json(AjaxResponse $response)
+    {
+        return response()->json($response);
     }
 }

@@ -31,6 +31,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::get('/', 'HomeController@index')->name('home');
 
+    Route::get('/notifications', 'NotificationsController@index')->name('notifications');
+
     Route::get('/headshot/{headshot}/{size}/{filename}', 'HeadShotController@photo')->name('headshot');
 
     Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {

@@ -1366,8 +1366,14 @@ module.exports = function(module) {
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
 
 /**
  * js/app.js
@@ -1376,23 +1382,62 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-__webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
+var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
 
 __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
-$(function () {
-  var $body = $('body');
-  $('#toggleApplicationSidebarButton').click(function () {
-    $body.toggleClass('sidebar-shown');
-  });
-  $('.dt-table').DataTable();
-  $('.datepicker').datepicker({
-    autoclose: true,
-    todayHighlight: true,
-    disableTouchKeyboard: true,
-    todayBtn: 'linked',
-    clearBtn: true,
-    zIndexOffset: 1031
+__webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
+
+$(function _callee() {
+  var $body, notifications;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          $body = $('body');
+          $('#toggleApplicationSidebarButton').click(function () {
+            $body.toggleClass('sidebar-shown');
+          });
+
+          if (!meta.get('check-notifications', false)) {
+            _context.next = 10;
+            break;
+          }
+
+          _context.next = 5;
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get('/notifications'));
+
+        case 5:
+          notifications = _context.sent;
+          notifications.data.success.forEach(function (message) {
+            notify.success(message);
+          });
+          notifications.data.info.forEach(function (message) {
+            notify.info(message);
+          });
+          notifications.data.warning.forEach(function (message) {
+            notify.warning(message);
+          });
+          notifications.data.error.forEach(function (message) {
+            notify.error(message);
+          });
+
+        case 10:
+          $('.dt-table').DataTable();
+          $('.datepicker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            disableTouchKeyboard: true,
+            todayBtn: 'linked',
+            clearBtn: true,
+            zIndexOffset: 1031
+          });
+
+        case 12:
+        case "end":
+          return _context.stop();
+      }
+    }
   });
 });
 
@@ -1761,6 +1806,62 @@ $(function () {
 });
 window.meta = meta;
 module.exports = meta;
+
+/***/ }),
+
+/***/ "./resources/js/services/notify.js":
+/*!*****************************************!*\
+  !*** ./resources/js/services/notify.js ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * services/notify.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var notify = {};
+var $notificationsContainer = '';
+$(function () {
+  $notificationsContainer = $('#notifications');
+});
+
+function addNotification(theme, icon, message, header, timeout, assertive) {
+  var attrs = assertive ? 'role="alert" aria-live="assertive"' : 'role="status" aria-live="polite"';
+  var toastMarkup = '<div class="toast ' + theme + '" ' + attrs + ' aria-atomic="true">' + '  <div class="toast-body">' + '    <strong class="mr-auto">' + icon + ' ' + header + '</strong>' + '    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">' + '      <span aria-hidden="true">&times;</span>' + '    </button>' + message + '  </div>' + '</div>';
+  var $toast = $(toastMarkup);
+  $notificationsContainer.append($toast);
+  $toast.toast({
+    autohide: timeout ? true : false,
+    delay: timeout ? timeout : 0
+  }).toast('show').on('hidden.bs.toast', function () {
+    $toast.remove();
+  });
+}
+
+notify.success = function (message) {
+  var icon = "<span class='toast-icon fas fa-check-circle'></span>";
+  addNotification('success', icon, message, '', 3000);
+};
+
+notify.info = function (message) {
+  var icon = "<span class='toast-icon fas fa-info-circle'></span>";
+  addNotification('info', icon, message, '', 10000);
+};
+
+notify.warning = function (message) {
+  var icon = "<span class='toast-icon fas fa-exclamation-circle'></span>";
+  addNotification('warning', icon, message, '', 12000);
+};
+
+notify.error = function (message) {
+  var icon = "<span class='fas fa-exclamation-triangle'></span>";
+  addNotification('error', icon, message, 'Error: ', 0);
+};
+
+window.notify = notify;
+module.exports = notify;
 
 /***/ }),
 

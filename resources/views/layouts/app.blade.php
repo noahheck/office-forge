@@ -13,6 +13,10 @@ $__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
     <!-- CSRF Token -->
     @meta('csrf-token', csrf_token())
 
+    @if(Session::has('success') || \Session::has('info') || \Session::has( 'warning') || \Session::has('error'))
+        @meta('check-notifications', true)
+    @endif
+
     @stack('meta')
 
     <title>{{ config('app.name', 'Office Forge') }}</title>
@@ -32,6 +36,10 @@ $__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
     @stack('styles')
 </head>
 <body>
+
+    <div id="notifications" class="notifications" aria-live>
+
+    </div>
 
     <nav class="navbar fixed-top navbar-expand-md navbar-dark header-navbar">
         <div class="container-fluid">

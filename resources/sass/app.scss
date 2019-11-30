@@ -111,3 +111,66 @@
     padding: 7px;
     display: inline-block;
 }
+
+
+
+
+
+.notifications {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 10000;
+
+    .toast {
+        min-width: 200px;
+        @include border-radius(0px);
+        border: none;
+        border-left: 3px solid transparent;
+        background-color: $white;
+    }
+
+    .toast-header {
+        border: none;
+    }
+
+    .toast.success {
+        border-left-color: $green;
+
+        .toast-icon {
+            color: $green;
+        }
+    }
+
+    .toast.info {
+        border-left-color: $blue;
+
+        .toast-icon {
+            color: $blue;
+        }
+    }
+
+    .toast.warning {
+        border-left-color: $orange;
+
+        .toast-icon {
+            color: $orange;
+        }
+    }
+
+    .toast.error {
+        border-left-color: $red;
+        background-color: $red-highlight;
+        color: $red;
+
+        .close {
+            color: $red;
+        }
+
+        .toast-header {
+            background-color: $red-highlight;
+            color: $red;
+            font-weight: bold;
+        }
+    }
+}

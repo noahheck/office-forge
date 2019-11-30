@@ -4,6 +4,9 @@ return [
     'newProject' => 'New Project',
     'editProject' => 'Edit Project',
 
+    'projectCreated' => 'Project Created',
+    'projectUpdated' => 'Project Updated',
+
     'dueDate' => 'Due Date',
     'name' => 'Name',
     'owner' => 'Owner',
