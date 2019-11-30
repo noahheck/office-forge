@@ -1688,10 +1688,11 @@ addEventListener("trix-attachment-remove", function _callee2(event) {
 /**
  * js/services/ajax.js
  */
-var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // let routing = require('Services/routing');
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
+var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
 
-var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js"); // let notify  = require('Services/notify');
+var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js"); // let routing = require('Services/routing');
 
 
 var ajax = {};
@@ -1708,7 +1709,7 @@ function ajaxRequest(method, route, data, multipart, additionalProperties) {
       success: function success(response) {
         if (!response.success) {
           if (response.errors.length > 0) {
-            alert(response.errors.join("\n")); // notify.error(response.errors.join("\n"));
+            notify.error(response.errors.join("\n"));
           }
 
           reject(response);

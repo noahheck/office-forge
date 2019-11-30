@@ -24139,7 +24139,7 @@ a.text-dark:focus {
 }
 
 .notifications .toast {
-  min-width: 200px;
+  min-width: 350px;
   border-radius: 0px;
   border: none;
   border-left: 3px solid transparent;

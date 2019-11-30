@@ -3,10 +3,10 @@
  */
 
 let $       = require('jquery');
-// let routing = require('Services/routing');
 let meta    = require('Services/meta');
+let notify  = require('Services/notify');
 
-// let notify  = require('Services/notify');
+// let routing = require('Services/routing');
 
 let ajax = {};
 
@@ -28,8 +28,7 @@ function ajaxRequest(method, route, data, multipart, additionalProperties) {
                 if (!response.success) {
 
                     if (response.errors.length > 0) {
-                        alert(response.errors.join("\n"));
-                        // notify.error(response.errors.join("\n"));
+                        notify.error(response.errors.join("\n"));
                     }
 
                     reject(response);
