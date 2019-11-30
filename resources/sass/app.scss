@@ -24,6 +24,48 @@
 @import '_utilities.scss';
 @import '_sidebar.scss';
 
+
+
+
+
+::-webkit-input-placeholder {
+    color: $medium-gray !important;
+    opacity: 1;
+}
+
+:-moz-placeholder {
+    color: $medium-gray !important;
+    opacity: 1;
+}
+
+::-moz-placeholder {
+    color: $medium-gray !important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: $medium-gray !important;
+    opacity: 1;
+}
+
+::-ms-input-placeholder {
+    color: $medium-gray !important;
+    opacity: 1;
+}
+
+::placeholder {
+    color: $medium-gray !important;
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
 .header-navbar {
     background-color: $navbar-bg;
 }
