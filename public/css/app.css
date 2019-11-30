@@ -12708,7 +12708,7 @@ trix-editor.is-being-dragged-over {
   margin: 10px 0 6px 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 767.98px) {
   .editor-content h2 {
     font-size: 1.4em;
   }
@@ -12719,7 +12719,7 @@ trix-editor.is-being-dragged-over {
   margin: 8px 0 6px 0;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 767.98px) {
   .editor-content h3 {
     font-size: 1.25em;
   }
@@ -24136,6 +24136,12 @@ a.text-dark:focus {
   top: 15px;
   right: 15px;
   z-index: 10000;
+}
+
+@media (max-width: 575.98px) {
+  .notifications {
+    right: 0;
+  }
 }
 
 .notifications .toast {

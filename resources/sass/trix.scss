@@ -76,14 +76,14 @@ trix-editor {
 .editor-content h2 {
     font-size: 1.9em;
     margin: 10px 0 6px 0;
-    @include max-screen(tablet) {
+    @include media-breakpoint-down(sm) {
         font-size: 1.4em;
     }
 }
 .editor-content h3 {
     font-size: 1.5em;
     margin: 8px 0 6px 0;
-    @include max-screen(tablet) {
+    @include media-breakpoint-down(sm) {
         font-size: 1.25em;
     }
 }
