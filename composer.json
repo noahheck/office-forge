@@ -15,7 +15,8 @@
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+        "tightenco/ziggy": "^0.8.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",

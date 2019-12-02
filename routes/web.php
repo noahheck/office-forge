@@ -17,23 +17,14 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::middleware(['auth', 'user.active'])->group(function() {
 
-    Route::post('/ajaxTest', function(\Illuminate\Http\Request $request) {
-
-        return new \App\Http\Response\AjaxResponse(true, $request->all(), []);
-
-    });
-
-    Route::delete('/ajaxTest', function(\Illuminate\Http\Request $request) {
-
-        return new \App\Http\Response\AjaxResponse(false, $request->all(), ['Can\'t delete this resource']);
-
-    });
-
     Route::get('/', 'HomeController@index')->name('home');
 
     Route::get('/notifications', 'NotificationsController@index')->name('notifications');
 
     Route::get('/headshot/{headshot}/{size}/{filename}', 'HeadShotController@photo')->name('headshot');
+
+    Route::post('/editor-images', 'EditorImageController@upload')->name('editor-images.upload');
+    Route::get('/editor-images/{editorImage}', 'EditorImageController@show')->name('editor-images.show');
 
     Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
 

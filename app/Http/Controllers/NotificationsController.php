@@ -18,6 +18,6 @@ class NotificationsController extends Controller
             'error'   => $session->pull('error', []),
         ];
 
-        return $this->json((new AjaxResponse(true))->setData($notifications));
+        return $this->json(true, $notifications, []);
     }
 }

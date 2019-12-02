@@ -6,7 +6,7 @@ let $       = require('jquery');
 let meta    = require('Services/meta');
 let notify  = require('Services/notify');
 
-// let routing = require('Services/routing');
+let routing = require('Services/routing');
 
 let ajax = {};
 
@@ -17,7 +17,7 @@ function ajaxRequest(method, route, data, multipart, additionalProperties) {
 
     return new Promise((resolve, reject) => {
 
-        url = route;
+        url = routing.getUrl(route);
 
         let ajaxData = {
             url     : url,
@@ -77,6 +77,11 @@ ajax.post = function(route, data, multipart, additionalProperties) {
     } else {
         data._token = csrf_token;
     }
+
+    console.log(route);
+    console.log(data);
+    console.log(multipart);
+
 
     return ajaxRequest('POST', route, data, multipart, additionalProperties);
 };

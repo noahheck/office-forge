@@ -12695,6 +12695,10 @@ trix-editor.is-being-dragged-over {
   background-color: #e3f3ff;
 }
 
+trix-editor:empty:not(:focus)::before {
+  color: #c9c9c9;
+}
+
 .editor-content {
   line-height: 1.5;
 }

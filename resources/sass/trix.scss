@@ -61,6 +61,11 @@ trix-editor {
     &.is-being-dragged-over {
         background-color: $blue-highlight;
     }
+
+    // https://github.com/basecamp/trix/issues/130
+    &:empty:not(:focus)::before {
+        color: $medium-gray;
+    }
 }
 
 

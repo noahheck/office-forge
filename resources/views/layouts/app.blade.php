@@ -25,6 +25,11 @@ $__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
     <!-- Scripts -->
     @script('js/manifest.js')
     @script('js/vendor.js')
+
+    @auth
+        @routes
+    @endauth
+
     <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->

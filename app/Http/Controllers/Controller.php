@@ -17,8 +17,8 @@ class Controller extends BaseController
         return view($view, $data, $mergeData);
     }
 
-    protected function json(AjaxResponse $response)
+    protected function json($success, $data = [], $errors = [])
     {
-        return response()->json($response);
+        return new AjaxResponse($success, $data, $errors);
     }
 }

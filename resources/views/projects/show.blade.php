@@ -22,11 +22,11 @@
                     <hr>
 
                     <dl class="row">
-                        <dt class="col-6 col-md-3 col-xl-2">{{ __('project.owner') }}</dt>
-                        <dd class="col-6 col-md-9 col-xl-10">{{ ($project->owner) ? $project->owner->name : '' }}</dd>
+                        <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.owner') }}</dt>
+                        <dd class="col-8 col-sm-9 col-xl-10">{{ ($project->owner) ? $project->owner->name : '' }}</dd>
 
-                        <dt class="col-6 col-md-3 col-xl-2">{{ __('project.dueDate') }}</dt>
-                        <dd class="col-6 col-md-9 col-xl-10">{{ App\format_date($project->due_date) }}</dd>
+                        <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.dueDate') }}</dt>
+                        <dd class="col-8 col-sm-9 col-xl-10">{{ App\format_date($project->due_date) }}</dd>
 
                     </dl>
 

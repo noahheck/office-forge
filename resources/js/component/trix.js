@@ -6,8 +6,8 @@
 let $    = require('jquery');
 let trix = require('./../../../node_modules/trix/dist/trix.js');
 
-// let ajax = require('Services/ajax');
-// let notify = require('Services/notify');
+let ajax = require('Services/ajax');
+let notify = require('Services/notify');
 
 
 // Make top-level heading an h2 element
@@ -81,7 +81,6 @@ addEventListener("trix-attachment-add", async function(event) {
 
 
     if (event.attachment.file) {
-
         let attachment = event.attachment;
 
         let file    = attachment.file;
@@ -95,7 +94,7 @@ addEventListener("trix-attachment-add", async function(event) {
         data.append('resource_id', $editor.data('resourceId'));
         data.append('resource_temp_id', $editor.data('resourceTempId'));
 
-        let route = {name: 'organization.editor-images.upload'};
+        let route = {name: 'editor-images.upload'};
 
         try {
             let progressActions = {
@@ -111,6 +110,7 @@ addEventListener("trix-attachment-add", async function(event) {
 
             if (!response.success) {
                 attachment.remove();
+                notify.error("There was an error uploading that image - please try again");
 
                 return;
             }
@@ -120,7 +120,7 @@ addEventListener("trix-attachment-add", async function(event) {
                 href: response.data.url
             });
         } catch (e) {
-
+            notify.error("There was an error uploading that image - please try again");
             attachment.remove();
         }
     }

@@ -20,7 +20,7 @@ $(async function() {
 
     if (meta.get('check-notifications', false)) {
 
-        let notifications = await ajax.get('/notifications');
+        let notifications = await ajax.get('notifications');
 
         notifications.data.success.forEach(message => {
             notify.success(message);

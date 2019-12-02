@@ -1405,7 +1405,7 @@ $(function _callee() {
           }
 
           _context.next = 5;
-          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get('/notifications'));
+          return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get('notifications'));
 
         case 5:
           notifications = _context.sent;
@@ -1540,9 +1540,11 @@ __webpack_require__.r(__webpack_exports__);
  */
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-var trix = __webpack_require__(/*! ./../../../node_modules/trix/dist/trix.js */ "./node_modules/trix/dist/trix.js"); // let ajax = require('Services/ajax');
-// let notify = require('Services/notify');
-// Make top-level heading an h2 element
+var trix = __webpack_require__(/*! ./../../../node_modules/trix/dist/trix.js */ "./node_modules/trix/dist/trix.js");
+
+var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
+
+var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js"); // Make top-level heading an h2 element
 
 
 trix.config.blockAttributes.heading1.tagName = 'h2'; // Add sub-heading as h3 element
@@ -1605,7 +1607,7 @@ addEventListener("trix-attachment-add", function _callee(event) {
           }
 
           if (!event.attachment.file) {
-            _context.next = 26;
+            _context.next = 28;
             break;
           }
 
@@ -1619,7 +1621,7 @@ addEventListener("trix-attachment-add", function _callee(event) {
           data.append('resource_id', $editor.data('resourceId'));
           data.append('resource_temp_id', $editor.data('resourceTempId'));
           route = {
-            name: 'organization.editor-images.upload'
+            name: 'editor-images.upload'
           };
           _context.prev = 12;
           progressActions = {
@@ -1637,32 +1639,34 @@ addEventListener("trix-attachment-add", function _callee(event) {
           response = _context.sent;
 
           if (response.success) {
-            _context.next = 20;
+            _context.next = 21;
             break;
           }
 
           attachment.remove();
+          notify.error("There was an error uploading that image - please try again");
           return _context.abrupt("return");
 
-        case 20:
+        case 21:
           attachment.setAttributes({
             url: response.data.url,
             href: response.data.url
           });
-          _context.next = 26;
+          _context.next = 28;
           break;
 
-        case 23:
-          _context.prev = 23;
+        case 24:
+          _context.prev = 24;
           _context.t0 = _context["catch"](12);
+          notify.error("There was an error uploading that image - please try again");
           attachment.remove();
 
-        case 26:
+        case 28:
         case "end":
           return _context.stop();
       }
     }
-  }, null, null, [[12, 23]]);
+  }, null, null, [[12, 24]]);
 });
 addEventListener("trix-attachment-remove", function _callee2(event) {
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
@@ -1692,15 +1696,16 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 
 var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
 
-var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js"); // let routing = require('Services/routing');
+var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 
+var routing = __webpack_require__(/*! Services/routing */ "./resources/js/services/routing.js");
 
 var ajax = {};
 
 function ajaxRequest(method, route, data, multipart, additionalProperties) {
   additionalProperties = typeof additionalProperties === "undefined" ? {} : additionalProperties;
   return new Promise(function (resolve, reject) {
-    url = route;
+    url = routing.getUrl(route);
     var ajaxData = {
       url: url,
       dataType: 'json',
@@ -1751,6 +1756,9 @@ ajax.post = function (route, data, multipart, additionalProperties) {
     data._token = csrf_token;
   }
 
+  console.log(route);
+  console.log(data);
+  console.log(multipart);
   return ajaxRequest('POST', route, data, multipart, additionalProperties);
 };
 
@@ -1863,6 +1871,38 @@ notify.error = function (message) {
 
 window.notify = notify;
 module.exports = notify;
+
+/***/ }),
+
+/***/ "./resources/js/services/routing.js":
+/*!******************************************!*\
+  !*** ./resources/js/services/routing.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/**
+ * js/services/routing.js
+ */
+var routing = {};
+
+routing.getUrl = function (route, params) {
+  if (_typeof(route) === 'object') {
+    if (route.url) {
+      return route.url;
+    }
+
+    params = route.params ? route.params : params;
+    route = route.name;
+  }
+
+  params = params ? params : {};
+  return window.route(route, params);
+};
+
+module.exports = routing;
 
 /***/ }),
 

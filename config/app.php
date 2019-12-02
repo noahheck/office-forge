@@ -182,6 +182,7 @@ return [
          * Package Service Providers...
          */
         Intervention\Image\ImageServiceProvider::class,
+        \Tightenco\Ziggy\ZiggyServiceProvider::class,
 
         /*
          * Application Service Providers...
