@@ -54,7 +54,8 @@ class ProjectController extends Controller
             $request->name,
             $request->due_date,
             $request->details,
-            $request->user()
+            $request->user(),
+            $request->temp_id
         ));
 
         $project = $projectCreated->getProject();

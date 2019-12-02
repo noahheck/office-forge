@@ -19,6 +19,8 @@ class Create
 
     private $creator;
 
+    private $editor_temp_id;
+
     /**
      * @var Project
      */
@@ -29,12 +31,13 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $due_date, $details, $creator)
+    public function __construct($name, $due_date, $details, $creator, $editor_temp_id)
     {
         $this->name = $name;
         $this->due_date = $due_date;
         $this->details = $details;
         $this->creator = $creator;
+        $this->editor_temp_id = $editor_temp_id;
     }
 
     public function getProject(): Project
@@ -61,6 +64,8 @@ class Create
         $project->active = true;
 
         $project->save();
+
+        $project->claimTemporaryEditorImages($this->editor_temp_id);
 
         $this->project = $project;
     }
