@@ -5,6 +5,7 @@ namespace App\Jobs\Headshottable;
 use App\HeadShot;
 use App\Interfaces\Headshottable;
 use App\User;
+use App\Utility\ImageResizer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -57,7 +58,7 @@ class Upload
      *
      * @return void
      */
-    public function handle(Filesystem $disk, ImageManager $imageManager)
+    public function handle(Filesystem $disk, ImageManager $imageManager, ImageResizer $imageResizer)
     {
         $headshottable = $this->headshottable;
         $uploadedFile  = $this->uploadedFile;
@@ -93,28 +94,13 @@ class Upload
         $thumbFileName = $baseFileName . '.thumbnail.' . $extension;
         $iconFileName  = $baseFileName . '.icon.'      . $extension;
 
+        $baseImage  = $imageResizer->resizeImageToMaxSize($uploadedFile, HeadShot::MAX_BASE_HEIGHT, HeadShot::MAX_BASE_WIDTH);
+        $thumbImage = $imageResizer->resizeImageToMaxSize($uploadedFile, HeadShot::MAX_THUMB_HEIGHT, HeadShot::MAX_THUMB_WIDTH);
+        $iconImage  = $imageResizer->resizeImageToMaxSize($uploadedFile, HeadShot::MAX_ICON_HEIGHT, HeadShot::MAX_ICON_WIDTH);
 
-        $baseImage = $imageManager->make($uploadedFile)->orientate();
-
-        $dimensions = $this->getTargetDimensions($baseImage->width(), $baseImage->height());
-
-        $baseImage->resize($dimensions['baseWidth'], $dimensions['baseHeight'], function($constraint) {
-            $constraint->aspectRatio();
-        });
-
-        $thumbImage = $imageManager->make($uploadedFile)->orientate();
-        $thumbImage->resize($dimensions['thumbWidth'], $dimensions['thumbHeight'], function($constraint) {
-            $constraint->aspectRatio();
-        });
-
-        $iconImage = $imageManager->make($uploadedFile)->orientate();
-        $iconImage->resize($dimensions['iconWidth'], $dimensions['iconHeight'], function($constraint) {
-            $constraint->aspectRatio();
-        });
-
-        $disk->put('/headshots/' . $photoName,      (string) $baseImage->encode());
-        $disk->put('/headshots/' . $thumbFileName, (string) $thumbImage->encode());
-        $disk->put('/headshots/' . $iconFileName,  (string) $iconImage->encode());
+        $disk->put(DIRECTORY_SEPARATOR . 'headshots' . DIRECTORY_SEPARATOR . $photoName,      (string) $baseImage->encode());
+        $disk->put(DIRECTORY_SEPARATOR . 'headshots' . DIRECTORY_SEPARATOR . $thumbFileName, (string) $thumbImage->encode());
+        $disk->put(DIRECTORY_SEPARATOR . 'headshots' . DIRECTORY_SEPARATOR . $iconFileName,  (string) $iconImage->encode());
 
 
         $headshot->filename       = $photoName;
@@ -124,40 +110,5 @@ class Upload
         $headshot->save();
 
         $this->headshot = $headshot;
-    }
-
-
-
-
-
-
-    private function getTargetDimensions($baseImageWidth, $baseImageHeight)
-    {
-        $baseWidth  = 500;
-        $thumbWidth = 200;
-        $iconWidth  = 50;
-
-        $baseHeight  = null;
-        $thumbHeight = null;
-        $iconHeight  = null;
-
-        if ($baseImageHeight > $baseImageWidth) {
-            $baseWidth  = null;
-            $thumbWidth = null;
-            $iconWidth  = null;
-
-            $baseHeight  = 500;
-            $thumbHeight = 200;
-            $iconHeight  = 50;
-        }
-
-        return [
-            'baseWidth'   => $baseWidth,
-            'thumbWidth'  => $thumbWidth,
-            'iconWidth'   => $iconWidth,
-            'baseHeight'  => $baseHeight,
-            'thumbHeight' => $thumbHeight,
-            'iconHeight'  => $iconHeight,
-        ];
     }
 }

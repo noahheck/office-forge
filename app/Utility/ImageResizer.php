@@ -2,7 +2,6 @@
 
 namespace App\Utility;
 
-use Intervention\Image\Facades\Image;
 use Intervention\Image\ImageManager;
 
 class ImageResizer
