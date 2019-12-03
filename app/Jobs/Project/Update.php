@@ -37,11 +37,6 @@ class Update
         $this->details = $details;
     }
 
-    public function getProject(): Project
-    {
-        return $this->project;
-    }
-
     /**
      * Execute the job.
      *
