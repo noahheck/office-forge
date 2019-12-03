@@ -58,7 +58,7 @@ class Upload
      *
      * @return void
      */
-    public function handle(Filesystem $disk, ImageManager $imageManager, ImageResizer $imageResizer)
+    public function handle(Filesystem $disk, ImageResizer $imageResizer)
     {
         $headshottable = $this->headshottable;
         $uploadedFile  = $this->uploadedFile;
