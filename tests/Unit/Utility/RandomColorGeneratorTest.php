@@ -9,16 +9,6 @@ use Tests\TestCase;
 
 class RandomColorGeneratorTest extends TestCase
 {
-    /**
-     * A basic unit test example.
-     *
-     * @return void
-     */
-    public function testExample()
-    {
-        $this->assertTrue(true);
-    }
-
     public function testGenerateHexReturnsValidHexadecimalColorString()
     {
         $generator = new RandomColorGenerator();
