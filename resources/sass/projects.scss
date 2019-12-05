@@ -1,0 +1,54 @@
+/**
+ * sass/projects.scss
+ */
+
+@import "mixins";
+
+.project--tasks {
+
+    @include media-breakpoint-up(md) {
+        position: sticky;
+        top: 60px;
+        overflow-y: auto;
+    }
+
+}
+
+.project--task-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    .headshot {
+        max-height: 20px;
+        max-width: 20px;
+    }
+
+    .task {
+        margin-bottom: 4px;
+
+        &.overdue {
+
+            .calendar-icon {
+                color: $red;
+            }
+
+        }
+    }
+
+    .task-attributes {
+        padding-left: 15px;
+
+        .fas, .far {
+            color: $dark-gray;
+        }
+    }
+
+    &.completed-tasks {
+
+        a {
+            text-decoration: line-through;
+            color: $dark-gray;
+        }
+    }
+}

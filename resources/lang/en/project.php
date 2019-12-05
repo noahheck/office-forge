@@ -16,4 +16,20 @@ return [
     'detailsExample' => 'Description of the project, ideas around possible solutions, etc...',
 
 
+
+
+    'task' => 'Task',
+    'addTask' => 'Add Task',
+    'newTask' => 'New Task',
+    'editTask' => 'Edit Task',
+
+    'taskCreated' => 'Task Created',
+    'taskUpdated' => 'Task Updated',
+
+    'taskTitle' => 'Title',
+    'taskTitleExample' => 'Complete TPS report, Process inventory, etc...',
+    'taskDueDate' => 'Due Date',
+    'taskDetails' => 'Details',
+    'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',
+
 ];

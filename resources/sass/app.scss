@@ -92,6 +92,10 @@
     cursor: pointer;
 }
 
+.btn {
+    @include border-radius(0);
+}
+
 .btn-warning {
     background-color: $warning-orange;
     color: $white;

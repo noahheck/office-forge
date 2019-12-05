@@ -1,13 +1,14 @@
 <?php
 
-namespace App;
+namespace App\Project;
 
-use App\Project\Task;
+use App\Project;
 use App\Traits\IsEditorResource;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Project extends Model
+class Task extends Model
 {
     use SoftDeletes,
         IsEditorResource;
@@ -17,25 +18,16 @@ class Project extends Model
     ];
 
     protected $casts = [
-        'active' => 'boolean',
         'completed' => 'boolean',
     ];
-
-    public function owner()
-    {
-        return $this->belongsTo(User::class, 'owner_id');
-    }
 
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function tasks()
+    public function project()
     {
-        return $this->hasMany(Task::class);
+        return $this->belongsTo(Project::class);
     }
-
-
-
 }

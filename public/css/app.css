@@ -24091,6 +24091,10 @@ a.text-dark:focus {
   cursor: pointer;
 }
 
+.btn {
+  border-radius: 0;
+}
+
 .btn-warning {
   background-color: #f6993f;
   color: #fff;

@@ -1,0 +1,50 @@
+/**
+ * sass/projects.scss
+ */
+
+/**
+ * sass/_mixins.scss
+ */
+
+@media (min-width: 768px) {
+  .project--tasks {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 60px;
+    overflow-y: auto;
+  }
+}
+
+.project--task-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.project--task-list .headshot {
+  max-height: 20px;
+  max-width: 20px;
+}
+
+.project--task-list .task {
+  margin-bottom: 4px;
+}
+
+.project--task-list .task.overdue .calendar-icon {
+  color: #e3342f;
+}
+
+.project--task-list .task-attributes {
+  padding-left: 15px;
+}
+
+.project--task-list .task-attributes .fas,
+.project--task-list .task-attributes .far {
+  color: #666;
+}
+
+.project--task-list.completed-tasks a {
+  text-decoration: line-through;
+  color: #666;
+}
+

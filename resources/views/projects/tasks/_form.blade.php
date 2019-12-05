@@ -6,22 +6,22 @@
         @method($method)
     @endif
 
-    @errors('name', 'due_date', 'details')
+    @errors('title', 'due_date', 'details')
 
     @textField([
-        'name' => 'name',
-        'label' => __('project.name'),
-        'value' => old('name', $project->name),
-        'placeholder' => __('project.nameExample'),
+        'name' => 'title',
+        'label' => __('project.taskTitle'),
+        'value' => old('title', $task->title),
+        'placeholder' => __('project.taskTitleExample'),
         'required' => true,
         'autofocus' => true,
-        'error' => $errors->has('name'),
+        'error' => $errors->has('title'),
     ])
 
     @dateField([
         'name' => 'due_date',
-        'label' => __('project.dueDate'),
-        'value' => old('due_date', App\format_date($project->due_date)),
+        'label' => __('project.taskDueDate'),
+        'value' => old('due_date', App\format_date($task->due_date)),
         'placeholder' => '',
         'required' => false,
         'autofocus' => false,
@@ -31,13 +31,13 @@
     @textEditorField([
         'name' => 'details',
         'id' => 'details',
-        'label' => __('project.details'),
+        'label' => __('project.taskDetails'),
         'required' => false,
-        'value' => old('details', $project->details),
-        'placeholder' => __('project.detailsExample'),
+        'value' => old('details', $task->details),
+        'placeholder' => __('project.taskDetailsExample'),
         'toolbar' => 'full',
-        'resourceType' => get_class($project),
-        'resourceId' => $project->id,
+        'resourceType' => get_class($task),
+        'resourceId' => $task->id,
     ])
 
     <hr>

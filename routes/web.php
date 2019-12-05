@@ -44,6 +44,12 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::resource('/projects', 'ProjectController');
 
+    Route::namespace('Project')->prefix('/projects/{project}')->name('projects.')->group(function() {
+
+        Route::resource('/tasks', 'TaskController');
+
+    });
+
 
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
 

@@ -2,6 +2,9 @@
  * sass/_mixins.scss
  */
 
+@import "variables";
+@import "~bootstrap/scss/mixins/breakpoints";
+
 @mixin overflow-ellipsis {
     white-space: nowrap;
     overflow-x: hidden;
