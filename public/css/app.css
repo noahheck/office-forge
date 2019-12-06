@@ -12856,6 +12856,12 @@ trix-editor:empty:not(:focus)::before {
   font-weight: bold;
 }
 
+.overflow-x-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /**
  * sass/_sidebar.scss
  */

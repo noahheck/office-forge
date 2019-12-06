@@ -17,3 +17,9 @@
 .bold-labels label {
     font-weight: bold;
 }
+
+.overflow-x-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
