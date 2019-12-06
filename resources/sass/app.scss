@@ -107,6 +107,9 @@
     }
 }
 
+.card {
+    @include border-radius(0);
+}
 
 
 // Bootstrap datetimepicker

@@ -19,6 +19,7 @@ return [
 
 
     'task' => 'Task',
+    'tasks' => 'Tasks',
     'addTask' => 'Add Task',
     'newTask' => 'New Task',
     'editTask' => 'Edit Task',
@@ -31,5 +32,8 @@ return [
     'taskDueDate' => 'Due Date',
     'taskDetails' => 'Details',
     'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',
+
+    'taskAssignedTo' => 'Assigned To',
+
 
 ];

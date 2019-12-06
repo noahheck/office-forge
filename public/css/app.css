@@ -24106,6 +24106,10 @@ a.text-dark:focus {
   color: #fff;
 }
 
+.card {
+  border-radius: 0;
+}
+
 .datepicker-dropdown {
   z-index: 1020;
 }

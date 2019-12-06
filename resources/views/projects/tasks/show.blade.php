@@ -6,37 +6,38 @@
 
 @section('content')
 
-    <h1>
-        <span class="fas fa-project-diagram"></span> {{ $project->name }}
-    </h1>
+    <div class="row justify-content-center">
 
-    <div class="row">
-
-        <div class="col-12 col-md-7 col-xl-8">
+        <div class="col-12 col-md-9 col-lg-8">
             <div class="card shadow">
                 <div class="card-body">
 
                     <p class="text-right">
-                        <a class="btn btn-primary" href="{{ route('projects.edit', [$project]) }}">
-                            <span class="fas fa-edit"></span> {{ __('project.editProject') }}
+                        <a class="btn btn-primary" href="{{ route('projects.tasks.edit', [$project, $task]) }}">
+                            <span class="fas fa-edit"></span> {{ __('project.editTask') }}
                         </a>
                     </p>
 
                     <hr>
 
-                    <dl class="row">
-                        <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.owner') }}</dt>
-                        <dd class="col-8 col-sm-9 col-xl-10">{{ ($project->owner) ? $project->owner->name : '' }}</dd>
+                    <h2>
+                        <span class="far fa-square"></span>
+                        {{ $task->title }}
+                    </h2>
 
-                        <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.dueDate') }}</dt>
-                        <dd class="col-8 col-sm-9 col-xl-10">{{ App\format_date($project->due_date) }}</dd>
+                    <dl class="row">
+                        <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.taskAssignedTo') }}</dt>
+                        <dd class="col-8 col-sm-9 col-xl-10"></dd>
+
+                        <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.taskDueDate') }}</dt>
+                        <dd class="col-8 col-sm-9 col-xl-10">{{ App\format_date($task->due_date) }}</dd>
 
                     </dl>
 
                     <hr>
 
                     <div class="editor-content">
-                        {!! App\safe_text_editor_content($project->details) !!}
+                        {!! App\safe_text_editor_content($task->details) !!}
                     </div>
 
                 </div>
@@ -44,9 +45,9 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-5 col-xl-4 mt-3 mt-md-0 pl-md-0">
+        {{--<div class="col-12 col-md-5 col-xl-4 mt-3 mt-md-0 pl-md-0">
 
-            <div class="project--tasks card shadow">
+            <div class="project--tasks card">
 
                 <div class="card-body">
 
@@ -58,7 +59,7 @@
                         @foreach ($project->tasks as $task)
 
                             <li class="task @if(Arr::random([true, false])) overdue @endif">
-                                <span class="far fa-square"></span> <a href="{{ route('projects.tasks.show', [$project, $task]) }}">{{ $task->title }}</a>
+                                <span class="far fa-square"></span> <a href="{{ route('projects.tasks.edit', [$project, $task]) }}">{{ $task->title }}</a>
 
                                 <div class="task-attributes">
                                     {!! Auth::user()->icon() !!}
@@ -96,7 +97,7 @@
 
             </div>
 
-        </div>
+        </div>--}}
 
     </div>
 @endsection

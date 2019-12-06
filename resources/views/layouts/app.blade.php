@@ -161,7 +161,6 @@ $__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
         </div>
     </main>
 
-{{--    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>--}}
     @stack('scripts')
 </body>
 </html>

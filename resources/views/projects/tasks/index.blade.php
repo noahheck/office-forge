@@ -10,21 +10,45 @@
         <span class="fas fa-project-diagram"></span> {{ $project->name }}
     </h1>
 
-    <div class="row">
+    <div class="row justify-content-center">
 
         <div class="col-12 col-md-7 col-xl-8">
             <div class="card shadow">
                 <div class="card-body">
 
                     <p class="text-right">
-                        <a class="btn btn-primary" href="{{ route('projects.edit', [$project]) }}">
-                            <span class="fas fa-edit"></span> {{ __('project.editProject') }}
+                        <a class="btn btn-primary" href="{{ route('projects.tasks.create', [$project]) }}">
+                            <span class="fas fa-plus"></span> {{ __('project.addTask') }}
                         </a>
                     </p>
 
                     <hr>
 
-                    <dl class="row">
+                    <h3>
+                        <span class="far fa-check-square"></span>
+                        {{ __('project.tasks') }}
+                    </h3>
+
+                    @forelse($project->tasks as $task)
+
+                        @if ($loop->first)
+                            <div class="list-group">
+                        @endif
+
+                            <a class="list-group-item list-group-item-action" href="{{ route('projects.tasks.show', [$project, $task]) }}">
+                                <span class="far fa-square"></span>
+                                {{ $task->title }}
+                            </a>
+
+                        @if ($loop->last)
+                            </div>
+                        @endif
+
+                    @empty
+
+                    @endforelse
+
+                    {{--<dl class="row">
                         <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.owner') }}</dt>
                         <dd class="col-8 col-sm-9 col-xl-10">{{ ($project->owner) ? $project->owner->name : '' }}</dd>
 
@@ -37,14 +61,14 @@
 
                     <div class="editor-content">
                         {!! App\safe_text_editor_content($project->details) !!}
-                    </div>
+                    </div>--}}
 
                 </div>
 
             </div>
         </div>
 
-        <div class="col-12 col-md-5 col-xl-4 mt-3 mt-md-0 pl-md-0">
+        {{--<div class="col-12 col-md-5 col-xl-4 mt-3 mt-md-0 pl-md-0">
 
             <div class="project--tasks card shadow">
 
@@ -96,7 +120,7 @@
 
             </div>
 
-        </div>
+        </div>--}}
 
     </div>
 @endsection

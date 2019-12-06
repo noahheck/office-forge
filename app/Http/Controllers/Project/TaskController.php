@@ -21,7 +21,7 @@ class TaskController extends Controller
      */
     public function index(Project $project)
     {
-        //
+        return $this->view('projects.tasks.index', compact('project'));
     }
 
     /**
@@ -67,7 +67,7 @@ class TaskController extends Controller
      */
     public function show(Project $project, Task $task)
     {
-        //
+        return $this->view('projects.tasks.show', compact('task', 'project'));
     }
 
     /**
