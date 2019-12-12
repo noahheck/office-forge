@@ -33,10 +33,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $user = new User();
         $user->active = true;
+        $user->timezone = $request->user()->timezone;
 
         return $this->view('admin.users.create', compact('user'));
     }
