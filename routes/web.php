@@ -59,6 +59,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::resource('/teams', 'TeamController');
 
+        Route::get('/organization', 'OrganizationController@index')->name('organization');
+        Route::post('/organization', 'OrganizationController@update')->name('organization.update');
+
     });
 
 });

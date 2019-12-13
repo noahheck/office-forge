@@ -3,15 +3,18 @@
 namespace App\Project;
 
 use App\Project;
+use App\Interfaces\HasDueDate as HasDueDateInterface;
+use App\Traits\HasDueDate;
 use App\Traits\IsEditorResource;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Task extends Model
+class Task extends Model implements HasDueDateInterface
 {
     use SoftDeletes,
-        IsEditorResource;
+        IsEditorResource,
+        HasDueDate;
 
     protected $dates = [
         'due_date',

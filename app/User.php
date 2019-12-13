@@ -4,6 +4,7 @@ namespace App;
 
 use App\Interfaces\Headshottable;
 use App\Traits\GetsInitialsFromName;
+use App\Traits\User\ProvidesTodaysDate;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +12,8 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable implements Headshottable
 {
     use Notifiable,
-        GetsInitialsFromName;
+        GetsInitialsFromName,
+        ProvidesTodaysDate;
 
     /**
      * The attributes that are mass assignable.

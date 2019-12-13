@@ -24,4 +24,6 @@ return [
     'team_createAsManyAsWanted' => 'You can create as many teams as you need!',
     'team_createFirstTeamNow' => 'Create your first team now!',
     'team_selectMembers' => 'Select the users who should be members of this team:',
+
+    'organizationSettings' => 'Organization Settings',
 ];

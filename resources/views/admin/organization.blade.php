@@ -2,10 +2,10 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-cogs"></span> {{ __('admin.systemSettings') }}
+        <span class="fas fa-building"></span> {{ __('admin.organizationSettings') }}
     </h1>
 
-    <hr>
+    {{--<hr>
 
     <h3><span class="fas fa-users-cog"></span> Users / Teams</h3>
 
@@ -35,7 +35,7 @@
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="{{ route('admin.organization') }}">
+            <a class="card admin-module-link" href="#">
                 <div class="card-body">
                     <span class="fas fa-building module-icon"></span>
                     Organization
@@ -112,6 +112,6 @@
             </a>
         </div>
 
-    </div>
+    </div>--}}
 
 @endsection

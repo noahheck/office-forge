@@ -57,7 +57,7 @@
                     <ul class="project--task-list current-tasks">
                         @foreach ($project->tasks as $task)
 
-                            <li class="task @if(Arr::random([true, false])) overdue @endif">
+                            <li class="task @if($task->isDueToday()) due-today @elseif($task->isOverdue()) overdue @endif">
                                 <span class="far fa-square"></span> <a href="{{ route('projects.tasks.show', [$project, $task]) }}">{{ $task->title }}</a>
 
                                 <div class="task-attributes">

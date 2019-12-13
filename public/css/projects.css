@@ -34,6 +34,10 @@
   color: #e3342f;
 }
 
+.project--task-list .task.due-today .calendar-icon {
+  color: #f6993f;
+}
+
 .project--task-list .task-attributes {
   padding-left: 15px;
 }
