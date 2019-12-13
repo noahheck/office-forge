@@ -2,7 +2,40 @@
  * sass/projects.scss
  */
 
+@import "variables";
 @import "mixins";
+
+
+.project {
+
+    .project-details {
+        border-top: 1px solid $light-gray;
+        border-bottom: 1px solid $light-gray;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
+
+    &.overdue {
+
+        .project-details {
+            background-color: $red-highlight;
+            border-color: transparent;
+        }
+
+        .project--due-date {
+            color: $red;
+            font-weight: bold;
+        }
+
+    }
+
+    .project--completed-indicator {
+        color: $green;
+        font-size: 1.1em;
+        font-weight: bold;
+    }
+
+}
 
 .project--tasks {
 
@@ -17,6 +50,7 @@
 .project--task-list {
     list-style-type: none;
     margin: 0;
+    margin-bottom: 20px;
     padding: 0;
 
     .headshot {
@@ -27,9 +61,14 @@
     .task {
         margin-bottom: 4px;
 
+        .project--task--due-date {
+            font-size: .9em;
+        }
+
         &.overdue {
 
-            .calendar-icon {
+            .calendar-icon,
+            .project--task--due-date {
                 color: $red;
             }
 
@@ -37,7 +76,8 @@
 
         &.due-today {
 
-            .calendar-icon {
+            .calendar-icon,
+            .project--task--due-date {
                 color: $orange;
             }
 
@@ -54,9 +94,37 @@
 
     &.completed-tasks {
 
+        font-size: .9em;
+
         a {
             text-decoration: line-through;
             color: $dark-gray;
+        }
+    }
+}
+
+
+.task {
+
+
+    .task-details {
+        border-top: 1px solid $light-gray;
+        border-bottom: 1px solid $light-gray;
+        padding: 15px;
+        padding-bottom: 0;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+
+    &.overdue {
+        .task-details {
+            border-color: transparent;
+            background-color: $red-highlight;
+        }
+
+        .task--due-date {
+            font-weight: bold;
+            color: $red;
         }
     }
 }

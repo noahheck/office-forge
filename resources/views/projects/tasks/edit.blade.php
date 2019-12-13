@@ -16,6 +16,7 @@
                     @include('projects.tasks._form', [
                         'action' => route('projects.tasks.update', [$project, $task]),
                         'method' => 'PUT',
+                        'showCompleted' => true,
                     ])
 
                 </div>

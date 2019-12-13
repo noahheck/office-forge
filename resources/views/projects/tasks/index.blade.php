@@ -36,7 +36,7 @@
                         @endif
 
                             <a class="list-group-item list-group-item-action" href="{{ route('projects.tasks.show', [$project, $task]) }}">
-                                <span class="far fa-square"></span>
+                                <span class="far {{ ($task->completed) ? 'fa-check-square' : 'fa-square' }}"></span>
                                 {{ $task->title }}
                             </a>
 

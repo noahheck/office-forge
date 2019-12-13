@@ -6,7 +6,7 @@
         @method($method)
     @endif
 
-    @errors('name', 'due_date', 'details')
+    @errors('name', 'due_date', 'completed', 'details')
 
     @textField([
         'name' => 'name',
@@ -27,6 +27,24 @@
         'autofocus' => false,
         'error' => $errors->has('due_date'),
     ])
+
+    @if ($showCompleted ?? false)
+
+        <hr>
+
+        @checkboxSwitchField([
+            'name' => 'completed',
+            'id' => 'project_' . $project->id . '_completed',
+            'label' => __('project.completed'),
+            'checked' => $project->completed,
+            'value' => '1',
+            'required' => false,
+            'error' => $errors->has('completed'),
+        ])
+
+        <hr>
+
+    @endif
 
     @textEditorField([
         'name' => 'details',

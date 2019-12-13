@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Project\Task;
+use App\Traits\HasDueDate;
 use App\Traits\IsEditorResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Project extends Model
 {
     use SoftDeletes,
-        IsEditorResource;
+        IsEditorResource,
+        HasDueDate;
 
     protected $dates = [
         'due_date',

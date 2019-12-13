@@ -12,11 +12,9 @@ class Update
     use Dispatchable, Queueable;
 
     private $name;
-
     private $due_date;
-
+    private $completed;
     private $details;
-
     private $creator;
 
     /**
@@ -29,11 +27,12 @@ class Update
      *
      * @return void
      */
-    public function __construct(Project $project, $name, $due_date, $details)
+    public function __construct(Project $project, $name, $due_date, $completed, $details)
     {
         $this->project = $project;
         $this->name = $name;
         $this->due_date = $due_date;
+        $this->completed = $completed;
         $this->details = $details;
     }
 
@@ -54,6 +53,8 @@ class Update
         }
 
         $project->active = true;
+
+        $project->completed = $this->completed;
 
         $project->save();
     }

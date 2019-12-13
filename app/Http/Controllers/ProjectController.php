@@ -104,6 +104,7 @@ class ProjectController extends Controller
             $project,
             $request->name,
             $request->due_date,
+            $request->has('completed'),
             $request->details
         ));
 

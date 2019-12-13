@@ -24,6 +24,7 @@
                             <thead>
                                 <tr>
                                     <th class="w-75p">{{ __('project.dueDate') }}</th>
+                                    <th class="w-50p">&nbsp;</th>
                                     <th>{{ __('project.name') }}</th>
                                     <th>{{ __('project.owner') }}</th>
                                 </tr>
@@ -35,6 +36,9 @@
                             <tr>
                                 <td>
                                     {{ App\format_date($project->due_date) }}
+                                </td>
+                                <td data-sort="{{ ($project->completed) ? '1' : '0' }}" class="text-center">
+                                    <span class="{{ ($project->completed) ? "fas fa-check-square" : 'far fa-square' }}"></span>
                                 </td>
                                 <td>
                                     <a href="{{ route('projects.show', [$project]) }}">

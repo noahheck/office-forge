@@ -10,6 +10,7 @@ return [
     'dueDate' => 'Due Date',
     'name' => 'Name',
     'owner' => 'Owner',
+    'completed' => 'Completed',
     'details' => 'Details',
 
     'nameExample' => 'New product launch, New Employee Orientation - John Smith, etc...',
@@ -30,6 +31,7 @@ return [
     'taskTitle' => 'Title',
     'taskTitleExample' => 'Complete TPS report, Process inventory, etc...',
     'taskDueDate' => 'Due Date',
+    'taskCompleted' => 'Completed',
     'taskDetails' => 'Details',
     'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',
 

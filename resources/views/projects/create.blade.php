@@ -15,6 +15,7 @@
 
                     @include('projects._form', [
                         'action' => route('projects.store'),
+                        'showCompleted' => false,
                     ])
 
                 </div>
