@@ -48,10 +48,10 @@
 
     @userSelectField([
         'name' => 'assigned_to',
-        'label' => 'Assigned to',
+        'label' => __('project.taskAssignedTo'),
         'value' => $task->assigned_to,
         'users' => $users,
-        'placeholder' => 'Assigned User',
+        'placeholder' => __('project.taskAssignedTo'),
         'required' => false,
         'autofocus' => false,
         'error' => $errors->has('assigned_to'),

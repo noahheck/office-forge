@@ -12,13 +12,10 @@ class Create
     use Dispatchable, Queueable;
 
     private $name;
-
     private $due_date;
-
+    private $owner_id;
     private $details;
-
     private $creator;
-
     private $editor_temp_id;
 
     /**
@@ -31,10 +28,11 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $due_date, $details, $creator, $editor_temp_id)
+    public function __construct($name, $due_date, $owner_id, $details, $creator, $editor_temp_id)
     {
         $this->name = $name;
         $this->due_date = $due_date;
+        $this->owner_id = $owner_id;
         $this->details = $details;
         $this->creator = $creator;
         $this->editor_temp_id = $editor_temp_id;
@@ -54,6 +52,7 @@ class Create
     {
         $project = new Project;
         $project->name = $this->name;
+        $project->owner_id = $this->owner_id;
         $project->details = $this->details;
         $project->created_by = $this->creator->id;
 

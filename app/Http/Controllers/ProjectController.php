@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Jobs\Project\Create;
 use App\Jobs\Project\Update;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Project\Store as StoreRequest;
 use App\Http\Requests\Project\Update as UpdateRequest;
@@ -37,8 +38,11 @@ class ProjectController extends Controller
         $project->due_date = now();
         $project->owner_id = $request->user()->id;
 
+        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+
         return $this->view('projects.create', [
             'project' => $project,
+            'users' => $users,
         ]);
     }
 
@@ -53,6 +57,7 @@ class ProjectController extends Controller
         $this->dispatchNow($projectCreated = new Create(
             $request->name,
             $request->due_date,
+            $request->owner_id,
             $request->details,
             $request->user(),
             $request->temp_id
@@ -86,8 +91,11 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+
         return $this->view('projects.edit', [
             'project' => $project,
+            'users' => $users,
         ]);
     }
 
@@ -104,6 +112,7 @@ class ProjectController extends Controller
             $project,
             $request->name,
             $request->due_date,
+            $request->owner_id,
             $request->has('completed'),
             $request->details
         ));

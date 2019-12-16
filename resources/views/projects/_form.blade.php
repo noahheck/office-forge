@@ -46,6 +46,17 @@
 
     @endif
 
+    @userSelectField([
+        'name' => 'owner_id',
+        'label' => __('project.owner'),
+        'value' => $project->owner_id,
+        'users' => $users,
+        'placeholder' => __('project.owner'),
+        'required' => false,
+        'autofocus' => false,
+        'error' => $errors->has('owner_id'),
+    ])
+
     @textEditorField([
         'name' => 'details',
         'id' => 'details',
