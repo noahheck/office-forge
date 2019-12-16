@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Interfaces\Headshottable;
+use App\Project\Task;
 use App\Traits\GetsInitialsFromName;
 use App\Traits\User\ProvidesTodaysDate;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -73,6 +74,18 @@ class User extends Authenticatable implements Headshottable
     public function createdProjects()
     {
         return $this->hasMany(Project::class, 'created_by');
+    }
+
+
+
+    public function createdTasks()
+    {
+        return $this->hasMany(Task::class, 'created_by');
+    }
+
+    public function assignedTasks()
+    {
+        return $this->hasMany(Task::class, 'assigned_to');
     }
 
 

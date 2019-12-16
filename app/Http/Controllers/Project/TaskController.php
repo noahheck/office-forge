@@ -9,6 +9,7 @@ use App\Jobs\Project\Task\Create;
 use App\Jobs\Project\Task\Update;
 use App\Project;
 use App\Project\Task;
+use App\User;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -29,12 +30,15 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Project $project)
+    public function create(Request $request, Project $project)
     {
         $task = new Task;
         $task->project_id = $project->id;
+        $task->assigned_to = $request->user()->id;
 
-        return $this->view('projects.tasks.create', compact('task', 'project'));
+        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        return $this->view('projects.tasks.create', compact('task', 'project', 'users'));
     }
 
     /**
@@ -49,6 +53,7 @@ class TaskController extends Controller
             $project,
             $request->title,
             $request->due_date,
+            $request->assigned_to,
             $request->details,
             $request->user(),
             $request->temp_id
@@ -78,7 +83,9 @@ class TaskController extends Controller
      */
     public function edit(Project $project, Task $task)
     {
-        return $this->view('projects.tasks.edit', compact('task', 'project'));
+        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        return $this->view('projects.tasks.edit', compact('task', 'project', 'users'));
     }
 
     /**
@@ -94,6 +101,7 @@ class TaskController extends Controller
             $task,
             $request->title,
             $request->due_date,
+            $request->assigned_to,
             $request->has('completed'),
             $request->details
         ));

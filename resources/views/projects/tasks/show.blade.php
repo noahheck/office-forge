@@ -46,7 +46,11 @@
 
                         <dl class="row">
                             <dt class="col-4 col-sm-3">{{ __('project.taskAssignedTo') }}</dt>
-                            <dd class="col-8 col-sm-9"></dd>
+                            <dd class="col-8 col-sm-9">
+                                @if ($task->assigned_to)
+                                    {!! $task->assignedTo->icon() !!} {{ $task->assignedTo->name }}
+                                @endif
+                            </dd>
 
                             <dt class="col-4 col-sm-3">{{ __('project.taskDueDate') }}</dt>
                             <dd class="col-8 col-sm-9 task--due-date">{{ App\format_date($task->due_date) }}</dd>

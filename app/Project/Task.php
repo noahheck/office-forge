@@ -33,4 +33,9 @@ class Task extends Model implements HasDueDateInterface
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function assignedTo()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 }

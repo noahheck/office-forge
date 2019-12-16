@@ -46,6 +46,17 @@
 
     @endif
 
+    @userSelectField([
+        'name' => 'assigned_to',
+        'label' => 'Assigned to',
+        'value' => $task->assigned_to,
+        'users' => $users,
+        'placeholder' => 'Assigned User',
+        'required' => false,
+        'autofocus' => false,
+        'error' => $errors->has('assigned_to'),
+    ])
+
     @textEditorField([
         'name' => 'details',
         'id' => 'details',

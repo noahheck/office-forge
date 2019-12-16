@@ -21,6 +21,7 @@ class Create
     private $project;
     private $title;
     private $due_date;
+    private $assigned_to;
     private $details;
     private $creator;
     private $editor_temp_id;
@@ -30,11 +31,12 @@ class Create
      *
      * @return void
      */
-    public function __construct(Project $project, $title, $due_date, $details, User $creator, $editor_temp_id)
+    public function __construct(Project $project, $title, $due_date, $assigned_to, $details, User $creator, $editor_temp_id)
     {
         $this->project = $project;
         $this->title = $title;
         $this->due_date = $due_date;
+        $this->assigned_to = $assigned_to;
         $this->details = $details;
         $this->creator = $creator;
         $this->editor_temp_id = $editor_temp_id;
@@ -56,6 +58,7 @@ class Create
 
         $task->project_id = $this->project->id;
         $task->title = $this->title;
+        $task->assigned_to = $this->assigned_to;
         $task->details = $this->details;
         $task->created_by = $this->creator->id;
 

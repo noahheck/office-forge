@@ -64,7 +64,9 @@
                                 <span class="far fa-square"></span> <a href="{{ route('projects.tasks.show', [$project, $task]) }}">{{ $task->title }}</a>
 
                                 <div class="task-attributes">
-                                    {!! Auth::user()->icon() !!}
+                                    @if ($task->assigned_to)
+                                        {!! $task->assignedTo->icon() !!}
+                                    @endif
                                     @if ($task->details)
                                         <span class="fas fa-align-left"></span>
                                     @endif
@@ -94,7 +96,9 @@
                                 <span class="far fa-check-square"></span> <a href="{{ route('projects.tasks.show', [$project, $task]) }}">{{ $task->title }}</a>
 
                                 <div class="task-attributes">
-                                    {!! Auth::user()->icon() !!}
+                                    @if ($task->assigned_to)
+                                        {!! $task->assignedTo->icon() !!}
+                                    @endif
                                     @if ($task->details)
                                         <span class="fas fa-align-left"></span>
                                     @endif

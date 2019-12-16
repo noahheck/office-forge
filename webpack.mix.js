@@ -27,6 +27,7 @@ mix.js('resources/js/app.js', 'public/js')
         'lodash',
         'axios',
         'bootstrap-datepicker',
+        'bootstrap-select',
         'trix'
     ])
 ;

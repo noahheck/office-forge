@@ -6,6 +6,10 @@
  * sass/_mixins.scss
  */
 
+.project .headshot {
+  max-height: 35px;
+}
+
 .project .project-details {
   border-top: 1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
@@ -48,6 +52,12 @@
 .project--task-list .headshot {
   max-height: 20px;
   max-width: 20px;
+}
+
+.project--task-list .user-icon {
+  max-height: 20px;
+  font-size: 0.9em;
+  padding: 1px 2px;
 }
 
 .project--task-list .task {
@@ -93,6 +103,10 @@
   padding-bottom: 0;
   margin-top: 15px;
   margin-bottom: 15px;
+}
+
+.task .task-details .headshot {
+  max-height: 35px;
 }
 
 .task.overdue .task-details {

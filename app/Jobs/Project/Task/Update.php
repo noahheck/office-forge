@@ -20,6 +20,7 @@ class Update
 
     private $title;
     private $due_date;
+    private $assigned_to;
     private $completed;
     private $details;
 
@@ -28,11 +29,12 @@ class Update
      *
      * @return void
      */
-    public function __construct(Task $task, $title, $due_date, $completed, $details)
+    public function __construct(Task $task, $title, $due_date, $assigned_to, $completed, $details)
     {
         $this->task = $task;
         $this->title = $title;
         $this->due_date = $due_date;
+        $this->assigned_to = $assigned_to;
         $this->completed = $completed;
         $this->details = $details;
     }
@@ -48,6 +50,7 @@ class Update
 
         $task->title = $this->title;
         $task->details = $this->details;
+        $task->assigned_to = $this->assigned_to;
 
         $task->due_date = null;
         if ($this->due_date) {
