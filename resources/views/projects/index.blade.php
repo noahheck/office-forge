@@ -1,5 +1,9 @@
 @extends("layouts.app")
 
+@push('styles')
+    @style('css/projects.css')
+@endpush
+
 @section('content')
     <h1>
         <span class="fas fa-project-diagram"></span> {{ __('app.projects') }}
@@ -20,7 +24,7 @@
                 @if($loop->first)
 
                     <div class="table-responsive">
-                        <table id="projects" class="table table-striped table-bordered dt-table">
+                        <table id="projects" class="projects table table-striped table-bordered dt-table">
                             <thead>
                                 <tr>
                                     <th class="w-75p">{{ __('project.dueDate') }}</th>
@@ -46,7 +50,9 @@
                                     </a>
                                 </td>
                                 <td>
-                                    {!! ($project->owner) ? $project->owner->icon() : '' !!}
+                                    @if ($project->owner_id)
+                                        {!! $project->owner->icon() !!} {{ $project->owner->name }}
+                                    @endif
                                 </td>
                             </tr>
 

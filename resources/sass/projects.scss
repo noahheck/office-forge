@@ -6,6 +6,19 @@
 @import "mixins";
 
 
+.projects {
+
+    .headshot {
+        max-height: 30px;
+        max-width: 30px;
+    }
+
+    .user-icon {
+        max-height: 35px;
+        padding: 2px;
+    }
+}
+
 .project {
 
     .headshot {
