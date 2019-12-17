@@ -31,6 +31,8 @@ class UpdateTest extends TestCase
             $project,
             'Add and update tests',
             '12/03/2019',
+            '14',
+            true,
             'Some details about the project and whatnot'
         );
 
@@ -39,6 +41,8 @@ class UpdateTest extends TestCase
         $this->assertDatabaseHas('projects', [
             'name' => 'Add and update tests',
             'details' => 'Some details about the project and whatnot',
+            'completed' => '1',
+            'owner_id' => '14',
         ]);
     }
 }

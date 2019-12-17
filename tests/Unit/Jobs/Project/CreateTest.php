@@ -25,6 +25,7 @@ class CreateTest extends TestCase
         $job = new Create(
             'Add tests',
             '12/03/2019',
+            '13',
             'Get the tests into place and then we can...',
             $creator,
             '123'
@@ -35,6 +36,7 @@ class CreateTest extends TestCase
         $this->assertDatabaseHas('projects', [
             'name' => 'Add tests',
             'created_by' => '17',
+            'owner_id' => '13',
         ]);
 
         $project = $job->getProject();
