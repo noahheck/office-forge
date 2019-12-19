@@ -46,6 +46,15 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
+                    <span class="fas fa-clipboard-list module-icon"></span>
+                    Processes
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+            <a class="card admin-module-link" href="#">
+                <div class="card-body">
                     <span class="fas fa-project-diagram module-icon"></span>
                     {{ __('app.projects') }}
                 </div>

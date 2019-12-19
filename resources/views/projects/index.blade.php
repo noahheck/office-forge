@@ -51,7 +51,7 @@
                                 </td>
                                 <td>
                                     @if ($project->owner_id)
-                                        {!! $project->owner->icon() !!} {{ $project->owner->name }}
+                                        {!! $project->owner->iconAndName() !!}
                                     @endif
                                 </td>
                             </tr>

@@ -43,7 +43,7 @@
                                 </td>
                                 <td data-sort="{{ $user->name }}">
                                     <a href="{{ route('admin.users.edit', [$user]) }}">
-                                        {!! $user->icon() !!} {{ $user->name }}
+                                        {!! $user->iconAndName() !!}
                                     </a>
                                 </td>
                                 <td>{{ $user->job_title }}</td>

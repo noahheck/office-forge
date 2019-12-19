@@ -48,7 +48,7 @@
                             <dt class="col-4 col-sm-3">{{ __('project.taskAssignedTo') }}</dt>
                             <dd class="col-8 col-sm-9">
                                 @if ($task->assigned_to)
-                                    {!! $task->assignedTo->icon() !!} {{ $task->assignedTo->name }}
+                                    {!! $task->assignedTo->iconAndName() !!}
                                 @endif
                             </dd>
 

@@ -107,6 +107,22 @@ class User extends Authenticatable implements Headshottable
         return !is_null($this->currentHeadshot());
     }
 
+
+    /**
+     * @param bool $wrapped
+     * @return string
+     */
+    public function iconAndName($withClasses = [], bool $wrapped = true): string
+    {
+        $output = $this->icon($withClasses) . ' ' . e($this->name);
+
+        if ($wrapped) {
+            $output = "<span class='user-icon-and-name' data-id='" . $this->id . "'>" . $output . "</span>";
+        }
+
+        return $output;
+    }
+
     /**
      * Differs from $this->icon() in that this will always return an img tag; src will be user icon photo instead of
      * text-style colored icon if there is no headshot for this user

@@ -33,8 +33,7 @@
                         <dt class="col-4 col-sm-3 col-xl-2">{{ __('project.owner') }}</dt>
                         <dd class="col-8 col-sm-9 col-xl-10">
                             @if ($project->owner_id)
-                                {!! $project->owner->icon() !!}
-                                {{ $project->owner->name }}
+                                {!! $project->owner->iconAndName() !!}
                             @endif
                         </dd>
 

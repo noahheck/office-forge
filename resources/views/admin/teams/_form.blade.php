@@ -70,7 +70,7 @@
 
                                 </td>
                                 <td data-sort="{{ $user->name }}">
-                                    {!! $user->icon() !!} {{ $user->name }}
+                                    {!! $user->iconAndName() !!}
                                 </td>
                                 <td>{{ $user->job_title }}</td>
                                 <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}"><span class="far fa{{ ($user->active) ? '-check' : '' }}-square"></span></td>
