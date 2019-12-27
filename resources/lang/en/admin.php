@@ -26,4 +26,11 @@ return [
     'team_selectMembers' => 'Select the users who should be members of this team:',
 
     'organizationSettings' => 'Organization Settings',
+
+
+
+    'processes' => 'Processes',
+    'process_description' => 'Processes allow you to define your operating procedures so they can be completed efficiently and consistently. Processes help your staff deliver quality results, and enables your organization to respond to changes reliably.',
+    'process_createAsManyAsWanted' => 'You can define as many processes as you need! Start with a few and see how much more efficient your work becomes!',
+    'process_createFirstProcessNow' => 'Create your first process now!',
 ];

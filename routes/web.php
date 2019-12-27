@@ -62,6 +62,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::get('/organization', 'OrganizationController@index')->name('organization');
         Route::post('/organization', 'OrganizationController@update')->name('organization.update');
 
+        Route::resource('/processes', 'ProcessController');
+
+
     });
 
 });

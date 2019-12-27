@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link" href="{{ route('admin.processes.index') }}">
                 <div class="card-body">
                     <span class="fas fa-clipboard-list module-icon"></span>
                     Processes
