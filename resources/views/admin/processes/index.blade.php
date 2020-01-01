@@ -16,12 +16,11 @@
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{"orderable": false}, null, null, null]'>
+                    <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{"orderable": false}, null, null]'>
                         <thead>
                             <tr>
                                 <th class="w-50p">&nbsp;</th>
                                 <th>{{ __('process.name') }}</th>
-                                <th>{{ __('process.jobTitle') }}</th>
                                 <th class="w-50p">{{ __('process.active') }}</th>
                             </tr>
                         </thead>
@@ -31,12 +30,11 @@
                                     <td>
 
                                     </td>
-                                    <td data-sort="{{ $user->name }}">
-                                        <a href="{{ route('admin.processes.edit', [$user]) }}">
+                                    <td data-sort="{{ $process->name }}">
+                                        <a href="{{ route('admin.processes.show', [$process]) }}">
                                             {!! $process->name !!}
                                         </a>
                                     </td>
-                                    <td></td>
                                     <td class="text-center" data-order="{{ $process->active ? '1' : '0' }}"><span class="far fa{{ ($process->active) ? '-check' : '' }}-square"></span></td>
                                 </tr>
                             @endforeach

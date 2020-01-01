@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Project\Store;
+use App\Jobs\Process\Create;
 use App\Process;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Process\Store as StoreRequest;
 
 class ProcessController extends Controller
 {
@@ -27,7 +30,10 @@ class ProcessController extends Controller
      */
     public function create()
     {
-        //
+        $process = new Process();
+        $process->active = true;
+
+        return $this->view('admin.processes.create', compact('process'));
     }
 
     /**
@@ -36,9 +42,18 @@ class ProcessController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($processCreated = new Create(
+            $request->name,
+            $request->has('active'),
+            $request->details,
+            $request->temp_id
+        ));
+
+        $process = $processCreated->getProcess();
+
+        return redirect()->route('admin.processes.show', [$process]);
     }
 
     /**

@@ -6,6 +6,7 @@
     'required' => 'boolean: whether the field is required',
     'value' => 'string: the field's value',
     'placeholder' => 'string: example placeholder text',
+    'description' => 'string: additional details describing this field',
     'toolbar' => 'string: type of toolbar to display; full || minimal',
     'resourceType' => 'string: classname for the resource entity - used for managing image uploads; e.g. get_class($announcement)',
     'resourceId' => 'integer: resource entity id - used for managing image uploads; e.g. $announcement->id',
@@ -17,6 +18,9 @@
 @endphp
 <div class="editor-container">
     <label for="{{ $id }}">{{ $label }}</label>
+    @if ($description ?? false)
+        <p>{{ $description }}</p>
+    @endif
     <trix-toolbar id="{{ $id }}__toolbar">
         <div class="trix-button-row">
             @if ($toolbar === 'full')
