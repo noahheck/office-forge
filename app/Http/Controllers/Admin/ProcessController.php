@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Project\Store;
 use App\Jobs\Process\Create;
+use App\Jobs\Process\Update;
 use App\Process;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Process\Store as StoreRequest;
+use App\Http\Requests\Admin\Process\Update as UpdateRequest;
 
 class ProcessController extends Controller
 {
@@ -64,7 +66,8 @@ class ProcessController extends Controller
      */
     public function show(Process $process)
     {
-        //
+
+        return $this->view('admin.processes.show', compact('process'));
     }
 
     /**
@@ -75,7 +78,7 @@ class ProcessController extends Controller
      */
     public function edit(Process $process)
     {
-        //
+        return $this->view('admin.processes.edit', compact('process'));
     }
 
     /**
@@ -85,9 +88,16 @@ class ProcessController extends Controller
      * @param  \App\Process  $process
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Process $process)
+    public function update(UpdateRequest $request, Process $process)
     {
-        //
+        $this->dispatchNow($processUpdated = new Update(
+            $process,
+            $request->name,
+            $request->has('active'),
+            $request->details
+        ));
+
+        return redirect()->route('admin.processes.show', [$process]);
     }
 
     /**
