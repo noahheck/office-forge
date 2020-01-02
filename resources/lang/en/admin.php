@@ -16,6 +16,10 @@ return [
     'administrator_shortDescription' => "This user is an administrator. They're able to make changes to how the system functions, including managing users.",
     'systemAdministrator_shortDescription' => 'This user is able to configure technical aspects of the system, including installing and activating/deactivating modules, and downloading or restoring backups.',
 
+    'user_created' => 'User created',
+    'user_updated' => 'User updated',
+
+
     'newTeam' => 'New Team',
     'newTeam_shortDescription' => 'Create a new Team',
     'editTeam' => 'Edit Team',
@@ -37,4 +41,6 @@ return [
     'process_description' => 'Processes allow you to define your operating procedures so they can be completed efficiently and consistently. Processes help your staff deliver quality results, and enables your organization to respond to changes reliably.',
     'process_createAsManyAsWanted' => 'You can define as many processes as you need! Start with a few and see how much more efficient your work becomes!',
     'process_createFirstProcessNow' => 'Create your first process now!',
+    'process_created' => 'Process created',
+    'process_updated' => 'Process updated',
 ];

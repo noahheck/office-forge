@@ -63,6 +63,8 @@ class UserController extends Controller
 
         $user = $userCreated->getUser();
 
+        \App\flash_success(__('admin.user_created'));
+
         return redirect()->route('admin.users.index');
     }
 
@@ -112,6 +114,8 @@ class UserController extends Controller
             $request->has('system_administrator'),
             $request->password ?? ''
         ));
+
+        \App\flash_success(__('admin.user_updated'));
 
         return redirect()->route('admin.users.index');
     }

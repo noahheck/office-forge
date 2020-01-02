@@ -3,12 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Project\Store;
 use App\Jobs\Process\Create;
 use App\Jobs\Process\Update;
 use App\Process;
 use App\Team;
-use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Process\Store as StoreRequest;
 use App\Http\Requests\Admin\Process\Update as UpdateRequest;
 
@@ -59,6 +57,8 @@ class ProcessController extends Controller
 
         $process = $processCreated->getProcess();
 
+        \App\flash_success(__('admin.process_created'));
+
         return redirect()->route('admin.processes.show', [$process]);
     }
 
@@ -103,6 +103,8 @@ class ProcessController extends Controller
             $request->details,
             $request->teams
         ));
+
+        \App\flash_success(__('admin.process_updated'));
 
         return redirect()->route('admin.processes.show', [$process]);
     }
