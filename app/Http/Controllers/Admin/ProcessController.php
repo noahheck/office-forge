@@ -53,6 +53,7 @@ class ProcessController extends Controller
             $request->name,
             $request->has('active'),
             $request->details,
+            $request->teams,
             $request->temp_id
         ));
 
@@ -99,7 +100,8 @@ class ProcessController extends Controller
             $process,
             $request->name,
             $request->has('active'),
-            $request->details
+            $request->details,
+            $request->teams
         ));
 
         return redirect()->route('admin.processes.show', [$process]);

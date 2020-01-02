@@ -43,13 +43,13 @@
 
         <div class="col-12 col-md-9">
 
-            @teamSelectField([
+            @teamMultiSelectField([
                 'name' => 'teams',
-                'label' => __('process.teams'),
-                'value' => '',
+                'label' => __('process.instantiatingTeams'),
+                'values' => $process->instantiatingTeams,
                 'multiple' => true,
                 'teams' => $teamOptions,
-                'placeholder' => 'Select a team',
+                'placeholder' => 'Select teams',
                 'description' => __('process.teamsDescription'),
                 'required' => false,
                 'autofocus' => false,

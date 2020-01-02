@@ -14,4 +14,9 @@ class Process extends Model
     protected $casts = [
         'active' => 'boolean',
     ];
+
+    public function instantiatingTeams()
+    {
+        return $this->belongsToMany(Team::class, 'processes_teams_instantiators');
+    }
 }

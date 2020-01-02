@@ -4,7 +4,7 @@ return [
     'name' => 'Name',
     'nameExamples' => 'Employee Onboarding, Quarterly Review, Monthly Billing, etc...',
     'active' => 'Active',
-    'teams' => 'Teams',
+    'instantiatingTeams' => 'Instantiating Teams',
     'teamsDescription' => 'Choose which team(s) members should be able to create instances of this process. Leave this field empty to prevent any instances of this process from being created.',
     'details' => 'Details',
     'detailsExamples' => '',

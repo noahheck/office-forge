@@ -2,9 +2,8 @@
 @teamSelectField([
     'name' => 'string: form field name',
     'label' => 'string: text label for form field',
-    'value' => 'string: the field's value',
-    'multiple' => 'boolean: whether the field allows selecting multiple values',
-    'teams' => 'Collection of teams to display in the field',
+    'values' => 'collection: the field's value',
+    'teams' => 'collection: Collection of teams to display in the field',
     'placeholder' => 'string: example placeholder text',
     'description' => 'string: additional details describing this field',
     'required' => 'boolean: whether the field is required',
@@ -17,12 +16,9 @@
     @if ($description ?? false)
         <p>{{ $description }}</p>
     @endif
-    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}{{ ($multiple || false) ? '[]' : '' }}" title="{{ $placeholder }}" data-live-search="true" {{ ($multiple ?? false) ? 'multiple' : '' }}>
-        @if (!($required ?? false))
-            <option value="">--</option>
-        @endif
+    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" multiple>
         @foreach ($teams as $team)
-            <option value="{{ $team->id }}"{{ ($value === $team->id) ? " selected" : "" }} data-content="{!! $team->icon() !!} {{ $team->name }}">{{ $team->name }}</option>
+            <option value="{{ $team->id }}"{{ ($values->contains($team)) ? " selected" : "" }} data-content="{!! $team->icon() !!} {{ $team->name }}">{{ $team->name }}</option>
         @endforeach
     </select>
 </div>

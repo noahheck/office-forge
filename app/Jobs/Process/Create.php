@@ -13,6 +13,7 @@ class Create
     private $name;
     private $active;
     private $details;
+    private $instantiatingTeams;
     private $editor_temp_id;
 
     /**
@@ -25,11 +26,12 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $active, $details, $editor_temp_id)
+    public function __construct($name, $active, $details, $instantiatingTeams, $editor_temp_id)
     {
         $this->name = $name;
         $this->active = $active;
         $this->details = $details;
+        $this->instantiatingTeams = $instantiatingTeams;
         $this->editor_temp_id = $editor_temp_id;
     }
 
@@ -53,6 +55,8 @@ class Create
         $process->save();
 
         $process->claimTemporaryEditorImages($this->editor_temp_id);
+
+        $process->instantiatingTeams()->sync($this->instantiatingTeams);
 
         $this->process = $process;
     }
