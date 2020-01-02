@@ -136,10 +136,12 @@
     }
 
 
-    .user-icon {
+    .user-icon,
+    .team-icon {
         max-height: 25px;
         padding: 2px;
         font-size: .9em;
+        margin-right: 3px;
     }
 
     .headshot {

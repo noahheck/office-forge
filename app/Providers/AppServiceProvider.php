@@ -123,6 +123,7 @@ EOT;
         \Blade::include('_form/password',        'passwordField');
         \Blade::include('_form/select',          'selectField');
         \Blade::include('_form/user-select',     'userSelectField');
+        \Blade::include('_form/team-select',     'teamSelectField');
         \Blade::include('_form/checkboxSwitch',  'checkboxSwitchField');
         \Blade::include('_form/date',            'dateField');
         \Blade::include('_form/textarea',        'textareaField');

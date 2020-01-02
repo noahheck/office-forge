@@ -43,6 +43,19 @@
 
         <div class="col-12 col-md-9">
 
+            @teamSelectField([
+                'name' => 'teams',
+                'label' => __('process.teams'),
+                'value' => '',
+                'multiple' => true,
+                'teams' => $teamOptions,
+                'placeholder' => 'Select a team',
+                'description' => __('process.teamsDescription'),
+                'required' => false,
+                'autofocus' => false,
+                'error' => $errors->has('teams'),
+            ])
+
             @textEditorField([
                 'name' => 'details',
                 'id' => 'process_details',

@@ -12,7 +12,7 @@
 --}}
 <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
     <label for="{{ $name }}">{{ $label }}</label>
-    <select class="ssscustom-select selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true">
+    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true">
         @if (!($required ?? false))
             <option value="">--</option>
         @endif

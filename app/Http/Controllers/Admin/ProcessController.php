@@ -7,6 +7,7 @@ use App\Http\Requests\Project\Store;
 use App\Jobs\Process\Create;
 use App\Jobs\Process\Update;
 use App\Process;
+use App\Team;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Process\Store as StoreRequest;
 use App\Http\Requests\Admin\Process\Update as UpdateRequest;
@@ -35,7 +36,9 @@ class ProcessController extends Controller
         $process = new Process();
         $process->active = true;
 
-        return $this->view('admin.processes.create', compact('process'));
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.processes.create', compact('process', 'teamOptions'));
     }
 
     /**
@@ -78,7 +81,9 @@ class ProcessController extends Controller
      */
     public function edit(Process $process)
     {
-        return $this->view('admin.processes.edit', compact('process'));
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.processes.edit', compact('process', 'teamOptions'));
     }
 
     /**
