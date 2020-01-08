@@ -1,10 +1,10 @@
 @extends("layouts.admin")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Html\LocationBar())
-                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings)
-                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings\Processes)
-                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings\Processes\Show($process))
+    'locationBar' => (new \App\Navigation\LocationBar())
+                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
+                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Processes)
+                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Processes\Show($process))
                     ->setCurrentLocation(__('app.edit')),
 ])
 

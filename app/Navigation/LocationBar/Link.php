@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Html\LocationBar;
+namespace App\Navigation\LocationBar;
 
 
 class Link

@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Html\LocationBar(__('admin.systemSettings'))),
+    'locationBar' => (new \App\Navigation\LocationBar(__('admin.systemSettings'))),
 ])
 
 @section('content')

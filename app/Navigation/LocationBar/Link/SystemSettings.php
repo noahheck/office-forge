@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Html\LocationBar\Link;
+namespace App\Navigation\LocationBar\Link;
 
 
-use App\Html\LocationBar\Link;
+use App\Navigation\LocationBar\Link;
 
 class SystemSettings extends Link
 {

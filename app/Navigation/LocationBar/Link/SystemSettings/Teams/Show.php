@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Html\LocationBar\Link\SystemSettings\Teams;
+namespace App\Navigation\LocationBar\Link\SystemSettings\Teams;
 
 
-use App\Html\LocationBar\Link;
+use App\Navigation\LocationBar\Link;
 use App\Team;
 use App\User;
 

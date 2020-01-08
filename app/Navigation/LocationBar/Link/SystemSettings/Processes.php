@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Html\LocationBar\Link\SystemSettings;
+namespace App\Navigation\LocationBar\Link\SystemSettings;
 
 
-use App\Html\LocationBar\Link;
+use App\Navigation\LocationBar\Link;
 
 class Processes extends Link
 {

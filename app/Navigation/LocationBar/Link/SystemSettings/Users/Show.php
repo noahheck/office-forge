@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Html\LocationBar\Link\SystemSettings\Users;
+namespace App\Navigation\LocationBar\Link\SystemSettings\Users;
 
 
-use App\Html\LocationBar\Link;
+use App\Navigation\LocationBar\Link;
 use App\User;
 
 class Show extends Link

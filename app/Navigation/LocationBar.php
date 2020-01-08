@@ -1,11 +1,11 @@
 <?php
 
 
-namespace App\Html;
+namespace App\Navigation;
 
 
-use App\Html\LocationBar\Link;
-use App\Html\LocationBar\Link\Home as HomeLink;
+use App\Navigation\LocationBar\Link;
+use App\Navigation\LocationBar\Link\Home as HomeLink;
 
 class LocationBar
 {
