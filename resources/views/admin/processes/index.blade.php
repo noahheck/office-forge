@@ -1,5 +1,11 @@
 @extends("layouts.admin")
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Html\LocationBar())
+                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings)
+                    ->setCurrentLocation(__('admin.processes')),
+])
+
 @section('content')
     <h1>
         <span class="fas fa-clipboard-list"></span> {{ __('admin.processes') }}

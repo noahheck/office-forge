@@ -1,5 +1,9 @@
 @extends("layouts.admin")
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Html\LocationBar(__('admin.systemSettings'))),
+])
+
 @section('content')
     <h1>
         <span class="fas fa-cogs"></span> {{ __('admin.systemSettings') }}

@@ -24481,8 +24481,6 @@ a.text-dark:focus {
 }
 
 .main-content {
-  -webkit-transition: margin 0.2s;
-  transition: margin 0.2s;
   margin-left: 0;
 }
 
@@ -24497,9 +24495,8 @@ a.text-dark:focus {
   transition: width 0.2s;
   box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.5);
   position: fixed;
-  top: 0;
+  top: 55px;
   left: 0;
-  padding-top: 55px;
   width: 210px;
   overflow-x: hidden;
   white-space: nowrap;
@@ -24515,6 +24512,7 @@ a.text-dark:focus {
 
   .sidebar-shown .application-sidebar {
     width: 210px;
+    z-index: 1031;
   }
 }
 
@@ -24574,6 +24572,7 @@ a.text-dark:focus {
 
 .header-navbar {
   background-color: #282923;
+  z-index: 1031;
 }
 
 .header-navbar .icon {
@@ -24581,9 +24580,58 @@ a.text-dark:focus {
   max-height: 21px;
 }
 
+.location-bar {
+  border-bottom: 1px solid #c9c9c9;
+  background-color: #fff;
+  position: fixed;
+  top: 55px;
+  width: 100%;
+  z-index: 1030;
+  overflow: hidden;
+  box-shadow: 2px 0 7px 0 rgba(0, 0, 0, 0.5);
+  height: 54px;
+  left: 0;
+  -webkit-transition: height 0.2s, left 0.2s;
+  transition: height 0.2s, left 0.2s;
+}
+
+@media (max-width: 767.98px) {
+  .location-bar {
+    height: 0;
+  }
+}
+
+@media (min-width: 992px) {
+  .location-bar {
+    left: 210px;
+  }
+}
+
+.location-bar ul {
+  margin: 0;
+  padding: 15px;
+  list-style-type: none;
+}
+
+.location-bar ul li {
+  display: inline;
+}
+
+.location-bar ul li a:hover {
+  text-decoration: none;
+}
+
 .main-content {
-  padding-top: 60px;
   margin-bottom: 30px;
+  padding-top: 120px;
+  -webkit-transition: padding 0.2s, margin 0.2s;
+  transition: padding 0.2s, margin 0.2s;
+}
+
+@media (max-width: 767.98px) {
+  .main-content {
+    padding-top: 60px;
+  }
 }
 
 .form-group.required label::after {

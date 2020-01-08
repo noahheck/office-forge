@@ -55,6 +55,11 @@
     transition: width $time;
 }
 
+@mixin height-transition($time: .2s) {
+    -webkit-transition: height $time;
+    transition: height $time;
+}
+
 @mixin shadow-transition($time: .2s) {
     -webkit-transition: box-shadow $time ease-in-out;
     transition: box-shadow $time ease-in-out;

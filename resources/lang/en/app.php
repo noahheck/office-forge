@@ -9,6 +9,7 @@ return [
     'edit' => 'Edit',
     'cancel' => 'Cancel',
     'create' => 'Create',
+    'addNew' => 'Add New',
 
 
     'showNavigationMenu' => 'Show Navigation Menu',

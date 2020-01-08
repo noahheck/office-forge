@@ -1,5 +1,13 @@
 @extends("layouts.admin")
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Html\LocationBar())
+                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings)
+                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings\Users)
+                    ->addLink(new \App\Html\LocationBar\Link\SystemSettings\Users\Show($user))
+                    ->setCurrentLocation(__('app.edit')),
+])
+
 @section('content')
     <h1>
         <span class="fas fa-user-edit"></span> {{ __('admin.editUser') }}

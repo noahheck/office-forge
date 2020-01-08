@@ -26,8 +26,6 @@
 }
 
 .main-content {
-    @include margin-transition();
-
     margin-left: 0;
 
     @include media-breakpoint-up(lg) {
@@ -41,9 +39,8 @@
     @include shadow();
 
     position: fixed;
-    top: 0;
+    top: 55px;
     left: 0;
-    padding-top: 55px;
     width: 210px;
     overflow-x: hidden;
     white-space: nowrap;
@@ -58,6 +55,7 @@
 
         .sidebar-shown & {
             width: 210px;
+            z-index: 1031;
         }
     }
 

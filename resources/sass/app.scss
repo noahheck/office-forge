@@ -71,6 +71,7 @@
 
 .header-navbar {
     background-color: $navbar-bg;
+    z-index: 1031;
 }
 
 .header-navbar .icon {
@@ -78,9 +79,57 @@
     max-height: 21px;
 }
 
+.location-bar {
+    border-bottom: 1px solid $medium-gray;
+    background-color: $white;
+    position: fixed;
+    top: 55px;
+    width: 100%;
+    z-index: 1030;
+    overflow: hidden;
+
+    @include shadow(2px, 0, 7px);
+
+    height: 54px;
+    left: 0;
+
+    -webkit-transition: height .2s, left .2s;
+    transition: height .2s, left .2s;
+
+    @include media-breakpoint-down(sm) {
+        height: 0;
+    }
+
+    @include media-breakpoint-up(lg) {
+        left: 210px;
+    }
+
+    ul {
+        margin: 0;
+        padding: 15px;
+
+        list-style-type: none;
+
+        li {
+            display: inline;
+
+            a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
 .main-content {
-    padding-top: 60px;
     margin-bottom: 30px;
+    padding-top: 120px;
+
+    -webkit-transition: padding .2s, margin .2s;
+    transition: padding .2s, margin .2s;
+
+    @include media-breakpoint-down(sm) {
+        padding-top: 60px;
+    }
 }
 
 

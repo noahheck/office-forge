@@ -155,7 +155,10 @@ $__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
         </ul>
     </div>
 
+    @yield('location-bar')
+
     <main id="mainContent" class="main-content">
+
         <div class="container-fluid">
             @yield('content')
         </div>

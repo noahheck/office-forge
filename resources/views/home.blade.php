@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Html\LocationBar()),
+])
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
