@@ -4,6 +4,10 @@
     @style('css/projects.css')
 @endpush
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Navigation\LocationBar(__('app.projects'))),
+])
+
 @section('content')
     <h1>
         <span class="fas fa-project-diagram"></span> {{ __('app.projects') }}

@@ -4,6 +4,14 @@
     @style('css/projects.css')
 @endpush
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Navigation\LocationBar())
+                    ->addLink(new \App\Navigation\LocationBar\Link\Projects)
+                    ->addLink(new \App\Navigation\LocationBar\Link\Projects\Show($project))
+                    ->addLink(new \App\Navigation\LocationBar\Link\Projects\Tasks($project))
+                    ->setCurrentLocation(e($task->title)),
+])
+
 @push('meta')
     @meta('project:id', $project->id)
     @meta('project:name', $project->name)
