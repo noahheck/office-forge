@@ -11,6 +11,6 @@ class Show extends Link
 {
     public function __construct(User $user)
     {
-        parent::__construct(route('admin.users.show', [$user]), e($user->name));
+        parent::__construct(route('admin.users.show', [$user]), $user->name);
     }
 }

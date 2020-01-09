@@ -4,7 +4,7 @@
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Processes())
-                    ->setCurrentLocation(e($process->name)),
+                    ->setCurrentLocation($process->name),
 ])
 
 @section('content')

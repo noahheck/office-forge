@@ -4,7 +4,7 @@
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Teams())
-                    ->setCurrentLocation(e($team->name)),
+                    ->setCurrentLocation($team->name),
 ])
 
 @section('content')

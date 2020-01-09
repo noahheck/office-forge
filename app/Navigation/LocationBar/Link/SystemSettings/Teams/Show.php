@@ -12,6 +12,6 @@ class Show extends Link
 {
     public function __construct(Team $team)
     {
-        parent::__construct(route('admin.teams.show', [$team]), e($team->name));
+        parent::__construct(route('admin.teams.show', [$team]), $team->name);
     }
 }

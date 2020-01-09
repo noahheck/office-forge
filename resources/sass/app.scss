@@ -122,7 +122,7 @@
 
 .main-content {
     margin-bottom: 30px;
-    padding-top: 120px;
+    padding-top: $main-content-top-margin;
 
     -webkit-transition: padding .2s, margin .2s;
     transition: padding .2s, margin .2s;

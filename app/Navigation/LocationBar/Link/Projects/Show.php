@@ -11,6 +11,6 @@ class Show extends Link
 {
     public function __construct(Project $project)
     {
-        parent::__construct(route('projects.show', [$project]), e($project->name));
+        parent::__construct(route('projects.show', [$project]), $project->name);
     }
 }

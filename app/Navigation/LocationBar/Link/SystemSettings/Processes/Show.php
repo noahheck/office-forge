@@ -11,6 +11,6 @@ class Show extends Link
 {
     public function __construct(Process $process)
     {
-        parent::__construct(route('admin.processes.show', [$process]), e($process->name));
+        parent::__construct(route('admin.processes.show', [$process]), $process->name);
     }
 }

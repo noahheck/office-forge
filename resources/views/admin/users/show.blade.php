@@ -4,7 +4,7 @@
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Users)
-                    ->setCurrentLocation(e($user->name)),
+                    ->setCurrentLocation($user->name),
 ])
 
 @section('content')

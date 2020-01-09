@@ -9,7 +9,7 @@
                     ->addLink(new \App\Navigation\LocationBar\Link\Projects)
                     ->addLink(new \App\Navigation\LocationBar\Link\Projects\Show($project))
                     ->addLink(new \App\Navigation\LocationBar\Link\Projects\Tasks($project))
-                    ->setCurrentLocation(e($task->title)),
+                    ->setCurrentLocation($task->title),
 ])
 
 @push('meta')

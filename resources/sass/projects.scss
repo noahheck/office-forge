@@ -58,7 +58,7 @@
 
     @include media-breakpoint-up(md) {
         position: sticky;
-        top: 60px;
+        top: $main-content-top-margin;
         overflow-y: auto;
     }
 
