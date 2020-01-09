@@ -23,3 +23,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+.no-text-decoration,
+.no-text-decoration:hover {
+    text-decoration: none;
+}

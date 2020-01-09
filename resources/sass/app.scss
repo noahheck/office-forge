@@ -112,11 +112,11 @@
 
         li {
             display: inline;
-
-            a:hover {
-                text-decoration: none;
-            }
         }
+    }
+
+    .separator {
+        color: $dark-gray;
     }
 }
 

@@ -13362,6 +13362,11 @@ trix-editor:empty:not(:focus)::before {
   text-overflow: ellipsis;
 }
 
+.no-text-decoration,
+.no-text-decoration:hover {
+  text-decoration: none;
+}
+
 /**
  * sass/_sidebar.scss
  */
@@ -24617,8 +24622,8 @@ a.text-dark:focus {
   display: inline;
 }
 
-.location-bar ul li a:hover {
-  text-decoration: none;
+.location-bar .separator {
+  color: #666;
 }
 
 .main-content {
