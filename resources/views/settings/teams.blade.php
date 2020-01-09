@@ -1,5 +1,11 @@
 @extends("layouts.settings")
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Navigation\LocationBar())
+                    ->addLink(new \App\Navigation\LocationBar\Link\Settings\MySettings)
+                    ->setCurrentLocation(__('app.teams')),
+])
+
 @section('my-settings-content')
 
     <h2>{{ __('app.teams') }}</h2>

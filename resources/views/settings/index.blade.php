@@ -1,5 +1,9 @@
 @extends("layouts.settings")
 
+@include("_component._location-bar", [
+    'locationBar' => (new \App\Navigation\LocationBar(__('app.mySettings'))),
+])
+
 @section('my-settings-content')
 
     <h2>{{ __('settings.details') }}</h2>
