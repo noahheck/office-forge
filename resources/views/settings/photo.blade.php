@@ -1,5 +1,24 @@
 @extends("layouts.settings")
 
+@push('scripts')
+    @script('js/page.settings.photo.js')
+@endpush
+
+@push('styles')
+<style>
+
+    .upload-preview {
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .in-preview {
+        opacity: .8;
+    }
+
+</style>
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\Settings\MySettings)
@@ -12,6 +31,10 @@
 
     <form action="{{ route('my-settings.photo.update') }}" method="POST" enctype="multipart/form-data" class="bold-labels">
         @csrf
+
+        <div class="d-flex justify-content-center mb-3">
+            {!! Auth::user()->thumbnail(['upload-preview', 'rounded']) !!}
+        </div>
 
         @errors('new_profile_photo')
 

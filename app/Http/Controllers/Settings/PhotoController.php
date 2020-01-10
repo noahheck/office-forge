@@ -24,6 +24,8 @@ class PhotoController extends Controller
 
         $this->dispatchNow($headShotUploaded = new Upload($user, $uploadedPhoto, $user));
 
+        \App\flash_success(__('settings.photo_photoUploaded'));
+
         return redirect()->route('my-settings.photo');
     }
 }
