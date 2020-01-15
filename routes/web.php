@@ -64,7 +64,11 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::resource('/processes', 'ProcessController');
 
+        Route::namespace('Process')->prefix('/processes/{process}')->name('processes.')->group(function() {
 
+            Route::resource('/tasks', 'TaskController');
+
+        });
     });
 
 });

@@ -12,7 +12,7 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 order-2 order-md-1">
 
             <div class="card">
 
@@ -24,6 +24,55 @@
                     </h1>
 
                     <hr>
+
+                    <div class="editor-content">
+                        {!! App\safe_text_editor_content($process->details) !!}
+                    </div>
+
+                    <hr>
+
+                    <h2 class="h4">
+                        <a href="{{ route('admin.processes.tasks.index', [$process]) }}">
+                            <span class="fas fa-clipboard-check mr-2"></span>{{ __('admin.tasks') }}
+                        </a>
+                    </h2>
+
+                    <hr>
+
+                    @foreach (['Self Evaluation', 'Manager Feedback', 'Executive Review'] as $stepName)
+
+
+                        <div class="mb-3">
+                            <h4 class="h5">
+                                <span class="far fa-square"></span>
+                                {{ $stepName }}
+                            </h4>
+                            <p class="text-muted mb-0">
+                                <span class="fas fa-check-square"></span> {{ rand(3, 9) }} Sub-Tasks
+                            </p>
+                        </div>
+
+                        <hr>
+
+                    @endforeach
+
+                    <div class="text-right">
+                        <a href="#" class="btn btn-sm btn-primary">
+                            <span class="fas fa-plus"></span> {{ __('admin.addTask') }}
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-4 order-1 order-md-2">
+
+            <div class="card mb-3 mb-md-auto">
+
+                <div class="card-body">
 
                     <div class="d-flex justify-content-between">
 
@@ -56,53 +105,9 @@
                         @if ($loop->last)
                             </ul>
                         @endif
-                    @endforeach
-
-                    <hr>
-
-                    <div class="editor-content">
-                        {!! App\safe_text_editor_content($process->details) !!}
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-12 col-md-4">
-
-            <div class="card mt-3 mt-md-auto">
-
-                <div class="card-body">
-
-                    <h2 class="h4"><span class="fas fa-list-ol"></span> Steps</h2>
-
-                    <hr>
-
-                    @foreach (['Self Evaluation', 'Manager Feedback', 'Executive Review'] as $stepName)
-
-
-                        <div class="mb-3">
-                            <h4 class="h5">
-                                <span class="far fa{{---check--}}-square"></span>
-                                {{ $stepName }}
-                            </h4>
-                            <p class="text-muted mb-0">
-                                <span class="fas fa-file-import"></span> {{ rand(1,3) }} Deliverables
-                                <span class="fas fa-check-square"></span> {{ rand(3, 9) }} Tasks
-                            </p>
-                        </div>
-
-                        <hr>
 
                     @endforeach
 
-                    <div class="text-right">
-                        <a href="#" class="btn btn-sm btn-primary">
-                            <span class="fas fa-plus"></span> Add Step
-                        </a>
-                    </div>
                 </div>
             </div>
 
