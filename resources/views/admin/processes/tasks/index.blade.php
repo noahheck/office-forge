@@ -9,13 +9,14 @@
 ])
 
 @section('content')
-    <h1>
-        <span class="fas fa-clipboard-list"></span> {{ $process->name }}
-    </h1>
 
     <div class="row justify-content-center">
 
         <div class="col-12 col-md-10 col-xl-8">
+
+            <h1>
+                <span class="fas fa-clipboard-list"></span> {{ $process->name }}
+            </h1>
 
             <div class="card">
 
@@ -30,12 +31,38 @@
 
                     @if (count($process->tasks) > 0)
 
+                        <p class="text-right">
+                            <a class="btn btn-sm btn-primary" href="{{ route('admin.processes.tasks.create', [$process]) }}">
+                                <span class="fas fa-plus"></span> {{ __('admin.addTask') }}
+                            </a>
+                        </p>
 
+                        @foreach ($process->tasks as $task)
 
+                            @if ($loop->first)
+                                <ul class="list-group">
+                            @endif
 
+                                <li class="list-group-item">
+                                    <span class="far fa-square"></span>
+                                    <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
+                                        {{ $task->name }}
+                                    </a>
+                                    @if ($task->details)
+                                        <span class="text-muted fas fa-align-left"></span>
+                                    @endif
 
+                                    <br>
 
+                                    <span class="text-muted"><span class="fas fa-tasks"></span> {{ array_random(range(2, 6)) }} sub-tasks</span>
 
+                                </li>
+
+                            @if ($loop->last)
+                                </ul>
+                            @endif
+
+                        @endforeach
 
 
 

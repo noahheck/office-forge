@@ -47,7 +47,13 @@ return [
 
     'tasks' => 'Tasks',
     'addTask' => 'Add Task',
+    'newTask' => 'New Task',
+    'newTask_shortDescription' => 'Create a new Task',
+    'editTask' => 'Edit Task',
+    'editTask_shortDescription' => 'Edit a Task',
     'task_description' => 'Tasks represent specific work items that need to be completed. When a Process is opened, Tasks get assigned so your staff know  who is responsible for which items.',
     'task_subtaskDescription' => 'Each task can be further organized into sub-tasks, so everybody knows what work needs to get done!',
     'task_createFirstTaskForProcessNow' => 'Create your first task for this process now!',
+    'task_created' => 'Task created',
+    'task_updated' => 'Task updated',
 ];

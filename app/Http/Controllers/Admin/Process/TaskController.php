@@ -5,7 +5,14 @@ namespace App\Http\Controllers\Admin\Process;
 use App\Http\Controllers\Controller;
 use App\Process;
 use App\Process\Task;
-use Illuminate\Http\Request;
+
+use App\Http\Requests\Admin\Process\Task\Store as StoreRequest;
+use App\Http\Requests\Admin\Process\Task\Update as UpdateRequest;
+
+use App\Jobs\Process\Task\Create;
+use App\Jobs\Process\Task\Update;
+
+use function App\flash_success;
 
 class TaskController extends Controller
 {
@@ -26,7 +33,10 @@ class TaskController extends Controller
      */
     public function create(Process $process)
     {
-        //
+        $task = new Task;
+        $task->active = true;
+
+        return $this->view('admin.processes.tasks.create', compact('process', 'task'));
     }
 
     /**
@@ -35,9 +45,22 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Process $process)
+    public function store(StoreRequest $request, Process $process)
     {
-        //
+        $this->dispatchNow($taskCreated = new Create(
+            $process,
+            $request->name,
+            $request->details,
+            $request->temp_id
+        ));
+
+        flash_success(__('admin.task_created'));
+
+        if ($return = $request->query('return')) {
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.processes.show', [$process]);
     }
 
     /**
@@ -48,7 +71,7 @@ class TaskController extends Controller
      */
     public function show(Process $process, Task $task)
     {
-        //
+        return $this->view('admin.processes.tasks.show', compact('process', 'task'));
     }
 
     /**
@@ -59,7 +82,7 @@ class TaskController extends Controller
      */
     public function edit(Process $process, Task $task)
     {
-        //
+        return $this->view('admin.processes.tasks.edit', compact('process', 'task'));
     }
 
     /**
@@ -69,9 +92,23 @@ class TaskController extends Controller
      * @param  \App\Process\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Process $process, Task $task)
+    public function update(UpdateRequest $request, Process $process, Task $task)
     {
-        //
+        $this->dispatchNow($taskUpdated = new Update(
+            $process,
+            $task,
+            $request->name,
+            $request->has('active'),
+            $request->details
+        ));
+
+        flash_success(__('admin.task_updated'));
+
+        if ($return = $request->query('return')) {
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.processes.show', [$process]);
     }
 
     /**

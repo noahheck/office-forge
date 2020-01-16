@@ -37,27 +37,35 @@
                         </a>
                     </h2>
 
-                    <hr>
+                    @foreach ($process->tasks as $task)
 
-                    @foreach (['Self Evaluation', 'Manager Feedback', 'Executive Review'] as $stepName)
+                        @if ($loop->first)
+                            <ul class="list-group">
+                        @endif
 
+                        <li class="list-group-item">
+                            <span class="far fa-square"></span>
+                            <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
+                                {{ $task->name }}
+                            </a>
+                            @if ($task->details)
+                                <span class="text-muted fas fa-align-left"></span>
+                            @endif
 
-                        <div class="mb-3">
-                            <h4 class="h5">
-                                <span class="far fa-square"></span>
-                                {{ $stepName }}
-                            </h4>
-                            <p class="text-muted mb-0">
-                                <span class="fas fa-check-square"></span> {{ rand(3, 9) }} Sub-Tasks
-                            </p>
-                        </div>
+                            <br>
 
-                        <hr>
+                            <span class="text-muted"><span class="fas fa-tasks"></span> {{ array_random(range(2, 6)) }} sub-tasks</span>
+
+                        </li>
+
+                        @if ($loop->last)
+                            </ul>
+                        @endif
 
                     @endforeach
 
-                    <div class="text-right">
-                        <a href="#" class="btn btn-sm btn-primary">
+                    <div class="text-right mt-3">
+                        <a href="{{ route('admin.processes.tasks.create', [$process]) }}" class="btn btn-sm btn-primary">
                             <span class="fas fa-plus"></span> {{ __('admin.addTask') }}
                         </a>
                     </div>
