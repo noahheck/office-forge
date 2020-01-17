@@ -26,7 +26,7 @@
 
 @import '_utilities.scss';
 @import '_sidebar.scss';
-
+@import '_location_bar.scss';
 
 
 
@@ -79,46 +79,7 @@
     max-height: 21px;
 }
 
-.location-bar {
-    border-bottom: 1px solid $medium-gray;
-    background-color: $white;
-    position: fixed;
-    top: 55px;
-    width: 100%;
-    z-index: 1030;
-    overflow: hidden;
 
-    @include shadow(2px, 0, 7px);
-
-    height: 54px;
-    left: 0;
-
-    -webkit-transition: height .2s, left .2s;
-    transition: height .2s, left .2s;
-
-    @include media-breakpoint-down(sm) {
-        height: 0;
-    }
-
-    @include media-breakpoint-up(lg) {
-        left: 210px;
-    }
-
-    ul {
-        margin: 0;
-        padding: 15px;
-
-        list-style-type: none;
-
-        li {
-            display: inline;
-        }
-    }
-
-    .separator {
-        color: $dark-gray;
-    }
-}
 
 .main-content {
     margin-bottom: 30px;
