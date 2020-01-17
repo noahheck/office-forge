@@ -31,11 +31,14 @@
 
                     <hr>
 
-                    <h2 class="h4">
-                        <a href="{{ route('admin.processes.tasks.index', [$process]) }}">
+                    <div class="d-flex justify-content-between">
+                        <h2 class="h4">
                             <span class="fas fa-clipboard-check mr-2"></span>{{ __('admin.tasks') }}
+                        </h2>
+                        <a href="{{ route('admin.processes.tasks.index', [$process]) }}">
+                            <span class="far fa-arrow-alt-circle-right"></span> {{ __('admin.tasks') }}
                         </a>
-                    </h2>
+                    </div>
 
                     @foreach ($process->tasks as $task)
 
@@ -54,7 +57,7 @@
 
                             <br>
 
-                            <span class="text-muted"><span class="fas fa-tasks"></span> {{ array_random(range(2, 6)) }} sub-tasks</span>
+                            <span class="text-muted"><span class="fas fa-tasks"></span> {{ array_random(range(2, 6)) }} {{ __('process.actions') }}</span>
 
                         </li>
 
@@ -76,7 +79,7 @@
 
         </div>
 
-        <div class="col-12 col-md-4 order-1 order-md-2">
+        <div class="col-12 col-md-4 order-1 order-md-2 pl-md-0">
 
             <div class="card mb-3 mb-md-auto">
 

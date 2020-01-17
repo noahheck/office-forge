@@ -16,4 +16,13 @@ return [
     'task_details' => 'Details',
     'task_detailsExamples' => '',
     'task_detailsDescription' => 'Describe the task - Explain how the task fits into the bigger picture of the process and how completing the task will help the process move forward.',
+
+    'action' => 'Action',
+    'actions' => 'Actions',
+    'action_name' => 'Name',
+    'action_nameExamples' => 'Ensure quarterly expenses entered, Fill out W-4, Photocopy documents, etc...',
+    'action_active' => 'Active',
+    'action_details' => 'Details',
+    'action_detailsExamples' => '',
+    'action_detailsDescription' => 'Describe the action - Provide details how to complete the action in order to satisfy it\'s purpose. Providing a step-by-step description can help ensure this action is carried out consistently and reliably.',
 ];

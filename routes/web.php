@@ -68,6 +68,12 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
             Route::resource('/tasks', 'TaskController');
 
+            Route::namespace('Task')->prefix('/tasks/{task}')->name('tasks.')->group(function() {
+
+                Route::resource('/actions', 'ActionController');
+
+            });
+
         });
     });
 

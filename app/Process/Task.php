@@ -3,6 +3,7 @@
 namespace App\Process;
 
 use App\Process;
+use App\Process\Task\Action;
 use App\Traits\IsEditorResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,5 +22,10 @@ class Task extends Model
     public function process()
     {
         return $this->belongsTo(Process::class);
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
     }
 }

@@ -38,8 +38,41 @@
 
                     <hr>
 
-                    <div class="editor-content">
-                        {!! App\safe_text_editor_content($task->details) !!}
+                    @if ($task->details)
+
+                        <div class="editor-content">
+                            {!! App\safe_text_editor_content($task->details) !!}
+                        </div>
+
+                        <hr>
+
+                    @endif
+
+                    <div class="d-flex justify-content-between">
+                        <h3 class="h4">
+                            <span class="fas fa-tasks mr-2"></span>{{ __('admin.actions') }}
+                        </h3>
+                        <a href="{{ route('admin.processes.tasks.actions.index', [$process, $task]) }}">
+                            <span class="far fa-arrow-alt-circle-right"></span> {{ __('admin.actions') }}
+                        </a>
+                    </div>
+
+                    <ul class="list-group list-group-flush">
+                        @foreach ($task->actions as $action)
+                            <li class="list-group-item @if ($loop->first) border-top-0 @endif @if ($loop->last) border-bottom-0 @endif">
+                                <span class="far fa-square"></span>
+                                <a href="{{ route('admin.processes.tasks.actions.show', [$process, $task, $action]) }}">{{ $action->name }}</a>
+                                @if ($action->details)
+                                    <span class="text-muted fas fa-align-left"></span>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+
+                    <div class="text-right mt-3">
+                        <a href="{{ route('admin.processes.tasks.actions.create', [$process, $task]) }}" class="btn btn-sm btn-primary">
+                            <span class="fas fa-plus"></span> {{ __('admin.addAction') }}
+                        </a>
                     </div>
 
                 </div>
