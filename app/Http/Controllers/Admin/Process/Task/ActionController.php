@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Admin\Process\Task;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Process\Task\Action\Store as StoreRequest;
+use App\Http\Requests\Admin\Process\Task\Action\Update as UpdateRequest;
 use App\Jobs\Process\Task\Action\Create;
+use App\Jobs\Process\Task\Action\Update;
 use App\Process;
 use App\Process\Task;
 use App\Process\Task\Action;
 use Illuminate\Http\Request;
+
 use function App\flash_success;
 
 class ActionController extends Controller
@@ -77,7 +80,7 @@ class ActionController extends Controller
      */
     public function show(Process $process, Task $task, Action $action)
     {
-        //
+        return $this->view('admin.processes.tasks.actions.show', compact('process', 'task', 'action'));
     }
 
     /**
@@ -90,7 +93,7 @@ class ActionController extends Controller
      */
     public function edit(Process $process, Task $task, Action $action)
     {
-        //
+        return $this->view('admin.processes.tasks.actions.edit', compact('process', 'task', 'action'));
     }
 
     /**
@@ -102,9 +105,24 @@ class ActionController extends Controller
      * @param \App\Process\Task\Action $action
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Process $process, Task $task, Action $action)
+    public function update(UpdateRequest $request, Process $process, Task $task, Action $action)
     {
-        //
+        $this->dispatchNow($actionUpdated = new Update(
+            $process,
+            $task,
+            $action,
+            $request->name,
+            $request->has('active'),
+            $request->details
+        ));
+
+        flash_success(__('admin.action_updated'));
+
+        if ($return = $request->query('return')) {
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.processes.tasks.actions.show', [$process]);
     }
 
     /**
