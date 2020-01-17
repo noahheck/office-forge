@@ -40,7 +40,7 @@
                         </a>
                     </div>
 
-                    @foreach ($process->tasks as $task)
+                    @forelse ($process->tasks as $task)
 
                         @if ($loop->first)
                             <ul class="list-group">
@@ -57,7 +57,7 @@
 
                             <br>
 
-                            <span class="text-muted"><span class="fas fa-tasks"></span> {{ array_random(range(2, 6)) }} {{ __('process.actions') }}</span>
+                            <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
 
                         </li>
 
@@ -65,7 +65,15 @@
                             </ul>
                         @endif
 
-                    @endforeach
+                    @empty
+
+                        <div class="text-center border p-4">
+
+                            <p>{{ __('admin.task_description') }}</p>
+
+                        </div>
+
+                    @endforelse
 
                     <div class="text-right mt-3">
                         <a href="{{ route('admin.processes.tasks.create', [$process]) }}" class="btn btn-sm btn-primary">

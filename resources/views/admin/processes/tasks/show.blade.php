@@ -19,7 +19,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="fas fa-clipboard-check"></span> {{ $task->name }}
+                        <span class="fas fa-clipboard-check mr-2"></span>{{ $task->name }}
                     </h2>
 
                     <hr>
@@ -27,7 +27,7 @@
                     <div class="d-flex justify-content-between">
 
                         <span>
-                            <span class="far fa-{{ $task->active ?? false ? 'check-' : '' }}square"></span> {{ __('process.task_active') }}
+                            <span class="far fa-{{ $task->active ?? false ? 'check-' : '' }}square mr-1"></span>{{ __('process.task_active') }}
                         </span>
 
                         <a href="{{ route('admin.processes.tasks.edit', [$process, $task]) }}" class="btn btn-sm btn-primary">
@@ -53,12 +53,15 @@
                             <span class="fas fa-tasks mr-2"></span>{{ __('admin.actions') }}
                         </h3>
                         <a href="{{ route('admin.processes.tasks.actions.index', [$process, $task]) }}">
-                            <span class="far fa-arrow-alt-circle-right"></span> {{ __('admin.actions') }}
+                            <span class="far fa-arrow-alt-circle-right mr-1"></span>{{ __('admin.actions') }}
                         </a>
                     </div>
 
-                    <ul class="list-group list-group-flush">
-                        @foreach ($task->actions as $action)
+                    @forelse ($task->actions as $action)
+
+                        @if ($loop->first)
+                            <ul class="list-group list-group-flush">
+                        @endif
                             <li class="list-group-item @if ($loop->first) border-top-0 @endif @if ($loop->last) border-bottom-0 @endif">
                                 <span class="far fa-square"></span>
                                 <a href="{{ route('admin.processes.tasks.actions.show', [$process, $task, $action]) }}">{{ $action->name }}</a>
@@ -66,8 +69,20 @@
                                     <span class="text-muted fas fa-align-left"></span>
                                 @endif
                             </li>
-                        @endforeach
-                    </ul>
+                        @if ($loop->last)
+                            </ul>
+                        @endif
+
+
+                    @empty
+
+                        <div class="text-center border p-4">
+
+                            <p>{{ __('admin.action_description') }}</p>
+
+                        </div>
+
+                    @endforelse
 
                     <div class="text-right mt-3">
                         <a href="{{ route('admin.processes.tasks.actions.create', [$process, $task]) }}" class="btn btn-sm btn-primary">

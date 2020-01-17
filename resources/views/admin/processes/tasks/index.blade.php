@@ -54,7 +54,7 @@
 
                                     <br>
 
-                                    <span class="text-muted"><span class="fas fa-tasks"></span> {{ array_random(range(2, 6)) }} sub-tasks</span>
+                                    <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
 
                                 </li>
 
