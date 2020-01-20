@@ -43,7 +43,7 @@
                     @if ($action->details)
 
                         <div class="editor-content">
-                            {!! App\safe_text_editor_content($task->details) !!}
+                            {!! App\safe_text_editor_content($action->details) !!}
                         </div>
 
                         <hr>
