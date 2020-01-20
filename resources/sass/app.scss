@@ -168,6 +168,16 @@
 
 
 
+.sort-handle {
+    cursor: move;
+}
+
+.sortable-chosen {
+    background-color: $blue-highlight;
+}
+
+
+
 .skip-to-content-link {
     @include border-right-radius();
     @include position-transition(left);

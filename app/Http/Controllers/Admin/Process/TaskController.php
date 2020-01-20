@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin\Process;
 
 use App\Http\Controllers\Controller;
+use App\Http\Response\AjaxResponse;
+use App\Jobs\Process\Tasks\UpdateOrder;
 use App\Process;
 use App\Process\Task;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\Admin\Process\Task\Store as StoreRequest;
 use App\Http\Requests\Admin\Process\Task\Update as UpdateRequest;
 
@@ -122,5 +125,18 @@ class TaskController extends Controller
     public function destroy(Process $process, Task $task)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @param Process $process
+     */
+    public function updateOrder(Request $request, Process $process)
+    {
+        $this->dispatchNow($tasksOrdered = new UpdateOrder($process, $request->get('orderedTasks')));
+
+        return new AjaxResponse(true, [
+            'successMessage' => __('admin.tasks_orderUpdated'),
+        ]);
     }
 }

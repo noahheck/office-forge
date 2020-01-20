@@ -1,5 +1,13 @@
 @extends("layouts.admin")
 
+@push('scripts')
+    @script('js/page.admin.processes.tasks.index.js')
+@endpush
+
+@push('meta')
+    @meta('processId', $process->id)
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
@@ -15,7 +23,7 @@
         <div class="col-12 col-md-10 col-xl-8">
 
             <h1>
-                <span class="fas fa-clipboard-list"></span> {{ $process->name }}
+                <span class="fas fa-clipboard-list mr-2"></span>{{ $process->name }}
             </h1>
 
             <div class="card">
@@ -23,8 +31,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="fas fa-clipboard-check"></span>
-                        {{ __('admin.tasks') }}
+                        <span class="fas fa-clipboard-check mr-2"></span>{{ __('admin.tasks') }}
                     </h2>
 
                     <hr>
@@ -40,22 +47,26 @@
                         @foreach ($process->tasks as $task)
 
                             @if ($loop->first)
-                                <ul class="list-group">
+                                <ul class="list-group" id="processTasks">
                             @endif
 
-                                <li class="list-group-item">
-                                    <span class="far fa-square"></span>
-                                    <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
-                                        {{ $task->name }}
-                                    </a>
-                                    @if ($task->details)
-                                        <span class="text-muted fas fa-align-left"></span>
-                                    @endif
+                                <li class="list-group-item d-flex" data-id="{{ $task->id }}">
+                                    <div class="flex-grow-1">
+                                        <span class="far fa-square mr-2"></span>
+                                        <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
+                                            {{ $task->name }}
+                                        </a>
+                                        @if ($task->details)
+                                            <span class="text-muted fas fa-align-left"></span>
+                                        @endif
 
-                                    <br>
+                                        <br>
 
-                                    <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
-
+                                        <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
+                                    </div>
+                                    <div class="sort-handle">
+                                        <span class="fas fa-arrows-alt-v"></span>
+                                    </div>
                                 </li>
 
                             @if ($loop->last)

@@ -55,6 +55,7 @@ return [
     'task_createFirstTaskForProcessNow' => 'Create your first task for this process now!',
     'task_created' => 'Task created',
     'task_updated' => 'Task updated',
+    'tasks_orderUpdated' => 'Tasks order updated',
 
     'actions' => 'Actions',
     'addAction' => 'Add Action',

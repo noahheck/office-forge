@@ -1,5 +1,13 @@
 @extends("layouts.admin")
 
+@push('scripts')
+    @script('js/page.admin.processes.show.js')
+@endpush
+
+@push('meta')
+    @meta('processId', $process->id)
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
@@ -43,22 +51,28 @@
                     @forelse ($process->tasks as $task)
 
                         @if ($loop->first)
-                            <ul class="list-group">
+                            <ul class="list-group" id="processTasks">
                         @endif
 
-                        <li class="list-group-item">
-                            <span class="far fa-square"></span>
-                            <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
-                                {{ $task->name }}
-                            </a>
-                            @if ($task->details)
-                                <span class="text-muted fas fa-align-left"></span>
-                            @endif
+                        <li class="list-group-item d-flex" data-id="{{ $task->id }}">
+                            <div class="flex-grow-1">
 
-                            <br>
+                                <span class="far fa-square"></span>
+                                <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
+                                    {{ $task->name }}
+                                </a>
+                                @if ($task->details)
+                                    <span class="text-muted fas fa-align-left"></span>
+                                @endif
 
-                            <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
+                                <br>
 
+                                <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
+
+                            </div>
+                            <div class="sort-handle">
+                                <span class="fas fa-arrows-alt-v"></span>
+                            </div>
                         </li>
 
                         @if ($loop->last)

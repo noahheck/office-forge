@@ -24712,6 +24712,14 @@ a.text-dark:focus {
   z-index: 1020;
 }
 
+.sort-handle {
+  cursor: move;
+}
+
+.sortable-chosen {
+  background-color: #e3f3ff;
+}
+
 .skip-to-content-link {
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;

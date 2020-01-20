@@ -19,6 +19,9 @@ mix.js('resources/js/app.js', 'public/js')
 
     .js('resources/js/page/settings/photo.js', 'public/js/page.settings.photo.js')
 
+    .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
+    .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')
+
     .extract([
         'jquery',
         'popper.js',
@@ -30,7 +33,8 @@ mix.js('resources/js/app.js', 'public/js')
         'axios',
         'bootstrap-datepicker',
         'bootstrap-select',
-        'trix'
+        'trix',
+        'sortablejs'
     ])
 ;
 
@@ -41,6 +45,7 @@ mix.webpackConfig({
         alias: {
             Services : path.resolve(__dirname, "resources/js/services"),
             Component: path.resolve(__dirname, "resources/js/component"),
+            App      : path.resolve(__dirname, "resources/js/app"),
             // Css      : path.resolve(__dirname, "resources/sass"),
             // Modules  : path.resolve(__dirname, "node_modules")
             // NodeModules  : path.resolve(__dirname, 'node_modules')
