@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin\Process\Task;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Process\Task\Action\Store as StoreRequest;
 use App\Http\Requests\Admin\Process\Task\Action\Update as UpdateRequest;
+use App\Http\Response\AjaxResponse;
 use App\Jobs\Process\Task\Action\Create;
 use App\Jobs\Process\Task\Action\Update;
+use App\Jobs\Process\Task\Actions\UpdateOrder;
 use App\Process;
 use App\Process\Task;
 use App\Process\Task\Action;
@@ -136,5 +138,14 @@ class ActionController extends Controller
     public function destroy(Process $process, Task $task, Action $action)
     {
         //
+    }
+
+    public function updateOrder(Request $request, Process $process, Task $task)
+    {
+        $this->dispatchNow($actionsOrdered = new UpdateOrder($process, $task, $request->get('orderedActions')));
+
+        return new AjaxResponse(true, [
+            'successMessage' => __('admin.actions_orderUpdated'),
+        ]);
     }
 }

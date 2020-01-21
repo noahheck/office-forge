@@ -20,7 +20,11 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/page/settings/photo.js', 'public/js/page.settings.photo.js')
 
     .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
+
     .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')
+    .js('resources/js/page/admin/processes/tasks/show.js', 'public/js/page.admin.processes.tasks.show.js')
+
+    .js('resources/js/page/admin/processes/tasks/actions/index.js', 'public/js/page.admin.processes.tasks.actions.index.js')
 
     .extract([
         'jquery',

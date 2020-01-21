@@ -1,5 +1,14 @@
 @extends("layouts.admin")
 
+@push('scripts')
+    @script('js/page.admin.processes.tasks.actions.index.js')
+@endpush
+
+@push('meta')
+    @meta('processId', $process->id)
+    @meta('taskId', $task->id)
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
@@ -42,18 +51,22 @@
                         @foreach ($task->actions as $action)
 
                             @if ($loop->first)
-                                <ul class="list-group">
+                                <ul class="list-group" id="taskActions">
                             @endif
 
-                                <li class="list-group-item">
-                                    <span class="far fa-square"></span>
-                                    <a href="{{ route('admin.processes.tasks.actions.show', [$process, $task, $action]) }}">
-                                        {{ $action->name }}
-                                    </a>
-                                    @if ($action->details)
-                                        <span class="text-muted fas fa-align-left"></span>
-                                    @endif
-
+                                <li class="list-group-item d-flex" data-id="{{ $action->id }}">
+                                    <div class="flex-grow-1">
+                                        <span class="far fa-square"></span>
+                                        <a href="{{ route('admin.processes.tasks.actions.show', [$process, $task, $action]) }}">
+                                            {{ $action->name }}
+                                        </a>
+                                        @if ($action->details)
+                                            <span class="text-muted fas fa-align-left"></span>
+                                        @endif
+                                    </div>
+                                    <div class="sort-handle">
+                                        <span class="fas fa-arrows-alt-v"></span>
+                                    </div>
                                 </li>
 
                             @if ($loop->last)

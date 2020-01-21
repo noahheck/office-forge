@@ -72,6 +72,7 @@ Route::middleware(['auth', 'user.active'])->group(function() {
             Route::namespace('Task')->prefix('/tasks/{task}')->name('tasks.')->group(function() {
 
                 Route::resource('/actions', 'ActionController');
+                Route::post('/actions/update-order', 'ActionController@updateOrder')->name('actions.update-order');
 
             });
 

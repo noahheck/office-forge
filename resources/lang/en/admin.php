@@ -67,4 +67,5 @@ return [
     'action_createFirstActionForTaskNow' => 'Create your first action for this task now!',
     'action_created' => 'Action created',
     'action_updated' => 'Action updated',
+    'actions_orderUpdated' => 'Actions order updated',
 ];
