@@ -69,7 +69,7 @@
                     @forelse ($task->actions as $action)
 
                         @if ($loop->first)
-                            <ul class="list-group list-group-flush" id="taskActions">
+                            <ul class="list-group" id="taskActions">
                         @endif
                             <li class="d-flex list-group-item" data-id="{{ $action->id }}">
                                 <div class="flex-grow-1">
