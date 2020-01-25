@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Process\Instance;
 use App\Process\Task;
 use App\Traits\IsEditorResource;
 use Illuminate\Database\Eloquent\Model;
@@ -24,5 +25,10 @@ class Process extends Model
     public function tasks()
     {
         return $this->hasMany(Task::class)->orderBy('order', 'ASC');
+    }
+
+    public function instances()
+    {
+        return $this->hasMany(Instance::class);
     }
 }

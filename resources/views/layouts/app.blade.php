@@ -1,8 +1,9 @@
 @php
-$__currentRouteName = Route::currentRouteName();
-$__isAdminRoute     = Str::startsWith($__currentRouteName, 'admin.');
-$__isSettingsRoute  = Str::startsWith($__currentRouteName, 'my-settings.');
-$__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
+$__currentRouteName  = Route::currentRouteName();
+$__isProjectsRoute   = Str::startsWith($__currentRouteName, 'projects');
+$__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
+$__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
+$__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -118,6 +119,11 @@ $__isProjectsRoute  = Str::startsWith($__currentRouteName, 'projects');
             <li>
                 <a href="#">
                     <span class="fa-fw far fa-envelope"></span> {{ __('app.messages') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('processes.index') }}" class="{{ ($__isProcessesRoute) ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}
                 </a>
             </li>
             <li>

@@ -18,6 +18,7 @@ return [
 
     'home' => 'Home',
     'messages' => 'Messages',
+    'processes' => 'Processes',
     'projects' => 'Projects',
     'documents' => 'Documents',
     'mySettings' => 'My Settings',

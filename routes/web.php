@@ -50,6 +50,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     });
 
+    Route::resource('/processes', 'Process\InstanceController')->parameter('processes','instance');
+
 
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
 
