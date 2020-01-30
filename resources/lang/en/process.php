@@ -10,6 +10,10 @@ return [
     'detailsExamples' => '',
     'detailsDescription' => 'Describe the process - Help your staff understand the purpose of the process, how it is used to help achieve company goals, regulations satisfied by successfully completing the process, and the reason(s) this process should be invoked.',
 
+    'inactive_cantInstantiate' => 'This process has been marked inactive - new instances cannot be created',
+
+    'instance_owner' => 'Owner',
+
     'task_name' => 'Name',
     'task_nameExamples' => 'Generate TPS Report, Process automated payments, Employment Eligibility Verification, etc...',
     'task_active' => 'Active',

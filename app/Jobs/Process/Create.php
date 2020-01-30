@@ -58,6 +58,8 @@ class Create
 
         $process->instantiatingTeams()->sync($this->instantiatingTeams);
 
+        // For each $process->task, create instance tasks and actions
+
         $this->process = $process;
     }
 }

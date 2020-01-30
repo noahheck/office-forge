@@ -22,6 +22,20 @@ class Process extends Model
         return $this->belongsToMany(Team::class, 'processes_teams_instantiators');
     }
 
+    public function instantiatingMembers()
+    {
+        $this->load(['instantiatingTeams', 'instantiatingTeams.members']);
+
+        return $this->instantiatingTeams->map(function($team, $i) {
+            return $team->members;
+        })->flatten()->unique('id')->sortBy('name');
+    }
+
+    public function canBeInstantiatedBy(User $user)
+    {
+        return $this->instantiatingMembers()->pluck('id')->contains($user->id);
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class)->orderBy('order', 'ASC');

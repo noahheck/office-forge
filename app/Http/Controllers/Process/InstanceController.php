@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers\Process;
 
+use App\Jobs\Process\Instance\Create;
+use App\Process;
 use App\Process\Instance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
+use App\Http\Requests\Process\Store as StoreRequest;
 
 class InstanceController extends Controller
 {
@@ -15,8 +19,10 @@ class InstanceController extends Controller
      */
     public function index()
     {
-        return $this->view('processes.index', [
+        $processes = Process::where('active', true)->orderBy('name')->get();
 
+        return $this->view('processes.index', [
+            'processes' => $processes,
         ]);
     }
 
@@ -25,9 +31,33 @@ class InstanceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if (!$process_id = $request->query('process_id')) {
+            return redirect()->route('processes.index');
+        }
+
+        $process = Process::find($process_id);
+
+        if (!$process->active) {
+            \App\flash_warning(__('process.inactive_cantInstantiate'));
+
+            return redirect()->route('processes.index');
+        }
+
+        $instance = new Instance();
+        $instance->process_id = $process_id;
+        $instance->process_name = $process->name;
+        $instance->process_details = $process->details;
+        $instance->owner_id = $request->user()->id;
+
+        $ownerOptions = $process->instantiatingMembers();
+
+        return $this->view('processes.create', [
+            'process' => $process,
+            'instance' => $instance,
+            'ownerOptions' => $ownerOptions,
+        ]);
     }
 
     /**
@@ -36,9 +66,20 @@ class InstanceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($instanceCreated = new Create(
+            Process::find($request->process_id),
+            $request->name,
+            $request->details,
+            $request->owner_id,
+            $request->temp_id,
+            $request->user()
+        ));
+
+        $instance = $instanceCreated->getInstance();
+
+        return redirect()->route('processes.show', [$instance]);
     }
 
     /**

@@ -21,7 +21,7 @@ class CreateProcessInstancesTable extends Migration
             $table->string('process_name');
             $table->text('process_details');
             $table->string('name');
-            $table->text('details');
+            $table->text('details')->nullable();
             $table->boolean('active')->default(true);
             $table->boolean('completed')->default(false);
             $table->dateTime('completed_at')->nullable();

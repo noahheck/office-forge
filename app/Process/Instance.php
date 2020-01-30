@@ -3,13 +3,17 @@
 namespace App\Process;
 
 use App\Process;
+use App\Traits\IsEditorResource;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Instance extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        IsEditorResource;
+
+    protected $table = 'process_instances';
 
     protected $dates = [
         'completed_at',

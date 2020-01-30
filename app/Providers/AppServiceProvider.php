@@ -45,7 +45,7 @@ class AppServiceProvider extends ServiceProvider
          *    @meta('message', $message)
          */
         \Blade::directive('meta', function($expression) {
-            return '<?php 
+            return '<?php
                         $isJson = "0";
                         list ($name, $value) = [' . $expression . '];
                         if (is_array($value) || is_object($value)) {
@@ -121,6 +121,7 @@ EOT;
         \Blade::include('_form/text',              'textField');
         \Blade::include('_form/email',             'emailField');
         \Blade::include('_form/password',          'passwordField');
+        \Blade::include('_form/hidden',            'hiddenField');
         \Blade::include('_form/select',            'selectField');
         \Blade::include('_form/user-select',       'userSelectField');
         \Blade::include('_form/team-multi-select', 'teamMultiSelectField');

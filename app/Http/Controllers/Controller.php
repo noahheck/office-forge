@@ -12,11 +12,23 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
+    /**
+     * @param $view
+     * @param array $data
+     * @param array $mergeData
+     * @return \Illuminate\Http\Response
+     */
     protected function view($view, $data = [], $mergeData = [])
     {
         return view($view, $data, $mergeData);
     }
 
+    /**
+     * @param bool $success
+     * @param array $data
+     * @param array $errors
+     * @return \Illuminate\Http\Response
+     */
     protected function json($success, $data = [], $errors = [])
     {
         return new AjaxResponse($success, $data, $errors);
