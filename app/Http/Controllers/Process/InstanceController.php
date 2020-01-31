@@ -90,7 +90,9 @@ class InstanceController extends Controller
      */
     public function show(Instance $instance)
     {
-        //
+        // $instance->load('tasks', 'tasks.actions');
+
+        return $this->view('processes.show', compact('instance'));
     }
 
     /**

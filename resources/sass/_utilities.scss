@@ -14,6 +14,19 @@
     width: 100px;
 }
 
+.mh-25p {
+    max-height: 25px;
+}
+
+.mw-25p {
+    max-width: 25px;
+}
+
+.mhw-25p {
+    max-height: 25px;
+    max-width: 25px;
+}
+
 .bold-labels label {
     font-weight: bold;
 }

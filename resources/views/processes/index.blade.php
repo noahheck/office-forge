@@ -26,6 +26,20 @@
                 <span class="fas fa-plus"></span> Open New
             </a>
 
+            <div class="row">
+                @foreach ($process->instances as $instance)
+                    <div class="col-6 col-md-4 col-lg-3">
+
+                        <a class="card" href="{{ route('processes.show', [$instance]) }}">
+                            <div class="card-body">
+                                {{ $instance->name }}
+                            </div>
+                        </a>
+
+                    </div>
+                @endforeach
+            </div>
+
         </div>
     </div>
 
