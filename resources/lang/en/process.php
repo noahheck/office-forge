@@ -13,6 +13,8 @@ return [
     'inactive_cantInstantiate' => 'This process has been marked inactive - new instances cannot be created',
 
     'instance_owner' => 'Owner',
+    'instance_opened' => 'Opened',
+    'instance_updated' => 'Updated',
 
     'task_name' => 'Name',
     'task_nameExamples' => 'Generate TPS Report, Process automated payments, Employment Eligibility Verification, etc...',

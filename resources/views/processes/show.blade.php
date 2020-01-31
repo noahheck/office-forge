@@ -7,7 +7,7 @@
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\LocationBar\Link\Processes())
-                    ->setCurrentLocation($instance->name),
+                    ->setCurrentLocation($instance->fullName),
 ])
 
 @section('content')

@@ -24,6 +24,11 @@ class Instance extends Model
         'completed' => 'boolean',
     ];
 
+    public function getFullNameAttribute()
+    {
+        return $this->process_name . ' - ' . $this->name;
+    }
+
     public function process()
     {
         return $this->belongsTo(Process::class);

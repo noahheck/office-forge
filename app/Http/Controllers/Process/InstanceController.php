@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Process;
 
 use App\Jobs\Process\Instance\Create;
+use App\Jobs\Process\Instance\Update;
 use App\Process;
 use App\Process\Instance;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Http\Requests\Process\Store as StoreRequest;
+use App\Http\Requests\Process\Update as UpdateRequest;
 
 class InstanceController extends Controller
 {
@@ -79,6 +81,8 @@ class InstanceController extends Controller
 
         $instance = $instanceCreated->getInstance();
 
+        \App\flash_success($instance->fullName . ' '.  __('process.instance_opened'));
+
         return redirect()->route('processes.show', [$instance]);
     }
 
@@ -103,7 +107,9 @@ class InstanceController extends Controller
      */
     public function edit(Instance $instance)
     {
-        //
+        $ownerOptions = $instance->process->instantiatingMembers();
+
+        return $this->view('processes.edit', compact('instance', 'ownerOptions'));
     }
 
     /**
@@ -113,9 +119,18 @@ class InstanceController extends Controller
      * @param  \App\Process\Instance  $instance
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Instance $instance)
+    public function update(UpdateRequest $request, Instance $instance)
     {
-        //
+        $this->dispatchNow($instanceUpdated = new Update(
+            $instance,
+            $request->name,
+            $request->details,
+            $request->owner_id
+        ));
+
+        \App\flash_success($instance->fullName . ' '.  __('process.instance_updated'));
+
+        return redirect()->route('processes.show', [$instance]);
     }
 
     /**
