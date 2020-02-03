@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Process\Instance;
 
 use App\Http\Controllers\Controller;
+use App\Process\Instance;
 use App\Process\Instance\Task;
 use Illuminate\Http\Request;
 
@@ -11,11 +12,14 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Process\Instance $instance
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Instance $instance)
     {
-        //
+        $tasks = $instance->tasks;
+
+        return $this->view('processes.tasks.index', compact('instance', 'tasks'));
     }
 
     /**
@@ -23,10 +27,10 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    /*public function create()
     {
         //
-    }
+    }*/
 
     /**
      * Store a newly created resource in storage.
@@ -34,18 +38,19 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    /*public function store(Request $request)
     {
         //
-    }
+    }*/
 
     /**
      * Display the specified resource.
      *
+     * @param  \App\Process\Instance $instance
      * @param  \App\Process\Instance\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Task $task)
+    public function show(Instance $instance, Task $task)
     {
         //
     }
@@ -53,10 +58,11 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
+     * @param  \App\Process\Instance $instance
      * @param  \App\Process\Instance\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Task $task)
+    public function edit(Instance $instance, Task $task)
     {
         //
     }
@@ -65,10 +71,11 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Process\Instance $instance
      * @param  \App\Process\Instance\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Instance $instance, Task $task)
     {
         //
     }
@@ -76,10 +83,11 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      *
+     * @param  \App\Process\Instance $instance
      * @param  \App\Process\Instance\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy(Instance $instance, Task $task)
     {
         //
     }

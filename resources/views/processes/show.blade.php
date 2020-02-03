@@ -20,7 +20,7 @@
                 <div class="card-body">
 
                     <h1 class="h2">
-                        <span class="fas fa-clipboard-list"></span> {{ $instance->process_name . ' - ' . $instance->name }}
+                        <span class="fas fa-clipboard-list"></span> {{ $instance->fullName }}
                     </h1>
 
                     <p>
