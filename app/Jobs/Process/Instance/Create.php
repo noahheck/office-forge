@@ -4,6 +4,7 @@ namespace App\Jobs\Process\Instance;
 
 use App\Process;
 use App\Process\Instance;
+use App\Process\Instance\Task as TaskInstance;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -63,6 +64,19 @@ class Create
         $instance->save();
 
         $instance->claimTemporaryEditorImages($this->editor_temp_id);
+
+        $tasks = $this->process->tasks()->where('active', true)->get()->map(function($task, $key) {
+            $taskInstance = new TaskInstance();
+
+            $taskInstance->process_task_id = $task->id;
+            $taskInstance->task_name = $task->name;
+            $taskInstance->task_details = $task->details;
+            $taskInstance->order = $key + 1;
+
+            return $taskInstance;
+        });
+
+        $instance->tasks()->saveMany($tasks);
 
         $this->instance = $instance;
     }

@@ -3,6 +3,7 @@
 namespace App\Process;
 
 use App\Process;
+use App\Process\Instance\Task;
 use App\Traits\IsEditorResource;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
@@ -47,5 +48,10 @@ class Instance extends Model
     public function completedBy()
     {
         return $this->belongsTo(User::class, 'completed_by');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany(Task::class, 'process_instance_id')->orderBy('order', 'ASC');
     }
 }

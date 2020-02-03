@@ -26,7 +26,7 @@
                     <p>
                         @if ($instance->completed)
                             <span class="project--completed-indicator">
-                                <span class="fas fa-check-circle"></span> {{ __('project.completed') }}
+                                <span class="fas fa-check-circle"></span> {{ __('process.completed') }}
                             </span>
                         @endif
                     </p>
@@ -49,15 +49,68 @@
                         <div class="editor-content mt-3">
                             {!! App\safe_text_editor_content($instance->process_details) !!}
                         </div>
-                        <hr>
                     @endif
 
                     @if ($instance->details)
+                        <hr>
                         <div class="editor-content mt-3">
                             {!! App\safe_text_editor_content($instance->details) !!}
                         </div>
-                        <hr>
                     @endif
+
+                    <hr>
+
+
+
+
+
+
+                    <div class="d-flex justify-content-between">
+                        <h2 class="h4">
+                            <span class="fas fa-clipboard-check mr-2"></span>{{ __('process.tasks') }}
+                        </h2>
+                        <a href="{{ route('processes.tasks.index', [$instance]) }}">
+                            <span class="far fa-arrow-alt-circle-right"></span> {{ __('process.tasks') }}
+                        </a>
+                    </div>
+
+                    @forelse ($instance->tasks as $task)
+
+                        @if ($loop->first)
+                            <ul class="list-group" id="processTasks">
+                                @endif
+
+                                <li class="list-group-item d-flex" data-id="{{ $task->id }}">
+                                    <div class="flex-grow-1">
+
+                                        <span class="far fa-square"></span>
+                                        <a href="{{ route('processes.tasks.show', [$instance, $task]) }}">
+                                            {{ $task->task_name }}
+                                        </a>
+                                        @if ($task->details)
+                                            <span class="text-muted fas fa-align-left"></span>
+                                        @endif
+
+                                        <br>
+
+                                        <span class="text-muted"><span class="fas fa-tasks"></span> {{--{{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}--}}</span>
+
+                                    </div>
+                                </li>
+
+                                @if ($loop->last)
+                            </ul>
+                        @endif
+
+                    @empty
+
+
+                    @endforelse
+
+
+
+
+
 
 
 
@@ -71,8 +124,8 @@
 
                 <div class="card-body">
                     <p class="text-right">
-                        <a class="btn btn-primary btn-sm sssbtn-block" href="{{ route('processes.edit', [$instance]) }}">
-                            <span class="fas fa-edit"></span> {{ __('project.editProject') }}
+                        <a class="btn btn-primary btn-sm" href="{{ route('processes.edit', [$instance]) }}">
+                            <span class="fas fa-edit"></span> {{ __('process.editProcess') }}
                         </a>
                     </p>
 

@@ -50,7 +50,16 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     });
 
-    Route::resource('/processes', 'Process\InstanceController')->parameter('processes','instance');
+    Route::resource('/processes', 'Process\InstanceController')
+        ->parameter('processes','instance');
+
+    Route::resource('processes.tasks', 'Process\Instance\TaskController')
+        ->except(['create', 'store'])
+        ->parameter('processes', 'instance');
+
+//    Route::resource('processes.tasks.actions', 'Process\Instance\TaskController')
+//        ->parameter('processes', 'instance');
+
 
 
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {

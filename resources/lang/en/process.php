@@ -16,6 +16,8 @@ return [
     'instance_opened' => 'Opened',
     'instance_updated' => 'Updated',
 
+    'task' => 'Task',
+    'tasks' => 'Tasks',
     'task_name' => 'Name',
     'task_nameExamples' => 'Generate TPS Report, Process automated payments, Employment Eligibility Verification, etc...',
     'task_active' => 'Active',

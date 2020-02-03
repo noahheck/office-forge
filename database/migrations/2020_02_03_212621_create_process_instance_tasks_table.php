@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProcessInstancesTable extends Migration
+class CreateProcessInstanceTasksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,20 +13,18 @@ class CreateProcessInstancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('process_instances', function (Blueprint $table) {
+        Schema::create('process_instance_tasks', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->bigInteger('process_id');
-            $table->bigInteger('owner_id')->nullable();
-            $table->string('process_name');
-            $table->text('process_details');
-            $table->string('name');
+            $table->bigInteger('process_instance_id');
+            $table->bigInteger('process_task_id');
+            $table->string('task_name');
+            $table->mediumText('task_details')->nullable();
             $table->mediumText('details')->nullable();
-            $table->boolean('active')->default(true);
+            $table->integer('order');
             $table->boolean('completed')->default(false);
             $table->dateTime('completed_at')->nullable();
             $table->bigInteger('completed_by')->nullable();
-            $table->bigInteger('created_by');
 
             $table->timestamps();
             $table->softDeletes();
@@ -40,6 +38,6 @@ class CreateProcessInstancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('process_instances');
+        Schema::dropIfExists('process_instance_tasks');
     }
 }
