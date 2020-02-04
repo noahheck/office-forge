@@ -3,13 +3,16 @@
 namespace App\Process\Instance;
 
 use App\Process\Instance;
+use App\Process\Instance\Task\Action;
 use App\Process\Task as TaskTemplate;
+use App\Traits\IsEditorResource;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        IsEditorResource;
 
     protected $table = 'process_instance_tasks';
 
@@ -29,5 +32,10 @@ class Task extends Model
     public function template()
     {
         return $this->belongsTo(TaskTemplate::class, 'task_id');
+    }
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class, 'process_instance_task_id');
     }
 }

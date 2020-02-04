@@ -70,6 +70,9 @@ class InstanceController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $process = Process::find($request->process_id);
+        $process->load('tasks', 'tasks.actions');
+
         $this->dispatchNow($instanceCreated = new Create(
             Process::find($request->process_id),
             $request->name,

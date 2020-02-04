@@ -49,12 +49,13 @@ class Create
      */
     public function handle()
     {
+        $process = $this->process;
         $instance = new Instance();
 
         $instance->process_id = $this->process->id;
         $instance->owner_id = $this->owner_id;
-        $instance->process_name = $this->process->name;
-        $instance->process_details = $this->process->details;
+        $instance->process_name = $process->name;
+        $instance->process_details = $process->details;
         $instance->name = $this->name;
         $instance->details = $this->details;
         $instance->active = true;
@@ -65,7 +66,9 @@ class Create
 
         $instance->claimTemporaryEditorImages($this->editor_temp_id);
 
-        $tasks = $this->process->tasks()->where('active', true)->get()->map(function($task, $key) {
+        $processTasks = $process->tasks()->where('active', true)->get();
+
+        $tasks = $processTasks->map(function($task, $key) {
             $taskInstance = new TaskInstance();
 
             $taskInstance->process_task_id = $task->id;
@@ -77,6 +80,18 @@ class Create
         });
 
         $instance->tasks()->saveMany($tasks);
+
+        \Debugbar::info($tasks);
+
+
+        $tasks->each(function($task, $key) use ($processTasks) {
+            $taskTemplate = $processTasks->firstWhere('id', $task->process_task_id);
+
+            \Debugbar::info($task);
+            \Debugbar::info($taskTemplate);
+
+
+        });
 
         $this->instance = $instance;
     }
