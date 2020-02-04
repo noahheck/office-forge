@@ -14,7 +14,7 @@
                     ->addLink(new \App\Navigation\LocationBar\Link\Processes())
                     ->addLink(new \App\Navigation\LocationBar\Link\Processes\Show($instance))
                     ->addLink(new \App\Navigation\LocationBar\Link\Processes\Tasks($instance))
-                    ->setCurrentLocation(__('process.tasks')),
+                    ->setCurrentLocation($task->task_name),
 ])
 
 @section('content')

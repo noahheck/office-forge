@@ -64,7 +64,7 @@ class TaskController extends Controller
      */
     public function edit(Instance $instance, Task $task)
     {
-        //
+        return $this->view('processes.tasks.edit', compact('instance', 'task'));
     }
 
     /**
