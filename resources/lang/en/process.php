@@ -15,6 +15,7 @@ return [
     'instance_owner' => 'Owner',
     'instance_opened' => 'Opened',
     'instance_updated' => 'Updated',
+    'instance_completed' => 'Completed',
 
     'task' => 'Task',
     'tasks' => 'Tasks',
@@ -24,6 +25,8 @@ return [
     'task_details' => 'Details',
     'task_detailsExamples' => '',
     'task_detailsDescription' => 'Describe the task - Explain how the task fits into the bigger picture of the process and how completing the task will help the process move forward.',
+
+    'task_editTask' => 'Edit Task',
 
     'action' => 'Action',
     'actions' => 'Actions',

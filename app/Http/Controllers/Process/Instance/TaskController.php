@@ -52,7 +52,7 @@ class TaskController extends Controller
      */
     public function show(Instance $instance, Task $task)
     {
-        //
+        return $this->view('processes.tasks.show', compact('instance', 'task'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Process\Instance;
 
 use App\Process\Instance;
+use App\Process\Task as TaskTemplate;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,5 +24,10 @@ class Task extends Model
     public function processInstance()
     {
         return $this->belongsTo(Instance::class, 'process_instance_id');
+    }
+
+    public function template()
+    {
+        return $this->belongsTo(TaskTemplate::class, 'task_id');
     }
 }
