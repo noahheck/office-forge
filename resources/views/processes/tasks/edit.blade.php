@@ -56,6 +56,11 @@
                         @csrf
                         @method('PUT')
 
+                        @hiddenField([
+                            'name' => 'return',
+                            'value' => url()->previous(),
+                        ])
+
                         @checkboxSwitchField([
                             'name' => 'completed',
                             'id' => 'task_' . $task->id . '_completed',

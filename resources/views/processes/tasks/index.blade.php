@@ -45,7 +45,7 @@
 
                                 <li class="list-group-item d-flex" data-id="{{ $task->id }}">
                                     <div class="flex-grow-1">
-                                        <span class="far fa-square mr-2"></span>
+                                        <span class="far fa{{ ($task->completed) ? '-check' : '' }}-square mr-2"></span>
                                         <a href="{{ route('processes.tasks.show', [$instance, $task]) }}">
                                             {{ $task->task_name }}
                                         </a>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Process\Instance;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Process\Instance\Task\Update;
 use App\Process\Instance;
 use App\Process\Instance\Task;
 use Illuminate\Http\Request;
+use App\Http\Requests\Process\Task\Update as UpdateRequest;
 
 class TaskController extends Controller
 {
@@ -75,9 +77,21 @@ class TaskController extends Controller
      * @param  \App\Process\Instance\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Instance $instance, Task $task)
+    public function update(UpdateRequest $request, Instance $instance, Task $task)
     {
-        //
+        $this->dispatchNow($taskUpdated = new Update(
+            $task,
+            $request->has('completed'),
+            $request->details
+        ));
+
+        \App\flash_success("Task updated");
+
+        if ($request->return) {
+            return redirect($request->return);
+        }
+
+        return redirect()->route('processes.show', [$instance]);
     }
 
     /**
