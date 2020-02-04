@@ -5,6 +5,8 @@ namespace App\Jobs\Process\Instance;
 use App\Process;
 use App\Process\Instance;
 use App\Process\Instance\Task as TaskInstance;
+use App\Process\Instance\Task\Action as ActionInstance;
+
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -68,6 +70,8 @@ class Create
 
         $processTasks = $process->tasks()->where('active', true)->get();
 
+
+        // Add a TaskInstance for each Process\Task
         $tasks = $processTasks->map(function($task, $key) {
             $taskInstance = new TaskInstance();
 
@@ -79,18 +83,27 @@ class Create
             return $taskInstance;
         });
 
-        $instance->tasks()->saveMany($tasks);
-
-        \Debugbar::info($tasks);
+        $instance->tasks()->saveMany($tasks->all());
 
 
+        // Add ActionInstances for each Process\Task\Action
         $tasks->each(function($task, $key) use ($processTasks) {
             $taskTemplate = $processTasks->firstWhere('id', $task->process_task_id);
 
-            \Debugbar::info($task);
-            \Debugbar::info($taskTemplate);
+            $actions = $taskTemplate->actions()->where('active', true)->get()->map(function($action, $key2) {
+                $actionInstance = new ActionInstance();
 
+                $actionInstance->process_task_action_id = $action->id;
+                $actionInstance->action_name = $action->name;
+                $actionInstance->action_details = $action->details;
+                $actionInstance->order = $key2 + 1;
 
+                return $actionInstance;
+            });
+
+            \Debugbar::info($actions);
+
+            $task->actions()->saveMany($actions->all());
         });
 
         $this->instance = $instance;
