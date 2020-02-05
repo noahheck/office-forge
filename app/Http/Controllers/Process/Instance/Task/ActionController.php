@@ -68,7 +68,7 @@ class ActionController extends Controller
      */
     public function edit(Instance $instance, Task $task, Action $action)
     {
-        //
+        return $this->view('processes.tasks.actions.edit', compact('instance', 'task', 'action'));
     }
 
     /**
