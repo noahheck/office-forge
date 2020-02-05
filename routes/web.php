@@ -57,8 +57,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         ->except(['create', 'store'])
         ->parameter('processes', 'instance');
 
-//    Route::resource('processes.tasks.actions', 'Process\Instance\TaskController')
-//        ->parameter('processes', 'instance');
+    Route::resource('processes.tasks.actions', 'Process\Instance\Task\ActionController')
+        ->parameter('processes', 'instance');
 
 
 
