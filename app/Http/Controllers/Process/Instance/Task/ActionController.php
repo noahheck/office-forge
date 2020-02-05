@@ -19,7 +19,9 @@ class ActionController extends Controller
      */
     public function index(Instance $instance, Task $task)
     {
-        //
+        $task->load(['actions']);
+
+        return $this->view('processes.tasks.actions.index', compact('instance', 'task'));
     }
 
     /**

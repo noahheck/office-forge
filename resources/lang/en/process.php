@@ -17,6 +17,8 @@ return [
     'instance_updated' => 'Updated',
     'instance_completed' => 'Completed',
 
+    'instance_editInstance' => 'Edit Process',
+
     'task' => 'Task',
     'tasks' => 'Tasks',
     'task_name' => 'Name',
