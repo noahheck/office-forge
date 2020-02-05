@@ -85,7 +85,7 @@ class TaskController extends Controller
             $request->details
         ));
 
-        \App\flash_success("Task updated");
+        \App\flash_success(__('process.task_taskUpdated'));
 
         if ($request->return) {
             return redirect($request->return);

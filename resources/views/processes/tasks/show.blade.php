@@ -76,7 +76,7 @@
 
                             <li class="d-flex list-group-item" data-id="{{ $action->id }}">
                                 <div class="flex-grow-1">
-                                    <span class="far fa-square"></span>
+                                    <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square"></span>
                                     <a href="{{ route('processes.tasks.actions.show', [$instance, $task, $action]) }}">{{ $action->action_name }}</a>
                                     @if ($action->details)
                                         <span class="text-muted fas fa-align-left"></span>

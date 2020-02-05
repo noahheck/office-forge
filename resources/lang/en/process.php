@@ -30,6 +30,7 @@ return [
     'task_completed' => 'Completed',
 
     'task_editTask' => 'Edit Task',
+    'task_taskUpdated' => 'Task Updated',
 
     'action' => 'Action',
     'actions' => 'Actions',
@@ -42,4 +43,5 @@ return [
     'action_completed' => 'Completed',
 
     'action_editAction' => 'Edit Action',
+    'action_actionUpdated' => 'Action Updated',
 ];

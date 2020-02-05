@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Process\Instance\Task;
 
+use App\Jobs\Process\Instance\Task\Action\Update;
 use App\Process\Instance;
 use App\Process\Instance\Task;
 use App\Process\Instance\Task\Action;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Process\Task\Action\Update as UpdateRequest;
 use Illuminate\Http\Request;
 
 class ActionController extends Controller
@@ -80,9 +82,21 @@ class ActionController extends Controller
      * @param  \App\Process\Instance\Task\Action  $action
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Instance $instance, Task $task, Action $action)
+    public function update(UpdateRequest $request, Instance $instance, Task $task, Action $action)
     {
-        //
+        $this->dispatchNow($actionUpdated = new Update(
+            $action,
+            $request->has('completed'),
+            $request->details
+        ));
+
+        \App\flash_success(__('process.action_actionUpdated'));
+
+        if ($request->return) {
+            return redirect($request->return);
+        }
+
+        return redirect()->route('processes.show', [$instance]);
     }
 
     /**
