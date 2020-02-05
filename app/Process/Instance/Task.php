@@ -38,4 +38,14 @@ class Task extends Model
     {
         return $this->hasMany(Action::class, 'process_instance_task_id');
     }
+
+    public function numberOfTotalActions()
+    {
+        return count($this->actions);
+    }
+
+    public function numberOfCompletedActions()
+    {
+        return count($this->actions->where('completed', true));
+    }
 }

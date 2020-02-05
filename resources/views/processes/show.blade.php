@@ -93,7 +93,7 @@
 
                                         <br>
 
-                                        <span class="text-muted"><span class="fas fa-tasks"></span> {{--{{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}--}}</span>
+                                        <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = $task->numberOfTotalActions() }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }} @if($numActions > 0) ({{ $task->numberOfCompletedActions() }} {{ __('process.action_completed') }}) @endif</span>
 
                                     </div>
                                 </li>
