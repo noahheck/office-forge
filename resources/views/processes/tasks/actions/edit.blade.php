@@ -52,7 +52,7 @@
 
                         @hiddenField([
                             'name' => 'return',
-                            'value' => url()->previous(),
+                            'value' => old('return', url()->previous()),
                         ])
 
                         @checkboxSwitchField([

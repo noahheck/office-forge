@@ -13,7 +13,7 @@
         <div class="col-12 col-md-10 col-xl-8">
 
             <h1>
-                <span class="fas fa-clipboard-list mr-2"></span>{{ __('app.new') }} {{ $instance->process_name }}
+                <span class="fas fa-clipboard-list mr-2"></span>{{ __('app.new') }} - {{ $instance->process_name }}
             </h1>
 
             <div class="card">
