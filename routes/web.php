@@ -73,6 +73,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::get('/organization', 'OrganizationController@index')->name('organization');
         Route::post('/organization', 'OrganizationController@update')->name('organization.update');
 
+        Route::resource('/files', 'FileController');
+
         Route::resource('/processes', 'ProcessController');
 
         Route::namespace('Process')->prefix('/processes/{process}')->name('processes.')->group(function() {

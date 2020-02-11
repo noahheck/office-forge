@@ -68,4 +68,12 @@ return [
     'action_created' => 'Action created',
     'action_updated' => 'Action updated',
     'actions_orderUpdated' => 'Actions order updated',
+
+    'files' => 'Files',
+    'newFile' => 'New File',
+    'newFile_shortDescription' => 'Create a new File type',
+    'editFile' => 'Edit File',
+    'editFile_shortDescription' => 'Edit a File type',
+    'file_description' => "Files help you keep the information that's important to your business organized. Files keep your documentation, tasks, and work items accessible and standardized.",
+    'file_createFirstFileNow' => 'Design your first file type now!',
 ];
