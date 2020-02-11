@@ -76,4 +76,6 @@ return [
     'editFile_shortDescription' => 'Edit a File type',
     'file_description' => "Files help you keep the information that's important to your business organized. Files keep your documentation, tasks, and work items accessible and standardized.",
     'file_createFirstFileNow' => 'Design your first file type now!',
+    'file_created' => 'File created',
+    'file_updated' => 'File updated',
 ];

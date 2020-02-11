@@ -3,6 +3,7 @@
     'name' => 'string: form field name',
     'id' => 'string: html field id',
     'label' => 'string: text label for form field',
+    'details' => 'string: additional text details to output alongside label',
     'checked' => 'boolean: whether the field is checked',
     'value' => 'string|number: field value to submit as field value; defaults to 1',
     'required' => 'boolean: whether the field is required',

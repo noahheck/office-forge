@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\File;
 use App\Http\Controllers\Controller;
+use App\Jobs\File\Create;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\File\Store as StoreRequest;
+use function App\flash_success;
 
 class FileController extends Controller
 {
@@ -27,7 +30,11 @@ class FileController extends Controller
      */
     public function create()
     {
-        //
+        $file = new File;
+        $file->active = true;
+        $file->icon = File::DEFAULT_ICON;
+
+        return $this->view('admin.files.create', compact('file'));
     }
 
     /**
@@ -36,9 +43,19 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($fileCreated = new Create(
+            $request->name,
+            $request->icon,
+            $request->has('active')
+        ));
+
+        $file = $fileCreated->getFile();
+
+        flash_success(__('admin.file_created'));
+
+        return redirect()->route('admin.files.show', [$file]);
     }
 
     /**

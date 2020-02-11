@@ -16,6 +16,8 @@ try {
 
     let $ = window.$;
 
+    $.fn.selectpicker.Constructor.DEFAULTS.iconBase = "fa-fw";
+
     (async function() {
         require('Component/trix');
     })();

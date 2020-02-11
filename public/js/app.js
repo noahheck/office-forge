@@ -1473,6 +1473,7 @@ try {
   __webpack_require__(/*! bootstrap-datepicker */ "./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
 
   var $ = window.$;
+  $.fn.selectpicker.Constructor.DEFAULTS.iconBase = "fa-fw";
 
   (function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
