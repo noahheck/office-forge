@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\File;
 use App\Http\Controllers\Controller;
 use App\Jobs\File\Create;
+use App\Jobs\File\Update;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\File\Store as StoreRequest;
+use App\Http\Requests\Admin\File\Update as UpdateRequest;
+
 use function App\flash_success;
 
 class FileController extends Controller
@@ -66,7 +69,7 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        return $this->view('admin.files.show', compact('file'));
     }
 
     /**
@@ -77,7 +80,7 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        //
+        return $this->view('admin.files.edit', compact('file'));
     }
 
     /**
@@ -87,9 +90,18 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, File $file)
+    public function update(UpdateRequest $request, File $file)
     {
-        //
+        $this->dispatchNow($fileUpdated = new Update(
+            $file,
+            $request->name,
+            $request->icon,
+            $request->has('active')
+        ));
+
+        flash_success(__('admin.file_updated'));
+
+        return redirect()->route('admin.files.show', [$file]);
     }
 
     /**

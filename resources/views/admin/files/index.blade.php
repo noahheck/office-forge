@@ -33,8 +33,8 @@
                         <tbody>
                             @foreach($files as $file)
                                 <tr>
-                                    <td>
-
+                                    <td class="text-center">
+                                        {!! $file->icon() !!}
                                     </td>
                                     <td data-sort="{{ $file->name }}">
                                         <a href="{{ route('admin.files.show', [$file]) }}">

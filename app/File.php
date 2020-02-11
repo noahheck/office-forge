@@ -89,4 +89,13 @@ class File extends Model
     protected $casts = [
         'active' => 'boolean',
     ];
+
+    public function icon(array $withClasses = [])
+    {
+        $withClasses[] = $this->icon;
+
+        $classes = e(implode(' ', $withClasses));
+
+        return "<span class='{$classes}'></span>";
+    }
 }

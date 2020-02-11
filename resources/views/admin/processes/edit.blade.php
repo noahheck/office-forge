@@ -10,7 +10,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-friends"></span> {{ __('admin.editProcess') }}
+        <span class="fas fa-clipboard-list"></span> {{ __('admin.editProcess') }}
     </h1>
 
     <p class="text-muted">{{ __('admin.editProcess_shortDescription') }}</p>
