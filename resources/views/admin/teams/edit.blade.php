@@ -2,9 +2,9 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Teams)
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Teams\Show($team))
+                    ->addLink(new \App\Navigation\Link\SystemSettings)
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Teams)
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Teams\Show($team))
                     ->setCurrentLocation(__('app.edit')),
 ])
 

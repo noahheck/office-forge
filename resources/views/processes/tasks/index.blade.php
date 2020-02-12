@@ -10,8 +10,8 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\LocationBar\Link\Processes())
-                    ->addLink(new \App\Navigation\LocationBar\Link\Processes\Show($instance))
+                    ->addLink(new \App\Navigation\Link\Processes())
+                    ->addLink(new \App\Navigation\Link\Processes\Show($instance))
                     ->setCurrentLocation(__('process.tasks')),
 ])
 

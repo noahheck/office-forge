@@ -2,8 +2,8 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Users)
+                    ->addLink(new \App\Navigation\Link\SystemSettings)
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Users)
                     ->setCurrentLocation($user->name),
 ])
 

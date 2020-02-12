@@ -4,8 +4,7 @@
 namespace App\Navigation;
 
 
-use App\Navigation\LocationBar\Link;
-use App\Navigation\LocationBar\Link\Home as HomeLink;
+use App\Navigation\Link\Home as HomeLink;
 
 class LocationBar
 {

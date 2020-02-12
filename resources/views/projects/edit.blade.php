@@ -2,8 +2,8 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\LocationBar\Link\Projects)
-                    ->addLink(new \App\Navigation\LocationBar\Link\Projects\Show($project))
+                    ->addLink(new \App\Navigation\Link\Projects)
+                    ->addLink(new \App\Navigation\Link\Projects\Show($project))
                     ->setCurrentLocation(__('app.edit')),
 ])
 

@@ -2,10 +2,10 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Processes())
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Processes\Show($process))
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Processes\Tasks($process))
+                    ->addLink(new \App\Navigation\Link\SystemSettings)
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Processes())
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Processes\Show($process))
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Processes\Tasks($process))
                     ->setCurrentLocation(__('app.addNew')),
 ])
 

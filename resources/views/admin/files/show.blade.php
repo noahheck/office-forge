@@ -10,8 +10,8 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\LocationBar\Link\SystemSettings\Files())
+                    ->addLink(new \App\Navigation\Link\SystemSettings)
+                    ->addLink(new \App\Navigation\Link\SystemSettings\Files())
                     ->setCurrentLocation($file->name),
 ])
 
