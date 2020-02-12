@@ -1,9 +1,7 @@
 @extends("layouts.admin")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\SystemSettings)
-                    ->setCurrentLocation(__('admin.processes')),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\Processes\Index(),
 ])
 
 @section('content')

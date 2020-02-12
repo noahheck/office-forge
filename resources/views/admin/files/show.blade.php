@@ -9,10 +9,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\Link\Admin\Files())
-                    ->setCurrentLocation($file->name),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\Files\Show($file),
 ])
 
 @section('content')

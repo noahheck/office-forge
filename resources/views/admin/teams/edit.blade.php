@@ -1,11 +1,7 @@
 @extends("layouts.admin")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\Link\Admin\Teams)
-                    ->addLink(new \App\Navigation\Link\Admin\Teams\Show($team))
-                    ->setCurrentLocation(__('app.edit')),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\Teams\Edit($team),
 ])
 
 @section('content')

@@ -9,11 +9,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\Link\Admin\Processes())
-                    ->addLink(new \App\Navigation\Link\Admin\Processes\Show($process))
-                    ->setCurrentLocation('Tasks'),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\Processes\Tasks\Index($process),
 ])
 
 @section('content')

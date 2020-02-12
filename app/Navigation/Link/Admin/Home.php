@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Navigation\Link;
+namespace App\Navigation\Link\Admin;
 
 
 use App\Navigation\Link;
 
-class SystemSettings extends Link
+class Home extends Link
 {
     public function __construct()
     {
