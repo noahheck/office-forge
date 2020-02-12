@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Navigation\Link\SystemSettings\Files;
+namespace App\Navigation\Link\Admin\Files;
 
 
 use App\File;

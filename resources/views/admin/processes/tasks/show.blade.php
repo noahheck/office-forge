@@ -12,9 +12,9 @@
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar())
                     ->addLink(new \App\Navigation\Link\SystemSettings)
-                    ->addLink(new \App\Navigation\Link\SystemSettings\Processes())
-                    ->addLink(new \App\Navigation\Link\SystemSettings\Processes\Show($process))
-                    ->addLink(new \App\Navigation\Link\SystemSettings\Processes\Tasks($process))
+                    ->addLink(new \App\Navigation\Link\Admin\Processes())
+                    ->addLink(new \App\Navigation\Link\Admin\Processes\Show($process))
+                    ->addLink(new \App\Navigation\Link\Admin\Processes\Tasks($process))
                     ->setCurrentLocation($task->name),
 ])
 

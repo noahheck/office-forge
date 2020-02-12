@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Navigation\Link\SystemSettings\Teams;
+namespace App\Navigation\Link\Admin\Teams;
 
 
 use App\Navigation\Link;

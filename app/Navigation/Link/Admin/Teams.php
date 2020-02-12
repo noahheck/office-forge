@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Navigation\Link\SystemSettings;
+namespace App\Navigation\Link\Admin;
 
 
 use App\Navigation\Link;

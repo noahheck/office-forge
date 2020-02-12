@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Navigation\Link\SystemSettings\Processes;
+namespace App\Navigation\Link\Admin\Processes;
 
 
 use App\Navigation\Link;
