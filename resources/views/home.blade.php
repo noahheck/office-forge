@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar()),
+    'locationBar' => (new \App\Navigation\LocationBar\Home),
 ])
 
 

@@ -1,7 +1,7 @@
 @extends("layouts.settings")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar(__('app.mySettings'))),
+    'locationBar' => (new \App\Navigation\LocationBar\Settings\Index),
 ])
 
 @section('my-settings-content')

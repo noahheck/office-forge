@@ -20,9 +20,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\Settings\MySettings)
-                    ->setCurrentLocation(__('settings.photo')),
+    'locationBar' => (new \App\Navigation\LocationBar\Settings\Photo)
 ])
 
 @section('my-settings-content')

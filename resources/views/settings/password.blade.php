@@ -1,9 +1,7 @@
 @extends("layouts.settings")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\Settings\MySettings)
-                    ->setCurrentLocation(__('settings.password')),
+    'locationBar' => (new \App\Navigation\LocationBar\Settings\Password)
 ])
 
 @section('my-settings-content')
