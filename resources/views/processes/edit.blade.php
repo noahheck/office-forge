@@ -1,10 +1,10 @@
 @extends("layouts.app")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\Processes)
+    'locationBar' => (new \App\Navigation\LocationBar\Processes\Edit($process, $instance))
+                    /*->addLink(new \App\Navigation\Link\Processes)
                     ->addLink(new \App\Navigation\Link\Processes\Show($instance))
-                    ->setCurrentLocation(__('app.edit')),
+                    ->setCurrentLocation(__('app.edit')),*/
 ])
 
 @section('content')

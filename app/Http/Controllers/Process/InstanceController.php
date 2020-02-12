@@ -99,7 +99,9 @@ class InstanceController extends Controller
     {
         // $instance->load('tasks', 'tasks.actions');
 
-        return $this->view('processes.show', compact('instance'));
+        $process = $instance->process;
+
+        return $this->view('processes.show', compact('instance', 'process'));
     }
 
     /**
@@ -112,7 +114,9 @@ class InstanceController extends Controller
     {
         $ownerOptions = $instance->process->instantiatingMembers();
 
-        return $this->view('processes.edit', compact('instance', 'ownerOptions'));
+        $process = $instance->process;
+
+        return $this->view('processes.edit', compact('instance', 'process', 'ownerOptions'));
     }
 
     /**

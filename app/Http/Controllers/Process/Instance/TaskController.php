@@ -19,9 +19,10 @@ class TaskController extends Controller
      */
     public function index(Instance $instance)
     {
+        $process = $instance->process;
         $tasks = $instance->tasks;
 
-        return $this->view('processes.tasks.index', compact('instance', 'tasks'));
+        return $this->view('processes.tasks.index', compact('process', 'instance', 'tasks'));
     }
 
     /**
@@ -54,7 +55,9 @@ class TaskController extends Controller
      */
     public function show(Instance $instance, Task $task)
     {
-        return $this->view('processes.tasks.show', compact('instance', 'task'));
+        $process = $instance->process;
+
+        return $this->view('processes.tasks.show', compact('process', 'instance', 'task'));
     }
 
     /**
@@ -66,7 +69,8 @@ class TaskController extends Controller
      */
     public function edit(Instance $instance, Task $task)
     {
-        return $this->view('processes.tasks.edit', compact('instance', 'task'));
+        $process = $instance->process;
+        return $this->view('processes.tasks.edit', compact('process', 'instance', 'task'));
     }
 
     /**

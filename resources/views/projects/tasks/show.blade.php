@@ -5,11 +5,11 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\Projects)
+    'locationBar' => (new \App\Navigation\LocationBar\Projects\Tasks\Show($project, $task))
+                    /*->addLink(new \App\Navigation\Link\Projects)
                     ->addLink(new \App\Navigation\Link\Projects\Show($project))
                     ->addLink(new \App\Navigation\Link\Projects\Tasks($project))
-                    ->setCurrentLocation($task->title),
+                    ->setCurrentLocation($task->title),*/
 ])
 
 @push('meta')

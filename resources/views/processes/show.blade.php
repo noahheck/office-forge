@@ -5,9 +5,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\Processes())
-                    ->setCurrentLocation($instance->fullName),
+    'locationBar' => (new \App\Navigation\LocationBar\Processes\Show($process, $instance))
 ])
 
 @section('content')

@@ -21,9 +21,11 @@ class ActionController extends Controller
      */
     public function index(Instance $instance, Task $task)
     {
+        $process = $instance->process;
+
         $task->load(['actions']);
 
-        return $this->view('processes.tasks.actions.index', compact('instance', 'task'));
+        return $this->view('processes.tasks.actions.index', compact('process', 'instance', 'task'));
     }
 
     /**
@@ -57,7 +59,9 @@ class ActionController extends Controller
      */
     public function show(Instance $instance, Task $task, Action $action)
     {
-        return $this->view('processes.tasks.actions.show', compact('instance', 'task', 'action'));
+        $process = $instance->process;
+
+        return $this->view('processes.tasks.actions.show', compact('process', 'instance', 'task', 'action'));
     }
 
     /**
@@ -70,7 +74,9 @@ class ActionController extends Controller
      */
     public function edit(Instance $instance, Task $task, Action $action)
     {
-        return $this->view('processes.tasks.actions.edit', compact('instance', 'task', 'action'));
+        $process = $instance->process;
+
+        return $this->view('processes.tasks.actions.edit', compact('process', 'instance', 'task', 'action'));
     }
 
     /**

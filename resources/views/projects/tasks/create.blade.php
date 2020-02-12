@@ -1,11 +1,11 @@
 @extends("layouts.app")
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar())
-                    ->addLink(new \App\Navigation\Link\Projects)
+    'locationBar' => (new \App\Navigation\LocationBar\Projects\Tasks\Create($project))
+                    /*->addLink(new \App\Navigation\Link\Projects)
                     ->addLink(new \App\Navigation\Link\Projects\Show($project))
                     ->addLink(new \App\Navigation\Link\Projects\Tasks($project))
-                    ->setCurrentLocation(__('app.addNew')),
+                    ->setCurrentLocation(__('app.addNew')),*/
 ])
 
 @section('content')

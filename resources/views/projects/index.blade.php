@@ -5,7 +5,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar(__('app.projects'))),
+    'locationBar' => (new \App\Navigation\LocationBar\Projects\Index),
 ])
 
 @section('content')
