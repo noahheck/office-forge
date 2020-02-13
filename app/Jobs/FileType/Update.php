@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs\File;
+namespace App\Jobs\FileType;
 
-use App\File;
+use App\FileType;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -20,7 +20,7 @@ class Update
      *
      * @return void
      */
-    public function __construct(File $file, $name, $icon, $active)
+    public function __construct(FileType $file, $name, $icon, $active)
     {
         $this->file = $file;
         $this->name = $name;

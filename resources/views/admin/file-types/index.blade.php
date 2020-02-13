@@ -1,21 +1,21 @@
 @extends("layouts.admin")
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\Files\Index,
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FileTypes\Index,
 ])
 
 @section('content')
     <h1>
-        <span class="fas fa-folder-open"></span> {{ __('admin.files') }}
+        <span class="fas fa-folder-open"></span> {{ __('admin.file-types') }}
     </h1>
 
 
-    @if (count($files) > 0)
+    @if (count($fileTypes) > 0)
         <div class="card">
             <div class="card-body">
                 <div class="text-right">
-                    <a href="{{ route('admin.files.create') }}" class="btn btn-primary">
-                        <span class="fas fa-user-plus"></span> {{ __('admin.newFile') }}
+                    <a href="{{ route('admin.file-types.create') }}" class="btn btn-primary">
+                        <span class="fas fa-user-plus"></span> {{ __('admin.newFileType') }}
                     </a>
                 </div>
                 <hr>
@@ -29,17 +29,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($files as $file)
+                            @foreach($fileTypes as $fileType)
                                 <tr>
                                     <td class="text-center">
-                                        {!! $file->icon() !!}
+                                        {!! $fileType->icon() !!}
                                     </td>
-                                    <td data-sort="{{ $file->name }}">
-                                        <a href="{{ route('admin.files.show', [$file]) }}">
-                                            {{ $file->name }}
+                                    <td data-sort="{{ $fileType->name }}">
+                                        <a href="{{ route('admin.file-types.show', [$fileType]) }}">
+                                            {{ $fileType->name }}
                                         </a>
                                     </td>
-                                    <td class="text-center" data-order="{{ $file->active ? '1' : '0' }}"><span class="far fa{{ ($file->active) ? '-check' : '' }}-square"></span></td>
+                                    <td class="text-center" data-order="{{ $fileType->active ? '1' : '0' }}"><span class="far fa{{ ($fileType->active) ? '-check' : '' }}-square"></span></td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -59,11 +59,11 @@
                             <span class="fas fa-folder-open empty-resource-icon"></span>
                         </div>
 
-                        <p>{{ __('admin.file_description') }}</p>
+                        <p>{{ __('admin.fileType_description') }}</p>
 
                         <hr>
 
-                        <a class="btn btn-primary" href="{{ route('admin.files.create') }}">{{ __('admin.file_createFirstFileNow') }}</a>
+                        <a class="btn btn-primary" href="{{ route('admin.file-types.create') }}">{{ __('admin.fileType_createFirstFileNow') }}</a>
                     </div>
                 </div>
 

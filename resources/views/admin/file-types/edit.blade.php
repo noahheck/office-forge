@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\Files\Edit($file),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FileTypes\Edit($fileType),
 ])
 
 @section('content')
@@ -10,16 +10,16 @@
         <div class="col-12 col-md-10 col-xl-8">
 
             <h1>
-                <span class="fas fa-folder-open"></span> {{ __('admin.editFile') }}
+                <span class="fas fa-folder-open"></span> {{ __('admin.editFileType') }}
             </h1>
 
-            <p class="text-muted">{{ __('admin.editFile_shortDescription') }}</p>
+            <p class="text-muted">{{ __('admin.editFileType_shortDescription') }}</p>
 
             <div class="card">
                 <div class="card-body">
 
-                    @include('admin.files._form', [
-                        'action' => route('admin.files.update', [$file]),
+                    @include('admin.file-types._form', [
+                        'action' => route('admin.file-types.update', [$fileType]),
                         'method' => 'PUT',
                     ])
 
@@ -29,3 +29,4 @@
         </div>
     </div>
 @endsection
+

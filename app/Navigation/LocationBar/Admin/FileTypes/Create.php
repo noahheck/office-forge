@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Navigation\LocationBar\Admin\Files;
+namespace App\Navigation\LocationBar\Admin\FileTypes;
 
 
 use App\Navigation\LocationBar;

@@ -48,7 +48,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="{{ route('admin.files.index') }}">
+            <a class="card admin-module-link" href="{{ route('admin.file-types.index') }}">
                 <div class="card-body">
                     <span class="fas fa-folder-open module-icon"></span>
                     Files

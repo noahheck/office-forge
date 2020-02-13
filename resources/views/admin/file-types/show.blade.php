@@ -5,17 +5,17 @@
 @endpush
 
 @push('meta')
-    @meta('fileId', $file->id)
+    @meta('fileTypeId', $fileType->id)
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\Files\Show($file),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FileTypes\Show($fileType),
 ])
 
 @section('content')
 
 
-    <div class="row justify-content-center">
+    <div class="row">
 
         <div class="col-12 col-md-4 col-xl-3">
 
@@ -23,12 +23,12 @@
 
                 <div class="card-body">
 
-                    <h1 class="h3">{!! $file->icon(['mr-2']) !!}{{ $file->name }}</h1>
+                    <h1 class="h3">{!! $fileType->icon(['mr-2']) !!}{{ $fileType->name }}</h1>
 
                     <hr>
 
-                    <a class="btn btn-block btn-primary" href="{{ route('admin.files.edit', [$file]) }}">
-                        {{ __('admin.editFile') }}
+                    <a class="btn btn-block btn-primary" href="{{ route('admin.file-types.edit', [$fileType]) }}">
+                        {{ __('admin.editFileType') }}
                     </a>
 
                 </div>

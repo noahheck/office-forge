@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Admin\File;
+namespace App\Http\Requests\Admin\FileType;
 
-use App\File;
+use App\FileType;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Update extends FormRequest
+class Store extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class Update extends FormRequest
      */
     public function rules()
     {
-        $iconOptions = implode(',', array_values(File::ICON_OPTIONS));
+        $iconOptions = implode(',', array_values(FileType::ICON_OPTIONS));
 
         return [
             'name' => 'required',

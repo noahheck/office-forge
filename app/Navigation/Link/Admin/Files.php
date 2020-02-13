@@ -10,6 +10,6 @@ class Files extends Link
 {
     public function __construct()
     {
-        parent::__construct(route('admin.files.index'), __('admin.files'));
+        parent::__construct(route('admin.file-types.index'), __('admin.file-types'));
     }
 }

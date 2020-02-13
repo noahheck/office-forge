@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs\File;
+namespace App\Jobs\FileType;
 
-use App\File;
+use App\FileType;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -28,7 +28,7 @@ class Create
         $this->active = $active;
     }
 
-    public function getFile(): File
+    public function getFile(): FileType
     {
         return $this->file;
     }
@@ -40,7 +40,7 @@ class Create
      */
     public function handle()
     {
-        $file = new File;
+        $file = new FileType;
         $file->name = $this->name;
         $file->icon = $this->icon;
         $file->active = $this->active;
