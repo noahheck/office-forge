@@ -12,12 +12,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Processes\Tasks\Actions\Show($process, $instance, $task, $action))
-                    /*->addLink(new \App\Navigation\Link\Processes())
-                    ->addLink(new \App\Navigation\Link\Processes\Show($instance))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks($instance))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks\Show($instance, $task))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks\Actions($instance, $task))
-                    ->setCurrentLocation($action->action_name),*/
 ])
 
 @section('content')
@@ -37,9 +31,23 @@
                     <hr>
 
                     <div class="d-flex justify-content-between">
-                        <span>
-                            <span class="far fa-{{ $action->completed ? 'check-' : '' }}square"></span> {{ __('process.action_completed') }}
-                        </span>
+                        @php
+                            $__toggleCompletedRouteName = ($action->completed) ? 'processes.tasks.actions.uncomplete' : 'processes.tasks.actions.complete';
+                            $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markCompleted') : __('process.action_markIncomplete');
+                        @endphp
+                        <form action="{{ route($__toggleCompletedRouteName, [$instance, $task, $action]) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            @hiddenField([
+                                'name' => 'return',
+                                'value' => url()->current(),
+                            ])
+                            <button type="submit" class="btn btn-link p-0 pr-1 text-reset" title="{{ $__toggleCompletedTitleText }}">
+                                <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
+                                <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square fa-lg"></span>
+                            </button>
+                                 {{ __('process.action_completed') }}
+                        </form>
                         <a href="{{ route('processes.tasks.actions.edit', [$instance, $task, $action]) }}" class="btn btn-primary btn-sm">
                             <span class="fas fa-edit"></span> {{ __('process.action_editAction') }}
                         </a>

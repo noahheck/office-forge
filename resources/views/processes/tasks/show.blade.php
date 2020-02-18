@@ -11,10 +11,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Processes\Tasks\Show($process, $instance, $task))
-                    /*->addLink(new \App\Navigation\Link\Processes())
-                    ->addLink(new \App\Navigation\Link\Processes\Show($instance))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks($instance))
-                    ->setCurrentLocation($task->task_name),*/
 ])
 
 @section('content')
@@ -74,11 +70,30 @@
                             <ul class="list-group" id="taskActions">
                         @endif
 
+                            @php
+                            $__toggleCompletedRouteName = ($action->completed) ? 'processes.tasks.actions.uncomplete' : 'processes.tasks.actions.complete';
+                            $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markCompleted') : __('process.action_markIncomplete');
+                            @endphp
+
                             <li class="d-flex list-group-item" data-id="{{ $action->id }}">
+                                <div class="flex-grow-0">
+                                    <form action="{{ route($__toggleCompletedRouteName, [$instance, $task, $action]) }}" method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        @hiddenField([
+                                            'name' => 'return',
+                                            'value' => url()->current(),
+                                        ])
+                                        <button type="submit" class="btn btn-link p-0 pr-3 text-reset" title="{{ $__toggleCompletedTitleText }}">
+                                            <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
+                                            <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square fa-lg"></span>
+                                        </button>
+                                    </form>
+                                </div>
+
                                 <div class="flex-grow-1">
-                                    <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square"></span>
                                     <a href="{{ route('processes.tasks.actions.show', [$instance, $task, $action]) }}">{{ $action->action_name }}</a>
-                                    @if ($action->details)
+                                    @if ($action->details || $action->action_details)
                                         <span class="text-muted fas fa-align-left"></span>
                                     @endif
                                 </div>

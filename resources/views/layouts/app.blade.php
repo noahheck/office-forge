@@ -1,5 +1,6 @@
 @php
 $__currentRouteName  = Route::currentRouteName();
+$__isFilesRoute      = Str::startsWith($__currentRouteName, 'files');
 $__isProjectsRoute   = Str::startsWith($__currentRouteName, 'projects');
 $__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
@@ -116,9 +117,14 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
                     <span class="fa-fw fas fa-home"></span> {{ __('app.home') }}
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#">
                     <span class="fa-fw far fa-envelope"></span> {{ __('app.messages') }}
+                </a>
+            </li>--}}
+            <li>
+                <a href="{{--{{ route('processes.index') }}--}}#" class="{{ ($__isFilesRoute) ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}
                 </a>
             </li>
             <li>
@@ -131,11 +137,11 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
                     <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
                 </a>
             </li>
-            <li>
+            {{--<li>
                 <a href="#">
                     <span class="fa-fw fas fa-file"></span> {{ __('app.documents') }}
                 </a>
-            </li>
+            </li>--}}
             <li class="divider">
                 <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
                     <span class="fa-fw fas fa-cog"></span> {{ __('app.mySettings') }}
@@ -148,11 +154,11 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
                 </a>
             </li>
             @endadmin
-            <li>
+            {{--<li>
                 <a href="#">
                     <span class="fa-fw far fa-question-circle"></span> {{ __('app.help') }}
                 </a>
-            </li>
+            </li>--}}
             <li class="divider">
                 <a href="{{ route('logout') }}">
                     <span class="fa-fw fas fa-sign-out-alt"></span> {{ __('app.logout') }}

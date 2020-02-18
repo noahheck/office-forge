@@ -60,6 +60,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::resource('processes.tasks.actions', 'Process\Instance\Task\ActionController')
         ->parameter('processes', 'instance');
 
+    Route::patch("/processes/{instance}/tasks/{task}/actions/{action}/complete", "Process\Instance\Task\ActionController@complete")->name('processes.tasks.actions.complete');
+    Route::patch("/processes/{instance}/tasks/{task}/actions/{action}/uncomplete", "Process\Instance\Task\ActionController@uncomplete")->name('processes.tasks.actions.uncomplete');
+
 
 
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {

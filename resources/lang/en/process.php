@@ -41,6 +41,8 @@ return [
     'action_detailsExamples' => '',
     'action_detailsDescription' => 'Describe the action - Provide details how to complete the action in order to satisfy it\'s purpose. Providing a step-by-step description can help ensure this action is carried out consistently and reliably.',
     'action_completed' => 'Completed',
+    'action_markCompleted' => 'Mark as completed',
+    'action_markIncomplete' => 'Mark as incomplete',
 
     'action_editAction' => 'Edit Action',
     'action_actionUpdated' => 'Action Updated',

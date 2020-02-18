@@ -19,6 +19,7 @@ return [
 
     'home' => 'Home',
     'messages' => 'Messages',
+    'files' => 'Files',
     'processes' => 'Processes',
     'projects' => 'Projects',
     'documents' => 'Documents',
