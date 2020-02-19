@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Process\Instance;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\Process\Instance\Task\Complete;
+use App\Jobs\Process\Instance\Task\Uncomplete;
 use App\Jobs\Process\Instance\Task\Update;
 use App\Process\Instance;
 use App\Process\Instance\Task;
 use Illuminate\Http\Request;
 use App\Http\Requests\Process\Task\Update as UpdateRequest;
+use function App\flash_success;
 
 class TaskController extends Controller
 {
@@ -108,5 +111,33 @@ class TaskController extends Controller
     public function destroy(Instance $instance, Task $task)
     {
         //
+    }
+
+
+
+    public function complete(Request $request, Instance $instance, Task $task)
+    {
+        $this->dispatchNow($taskCompleted = new Complete($task));
+
+        flash_success(__('process.task_taskUpdated'));
+
+        if ($return = $request->return) {
+            return redirect($return);
+        }
+
+        return redirect()->route('processes.show', [$instance]);
+    }
+
+    public function uncomplete(Request $request, Instance $instance, Task $task)
+    {
+        $this->dispatchNow($taskUncompleted = new Uncomplete($task));
+
+        flash_success(__('process.task_taskUpdated'));
+
+        if ($return = $request->return) {
+            return redirect($return);
+        }
+
+        return redirect()->route('processes.show', [$instance]);
     }
 }

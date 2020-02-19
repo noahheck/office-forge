@@ -57,6 +57,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         ->except(['create', 'store'])
         ->parameter('processes', 'instance');
 
+    Route::patch("/processes/{instance}/tasks/{task}/complete", 'Process\Instance\TaskController@complete')->name('processes.tasks.complete');
+    Route::patch("/processes/{instance}/tasks/{task}/uncomplete", 'Process\Instance\TaskController@uncomplete')->name('processes.tasks.uncomplete');
+
     Route::resource('processes.tasks.actions', 'Process\Instance\Task\ActionController')
         ->parameter('processes', 'instance');
 

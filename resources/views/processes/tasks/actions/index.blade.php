@@ -41,47 +41,34 @@
                                 <ul class="list-group" id="taskActions">
                             @endif
 
-                                    @php
-                                        $__toggleCompletedRouteName = ($action->completed) ? 'processes.tasks.actions.uncomplete' : 'processes.tasks.actions.complete';
-                                        $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markCompleted') : __('process.action_markIncomplete');
-                                    @endphp
+                                @php
+                                    $__toggleCompletedRouteName = ($action->completed) ? 'processes.tasks.actions.uncomplete' : 'processes.tasks.actions.complete';
+                                    $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markIncomplete') : __('process.action_markCompleted');
+                                @endphp
 
-                                    <li class="d-flex list-group-item" data-id="{{ $action->id }}">
-                                        <div class="flex-grow-0">
-                                            <form action="{{ route($__toggleCompletedRouteName, [$instance, $task, $action]) }}" method="POST">
-                                                @csrf
-                                                @method('PATCH')
-                                                @hiddenField([
+                                <li class="d-flex list-group-item" data-id="{{ $action->id }}">
+                                    <div class="flex-grow-0">
+                                        <form action="{{ route($__toggleCompletedRouteName, [$instance, $task, $action]) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            @hiddenField([
                                                 'name' => 'return',
                                                 'value' => url()->current(),
-                                                ])
-                                                <button type="submit" class="btn btn-link p-0 pr-3 text-reset" title="{{ $__toggleCompletedTitleText }}">
-                                                    <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
-                                                    <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square fa-lg"></span>
-                                                </button>
-                                            </form>
-                                        </div>
+                                            ])
+                                            <button type="submit" class="btn btn-link p-0 pr-3 text-reset" title="{{ $__toggleCompletedTitleText }}">
+                                                <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
+                                                <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square fa-lg"></span>
+                                            </button>
+                                        </form>
+                                    </div>
 
-                                        <div class="flex-grow-1">
-                                            <a href="{{ route('processes.tasks.actions.show', [$instance, $task, $action]) }}">{{ $action->action_name }}</a>
-                                            @if ($action->details || $action->action_details)
-                                                <span class="text-muted fas fa-align-left"></span>
-                                            @endif
-                                        </div>
-                                    </li>
-
-                                {{--<li class="list-group-item d-flex" data-id="{{ $action->id }}">
                                     <div class="flex-grow-1">
-                                        <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square mr-2"></span>
-                                        <a href="{{ route('processes.tasks.actions.show', [$instance, $task, $action]) }}">
-                                            {{ $action->action_name }}
-                                        </a>
-                                        @if ($action->details)
+                                        <a href="{{ route('processes.tasks.actions.show', [$instance, $task, $action]) }}">{{ $action->action_name }}</a>
+                                        @if ($action->details || $action->action_details)
                                             <span class="text-muted fas fa-align-left"></span>
                                         @endif
-
                                     </div>
-                                </li>--}}
+                                </li>
 
                             @if ($loop->last)
                                 </ul>

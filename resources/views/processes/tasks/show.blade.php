@@ -30,9 +30,23 @@
                     <hr>
 
                     <div class="d-flex justify-content-between">
-                        <span>
-                            <span class="far fa-{{ $task->completed ? 'check-' : '' }}square"></span> {{ __('process.instance_completed') }}
-                        </span>
+                        @php
+                            $__toggleCompletedRouteName = ($task->completed) ? 'processes.tasks.uncomplete' : 'processes.tasks.complete';
+                            $__toggleCompletedTitleText = ($task->completed) ? __('process.task_markIncomplete') : __('process.task_markCompleted');
+                        @endphp
+                        <form action="{{ route($__toggleCompletedRouteName, [$instance, $task]) }}" method="POST">
+                            @csrf
+                            @method('PATCH')
+                            @hiddenField([
+                                'name' => 'return',
+                                'value' => url()->current(),
+                            ])
+                            <button type="submit" class="btn btn-link p-0 pr-1 text-reset" title="{{ $__toggleCompletedTitleText }}">
+                                <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
+                                <span class="far fa{{ ($task->completed) ? '-check' : '' }}-square fa-lg"></span>
+                            </button>
+                            {{ __('process.task_completed') }}
+                        </form>
                         <a href="{{ route('processes.tasks.edit', [$instance, $task]) }}" class="btn btn-primary btn-sm">
                             <span class="fas fa-edit"></span> {{ __('process.task_editTask') }}
                         </a>
@@ -72,7 +86,7 @@
 
                             @php
                             $__toggleCompletedRouteName = ($action->completed) ? 'processes.tasks.actions.uncomplete' : 'processes.tasks.actions.complete';
-                            $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markCompleted') : __('process.action_markIncomplete');
+                            $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markIncomplete') : __('process.action_markCompleted');
                             @endphp
 
                             <li class="d-flex list-group-item" data-id="{{ $action->id }}">

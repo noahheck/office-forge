@@ -33,7 +33,7 @@
                     <div class="d-flex justify-content-between">
                         @php
                             $__toggleCompletedRouteName = ($action->completed) ? 'processes.tasks.actions.uncomplete' : 'processes.tasks.actions.complete';
-                            $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markCompleted') : __('process.action_markIncomplete');
+                            $__toggleCompletedTitleText = ($action->completed) ? __('process.action_markIncomplete') : __('process.action_markCompleted');
                         @endphp
                         <form action="{{ route($__toggleCompletedRouteName, [$instance, $task, $action]) }}" method="POST">
                             @csrf
@@ -46,7 +46,7 @@
                                 <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
                                 <span class="far fa{{ ($action->completed) ? '-check' : '' }}-square fa-lg"></span>
                             </button>
-                                 {{ __('process.action_completed') }}
+                             {{ __('process.action_completed') }}
                         </form>
                         <a href="{{ route('processes.tasks.actions.edit', [$instance, $task, $action]) }}" class="btn btn-primary btn-sm">
                             <span class="fas fa-edit"></span> {{ __('process.action_editAction') }}

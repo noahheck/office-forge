@@ -28,6 +28,8 @@ return [
     'task_detailsExamples' => '',
     'task_detailsDescription' => 'Describe the task - Explain how the task fits into the bigger picture of the process and how completing the task will help the process move forward.',
     'task_completed' => 'Completed',
+    'task_markCompleted' => 'Mark as completed',
+    'task_markIncomplete' => 'Mark as incomplete',
 
     'task_editTask' => 'Edit Task',
     'task_taskUpdated' => 'Task Updated',

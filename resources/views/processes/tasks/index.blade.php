@@ -41,8 +41,29 @@
                             @endif
 
                                 <li class="list-group-item d-flex" data-id="{{ $task->id }}">
+
+                                    @php
+                                        $__toggleCompletedRouteName = ($task->completed) ? 'processes.tasks.uncomplete' : 'processes.tasks.complete';
+                                        $__toggleCompletedTitleText = ($task->completed) ? __('process.task_markIncomplete') : __('process.task_markCompleted');
+                                    @endphp
+
+                                    <div class="flex-grow-0">
+                                        <form action="{{ route($__toggleCompletedRouteName, [$instance, $task]) }}" method="POST">
+                                            @csrf
+                                            @method('PATCH')
+                                            @hiddenField([
+                                                'name' => 'return',
+                                                'value' => url()->current(),
+                                            ])
+                                            <button type="submit" class="btn btn-link p-0 pr-3 text-reset" title="{{ $__toggleCompletedTitleText }}">
+                                                <span class="sr-only">{{ $__toggleCompletedTitleText }}</span>
+                                                <span class="far fa{{ ($task->completed) ? '-check' : '' }}-square fa-lg"></span>
+                                            </button>
+                                        </form>
+
+                                    </div>
+
                                     <div class="flex-grow-1">
-                                        <span class="far fa{{ ($task->completed) ? '-check' : '' }}-square mr-2"></span>
                                         <a href="{{ route('processes.tasks.show', [$instance, $task]) }}">
                                             {{ $task->task_name }}
                                         </a>
