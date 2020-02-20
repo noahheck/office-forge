@@ -25,7 +25,38 @@
 
         @if ($files->count() > 0)
 
-            <data table></data>
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right">
+                        <a href="{{ route('files.create', ['file_type' => $fileType->id]) }}" class="btn btn-primary">
+                            {{--<span class="fas fa-user-plus"></span> {{ __('admin.newProcess') }}--}}
+                            <span class="fas fa-plus"></span> {{ __('app.new') }} {{ $fileType->name }}
+                        </a>
+                    </div>
+                    <hr>
+
+                    <div class="table-responsive">
+                        <table id="files" class="table table-striped table-bordered dt-table">
+                            <thead>
+                            <tr>
+                                <th>{{ __('file.name') }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($files as $file)
+                                <tr>
+                                    <td data-sort="{{ $file->name }}">
+                                        <a href="{{ route('files.show', [$file]) }}">
+                                            {!! $file->name !!}
+                                        </a>
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
         @else
             <div class="row justify-content-center no-files">

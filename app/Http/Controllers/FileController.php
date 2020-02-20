@@ -25,7 +25,7 @@ class FileController extends Controller
         if ($fileTypeFilter = $request->query('file_type')) {
             $fileType = FileType::find($fileTypeFilter);
 
-            $files = File::where('file_type_id', $fileTypeFilter)->where('archived', false)->get();
+            $files = File::where('file_type_id', $fileTypeFilter)->where('archived', false)->orderBy('name')->get();
         } else {
             $fileTypes = FileType::orderBy('name')->get();
         }
