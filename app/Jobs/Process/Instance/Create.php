@@ -101,8 +101,6 @@ class Create
                 return $actionInstance;
             });
 
-            \Debugbar::info($actions);
-
             $task->actions()->saveMany($actions->all());
         });
 

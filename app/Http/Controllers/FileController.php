@@ -94,7 +94,8 @@ class FileController extends Controller
      */
     public function show(File $file)
     {
-        //
+        $fileType = $file->fileType;
+        return $this->view('files.show', compact('file', 'fileType'));
     }
 
     /**

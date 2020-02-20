@@ -26,6 +26,6 @@ class Task extends Model
 
     public function actions()
     {
-        return $this->hasMany(Action::class);
+        return $this->hasMany(Action::class)->orderBy('order', 'ASC');
     }
 }

@@ -90,6 +90,11 @@ class FileType extends Model
         'active' => 'boolean',
     ];
 
+    public function files()
+    {
+        return $this->hasMany(File::class, 'file_type_id');
+    }
+
     public function icon(array $withClasses = [])
     {
         $withClasses[] = $this->icon;

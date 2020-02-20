@@ -12,4 +12,9 @@ class File extends Model
     protected $casts = [
         'archived' => 'boolean',
     ];
+
+    public function fileType()
+    {
+        return $this->belongsTo(FileType::class, 'file_type_id');
+    }
 }

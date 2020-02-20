@@ -21,15 +21,12 @@
             {!! $fileType->icon(['mr-2']) !!}{{ Str::plural($fileType->name) }}
         </h1>
 
-        <hr>
-
         @if ($files->count() > 0)
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
                     <div class="text-right">
                         <a href="{{ route('files.create', ['file_type' => $fileType->id]) }}" class="btn btn-primary">
-                            {{--<span class="fas fa-user-plus"></span> {{ __('admin.newProcess') }}--}}
                             <span class="fas fa-plus"></span> {{ __('app.new') }} {{ $fileType->name }}
                         </a>
                     </div>
