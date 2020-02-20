@@ -12,4 +12,10 @@ return [
 
     'emptyFileType_description' => "Files help you keep the information that's important to your business organized. They allow you to collect, track, and share all of the :fileTypeName information important to your organization.",
     'emptyFileType_openFirstNow' => 'Open your first :fileTypeName file now!',
+
+    'fileOfTypeCreated' => ':fileTypeName file for :fileName created',
+
+
+
+    'error_invalidFileType' => 'Invalid file type provided',
 ];

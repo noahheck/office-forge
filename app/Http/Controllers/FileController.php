@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\File;
 use App\FileType;
+use App\Jobs\File\Create;
 use Illuminate\Http\Request;
+use App\Http\Requests\File\Store as StoreRequest;
+use function App\flash_success;
 
 class FileController extends Controller
 {
@@ -35,9 +38,22 @@ class FileController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $fileTypeId = $request->query('file_type');
+
+        $fileType = FileType::find($fileTypeId);
+
+        if (!(optional($fileType)->id)) {
+            \App\flash_error(__('file.error_invalidFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        $file = new File();
+        $file->file_type_id = $fileType->id;
+
+        return $this->view('files.create', compact('file', 'fileType'));
     }
 
     /**
@@ -46,9 +62,28 @@ class FileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $fileTypeId = $request->file_type_id;
+
+        $fileType = FileType::find($fileTypeId);
+
+        if (!(optional($fileType)->id)) {
+            \App\flash_error(__('file.error_invalidFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        $this->dispatchNow($fileCreated = new Create(
+            $fileType,
+            $request->name
+        ));
+
+        $file = $fileCreated->getFile();
+
+        flash_success(__('file.fileOfTypeCreated', ['fileTypeName' => $fileType->name, 'fileName' => $file->name]));
+
+        return redirect()->route('files.show', [$file]);
     }
 
     /**
