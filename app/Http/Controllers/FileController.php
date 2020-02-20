@@ -5,8 +5,11 @@ namespace App\Http\Controllers;
 use App\File;
 use App\FileType;
 use App\Jobs\File\Create;
+use App\Jobs\File\Update;
 use Illuminate\Http\Request;
 use App\Http\Requests\File\Store as StoreRequest;
+use App\Http\Requests\File\Update as UpdateRequest;
+use function App\flash_error;
 use function App\flash_success;
 
 class FileController extends Controller
@@ -45,7 +48,7 @@ class FileController extends Controller
         $fileType = FileType::find($fileTypeId);
 
         if (!(optional($fileType)->id)) {
-            \App\flash_error(__('file.error_invalidFileType'));
+            flash_error(__('file.error_invalidFileType'));
 
             return redirect()->route('files.index');
         }
@@ -69,7 +72,7 @@ class FileController extends Controller
         $fileType = FileType::find($fileTypeId);
 
         if (!(optional($fileType)->id)) {
-            \App\flash_error(__('file.error_invalidFileType'));
+            flash_error(__('file.error_invalidFileType'));
 
             return redirect()->route('files.index');
         }
@@ -95,6 +98,7 @@ class FileController extends Controller
     public function show(File $file)
     {
         $fileType = $file->fileType;
+
         return $this->view('files.show', compact('file', 'fileType'));
     }
 
@@ -106,7 +110,9 @@ class FileController extends Controller
      */
     public function edit(File $file)
     {
-        //
+        $fileType = $file->fileType;
+
+        return $this->view('files.edit', compact('file', 'fileType'));
     }
 
     /**
@@ -116,9 +122,13 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, File $file)
+    public function update(UpdateRequest $request, File $file)
     {
-        //
+        $this->dispatchNow($fileUpdated = new Update($file, $request->name));
+
+        flash_success(__('file.fileOfTypeUpdated', ['fileTypeName' => $file->fileType->name, 'fileName' => $file->name]));
+
+        return redirect()->route('files.show', [$file]);
     }
 
     /**

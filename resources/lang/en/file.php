@@ -14,6 +14,7 @@ return [
     'emptyFileType_openFirstNow' => 'Open your first :fileTypeName file now!',
 
     'fileOfTypeCreated' => ':fileTypeName file for :fileName created',
+    'fileOfTypeUpdated' => ':fileTypeName file for :fileName updated',
 
 
 
