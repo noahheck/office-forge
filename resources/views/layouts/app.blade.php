@@ -123,7 +123,7 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
                 </a>
             </li>--}}
             <li>
-                <a href="{{--{{ route('processes.index') }}--}}#" class="{{ ($__isFilesRoute) ? 'current' : '' }}">
+                <a href="{{ route('files.index') }}" class="{{ ($__isFilesRoute) ? 'current' : '' }}">
                     <span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}
                 </a>
             </li>

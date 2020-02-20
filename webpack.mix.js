@@ -17,6 +17,7 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/settings.scss', 'public/css')
     .sass('resources/sass/projects.scss', 'public/css')
     .sass('resources/sass/processes.scss', 'public/css')
+    .sass('resources/sass/files.scss', 'public/css')
 
     .js('resources/js/page/settings/photo.js', 'public/js/page.settings.photo.js')
 

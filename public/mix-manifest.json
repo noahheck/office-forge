@@ -5,6 +5,7 @@
     "/css/settings.css": "/css/settings.css",
     "/css/projects.css": "/css/projects.css",
     "/css/processes.css": "/css/processes.css",
+    "/css/files.css": "/css/files.css",
     "/js/manifest.js": "/js/manifest.js",
     "/js/page.admin.processes.show.js": "/js/page.admin.processes.show.js",
     "/js/page.admin.processes.tasks.actions.index.js": "/js/page.admin.processes.tasks.actions.index.js",

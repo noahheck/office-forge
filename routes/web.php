@@ -26,21 +26,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::post('/editor-images', 'EditorImageController@upload')->name('editor-images.upload');
     Route::get('/editor-images/{editorImage}', 'EditorImageController@show')->name('editor-images.show');
 
-    Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
 
-        Route::get('/', 'SettingsController@index')->name('index');
-        Route::post('/', 'SettingsController@update')->name('update');
-
-        Route::get('/password', 'PasswordController@index')->name('password');
-        Route::post('/password', 'PasswordController@update')->name('password.update');
-
-        Route::get('/photo', 'PhotoController@index')->name('photo');
-        Route::post('/photo', 'PhotoController@update')->name('photo.update');
-
-        Route::get('/teams', 'TeamsController@index')->name('teams');
-
-    });
-
+    Route::resource('/files', 'FileController');
 
     Route::resource('/projects', 'ProjectController');
 
@@ -61,11 +48,28 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::patch("/processes/{instance}/tasks/{task}/uncomplete", 'Process\Instance\TaskController@uncomplete')->name('processes.tasks.uncomplete');
 
     Route::resource('processes.tasks.actions', 'Process\Instance\Task\ActionController')
+        ->except(['create', 'store'])
         ->parameter('processes', 'instance');
 
     Route::patch("/processes/{instance}/tasks/{task}/actions/{action}/complete", "Process\Instance\Task\ActionController@complete")->name('processes.tasks.actions.complete');
     Route::patch("/processes/{instance}/tasks/{task}/actions/{action}/uncomplete", "Process\Instance\Task\ActionController@uncomplete")->name('processes.tasks.actions.uncomplete');
 
+
+
+    Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
+
+        Route::get('/', 'SettingsController@index')->name('index');
+        Route::post('/', 'SettingsController@update')->name('update');
+
+        Route::get('/password', 'PasswordController@index')->name('password');
+        Route::post('/password', 'PasswordController@update')->name('password.update');
+
+        Route::get('/photo', 'PhotoController@index')->name('photo');
+        Route::post('/photo', 'PhotoController@update')->name('photo.update');
+
+        Route::get('/teams', 'TeamsController@index')->name('teams');
+
+    });
 
 
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
