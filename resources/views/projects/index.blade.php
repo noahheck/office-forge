@@ -13,7 +13,7 @@
         <span class="fas fa-project-diagram"></span> {{ __('app.projects') }}
     </h1>
 
-    <div class="card">
+    <div class="card shadow">
         <div class="card-body">
 
                 <div class="text-right">

@@ -30,26 +30,6 @@
     ])
 
 
-{{--
-    @if ($showCompleted ?? false)
-
-        <hr>
-
-        @checkboxSwitchField([
-            'name' => 'completed',
-            'id' => 'instance_' . $instance->id . '_completed',
-            'label' => __('process.instance_completed'),
-            'checked' => $instance->completed,
-            'value' => '1',
-            'required' => false,
-            'error' => $errors->has('completed'),
-        ])
-
-        <hr>
-
-    @endif
---}}
-
     @userSelectField([
         'name' => 'owner_id',
         'label' => __('process.instance_owner'),

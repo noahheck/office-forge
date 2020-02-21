@@ -14,7 +14,7 @@
                 <span class="fas fa-project-diagram"></span> {{ __('project.newProject') }}
             </h1>
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
 
                     @include('projects._form', [

@@ -14,7 +14,7 @@
                 <span class="fas fa-clipboard-list mr-2"></span>{{ __('app.new') }} - {{ $instance->process_name }}
             </h1>
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
 
                     @include('processes._form', [

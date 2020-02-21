@@ -2,11 +2,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Projects\Tasks\Edit($project, $task))
-                    /*->addLink(new \App\Navigation\Link\Projects)
-                    ->addLink(new \App\Navigation\Link\Projects\Show($project))
-                    ->addLink(new \App\Navigation\Link\Projects\Tasks($project))
-                    ->addLink(new \App\Navigation\Link\Projects\Tasks\Show($task))
-                    ->setCurrentLocation(__('app.edit')),*/
 ])
 
 @section('content')
@@ -19,7 +14,7 @@
                 <span class="fas fa-tasks"></span> {{ __('project.editTask') }}
             </h1>
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
 
                     @include('projects.tasks._form', [

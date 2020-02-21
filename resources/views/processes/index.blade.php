@@ -16,7 +16,7 @@
     <hr>
 
     @foreach ($processes as $process)
-        <div class="card mb-5">
+        <div class="card shadow mb-5">
             <div class="card-body">
 
                 <h2>{{ $process->name }}</h2>

@@ -2,9 +2,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Processes\Edit($process, $instance))
-                    /*->addLink(new \App\Navigation\Link\Processes)
-                    ->addLink(new \App\Navigation\Link\Processes\Show($instance))
-                    ->setCurrentLocation(__('app.edit')),*/
 ])
 
 @section('content')
@@ -17,7 +14,7 @@
                 <span class="fas fa-clipboard-list mr-2"></span>{{ __('app.edit') }} - {{ $instance->process_name }}
             </h1>
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-body">
 
                     @if ($instance->name)

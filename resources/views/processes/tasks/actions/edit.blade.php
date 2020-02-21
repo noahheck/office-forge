@@ -12,13 +12,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Processes\Tasks\Actions\Edit($process, $instance, $task, $action))
-                    /*->addLink(new \App\Navigation\Link\Processes())
-                    ->addLink(new \App\Navigation\Link\Processes\Show($instance))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks($instance))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks\Show($instance, $task))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks\Actions($instance, $task))
-                    ->addLink(new \App\Navigation\Link\Processes\Tasks\Actions\Show($instance, $task, $action))
-                    ->setCurrentLocation(__('app.edit')),*/
 ])
 
 @section('content')
