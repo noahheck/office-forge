@@ -2,11 +2,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => new \App\Navigation\LocationBar\Admin\Processes\Tasks\Create($process),
-                    /*->addLink(new \App\Navigation\Link\Home)
-                    ->addLink(new \App\Navigation\Link\Admin\Processes())
-                    ->addLink(new \App\Navigation\Link\Admin\Processes\Show($process))
-                    ->addLink(new \App\Navigation\Link\Admin\Processes\Tasks($process))
-                    ->setCurrentLocation(__('app.addNew')),*/
 ])
 
 @section('content')
