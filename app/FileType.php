@@ -95,6 +95,11 @@ class FileType extends Model
         return $this->hasMany(File::class, 'file_type_id');
     }
 
+    public function forms()
+    {
+        return $this->hasMany(Form::class);
+    }
+
     public function icon(array $withClasses = [])
     {
         $withClasses[] = $this->icon;

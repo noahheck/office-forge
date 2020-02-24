@@ -19,7 +19,7 @@ return [
 
     'home' => 'Home',
     'messages' => 'Messages',
-    'files' => 'Files',
+    'files' => 'FileTypes',
     'processes' => 'Processes',
     'projects' => 'Projects',
     'documents' => 'Documents',

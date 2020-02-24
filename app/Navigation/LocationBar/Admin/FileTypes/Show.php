@@ -14,6 +14,6 @@ class Show extends LocationBar
         parent::__construct($file->name);
 
         $this->addLink(new \App\Navigation\Link\Admin\Home);
-        $this->addLink(new \App\Navigation\Link\Admin\Files);
+        $this->addLink(new \App\Navigation\Link\Admin\FileTypes);
     }
 }

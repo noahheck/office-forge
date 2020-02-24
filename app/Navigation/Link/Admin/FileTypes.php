@@ -6,7 +6,7 @@ namespace App\Navigation\Link\Admin;
 
 use App\Navigation\Link;
 
-class Files extends Link
+class FileTypes extends Link
 {
     public function __construct()
     {

@@ -78,4 +78,16 @@ return [
     'fileType_createFirstFileNow' => 'Design your first file type now!',
     'fileType_created' => 'File Type created',
     'fileType_updated' => 'File Type updated',
+
+    'forms' => 'Forms',
+    'addForm' => 'Add Form',
+    'newForm' => 'New Form',
+    'newForm_shortDescription' => 'Create a new Form',
+    'editForm' => 'Edit Form',
+    'editForm_description' => 'Edit a Form',
+    'form_description' => 'Forms allow you to specify the data points your staff need to collect in order to accurately and effectively operate your business.',
+    'form_createFirstFormNow' => 'Create your first form now!',
+    'form_created' => 'Form created',
+    'form_updated' => 'Form updated',
+
 ];

@@ -8,15 +8,62 @@
 {{--    @meta('processId', $process->id)--}}
 @endpush
 
-{{--@include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\Processes\Tasks\Index($process),
-])--}}
+@include("_component._location-bar", [
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FileTypes\Forms\Index($fileType),
+])
 
 @section('content')
 
     <div class="row justify-content-center">
 
         <div class="col-12 col-md-10 col-xl-8">
+
+            <h1>
+                {!! $fileType->icon() !!} {{ $fileType->name }}
+            </h1>
+
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h2>
+                        <span class="far fa-list-alt mr-2"></span>{{ __('admin.forms') }}
+                    </h2>
+
+                    <hr>
+
+                    @if ($fileType->forms->count() > 0)
+
+                    @else
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-12 col-sm-10">
+
+                                <div class="card">
+                                    <div class="card-body text-center">
+
+                                        <div class="empty-resource">
+                                            <span class="far fa-list-alt empty-resource-icon"></span>
+                                        </div>
+
+                                        <p>{{ __('admin.form_description') }}</p>
+
+                                        <hr>
+
+                                        <a class="btn btn-primary" href="{{ route('admin.file-types.forms.create', [$fileType]) }}">{{ __('admin.form_createFirstFormNow') }}</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @endif
+
+                </div>
+
+            </div>
 
             {{--<h1>
                 <span class="fas fa-clipboard-list mr-2"></span>{{ $process->name }}

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin\FileType;
 
+use App\FileType;
 use App\Form;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,9 +14,10 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FileType $fileType)
     {
-        //
+
+        return $this->view('admin.file-types.forms.index', compact('fileType'));
     }
 
     /**
@@ -23,7 +25,7 @@ class FormController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(FileType $fileType)
     {
         //
     }
@@ -34,7 +36,7 @@ class FormController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, FileType $fileType)
     {
         //
     }
@@ -45,7 +47,7 @@ class FormController extends Controller
      * @param  \App\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function show(Form $form)
+    public function show(FileType $fileType, Form $form)
     {
         //
     }
@@ -56,7 +58,7 @@ class FormController extends Controller
      * @param  \App\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function edit(Form $form)
+    public function edit(FileType $fileType, Form $form)
     {
         //
     }
@@ -68,7 +70,7 @@ class FormController extends Controller
      * @param  \App\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Form $form)
+    public function update(Request $request, FileType $fileType, Form $form)
     {
         //
     }
@@ -79,7 +81,7 @@ class FormController extends Controller
      * @param  \App\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Form $form)
+    public function destroy(FileType $fileType, Form $form)
     {
         //
     }

@@ -13,6 +13,6 @@ class Create extends LocationBar
         parent::__construct(__('app.addNew'));
 
         $this->addLink(new \App\Navigation\Link\Admin\Home);
-        $this->addLink(new \App\Navigation\Link\Admin\Files);
+        $this->addLink(new \App\Navigation\Link\Admin\FileTypes);
     }
 }

@@ -14,7 +14,7 @@ class Edit extends LocationBar
         parent::__construct(__('app.edit'));
 
         $this->addLink(new \App\Navigation\Link\Admin\Home);
-        $this->addLink(new \App\Navigation\Link\Admin\Files);
+        $this->addLink(new \App\Navigation\Link\Admin\FileTypes);
         $this->addLink(new \App\Navigation\Link\Admin\FileTypes\Show($file));
     }
 }
