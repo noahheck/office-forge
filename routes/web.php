@@ -84,6 +84,7 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::post('/organization', 'OrganizationController@update')->name('organization.update');
 
         Route::resource('/file-types', 'FileTypeController');
+        Route::resource('file-types.forms', 'FileType\FormController');
 
         Route::resource('/processes', 'ProcessController');
 
