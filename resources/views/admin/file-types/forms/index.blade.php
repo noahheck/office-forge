@@ -1,11 +1,7 @@
 @extends("layouts.admin")
 
-@push('scripts')
-{{--    @script('js/page.admin.processes.tasks.index.js')--}}
-@endpush
-
-@push('meta')
-{{--    @meta('processId', $process->id)--}}
+@push('styles')
+    @style('css/admin.files.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -33,6 +29,19 @@
                     <hr>
 
                     @if ($fileType->forms->count() > 0)
+
+                        <ul class="list-group">
+
+                            @foreach ($fileType->forms as $form)
+
+                                <li class="list-group-item">
+                                    <a href="{{ route('admin.file-types.forms.show', [$fileType, $form]) }}">{{ $form->name }}</a>
+                                    {{-- Will be outputting the team restrictions here as well --}}
+                                </li>
+
+                            @endforeach
+
+                        </ul>
 
                     @else
 

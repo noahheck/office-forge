@@ -5,7 +5,7 @@
 @endpush
 
 @push('styles')
-
+    @style('css/admin.files.css')
 @endpush
 
 @push('meta')
@@ -18,8 +18,7 @@
 
 @section('content')
 
-
-    <div class="row">
+    <div class="row fileType-show">
 
         <div class="col-12 col-md-4 col-xl-3">
 
@@ -67,8 +66,22 @@
                             </div>
                             <hr>
 
-                            @if($fileType->forms->count() <= 0)
+                            @if($fileType->forms->count() > 0)
 
+                                <ul class="list-group fileType-forms-list-group">
+
+                                    @foreach ($fileType->forms as $form)
+
+                                        <li class="list-group-item">
+                                            <a href="{{ route('admin.file-types.forms.show', [$fileType, $form]) }}">{{ $form->name }}</a>
+                                            {{-- Will be outputting the team restrictions here as well --}}
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            @else
 
                                 <div class="text-center">
 
@@ -84,8 +97,6 @@
 
                                 </div>
 
-                            @else
-                                Some Forms
                             @endif
 
 

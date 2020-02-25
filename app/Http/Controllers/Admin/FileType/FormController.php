@@ -61,7 +61,7 @@ class FormController extends Controller
      * Display the specified resource.
      *
      * @param FileType $fileType
-     * @param \App\Form $form
+     * @param \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
     public function show(FileType $fileType, Form $form)
@@ -73,7 +73,7 @@ class FormController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param FileType $fileType
-     * @param \App\Form $form
+     * @param \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
     public function edit(FileType $fileType, Form $form)
@@ -86,7 +86,7 @@ class FormController extends Controller
      *
      * @param \Illuminate\Http\Request $request
      * @param FileType $fileType
-     * @param \App\Form $form
+     * @param \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, FileType $fileType, Form $form)
@@ -97,7 +97,7 @@ class FormController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Form  $form
+     * @param \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
     public function destroy(FileType $fileType, Form $form)
