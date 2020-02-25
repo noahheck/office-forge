@@ -22,9 +22,17 @@
 
                 <div class="card-body">
 
-                    <h2>
-                        <span class="far fa-list-alt mr-2"></span>{{ __('admin.forms') }}
-                    </h2>
+                    <div class="d-flex">
+
+                        <h2 class="flex-grow-1 mb-0">
+                            <span class="far fa-list-alt mr-2"></span>{{ __('admin.forms') }}
+                        </h2>
+
+                        <a href="{{ route('admin.file-types.forms.create', [$fileType]) }}" class="btn btn-primary">
+                            <span class="fas fa-plus mr-2"></span>{{ __('admin.newForm') }}
+                        </a>
+
+                    </div>
 
                     <hr>
 

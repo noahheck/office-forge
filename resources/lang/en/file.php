@@ -25,5 +25,6 @@ return [
     'form' => 'Form',
     'form_name' => 'Name',
     'form_nameExamples' => 'Contact Information, References, Insurance, etc...',
+    'form_active' => 'Active',
 
 ];

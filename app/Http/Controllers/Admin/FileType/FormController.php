@@ -66,7 +66,7 @@ class FormController extends Controller
      */
     public function show(FileType $fileType, Form $form)
     {
-        //
+        return $this->view('admin.file-types.forms.show', compact('fileType', 'form'));
     }
 
     /**
