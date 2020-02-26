@@ -86,6 +86,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::resource('/file-types', 'FileTypeController');
         Route::resource('file-types.forms', 'FileType\FormController');
 
+        Route::resource('file-types.forms.fields', 'FileType\Form\FieldController');
+
         Route::resource('/processes', 'ProcessController');
 
         Route::namespace('Process')->prefix('/processes/{process}')->name('processes.')->group(function() {
