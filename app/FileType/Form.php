@@ -10,6 +10,8 @@ class Form extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'file_type_forms';
+
     protected $casts = [
         'active' => 'boolean',
         'order' => 'integer',

@@ -98,7 +98,7 @@ class FileType extends Model
 
     public function forms()
     {
-        return $this->hasMany(Form::class);
+        return $this->hasMany(Form::class)->orderBy('order');
     }
 
     public function icon(array $withClasses = [])
