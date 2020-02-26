@@ -20,7 +20,7 @@ class FieldController extends Controller
      */
     public function index(FileType $fileType, Form $form)
     {
-        //
+        return $this->view('admin.file-types.forms.fields.index', compact('fileType', 'form'));
     }
 
     /**

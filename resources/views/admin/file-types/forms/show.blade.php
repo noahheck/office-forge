@@ -54,18 +54,55 @@
 
                         <hr>
 
-                    @endif
+                    @endif--}}
 
-                    <div class="d-flex justify-content-between">
-                        <h3 class="h4">
-                            <span class="fas fa-tasks mr-2"></span>{{ __('admin.actions') }}
+                    <div class="d-flex">
+                        <h3 class="h4 flex-grow-1">
+                            <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
                         </h3>
-                        <a href="{{ route('admin.processes.tasks.actions.index', [$process, $task]) }}">
-                            <span class="far fa-arrow-alt-circle-right mr-1"></span>{{ __('admin.actions') }}
+                        <a href="{{ route('admin.file-types.forms.fields.index', [$fileType, $form]) }}">
+                            <span class="far fa-arrow-alt-circle-right mr-1"></span>{{ __('file.fields') }}
                         </a>
                     </div>
 
-                    @forelse ($task->actions as $action)
+
+
+
+                    @if ($form->fields->count() > 0)
+                        Has Fields
+                    @else
+
+                        <div class="row justify-content-center">
+
+                            <div class="col-12 col-sm-10 col-lg-8">
+
+                                <div class="card">
+                                    <div class="card-body text-center">
+
+                                        <div class="empty-resource">
+                                            <span class="fas fa-pen-square empty-resource-icon"></span>
+                                        </div>
+
+                                        <p>{{ __('admin.field_description') }}</p>
+
+                                        <p>{{ __('admin.field_typesDescription') }}</p>
+
+                                        <hr>
+
+                                        <a class="btn btn-primary" href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    @endif
+
+
+
+
+                    {{--@forelse ($task->actions as $action)
 
                         @if ($loop->first)
                             <ul class="list-group" id="taskActions">

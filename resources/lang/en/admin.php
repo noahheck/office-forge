@@ -90,4 +90,16 @@ return [
     'form_created' => 'Form created',
     'form_updated' => 'Form updated',
 
+    'fields' => 'Fields',
+    'addField' => 'Add Field',
+    'newField' => 'New Field',
+    'newField_shortDescription' => 'Create a new Field',
+    'editField' => 'Edit Field',
+    'editField_shortDescription' => 'Edit a Field',
+    'field_description' => 'Fields are the containers your staff will input data into. Each Field represents a single, distinct data point your organization is interested in for this File Type.',
+    'field_typesDescription' => 'Office Forge contains several different field types to help ensure your organization is able to collect the information it needs for you to do your work effectively.',
+    'field_createFirstFieldNow' => 'Create the first field for this form now!',
+    'field_created' => 'Field created',
+    'field_updated' => 'Field updated',
+
 ];

@@ -44,7 +44,6 @@
 
                                 <li class="list-group-item">
                                     <a href="{{ route('admin.file-types.forms.show', [$fileType, $form]) }}">{{ $form->name }}</a>
-                                    {{-- Will be outputting the team restrictions here as well --}}
                                 </li>
 
                             @endforeach
