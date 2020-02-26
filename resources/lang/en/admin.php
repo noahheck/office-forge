@@ -84,7 +84,7 @@ return [
     'newForm' => 'New Form',
     'newForm_shortDescription' => 'Create a new Form',
     'editForm' => 'Edit Form',
-    'editForm_description' => 'Edit a Form',
+    'editForm_shortDescription' => 'Edit a Form',
     'form_description' => 'Forms allow you to specify the data points your staff need to collect in order to accurately and effectively operate your business.',
     'form_createFirstFormNow' => 'Create your first form now!',
     'form_created' => 'Form created',

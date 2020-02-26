@@ -26,5 +26,6 @@ return [
     'form_name' => 'Name',
     'form_nameExamples' => 'Contact Information, References, Insurance, etc...',
     'form_active' => 'Active',
+    'form_activeDescription' => 'Forms marked inactive will not appear on the File page for any files. You can re-activate a form if necessary; No data will be lost.',
 
 ];

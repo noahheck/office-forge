@@ -6,7 +6,9 @@ use App\FileType;
 use App\FileType\Form;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileType\Form\Store as StoreRequest;
+use App\Http\Requests\Admin\FileType\Form\Update as UpdateRequest;
 use App\Jobs\FileType\Form\Create;
+use App\Jobs\FileType\Form\Update;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -78,7 +80,7 @@ class FormController extends Controller
      */
     public function edit(FileType $fileType, Form $form)
     {
-        //
+        return $this->view('admin.file-types.forms.edit', compact('fileType', 'form'));
     }
 
     /**
@@ -89,9 +91,13 @@ class FormController extends Controller
      * @param \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FileType $fileType, Form $form)
+    public function update(UpdateRequest $request, FileType $fileType, Form $form)
     {
-        //
+        $this->dispatchNow($formUpdated = new Update($form, $request->name, $request->has('active')));
+
+        flash_success(__('admin.form_updated'));
+
+        return redirect()->route('admin.file-types.forms.show', [$fileType, $form]);
     }
 
     /**

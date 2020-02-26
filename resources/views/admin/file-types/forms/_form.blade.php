@@ -21,23 +21,22 @@
                 'error' => $errors->has('name'),
             ])
 
-            {{--@if ($showActive ?? false)
+            @if ($showActive ?? false)
 
                 <hr>
 
                 @checkboxSwitchField([
                     'name' => 'active',
-                    'id' => 'task_active',
-                    'label' => __('process.task_active'),
-                    'checked' => $task->active,
+                    'id' => 'form_active',
+                    'label' => __('file.form_active'),
+                    'details' => __('file.form_activeDescription'),
+                    'checked' => $form->active,
                     'value' => '1',
                     'required' => false,
                     'error' => $errors->has('active'),
                 ])
 
-                <hr>
-
-            @endif--}}
+            @endif
 
         </div>
 
