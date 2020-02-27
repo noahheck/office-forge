@@ -46,7 +46,27 @@
                     <hr>
 
                     @if ($form->fields->count() > 0)
-                        Has Fields
+
+                        <ul class="list-group">
+
+                            @foreach ($form->fields as $field)
+
+                                <li class="list-group-item d-flex">
+                                    <div class="flex-grow-1">
+                                        <a href="{{ route('admin.file-types.forms.fields.show', [$fileType, $form, $field]) }}">
+                                            {{ $field->label }}
+                                        </a>
+                                        {!! $field->preview() !!}
+                                    </div>
+                                    <div class="sort-handle pl-3">
+                                        <span class="fas fa-arrows-alt-v"></span>
+                                    </div>
+                                </li>
+
+                            @endforeach
+
+                        </ul>
+
                     @else
 
                         <div class="row justify-content-center">

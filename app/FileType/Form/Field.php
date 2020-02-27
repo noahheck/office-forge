@@ -22,4 +22,28 @@ class Field extends Model
     {
         return $this->belongsTo(Form::class, 'file_type_form_id');
     }
+
+    public function icon(array $withClasses = [])
+    {
+        $function = "\App\icon\\filetype_field_" . $this->field_type;
+
+        if (!function_exists($function)) {
+
+            return "";
+        }
+
+        return $function($withClasses);
+    }
+
+    public function preview(array $withClasses = [])
+    {
+        $function = "\App\icon\\filetype_field_preview_" . $this->field_type;
+
+        if (!function_exists($function)) {
+
+            return "help";
+        }
+
+        return $function($withClasses);
+    }
 }
