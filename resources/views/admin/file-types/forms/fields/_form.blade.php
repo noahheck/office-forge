@@ -28,7 +28,7 @@
                 'details' => __('file.field_descriptionDescription'),
                 'value' => $field->description,
                 'placeholder' => '',
-                'rows' => 4,
+                'rows' => 2,
                 'required' => false,
                 'autofocus' => false,
                 'error' => $errors->has('description'),
@@ -52,15 +52,14 @@
 
                 @checkboxSwitchField([
                     'name' => 'active',
-                    'id' => 'action_active',
-                    'label' => __('process.action_active'),
-                    'checked' => $taskAction->active,
+                    'id' => 'field_active',
+                    'label' => __('file.field_active'),
+                    'details' => __('file.field_activeDescription'),
+                    'checked' => $field->active,
                     'value' => '1',
                     'required' => false,
                     'error' => $errors->has('active'),
                 ])
-
-                <hr>
 
             @endif
 

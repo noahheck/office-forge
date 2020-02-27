@@ -36,6 +36,7 @@ return [
     'field_description' => 'Description',
     'field_descriptionDescription' => 'Additional details to help staff fill in the correct value',
     'field_active' => 'Active',
+    'field_activeDescription' => 'Fields marked inactive will not appear on any Form page for any files. You can re-activate a field if necessary; No data will be lost.',
 
 
     'field_fieldType' => 'Field Type',

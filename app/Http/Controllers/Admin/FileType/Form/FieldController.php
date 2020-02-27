@@ -6,7 +6,9 @@ use App\FileType;
 use App\FileType\Form;
 use App\FileType\Form\Field;
 use App\Http\Requests\Admin\FileType\Form\Field\Store as StoreRequest;
+use App\Http\Requests\Admin\FileType\Form\Field\Update as UpdateRequest;
 use App\Jobs\FileType\Form\Field\Create;
+use App\Jobs\FileType\Form\Field\Update;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -17,8 +19,8 @@ class FieldController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
+     * @param  FileType $fileType
+     * @param  Form $form
      * @return \Illuminate\Http\Response
      */
     public function index(FileType $fileType, Form $form)
@@ -29,8 +31,8 @@ class FieldController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
+     * @param  FileType $fileType
+     * @param  Form $form
      * @return \Illuminate\Http\Response
      */
     public function create(FileType $fileType, Form $form)
@@ -38,7 +40,6 @@ class FieldController extends Controller
         $field = new Field;
         $field->file_type_form_id = $form->id;
         $field->active = true;
-        $field->panel_display = false;
 
         return $this->view('admin.file-types.forms.fields.create', compact('fileType', 'form', 'field'));
     }
@@ -46,9 +47,9 @@ class FieldController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
+     * @param StoreRequest $request
+     * @param FileType $fileType
+     * @param Form $form
      * @return \Illuminate\Http\Response
      */
     public function store(StoreRequest $request, FileType $fileType, Form $form)
@@ -68,9 +69,9 @@ class FieldController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
-     * @param  \App\FileType\Form\Field  $field
+     * @param  FileType $fileType
+     * @param  Form $form
+     * @param  Field  $field
      * @return \Illuminate\Http\Response
      */
     public function show(FileType $fileType, Form $form, Field $field)
@@ -81,36 +82,46 @@ class FieldController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
-     * @param  \App\FileType\Form\Field  $field
+     * @param  FileType $fileType
+     * @param  Form $form
+     * @param  Field  $field
      * @return \Illuminate\Http\Response
      */
     public function edit(FileType $fileType, Form $form, Field $field)
     {
-        //
+        return $this->view('admin.file-types.forms.fields.edit', compact('fileType', 'form', 'field'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
-     * @param  \App\FileType\Form\Field  $field
+     * @param  UpdateRequest  $request
+     * @param  FileType $fileType
+     * @param  Form $form
+     * @param  Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FileType $fileType, Form $form, Field $field)
+    public function update(UpdateRequest $request, FileType $fileType, Form $form, Field $field)
     {
-        //
+        $this->dispatchNow($fieldUpdated = new Update(
+            $field,
+            $request->label,
+            $request->description,
+            $request->field_type,
+            $request->has('active')
+        ));
+
+        flash_success(__('admin.field_updated'));
+
+        return redirect()->route('admin.file-types.forms.show', [$fileType, $form]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\FileType $fileType
-     * @param  \App\FileType\Form $form
-     * @param  \App\FileType\Form\Field  $field
+     * @param  FileType $fileType
+     * @param  Form $form
+     * @param  Field  $field
      * @return \Illuminate\Http\Response
      */
     public function destroy(FileType $fileType, Form $form, Field $field)

@@ -66,7 +66,7 @@
 
                                 <li class="list-group-item d-flex">
                                     <div class="flex-grow-1">
-                                        <a href="{{ route('admin.file-types.forms.fields.show', [$fileType, $form, $field]) }}">
+                                        <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
                                             {{ $field->label }}
                                         </a>
                                         {!! $field->preview() !!}
