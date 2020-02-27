@@ -39,10 +39,7 @@
                 'label' => __('file.field_fieldType'),
                 'details' => __('file.field_fieldTypeDescription'),
                 'value' => $field->field_type,
-                'options' => [
-                    'text' => __('file.field_fieldTypeText'),
-                    'textarea' => __('file.field_fieldTypeTextarea'),
-                ],
+                'options' => \App\filetype_field_options(),
                 'placeholder' => 'string: example placeholder text',
                 'required' => true,
                 'autofocus' => false,

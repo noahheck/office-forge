@@ -35,8 +35,15 @@ return [
     'field_labelExamples' => 'Name, Marital Status, Manufacturer, etc...',
     'field_description' => 'Description',
     'field_descriptionDescription' => 'Additional details to help staff fill in the correct value',
+    'field_active' => 'Active',
+
+
     'field_fieldType' => 'Field Type',
     'field_fieldTypeDescription' => '',
+
+
+
     'field_fieldTypeText' => 'Text Box',
     'field_fieldTypeTextarea' => 'Large Text Box',
+
 ];

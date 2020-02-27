@@ -64,3 +64,12 @@ function safe_text_editor_content($content) {
     $tagsStripped = strip_tags($content, '<' . implode('><', $allowedTags) . '>');
     return $tagsStripped;
 }
+
+
+
+function filetype_field_options() {
+    return [
+        'text' => __('file.field_fieldTypeText'),
+        'textarea' => __('file.field_fieldTypeTextarea'),
+    ];
+}
