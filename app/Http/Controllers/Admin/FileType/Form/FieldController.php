@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Admin\FileType\Form;
 use App\FileType;
 use App\FileType\Form;
 use App\FileType\Form\Field;
+use App\Http\Requests\Admin\FileType\Form\Field\Store as StoreRequest;
+use App\Jobs\FileType\Form\Field\Create;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
+use function App\flash_success;
 
 class FieldController extends Controller
 {
@@ -32,7 +35,12 @@ class FieldController extends Controller
      */
     public function create(FileType $fileType, Form $form)
     {
-        //
+        $field = new Field;
+        $field->file_type_form_id = $form->id;
+        $field->active = true;
+        $field->panel_display = false;
+
+        return $this->view('admin.file-types.forms.fields.create', compact('fileType', 'form', 'field'));
     }
 
     /**
@@ -43,9 +51,18 @@ class FieldController extends Controller
      * @param  \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, FileType $fileType, Form $form)
+    public function store(StoreRequest $request, FileType $fileType, Form $form)
     {
-        //
+        $this->dispatchNow($fieldCreated = new Create(
+            $form,
+            $request->label,
+            $request->description,
+            $request->field_type
+        ));
+
+        flash_success(__('admin.field_created'));
+
+        return redirect()->route('admin.file-types.forms.show', [$fileType, $form]);
     }
 
     /**
