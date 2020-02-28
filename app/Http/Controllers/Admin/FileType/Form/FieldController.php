@@ -7,8 +7,10 @@ use App\FileType\Form;
 use App\FileType\Form\Field;
 use App\Http\Requests\Admin\FileType\Form\Field\Store as StoreRequest;
 use App\Http\Requests\Admin\FileType\Form\Field\Update as UpdateRequest;
+use App\Http\Response\AjaxResponse;
 use App\Jobs\FileType\Form\Field\Create;
 use App\Jobs\FileType\Form\Field\Update;
+use App\Jobs\FileType\Form\Fields\UpdateOrder;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -127,5 +129,15 @@ class FieldController extends Controller
     public function destroy(FileType $fileType, Form $form, Field $field)
     {
         //
+    }
+
+
+    public function updateOrder(Request $request, FileType $fileType, Form $form)
+    {
+        $this->dispatchNow($fieldsOrdered = new UpdateOrder($fileType, $form, $request->get('orderedFields')));
+
+        return new AjaxResponse(true, [
+            'successMessage' => __('admin.fields_orderUpdated'),
+        ]);
     }
 }

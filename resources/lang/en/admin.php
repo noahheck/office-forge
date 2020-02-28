@@ -101,5 +101,6 @@ return [
     'field_createFirstFieldNow' => 'Create the first field for this form now!',
     'field_created' => 'Field created',
     'field_updated' => 'Field updated',
+    'fields_orderUpdated' => 'Fields order updated',
 
 ];

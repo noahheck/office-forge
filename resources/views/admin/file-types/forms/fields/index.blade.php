@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 
 @push('scripts')
-    @script('js/page.admin.processes.tasks.actions.index.js')
+    @script('js/page.admin.file-types.forms.fields.index.js')
 @endpush
 
 @push('styles')
@@ -47,11 +47,11 @@
 
                     @if ($form->fields->count() > 0)
 
-                        <ul class="list-group">
+                        <ul class="list-group" id="formFields">
 
                             @foreach ($form->fields as $field)
 
-                                <li class="list-group-item d-flex">
+                                <li class="list-group-item d-flex" data-id="{{ $field->id }}">
                                     <div class="flex-grow-1">
                                         <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
                                             {{ $field->label }}
