@@ -25,6 +25,6 @@ class Form extends Model
 
     public function fields()
     {
-        return $this->hasMany(Field::class, 'file_type_form_id');
+        return $this->hasMany(Field::class, 'file_type_form_id')->orderBy('order', 'ASC');
     }
 }
