@@ -28,6 +28,11 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
 
     Route::resource('/files', 'FileController');
+    Route::namespace('File')->prefix('/files/{file}')->name('files.')->group(function() {
+
+        Route::get('/forms', 'FormController@index')->name('forms');
+
+    });
 
     Route::resource('/projects', 'ProjectController');
 

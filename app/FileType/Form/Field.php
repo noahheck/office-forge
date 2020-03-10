@@ -2,6 +2,7 @@
 
 namespace App\FileType\Form;
 
+use App\File\FormField\Value;
 use App\FileType\Form;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -21,6 +22,11 @@ class Field extends Model
     public function form()
     {
         return $this->belongsTo(Form::class, 'file_type_form_id');
+    }
+
+    public function values()
+    {
+        return $this->hasMany(Value::class, 'file_type_form_field_id');
     }
 
     public function icon(array $withClasses = [])
