@@ -30,7 +30,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::resource('/files', 'FileController');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->group(function() {
 
-        Route::get('/forms', 'FormController@index')->name('forms');
+        Route::get('/forms', 'FormController@index')->name('forms.index');
+        Route::get('/forms/{form}', 'FormController@show')->name('forms.show');
+        Route::put('/forms/{form}', 'FormController@update')->name('forms.update');
 
     });
 

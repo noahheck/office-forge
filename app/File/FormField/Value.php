@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Value extends Model
 {
+    protected $table = 'file_formfield_values';
+
     public function file()
     {
         return $this->belongsTo(File::class);

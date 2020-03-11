@@ -33,7 +33,7 @@
                         <div class="list-group">
                             @foreach ($forms as $form)
 
-                                <a class="list-group-item list-group-item-action" href="#">
+                                <a class="list-group-item list-group-item-action" href="{{ route('files.forms.show', [$file, $form]) }}">
                                     {{ $form->name }}
                                 </a>
 

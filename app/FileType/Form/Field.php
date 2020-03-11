@@ -43,7 +43,7 @@ class Field extends Model
 
     public function preview(array $withClasses = [])
     {
-        $function = "\App\icon\\filetype_field_preview_" . $this->field_type;
+        $function = "\App\\form\\filetype_field_preview_" . $this->field_type;
 
         if (!function_exists($function)) {
 
