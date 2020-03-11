@@ -10,6 +10,10 @@ class FormController extends Controller
 {
     public function index(File $file)
     {
+        $fileType = $file->fileType;
 
+        $forms = $fileType->forms;// Filter for team restrictions here
+
+        return $this->view('files.forms.index', compact('file', 'fileType', 'forms'));
     }
 }

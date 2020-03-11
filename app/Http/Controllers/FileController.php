@@ -99,7 +99,9 @@ class FileController extends Controller
     {
         $fileType = $file->fileType;
 
-        return $this->view('files.show', compact('file', 'fileType'));
+        $forms = $fileType->forms;// Filter for team restrictions here
+
+        return $this->view('files.show', compact('file', 'fileType', 'forms'));
     }
 
     /**

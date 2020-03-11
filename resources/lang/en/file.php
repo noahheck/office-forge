@@ -27,6 +27,7 @@ return [
     'form_nameExamples' => 'Contact Information, References, Insurance, etc...',
     'form_active' => 'Active',
     'form_activeDescription' => 'Forms marked inactive will not appear on the File page for any files. You can re-activate a form if necessary; No data will be lost.',
+    'form_noFormsToView' => "You don't have access to any Forms for this file.",
 
     'fields' => 'Fields',
     'field' => 'Field',

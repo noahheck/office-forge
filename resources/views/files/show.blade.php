@@ -22,7 +22,7 @@
 
         <div class="col-12 col-md-4 col-xl-3 mb-3">
 
-            <div class="card shadow">
+            <div class="card shadow mb-3">
                 <div class="card-body">
                     <h3 class="h4">{{ $file->name }}</h3>
 
@@ -34,6 +34,19 @@
                     </div>
                 </div>
             </div>
+
+            @if ($forms->count() > 0)
+                <div class="card shadow">
+                    <div class="card-header">
+                        <h4 class="h5 mb-0">{{ __('file.forms') }}</h4>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        @foreach ($forms as $form)
+                            <a href="#" class="list-group-item list-group-item-action">{{ $form->name }}</a>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
 
         </div>
 
