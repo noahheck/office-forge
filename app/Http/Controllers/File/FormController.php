@@ -5,7 +5,10 @@ namespace App\Http\Controllers\File;
 use App\File;
 use App\FileType\Form;
 use App\Http\Controllers\Controller;
+use App\Jobs\File\Form\Update;
 use Illuminate\Http\Request;
+use App\Http\Requests\File\Forms\Update as UpdateRequest;
+use function App\flash_success;
 
 class FormController extends Controller
 {
@@ -29,8 +32,16 @@ class FormController extends Controller
         return $this->view('files.forms.show', compact('file', 'fileType', 'form', 'values'));
     }
 
-    public function update(File $file, Form $form)
+    public function update(UpdateRequest $request, File $file, Form $form)
     {
+        $this->dispatchNow($formUpdated = new Update($file, $form, $request->all()));
 
+        flash_success(__('app.itemUpdated', ['itemName' => $form->name]));
+
+        if ($return = $request->get('return')) {
+            return redirect($return);
+        }
+
+        return redirect()->route('files.show', [$file]);
     }
 }

@@ -1,5 +1,5 @@
 @textField([
-    'name' => 'field_' . $field->id,
+    'name' => $field->id,
     'label' => $field->label,
     'details' => $field->description,
     'value' => $value->value_text1,

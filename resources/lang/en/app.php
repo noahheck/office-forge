@@ -12,6 +12,8 @@ return [
     'new' => 'New',
     'addNew' => 'Add New',
 
+    'itemUpdated' => ':itemName updated',
+
 
     'showNavigationMenu' => 'Show Navigation Menu',
     'toggleNavigation' => 'Toggle Navigation',

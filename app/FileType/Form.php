@@ -27,4 +27,9 @@ class Form extends Model
     {
         return $this->hasMany(Field::class, 'file_type_form_id')->orderBy('order', 'ASC');
     }
+
+    public function activeFields()
+    {
+        return $this->hasMany(Field::class, 'file_type_form_id')->where('active', true)->orderBy('order', 'ASC');
+    }
 }

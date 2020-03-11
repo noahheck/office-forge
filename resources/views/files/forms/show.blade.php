@@ -36,7 +36,12 @@
 
                         @method('PUT')
 
-                        @foreach ($form->fields as $field)
+                        @hiddenField([
+                            'name' => 'return',
+                            'value' => url()->previous()
+                        ])
+
+                        @foreach ($form->activeFields as $field)
 
                             @include('_form_field.' . $field->field_type, [
                                 'field' => $field,

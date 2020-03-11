@@ -1,8 +1,8 @@
 @textareaField([
-    'name' => 'field_' . $field->id,
+    'name' => $field->id,
     'label' => $field->label,
     'details' => $field->description,
-    'value' => $value->longtext,
+    'value' => $value->value_longtext,
     'placeholder' => $field->placeholder,
     'rows' => 5,
     'required' => false,
