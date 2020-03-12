@@ -1,41 +1,40 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.admin.file-types.forms.fields.index"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.admin.file-types.forms.index"],{
 
-/***/ "./resources/js/app/file-type/form.js":
-/*!********************************************!*\
-  !*** ./resources/js/app/file-type/form.js ***!
-  \********************************************/
+/***/ "./resources/js/app/file-type.js":
+/*!***************************************!*\
+  !*** ./resources/js/app/file-type.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * js/app/file-type/form.js
+ * js/app/file-type.js
  */
 var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
-var form = {};
+var fileType = {};
 
-form.updateFieldsOrder = function (fileTypeId, formId, fieldsOrder) {
+fileType.updateFormsOrder = function (fileTypeId, formsOrder) {
   var route = {
-    name: 'admin.file-types.forms.fields.update-order',
+    name: 'admin.file-types.forms.update-order',
     params: {
-      fileType: fileTypeId,
-      form: formId
+      fileType: fileTypeId
     }
   };
   var data = {
-    orderedFields: fieldsOrder
+    orderedForms: formsOrder
   };
   return ajax.post(route, data);
 };
 
-module.exports = form;
+module.exports = fileType;
 
 /***/ }),
 
-/***/ "./resources/js/page/admin/file-types/forms/fields/index.js":
-/*!******************************************************************!*\
-  !*** ./resources/js/page/admin/file-types/forms/fields/index.js ***!
-  \******************************************************************/
+/***/ "./resources/js/page/admin/file-types/forms/index.js":
+/*!***********************************************************!*\
+  !*** ./resources/js/page/admin/file-types/forms/index.js ***!
+  \***********************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43,7 +42,7 @@ module.exports = form;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 /**
- * js/page/admin/processes/tasks/actions/index.js
+ * js/page/admin/file-types/forms/index.js
  */
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
@@ -53,17 +52,16 @@ var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/met
 
 var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 
-var form = __webpack_require__(/*! App/file-type/form */ "./resources/js/app/file-type/form.js");
+var fileType = __webpack_require__(/*! App/file-type */ "./resources/js/app/file-type.js");
 
 $(function () {
   var fileTypeId = meta.get('fileTypeId');
-  var formId = meta.get('formId');
-  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('formFields'), {
+  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('fileTypeForms'), {
     handle: '.sort-handle',
     animation: 150,
     direction: 'vertical',
     onEnd: function onEnd(evt) {
-      form.updateFieldsOrder(fileTypeId, formId, sortable.toArray()).then(function (response) {
+      fileType.updateFormsOrder(fileTypeId, sortable.toArray()).then(function (response) {
         notify.success(response.data.successMessage);
       });
     }
@@ -297,16 +295,16 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 8:
-/*!************************************************************************!*\
-  !*** multi ./resources/js/page/admin/file-types/forms/fields/index.js ***!
-  \************************************************************************/
+/***/ 6:
+/*!*****************************************************************!*\
+  !*** multi ./resources/js/page/admin/file-types/forms/index.js ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/js/page/admin/file-types/forms/fields/index.js */"./resources/js/page/admin/file-types/forms/fields/index.js");
+module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/js/page/admin/file-types/forms/index.js */"./resources/js/page/admin/file-types/forms/index.js");
 
 
 /***/ })
 
-},[[8,"/js/manifest","/js/vendor"]]]);
+},[[6,"/js/manifest","/js/vendor"]]]);

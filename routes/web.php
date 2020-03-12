@@ -92,6 +92,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::resource('/file-types', 'FileTypeController');
         Route::resource('file-types.forms', 'FileType\FormController');
+        Route::post('/file-types/{fileType}/forms/update-order', 'FileType\FormController@updateOrder')
+            ->name('file-types.forms.update-order');
 
 
         Route::resource('file-types.forms.fields', 'FileType\Form\FieldController');

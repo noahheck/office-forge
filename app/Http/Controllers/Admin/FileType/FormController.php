@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\FileType\Form\Store as StoreRequest;
 use App\Http\Requests\Admin\FileType\Form\Update as UpdateRequest;
 use App\Jobs\FileType\Form\Create;
 use App\Jobs\FileType\Form\Update;
+use App\Jobs\FileType\Forms\UpdateOrder;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -110,4 +111,23 @@ class FormController extends Controller
     {
         //
     }
+
+
+    public function updateOrder(Request $request, FileType $fileType)
+    {
+        $this->dispatchNow($formsOrdered = new UpdateOrder($fileType, $request->get('orderedForms')));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.forms_orderUpdated'),
+        ]);
+
+        /*
+         $this->dispatchNow($fieldsOrdered = new UpdateOrder($fileType, $form, $request->get('orderedFields')));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.fields_orderUpdated'),
+        ]);
+         */
+    }
+
 }

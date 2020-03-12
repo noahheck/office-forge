@@ -136,7 +136,7 @@ class FieldController extends Controller
     {
         $this->dispatchNow($fieldsOrdered = new UpdateOrder($fileType, $form, $request->get('orderedFields')));
 
-        return new AjaxResponse(true, [
+        return $this->json(true, [
             'successMessage' => __('admin.fields_orderUpdated'),
         ]);
     }

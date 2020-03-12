@@ -30,6 +30,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/page/admin/processes/tasks/actions/index.js', 'public/js/page.admin.processes.tasks.actions.index.js')
 
 
+    .js('resources/js/page/admin/file-types/forms/index.js', 'public/js/page.admin.file-types.forms.index.js')
     .js('resources/js/page/admin/file-types/forms/show.js', 'public/js/page.admin.file-types.forms.show.js')
     .js('resources/js/page/admin/file-types/forms/fields/index.js', 'public/js/page.admin.file-types.forms.fields.index.js')
 

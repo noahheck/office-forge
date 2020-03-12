@@ -8,7 +8,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * js/app/process/task.js
+ * js/app/file-type/form.js
  */
 var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
@@ -297,7 +297,7 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 6:
+/***/ 7:
 /*!****************************************************************!*\
   !*** multi ./resources/js/page/admin/file-types/forms/show.js ***!
   \****************************************************************/
@@ -309,4 +309,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[6,"/js/manifest","/js/vendor"]]]);
+},[[7,"/js/manifest","/js/vendor"]]]);

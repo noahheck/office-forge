@@ -1,5 +1,5 @@
 /**
- * js/app/process/task.js
+ * js/app/file-type/form.js
  */
 
 let ajax = require('Services/ajax');
