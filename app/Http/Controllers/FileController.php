@@ -95,11 +95,16 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function show(File $file)
+    public function show(Request $request, File $file)
     {
+        $user     = $request->user();
         $fileType = $file->fileType;
 
-        $forms = $fileType->forms;// Filter for team restrictions here
+        $fileType->load(['forms', 'forms.teams']);
+
+        $forms = $fileType->forms->filter(function($form, $key) use($user) {
+            return $form->isAccessibleBy($user);
+        });
 
         return $this->view('files.show', compact('file', 'fileType', 'forms'));
     }

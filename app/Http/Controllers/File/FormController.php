@@ -12,28 +12,36 @@ use function App\flash_success;
 
 class FormController extends Controller
 {
-    public function index(File $file)
+    public function index(Request $request, File $file)
     {
+        $user     = $request->user();
         $fileType = $file->fileType;
 
-        $forms = $fileType->forms;// Filter for team restrictions here
+        $fileType->load(['forms', 'forms.teams']);
+
+        $forms = $fileType->forms->filter(function($form, $key) use($user) {
+            return $form->isAccessibleBy($user);
+        });
 
         return $this->view('files.forms.index', compact('file', 'fileType', 'forms'));
     }
 
-    public function show(File $file, Form $form)
+    public function show(Request $request, File $file, Form $form)
     {
+        $user     = $request->user();
+        abort_unless($form->isAccessibleBy($user), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
+
         $fileType = $file->fileType;
-
-        $values = $file->formFieldValues;
-
-        // Make sure user has permission to view this form here
+        $values   = $file->formFieldValues;
 
         return $this->view('files.forms.show', compact('file', 'fileType', 'form', 'values'));
     }
 
     public function update(UpdateRequest $request, File $file, Form $form)
     {
+        $user     = $request->user();
+        abort_unless($form->isAccessibleBy($user), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
+
         $this->dispatchNow($formUpdated = new Update($file, $form, $request->all()));
 
         flash_success(__('app.itemUpdated', ['itemName' => $form->name]));

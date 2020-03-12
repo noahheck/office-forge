@@ -5,6 +5,7 @@ namespace App\FileType;
 use App\FileType;
 use App\FileType\Form\Field;
 use App\Team;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,6 +19,18 @@ class Form extends Model
         'active' => 'boolean',
         'order' => 'integer',
     ];
+
+    public function isAccessibleBy(User $user): bool
+    {
+        $formTeams = $this->teams;
+        $userTeams = $user->teams;
+
+        $sharedTeams = $formTeams->intersect($userTeams);
+
+        \Debugbar::info($sharedTeams);
+
+        return $sharedTeams->count() > 0;
+    }
 
     public function fileType()
     {

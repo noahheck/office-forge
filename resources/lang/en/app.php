@@ -50,4 +50,6 @@ return [
     'timezone_America/Anchorage'   => 'Alaska',
     'timezone_America/Adak'        => 'Hawaii',
     'timezone_Pacific/Honolulu'    => 'Hawaii (no DST)',
+
+    'error_noAccess' => 'You do not have permission to access this :itemName',
 ];
