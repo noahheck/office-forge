@@ -53,6 +53,9 @@
                                 <li class="list-group-item d-flex" data-id="{{ $form->id  }}">
                                     <div class="flex-grow-1">
                                         <a href="{{ route('admin.file-types.forms.show', [$fileType, $form]) }}">{{ $form->name }}</a>
+                                        @foreach ($form->teams as $team)
+                                            {!! $team->icon() !!}
+                                        @endforeach
                                     </div>
                                     <div class="sort-handle pl-3">
                                         <span class="fas fa-arrows-alt-v"></span>

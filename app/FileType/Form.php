@@ -4,6 +4,7 @@ namespace App\FileType;
 
 use App\FileType;
 use App\FileType\Form\Field;
+use App\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -31,5 +32,10 @@ class Form extends Model
     public function activeFields()
     {
         return $this->hasMany(Field::class, 'file_type_form_id')->where('active', true)->orderBy('order', 'ASC');
+    }
+
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'file_type_forms_teams', 'file_type_form_id', 'team_id')->withTimestamps();
     }
 }

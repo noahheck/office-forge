@@ -13,6 +13,7 @@ class Create
 
     private $fileType;
     private $name;
+    private $teams;
 
     private $form;
 
@@ -21,10 +22,11 @@ class Create
      *
      * @return void
      */
-    public function __construct(FileType $fileType, $name)
+    public function __construct(FileType $fileType, $name, $teams)
     {
         $this->fileType = $fileType;
         $this->name = $name;
+        $this->teams = $teams;
     }
 
     public function getForm(): Form
@@ -46,6 +48,8 @@ class Create
         $form->order = $this->fileType->forms->max('order') + 1;
 
         $form->save();
+
+        $form->teams()->sync($this->teams);
 
         $this->form = $form;
     }

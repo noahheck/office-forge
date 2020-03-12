@@ -46,6 +46,25 @@
 
                     <hr>
 
+                    <strong>{{ __('file.form_teamAccessApproval') }}</strong>
+
+                    @if ($form->teams->count() > 0)
+
+                        <p>{{ __('file.form_teamAccessApprovalShortDescription') }}</p>
+                        <ul class="list-group mb-3">
+                            @foreach ($form->teams as $team)
+                                <li class="list-group-item">{!! $team->icon() !!} {{ $team->name }}</li>
+                            @endforeach
+                        </ul>
+
+                    @else
+
+                        <p>{{ __('file.form_unrestrictedDescription') }}</p>
+
+                        <hr>
+
+                    @endif
+
                     <div class="d-flex">
                         <h3 class="h4 flex-grow-1">
                             <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
@@ -80,6 +99,12 @@
 
                         </ul>
 
+                        <p class="text-right mt-3">
+                            <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
+                                <span class="fas fa-plus mr-2"></span>{{ __('admin.newField') }}
+                            </a>
+                        </p>
+
                     @else
 
                         <div class="row justify-content-center">
@@ -108,47 +133,6 @@
                         </div>
 
                     @endif
-
-
-
-
-                    {{--@forelse ($task->actions as $action)
-
-                        @if ($loop->first)
-                            <ul class="list-group" id="taskActions">
-                        @endif
-                            <li class="d-flex list-group-item" data-id="{{ $action->id }}">
-                                <div class="flex-grow-1">
-                                    <span class="far fa-square"></span>
-                                    <a href="{{ route('admin.processes.tasks.actions.show', [$process, $task, $action]) }}">{{ $action->name }}</a>
-                                    @if ($action->details)
-                                        <span class="text-muted fas fa-align-left"></span>
-                                    @endif
-                                </div>
-                                <div class="sort-handle">
-                                    <span class="fas fa-arrows-alt-v"></span>
-                                </div>
-                            </li>
-                        @if ($loop->last)
-                            </ul>
-                        @endif
-
-
-                    @empty
-
-                        <div class="text-center border p-4">
-
-                            <p>{{ __('admin.action_description') }}</p>
-
-                        </div>
-
-                    @endforelse
-
-                    <div class="text-right mt-3">
-                        <a href="{{ route('admin.processes.tasks.actions.create', [$process, $task]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-plus"></span> {{ __('admin.addAction') }}
-                        </a>
-                    </div>--}}
 
                 </div>
             </div>

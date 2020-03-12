@@ -1,5 +1,5 @@
 {{--
-@teamSelectField([
+@teamMultiSelectField([
     'name' => 'string: form field name',
     'label' => 'string: text label for form field',
     'values' => 'collection: the field's value',

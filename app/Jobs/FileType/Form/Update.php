@@ -12,6 +12,7 @@ class Update
 
     private $form;
     private $name;
+    private $teams;
     private $active;
 
     /**
@@ -19,10 +20,11 @@ class Update
      *
      * @return void
      */
-    public function __construct(Form $form, $name, $active)
+    public function __construct(Form $form, $name, $teams, $active)
     {
         $this->form = $form;
         $this->name = $name;
+        $this->teams = $teams;
         $this->active = $active;
     }
 
@@ -36,6 +38,8 @@ class Update
         $form = $this->form;
         $form->name = $this->name;
         $form->active = $this->active;
+
+        $form->teams()->sync($this->teams);
 
         $form->save();
     }

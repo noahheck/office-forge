@@ -21,6 +21,20 @@
                 'error' => $errors->has('name'),
             ])
 
+            <hr>
+
+            @teamMultiSelectField([
+                'name' => 'teams',
+                'label' => __('file.form_teamAccessApproval'),
+                'values' => old('teams', $form->teams),
+                'teams' => $teamOptions,
+                'placeholder' => __('app.selectTeams'),
+                'description' => __('file.form_teamAccessApprovalDescription'),
+                'required' => false,
+                'autofocus' => false,
+                'error' => $errors->has('teams'),
+            ])
+
             @if ($showActive ?? false)
 
                 <hr>
@@ -37,6 +51,8 @@
                 ])
 
             @endif
+
+
 
         </div>
 

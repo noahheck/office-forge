@@ -33,6 +33,7 @@ return [
     'team' => 'Team',
     'members' => 'Members',
     'member' => 'Member',
+    'selectTeams' => 'Select Teams',
 
 
     'login' => 'Log in',

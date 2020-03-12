@@ -27,4 +27,9 @@ class Team extends Model
     {
         return $this->belongsToMany(Process::class, 'processes_teams_instantiators');
     }
+
+    public function fileTypeForms()
+    {
+        return $this->belongsToMany(Team::class, 'file_type_forms_teams', 'team_id' , 'file_type_form_id')->withTimestamps();
+    }
 }

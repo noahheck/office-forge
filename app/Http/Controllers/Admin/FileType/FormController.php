@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\FileType\Form\Update as UpdateRequest;
 use App\Jobs\FileType\Form\Create;
 use App\Jobs\FileType\Form\Update;
 use App\Jobs\FileType\Forms\UpdateOrder;
+use App\Team;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -35,11 +36,13 @@ class FormController extends Controller
      */
     public function create(FileType $fileType)
     {
+        $teamOptions = Team::all();
+
         $form = new Form;
         $form->active = true;
         $form->file_type_id = $fileType->id;
 
-        return $this->view('admin.file-types.forms.create', compact('fileType', 'form'));
+        return $this->view('admin.file-types.forms.create', compact('fileType', 'form', 'teamOptions'));
     }
 
     /**
@@ -51,7 +54,7 @@ class FormController extends Controller
      */
     public function store(StoreRequest $request, FileType $fileType)
     {
-        $this->dispatchNow($formCreated = new Create($fileType, $request->name));
+        $this->dispatchNow($formCreated = new Create($fileType, $request->name, $request->teams));
 
         flash_success(__('admin.form_created'));
 
@@ -81,7 +84,9 @@ class FormController extends Controller
      */
     public function edit(FileType $fileType, Form $form)
     {
-        return $this->view('admin.file-types.forms.edit', compact('fileType', 'form'));
+        $teamOptions = Team::all();
+
+        return $this->view('admin.file-types.forms.edit', compact('fileType', 'form', 'teamOptions'));
     }
 
     /**
@@ -94,7 +99,7 @@ class FormController extends Controller
      */
     public function update(UpdateRequest $request, FileType $fileType, Form $form)
     {
-        $this->dispatchNow($formUpdated = new Update($form, $request->name, $request->has('active')));
+        $this->dispatchNow($formUpdated = new Update($form, $request->name, $request->teams, $request->has('active')));
 
         flash_success(__('admin.form_updated'));
 
@@ -120,14 +125,6 @@ class FormController extends Controller
         return $this->json(true, [
             'successMessage' => __('admin.forms_orderUpdated'),
         ]);
-
-        /*
-         $this->dispatchNow($fieldsOrdered = new UpdateOrder($fileType, $form, $request->get('orderedFields')));
-
-        return $this->json(true, [
-            'successMessage' => __('admin.fields_orderUpdated'),
-        ]);
-         */
     }
 
 }
