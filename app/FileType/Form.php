@@ -27,8 +27,6 @@ class Form extends Model
 
         $sharedTeams = $formTeams->intersect($userTeams);
 
-        \Debugbar::info($sharedTeams);
-
         return $sharedTeams->count() > 0;
     }
 

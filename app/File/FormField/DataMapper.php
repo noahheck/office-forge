@@ -22,6 +22,10 @@ class DataMapper
             $value->value_text1 = $inputData[$field_id];
         }
 
+        if ($field->field_type === 'date') {
+            $value->value_date = $inputData[$field_id];
+        }
+
         if ($field->field_type == 'textarea') {
             $value->value_longtext = $inputData[$field_id];
         }

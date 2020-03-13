@@ -54,5 +54,7 @@ return [
     'field_fieldTypeTextarea' => 'Large Text Box',
     'field_fieldTypeEmail' => 'Email Address',
     'field_fieldTypeEmailPreviewPlaceholder' => 'john.doe@example.com',
+    'field_fieldTypeDate' => 'Date',
+    'field_fieldTypeDatePreviewPlaceholder' => date('m/d/Y'),
 
 ];

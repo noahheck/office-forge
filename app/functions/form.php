@@ -21,3 +21,9 @@ function filetype_field_preview_email(array $withClasses = []) {
 
     return "<input type='email' class='form-control' readonly placeholder='" . __('file.field_fieldTypeEmailPreviewPlaceholder') . "'>";
 }
+
+function filetype_field_preview_date(array $withClasses = []) {
+    $addlClasses = implode(' ', $withClasses);
+
+    return "<input type='text' class='form-control' readonly placeholder='" . __('file.field_fieldTypeDatePreviewPlaceholder') . "'>";
+}

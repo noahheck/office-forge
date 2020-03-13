@@ -21,6 +21,7 @@ class CreateFileFormFieldValuesTable extends Migration
             $table->bigInteger('value_integer')->nullable();
             $table->decimal('value_decimal', 9, 4)->nullable();
             $table->boolean('value_boolean')->nullable();
+            $table->date('value_date')->nullable();
             $table->string('value_text1')->nullable();
             $table->string('value_text2')->nullable();
             $table->string('value_text3')->nullable();
