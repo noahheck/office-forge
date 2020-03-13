@@ -17,6 +17,7 @@ try {
     let $ = window.$;
 
     $.fn.selectpicker.Constructor.DEFAULTS.iconBase = "fa-fw";
+    $.fn.selectpicker.Constructor.DEFAULTS.dropupAuto = false;
 
     (async function() {
         require('Component/trix');

@@ -1474,6 +1474,7 @@ try {
 
   var $ = window.$;
   $.fn.selectpicker.Constructor.DEFAULTS.iconBase = "fa-fw";
+  $.fn.selectpicker.Constructor.DEFAULTS.dropupAuto = false;
 
   (function _callee() {
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {

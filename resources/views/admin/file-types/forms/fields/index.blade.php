@@ -58,6 +58,7 @@
                                     <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
                                         {{ $field->label }}
                                     </a>
+                                    {{ ($field->description) ? ' - ' . $field->description : '' }}
                                     {!! $field->preview() !!}
                                 </div>
                                 <div class="sort-handle pl-3">
@@ -87,6 +88,7 @@
                                                 <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
                                                     {{ $field->label }}
                                                 </a>
+                                                {{ ($field->description) ? ' - ' . $field->description : '' }}
                                                 {!! $field->preview() !!}
                                             </div>
                                             <div class="sort-handle pl-3">
