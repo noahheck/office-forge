@@ -72,5 +72,6 @@ function filetype_field_options() {
     return [
         'text' => __('file.field_fieldTypeText'),
         'textarea' => __('file.field_fieldTypeTextarea'),
+        'email' => __('file.field_fieldTypeEmail'),
     ];
 }

@@ -18,7 +18,7 @@ class DataMapper
     {
         $field_id = $field->id;
 
-        if ($field->field_type == 'text') {
+        if (in_array($field->field_type,  ['text', 'email'])) {
             $value->value_text1 = $inputData[$field_id];
         }
 

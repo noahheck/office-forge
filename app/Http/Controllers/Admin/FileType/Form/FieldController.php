@@ -42,6 +42,7 @@ class FieldController extends Controller
         $field = new Field;
         $field->file_type_form_id = $form->id;
         $field->active = true;
+        $field->field_type = 'text';
 
         return $this->view('admin.file-types.forms.fields.create', compact('fileType', 'form', 'field'));
     }

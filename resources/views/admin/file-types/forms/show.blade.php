@@ -69,9 +69,6 @@
                         <h3 class="h4 flex-grow-1">
                             <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
                         </h3>
-                        <a href="{{ route('admin.file-types.forms.fields.index', [$fileType, $form]) }}">
-                            <span class="far fa-arrow-alt-circle-right mr-1"></span>{{ __('file.fields') }}
-                        </a>
                     </div>
 
 
@@ -103,6 +100,12 @@
 
                         @endforeach
 
+                        <p class="text-right mt-3">
+                            <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
+                                <span class="fas fa-plus mr-2"></span>{{ __('admin.newField') }}
+                            </a>
+                        </p>
+
 
                         @foreach ($form->fields->where('active', false) as $field)
 
@@ -131,11 +134,7 @@
                         @endforeach
 
 
-                        <p class="text-right mt-3">
-                            <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
-                                <span class="fas fa-plus mr-2"></span>{{ __('admin.newField') }}
-                            </a>
-                        </p>
+
 
                     @else
 
