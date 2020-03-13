@@ -10,12 +10,6 @@ class Value extends Model
 {
     protected $table = 'file_formfield_values';
 
-    protected $casts = [
-        'value_date' => 'date|Y-m-d',
-    ];
-
-//    protected $dateFormat = "Y-m-d";
-
     public function file()
     {
         return $this->belongsTo(File::class);

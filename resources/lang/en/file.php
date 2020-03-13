@@ -56,5 +56,6 @@ return [
     'field_fieldTypeEmailPreviewPlaceholder' => 'john.doe@example.com',
     'field_fieldTypeDate' => 'Date',
     'field_fieldTypeDatePreviewPlaceholder' => date('m/d/Y'),
+    'field_fieldTypeName' => 'Name',
 
 ];
