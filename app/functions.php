@@ -75,5 +75,6 @@ function filetype_field_options() {
         'email' => __('file.field_fieldTypeEmail'),
         'date' => __('file.field_fieldTypeDate'),
         'name' => __('file.field_fieldTypeName'),
+        'address' => __('file.field_fieldTypeAddress'),
     ];
 }

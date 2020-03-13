@@ -56,6 +56,18 @@ return [
     'field_fieldTypeEmailPreviewPlaceholder' => 'john.doe@example.com',
     'field_fieldTypeDate' => 'Date',
     'field_fieldTypeDatePreviewPlaceholder' => date('m/d/Y'),
+
     'field_fieldTypeName' => 'Name',
+    'field_fieldTypeNamePreviewFirstNamePlaceholder'  => 'First',
+    'field_fieldTypeNamePreviewMiddleNamePlaceholder' => 'Middle',
+    'field_fieldTypeNamePreviewLastNamePlaceholder'   => 'Last',
+    'field_fieldTypeNamePreviewSuffixPlaceholder'     => 'Suffix',
+
+    'field_fieldTypeAddress' => 'Address',
+    'field_fieldTypeAddressPreviewLine1Placeholder' => 'Line 1',
+    'field_fieldTypeAddressPreviewLine2Placeholder' => 'Line 2',
+    'field_fieldTypeAddressPreviewCityPlaceholder' => 'City',
+    'field_fieldTypeAddressPreviewStatePlaceholder' => 'State',
+    'field_fieldTypeAddressPreviewZipPlaceholder' => 'Zip',
 
 ];

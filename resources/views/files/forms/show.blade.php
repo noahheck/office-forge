@@ -30,7 +30,7 @@
 
                     <hr>
 
-                    <form class="bold-labels" action="{{ route('files.forms.update', [$file, $form]) }}" method="POST">
+                    <form class="bold-labels px-md-3 px-lg-4 px-xl-5" action="{{ route('files.forms.update', [$file, $form]) }}" method="POST">
 
                         @csrf
 
