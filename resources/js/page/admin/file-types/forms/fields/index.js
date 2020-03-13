@@ -15,7 +15,7 @@ $(function() {
     let fileTypeId = meta.get('fileTypeId');
     let formId    = meta.get('formId');
 
-    let sortable = Sortable.create(document.getElementById('formFields'), {
+    let sortable = Sortable.create(document.getElementById('formFields_active'), {
         handle: '.sort-handle',
         animation: 150,
         direction: 'vertical',

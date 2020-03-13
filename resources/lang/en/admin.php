@@ -93,6 +93,7 @@ return [
     'forms_orderUpdated' => 'Forms order updated',
 
     'fields' => 'Fields',
+    'inactive_fields' => 'Inactive Fields',
     'addField' => 'Add Field',
     'newField' => 'New Field',
     'newField_shortDescription' => 'Create a new Field',

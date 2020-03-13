@@ -36,6 +36,12 @@ class UpdateOrder
         $forms = $this->fileType->forms;
 
         foreach ($forms as $form) {
+
+            if (!array_key_exists($form->id, $formOrderMap)) {
+
+                continue;
+            }
+
             $form->order = $formOrderMap[$form->id] + 1;
             $form->save();
         }

@@ -39,6 +39,12 @@ class UpdateOrder
         $fields = $this->form->fields;
 
         foreach ($fields as $field) {
+
+            if (!array_key_exists($field->id, $fieldOrderMap)) {
+
+                continue;
+            }
+
             $field->order = $fieldOrderMap[$field->id] + 1;
             $field->save();
         }

@@ -47,25 +47,57 @@
 
                     @if ($form->fields->count() > 0)
 
-                        <ul class="list-group" id="formFields">
+                        @foreach ($form->fields->where('active', true) as $field)
 
-                            @foreach ($form->fields as $field)
+                            @if ($loop->first)
+                                <ul class="list-group form-fields" id="formFields_active">
+                            @endif
 
-                                <li class="list-group-item d-flex" data-id="{{ $field->id }}">
-                                    <div class="flex-grow-1">
-                                        <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                            {{ $field->label }}
-                                        </a>
-                                        {!! $field->preview() !!}
-                                    </div>
-                                    <div class="sort-handle pl-3">
-                                        <span class="fas fa-arrows-alt-v"></span>
-                                    </div>
-                                </li>
+                            <li class="list-group-item d-flex" data-id="{{ $field->id }}">
+                                <div class="flex-grow-1">
+                                    <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                        {{ $field->label }}
+                                    </a>
+                                    {!! $field->preview() !!}
+                                </div>
+                                <div class="sort-handle pl-3">
+                                    <span class="fas fa-arrows-alt-v"></span>
+                                </div>
+                            </li>
+
+                            @if ($loop->last)
+                                </ul>
+                            @endif
+
+                        @endforeach
+
+
+                            @foreach ($form->fields->where('active', false) as $field)
+
+                                @if ($loop->first)
+
+                                    <hr class="mt-5">
+                                    <h4 class="text-muted mssst-4">{{ __('admin.inactive_fields') }}</h4>
+
+                                    <ul class="list-group form-fields" id="formFields_inactive">
+                                        @endif
+
+                                        <li class="list-group-item d-flex" data-id="{{ $field->id }}">
+                                            <div class="flex-grow-1">
+                                                <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                                    {{ $field->label }}
+                                                </a>
+                                                {!! $field->preview() !!}
+                                            </div>
+                                            <div class="sort-handle pl-3">
+                                            </div>
+                                        </li>
+
+                                        @if ($loop->last)
+                                    </ul>
+                                @endif
 
                             @endforeach
-
-                        </ul>
 
                     @else
 

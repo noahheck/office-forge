@@ -29,6 +29,16 @@ class Field extends Model
         return $this->hasMany(Value::class, 'file_type_form_field_id');
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopeInactive($query)
+    {
+        return $query->where('active', false);
+    }
+
     public function icon(array $withClasses = [])
     {
         $function = "\App\icon\\filetype_field_" . $this->field_type;

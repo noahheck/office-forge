@@ -5,6 +5,11 @@
         @method($method)
     @endif
 
+    @hiddenField([
+        'name' => 'return',
+        'value' => url()->previous(),
+    ])
+
     <div class="row">
 
         <div class="col-12">

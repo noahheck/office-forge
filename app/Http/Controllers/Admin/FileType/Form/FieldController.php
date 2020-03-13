@@ -115,6 +115,11 @@ class FieldController extends Controller
 
         flash_success(__('admin.field_updated'));
 
+        if ($returnUrl = $request->return) {
+
+            return redirect($returnUrl);
+        }
+
         return redirect()->route('admin.file-types.forms.show', [$fileType, $form]);
     }
 

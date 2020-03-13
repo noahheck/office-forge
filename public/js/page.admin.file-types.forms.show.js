@@ -58,7 +58,7 @@ var form = __webpack_require__(/*! App/file-type/form */ "./resources/js/app/fil
 $(function () {
   var fileTypeId = meta.get('fileTypeId');
   var formId = meta.get('formId');
-  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('formFields'), {
+  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('formFields_active'), {
     handle: '.sort-handle',
     animation: 150,
     direction: 'vertical',

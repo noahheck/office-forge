@@ -79,9 +79,11 @@
 
                     @if ($form->fields->count() > 0)
 
-                        <ul class="list-group form-fields" id="formFields">
+                        @foreach ($form->fields->where('active', true) as $field)
 
-                            @foreach ($form->fields as $field)
+                            @if ($loop->first)
+                                <ul class="list-group form-fields" id="formFields_active">
+                            @endif
 
                                 <li class="list-group-item d-flex" data-id="{{ $field->id }}">
                                     <div class="flex-grow-1">
@@ -95,9 +97,39 @@
                                     </div>
                                 </li>
 
-                            @endforeach
+                            @if ($loop->last)
+                                </ul>
+                            @endif
 
-                        </ul>
+                        @endforeach
+
+
+                        @foreach ($form->fields->where('active', false) as $field)
+
+                            @if ($loop->first)
+
+                                <h4 class="text-muted mt-4">{{ __('admin.inactive_fields') }}</h4>
+
+                                <ul class="list-group form-fields" id="formFields_inactive">
+                            @endif
+
+                                <li class="list-group-item d-flex" data-id="{{ $field->id }}">
+                                    <div class="flex-grow-1">
+                                        <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                            {{ $field->label }}
+                                        </a>
+                                        {!! $field->preview() !!}
+                                    </div>
+                                    <div class="sort-handle pl-3">
+                                    </div>
+                                </li>
+
+                            @if ($loop->last)
+                                </ul>
+                            @endif
+
+                        @endforeach
+
 
                         <p class="text-right mt-3">
                             <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
