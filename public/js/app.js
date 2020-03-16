@@ -1495,6 +1495,8 @@ try {
 
   __webpack_require__(/*! Component/money-field */ "./resources/js/component/money-field.js");
 
+  __webpack_require__(/*! Component/integer-field */ "./resources/js/component/integer-field.js");
+
   var dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
   var buttons = __webpack_require__(/*! datatables.net-buttons-bs4 */ "./node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.js"); // let buttons = require('datatables.net-buttons');
@@ -1530,6 +1532,53 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
+/***/ "./resources/js/component/integer-field.js":
+/*!*************************************************!*\
+  !*** ./resources/js/component/integer-field.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/component/money-field.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var charCodes = __webpack_require__(/*! Services/character-codes */ "./resources/js/services/character-codes.js");
+
+function isCodeAllowed(code) {
+  if (charCodes.isControlCode(code)) {
+    return true;
+  }
+
+  if (code >= 35 && code <= 57 || code >= 96 && code <= 105) {
+    return true;
+  }
+
+  return false;
+}
+
+$(function () {
+  $('.integer-field').keydown(function (e) {
+    var curVal = $(this).val();
+    var charCode = e.which ? e.which : e.keyCode; // Allow cut/copy/paste (and probably bugs...)
+
+    if (e.ctrlKey) {
+      return true;
+    }
+
+    if (charCodes.isControlCode(charCode)) {
+      return true;
+    }
+
+    if (!isCodeAllowed(charCode)) {
+      return false;
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/component/money-field.js":
 /*!***********************************************!*\
   !*** ./resources/js/component/money-field.js ***!
@@ -1542,13 +1591,10 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  */
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
-function isControlCode(code) {
-  var controlCodes = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 92, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145];
-  return controlCodes.indexOf(code) !== -1;
-}
+var charCodes = __webpack_require__(/*! Services/character-codes */ "./resources/js/services/character-codes.js");
 
 function isCodeAllowed(code, hasDecimal) {
-  if (isControlCode(code)) {
+  if (charCodes.isControlCode(code)) {
     return true;
   }
 
@@ -1574,7 +1620,7 @@ $(function () {
       return true;
     }
 
-    if (isControlCode(charCode)) {
+    if (charCodes.isControlCode(charCode)) {
       return true;
     }
 
@@ -1904,6 +1950,27 @@ ajax.get = function (route, data) {
 
 window.ajax = ajax;
 module.exports = ajax;
+
+/***/ }),
+
+/***/ "./resources/js/services/character-codes.js":
+/*!**************************************************!*\
+  !*** ./resources/js/services/character-codes.js ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * js/services/character-codes.js
+ */
+var charCodes = {};
+
+charCodes.isControlCode = function (code) {
+  var controlCodes = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 92, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145];
+  return controlCodes.indexOf(code) !== -1;
+};
+
+module.exports = charCodes;
 
 /***/ }),
 

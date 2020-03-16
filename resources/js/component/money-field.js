@@ -4,22 +4,12 @@
 
 let $ = require('jquery');
 
+let charCodes = require('Services/character-codes');
 
-
-
-
-function isControlCode(code) {
-    let controlCodes = [
-        8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 92,
-        112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145
-    ];
-
-    return controlCodes.indexOf(code) !== -1;
-}
 
 function isCodeAllowed(code, hasDecimal) {
 
-    if (isControlCode(code)) {
+    if (charCodes.isControlCode(code)) {
         return true;
     }
 
@@ -50,7 +40,7 @@ $(function() {
             return true;
         }
 
-        if (isControlCode(charCode)) {
+        if (charCodes.isControlCode(charCode)) {
             return true;
         }
 
