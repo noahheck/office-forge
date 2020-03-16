@@ -31,7 +31,31 @@ function filetype_field_preview_date(array $withClasses = []) {
 function filetype_field_preview_phone(array $withClasses = []) {
     $addlClasses = implode(' ', $withClasses);
 
-    return "<input type='text' class='form-control' readonly placeholder='(123) 456-7890'>";
+    return <<<EOT
+<div class='input-group'>
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            <span class="fas fa-phone"></span>
+        </div>
+    </div>
+    <input type='text' class='form-control' readonly placeholder='(123) 456-7890'>
+</div>
+EOT;
+}
+
+function filetype_field_preview_money(array $withClasses = []) {
+    $addlClasses = implode(' ', $withClasses);
+
+    return <<<EOT
+<div class='input-group'>
+    <div class="input-group-prepend">
+        <div class="input-group-text">
+            <span class="fas fa-dollar-sign"></span>
+        </div>
+    </div>
+    <input type='text' class='form-control' readonly placeholder='1234.56'>
+</div>
+EOT;
 }
 
 

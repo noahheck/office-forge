@@ -1493,6 +1493,8 @@ try {
 
   __webpack_require__(/*! Component/phone-field */ "./resources/js/component/phone-field.js");
 
+  __webpack_require__(/*! Component/money-field */ "./resources/js/component/money-field.js");
+
   var dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
   var buttons = __webpack_require__(/*! datatables.net-buttons-bs4 */ "./node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.js"); // let buttons = require('datatables.net-buttons');
@@ -1525,6 +1527,79 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/component/money-field.js":
+/*!***********************************************!*\
+  !*** ./resources/js/component/money-field.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/component/money-field.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+function isControlCode(code) {
+  var controlCodes = [8, 9, 13, 16, 17, 18, 19, 20, 27, 33, 34, 35, 36, 37, 38, 39, 40, 45, 46, 91, 92, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145];
+  return controlCodes.indexOf(code) !== -1;
+}
+
+function isCodeAllowed(code, hasDecimal) {
+  if (isControlCode(code)) {
+    return true;
+  }
+
+  if (!hasDecimal && [110, 190].indexOf(code) !== -1) {
+    // Decimal point hasn't been added to the field yet
+    return true;
+  }
+
+  if (code >= 35 && code <= 57 || code >= 96 && code <= 105) {
+    return true;
+  }
+
+  return false;
+}
+
+$(function () {
+  $('.money-field').keydown(function (e) {
+    var curVal = $(this).val();
+    var hasDecimal = curVal.match(/\./);
+    var charCode = e.which ? e.which : e.keyCode; // Allow cut/copy/paste (and probably bugs...)
+
+    if (e.ctrlKey) {
+      return true;
+    }
+
+    if (isControlCode(charCode)) {
+      return true;
+    }
+
+    if (!isCodeAllowed(charCode, hasDecimal)) {
+      return false;
+    } // Limit the content to 2 decimal places
+
+
+    if (hasDecimal) {
+      // Account for 0-based indexing
+      var decimalPosition = curVal.indexOf('.') + 1;
+      var curCursorPosition = e.target.selectionStart; // Cursor is on the left side of the decimal
+
+      if (curCursorPosition < decimalPosition) {
+        return true;
+      }
+
+      var numCharsAfterDecimal = curVal.length - decimalPosition; // Already 2 characters after decimal
+
+      if (numCharsAfterDecimal >= 2) {
+        return false;
+      }
+    }
+  });
+});
 
 /***/ }),
 

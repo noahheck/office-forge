@@ -71,4 +71,5 @@ return [
     'field_fieldTypeAddressPreviewZipPlaceholder' => 'Zip',
 
     'field_fieldTypePhone' => 'Phone Number',
+    'field_fieldTypeMoney' => 'Monetary',
 ];

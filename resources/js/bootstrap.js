@@ -25,6 +25,7 @@ try {
 
 
     require('Component/phone-field');
+    require('Component/money-field');
 
     let dt = require('datatables.net-bs4');
     let buttons = require('datatables.net-buttons-bs4');

@@ -77,5 +77,6 @@ function filetype_field_options() {
         'name' => __('file.field_fieldTypeName'),
         'address' => __('file.field_fieldTypeAddress'),
         'phone' => __('file.field_fieldTypePhone'),
+        'money' => __('file.field_fieldTypeMoney'),
     ];
 }
