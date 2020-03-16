@@ -28,6 +28,13 @@ function filetype_field_preview_date(array $withClasses = []) {
     return "<input type='text' class='form-control' readonly placeholder='" . __('file.field_fieldTypeDatePreviewPlaceholder') . "'>";
 }
 
+function filetype_field_preview_phone(array $withClasses = []) {
+    $addlClasses = implode(' ', $withClasses);
+
+    return "<input type='text' class='form-control' readonly placeholder='(123) 456-7890'>";
+}
+
+
 function filetype_field_preview_name(array $withClasses = []) {
     $addlClasses = implode(' ', $withClasses);
 

@@ -76,5 +76,6 @@ function filetype_field_options() {
         'date' => __('file.field_fieldTypeDate'),
         'name' => __('file.field_fieldTypeName'),
         'address' => __('file.field_fieldTypeAddress'),
+        'phone' => __('file.field_fieldTypePhone'),
     ];
 }

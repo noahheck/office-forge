@@ -70,4 +70,5 @@ return [
     'field_fieldTypeAddressPreviewStatePlaceholder' => 'State',
     'field_fieldTypeAddressPreviewZipPlaceholder' => 'Zip',
 
+    'field_fieldTypePhone' => 'Phone Number',
 ];

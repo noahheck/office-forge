@@ -127,6 +127,7 @@ EOT;
         \Blade::include('_form/team-multi-select', 'teamMultiSelectField');
         \Blade::include('_form/checkboxSwitch',    'checkboxSwitchField');
         \Blade::include('_form/date',              'dateField');
+        \Blade::include('_form/phone',             'phoneField');
         \Blade::include('_form/textarea',          'textareaField');
         \Blade::include('_form/text-editor',       'textEditorField');
     }

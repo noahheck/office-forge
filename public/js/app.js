@@ -1491,6 +1491,8 @@ try {
     });
   })();
 
+  __webpack_require__(/*! Component/phone-field */ "./resources/js/component/phone-field.js");
+
   var dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
   var buttons = __webpack_require__(/*! datatables.net-buttons-bs4 */ "./node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.js"); // let buttons = require('datatables.net-buttons');
@@ -1523,6 +1525,53 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/component/phone-field.js":
+/*!***********************************************!*\
+  !*** ./resources/js/component/phone-field.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/component/phone-field.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+$(function () {
+  $(".phone-field").keyup(function () {
+    // Get current cursor position to put it back in the right place when the formatting is done
+    var $this = $(this);
+    var val = $this.val();
+    var onlyNumbers = val.replace(/[^0-9]/gi, '');
+    var areaCode = onlyNumbers;
+    var firstSet = '';
+    var lastSet = '';
+    var ext = '';
+    var numChars = onlyNumbers.length;
+
+    if (numChars > 3) {
+      areaCode = '(' + onlyNumbers.substr(0, 3) + ') ';
+    }
+
+    if (numChars >= 4) {
+      firstSet = onlyNumbers.substr(3, 3);
+    }
+
+    if (numChars >= 7) {
+      lastSet = '-' + onlyNumbers.substr(6, 4);
+    }
+
+    if (numChars >= 11) {
+      ext = ' x' + onlyNumbers.substr(10);
+    }
+
+    var newVal = areaCode + firstSet + lastSet + ext;
+    $this.val(newVal);
+  });
+});
 
 /***/ }),
 

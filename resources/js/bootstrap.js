@@ -23,6 +23,9 @@ try {
         require('Component/trix');
     })();
 
+
+    require('Component/phone-field');
+
     let dt = require('datatables.net-bs4');
     let buttons = require('datatables.net-buttons-bs4');
     // let buttons = require('datatables.net-buttons');
