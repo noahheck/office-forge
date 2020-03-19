@@ -7,3 +7,8 @@
   overflow-y: auto;
 }
 
+.form-preview label {
+  font-weight: bold;
+  cursor: pointer;
+}
+

@@ -7,4 +7,5 @@
     'required' => false,
     'autofocus' => false,
     'error' => $errors->has($field->id),
+    'readonly' => $readonly ?? false,
 ])

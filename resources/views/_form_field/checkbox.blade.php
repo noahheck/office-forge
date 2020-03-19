@@ -7,4 +7,5 @@
     'value' => $value->value_text1,
     'required' => false,
     'error' => $errors->has($field->id),
+    'readonly' => $readonly ?? false,
 ])

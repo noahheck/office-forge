@@ -9,6 +9,7 @@
     'required' => 'boolean: whether the field is required',
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
+    'readonly' => 'boolean: whether the field is in read-only state',
 ])
 --}}
 <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
@@ -16,5 +17,5 @@
     @if ($details ?? false)
         - {{ $details }}
     @endif
-    <textarea rows="{{ $rows ?? 10 }}" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }}>{{ $value ?? '' }}</textarea>
+    <textarea rows="{{ $rows ?? 10 }}" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>{{ $value ?? '' }}</textarea>
 </div>

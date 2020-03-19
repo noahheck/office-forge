@@ -19,7 +19,7 @@
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center form-preview">
 
         <div class="col-12 col-md-10 col-xl-8">
 
@@ -83,13 +83,15 @@
                             @endif
 
                                 <li class="list-group-item d-flex" data-id="{{ $field->id }}">
-                                    <div class="flex-grow-1">
-                                        <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                            <strong>{{ $field->label }}</strong>
-                                        </a>
-                                        {{ ($field->description) ? ' - ' . $field->description : '' }}
-                                        {!! $field->preview() !!}
-                                    </div>
+                                    <a class="flex-grow-1" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+
+                                        @include('_form_field.' . $field->field_type, [
+                                            'field' => $field,
+                                            'value' => optional((object) []),
+                                            'readonly' => true,
+                                        ])
+
+                                    </a>
                                     <div class="sort-handle pl-3">
                                         <span class="fas fa-arrows-alt-v"></span>
                                     </div>
@@ -118,13 +120,15 @@
                             @endif
 
                                 <li class="list-group-item d-flex" data-id="{{ $field->id }}">
-                                    <div class="flex-grow-1">
-                                        <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                            {{ $field->label }}
-                                        </a>
-                                        {{ ($field->description) ? ' - ' . $field->description : '' }}
-                                        {!! $field->preview() !!}
-                                    </div>
+                                    <a class="flex-grow-1" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+
+                                        @include('_form_field.' . $field->field_type, [
+                                            'field' => $field,
+                                            'value' => optional((object) []),
+                                            'readonly' => true,
+                                        ])
+
+                                    </a>
                                     <div class="sort-handle pl-3">
                                     </div>
                                 </li>

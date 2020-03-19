@@ -8,11 +8,12 @@
     'value' => 'string|number: field value to submit as field value; defaults to 1',
     'required' => 'boolean: whether the field is required',
     'error' => 'boolean: whether the field is in error state',
+    'readonly' => 'boolean: whether the field is in read-only state',
 ])
 --}}
 <div class="checkbox-field {{ ($required ?? false) ? 'required' : '' }}">
     <div class="checkbox-container">
-        <input type="checkbox" value="{{ $value ?? 1 }}" id="{{ $id }}" name="{{ $name }}" {{ ($checked ?? false) ? 'checked' : '' }} {{ ($required ?? false) ? 'required' : '' }}>
+        <input type="checkbox" value="{{ $value ?? 1 }}" id="{{ $id }}" name="{{ $name }}" {{ ($checked ?? false) ? 'checked' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly disabled' : '' }}>
     </div>
     <div class="checkbox-label-container">
         <label for="{{ $id }}">{{ $label }}</label>
