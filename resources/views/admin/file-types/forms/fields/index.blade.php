@@ -53,8 +53,8 @@
                                 <ul class="list-group form-fields" id="formFields_active">
                             @endif
 
-                            <li class="list-group-item d-flex" data-id="{{ $field->id }}">
-                                <a class="flex-grow-1" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                            <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
+                                <div class="flex-grow-1">
 
                                     @include('_form_field.' . $field->field_type, [
                                         'field' => $field,
@@ -62,9 +62,18 @@
                                         'readonly' => true,
                                     ])
 
-                                </a>
-                                <div class="sort-handle pl-3">
-                                    <span class="fas fa-arrows-alt-v"></span>
+                                </div>
+                                <div class="d-flex flex-column pl-3 text-center">
+
+                                    <div class="flex-grow-1">
+                                        <a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                            <span class="fas fa-edit"></span> Edit
+                                        </a>
+                                    </div>
+                                    <div>
+                                        <span class="sort-handle fas fa-arrows-alt-v"></span>
+                                    </div>
+
                                 </div>
                             </li>
 
@@ -83,23 +92,30 @@
                                     <h4 class="text-muted mssst-4">{{ __('admin.inactive_fields') }}</h4>
 
                                     <ul class="list-group form-fields" id="formFields_inactive">
-                                        @endif
+                                @endif
 
-                                        <li class="list-group-item d-flex" data-id="{{ $field->id }}">
-                                            <a class="flex-grow-1" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                    <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
+                                        <div class="flex-grow-1">
 
-                                                @include('_form_field.' . $field->field_type, [
-                                                    'field' => $field,
-                                                    'value' => optional((object) []),
-                                                    'readonly' => true,
-                                                ])
+                                            @include('_form_field.' . $field->field_type, [
+                                                'field' => $field,
+                                                'value' => optional((object) []),
+                                                'readonly' => true,
+                                            ])
 
-                                            </a>
-                                            <div class="sort-handle pl-3">
+                                        </div>
+                                        <div class="d-flex flex-column pl-3 text-center">
+
+                                            <div class="flex-grow-1">
+                                                <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                                    <span class="fas fa-edit"></span> Edit
+                                                </a>
                                             </div>
-                                        </li>
 
-                                        @if ($loop->last)
+                                        </div>
+                                    </li>
+
+                                @if ($loop->last)
                                     </ul>
                                 @endif
 

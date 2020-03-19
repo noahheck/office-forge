@@ -7,8 +7,11 @@
   overflow-y: auto;
 }
 
+.form-preview .form-field-list-item:hover {
+  background-color: #e3f3ff;
+}
+
 .form-preview label {
   font-weight: bold;
-  cursor: pointer;
 }
 

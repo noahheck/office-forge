@@ -2,6 +2,9 @@
  * sass/admin/files.scss
  */
 
+// Variables
+@import '../variables';
+
 .fileType-show {
 
     .fileType-forms-list-group {
@@ -14,9 +17,14 @@
 
 .form-preview {
 
+    .form-field-list-item {
+        &:hover {
+            background-color: $blue-highlight;
+        }
+    }
+
     label {
         font-weight: bold;
-        cursor: pointer;
     }
 
 }
