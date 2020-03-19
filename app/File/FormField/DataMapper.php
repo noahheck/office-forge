@@ -34,6 +34,10 @@ class DataMapper
             $value->value_date = $inputData[$field_id];
         }
 
+        if ($field->field_type === 'checkbox') {
+            $value->value_boolean = isset($inputData[$field_id]) && $inputData[$field_id];
+        }
+
         if ($field->field_type === 'textarea') {
             $value->value_longtext = $inputData[$field_id];
         }

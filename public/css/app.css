@@ -24614,6 +24614,28 @@ a.text-dark:focus {
   color: #666;
 }
 
+/**
+ * scss/_form.scss
+ */
+
+.checkbox-field {
+  display: -webkit-box;
+  display: flex;
+}
+
+.checkbox-field .checkbox-container {
+  width: 2.25rem;
+  padding-top: 2px;
+  text-align: center;
+  -webkit-box-flex: 0;
+          flex-grow: 0;
+}
+
+.checkbox-field .checkbox-label-container {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
 ::-webkit-input-placeholder {
   color: #c9c9c9 !important;
   opacity: 1;

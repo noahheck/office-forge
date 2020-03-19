@@ -73,4 +73,5 @@ return [
     'field_fieldTypePhone' => 'Phone Number',
     'field_fieldTypeMoney' => 'Monetary',
     'field_fieldTypeInteger' => 'Integer',
+    'field_fieldTypeCheckbox' => 'Checkbox',
 ];

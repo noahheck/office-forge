@@ -64,6 +64,12 @@ function filetype_field_preview_integer(array $withClasses = []) {
     return "<input type='text' class='form-control' readonly placeholder='123'>";
 }
 
+function filetype_field_preview_checkbox(array $withClasses = []) {
+    $addlClasses = implode(' ', $withClasses);
+
+    return "<input type='checkbox' class='sssform-control' readonly>";
+}
+
 
 function filetype_field_preview_name(array $withClasses = []) {
     $addlClasses = implode(' ', $withClasses);
