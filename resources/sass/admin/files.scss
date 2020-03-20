@@ -4,6 +4,7 @@
 
 // Variables
 @import '../variables';
+@import '../mixins';
 
 .fileType-show {
 
@@ -13,6 +14,9 @@
     }
 
 }
+
+
+
 
 
 .form-preview {
@@ -26,5 +30,12 @@
     label {
         font-weight: bold;
     }
+
+}
+
+
+
+.file-type-form-field-form {
+
 
 }

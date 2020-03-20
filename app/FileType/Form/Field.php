@@ -16,6 +16,7 @@ class Field extends Model
     protected $casts = [
         'active' => 'boolean',
         'order' => 'integer',
+        'options' => 'object',
         'panel_display' => 'boolean',
     ];
 
@@ -39,6 +40,13 @@ class Field extends Model
         return $query->where('active', false);
     }
 
+    public function selectOptions()
+    {
+        $select_options = optional($this->options)->select_options ?? [];
+
+        return array_combine($select_options, $select_options);
+    }
+
     public function icon(array $withClasses = [])
     {
         $function = "\App\icon\\filetype_field_" . $this->field_type;
@@ -51,15 +59,4 @@ class Field extends Model
         return $function($withClasses);
     }
 
-    public function preview(array $withClasses = [])
-    {
-        $function = "\App\\form\\filetype_field_preview_" . $this->field_type;
-
-        if (!function_exists($function)) {
-
-            return "help";
-        }
-
-        return $function($withClasses);
-    }
 }

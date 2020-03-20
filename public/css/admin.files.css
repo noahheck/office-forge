@@ -2,6 +2,10 @@
  * sass/admin/files.scss
  */
 
+/**
+ * sass/_mixins.scss
+ */
+
 .fileType-show .fileType-forms-list-group {
   max-height: 400px;
   overflow-y: auto;

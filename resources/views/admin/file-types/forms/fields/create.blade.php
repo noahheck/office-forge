@@ -1,8 +1,13 @@
 @extends("layouts.admin")
 
+@push('styles')
+    @style('css/admin.files.css')
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => new \App\Navigation\LocationBar\Admin\FileTypes\Forms\Fields\Create($fileType, $form),
 ])
+
 
 @section('content')
 

@@ -15,19 +15,21 @@ class Update
     private $description;
     private $field_type;
     private $active;
+    private $selectOptions;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Field $field, $label, $description, $field_type, $active)
+    public function __construct(Field $field, $label, $description, $field_type, $active, $selectOptions)
     {
         $this->field = $field;
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
         $this->active = $active;
+        $this->selectOptions = $selectOptions;
     }
 
     /**
@@ -42,6 +44,11 @@ class Update
         $field->label = $this->label;
         $field->description = $this->description;
         $field->active = $this->active;
+
+        $options = new \StdClass;
+        $options->select_options = $this->selectOptions;
+
+        $field->options = $options;
 
         $field->save();
     }

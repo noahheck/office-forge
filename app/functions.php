@@ -79,5 +79,6 @@ function filetype_field_options() {
         'money' => __('file.field_fieldTypeMoney'),
         'integer' => __('file.field_fieldTypeInteger'),
         'checkbox' => __('file.field_fieldTypeCheckbox'),
+        'select' => __('file.field_fieldTypeSelect'),
     ];
 }

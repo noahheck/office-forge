@@ -1,4 +1,8 @@
-<form action="{{ $action }}" method="POST" class="bold-labels">
+@push('scripts')
+    @script('js/page.admin.file-types.forms.fields._form.js')
+@endpush
+
+<form action="{{ $action }}" method="POST" class="bold-labels file-type-form-field-form">
     @csrf
 
     @if($method ?? false)
@@ -51,6 +55,50 @@
                 'error' => $errors->has('field_type'),
             ])
 
+            <div class="form-field-option row justify-content-center hidden" id="form-field-options_select" style="display: none;">
+
+                <div class="col-10">
+
+                    <div class="card shadow">
+
+                        <div class="card-header">
+                            <h5>{{ __('file.field_fieldTypeSelect_options') }}</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="input-group">
+                                <input type="text" id="newSelectOption" class="form-control" placeholder="{{ __('file.field_fieldTypeSelect_addOption') }}" aria-label="{{ __('file.field_fieldTypeSelect_addOption') }}">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="addNewSelectOption">{{ __('file.field_fieldTypeSelect_addOption') }}</button>
+                                </div>
+                            </div>
+
+                            <ul class="list-group mt-3" id="selectOptionsList">
+
+                                @foreach ($field->selectOptions() as $option)
+                                    <li class="list-group-item select-option-item d-flex">
+                                        <span class="select-option-text flex-grow-1">{{ $option }}</span>
+                                        <button type="button" class="btn btn-sm btn-outline-danger delete-button mr-3">
+                                            <span class="far fa-trash-alt pt-1"></span>
+                                        </button>
+                                        <span class="fas fa-arrows-alt-v sort-handle ml-2 pt-2"></span>
+                                        <input type="hidden" name="select_options[]" value="{{ $option }}">
+                                    </li>
+                                @endforeach
+
+                            </ul>
+
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
             @if ($showActive ?? false)
 
                 <hr>
@@ -85,3 +133,15 @@
     </a>
 
 </form>
+
+<ul class="template">
+    <li class="list-group-item select-option-item d-flex" id="newSelectOptionTemplate">
+        <span class="select-option-text flex-grow-1"></span>
+        <button type="button" class="btn btn-sm btn-outline-danger delete-button mr-3">
+            <span class="far fa-trash-alt pt-1"></span>
+        </button>
+        <span class="fas fa-arrows-alt-v sort-handle ml-2 pt-2"></span>
+        <input type="hidden" name="select_options[]" value="">
+    </li>
+
+</ul>

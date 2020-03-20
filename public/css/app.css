@@ -24661,6 +24661,10 @@ a.text-dark:focus {
   opacity: 1;
 }
 
+.template {
+  display: none;
+}
+
 .header-navbar {
   background-color: #282923;
   z-index: 1031;

@@ -74,4 +74,7 @@ return [
     'field_fieldTypeMoney' => 'Monetary',
     'field_fieldTypeInteger' => 'Integer',
     'field_fieldTypeCheckbox' => 'Checkbox',
+    'field_fieldTypeSelect' => 'Select Box',
+    'field_fieldTypeSelect_options' => 'Options',
+    'field_fieldTypeSelect_addOption' => 'Add Option',
 ];

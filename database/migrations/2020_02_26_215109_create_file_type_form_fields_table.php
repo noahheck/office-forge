@@ -23,6 +23,7 @@ class CreateFileTypeFormFieldsTable extends Migration
             $table->text('description')->nullable();
             $table->boolean('active')->default(true);
             $table->integer('order');
+            $table->json('options')->nullable();
             $table->boolean('panel_display')->default(false);
 
             $table->timestamps();

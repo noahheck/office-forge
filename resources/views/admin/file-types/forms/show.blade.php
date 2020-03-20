@@ -96,7 +96,7 @@
 
                                         <div class="flex-grow-1">
                                             <a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                <span class="fas fa-edit"></span> Edit
+                                                <span class="fas fa-edit"></span> {{ __('app.edit') }}
                                             </a>
                                         </div>
                                         <div>
@@ -142,7 +142,7 @@
 
                                         <div class="flex-grow-1">
                                             <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                <span class="fas fa-edit"></span> Edit
+                                                <span class="fas fa-edit"></span> {{ __('app.edit') }}
                                             </a>
                                         </div>
 

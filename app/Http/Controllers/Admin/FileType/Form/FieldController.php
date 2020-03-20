@@ -111,7 +111,8 @@ class FieldController extends Controller
             $request->label,
             $request->description,
             $request->field_type,
-            $request->has('active')
+            $request->has('active'),
+            $request->select_options
         ));
 
         flash_success(__('admin.field_updated'));
