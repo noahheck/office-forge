@@ -62,6 +62,7 @@ class FieldController extends Controller
             $request->label,
             $request->description,
             $request->field_type,
+            $request->has('separator'),
             $request->select_options
         ));
 
@@ -112,6 +113,7 @@ class FieldController extends Controller
             $request->label,
             $request->description,
             $request->field_type,
+            $request->has('separator'),
             $request->has('active'),
             $request->select_options
         ));

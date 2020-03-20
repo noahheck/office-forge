@@ -14,6 +14,7 @@ class Update
     private $label;
     private $description;
     private $field_type;
+    private $separator;
     private $active;
     private $selectOptions;
 
@@ -22,12 +23,13 @@ class Update
      *
      * @return void
      */
-    public function __construct(Field $field, $label, $description, $field_type, $active, $selectOptions)
+    public function __construct(Field $field, $label, $description, $field_type, $separator, $active, $selectOptions)
     {
         $this->field = $field;
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
+        $this->separator = $separator;
         $this->active = $active;
         $this->selectOptions = $selectOptions;
     }
@@ -43,6 +45,7 @@ class Update
         $field->field_type = $this->field_type;
         $field->label = $this->label;
         $field->description = $this->description;
+        $field->separator = $this->separator;
         $field->active = $this->active;
 
         $options = new \StdClass;

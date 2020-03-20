@@ -56,6 +56,10 @@
                             <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
                                 <div class="flex-grow-1">
 
+                                    @if ($field->separator)
+                                        <hr class="separator">
+                                    @endif
+
                                     @include('_form_field.' . $field->field_type, [
                                         'field' => $field,
                                         'value' => optional((object) []),
@@ -96,6 +100,10 @@
 
                                     <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
                                         <div class="flex-grow-1">
+
+                                            @if ($field->separator)
+                                                <hr class="separator">
+                                            @endif
 
                                             @include('_form_field.' . $field->field_type, [
                                                 'field' => $field,

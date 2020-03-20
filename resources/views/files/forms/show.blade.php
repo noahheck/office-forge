@@ -43,6 +43,10 @@
 
                         @foreach ($form->activeFields as $field)
 
+                            @if ($field->separator)
+                                <hr class="separator">
+                            @endif
+
                             @include('_form_field.' . $field->field_type, [
                                 'field' => $field,
                                 'value' => optional($values->firstWhere('file_type_form_field_id', $field->id)),

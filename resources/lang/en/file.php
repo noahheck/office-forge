@@ -43,6 +43,8 @@ return [
     'field_descriptionDescription' => 'Additional details to help staff fill in the correct value',
     'field_active' => 'Active',
     'field_activeDescription' => 'Fields marked inactive will not appear on any Form page for any files. You can re-activate a field if necessary; No data will be lost.',
+    'field_separator' => 'Separator',
+    'field_separatorDescription' => 'Visually distinguish sections of the form by outputting a horizontal line above this field.',
 
 
     'field_fieldType' => 'Field Type',

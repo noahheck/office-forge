@@ -21,6 +21,7 @@ class CreateFileTypeFormFieldsTable extends Migration
             $table->string('label');
             $table->string('placeholder')->nullable();
             $table->text('description')->nullable();
+            $table->boolean('separator')->default(false);
             $table->boolean('active')->default(true);
             $table->integer('order');
             $table->json('options')->nullable();

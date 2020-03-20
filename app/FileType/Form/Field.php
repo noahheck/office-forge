@@ -14,6 +14,7 @@ class Field extends Model
     protected $table = 'file_type_form_fields';
 
     protected $casts = [
+        'separator' => 'boolean',
         'active' => 'boolean',
         'order' => 'integer',
         'options' => 'object',

@@ -15,6 +15,7 @@ class Create
     private $label;
     private $description;
     private $field_type;
+    private $separator;
     private $selectOptions;
 
     private $field;
@@ -24,12 +25,13 @@ class Create
      *
      * @return void
      */
-    public function __construct(Form $form, $label, $description, $field_type, $selectOptions)
+    public function __construct(Form $form, $label, $description, $field_type, $separator, $selectOptions)
     {
         $this->form = $form;
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
+        $this->separator = $separator;
         $this->selectOptions = $selectOptions;
     }
 
@@ -50,6 +52,7 @@ class Create
         $field->field_type = $this->field_type;
         $field->label = $this->label;
         $field->description = $this->description;
+        $field->separator = $this->separator;
         $field->active = true;
         $field->order = $this->form->fields->max('order') + 1;
 

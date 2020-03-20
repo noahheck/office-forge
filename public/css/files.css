@@ -2,6 +2,13 @@
  * sass/files.scss
  */
 
+hr.separator {
+  border-top: 2px solid #c9c9c9;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  width: 90%;
+}
+
 .no-files .no-files-icon-container {
   font-size: 9rem;
 }

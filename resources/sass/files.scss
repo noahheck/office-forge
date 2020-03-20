@@ -2,6 +2,15 @@
  * sass/files.scss
  */
 
+@import "variables";
+
+hr.separator {
+    border-top: 2px solid $medium-gray;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    width: 90%;
+}
+
 .no-files {
     .no-files-icon-container {
         font-size: 9rem;
@@ -10,6 +19,8 @@
 
 
 .file-form {
+
+
     .file-type-icon-container {
         font-size: 9rem;
     }
