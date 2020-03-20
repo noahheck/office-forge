@@ -61,7 +61,8 @@ class FieldController extends Controller
             $form,
             $request->label,
             $request->description,
-            $request->field_type
+            $request->field_type,
+            $request->select_options
         ));
 
         flash_success(__('admin.field_created'));

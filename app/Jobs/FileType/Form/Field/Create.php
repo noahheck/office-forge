@@ -15,6 +15,7 @@ class Create
     private $label;
     private $description;
     private $field_type;
+    private $selectOptions;
 
     private $field;
 
@@ -23,12 +24,13 @@ class Create
      *
      * @return void
      */
-    public function __construct(Form $form, $label, $description, $field_type)
+    public function __construct(Form $form, $label, $description, $field_type, $selectOptions)
     {
         $this->form = $form;
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
+        $this->selectOptions = $selectOptions;
     }
 
     public function getField(): Field
@@ -50,6 +52,11 @@ class Create
         $field->description = $this->description;
         $field->active = true;
         $field->order = $this->form->fields->max('order') + 1;
+
+        $options = new \StdClass;
+        $options->select_options = $this->selectOptions;
+
+        $field->options = $options;
 
         $field->save();
 
