@@ -48,6 +48,11 @@ class Field extends Model
         return array_combine($select_options, $select_options);
     }
 
+    public function decimalPlaces()
+    {
+        return optional($this->options)->decimal_places;
+    }
+
     public function icon(array $withClasses = [])
     {
         $function = "\App\icon\\filetype_field_" . $this->field_type;

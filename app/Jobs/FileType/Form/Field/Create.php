@@ -17,6 +17,7 @@ class Create
     private $field_type;
     private $separator;
     private $selectOptions;
+    private $decimalPlaces;
 
     private $field;
 
@@ -25,7 +26,7 @@ class Create
      *
      * @return void
      */
-    public function __construct(Form $form, $label, $description, $field_type, $separator, $selectOptions)
+    public function __construct(Form $form, $label, $description, $field_type, $separator, $selectOptions, $decimalPlaces)
     {
         $this->form = $form;
         $this->label = $label;
@@ -33,6 +34,7 @@ class Create
         $this->field_type = $field_type;
         $this->separator = $separator;
         $this->selectOptions = $selectOptions;
+        $this->decimalPlaces = $decimalPlaces;
     }
 
     public function getField(): Field
@@ -58,6 +60,7 @@ class Create
 
         $options = new \StdClass;
         $options->select_options = $this->selectOptions;
+        $options->decimal_places = $this->decimalPlaces;
 
         $field->options = $options;
 

@@ -26,6 +26,10 @@ class DataMapper
             $value->value_decimal = $inputData[$field_id];
         }
 
+        if ($field->field_type === 'decimal') {
+            $value->value_decimal = $inputData[$field_id];
+        }
+
         if ($field->field_type === 'integer') {
             $value->value_integer = $inputData[$field_id];
         }

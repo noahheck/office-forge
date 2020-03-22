@@ -26,8 +26,6 @@
 
                     @include('admin.file-types.forms.fields._form', [
                         'action' => route('admin.file-types.forms.fields.store', [$fileType, $form]),
-                        /*'taskAction' => $action,
-                        'showActive' => false,*/
                     ])
 
                 </div>

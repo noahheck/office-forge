@@ -17,13 +17,14 @@ class Update
     private $separator;
     private $active;
     private $selectOptions;
+    private $decimalPlaces;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Field $field, $label, $description, $field_type, $separator, $active, $selectOptions)
+    public function __construct(Field $field, $label, $description, $field_type, $separator, $active, $selectOptions, $decimalPlaces)
     {
         $this->field = $field;
         $this->label = $label;
@@ -32,6 +33,7 @@ class Update
         $this->separator = $separator;
         $this->active = $active;
         $this->selectOptions = $selectOptions;
+        $this->decimalPlaces = $decimalPlaces;
     }
 
     /**
@@ -50,6 +52,7 @@ class Update
 
         $options = new \StdClass;
         $options->select_options = $this->selectOptions;
+        $options->decimal_places = $this->decimalPlaces;
 
         $field->options = $options;
 

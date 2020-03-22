@@ -13,6 +13,7 @@ return [
     'addNew' => 'Add New',
 
     'itemUpdated' => ':itemName updated',
+    'options' => 'Options',
 
 
     'showNavigationMenu' => 'Show Navigation Menu',

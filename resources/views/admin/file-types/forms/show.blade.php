@@ -146,7 +146,7 @@
                                         ])
 
                                     </div>
-                                    <div class="d-flex flex-column pl-3 text-center">
+                                    <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                         <div class="flex-grow-1">
                                             <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">

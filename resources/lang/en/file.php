@@ -75,6 +75,9 @@ return [
     'field_fieldTypePhone' => 'Phone Number',
     'field_fieldTypeMoney' => 'Monetary',
     'field_fieldTypeInteger' => 'Integer',
+    'field_fieldTypeDecimal' => 'Decimal',
+    'field_fieldTypeDecimal_numberOfDecimalPlaces' => 'Number of decimal places',
+
     'field_fieldTypeCheckbox' => 'Checkbox',
     'field_fieldTypeSelect' => 'Select Box',
     'field_fieldTypeSelect_options' => 'Options',

@@ -63,7 +63,8 @@ class FieldController extends Controller
             $request->description,
             $request->field_type,
             $request->has('separator'),
-            $request->select_options
+            $request->select_options,
+            $request->decimal_places
         ));
 
         flash_success(__('admin.field_created'));
@@ -115,7 +116,8 @@ class FieldController extends Controller
             $request->field_type,
             $request->has('separator'),
             $request->has('active'),
-            $request->select_options
+            $request->select_options,
+            $request->decimal_places
         ));
 
         flash_success(__('admin.field_updated'));

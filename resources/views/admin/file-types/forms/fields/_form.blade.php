@@ -55,6 +55,36 @@
                 'error' => $errors->has('field_type'),
             ])
 
+            <div class="form-field-option row justify-content-center hidden" id="form-field-options_decimal" style="display: none;">
+
+                <div class="col-10">
+                    <div class="card shadow">
+
+                        <div class="card-header">
+                            <h5>{{ __('file.field_fieldTypeDecimal') }} {{ __('app.options') }}</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            @selectField([
+                                'name' => 'decimal_places',
+                                'label' => __('file.field_fieldTypeDecimal_numberOfDecimalPlaces'),
+                                'details' => '',
+                                'value' => (int) $field->decimalPlaces(),
+                                'options' => ['1' => '1', '2' => '2', '3' => '3', '4' => '4'],
+                                'placeholder' => '',
+                                'required' => true,
+                                'autofocus' => false,
+                                'error' => $errors->has('decimal_places'),
+                                'readonly' => false,
+                            ])
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
             <div class="form-field-option row justify-content-center hidden" id="form-field-options_select" style="display: none;">
 
                 <div class="col-10">
@@ -62,7 +92,7 @@
                     <div class="card shadow">
 
                         <div class="card-header">
-                            <h5>{{ __('file.field_fieldTypeSelect_options') }}</h5>
+                            <h5>{{ __('file.field_fieldTypeSelect') }} {{ __('app.options') }}</h5>
                         </div>
 
                         <div class="card-body">
