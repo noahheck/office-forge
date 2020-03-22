@@ -86,4 +86,8 @@ return [
     'field_fieldTypeUser' => 'User',
     'field_fieldTypeUser_memberOfTeam' => 'Member of Team',
     'field_fieldTypeUser_memberOfTeamDescription' => 'If selected, only members of the specified Team will be able to be selected',
+
+    'field_fieldTypeFile' => 'File',
+    'field_fieldTypeFile_fileType' => 'File Type',
+    'field_fieldTypeFile_fileTypeDescription' => 'Specify the type of file that should be selected',
 ];

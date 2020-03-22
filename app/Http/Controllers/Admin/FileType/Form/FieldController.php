@@ -27,9 +27,9 @@ class FieldController extends Controller
      * @param  Form $form
      * @return \Illuminate\Http\Response
      */
-    public function index(FileType $fileType, Form $form)
+    public function index(FileType $fileType, Form $form, MemberProvider $memberProvider)
     {
-        return $this->view('admin.file-types.forms.fields.index', compact('fileType', 'form'));
+        return $this->view('admin.file-types.forms.fields.index', compact('fileType', 'form', 'memberProvider'));
     }
 
     /**
@@ -47,13 +47,15 @@ class FieldController extends Controller
         $field->field_type = 'text';
 
         $allTeams = Team::all();
+        $allFileTypes = FileType::all();
 
         return $this->view('admin.file-types.forms.fields.create', compact(
             'fileType',
             'form',
             'field',
             'allTeams',
-            'memberProvider'
+            'memberProvider',
+            'allFileTypes'
         ));
     }
 
@@ -75,7 +77,8 @@ class FieldController extends Controller
             $request->has('separator'),
             $request->select_options,
             $request->decimal_places,
-            $request->user_team
+            $request->user_team,
+            $request->file_type
         ));
 
         flash_success(__('admin.field_created'));
@@ -107,13 +110,15 @@ class FieldController extends Controller
     public function edit(FileType $fileType, Form $form, Field $field, MemberProvider $memberProvider)
     {
         $allTeams = Team::all();
+        $allFileTypes = FileType::all();
 
         return $this->view('admin.file-types.forms.fields.edit', compact(
             'fileType',
             'form',
             'field',
             'allTeams',
-            'memberProvider'
+            'memberProvider',
+            'allFileTypes'
         ));
     }
 
@@ -137,7 +142,8 @@ class FieldController extends Controller
             $request->has('active'),
             $request->select_options,
             $request->decimal_places,
-            $request->user_team
+            $request->user_team,
+            $request->file_type
         ));
 
         flash_success(__('admin.field_updated'));

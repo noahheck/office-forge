@@ -55,6 +55,36 @@
                 'error' => $errors->has('field_type'),
             ])
 
+            <div class="form-field-option row justify-content-center hidden" id="form-field-options_file" style="display: none;">
+
+                <div class="col-10">
+                    <div class="card shadow">
+
+                        <div class="card-header">
+                            <h5>{{ __('file.field_fieldTypeFile') }} {{ __('app.options') }}</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            @fileTypeSelectField([
+                                'name' => 'file_type',
+                                'label' => __('file.field_fieldTypeFile_fileType'),
+                                'value' => (int) $field->fileTypeId(),
+                                'fileTypes' => $allFileTypes,
+                                'placeholder' => __('file.field_fieldTypeFile_fileType'),
+                                'description' => __('file.field_fieldTypeFile_fileTypeDescription'),
+                                'required' => false,
+                                'autofocus' => false,
+                                'error' => $errors->has('file_type'),
+                            ])
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
             <div class="form-field-option row justify-content-center hidden" id="form-field-options_user" style="display: none;">
 
                 <div class="col-10">

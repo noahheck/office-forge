@@ -19,6 +19,7 @@ class Create
     private $selectOptions;
     private $decimalPlaces;
     private $userTeam;
+    private $fileType;
 
     private $field;
 
@@ -35,7 +36,8 @@ class Create
         $separator,
         $selectOptions,
         $decimalPlaces,
-        $userTeam
+        $userTeam,
+        $fileType
     ) {
         $this->form = $form;
         $this->label = $label;
@@ -45,6 +47,7 @@ class Create
         $this->selectOptions = $selectOptions;
         $this->decimalPlaces = $decimalPlaces;
         $this->userTeam = $userTeam;
+        $this->fileType = $fileType;
     }
 
     public function getField(): Field
@@ -72,6 +75,7 @@ class Create
         $options->select_options = $this->selectOptions;
         $options->decimal_places = $this->decimalPlaces;
         $options->user_team = $this->userTeam;
+        $options->file_type = $this->fileType;
 
         $field->options = $options;
 

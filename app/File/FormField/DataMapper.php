@@ -30,6 +30,10 @@ class DataMapper
             $value->value_user = $inputData[$field_id];
         }
 
+        if ($field->field_type === 'file') {
+            $value->value_file = $inputData[$field_id];
+        }
+
         if ($field->field_type === 'integer') {
             $value->value_integer = $inputData[$field_id];
         }

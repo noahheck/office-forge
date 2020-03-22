@@ -3,6 +3,7 @@
 namespace App\FileType\Form;
 
 use App\File\FormField\Value;
+use App\FileType;
 use App\FileType\Form;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -56,6 +57,21 @@ class Field extends Model
     public function userTeam()
     {
         return optional($this->options)->user_team;
+    }
+
+    public function fileTypeId()
+    {
+        return optional($this->options)->file_type;
+    }
+
+    public function fileType()
+    {
+        return $this->belongsTo(FileType::class, 'file_type_id');
+    }
+
+    public function getFileTypeIdAttribute()
+    {
+        return $this->fileTypeId();
     }
 
     public function icon(array $withClasses = [])

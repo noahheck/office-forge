@@ -19,6 +19,7 @@ class Update
     private $selectOptions;
     private $decimalPlaces;
     private $userTeam;
+    private $fileType;
 
     /**
      * Create a new job instance.
@@ -34,7 +35,8 @@ class Update
         $active,
         $selectOptions,
         $decimalPlaces,
-        $userTeam
+        $userTeam,
+        $fileType
     ) {
         $this->field = $field;
         $this->label = $label;
@@ -45,6 +47,7 @@ class Update
         $this->selectOptions = $selectOptions;
         $this->decimalPlaces = $decimalPlaces;
         $this->userTeam = $userTeam;
+        $this->fileType = $fileType;
     }
 
     /**
@@ -65,6 +68,7 @@ class Update
         $options->select_options = $this->selectOptions;
         $options->decimal_places = $this->decimalPlaces;
         $options->user_team = $this->userTeam;
+        $options->file_type = $this->fileType;
 
         $field->options = $options;
 

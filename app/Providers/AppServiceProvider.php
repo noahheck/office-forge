@@ -123,9 +123,6 @@ EOT;
         \Blade::include('_form/password',          'passwordField');
         \Blade::include('_form/hidden',            'hiddenField');
         \Blade::include('_form/select',            'selectField');
-        \Blade::include('_form/user-select',       'userSelectField');
-        \Blade::include('_form/team-multi-select', 'teamMultiSelectField');
-        \Blade::include('_form/team-select',       'teamSelectField');
         \Blade::include('_form/checkbox',          'checkboxField');
         \Blade::include('_form/checkboxSwitch',    'checkboxSwitchField');
         \Blade::include('_form/date',              'dateField');
@@ -135,5 +132,10 @@ EOT;
         \Blade::include('_form/decimal',           'decimalField');
         \Blade::include('_form/textarea',          'textareaField');
         \Blade::include('_form/text-editor',       'textEditorField');
+        \Blade::include('_form/user-select',       'userSelectField');
+        \Blade::include('_form/team-select',       'teamSelectField');
+        \Blade::include('_form/team-multi-select', 'teamMultiSelectField');
+        \Blade::include('_form/file-type-select',  'fileTypeSelectField');
+        \Blade::include('_form/file-select',       'fileSelectField');
     }
 }

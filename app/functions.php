@@ -82,5 +82,6 @@ function filetype_field_options() {
         'checkbox' => __('file.field_fieldTypeCheckbox'),
         'select' => __('file.field_fieldTypeSelect'),
         'user' => __('file.field_fieldTypeUser'),
+        'file' => __('file.field_fieldTypeFile'),
     ];
 }
