@@ -46,6 +46,11 @@ class User extends Authenticatable implements Headshottable
         'system_administrator' => 'boolean',
     ];
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('name');
+    }
+
 
 
     public function isAdministrator()

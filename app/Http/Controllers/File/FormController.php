@@ -6,6 +6,7 @@ use App\File;
 use App\FileType\Form;
 use App\Http\Controllers\Controller;
 use App\Jobs\File\Form\Update;
+use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 use App\Http\Requests\File\Forms\Update as UpdateRequest;
 use function App\flash_success;
@@ -26,7 +27,7 @@ class FormController extends Controller
         return $this->view('files.forms.index', compact('file', 'fileType', 'forms'));
     }
 
-    public function show(Request $request, File $file, Form $form)
+    public function show(Request $request, File $file, Form $form, MemberProvider $memberProvider)
     {
         $user     = $request->user();
         abort_unless($form->isAccessibleBy($user), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
@@ -34,7 +35,13 @@ class FormController extends Controller
         $fileType = $file->fileType;
         $values   = $file->formFieldValues;
 
-        return $this->view('files.forms.show', compact('file', 'fileType', 'form', 'values'));
+        return $this->view('files.forms.show', compact(
+            'file',
+            'fileType',
+            'form',
+            'values',
+            'memberProvider'
+        ));
     }
 
     public function update(UpdateRequest $request, File $file, Form $form)

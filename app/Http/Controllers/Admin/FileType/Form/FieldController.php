@@ -11,6 +11,8 @@ use App\Http\Response\AjaxResponse;
 use App\Jobs\FileType\Form\Field\Create;
 use App\Jobs\FileType\Form\Field\Update;
 use App\Jobs\FileType\Form\Fields\UpdateOrder;
+use App\Team;
+use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
@@ -37,14 +39,22 @@ class FieldController extends Controller
      * @param  Form $form
      * @return \Illuminate\Http\Response
      */
-    public function create(FileType $fileType, Form $form)
+    public function create(FileType $fileType, Form $form, MemberProvider $memberProvider)
     {
         $field = new Field;
         $field->file_type_form_id = $form->id;
         $field->active = true;
         $field->field_type = 'text';
 
-        return $this->view('admin.file-types.forms.fields.create', compact('fileType', 'form', 'field'));
+        $allTeams = Team::all();
+
+        return $this->view('admin.file-types.forms.fields.create', compact(
+            'fileType',
+            'form',
+            'field',
+            'allTeams',
+            'memberProvider'
+        ));
     }
 
     /**
@@ -64,7 +74,8 @@ class FieldController extends Controller
             $request->field_type,
             $request->has('separator'),
             $request->select_options,
-            $request->decimal_places
+            $request->decimal_places,
+            $request->user_team
         ));
 
         flash_success(__('admin.field_created'));
@@ -93,9 +104,17 @@ class FieldController extends Controller
      * @param  Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function edit(FileType $fileType, Form $form, Field $field)
+    public function edit(FileType $fileType, Form $form, Field $field, MemberProvider $memberProvider)
     {
-        return $this->view('admin.file-types.forms.fields.edit', compact('fileType', 'form', 'field'));
+        $allTeams = Team::all();
+
+        return $this->view('admin.file-types.forms.fields.edit', compact(
+            'fileType',
+            'form',
+            'field',
+            'allTeams',
+            'memberProvider'
+        ));
     }
 
     /**
@@ -117,7 +136,8 @@ class FieldController extends Controller
             $request->has('separator'),
             $request->has('active'),
             $request->select_options,
-            $request->decimal_places
+            $request->decimal_places,
+            $request->user_team
         ));
 
         flash_success(__('admin.field_updated'));

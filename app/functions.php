@@ -81,5 +81,6 @@ function filetype_field_options() {
         'decimal' => __('file.field_fieldTypeDecimal'),
         'checkbox' => __('file.field_fieldTypeCheckbox'),
         'select' => __('file.field_fieldTypeSelect'),
+        'user' => __('file.field_fieldTypeUser'),
     ];
 }

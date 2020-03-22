@@ -55,6 +55,36 @@
                 'error' => $errors->has('field_type'),
             ])
 
+            <div class="form-field-option row justify-content-center hidden" id="form-field-options_user" style="display: none;">
+
+                <div class="col-10">
+                    <div class="card shadow">
+
+                        <div class="card-header">
+                            <h5>{{ __('file.field_fieldTypeUser') }} {{ __('app.options') }}</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            @teamSelectField([
+                                'name' => 'user_team',
+                                'label' => __('file.field_fieldTypeUser_memberOfTeam'),
+                                'value' => (int) $field->userTeam(),
+                                'teams' => $allTeams,
+                                'placeholder' => __('file.field_fieldTypeUser_memberOfTeam'),
+                                'description' => __('file.field_fieldTypeUser_memberOfTeamDescription'),
+                                'required' => false,
+                                'autofocus' => false,
+                                'error' => $errors->has('user_team'),
+                            ])
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
             <div class="form-field-option row justify-content-center hidden" id="form-field-options_decimal" style="display: none;">
 
                 <div class="col-10">

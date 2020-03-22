@@ -11,6 +11,7 @@ use App\Jobs\FileType\Form\Create;
 use App\Jobs\FileType\Form\Update;
 use App\Jobs\FileType\Forms\UpdateOrder;
 use App\Team;
+use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -70,9 +71,9 @@ class FormController extends Controller
      * @param \App\FileType\Form $form
      * @return \Illuminate\Http\Response
      */
-    public function show(FileType $fileType, Form $form)
+    public function show(FileType $fileType, Form $form, MemberProvider $memberProvider)
     {
-        return $this->view('admin.file-types.forms.show', compact('fileType', 'form'));
+        return $this->view('admin.file-types.forms.show', compact('fileType', 'form', 'memberProvider'));
     }
 
     /**

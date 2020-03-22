@@ -18,16 +18,16 @@ class DataMapper
     {
         $field_id = $field->id;
 
-        if (in_array($field->field_type,  ['text', 'email', 'phone', 'select'])) {
+        if (in_array($field->field_type, ['text', 'email', 'phone', 'select'])) {
             $value->value_text1 = $inputData[$field_id];
         }
 
-        if ($field->field_type === 'money') {
+        if (in_array($field->field_type, ['money', 'decimal'])) {
             $value->value_decimal = $inputData[$field_id];
         }
 
-        if ($field->field_type === 'decimal') {
-            $value->value_decimal = $inputData[$field_id];
+        if ($field->field_type === 'user') {
+            $value->value_user = $inputData[$field_id];
         }
 
         if ($field->field_type === 'integer') {

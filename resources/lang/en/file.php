@@ -82,4 +82,8 @@ return [
     'field_fieldTypeSelect' => 'Select Box',
     'field_fieldTypeSelect_options' => 'Options',
     'field_fieldTypeSelect_addOption' => 'Add Option',
+
+    'field_fieldTypeUser' => 'User',
+    'field_fieldTypeUser_memberOfTeam' => 'Member of Team',
+    'field_fieldTypeUser_memberOfTeamDescription' => 'If selected, only members of the specified Team will be able to be selected',
 ];

@@ -53,6 +53,11 @@ class Field extends Model
         return optional($this->options)->decimal_places;
     }
 
+    public function userTeam()
+    {
+        return optional($this->options)->user_team;
+    }
+
     public function icon(array $withClasses = [])
     {
         $function = "\App\icon\\filetype_field_" . $this->field_type;
