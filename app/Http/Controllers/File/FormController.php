@@ -46,9 +46,6 @@ class FormController extends Controller
 
     public function update(UpdateRequest $request, File $file, Form $form)
     {
-        $user     = $request->user();
-        abort_unless($form->isAccessibleBy($user), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
-
         $this->dispatchNow($formUpdated = new Update($file, $form, $request->all()));
 
         flash_success(__('app.itemUpdated', ['itemName' => $form->name]));

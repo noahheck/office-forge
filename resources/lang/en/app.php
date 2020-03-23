@@ -52,5 +52,6 @@ return [
     'timezone_America/Adak'        => 'Hawaii',
     'timezone_Pacific/Honolulu'    => 'Hawaii (no DST)',
 
+    'error_submissionHadErrors' => 'Your form submission could not be processed:',
     'error_noAccess' => 'You do not have permission to access this :itemName',
 ];

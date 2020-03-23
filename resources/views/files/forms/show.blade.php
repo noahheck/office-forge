@@ -28,6 +28,8 @@
                         <span class="far fa-list-alt mr-2"></span>{{ $form->name }}
                     </h2>
 
+                    @formError
+
                     <hr>
 
                     <form class="bold-labels px-md-3 px-lg-4 px-xl-5" action="{{ route('files.forms.update', [$file, $form]) }}" method="POST">
@@ -38,7 +40,7 @@
 
                         @hiddenField([
                             'name' => 'return',
-                            'value' => url()->previous()
+                            'value' => old('return', url()->previous()),
                         ])
 
                         @foreach ($form->activeFields as $field)
@@ -60,7 +62,7 @@
                             {{ __('app.save') }}
                         </button>
 
-                        <a class="btn btn-secondary" href="{{ url()->previous(route('files.show', [$file])) }}">
+                        <a class="btn btn-secondary" href="{{ old('return', url()->previous(route('files.show', [$file]))) }}">
                             {{ __('app.cancel') }}
                         </a>
 

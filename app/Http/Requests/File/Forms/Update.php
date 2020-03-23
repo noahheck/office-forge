@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests\File\Forms;
 
+use App\FileType\Form;
+use App\FileType\Form\FieldValidationRulesGenerator;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Update extends FormRequest
 {
+    private $nameAttributes;
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -13,7 +17,12 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return $this->form->isAccessibleBy($this->user());
+    }
+
+    public function attributes()
+    {
+        return $this->nameAttributes;
     }
 
     /**
@@ -21,12 +30,12 @@ class Update extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(FieldValidationRulesGenerator $generator)
     {
-        // Can access the form by $this->form, get the form fields, and compile the validation rules from there
+        $rules = $generator->generateRulesForForm($this->form);
 
-        return [
-            //
-        ];
+        $this->nameAttributes = $generator->generateNameAttributesForForm($this->form);
+
+        return $rules;
     }
 }

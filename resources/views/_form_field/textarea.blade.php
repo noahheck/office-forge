@@ -1,12 +1,14 @@
 @textareaField([
-    'name' => $field->id,
+    'name' => $field->fieldName(),
     'label' => $field->label,
     'details' => $field->description,
-    'value' => $value->value_longtext,
+    'value' => old($field->fieldName(), $value->value_longtext),
     'placeholder' => $field->placeholder,
     'rows' => 5,
     'required' => false,
     'autofocus' => false,
-    'error' => $errors->has($field->id),
+    'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])
+
+@errors($field->fieldName())

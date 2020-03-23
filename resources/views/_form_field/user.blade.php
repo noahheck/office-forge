@@ -1,11 +1,13 @@
 @userSelectField([
-    'name' => $field->id,
+    'name' => $field->fieldName(),
     'label' => $field->label,
-    'value' => $value->value_user,
+    'value' => old($field->fieldName(), $value->value_user),
     'users' => $memberProvider->membersOfTeam($field->userTeam()),
     'placeholder' => $field->placeholder,
     'required' => false,
     'autofocus' => false,
-    'error' => $errors->has($field->id),
+    'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])
+
+@errors($field->fieldName())

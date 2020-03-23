@@ -42,6 +42,11 @@ class Field extends Model
         return $query->where('active', false);
     }
 
+    public function fieldName()
+    {
+        return 'field_' . $this->id;
+    }
+
     public function selectOptions()
     {
         $select_options = optional($this->options)->select_options ?? [];
@@ -74,16 +79,7 @@ class Field extends Model
         return $this->fileTypeId();
     }
 
-    public function icon(array $withClasses = [])
-    {
-        $function = "\App\icon\\filetype_field_" . $this->field_type;
 
-        if (!function_exists($function)) {
 
-            return "";
-        }
-
-        return $function($withClasses);
-    }
 
 }

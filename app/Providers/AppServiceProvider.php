@@ -87,9 +87,19 @@ EOT;
         });
 
 
+        /**
+         * Outputs a Bootstrap error message if there are any errors on the page
+         *
+         * Usage:
+         *
+         *     @formError
+         */
+        \Blade::directive('formError', function($expression) {
+            return '<?php if ($errors->any()) {echo "<div class=\'alert alert-danger\'>" . __("app.error_submissionHadErrors") . "</div>";} ?>';
+        });
 
         /**
-         * Outputs a Fomantic UI error message container with the errors for the provided keys
+         * Outputs a Bootstrap error message container with the errors for the provided keys
          * The complex methods for passing in fields allows for providing values of possibly unknown types, e.g. named
          * variables containing arrays or strings, etc.
          *

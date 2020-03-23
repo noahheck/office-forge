@@ -1,11 +1,13 @@
 @checkboxField([
-    'name' => $field->id,
+    'name' => $field->fieldName(),
     'id' => 'field_' . $field->id,
     'label' => $field->label,
     'details' => $field->description,
-    'checked' => $value->value_boolean,
+    'checked' => old($field->fieldName(), $value->value_boolean),
     'value' => $value->value_text1,
     'required' => false,
-    'error' => $errors->has($field->id),
+    'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])
+
+@errors($field->fieldName())
