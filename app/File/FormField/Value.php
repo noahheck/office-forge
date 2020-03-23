@@ -4,6 +4,7 @@ namespace App\File\FormField;
 
 use App\File;
 use App\FileType\Form\Field;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Value extends Model
@@ -18,6 +19,16 @@ class Value extends Model
     public function field()
     {
         return $this->belongsTo(Field::class, 'file_type_form_field_id');
+    }
+
+    public function valueFile()
+    {
+        return $this->belongsTo(File::class, 'value_file');
+    }
+
+    public function valueUser()
+    {
+        return $this->belongsTo(User::class, 'value_user');
     }
 
     public function setValueDateAttribute($value)
