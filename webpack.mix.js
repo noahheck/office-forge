@@ -35,6 +35,7 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/page/admin/file-types/forms/fields/index.js', 'public/js/page.admin.file-types.forms.fields.index.js')
     .js('resources/js/page/admin/file-types/forms/fields/_form.js', 'public/js/page.admin.file-types.forms.fields._form.js')
 
+    .js('resources/js/page/files/index.js', 'public/js/page.files.index.js')
 
     .extract([
         'jquery',

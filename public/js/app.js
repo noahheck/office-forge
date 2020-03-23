@@ -1424,6 +1424,7 @@ $(function _callee() {
 
         case 10:
           $('.dt-table').DataTable();
+          $('.dataTables_filter input[type=search]').focus();
           $('.datepicker').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -1433,7 +1434,7 @@ $(function _callee() {
             zIndexOffset: 1031
           });
 
-        case 12:
+        case 13:
         case "end":
           return _context.stop();
       }

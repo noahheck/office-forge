@@ -4,6 +4,10 @@
     @style('css/files.css')
 @endpush
 
+@push('scripts')
+    @script('js/page.files.index.js')
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Files\Index($fileType)),
 ])
@@ -32,7 +36,7 @@
                     </div>
                     <hr>
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" id="filesTableContainer">
                         <table id="files" class="table table-striped table-bordered dt-table">
                             <thead>
                             <tr>
