@@ -3,6 +3,7 @@
 namespace App;
 
 use App\FileType\Form;
+use App\FileType\Panel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -99,6 +100,11 @@ class FileType extends Model
     public function forms()
     {
         return $this->hasMany(Form::class)->orderBy('order');
+    }
+
+    public function panels()
+    {
+        return $this->hasMany(Panel::class, 'file_type_id')->orderBy('order');
     }
 
     public function icon(array $withClasses = [])

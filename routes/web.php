@@ -100,6 +100,10 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::post('/file-types/{fileType}/forms/{form}/fields/update-order', 'FileType\Form\FieldController@updateOrder')
             ->name('file-types.forms.fields.update-order');
 
+
+        Route::resource('file-types.panels', 'FileType\PanelController');
+
+
         Route::resource('/processes', 'ProcessController');
 
         Route::namespace('Process')->prefix('/processes/{process}')->name('processes.')->group(function() {
