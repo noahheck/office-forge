@@ -3,9 +3,14 @@
 namespace App\Http\Controllers\Admin\FileType;
 
 use App\FileType;
+use App\FileType\Form;
 use App\FileType\Panel;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FileType\Panel\Store as StoreRequest;
+use App\Jobs\FileType\Panel\Create;
+use App\Team;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class PanelController extends Controller
 {
@@ -27,7 +32,12 @@ class PanelController extends Controller
      */
     public function create(FileType $fileType)
     {
-        //
+        $teamOptions = Team::all();
+
+        $panel = new Panel;
+        $panel->file_type_id = $fileType->id;
+
+        return $this->view('admin.file-types.panels.create', compact('fileType', 'panel', 'teamOptions'));
     }
 
     /**
@@ -36,9 +46,15 @@ class PanelController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, FileType $fileType)
+    public function store(StoreRequest $request, FileType $fileType)
     {
-        //
+        $this->dispatchNow($panelCreated = new Create($fileType, $request->name));
+
+        flash_success(__('admin.form_created'));
+
+        $panel = $panelCreated->getPanel();
+
+        return redirect()->route('admin.file-types.panels.show', [$fileType, $panel]);
     }
 
     /**

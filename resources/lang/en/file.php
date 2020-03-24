@@ -95,4 +95,6 @@ return [
 
     'panels' => 'Panels',
     'panel' => 'Panel',
+    'panel_name' => 'Name',
+    'panel_nameExamples' => 'Contact Information, References, Insurance, etc...',
 ];
