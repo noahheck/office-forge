@@ -44,7 +44,7 @@
 
             <div class="row">
 
-                <div class="col-12 col-xl-6">
+                <div class="col-12 col-xl-6 mb-3">
 
                     <div class="card">
 
@@ -106,6 +106,84 @@
 
 
                 </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="col-12 col-xl-6 mb-3">
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="d-flex">
+
+                                <h3 class="h4 flex-grow-1 mb-0">
+                                    <span class="fas fa-th-list mr-2"></span>{{ __("file.panels") }}
+                                    <a href="{{ route('admin.file-types.panels.index', [$fileType]) }}">
+                                        <span class="far fa-arrow-alt-circle-right"></span>
+                                    </a>
+                                </h3>
+
+                                <a href="{{ route('admin.file-types.panels.create', [$fileType]) }}" class="btn btn-sm btn-primary">
+                                    <span class="fas fa-plus mr-2"></span>{{ __('admin.newPanel') }}
+                                </a>
+
+                            </div>
+
+                            <hr>
+
+                            @if($fileType->panels->count() > 0)
+
+                                <ul class="list-group fileType-panels-list-group">
+
+                                    @foreach ($fileType->panels as $panel)
+
+                                        <li class="list-group-item">
+                                            <a href="{{ route('admin.file-types.panels.show', [$fileType, $panel]) }}">{{ $panel->name }}</a>
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            @else
+
+                                <div class="text-center">
+
+                                    <div class="empty-resource">
+                                        <span class="fas fa-th-list empty-resource-icon"></span>
+                                    </div>
+
+                                    <p>{{ __('admin.panel_description') }}</p>
+
+                                    <hr>
+
+                                    <a class="btn btn-primary" href="{{ route('admin.file-types.panels.create', [$fileType]) }}">{{ __('admin.panel_createFirstPanelNow') }}</a>
+
+                                </div>
+
+                            @endif
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
 
             </div>
 

@@ -107,4 +107,14 @@ return [
 
     'fields_orderUpdated' => 'Fields order updated',
 
+
+    'panels' => 'Panels',
+    'addPanel' => 'Add Panel',
+    'newPanel' => 'New Panel',
+    'newPanel_shortDescription' => 'Create a new Panel',
+    'editPanel' => 'Edit Panel',
+    'editPanel_shortDescription' => 'Edit a Panel',
+    'panel_description' => 'Panels organize important information about your files and make it available at a glance. They help make sure your staff has access to the information they need to do their jobs.',
+    'panel_createFirstPanelNow' => 'Create your first panel now!',
+
 ];

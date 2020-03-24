@@ -90,4 +90,9 @@ return [
     'field_fieldTypeFile' => 'File',
     'field_fieldTypeFile_fileType' => 'File Type',
     'field_fieldTypeFile_fileTypeDescription' => 'Specify the type of file that should be selected',
+
+
+
+    'panels' => 'Panels',
+    'panel' => 'Panel',
 ];
