@@ -65,7 +65,7 @@ class PanelController extends Controller
      */
     public function show(FileType $fileType, Panel $panel)
     {
-        //
+        return $this->view('admin.file-types.panels.show', compact('fileType', 'panel'));
     }
 
     /**
