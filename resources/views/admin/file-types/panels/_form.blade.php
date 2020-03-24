@@ -21,7 +21,7 @@
                 'error' => $errors->has('name'),
             ])
 
-            <hr>
+{{--            <hr>--}}
 
             {{--@teamMultiSelectField([
                 'name' => 'teams',

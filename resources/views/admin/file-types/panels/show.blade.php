@@ -38,6 +38,10 @@
                             <span class="far fa-{{ $form->active ?? false ? 'check-' : '' }}square mr-1"></span>{{ __('file.form_active') }}
                         </span>--}}
 
+                        <span>
+                            &nbsp;
+                        </span>
+
                         <a href="{{ route('admin.file-types.panels.edit', [$fileType, $panel]) }}" class="btn btn-sm btn-primary">
                             <span class="fas fa-edit"></span> {{ __('admin.editPanel') }}
                         </a>

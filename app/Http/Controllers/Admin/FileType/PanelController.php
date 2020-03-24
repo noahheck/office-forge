@@ -7,7 +7,9 @@ use App\FileType\Form;
 use App\FileType\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileType\Panel\Store as StoreRequest;
+use App\Http\Requests\Admin\FileType\Panel\Update as UpdateRequest;
 use App\Jobs\FileType\Panel\Create;
+use App\Jobs\FileType\Panel\Update;
 use App\Team;
 use Illuminate\Http\Request;
 use function App\flash_success;
@@ -76,7 +78,9 @@ class PanelController extends Controller
      */
     public function edit(FileType $fileType, Panel $panel)
     {
-        //
+        $teamOptions = Team::all();
+
+        return $this->view('admin.file-types.panels.edit', compact('fileType', 'panel', 'teamOptions'));
     }
 
     /**
@@ -86,9 +90,13 @@ class PanelController extends Controller
      * @param  \App\FileType\Panel  $panel
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FileType $fileType, Panel $panel)
+    public function update(UpdateRequest $request, FileType $fileType, Panel $panel)
     {
-        //
+        $this->dispatchNow($panelUpdated = new Update($panel, $request->name));
+
+        flash_success(__('admin.panel_updated'));
+
+        return redirect()->route('admin.file-types.panels.show', [$fileType, $panel]);
     }
 
     /**
