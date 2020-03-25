@@ -53,9 +53,9 @@
                                 <li class="list-group-item d-flex" data-id="{{ $panel->id  }}">
                                     <div class="flex-grow-1">
                                         <a href="{{ route('admin.file-types.panels.show', [$fileType, $panel]) }}">{{ $panel->name }}</a>
-                                        {{--@foreach ($panel->teams as $team)
+                                        @foreach ($panel->teams as $team)
                                             {!! $team->icon() !!}
-                                        @endforeach--}}
+                                        @endforeach
                                     </div>
                                     {{--<div class="sort-handle pl-3">
                                         <span class="fas fa-arrows-alt-v"></span>

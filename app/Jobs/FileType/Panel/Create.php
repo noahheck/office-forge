@@ -13,6 +13,7 @@ class Create
 
     private $fileType;
     private $name;
+    private $teams;
 
     private $panel;
 
@@ -21,10 +22,11 @@ class Create
      *
      * @return void
      */
-    public function __construct(FileType $fileType, $name)
+    public function __construct(FileType $fileType, $name, $teams)
     {
         $this->fileType = $fileType;
         $this->name = $name;
+        $this->teams = $teams;
     }
 
     public function getPanel(): Panel
@@ -47,6 +49,8 @@ class Create
         $panel->order = $this->fileType->panels->max('order') + 1;
 
         $panel->save();
+
+        $panel->teams()->sync($this->teams);
 
         $this->panel = $panel;
     }

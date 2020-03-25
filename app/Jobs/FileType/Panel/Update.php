@@ -12,16 +12,18 @@ class Update
 
     private $panel;
     private $name;
+    private $teams;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Panel $panel, $name)
+    public function __construct(Panel $panel, $name, $teams)
     {
         $this->panel = $panel;
         $this->name = $name;
+        $this->teams = $teams;
     }
 
     /**
@@ -33,6 +35,8 @@ class Update
     {
         $panel = $this->panel;
         $panel->name = $this->name;
+
+        $panel->teams()->sync($this->teams);
 
         $panel->save();
     }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\FileType\Panel;
 use App\Traits\GetsInitialsFromName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -31,5 +32,10 @@ class Team extends Model
     public function fileTypeForms()
     {
         return $this->belongsToMany(Team::class, 'file_type_forms_teams', 'team_id' , 'file_type_form_id')->withTimestamps();
+    }
+
+    public function fileTypePanels()
+    {
+        return $this->belongsToMany(Panel::class, 'file_type_panels_teams', 'team_id', 'file_type_panel_id')->withTimestamps();
     }
 }

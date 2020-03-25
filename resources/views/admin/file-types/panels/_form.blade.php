@@ -21,19 +21,19 @@
                 'error' => $errors->has('name'),
             ])
 
-{{--            <hr>--}}
+            <hr>
 
-            {{--@teamMultiSelectField([
+            @teamMultiSelectField([
                 'name' => 'teams',
-                'label' => __('file.form_teamAccessApproval'),
-                'values' => old('teams', $form->teams),
+                'label' => __('file.panel_teamAccessApproval'),
+                'values' => old('teams', $panel->teams),
                 'teams' => $teamOptions,
                 'placeholder' => __('app.selectTeams'),
-                'description' => __('file.form_teamAccessApprovalDescription'),
+                'description' => __('file.panel_teamAccessApprovalDescription'),
                 'required' => false,
                 'autofocus' => false,
                 'error' => $errors->has('teams'),
-            ])--}}
+            ])
 
 
 

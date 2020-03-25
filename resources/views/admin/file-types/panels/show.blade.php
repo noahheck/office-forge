@@ -50,24 +50,24 @@
 
                     <hr>
 
-                    {{--<strong>{{ __('file.form_teamAccessApproval') }}</strong>
+                    <strong>{{ __('file.panel_teamAccessApproval') }}</strong>
 
-                    @if ($form->teams->count() > 0)
+                    @if ($panel->teams->count() > 0)
 
-                        <p>{{ __('file.form_teamAccessApprovalShortDescription') }}</p>
+                        <p>{{ __('file.panel_teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">
-                            @foreach ($form->teams as $team)
+                            @foreach ($panel->teams as $team)
                                 <li class="list-group-item">{!! $team->icon() !!} {{ $team->name }}</li>
                             @endforeach
                         </ul>
 
                     @else
 
-                        <p>{{ __('file.form_unrestrictedDescription') }}</p>
+                        <p>{{ __('file.panel_unrestrictedDescription') }}</p>
 
                         <hr>
 
-                    @endif--}}
+                    @endif
 
                     {{--<div class="d-flex">
                         <h3 class="h4 flex-grow-1">

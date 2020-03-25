@@ -50,7 +50,7 @@ class PanelController extends Controller
      */
     public function store(StoreRequest $request, FileType $fileType)
     {
-        $this->dispatchNow($panelCreated = new Create($fileType, $request->name));
+        $this->dispatchNow($panelCreated = new Create($fileType, $request->name, $request->teams));
 
         flash_success(__('admin.form_created'));
 
@@ -92,7 +92,7 @@ class PanelController extends Controller
      */
     public function update(UpdateRequest $request, FileType $fileType, Panel $panel)
     {
-        $this->dispatchNow($panelUpdated = new Update($panel, $request->name));
+        $this->dispatchNow($panelUpdated = new Update($panel, $request->name, $request->teams));
 
         flash_success(__('admin.panel_updated'));
 

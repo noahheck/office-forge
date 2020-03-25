@@ -97,4 +97,8 @@ return [
     'panel' => 'Panel',
     'panel_name' => 'Name',
     'panel_nameExamples' => 'Contact Information, References, Insurance, etc...',
+    'panel_teamAccessApproval' => 'Team Access Approval',
+    'panel_teamAccessApprovalDescription' => 'This panel will only be accessible by members of these teams. If no teams are selected, this panel will not be accessible by any of your staff.',
+    'panel_teamAccessApprovalShortDescription' => 'This panel is only accessible by members of these teams.',
+    'panel_unrestrictedDescription' => 'This panel has not been approved for access by any teams. It will not be accessible by any of your staff.',
 ];
