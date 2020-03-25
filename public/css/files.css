@@ -2,6 +2,18 @@
  * sass/files.scss
  */
 
+/**
+ * sass/files/panel.scss
+ */
+
+.panel-fields .field-label {
+  font-weight: bold;
+}
+
+.panel-fields .field-value {
+  padding-left: 20px;
+}
+
 hr.separator {
   border-top: 2px solid #c9c9c9;
   margin-top: 3rem;

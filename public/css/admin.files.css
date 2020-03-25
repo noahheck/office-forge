@@ -6,6 +6,18 @@
  * sass/_mixins.scss
  */
 
+/**
+ * sass/files/panel.scss
+ */
+
+.panel-fields .field-label {
+  font-weight: bold;
+}
+
+.panel-fields .field-value {
+  padding-left: 20px;
+}
+
 .fileType-show .fileType-forms-list-group {
   max-height: 400px;
   overflow-y: auto;

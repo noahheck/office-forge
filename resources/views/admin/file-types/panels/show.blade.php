@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 
 @push('scripts')
-{{--    @script('js/page.admin.file-types.forms.show.js')--}}
+    @script('js/page.admin.file-types.panels.show.js')
 @endpush
 
 @push('styles')
@@ -11,6 +11,11 @@
 @push('meta')
     @meta('fileTypeId', $fileType->id)
     @meta('panelId', $panel->id)
+
+    @foreach ($forms as $form)
+        @meta('form_' . $form->id . '_fields', $form->fields->pluck('id'))
+        @meta('form_' . $form->id, $form->fields)
+    @endforeach
 @endpush
 
 @include("_component._location-bar", [
@@ -33,10 +38,6 @@
                     <hr>
 
                     <div class="d-flex justify-content-between">
-
-                        {{--<span>
-                            <span class="far fa-{{ $form->active ?? false ? 'check-' : '' }}square mr-1"></span>{{ __('file.form_active') }}
-                        </span>--}}
 
                         <span>
                             &nbsp;
@@ -69,46 +70,43 @@
 
                     @endif
 
-                    {{--<div class="d-flex">
+                    <div class="d-flex">
                         <h3 class="h4 flex-grow-1">
                             <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
                         </h3>
-                    </div>--}}
+                    </div>
 
+                    @if ($panel->fields->count() > 0)
 
-
-
-                    {{--@if ($form->fields->count() > 0)
-
-                        @foreach ($form->fields->where('active', true) as $field)
+                        @foreach ($panel->fields->where('active', true) as $field)
 
                             @if ($loop->first)
-                                <ul class="list-group form-fields" id="formFields_active">
+                                <ul class="list-group panel-fields" id="formFields_active">
                             @endif
 
                                 <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
                                     <div class="flex-grow-1">
 
-                                        @if ($field->separator)
+                                        {{--@if ($field->separator)
                                             <hr class="separator">
-                                        @endif
+                                        @endif--}}
 
-                                        @include('_form_field.' . $field->field_type, [
+                                        @include('_panel_field.' . $field->field_type, [
                                             'field' => $field,
                                             'value' => optional((object) []),
-                                            'readonly' => true,
+                                            'preview' => true,
                                         ])
 
                                     </div>
                                     <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                         <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                            {{--<a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
                                                 <span class="fas fa-edit"></span> {{ __('app.edit') }}
-                                            </a>
+                                            </a>--}}
                                         </div>
                                         <div>
-                                            <span class="sort-handle fas fa-arrows-alt-v"></span>
+{{--                                            <span class="sort-handle fas fa-arrows-alt-v"></span>--}}
                                         </div>
 
                                     </div>
@@ -119,56 +117,6 @@
                             @endif
 
                         @endforeach
-
-                        <p class="text-right mt-3">
-                            <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
-                                <span class="fas fa-plus mr-2"></span>{{ __('admin.newField') }}
-                            </a>
-                        </p>
-
-
-                        @foreach ($form->fields->where('active', false) as $field)
-
-                            @if ($loop->first)
-
-                                <h4 class="text-muted mt-4">{{ __('admin.inactive_fields') }}</h4>
-
-                                <ul class="list-group form-fields" id="formFields_inactive">
-                            @endif
-
-                                <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
-                                    <div class="flex-grow-1">
-
-                                        @if ($field->separator)
-                                            <hr class="separator">
-                                        @endif
-
-                                        @include('_form_field.' . $field->field_type, [
-                                            'field' => $field,
-                                            'value' => optional((object) []),
-                                            'readonly' => true,
-                                        ])
-
-                                    </div>
-                                    <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
-
-                                        <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                <span class="fas fa-edit"></span> {{ __('app.edit') }}
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                            @if ($loop->last)
-                                </ul>
-                            @endif
-
-                        @endforeach
-
-
-
 
                     @else
 
@@ -183,13 +131,10 @@
                                             <span class="fas fa-pen-square empty-resource-icon"></span>
                                         </div>
 
-                                        <p>{{ __('admin.field_description') }}</p>
+                                        <p>{{ __('admin.panel_description') }}</p>
 
-                                        <p>{{ __('admin.field_typesDescription') }}</p>
+                                        <p>{{ __('admin.panel_fieldsDescription') }}</p>
 
-                                        <hr>
-
-                                        <a class="btn btn-primary" href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
                                     </div>
                                 </div>
 
@@ -197,7 +142,70 @@
 
                         </div>
 
-                    @endif--}}
+                    @endif
+
+
+
+
+                    <hr>
+
+                    <div class="d-flex">
+                        <h3 class="h4 flex-grow-1">
+                            <span class="fas fa-pen-square mr-2"></span>{{ __('file.panel_addField') }}
+                        </h3>
+                    </div>
+
+                    <form action="{{ route("admin.file-types.panels.add-field", [$fileType, $panel]) }}" method="POST" id="addFieldForm">
+
+                        @csrf
+
+                        <div class="row">
+
+                            <div class="col-12 col-md-4">
+
+                                @selectField([
+                                    'name' => 'form_id',
+                                    'label' => __('file.form'),
+                                    'details' => '',
+                                    'value' => '',
+                                    'options' => $forms->pluck('name', 'id'),
+                                    'placeholder' => '',
+                                    'required' => false,
+                                    'autofocus' => false,
+                                    'error' => '',
+                                    'readonly' => false,
+                                ])
+
+                            </div>
+
+                            <div class="col-12 col-md-5">
+
+                                @selectField([
+                                    'name' => 'field_id',
+                                    'label' => __('file.field'),
+                                    'details' => '',
+                                    'value' => '',
+                                    'options' => [],//$forms->pluck('fields')->flatten()->pluck('label', 'id'),
+                                    'placeholder' => '',
+                                    'required' => true,
+                                    'autofocus' => false,
+                                    'error' => '',
+                                    'readonly' => false,
+                                ])
+
+                            </div>
+
+                            <div class="col-12 col-md-3 d-flex align-items-center">
+
+                                <button type="submit" class="btn btn-primary">
+                                    <span class="fas fa-plus"></span> {{ __('file.panel_addField') }}
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
 
                 </div>
             </div>

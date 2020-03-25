@@ -5,6 +5,7 @@ namespace App\FileType\Form;
 use App\File\FormField\Value;
 use App\FileType;
 use App\FileType\Form;
+use App\FileType\Panel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -30,6 +31,11 @@ class Field extends Model
     public function values()
     {
         return $this->hasMany(Value::class, 'file_type_form_field_id');
+    }
+
+    public function panels()
+    {
+        return $this->belongsToMany(Panel::class, 'file_type_panels_fields', 'file_type_form_field_id', 'file_type_panel_id')->withTimestamps();
     }
 
     public function scopeActive($query)

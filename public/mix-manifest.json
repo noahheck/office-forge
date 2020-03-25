@@ -12,6 +12,7 @@
     "/js/page.admin.file-types.forms.fields.index.js": "/js/page.admin.file-types.forms.fields.index.js",
     "/js/page.admin.file-types.forms.index.js": "/js/page.admin.file-types.forms.index.js",
     "/js/page.admin.file-types.forms.show.js": "/js/page.admin.file-types.forms.show.js",
+    "/js/page.admin.file-types.panels.show.js": "/js/page.admin.file-types.panels.show.js",
     "/js/page.admin.processes.show.js": "/js/page.admin.processes.show.js",
     "/js/page.admin.processes.tasks.actions.index.js": "/js/page.admin.processes.tasks.actions.index.js",
     "/js/page.admin.processes.tasks.index.js": "/js/page.admin.processes.tasks.index.js",

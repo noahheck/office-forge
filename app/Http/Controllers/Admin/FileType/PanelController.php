@@ -8,6 +8,7 @@ use App\FileType\Panel;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileType\Panel\Store as StoreRequest;
 use App\Http\Requests\Admin\FileType\Panel\Update as UpdateRequest;
+use App\Jobs\FileType\Panel\AddField;
 use App\Jobs\FileType\Panel\Create;
 use App\Jobs\FileType\Panel\Update;
 use App\Team;
@@ -67,7 +68,10 @@ class PanelController extends Controller
      */
     public function show(FileType $fileType, Panel $panel)
     {
-        return $this->view('admin.file-types.panels.show', compact('fileType', 'panel'));
+        $forms = $fileType->forms;
+        $forms->load('fields');
+
+        return $this->view('admin.file-types.panels.show', compact('fileType', 'panel', 'forms'));
     }
 
     /**
@@ -108,5 +112,15 @@ class PanelController extends Controller
     public function destroy(FileType $fileType, Panel $panel)
     {
         //
+    }
+
+
+    public function addField(Request $request, FileType $fileType, Panel $panel)
+    {
+        $this->dispatchNow($fieldAdded = new AddField($panel, $request->field_id));
+
+        flash_success(__('admin.panel_fieldAdded'));
+
+        return redirect()->route('admin.file-types.panels.show', [$fileType, $panel]);
     }
 }

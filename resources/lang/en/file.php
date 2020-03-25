@@ -53,6 +53,7 @@ return [
 
 
     'field_fieldTypeText' => 'Text Box',
+    'field_fieldTypeTextPreviewPlaceholder' => 'Welcome events as they happen',
     'field_fieldTypeTextarea' => 'Large Text Box',
     'field_fieldTypeEmail' => 'Email Address',
     'field_fieldTypeEmailPreviewPlaceholder' => 'john.doe@example.com',
@@ -101,4 +102,5 @@ return [
     'panel_teamAccessApprovalDescription' => 'This panel will only be accessible by members of these teams. If no teams are selected, this panel will not be accessible by any of your staff.',
     'panel_teamAccessApprovalShortDescription' => 'This panel is only accessible by members of these teams.',
     'panel_unrestrictedDescription' => 'This panel has not been approved for access by any teams. It will not be accessible by any of your staff.',
+    'panel_addField' => 'Add Field',
 ];
