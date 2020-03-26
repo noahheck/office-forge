@@ -32,6 +32,7 @@ class Panel extends Model
                 'file_type_panel_id',
                 'file_type_form_field_id'
             )->withPivot('order')
+            ->orderBy('file_type_panels_fields.order')
             ->withTimestamps();
     }
 }

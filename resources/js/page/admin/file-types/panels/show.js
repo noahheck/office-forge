@@ -9,7 +9,7 @@ let meta   = require('Services/meta');
 let notify = require('Services/notify');
 let encoder = require('Services/html-encode');
 
-let form = require('App/file-type/form');
+let panel = require('App/file-type/panel');
 
 function loadFieldOptions(formId) {
     let formFields = meta.get('form_' + formId, []);
@@ -51,14 +51,14 @@ $(function() {
         }
     });
 
-    /*let sortable = Sortable.create(document.getElementById('formFields_active'), {
+    let sortable = Sortable.create(document.getElementById('panelFields'), {
         handle: '.sort-handle',
         animation: 150,
         direction: 'vertical',
         onEnd: function(evt) {
-            form.updateFieldsOrder(fileTypeId, formId, sortable.toArray()).then(response => {
+            panel.updateFieldsOrder(fileTypeId, panelId, sortable.toArray()).then(response => {
                 notify.success(response.data.successMessage);
             });
         }
-    });*/
+    });
 });

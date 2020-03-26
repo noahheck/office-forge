@@ -120,4 +120,5 @@ return [
     'panel_updated' => 'Panel updated',
     'panel_fieldAdded' => 'Field added to Panel',
     'panel_fieldsDescription' => 'Add details to a panel by selecting a form and field to display. You can add as many details to a panel as you need!',
+    'panel_fieldsOrderUpdated' => 'Panel details order updated',
 ];

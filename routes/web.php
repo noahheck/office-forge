@@ -104,6 +104,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         Route::resource('file-types.panels', 'FileType\PanelController');
         Route::post('/file-types/{fileType}/panels/{panel}/add-field', 'FileType\PanelController@addField')
             ->name('file-types.panels.add-field');
+        Route::post('/file-types/{fileType}/panels/{panel}/update-field-order', 'FileType\PanelController@updateFieldOrder')
+            ->name('file-types.panels.update-field-order');
 
 
         Route::resource('/processes', 'ProcessController');

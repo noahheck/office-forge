@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.admin.file-types.panels.show"],{
 
-/***/ "./resources/js/app/file-type/form.js":
-/*!********************************************!*\
-  !*** ./resources/js/app/file-type/form.js ***!
-  \********************************************/
+/***/ "./resources/js/app/file-type/panel.js":
+/*!*********************************************!*\
+  !*** ./resources/js/app/file-type/panel.js ***!
+  \*********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -12,14 +12,14 @@
  */
 var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
-var form = {};
+var panel = {};
 
-form.updateFieldsOrder = function (fileTypeId, formId, fieldsOrder) {
+panel.updateFieldsOrder = function (fileTypeId, panelId, fieldsOrder) {
   var route = {
-    name: 'admin.file-types.forms.fields.update-order',
+    name: 'admin.file-types.panels.update-field-order',
     params: {
       fileType: fileTypeId,
-      form: formId
+      panel: panelId
     }
   };
   var data = {
@@ -28,7 +28,7 @@ form.updateFieldsOrder = function (fileTypeId, formId, fieldsOrder) {
   return ajax.post(route, data);
 };
 
-module.exports = form;
+module.exports = panel;
 
 /***/ }),
 
@@ -55,7 +55,7 @@ var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services
 
 var encoder = __webpack_require__(/*! Services/html-encode */ "./resources/js/services/html-encode.js");
 
-var form = __webpack_require__(/*! App/file-type/form */ "./resources/js/app/file-type/form.js");
+var panel = __webpack_require__(/*! App/file-type/panel */ "./resources/js/app/file-type/panel.js");
 
 function loadFieldOptions(formId) {
   var formFields = meta.get('form_' + formId, []);
@@ -85,16 +85,16 @@ $(function () {
       return false;
     }
   });
-  /*let sortable = Sortable.create(document.getElementById('formFields_active'), {
-      handle: '.sort-handle',
-      animation: 150,
-      direction: 'vertical',
-      onEnd: function(evt) {
-          form.updateFieldsOrder(fileTypeId, formId, sortable.toArray()).then(response => {
-              notify.success(response.data.successMessage);
-          });
-      }
-  });*/
+  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('panelFields'), {
+    handle: '.sort-handle',
+    animation: 150,
+    direction: 'vertical',
+    onEnd: function onEnd(evt) {
+      panel.updateFieldsOrder(fileTypeId, panelId, sortable.toArray()).then(function (response) {
+        notify.success(response.data.successMessage);
+      });
+    }
+  });
 });
 
 /***/ }),

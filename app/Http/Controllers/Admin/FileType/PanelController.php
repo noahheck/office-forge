@@ -11,6 +11,7 @@ use App\Http\Requests\Admin\FileType\Panel\Update as UpdateRequest;
 use App\Jobs\FileType\Panel\AddField;
 use App\Jobs\FileType\Panel\Create;
 use App\Jobs\FileType\Panel\Update;
+use App\Jobs\FileType\Panel\UpdateFieldOrder;
 use App\Team;
 use Illuminate\Http\Request;
 use function App\flash_success;
@@ -122,5 +123,14 @@ class PanelController extends Controller
         flash_success(__('admin.panel_fieldAdded'));
 
         return redirect()->route('admin.file-types.panels.show', [$fileType, $panel]);
+    }
+
+    public function updateFieldOrder(Request $request, FileType $fileType, Panel $panel)
+    {
+        $this->dispatchNow($fieldOrderUpdated = new UpdateFieldOrder($fileType, $panel, $request->orderedFields));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.forms_orderUpdated'),
+        ]);
     }
 }

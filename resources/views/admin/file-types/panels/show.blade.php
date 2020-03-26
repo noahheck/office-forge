@@ -81,15 +81,11 @@
                         @foreach ($panel->fields->where('active', true) as $field)
 
                             @if ($loop->first)
-                                <ul class="list-group panel-fields" id="formFields_active">
+                                <ul class="list-group panel-fields" id="panelFields">
                             @endif
 
                                 <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
                                     <div class="flex-grow-1">
-
-                                        {{--@if ($field->separator)
-                                            <hr class="separator">
-                                        @endif--}}
 
                                         @include('_panel_field.' . $field->field_type, [
                                             'field' => $field,
@@ -106,7 +102,7 @@
                                             </a>--}}
                                         </div>
                                         <div>
-{{--                                            <span class="sort-handle fas fa-arrows-alt-v"></span>--}}
+                                            <span class="sort-handle fas fa-arrows-alt-v"></span>
                                         </div>
 
                                     </div>
