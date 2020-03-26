@@ -14,6 +14,10 @@
   padding-left: 20px;
 }
 
+.panel-fields .checkbox-container {
+  font-size: 1.1rem;
+}
+
 hr.separator {
   border-top: 2px solid #c9c9c9;
   margin-top: 3rem;

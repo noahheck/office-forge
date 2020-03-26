@@ -1,6 +1,9 @@
+@php
+    $__user = ($preview ?? false) ? \App\dummyUser() : $value->valueUser();
+@endphp
 <div class="panel-field">
     <span class="field-label">{{ $field->label }}</span>
     <div class="field-value">
-        {{ ($preview ?? false) ? \App\misc_date() : $value->value_date }}
+        {!! $__user->iconAndName() !!}
     </div>
 </div>

@@ -49,4 +49,29 @@ class Value extends Model
     {
         return $this->value_text1 . ' ' . $this->value_text2 . ' ' . $this->value_text3 . ' ' . $this->value_text4;
     }
+
+    public function valueAddress()
+    {
+        $addressParts = [];
+
+        if ($line1 = $this->value_text1) {
+            $addressParts[] = $line1;
+        }
+
+        if ($line2 = $this->value_text2) {
+            $addressParts[] = $line2;
+        }
+
+        $line3 = $this->value_text3;
+
+        $line3 .= ($line3 && $this->value_text4) ? ', ' . $this->value_text4 : $this->value_text4;
+
+        $line3 .= ($line3 && $this->value_text5) ? ' ' . $this->value_text5 : $this->value_text5;
+
+        if ($line3) {
+            $addressParts[] = $line3;
+        }
+
+        return $addressParts;
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Utility\RandomColorGenerator;
 use Illuminate\Support\Str;
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/strings.php";
@@ -91,3 +92,23 @@ function filetype_field_options() {
     ];
 }
 
+
+
+
+function dummyUser() {
+    $user = new \App\User();
+
+    $user->name = misc_name();
+    $user->color = RandomColorGenerator::generateHex(RandomColorGenerator::COLOR_DARK);
+
+    return $user;
+}
+
+function dummyFile($fileTypeId) {
+    $file = new \App\File();
+
+    $file->file_type_id = $fileTypeId;
+    $file->name = misc_string();
+
+    return $file;
+}

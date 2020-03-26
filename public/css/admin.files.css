@@ -18,6 +18,10 @@
   padding-left: 20px;
 }
 
+.panel-fields .checkbox-container {
+  font-size: 1.1rem;
+}
+
 .fileType-show .fileType-forms-list-group {
   max-height: 400px;
   overflow-y: auto;
