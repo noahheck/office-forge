@@ -118,7 +118,11 @@ return [
     'panel_createFirstPanelNow' => 'Create your first panel now!',
     'panel_created' => 'Panel created',
     'panel_updated' => 'Panel updated',
-    'panel_fieldAdded' => 'Field added to Panel',
     'panel_fieldsDescription' => 'Add details to a panel by selecting a form and field to display. You can add as many details to a panel as you need!',
+
+    'panel_removeFieldFromPanel' => 'Remove Field from Panel',
+
+    'panel_fieldAdded' => 'Field added to Panel',
+    'panel_fieldRemoved' => 'Field removed from Panel',
     'panel_fieldsOrderUpdated' => 'Panel details order updated',
 ];

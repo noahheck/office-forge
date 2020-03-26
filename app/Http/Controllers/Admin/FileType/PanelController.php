@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\FileType\Panel\Store as StoreRequest;
 use App\Http\Requests\Admin\FileType\Panel\Update as UpdateRequest;
 use App\Jobs\FileType\Panel\AddField;
 use App\Jobs\FileType\Panel\Create;
+use App\Jobs\FileType\Panel\RemoveField;
 use App\Jobs\FileType\Panel\Update;
 use App\Jobs\FileType\Panel\UpdateFieldOrder;
 use App\Team;
@@ -132,5 +133,15 @@ class PanelController extends Controller
         return $this->json(true, [
             'successMessage' => __('admin.forms_orderUpdated'),
         ]);
+    }
+
+
+    public function removeField(Request $request, FileType $fileType, Panel $panel, $fieldId)
+    {
+        $this->dispatchNow($fieldRemoved = new RemoveField($panel, $fieldId));
+
+        flash_success(__('admin.panel_fieldRemoved'));
+
+        return redirect()->route('admin.file-types.panels.show', [$fileType, $panel]);
     }
 }

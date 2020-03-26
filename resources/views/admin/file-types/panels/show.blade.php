@@ -97,9 +97,20 @@
                                     <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                         <div class="flex-grow-1">
-                                            {{--<a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                <span class="fas fa-edit"></span> {{ __('app.edit') }}
-                                            </a>--}}
+                                            <div class="dropdown">
+                                                <button class="btn btn-outline-danger border-0 btn-sm" type="button" id="removeFieldDropdownMenuButton_{{ $field->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="fas fa-times"></span>
+                                                </button>
+                                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="removeFieldDropdownMenuButton_{{ $field->id }}">
+                                                    <form action="{{ route("admin.file-types.panels.remove-field", [$fileType, $panel, $field]) }}" method="POST">
+                                                        @csrf @method('DELETE')
+                                                        <button type="submit" class="dropdown-item text-danger">
+                                                            <span class="far fa-trash-alt"></span>
+                                                            {{ __('admin.panel_removeFieldFromPanel') }}
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div>
                                             <span class="sort-handle fas fa-arrows-alt-v"></span>
