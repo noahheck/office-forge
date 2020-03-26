@@ -44,4 +44,9 @@ class Value extends Model
 
         return date('m/d/Y', strtotime($value_date));
     }
+
+    public function valueName()
+    {
+        return $this->value_text1 . ' ' . $this->value_text2 . ' ' . $this->value_text3 . ' ' . $this->value_text4;
+    }
 }

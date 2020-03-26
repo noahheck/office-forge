@@ -3,7 +3,7 @@
     'label' => $field->label,
     'details' => $field->description,
     'value' => old($field->fieldName(), $value->value_text1),
-    'placeholder' => $field->placeholder,
+    'placeholder' => __('file.field_fieldTypeEmailPreviewPlaceholder'),
     'required' => false,
     'autofocus' => false,
     'error' => $errors->has($field->fieldName()),

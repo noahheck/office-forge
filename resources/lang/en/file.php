@@ -53,7 +53,6 @@ return [
 
 
     'field_fieldTypeText' => 'Text Box',
-    'field_fieldTypeTextPreviewPlaceholder' => 'Welcome events as they happen',
     'field_fieldTypeTextarea' => 'Large Text Box',
     'field_fieldTypeEmail' => 'Email Address',
     'field_fieldTypeEmailPreviewPlaceholder' => 'john.doe@example.com',

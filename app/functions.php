@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Support\Str;
 
-//require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/icons.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/strings.php";
 
 function flash_message($category, $message) {
     return \Session::push($category, $message);
@@ -55,6 +55,11 @@ function format_datetime($datetime) {
     return ($datetime) ? $datetime->copy()->tz($userTimezone)->format('m/d/Y g:ia') : '';
 }
 
+function format_date_string($dateString) {
+
+    return date('m/d/Y', strtotime($dateString));
+}
+
 function temp_id() {
     return Str::uuid();
 }
@@ -85,3 +90,4 @@ function filetype_field_options() {
         'file' => __('file.field_fieldTypeFile'),
     ];
 }
+
