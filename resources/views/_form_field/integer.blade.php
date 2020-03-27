@@ -5,7 +5,7 @@
     'value' => old($field->fieldName(), $value->value_integer),
     'placeholder' => '123',
     'required' => false,
-    'autofocus' => false,
+    'autofocus' => $autofocus ?? false,
     'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])

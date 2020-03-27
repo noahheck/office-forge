@@ -5,7 +5,7 @@
     'users' => $memberProvider->membersOfTeam($field->userTeam()),
     'placeholder' => $field->placeholder,
     'required' => false,
-    'autofocus' => false,
+    'autofocus' => $autofocus ?? false,
     'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])

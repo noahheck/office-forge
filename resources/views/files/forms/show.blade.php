@@ -52,6 +52,7 @@
                             @include('_form_field.' . $field->field_type, [
                                 'field' => $field,
                                 'value' => optional($values->firstWhere('file_type_form_field_id', $field->id)),
+                                'autofocus' => $loop->first,
                             ])
 
                         @endforeach

@@ -17,7 +17,7 @@
     @if ($details ?? false)
         - {{ $details }}
     @endif
-    <select class="custom-select" id="{{ $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }}>
+    <select class="custom-select" id="{{ $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
         @if (!($required ?? false))
             <option value="">--</option>
         @endif

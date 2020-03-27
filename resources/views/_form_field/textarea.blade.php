@@ -6,7 +6,7 @@
     'placeholder' => $field->placeholder,
     'rows' => 5,
     'required' => false,
-    'autofocus' => false,
+    'autofocus' => $autofocus ?? false,
     'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])

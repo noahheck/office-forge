@@ -22,7 +22,7 @@
         <div class="input-group-prepend">
             {!! $fileType->icon(['input-group-text']) !!}
         </div>
-        <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }}>
+        <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
             @if (!($required ?? false))
                 <option value="">--</option>
             @endif

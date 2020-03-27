@@ -4,7 +4,7 @@
             <label for="{{ $field->fieldName() }}_1">{{ $field->label }}</label>
         </div>
         <div class="col-12 col-md-6 mb-3">
-            <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_1') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_1" id="{{ $field->fieldName() }}_1" value="{{ old($field->fieldName() . '_1', $value->value_text1) }}" placeholder="{{ __('file.field_fieldTypeAddressPreviewLine1Placeholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }}>
+            <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_1') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_1" id="{{ $field->fieldName() }}_1" value="{{ old($field->fieldName() . '_1', $value->value_text1) }}" placeholder="{{ __('file.field_fieldTypeAddressPreviewLine1Placeholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
         </div>
         <div class="col-12 col-md-6 mb-3">
             <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_2') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_2" id="{{ $field->fieldName() }}_2" value="{{ old($field->fieldName() . '_2', $value->value_text2) }}" placeholder="{{ __('file.field_fieldTypeAddressPreviewLine2Placeholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }}>
@@ -30,4 +30,3 @@
 </div>
 
 @errors($field->fieldName() . '_1', $field->fieldName() . '_2', $field->fieldName() . '_3', $field->fieldName() . '_4', $field->fieldName() . '_5')
-

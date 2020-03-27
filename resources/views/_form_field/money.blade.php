@@ -5,7 +5,7 @@
     'value' => old($field->fieldName(), number_format($value->value_decimal, 2, '.', '')),
     'placeholder' => '1234.56',
     'required' => false,
-    'autofocus' => false,
+    'autofocus' => $autofocus ?? false,
     'error' => $errors->has($field->fieldName()),
     'readonly' => $readonly ?? false,
 ])

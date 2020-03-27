@@ -4,7 +4,7 @@
             <label for="{{ $field->fieldName() }}_1">{{ $field->label }}</label>
         </div>
         <div class="col-8">
-            <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_1') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_1" id="{{ $field->fieldName() }}_1" value="{{ old($field->fieldName() . '_1', $value->value_text1) }}" placeholder="{{ __('file.field_fieldTypeNamePreviewFirstNamePlaceholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }}>
+            <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_1') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_1" id="{{ $field->fieldName() }}_1" value="{{ old($field->fieldName() . '_1', $value->value_text1) }}" placeholder="{{ __('file.field_fieldTypeNamePreviewFirstNamePlaceholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
         </div>
         <div class="col-4">
             <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_2') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_2" id="{{ $field->fieldName() }}_2" value="{{ old($field->fieldName() . '_2', $value->value_text2) }}" placeholder="{{ __('file.field_fieldTypeNamePreviewMiddleNamePlaceholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }}>

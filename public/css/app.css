@@ -24723,6 +24723,7 @@ a.text-dark:focus {
   border-left: 3px solid #3490dc;
   color: #495057;
   background-color: white;
+  font-weight: bold;
 }
 
 .bootstrap-select .btn.dropdown-toggle {
