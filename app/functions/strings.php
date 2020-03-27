@@ -158,7 +158,7 @@ function misc_money() {
 
     if (!$money) {
         $money = array_flip([
-            '0',// Amount spent on cigarettes in the last 7 years
+            '0.00',// Amount spent on cigarettes in the last 7 years
             '50.00',// My pocket money each month right now
             '329.13',// Pickup payment
             '1200.00',// Coronavirus stimulus payment for adult
@@ -166,9 +166,9 @@ function misc_money() {
         ]);
     }
 
-    $money = array_rand($money);
+    $moneyItem = array_rand($money);
 
-    return number_format($money, 2, '.', ',');
+    return number_format($moneyItem, 2, '.', ',');
 }
 
 function misc_address() {

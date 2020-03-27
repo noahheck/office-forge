@@ -131,7 +131,7 @@ class PanelController extends Controller
         $this->dispatchNow($fieldOrderUpdated = new UpdateFieldOrder($fileType, $panel, $request->orderedFields));
 
         return $this->json(true, [
-            'successMessage' => __('admin.forms_orderUpdated'),
+            'successMessage' => __('admin.panel_fieldsOrderUpdated'),
         ]);
     }
 

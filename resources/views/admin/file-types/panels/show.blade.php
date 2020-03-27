@@ -140,7 +140,7 @@
 
                                         <p>{{ __('admin.panel_description') }}</p>
 
-                                        <p>{{ __('admin.panel_fieldsDescription') }}</p>
+{{--                                        <p>{{ __('admin.panel_fieldsDescription') }}</p>--}}
 
                                     </div>
                                 </div>
@@ -154,65 +154,79 @@
 
 
 
-                    <hr>
+                    <div class="card shadow mt-5">
 
-                    <div class="d-flex">
-                        <h3 class="h4 flex-grow-1">
-                            <span class="fas fa-pen-square mr-2"></span>{{ __('file.panel_addField') }}
-                        </h3>
-                    </div>
+                        <div class="card-body">
 
-                    <form action="{{ route("admin.file-types.panels.add-field", [$fileType, $panel]) }}" method="POST" id="addFieldForm">
-
-                        @csrf
-
-                        <div class="row">
-
-                            <div class="col-12 col-md-4">
-
-                                @selectField([
-                                    'name' => 'form_id',
-                                    'label' => __('file.form'),
-                                    'details' => '',
-                                    'value' => '',
-                                    'options' => $forms->pluck('name', 'id'),
-                                    'placeholder' => '',
-                                    'required' => false,
-                                    'autofocus' => false,
-                                    'error' => '',
-                                    'readonly' => false,
-                                ])
-
+                            <div class="d-flex">
+                                <h3 class="h4 flex-grow-1">
+                                    <span class="fas fa-pen-square mr-2"></span>{{ __('file.panel_addField') }}
+                                </h3>
                             </div>
 
-                            <div class="col-12 col-md-5">
+                            <hr>
 
-                                @selectField([
-                                    'name' => 'field_id',
-                                    'label' => __('file.field'),
-                                    'details' => '',
-                                    'value' => '',
-                                    'options' => [],//$forms->pluck('fields')->flatten()->pluck('label', 'id'),
-                                    'placeholder' => '',
-                                    'required' => true,
-                                    'autofocus' => false,
-                                    'error' => '',
-                                    'readonly' => false,
-                                ])
+                            <form action="{{ route("admin.file-types.panels.add-field", [$fileType, $panel]) }}" method="POST" id="addFieldForm">
 
-                            </div>
+                                @csrf
 
-                            <div class="col-12 col-md-3 d-flex align-items-center">
+                                <div class="row">
 
-                                <button type="submit" class="btn btn-primary">
-                                    <span class="fas fa-plus"></span> {{ __('file.panel_addField') }}
-                                </button>
+                                    <div class="col-12">
+                                        <p class="text-center">{{ __('admin.panel_fieldsDescription') }}</p>
 
-                            </div>
+                                        <hr>
+                                    </div>
+
+                                    <div class="col-12 col-md-4">
+
+                                        @selectField([
+                                            'name' => 'form_id',
+                                            'label' => __('file.form'),
+                                            'details' => '',
+                                            'value' => '',
+                                            'options' => $forms->pluck('name', 'id'),
+                                            'placeholder' => '',
+                                            'required' => false,
+                                            'autofocus' => false,
+                                            'error' => '',
+                                            'readonly' => false,
+                                        ])
+
+                                    </div>
+
+                                    <div class="col-12 col-md-5">
+
+                                        @selectField([
+                                            'name' => 'field_id',
+                                            'label' => __('file.field'),
+                                            'details' => '',
+                                            'value' => '',
+                                            'options' => [],//$forms->pluck('fields')->flatten()->pluck('label', 'id'),
+                                            'placeholder' => '',
+                                            'required' => true,
+                                            'autofocus' => false,
+                                            'error' => '',
+                                            'readonly' => false,
+                                        ])
+
+                                    </div>
+
+                                    <div class="col-12 col-md-3 d-flex align-items-center">
+
+                                        <button type="submit" class="btn btn-primary">
+                                            <span class="fas fa-plus"></span> {{ __('file.panel_addField') }}
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </form>
 
                         </div>
 
-                    </form>
+                    </div>
 
                 </div>
             </div>
