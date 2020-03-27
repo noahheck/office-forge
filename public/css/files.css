@@ -3,6 +3,10 @@
  */
 
 /**
+ * sass/_mixins.scss
+ */
+
+/**
  * sass/files/panel.scss
  */
 
@@ -18,6 +22,14 @@
   font-size: 1.1rem;
 }
 
+.panel-fields .panel-field {
+  padding: 4px;
+}
+
+.panel-fields .panel-field:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
 hr.separator {
   border-top: 2px solid #c9c9c9;
   margin-top: 3rem;
@@ -27,6 +39,22 @@ hr.separator {
 
 .no-files .no-files-icon-container {
   font-size: 9rem;
+}
+
+.file .panels-tabs {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.file .panel-content {
+  overflow-y: auto;
+  max-height: 340px;
+}
+
+@media (min-width: 768px) {
+  .file .panel-content {
+    height: 340px;
+  }
 }
 
 .file-form .file-type-icon-container {

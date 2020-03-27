@@ -93,6 +93,7 @@ return [
 
 
 
+    'details' => 'Details',
     'panels' => 'Panels',
     'panel' => 'Panel',
     'panel_name' => 'Name',
@@ -102,4 +103,6 @@ return [
     'panel_teamAccessApprovalShortDescription' => 'This panel is only accessible by members of these teams.',
     'panel_unrestrictedDescription' => 'This panel has not been approved for access by any teams. It will not be accessible by any of your staff.',
     'panel_addField' => 'Add Field',
+
+
 ];

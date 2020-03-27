@@ -2,6 +2,8 @@
  * sass/files/panel.scss
  */
 
+@import "../variables";
+
 .panel-fields {
 
     .field-label {
@@ -14,6 +16,16 @@
 
     .checkbox-container {
         font-size: 1.1rem;
+    }
+
+
+    .panel-field {
+
+        padding: 4px;
+
+        &:nth-child(even) {
+            background-color: $dark-white;
+        }
     }
 
 }

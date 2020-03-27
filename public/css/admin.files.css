@@ -22,6 +22,14 @@
   font-size: 1.1rem;
 }
 
+.panel-fields .panel-field {
+  padding: 4px;
+}
+
+.panel-fields .panel-field:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
 .fileType-show .fileType-forms-list-group {
   max-height: 400px;
   overflow-y: auto;

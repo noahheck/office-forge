@@ -100,13 +100,19 @@ class FileController extends Controller
         $user     = $request->user();
         $fileType = $file->fileType;
 
-        $fileType->load(['forms', 'forms.teams']);
+        $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
 
         $forms = $fileType->forms->filter(function($form, $key) use($user) {
             return $form->isAccessibleBy($user);
         });
 
-        return $this->view('files.show', compact('file', 'fileType', 'forms'));
+        $panels = $fileType->panels->filter(function($panel, $key) use($user) {
+            return $panel->isAccessibleBy($user);
+        });
+
+        $values   = $file->formFieldValues;
+
+        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'values'));
     }
 
     /**

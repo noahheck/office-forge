@@ -3,6 +3,7 @@
  */
 
 @import "variables";
+@import "mixins";
 @import "files/panel";
 
 hr.separator {
@@ -18,11 +19,31 @@ hr.separator {
     }
 }
 
+.file {
+
+    .panels-tabs {
+        max-height: 400px;
+        overflow-y: auto;
+    }
+
+    .panel-content {
+        overflow-y: auto;
+        max-height: 340px;
+
+        @include media-breakpoint-up(md) {
+
+            height: 340px;
+        }
+    }
+
+}
+
 
 .file-form {
-
 
     .file-type-icon-container {
         font-size: 9rem;
     }
 }
+
+

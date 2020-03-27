@@ -20,6 +20,7 @@ class Form extends Model
         'order' => 'integer',
     ];
 
+    // Same function as in Panels - extract to trait when appropriate
     public function isAccessibleBy(User $user): bool
     {
         $formTeams = $this->teams;

@@ -1,3 +1,15 @@
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+
 $grid-breakpoints: (
     xs: 0,
     sm: 576px,
@@ -13,6 +25,8 @@ $body-bg: #e6ecf3;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
+// 495057
+
 // Colors
 $blue: #3490dc;
 $indigo: #6574cd;
@@ -26,6 +40,9 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
+$light-white: #fefefe;
+$medium-white: #fcfcfc;
+$dark-white: #f9f9f9;
 $light-gray: #e3e3e3;
 $med-light-gray: #d6d6d6;
 $medium-gray: #c9c9c9;
