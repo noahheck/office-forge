@@ -10,7 +10,8 @@
 /**
  * js/page/settings/photo.js
  */
-var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // Same process as in js/page/files/_form.js
+
 
 $(function () {
   var $input = $('#new_profile_photo');

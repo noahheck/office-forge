@@ -1,12 +1,12 @@
 /**
- * js/page/settings/photo.js
+ * js/page/files/_form.js
  */
 
 let $ = require('jquery');
 
-// Same process as in js/page/files/_form.js
+// Same process as in js/page/settings/photo.js
 $(() => {
-    let $input = $('#new_profile_photo');
+    let $input = $('#new_file_photo');
     let image  = $('.upload-preview');
 
     $input.change(function() {
@@ -21,3 +21,4 @@ $(() => {
 
     });
 });
+

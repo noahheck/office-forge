@@ -4,6 +4,6 @@
 <div class="panel-field">
     <span class="field-label">{{ $field->label }}</span>
     <div class="field-value">
-        {!! $file->fileType->icon() !!} {{ $__file->name }}
+        {!! $__file->icon() !!} {{ $__file->name }}
     </div>
 </div>

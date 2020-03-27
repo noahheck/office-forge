@@ -17,6 +17,7 @@
     "/js/page.admin.processes.tasks.actions.index.js": "/js/page.admin.processes.tasks.actions.index.js",
     "/js/page.admin.processes.tasks.index.js": "/js/page.admin.processes.tasks.index.js",
     "/js/page.admin.processes.tasks.show.js": "/js/page.admin.processes.tasks.show.js",
+    "/js/page.files._form.js": "/js/page.files._form.js",
     "/js/page.files.index.js": "/js/page.files.index.js",
     "/js/page.settings.photo.js": "/js/page.settings.photo.js",
     "/js/vendor.js": "/js/vendor.js"

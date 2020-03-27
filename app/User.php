@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Interfaces\Headshottable;
+use App\Traits\Headshottable as HeadshottableTrait;
 use App\Project\Task;
 use App\Traits\GetsInitialsFromName;
 use App\Traits\User\ProvidesTodaysDate;
@@ -14,7 +15,8 @@ class User extends Authenticatable implements Headshottable
 {
     use Notifiable,
         GetsInitialsFromName,
-        ProvidesTodaysDate;
+        ProvidesTodaysDate,
+        HeadshottableTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -97,7 +99,7 @@ class User extends Authenticatable implements Headshottable
 
 
     // Probably extracting this to the HasHeadShots trait
-    public function headshots()
+    /*public function headshots()
     {
         return $this->morphMany(HeadShot::class, 'headshottable');
     }
@@ -110,7 +112,7 @@ class User extends Authenticatable implements Headshottable
     public function hasHeadshot(): bool
     {
         return !is_null($this->currentHeadshot());
-    }
+    }*/
 
 
     /**

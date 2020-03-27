@@ -30,6 +30,12 @@
                     <hr>
 
                     <div class="text-center">
+                        {!! $file->thumbnail() !!}
+                    </div>
+
+                    <hr>
+
+                    <div class="text-center">
                         <a class="btn btn-primary" href="{{ route('files.edit', [$file]) }}">
                             <span class="fas fa-edit mr-2"></span>{{ __('app.edit') }} {{ $fileType->name }}</a>
                     </div>

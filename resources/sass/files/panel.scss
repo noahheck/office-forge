@@ -26,6 +26,11 @@
         &:nth-child(even) {
             background-color: $dark-white;
         }
+
+        .file-icon {
+            max-height: 30px;
+            max-width: 30px;
+        }
     }
 
 }

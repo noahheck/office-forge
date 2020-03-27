@@ -12,10 +12,6 @@
         max-height: 200px;
     }
 
-    .in-preview {
-        opacity: .8;
-    }
-
 </style>
 @endpush
 

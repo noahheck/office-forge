@@ -214,6 +214,11 @@
 
 
 
+.in-preview {
+    opacity: .8;
+}
+
+
 .team-icon {
     @include border-radius();
     @include no-text-select();
@@ -233,7 +238,13 @@
     display: inline-block;
 }
 
+.file-icon {
 
+
+    &.file-thumbnail {
+        font-size: 9rem;
+    }
+}
 
 
 

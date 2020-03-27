@@ -1,5 +1,6 @@
 @php
     $__addressParts = ($preview ?? false) ? \App\misc_address() : $value->valueAddress();
+    $__addressParts = ($__addressParts) ? $__addressParts : [];
     $__address = implode("<br>", array_map('e', $__addressParts));
 @endphp
 <div class="panel-field">

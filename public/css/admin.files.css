@@ -30,6 +30,11 @@
   background-color: #f9f9f9;
 }
 
+.panel-fields .panel-field .file-icon {
+  max-height: 30px;
+  max-width: 30px;
+}
+
 .fileType-show .fileType-forms-list-group {
   max-height: 400px;
   overflow-y: auto;

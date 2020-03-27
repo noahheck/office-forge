@@ -6,6 +6,7 @@ use App\File;
 use App\FileType;
 use App\Jobs\File\Create;
 use App\Jobs\File\Update;
+use App\Jobs\Headshottable\Upload;
 use Illuminate\Http\Request;
 use App\Http\Requests\File\Store as StoreRequest;
 use App\Http\Requests\File\Update as UpdateRequest;
@@ -84,6 +85,10 @@ class FileController extends Controller
 
         $file = $fileCreated->getFile();
 
+        if ($photoFile = $request->file('new_file_photo')) {
+            $this->dispatchNow($photoUploaded = new Upload($file, $photoFile, $request->user()));
+        }
+
         flash_success(__('file.fileOfTypeCreated', ['fileTypeName' => $fileType->name, 'fileName' => $file->name]));
 
         return redirect()->route('files.show', [$file]);
@@ -138,6 +143,10 @@ class FileController extends Controller
     public function update(UpdateRequest $request, File $file)
     {
         $this->dispatchNow($fileUpdated = new Update($file, $request->name));
+
+        if ($photoFile = $request->file('new_file_photo')) {
+            $this->dispatchNow($photoUploaded = new Upload($file, $photoFile, $request->user()));
+        }
 
         flash_success(__('file.fileOfTypeUpdated', ['fileTypeName' => $file->fileType->name, 'fileName' => $file->name]));
 

@@ -24792,6 +24792,10 @@ a.text-dark:focus {
   color: #fff;
 }
 
+.in-preview {
+  opacity: 0.8;
+}
+
 .team-icon {
   border-radius: 3px;
   user-select: none;
@@ -24818,6 +24822,10 @@ a.text-dark:focus {
   margin-right: 6px;
   padding: 7px;
   display: inline-block;
+}
+
+.file-icon.file-thumbnail {
+  font-size: 9rem;
 }
 
 .notifications {
