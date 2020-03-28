@@ -4,6 +4,6 @@
 <div class="panel-field">
     <span class="field-label">{{ $field->label }}</span>
     <div class="field-value">
-        <span class="fas fa-user"></span> {!! $__user->iconAndName() !!}
+        {!! $__user->iconAndName() !!}
     </div>
 </div>

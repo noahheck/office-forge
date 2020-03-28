@@ -24,7 +24,7 @@
         @errors('new_file_photo')
 
         <div class="custom-file">
-            <input type="file" class="custom-file-input" id="new_file_photo" name="new_file_photo" required>
+            <input type="file" class="custom-file-input" id="new_file_photo" name="new_file_photo">
             <label class="custom-file-label" for="new_file_photo">{{ __('settings.photo_selectPhoto') }}</label>
         </div>
 
