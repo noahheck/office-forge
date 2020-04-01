@@ -62,7 +62,7 @@
 
                 <div class="card shadow panels">
                     <div class="card-header">
-                        <h4 class="mb-0">{{ __('file.details') }}</h4>
+                        <h4 class="mb-0"><span class="fas fa-th-list mr-2"></span>{{ __('file.details') }}</h4>
                     </div>
                     <div class="card-body">
 

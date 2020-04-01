@@ -27,6 +27,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::get('/editor-images/{editorImage}', 'EditorImageController@show')->name('editor-images.show');
 
 
+    Route::resource('/activities', 'ActivityController');
+
     Route::resource('/files', 'FileController');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->group(function() {
 

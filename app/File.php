@@ -32,6 +32,11 @@ class File extends Model implements Headshottable
         return $this->hasMany(Value::class);
     }
 
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
 
 
 
