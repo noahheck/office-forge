@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Project;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Project\Task\Store as StoreRequest;
-use App\Http\Requests\Project\Task\Update as UpdateRequest;
-use App\Jobs\Project\Task\Create;
-use App\Jobs\Project\Task\Update;
+use App\Http\Requests\Activity\Task\Store as StoreRequest;
+use App\Http\Requests\Activity\Task\Update as UpdateRequest;
+use App\Jobs\Activity\Task\Create;
+use App\Jobs\Activity\Task\Update;
 use App\Project;
 use App\Project\Task;
 use App\User;

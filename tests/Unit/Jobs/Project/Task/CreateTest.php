@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Jobs\Project\Task;
 
-use App\Jobs\Project\Task\Create;
+use App\Jobs\Activity\Task\Create;
 use App\Project;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

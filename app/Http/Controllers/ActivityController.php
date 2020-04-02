@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\Activity\Create;
+use App\Jobs\Activity\Update;
 use App\Activity;
+use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\Activity\Store as StoreRequest;
+use App\Http\Requests\Activity\Update as UpdateRequest;
 
 class ActivityController extends Controller
 {
@@ -12,9 +17,12 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $activities = Activity::orderBy('active', 'DESC')->orderBy('due_date')->orderBy('completed', 'ASC')->get();
+
+        return $this->view('activities.index', compact('activities'));
+
     }
 
     /**
@@ -22,9 +30,15 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $activity = new Activity();
+        $activity->due_date = now();
+        $activity->owner_id = $request->user()->id;
+
+        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        return $this->view('activities.create', compact('activity', 'users'));
     }
 
     /**
@@ -33,9 +47,22 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($activityCreated = new Create(
+            $request->name,
+            $request->due_date,
+            $request->owner_id,
+            $request->details,
+            $request->user(),
+            $request->temp_id
+        ));
+
+        $activity = $activityCreated->getActivity();
+
+        \App\flash_success(__('activity.activityCreated'));
+
+        return redirect()->route('activities.show', [$activity]);
     }
 
     /**
@@ -46,7 +73,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        //
+        return $this->view('activities.show', compact('activity'));
     }
 
     /**
@@ -57,19 +84,32 @@ class ActivityController extends Controller
      */
     public function edit(Activity $activity)
     {
-        //
+        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+
+        return $this->view('activities.edit', compact('activity', 'users'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Activity  $activity
+     * @param  \App\Activity  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Activity $activity)
+    public function update(UpdateRequest $request, Activity $activity)
     {
-        //
+        $this->dispatchNow($activityUpdated = new Update(
+            $activity,
+            $request->name,
+            $request->due_date,
+            $request->owner_id,
+            $request->has('completed'),
+            $request->details
+        ));
+
+        \App\flash_success(__('activity.activityUpdated'));
+
+        return redirect()->route('activities.show', [$activity]);
     }
 
     /**

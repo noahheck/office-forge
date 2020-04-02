@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\Jobs\Project;
 
-use App\Jobs\Project\Create;
+use App\Jobs\Activity\Create;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

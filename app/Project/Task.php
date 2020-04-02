@@ -2,6 +2,7 @@
 
 namespace App\Project;
 
+use App\Activity;
 use App\Project;
 use App\Interfaces\HasDueDate as HasDueDateInterface;
 use App\Traits\HasDueDate;
@@ -29,9 +30,9 @@ class Task extends Model implements HasDueDateInterface
         return $this->belongsTo(User::class, 'created_by');
     }
 
-    public function project()
+    public function activity()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Activity::class);
     }
 
     public function assignedTo()

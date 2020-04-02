@@ -29,6 +29,13 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::resource('/activities', 'ActivityController');
 
+    Route::namespace('Activity')->prefix('/activities/{activity}')->name('activities.')->group(function() {
+
+        Route::resource('/tasks', 'TaskController');
+
+    });
+
+
     Route::resource('/files', 'FileController');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->group(function() {
 
@@ -38,13 +45,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     });
 
-    Route::resource('/projects', 'ProjectController');
+//    Route::resource('/projects', 'ProjectController');
 
-    Route::namespace('Project')->prefix('/projects/{project}')->name('projects.')->group(function() {
 
-        Route::resource('/tasks', 'TaskController');
-
-    });
 
     Route::resource('/processes', 'Process\InstanceController')
         ->parameter('processes','instance');

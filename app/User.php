@@ -87,20 +87,6 @@ class User extends Authenticatable implements Headshottable
 
 
 
-
-
-    public function ownedProjects()
-    {
-        return $this->hasMany(Project::class, 'owner_id');
-    }
-
-    public function createdProjects()
-    {
-        return $this->hasMany(Project::class, 'created_by');
-    }
-
-
-
     public function createdTasks()
     {
         return $this->hasMany(Task::class, 'created_by');
@@ -114,21 +100,6 @@ class User extends Authenticatable implements Headshottable
 
 
 
-    // Probably extracting this to the HasHeadShots trait
-    /*public function headshots()
-    {
-        return $this->morphMany(HeadShot::class, 'headshottable');
-    }
-
-    public function currentHeadshot()
-    {
-        return $this->headshots->firstWhere('current', true);
-    }
-
-    public function hasHeadshot(): bool
-    {
-        return !is_null($this->currentHeadshot());
-    }*/
 
 
     /**

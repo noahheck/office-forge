@@ -1,7 +1,7 @@
 @php
 $__currentRouteName  = Route::currentRouteName();
 $__isFilesRoute      = Str::startsWith($__currentRouteName, 'files');
-$__isProjectsRoute   = Str::startsWith($__currentRouteName, 'projects');
+$__isActivitiesRoute = Str::startsWith($__currentRouteName, 'activities');
 $__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
@@ -133,8 +133,8 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
                 </a>
             </li>
             <li>
-                <a href="{{ route('projects.index') }}" class="{{ ($__isProjectsRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.projects') }}
+                <a href="{{ route('activities.index') }}" class="{{ ($__isActivitiesRoute) ? 'current' : '' }}">
+                    <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.activities') }}
                 </a>
             </li>
             {{--<li>
