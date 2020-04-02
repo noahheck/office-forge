@@ -24893,3 +24893,11 @@ a.text-dark:focus {
   font-weight: bold;
 }
 
+.overdue .due-date {
+  color: #e3342f;
+}
+
+.due-today .due-date {
+  color: #f6993f;
+}
+

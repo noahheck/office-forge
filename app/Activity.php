@@ -38,6 +38,14 @@ class Activity extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function numberOfTotalTasks()
+    {
+        return count($this->tasks);
+    }
 
+    public function numberOfCompletedTasks()
+    {
+        return count($this->tasks->where('completed', true));
+    }
 
 }

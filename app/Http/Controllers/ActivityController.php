@@ -19,9 +19,26 @@ class ActivityController extends Controller
      */
     public function index(Request $request)
     {
-        $activities = Activity::orderBy('active', 'DESC')->orderBy('due_date')->orderBy('completed', 'ASC')->get();
+        // Default behavior is to show the user their own open activities
+        $showFilter = ($request->query('show')) ? $request->query('show') : 'open';
 
-        return $this->view('activities.index', compact('activities'));
+        switch ($showFilter):
+
+            case 'open':
+                $activitiesCollection = $request->user()->openActivities();
+                break;
+
+            case 'all':
+                $activitiesCollection = $request->user()->activities();
+                break;
+
+        endswitch;
+
+        $activities = $activitiesCollection->get();
+
+        $activities->load('owner', 'tasks');
+
+        return $this->view('activities.index', compact('activities', 'showFilter'));
 
     }
 

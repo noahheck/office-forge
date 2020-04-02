@@ -311,3 +311,16 @@
         }
     }
 }
+
+
+.overdue {
+    .due-date {
+        color: $red;
+    }
+}
+
+.due-today {
+    .due-date {
+        color: $orange;
+    }
+}

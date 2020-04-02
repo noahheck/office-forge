@@ -21,8 +21,14 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $user = $request->user();
+
+        $activities = $user->openActivities;
+
+        $activities->load('tasks');
+
+        return $this->view('home', compact('activities', 'user'));
     }
 }

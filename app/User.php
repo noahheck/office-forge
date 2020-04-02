@@ -75,12 +75,17 @@ class User extends Authenticatable implements Headshottable
 
     public function activities()
     {
-        return $this->hasMany(Activity::class, 'owner_id');
+        return $this->hasMany(Activity::class, 'owner_id')->orderBy('due_date');
     }
 
     public function createdActivities()
     {
         return $this->hasMany(Activity::class, 'created_by');
+    }
+
+    public function openActivities()
+    {
+        return $this->activities()->where('completed', false);
     }
 
 

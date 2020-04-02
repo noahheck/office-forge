@@ -44,8 +44,8 @@
 .project .section-header {
   margin-top: 10px;
   background: white;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(48%, white), color-stop(49%, #6c6c6c), color-stop(51%, #6c6c6c), color-stop(52%, white));
-  background: linear-gradient(0deg, white 48%, #6c6c6c 49%, #6c6c6c 51%, white 52%);
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(48%, white), color-stop(49%, #a4a4a4), color-stop(51%, #a4a4a4), color-stop(52%, white));
+  background: linear-gradient(0deg, white 48%, #a4a4a4 49%, #a4a4a4 51%, white 52%);
 }
 
 .project .section-header .title {
@@ -84,7 +84,7 @@
 
 .project--task-list a.task {
   margin-bottom: -1px;
-  padding: 4px;
+  padding: 6px;
   border: 1px solid #e3e3e3;
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;

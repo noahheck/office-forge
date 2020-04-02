@@ -38,4 +38,6 @@ return [
 
 
 
+    'countOfTotalTasksCompleted' => ':completed / :total Tasks Completed'
+
 ];

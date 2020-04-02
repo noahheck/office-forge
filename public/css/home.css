@@ -1,0 +1,21 @@
+/**
+ * sass/home.scss
+ */
+
+.activities-panel {
+  height: 400px;
+  overflow-y: auto;
+}
+
+.activities-panel .activity-name {
+  color: #3490dc;
+}
+
+.activities-panel .activity-details {
+  padding-left: 20px;
+}
+
+.activities-panel .activity-details .detail {
+  margin-right: 4px;
+}
+
