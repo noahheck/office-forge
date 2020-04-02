@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Project\Task;
+use App\Activity\Task;
 use App\Traits\HasDueDate;
 use App\Traits\IsEditorResource;
 use Illuminate\Database\Eloquent\Model;

@@ -6,7 +6,6 @@ namespace App\Navigation\LocationBar\Activities;
 
 use App\Activity;
 use App\Navigation\LocationBar;
-use App\Project;
 
 class Show extends LocationBar
 {

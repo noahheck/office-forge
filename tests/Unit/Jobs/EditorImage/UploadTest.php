@@ -3,7 +3,7 @@
 namespace Tests\Unit\Jobs\EditorImage;
 
 use App\Jobs\EditorImage\Upload;
-use App\Project;
+use App\Activity;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Project;
+namespace App\Http\Controllers\Activity;
 
+use App\Activity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Activity\Task\Store as StoreRequest;
 use App\Http\Requests\Activity\Task\Update as UpdateRequest;
 use App\Jobs\Activity\Task\Create;
 use App\Jobs\Activity\Task\Update;
-use App\Project;
-use App\Project\Task;
+use App\Activity\Task;
 use App\User;
 use Illuminate\Http\Request;
 use function App\flash_success;
@@ -20,9 +20,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Project $project)
+    public function index(Activity $activity)
     {
-        return $this->view('projects.tasks.index', compact('project'));
+        return $this->view('activities.tasks.index', compact('activity'));
     }
 
     /**
@@ -30,15 +30,15 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Project $project)
+    public function create(Request $request, Activity $activity)
     {
         $task = new Task;
-        $task->project_id = $project->id;
+        $task->project_id = $activity->id;
         $task->assigned_to = $request->user()->id;
 
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
-        return $this->view('projects.tasks.create', compact('task', 'project', 'users'));
+        return $this->view('activities.tasks.create', compact('task', 'activity', 'users'));
     }
 
     /**
@@ -47,10 +47,10 @@ class TaskController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, Project $project)
+    public function store(StoreRequest $request, Activity $activity)
     {
         $this->dispatchNow($taskCreated = new Create(
-            $project,
+            $activity,
             $request->title,
             $request->due_date,
             $request->assigned_to,
@@ -59,43 +59,43 @@ class TaskController extends Controller
             $request->temp_id
         ));
 
-        flash_success(__('project.taskCreated'));
+        flash_success(__('activity.taskCreated'));
 
-        return redirect()->route('projects.show', [$project]);
+        return redirect()->route('activities.show', [$activity]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Project\Task  $task
+     * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Project $project, Task $task)
+    public function show(Activity $activity, Task $task)
     {
-        return $this->view('projects.tasks.show', compact('task', 'project'));
+        return $this->view('activities.tasks.show', compact('task', 'activity'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Project\Task  $task
+     * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Project $project, Task $task)
+    public function edit(Activity $activity, Task $task)
     {
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
-        return $this->view('projects.tasks.edit', compact('task', 'project', 'users'));
+        return $this->view('activities.tasks.edit', compact('task', 'activity', 'users'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Project\Task  $task
+     * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Project $project, Task $task)
+    public function update(UpdateRequest $request, Activity $activity, Task $task)
     {
         $this->dispatchNow($taskUpdated = new Update(
             $task,
@@ -106,18 +106,18 @@ class TaskController extends Controller
             $request->details
         ));
 
-        flash_success(__('project.taskUpdated'));
+        flash_success(__('activity.taskUpdated'));
 
-        return redirect()->route('projects.show', [$project]);
+        return redirect()->route('activities.show', [$activity]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Project\Task  $task
+     * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Project $project, Task $task)
+    public function destroy(Activity $activity, Task $task)
     {
         //
     }

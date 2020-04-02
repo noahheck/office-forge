@@ -1,9 +1,8 @@
 <?php
 
-namespace App\Project;
+namespace App\Activity;
 
 use App\Activity;
-use App\Project;
 use App\Interfaces\HasDueDate as HasDueDateInterface;
 use App\Traits\HasDueDate;
 use App\Traits\IsEditorResource;

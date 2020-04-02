@@ -4,16 +4,16 @@
 namespace App\Navigation\LocationBar\Activities\Tasks;
 
 
+use App\Activity;
 use App\Navigation\LocationBar;
-use App\Project;
 
 class Index extends LocationBar
 {
-    public function __construct(Project $project)
+    public function __construct(Activity $activity)
     {
-        parent::__construct(__('project.tasks'));
+        parent::__construct(__('activity.tasks'));
 
         $this->addLink(new \App\Navigation\Link\Activities);
-        $this->addLink(new \App\Navigation\Link\Activities\Show($project));
+        $this->addLink(new \App\Navigation\Link\Activities\Show($activity));
     }
 }

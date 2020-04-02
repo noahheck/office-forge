@@ -4,13 +4,13 @@
 namespace App\Navigation\Link\Activities;
 
 
+use App\Activity;
 use App\Navigation\Link;
-use App\Project;
 
 class Tasks extends Link
 {
-    public function __construct(Project $project)
+    public function __construct(Activity $activity)
     {
-        parent::__construct(route('projects.tasks.index', [$project]), __('project.tasks'));
+        parent::__construct(route('activities.tasks.index', [$activity]), __('activity.tasks'));
     }
 }

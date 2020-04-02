@@ -32,7 +32,7 @@
                                     @endif
                                 </dd>
 
-                                <dt>{{ __('project.dueDate') }}</dt>
+                                <dt>{{ __('activity.dueDate') }}</dt>
                                 <dd class="project--due-date">{{ App\format_date($activity->due_date) }}</dd>
 
                             </dl>

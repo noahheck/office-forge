@@ -1,17 +1,17 @@
 @extends("layouts.app")
 
 @push('styles')
-    @style('css/projects.css')
+    @style('css/activities.css')
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar\Activities\Tasks\Index($project))
+    'locationBar' => (new \App\Navigation\LocationBar\Activities\Tasks\Index($activity))
 ])
 
 @section('content')
 
     <h1>
-        <span class="fas fa-project-diagram"></span> {{ $project->name }}
+        <span class="fas fa-project-diagram"></span> {{ $activity->name }}
     </h1>
 
     <div class="row justify-content-center">
@@ -21,8 +21,8 @@
                 <div class="card-body">
 
                     <p class="text-right">
-                        <a class="btn btn-primary" href="{{ route('projects.tasks.create', [$project]) }}">
-                            <span class="fas fa-plus"></span> {{ __('project.addTask') }}
+                        <a class="btn btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}">
+                            <span class="fas fa-plus"></span> {{ __('activity.addTask') }}
                         </a>
                     </p>
 
@@ -30,16 +30,16 @@
 
                     <h3>
                         <span class="far fa-check-square"></span>
-                        {{ __('project.tasks') }}
+                        {{ __('activity.tasks') }}
                     </h3>
 
-                    @forelse($project->tasks as $task)
+                    @forelse($activity->tasks as $task)
 
                         @if ($loop->first)
                             <div class="list-group">
                         @endif
 
-                            <a class="list-group-item list-group-item-action" href="{{ route('projects.tasks.show', [$project, $task]) }}">
+                            <a class="list-group-item list-group-item-action" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
                                 <span class="far {{ ($task->completed) ? 'fa-check-square' : 'fa-square' }}"></span>
                                 {{ $task->title }}
                             </a>

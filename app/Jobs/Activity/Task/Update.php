@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Activity\Task;
 
-use App\Project;
-use App\Project\Task;
+use App\Activity;
+use App\Activity\Task;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;

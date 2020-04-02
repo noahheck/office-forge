@@ -3,7 +3,7 @@
 namespace Tests\Unit\Jobs\Project\Task;
 
 use App\Jobs\Activity\Task\Create;
-use App\Project;
+use App\Activity;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

@@ -4,7 +4,7 @@ namespace App;
 
 use App\Interfaces\Headshottable;
 use App\Traits\Headshottable as HeadshottableTrait;
-use App\Project\Task;
+use App\Activity\Task;
 use App\Traits\GetsInitialsFromName;
 use App\Traits\User\ProvidesTodaysDate;
 use Illuminate\Contracts\Auth\MustVerifyEmail;

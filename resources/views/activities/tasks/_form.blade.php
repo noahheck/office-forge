@@ -10,9 +10,9 @@
 
     @textField([
         'name' => 'title',
-        'label' => __('project.taskTitle'),
+        'label' => __('activity.taskTitle'),
         'value' => old('title', $task->title),
-        'placeholder' => __('project.taskTitleExample'),
+        'placeholder' => __('activity.taskTitleExample'),
         'required' => true,
         'autofocus' => true,
         'error' => $errors->has('title'),
@@ -20,7 +20,7 @@
 
     @dateField([
         'name' => 'due_date',
-        'label' => __('project.taskDueDate'),
+        'label' => __('activity.taskDueDate'),
         'value' => old('due_date', App\format_date($task->due_date)),
         'placeholder' => '',
         'required' => false,
@@ -35,7 +35,7 @@
         @checkboxSwitchField([
             'name' => 'completed',
             'id' => 'task_' . $task->id . '_completed',
-            'label' => __('project.taskCompleted'),
+            'label' => __('activity.taskCompleted'),
             'checked' => $task->completed,
             'value' => '1',
             'required' => false,
@@ -48,10 +48,10 @@
 
     @userSelectField([
         'name' => 'assigned_to',
-        'label' => __('project.taskAssignedTo'),
+        'label' => __('activity.taskAssignedTo'),
         'value' => $task->assigned_to,
         'users' => $users,
-        'placeholder' => __('project.taskAssignedTo'),
+        'placeholder' => __('activity.taskAssignedTo'),
         'required' => false,
         'autofocus' => false,
         'error' => $errors->has('assigned_to'),
@@ -60,10 +60,10 @@
     @textEditorField([
         'name' => 'details',
         'id' => 'details',
-        'label' => __('project.taskDetails'),
+        'label' => __('activity.taskDetails'),
         'required' => false,
         'value' => old('details', $task->details),
-        'placeholder' => __('project.taskDetailsExample'),
+        'placeholder' => __('activity.taskDetailsExample'),
         'toolbar' => 'full',
         'resourceType' => get_class($task),
         'resourceId' => $task->id,
@@ -75,7 +75,7 @@
         {{ __('app.save') }}
     </button>
 
-    <a class="btn btn-secondary" href="{{ url()->previous(route('projects.index')) }}">
+    <a class="btn btn-secondary" href="{{ url()->previous(route('activities.index')) }}">
         {{ __('app.cancel') }}
     </a>
 

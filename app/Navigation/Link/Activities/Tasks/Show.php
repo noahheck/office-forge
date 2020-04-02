@@ -5,12 +5,12 @@ namespace App\Navigation\Link\Activities\Tasks;
 
 
 use App\Navigation\Link;
-use App\Project\Task;
+use App\Activity\Task;
 
 class Show extends Link
 {
     public function __construct(Task $task)
     {
-        parent::__construct(route('projects.tasks.show', [$task->project, $task]), $task->title);
+        parent::__construct(route('activities.tasks.show', [$task->activity, $task]), $task->title);
     }
 }

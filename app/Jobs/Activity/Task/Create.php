@@ -2,8 +2,8 @@
 
 namespace App\Jobs\Activity\Task;
 
-use App\Project;
-use App\Project\Task;
+use App\Activity;
+use App\Activity\Task;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
@@ -18,7 +18,7 @@ class Create
      */
     private $task;
 
-    private $project;
+    private $activity;
     private $title;
     private $due_date;
     private $assigned_to;
@@ -31,9 +31,9 @@ class Create
      *
      * @return void
      */
-    public function __construct(Project $project, $title, $due_date, $assigned_to, $details, User $creator, $editor_temp_id)
+    public function __construct(Activity $activity, $title, $due_date, $assigned_to, $details, User $creator, $editor_temp_id)
     {
-        $this->project = $project;
+        $this->activity = $activity;
         $this->title = $title;
         $this->due_date = $due_date;
         $this->assigned_to = $assigned_to;
@@ -56,7 +56,7 @@ class Create
     {
         $task = new Task();
 
-        $task->project_id = $this->project->id;
+        $task->activity_id = $this->activity->id;
         $task->title = $this->title;
         $task->assigned_to = $this->assigned_to;
         $task->details = $this->details;

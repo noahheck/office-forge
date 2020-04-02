@@ -1,19 +1,19 @@
 @extends("layouts.app")
 
 @push('styles')
-    @style('css/projects.css')
+    @style('css/activities.css')
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar\Activities\Tasks\Show($project, $task))
+    'locationBar' => (new \App\Navigation\LocationBar\Activities\Tasks\Show($activity, $task))
 ])
 
 @push('meta')
-    @meta('project:id', $project->id)
-    @meta('project:name', $project->name)
-    @meta('task:id', $task->id)
-    @meta('task:title', $task->title)
-    @meta('task:due_date', \App\format_date($task->due_date))
+    @meta('activity.id', $activity->id)
+    @meta('activity.name', $activity->name)
+    @meta('task.id', $task->id)
+    @meta('task.title', $task->title)
+    @meta('task.due_date', \App\format_date($task->due_date))
 @endpush
 
 @section('content')
@@ -29,14 +29,14 @@
                         <div class="col-10 col-sm-9 col-xl-10">
                             <h2 class="h4 overflow-x-ellipsis">
                                 <span class="fas fa-project-diagram"></span>
-                                {{ $project->name }}
+                                {{ $activity->name }}
                             </h2>
                         </div>
 
                         <div class="col-2 col-sm-3 col-xl-2 text-right">
-                            <a class="btn btn-sm btn-primary" href="{{ route('projects.tasks.edit', [$project, $task]) }}" title="{{ __('project.editTask') }}">
+                            <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.edit', [$activity, $task]) }}" title="{{ __('activity.editTask') }}">
                                 <span class="fas fa-edit"></span>
-                                <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('project.task') }}</span>
+                                <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('activity.task') }}</span>
                             </a>
                         </div>
                     </div>
@@ -49,14 +49,14 @@
                         </h3>
 
                         <dl class="row">
-                            <dt class="col-4 col-sm-3">{{ __('project.taskAssignedTo') }}</dt>
+                            <dt class="col-4 col-sm-3">{{ __('activity.taskAssignedTo') }}</dt>
                             <dd class="col-8 col-sm-9">
                                 @if ($task->assigned_to)
                                     {!! $task->assignedTo->iconAndName() !!}
                                 @endif
                             </dd>
 
-                            <dt class="col-4 col-sm-3">{{ __('project.taskDueDate') }}</dt>
+                            <dt class="col-4 col-sm-3">{{ __('activity.taskDueDate') }}</dt>
                             <dd class="col-8 col-sm-9 task--due-date">{{ App\format_date($task->due_date) }}</dd>
 
                         </dl>

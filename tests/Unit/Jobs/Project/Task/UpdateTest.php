@@ -3,7 +3,7 @@
 namespace Tests\Unit\Jobs\Project\Task;
 
 use App\Jobs\Activity\Task\Update;
-use App\Project\Task;
+use App\Activity\Task;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
