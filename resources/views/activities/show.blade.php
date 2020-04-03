@@ -75,8 +75,8 @@
 
 
 
-                            <h4 class="section-header">
-                                <span class="title"><span class="fas fa-tasks"></span> Tasks</span>
+                            <h4 class="separator">
+                                <span><span class="fas fa-tasks"></span> Tasks</span>
                             </h4>
 
                             <div class="project--task-list current-tasks">

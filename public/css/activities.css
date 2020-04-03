@@ -41,20 +41,6 @@
   font-weight: bold;
 }
 
-.project .section-header {
-  margin-top: 10px;
-  background: white;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(48%, white), color-stop(49%, #a4a4a4), color-stop(51%, #a4a4a4), color-stop(52%, white));
-  background: linear-gradient(0deg, white 48%, #a4a4a4 49%, #a4a4a4 51%, white 52%);
-}
-
-.project .section-header .title {
-  background-color: #fff;
-  margin-left: 10px;
-  padding-left: 7px;
-  padding-right: 7px;
-}
-
 @media (min-width: 768px) {
   .project--tasks {
     position: -webkit-sticky;

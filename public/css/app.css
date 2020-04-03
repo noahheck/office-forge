@@ -24927,3 +24927,55 @@ a.text-dark:focus {
   color: #f6993f;
 }
 
+h1.separator,
+h2.separator,
+h3.separator,
+h4.separator,
+h5.separator,
+h6.separator {
+  z-index: 0;
+  position: relative;
+}
+
+h1.separator > span,
+h2.separator > span,
+h3.separator > span,
+h4.separator > span,
+h5.separator > span,
+h6.separator > span {
+  display: inline-block;
+  padding: 0 10px;
+  background-color: #fff;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+h1.separator::before,
+h2.separator::before,
+h3.separator::before,
+h4.separator::before,
+h5.separator::before,
+h6.separator::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #e3e3e3;
+  z-index: -1;
+}
+
+/*
+.section-header {
+    margin-top: 10px;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 48%, rgba(164,164,164,1) 49%, rgba(164,164,164,1) 51%, rgba(255,255,255,1) 52%);
+
+    .title {
+        background-color: $white;
+        margin-left: 10px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+}*/
+

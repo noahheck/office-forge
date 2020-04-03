@@ -324,3 +324,53 @@
         color: $orange;
     }
 }
+
+
+
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    &.separator {
+        z-index: 0;
+        position: relative;
+
+        & > span {
+            display: inline-block;
+            padding: 0 10px;
+            background-color: $white;
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            border-bottom: 1px solid $light-gray;
+            z-index: -1;
+        }
+    }
+}
+
+
+
+/*
+.section-header {
+    margin-top: 10px;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 48%, rgba(164,164,164,1) 49%, rgba(164,164,164,1) 51%, rgba(255,255,255,1) 52%);
+
+    .title {
+        background-color: $white;
+        margin-left: 10px;
+        padding-left: 7px;
+        padding-right: 7px;
+    }
+}*/
