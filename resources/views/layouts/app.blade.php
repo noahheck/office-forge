@@ -5,6 +5,10 @@ $__isActivitiesRoute = Str::startsWith($__currentRouteName, 'activities');
 $__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
+
+
+$__fileTypes = \App\FileType::orderBy('name')->get();
+
 @endphp
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
@@ -75,36 +79,42 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
-                    <!-- Authentication Links -->
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('app.login') }}</a>
-                        </li>
-                        @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('app.register') }}</a>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {!! Auth::user()->iconPhoto() !!}
-                                {{ Auth::user()->name }} <span class="caret"></span>
+                    <li class="nav-item dropdown">
+                        <a id="addNewNavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="fas fa-plus-circle"></span> <span class="sr-only">Create New</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="addNewNavbarDropdown">
+                            <span class="dropdown-header"><span class="fa-fw fas fa-project-diagram"></span> {{ __('app.activities') }}</span>
+                            <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
+                            @foreach ($__fileTypes as $__fileType)
+                                @if ($loop->first)
+                                    <div class="dropdown-divider"></div>
+                                    <span class="dropdown-header"><span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}</span>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('files.create', ['file_type' => $__fileType->id]) }}">
+                                    {!! $__fileType->icon(['fa-fw']) !!} {{ $__fileType->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {!! Auth::user()->iconPhoto() !!}
+                            {{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                               onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                {{ __('app.logout') }}
                             </a>
 
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('app.logout') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    @endguest
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>

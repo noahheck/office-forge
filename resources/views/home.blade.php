@@ -13,7 +13,7 @@
 
     <div class="row">
 
-        <div class="col-12 col-md-6">
+        <div class="col-12 col-md-6 col-xl-4">
 
             <div class="shadow card home--panel activities-panel">
                 <div class="card-header d-flex">
@@ -34,6 +34,7 @@
                                 <span class="far fa-square mr-2"></span><strong class="activity-name">{{ $activity->name }}</strong>
 
                                 <div class="activity-details">
+                                    <span class="text-muted">#{{ $activity->id }}</span>
                                     @if ($activity->due_date)
                                         <span class="detail" title="{{ __('activity.dueDate') }}: {{ $__formattedDueDate = \App\format_date($activity->due_date) }}">
                                             <span class="due-date"><span class="far fa-calendar-alt mr-1"></span>{{ $__formattedDueDate }}</span>

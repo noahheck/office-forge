@@ -2,7 +2,7 @@
     @script('js/page.files._form.js')
 @endpush
 
-<form class="bold-labels file-form" method="POST" action="{{ $action }}"enctype="multipart/form-data" >
+<form class="bold-labels file-form" method="POST" action="{{ $action }}" enctype="multipart/form-data" >
 
     @csrf
 
@@ -48,7 +48,7 @@
         {{ __('app.save') }}
     </button>
 
-    <a class="btn btn-secondary" href="{{ url()->previous(route('projects.index')) }}">
+    <a class="btn btn-secondary" href="{{ url()->previous(route('files.index', ['file_type' => $fileType->id])) }}">
         {{ __('app.cancel') }}
     </a>
 

@@ -22,7 +22,9 @@ return [
 
     'home' => 'Home',
     'messages' => 'Messages',
-    'files' => 'FileTypes',
+
+    'files' => 'Files',
+    'fileTypes' => 'File Types',
     'processes' => 'Processes',
     'activities' => 'Activities',
     'projects' => 'Projects (Change Me)',
