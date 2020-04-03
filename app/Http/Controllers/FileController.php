@@ -117,7 +117,9 @@ class FileController extends Controller
 
         $values   = $file->formFieldValues;
 
-        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'values'));
+        $activities = $file->activities;
+
+        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'values', 'activities'));
     }
 
     /**

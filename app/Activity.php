@@ -38,6 +38,11 @@ class Activity extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function file()
+    {
+        return $this->belongsTo(File::class);
+    }
+
     public function numberOfTotalTasks()
     {
         return count($this->tasks);

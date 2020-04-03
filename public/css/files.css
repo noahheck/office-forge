@@ -35,6 +35,18 @@
   max-width: 30px;
 }
 
+.activity-name {
+  color: #3490dc;
+}
+
+.activity-details {
+  padding-left: 20px;
+}
+
+.activity-details .detail {
+  margin-right: 4px;
+}
+
 hr.separator {
   border-top: 2px solid #c9c9c9;
   margin-top: 3rem;
@@ -60,6 +72,15 @@ hr.separator {
   .file .panel-content {
     height: 340px;
   }
+}
+
+.file .activities-card .card-body {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.file .activities-card .card-body .list-group.activities {
+  margin-bottom: 20px;
 }
 
 .file-form .file-type-thumbnail-container {

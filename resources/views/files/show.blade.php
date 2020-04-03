@@ -57,10 +57,13 @@
 
         </div>
 
-        @if ($panels->count() > 0)
-            <div class="col-12 col-md-8 col-xl-9">
 
-                <div class="card shadow panels">
+        <div class="col-12 col-md-8 col-xl-9">
+
+            {{-- Panels panel --}}
+            @if ($panels->count() > 0)
+
+                <div class="card shadow panels mb-3">
                     <div class="card-header">
                         <h4 class="mb-0"><span class="fas fa-th-list mr-2"></span>{{ __('file.details') }}</h4>
                     </div>
@@ -105,8 +108,49 @@
                     </div>
                 </div>
 
+            @endif
+            {{-- End Panels panel --}}
+
+
+
+
+            {{-- Activities Panel --}}
+            <div class="card shadow activities-card">
+                <div class="card-header d-flex">
+                    <h4 class="mb-0 flex-grow-1"><span class="fas fa-project-diagram mr-2"></span>{{ __('app.activities') }}</h4>
+                    <a class="btn btn-sm btn-outline-secondary border-0" href="{{ route("activities.create", ['file_id' => $file->id]) }}">
+                        <span class="fas fa-plus-circle"></span>
+                    </a>
+                </div>
+                <div class="card-body">
+
+
+                    @foreach ($activities as $activity)
+
+                        @if($loop->first)
+                            <div class="list-group activities">
+                        @endif
+
+                        <a class="list-group-item list-group-item-action" href="{{ route("activities.show", [$activity]) }}">
+                            @include("_component._activity", [
+                                'context' => 'file',
+                            ])
+                        </a>
+
+                        @if($loop->last)
+                            </div>
+                        @endif
+
+                    @endforeach
+
+                </div>
             </div>
-        @endif
+            {{-- End Activities Panel --}}
+
+
+
+        </div>
+
 
     </div>
 

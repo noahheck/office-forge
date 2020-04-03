@@ -11,9 +11,9 @@
 
 @section('content')
 
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-12 col-md-6 col-xl-4">
+        <div class="col-12 col-md-10 col-lg-8">
 
             <div class="shadow card home--panel activities-panel">
                 <div class="card-header d-flex">
@@ -23,29 +23,17 @@
                     </a>
                 </div>
 
-                <div class="card-body -500">
+                <div class="card-body">
                     @forelse ($activities as $activity)
 
                         @if($loop->first)
                             <div class="list-group activities">
                         @endif
 
-                            <a class="list-group-item list-group-item-action  activity @if($activity->isDueToday()) due-today @elseif($activity->isOverdue()) overdue @endif" href="{{ route("activities.show", [$activity]) }}">
-                                <span class="far fa-square mr-2"></span><strong class="activity-name">{{ $activity->name }}</strong>
+                            <a class="list-group-item list-group-item-action" href="{{ route("activities.show", [$activity]) }}">
 
-                                <div class="activity-details">
-                                    <span class="text-muted">#{{ $activity->id }}</span>
-                                    @if ($activity->due_date)
-                                        <span class="detail" title="{{ __('activity.dueDate') }}: {{ $__formattedDueDate = \App\format_date($activity->due_date) }}">
-                                            <span class="due-date"><span class="far fa-calendar-alt mr-1"></span>{{ $__formattedDueDate }}</span>
-                                        </span>
-                                    @endif
-                                    @if ($activity->tasks->count() > 0)
-                                        <span class="detail" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
-                                            <span class="fas fa-tasks mr-1"></span>{{ $activity->numberOfCompletedTasks() }}/{{ $activity->numberOfTotalTasks() }}
-                                        </span>
-                                    @endif
-                                </div>
+                                @include("_component._activity")
+
                             </a>
 
                         @if($loop->last)

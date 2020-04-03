@@ -6,6 +6,24 @@
         @method($method)
     @endif
 
+    @if ($activity->file_id)
+
+        <div class="d-flex align-items-center">
+
+            {!! $file->icon(['mhw-35p mr-2', 'flex-grow-0']) !!}
+            <h4 class="flex-grow-1 mb-0">{{ $file->name }}</h4>
+
+        </div>
+
+        <hr>
+
+        @hiddenField([
+            'name' => 'file_id',
+            'value' => $activity->file_id,
+        ])
+
+    @endif
+
     @errors('name', 'due_date', 'completed', 'details')
 
     @textField([

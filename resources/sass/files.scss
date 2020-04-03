@@ -5,6 +5,7 @@
 @import "variables";
 @import "mixins";
 @import "files/panel";
+@import "_component/activity";
 
 hr.separator {
     border-top: 2px solid $medium-gray;
@@ -33,6 +34,20 @@ hr.separator {
         @include media-breakpoint-up(md) {
 
             height: 340px;
+        }
+    }
+
+
+    .activities-card {
+        .card-body {
+            //max-height: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+
+            .list-group.activities {
+                margin-bottom: 20px;
+            }
+
         }
     }
 

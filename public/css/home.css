@@ -2,20 +2,24 @@
  * sass/home.scss
  */
 
-.activities-panel {
-  height: 400px;
-  overflow-y: auto;
-}
-
-.activities-panel .activity-name {
+.activity-name {
   color: #3490dc;
 }
 
-.activities-panel .activity-details {
+.activity-details {
   padding-left: 20px;
 }
 
-.activities-panel .activity-details .detail {
+.activity-details .detail {
   margin-right: 4px;
+}
+
+.activities-panel .card-body {
+  min-height: 400px;
+  overflow-y: auto;
+}
+
+.activities-panel .activities {
+  margin-bottom: 20px;
 }
 

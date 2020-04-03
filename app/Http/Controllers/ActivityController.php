@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\Jobs\Activity\Create;
 use App\Jobs\Activity\Update;
 use App\Activity;
@@ -53,9 +54,13 @@ class ActivityController extends Controller
         $activity->due_date = now();
         $activity->owner_id = $request->user()->id;
 
+        $file = ($fileId = $request->query('file_id')) ? File::find($fileId) : false;
+
+        $activity->file_id = ($fileId) ? $fileId : null;
+
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
-        return $this->view('activities.create', compact('activity', 'users'));
+        return $this->view('activities.create', compact('activity', 'users', 'file'));
     }
 
     /**
@@ -72,7 +77,8 @@ class ActivityController extends Controller
             $request->owner_id,
             $request->details,
             $request->user(),
-            $request->temp_id
+            $request->temp_id,
+            $request->file_id ?? false
         ));
 
         $activity = $activityCreated->getActivity();
@@ -90,7 +96,9 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        return $this->view('activities.show', compact('activity'));
+        $file = $activity->file;
+
+        return $this->view('activities.show', compact('activity', 'file'));
     }
 
     /**
@@ -103,7 +111,9 @@ class ActivityController extends Controller
     {
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
-        return $this->view('activities.edit', compact('activity', 'users'));
+        $file = $activity->file;
+
+        return $this->view('activities.edit', compact('activity', 'users', 'file'));
     }
 
     /**

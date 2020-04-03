@@ -17,6 +17,7 @@ class Create
     private $details;
     private $creator;
     private $editor_temp_id;
+    private $file_id;
 
     /**
      * @var Activity
@@ -28,7 +29,7 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $due_date, $owner_id, $details, $creator, $editor_temp_id)
+    public function __construct($name, $due_date, $owner_id, $details, $creator, $editor_temp_id, $file_id = false)
     {
         $this->name = $name;
         $this->due_date = $due_date;
@@ -36,6 +37,7 @@ class Create
         $this->details = $details;
         $this->creator = $creator;
         $this->editor_temp_id = $editor_temp_id;
+        $this->file_id = $file_id;
     }
 
     public function getActivity(): Activity
@@ -56,11 +58,15 @@ class Create
         $activity->details = $this->details;
         $activity->created_by = $this->creator->id;
 
+        $activity->active = true;
+
         if ($this->due_date) {
             $activity->due_date = Carbon::parse($this->due_date);
         }
 
-        $activity->active = true;
+        if ($this->file_id) {
+            $activity->file_id = $this->file_id;
+        }
 
         $activity->save();
 

@@ -13365,6 +13365,32 @@ trix-editor:empty:not(:focus)::before {
   max-width: 25px;
 }
 
+.mh-35p {
+  max-height: 35px;
+}
+
+.mw-35p {
+  max-width: 35px;
+}
+
+.mhw-35p {
+  max-height: 35px;
+  max-width: 35px;
+}
+
+.mh-50p {
+  max-height: 50px;
+}
+
+.mw-50p {
+  max-width: 50px;
+}
+
+.mhw-50p {
+  max-height: 50px;
+  max-width: 50px;
+}
+
 .bold-labels label {
   font-weight: bold;
 }

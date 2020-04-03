@@ -16,10 +16,20 @@
             <div class="card shadow">
                 <div class="card-body">
 
-                    <h1 class="h3 border-bottom">
-                        <span class="fas fa-project-diagram"></span> {{ $activity->name }}
-                    </h1>
+                    <div class="border-bottom mb-3">
 
+                        <h1 class="h3">
+                            <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                        </h1>
+
+                        @if ($file ?? false)
+                            <div class="d-flex align-items-center mb-2">
+                                {!! $file->icon(['mhw-35p', 'mr-3', 'ml-2']) !!}
+                                <h5 class="mb-0"><a href="{{ route("files.show", [$file]) }}">{{ $file->name }}</a></h5>
+                            </div>
+                        @endif
+
+                    </div>
                     <div class="row">
 
                         <div class="col-12 col-md-3 order-md-2">
@@ -38,6 +48,7 @@
                             </dl>
 
                         </div>
+
                         <div class="col-12 col-md-9 order-md-1">
 
 
@@ -57,17 +68,12 @@
 
                             <hr>
 
-
                             <div class="editor-content">
                                 {!! App\safe_text_editor_content($activity->details) !!}
                             </div>
 
 
 
-
-
-
-{{--                            <hr>--}}
 
                             <h4 class="section-header">
                                 <span class="title"><span class="fas fa-tasks"></span> Tasks</span>

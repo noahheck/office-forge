@@ -3,22 +3,19 @@
  */
 
 @import "variables";
+@import "_component/activity";
 
 .activities-panel {
 
-    height: 400px;
-    overflow-y: auto;
-
-    .activity-name {
-        color: $blue;
+    .card-body {
+        min-height: 400px;
+        overflow-y: auto;
     }
 
-    .activity-details {
-        padding-left: 20px;
-
-        .detail {
-            margin-right: 4px;
-        }
+    .activities {
+        margin-bottom: 20px;
     }
+
+
 
 }
