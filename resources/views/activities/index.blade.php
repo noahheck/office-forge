@@ -74,6 +74,7 @@
                                     <th class="w-50p">&nbsp;</th>
                                     <th>{{ __('activity.name') }}</th>
                                     <th>{{ __('activity.owner') }}</th>
+                                    <th>{{ __('app.file') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -89,12 +90,19 @@
                     </td>
                     <td>
                         <a href="{{ route('activities.show', [$activity]) }}">
-                            {{ $activity->name }}
-                        </a>
+                            {{ $activity->name }}</a>
+
+                        <small class="text-muted">#{{ $activity->id }}</small>
                     </td>
                     <td>
                         @if ($activity->owner_id)
                             {!! $activity->owner->iconAndName() !!}
+                        @endif
+                    </td>
+                    <td>
+                        @if ($activity->file_id)
+                            {!! $activity->file->icon() !!}
+                            <a href="{{ route('files.show', [$activity->file_id]) }}">{{ $activity->file->name }}</a>
                         @endif
                     </td>
                 </tr>

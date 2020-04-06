@@ -24,6 +24,7 @@ return [
     'messages' => 'Messages',
 
     'files' => 'Files',
+    'file' => 'File',
     'fileTypes' => 'File Types',
     'processes' => 'Processes',
     'activities' => 'Activities',
