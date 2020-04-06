@@ -7,7 +7,10 @@ $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 
 
+$__processes = \App\Process::orderBy('name')->get();
+
 $__fileTypes = \App\FileType::orderBy('name')->get();
+
 
 @endphp
 <!doctype html>
@@ -86,6 +89,17 @@ $__fileTypes = \App\FileType::orderBy('name')->get();
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="addNewNavbarDropdown">
                             <span class="dropdown-header"><span class="fa-fw fas fa-project-diagram"></span> {{ __('app.activities') }}</span>
                             <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
+
+                            @foreach ($__processes as $__process)
+                                @if ($loop->first)
+                                    <div class="dropdown-divider"></div>
+                                    <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('activities.create', ['process_id' => $__process->id]) }}">
+                                    {{ $__process->name }}
+                                </a>
+                            @endforeach
+
                             @foreach ($__fileTypes as $__fileType)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
@@ -95,6 +109,7 @@ $__fileTypes = \App\FileType::orderBy('name')->get();
                                     {!! $__fileType->icon(['fa-fw']) !!} {{ $__fileType->name }}
                                 </a>
                             @endforeach
+
                         </div>
                     </li>
                     <li class="nav-item dropdown">
@@ -135,11 +150,6 @@ $__fileTypes = \App\FileType::orderBy('name')->get();
             <li>
                 <a href="{{ route('files.index') }}" class="{{ ($__isFilesRoute) ? 'current' : '' }}">
                     <span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('processes.index') }}" class="{{ ($__isProcessesRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}
                 </a>
             </li>
             <li>

@@ -68,6 +68,15 @@
 
                             <hr>
 
+                            @if ($activity->process_id && $activity->process_details)
+                                <div class="editor-content">
+                                    {!! App\safe_text_editor_content($activity->process_details) !!}
+                                </div>
+
+                                <hr>
+
+                            @endif
+
                             @if ($activity->details)
                                 <div class="editor-content">
                                     {!! App\safe_text_editor_content($activity->details) !!}

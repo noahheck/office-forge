@@ -6,6 +6,7 @@ use App\File;
 use App\Jobs\Activity\Create;
 use App\Jobs\Activity\Update;
 use App\Activity;
+use App\Process;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Activity\Store as StoreRequest;
@@ -58,9 +59,13 @@ class ActivityController extends Controller
 
         $activity->file_id = ($fileId) ? $fileId : null;
 
+        $process = ($processId = $request->query('process_id')) ? Process::find($processId) : false;
+
+        $activity->process_id = ($processId) ? $processId : null;
+
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
-        return $this->view('activities.create', compact('activity', 'users', 'file'));
+        return $this->view('activities.create', compact('activity', 'users', 'file', 'process'));
     }
 
     /**
@@ -78,7 +83,8 @@ class ActivityController extends Controller
             $request->details,
             $request->user(),
             $request->temp_id,
-            $request->file_id ?? false
+            $request->file_id ?? false,
+            $request->process_id ?? false
         ));
 
         $activity = $activityCreated->getActivity();

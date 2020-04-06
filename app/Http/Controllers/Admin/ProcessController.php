@@ -70,7 +70,7 @@ class ProcessController extends Controller
      */
     public function show(Process $process)
     {
-        $process->load('tasks', 'tasks.actions');
+        $process->load('tasks'/*, 'tasks.actions'*/);
 
         return $this->view('admin.processes.show', compact('process'));
     }

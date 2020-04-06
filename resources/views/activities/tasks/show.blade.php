@@ -63,6 +63,15 @@
 
                     </div>
 
+                    @if ($task->process_task_id && $task->process_task_details)
+                        <div class="editor-content">
+                            {!! App\safe_text_editor_content($task->process_task_details) !!}
+                        </div>
+
+                        <hr>
+
+                    @endif
+
                     <div class="editor-content">
                         {!! App\safe_text_editor_content($task->details) !!}
                     </div>

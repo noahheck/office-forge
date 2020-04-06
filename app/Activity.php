@@ -43,6 +43,11 @@ class Activity extends Model
         return $this->belongsTo(File::class);
     }
 
+    public function process()
+    {
+        return $this->belongsTo(Process::class);
+    }
+
     public function numberOfTotalTasks()
     {
         return count($this->tasks);

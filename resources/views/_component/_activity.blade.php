@@ -16,6 +16,10 @@ $__context = $context ?? false;
     </div>
 
     <div class="activity-details">
+        @if ($__process_name = $activity->process_name)
+            <span class="fas fa-clipboard-list mr-2"></span><strong>{{ $__process_name }}</strong>
+            <br>
+        @endif
         @if ($__context !== 'file' && $__file = $activity->file)
             {!! $__file->icon(['mhw-25p']) !!} {{ $__file->name }}
             <br>

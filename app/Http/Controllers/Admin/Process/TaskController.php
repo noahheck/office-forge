@@ -26,7 +26,7 @@ class TaskController extends Controller
      */
     public function index(Process $process)
     {
-        $process->load('tasks', 'tasks.actions');
+        $process->load('tasks'/*, 'tasks.actions'*/);
 
         return $this->view('admin.processes.tasks.index', compact('process'));
     }

@@ -41,8 +41,13 @@ class Process extends Model
         return $this->hasMany(Task::class)->orderBy('order', 'ASC');
     }
 
-    public function instances()
+    public function activeTasks()
     {
-        return $this->hasMany(Instance::class);
+        return $this->tasks()->where('active', true);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Jobs\Activity;
 
 use App\Activity;
+use App\Activity\Task;
+use App\Process;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -18,6 +20,7 @@ class Create
     private $creator;
     private $editor_temp_id;
     private $file_id;
+    private $process_id;
 
     /**
      * @var Activity
@@ -29,7 +32,7 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $due_date, $owner_id, $details, $creator, $editor_temp_id, $file_id = false)
+    public function __construct($name, $due_date, $owner_id, $details, $creator, $editor_temp_id, $file_id = false, $process_id = false)
     {
         $this->name = $name;
         $this->due_date = $due_date;
@@ -38,6 +41,7 @@ class Create
         $this->creator = $creator;
         $this->editor_temp_id = $editor_temp_id;
         $this->file_id = $file_id;
+        $this->process_id = $process_id;
     }
 
     public function getActivity(): Activity
@@ -50,7 +54,7 @@ class Create
      *
      * @return void
      */
-    public function handle()
+    public function handle(Process $processModel)
     {
         $activity = new Activity;
         $activity->name = $this->name;
@@ -68,9 +72,35 @@ class Create
             $activity->file_id = $this->file_id;
         }
 
+        $process = false;
+
+        if ($this->process_id) {
+            $activity->process_id = $this->process_id;
+
+            $process = $processModel->find($this->process_id);
+
+            $activity->process_name = $process->name;
+            $activity->process_details = $process->details;
+        }
+
+
         $activity->save();
 
         $activity->claimTemporaryEditorImages($this->editor_temp_id);
+
+        if ($process) {
+            foreach ($process->activeTasks as $taskTemplate) {
+                $task = new Task();
+                $task->process_task_id = $taskTemplate->id;
+                $task->title = $taskTemplate->name;
+                $task->process_task_details = $taskTemplate->details;
+
+                $task->activity_id = $activity->id;
+                $task->created_by = $this->creator->id;
+
+                $task->save();
+            }
+        }
 
         $this->activity = $activity;
     }
