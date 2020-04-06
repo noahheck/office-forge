@@ -11,6 +11,7 @@ class Create
     use Dispatchable, Queueable;
 
     private $name;
+    private $file_type_id;
     private $active;
     private $details;
     private $instantiatingTeams;
@@ -26,9 +27,10 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $active, $details, $instantiatingTeams, $editor_temp_id)
+    public function __construct($name, $file_type_id, $active, $details, $instantiatingTeams, $editor_temp_id)
     {
         $this->name = $name;
+        $this->file_type_id = $file_type_id;
         $this->active = $active;
         $this->details = $details;
         $this->instantiatingTeams = $instantiatingTeams;
@@ -49,6 +51,7 @@ class Create
     {
         $process = new Process();
         $process->name = $this->name;
+        $process->file_type_id = $this->file_type_id;
         $process->details = $this->details;
         $process->active = $this->active;
 
@@ -57,8 +60,6 @@ class Create
         $process->claimTemporaryEditorImages($this->editor_temp_id);
 
         $process->instantiatingTeams()->sync($this->instantiatingTeams);
-
-        // For each $process->task, create instance tasks and actions
 
         $this->process = $process;
     }

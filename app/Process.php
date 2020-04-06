@@ -36,6 +36,11 @@ class Process extends Model
         return $this->instantiatingMembers()->pluck('id')->contains($user->id);
     }
 
+    public function fileType()
+    {
+        return $this->belongsTo(FileType::class);
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class)->orderBy('order', 'ASC');

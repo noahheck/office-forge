@@ -18,9 +18,24 @@
             <div class="shadow card home--panel activities-panel">
                 <div class="card-header d-flex">
                     <h4 class="mb-0 flex-grow-1"><span class="fas fa-project-diagram"></span> {{ __('app.activities') }}</h4>
-                    <a class="btn btn-sm btn-outline-secondary flex-grow-0 border-0 rounded-circle" href="{{ route("activities.create") }}">
-                        <span class="fas fa-plus-circle"></span>
-                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="fas fa-plus-circle"></span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+
+                            <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
+                            @foreach ($processOptions as $__process)
+                                @if ($loop->first)
+                                    <div class="dropdown-divider"></div>
+                                    <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('activities.create', ['process_id' => $__process->id]) }}">
+                                    {{ $__process->name }}
+                                </a>
+                            @endforeach
+                        </div>
+                    </div>
                 </div>
 
                 <div class="card-body">

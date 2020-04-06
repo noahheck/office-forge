@@ -7,7 +7,7 @@ $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 
 
-$__processes = \App\Process::orderBy('name')->get();
+$__processes = \App\Process::whereNull('file_type_id')->orderBy('name')->get();
 
 $__fileTypes = \App\FileType::orderBy('name')->get();
 

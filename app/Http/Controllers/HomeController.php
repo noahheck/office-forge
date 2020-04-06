@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Process;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -26,9 +27,10 @@ class HomeController extends Controller
         $user = $request->user();
 
         $activities = $user->openActivities;
-
         $activities->load('tasks');
 
-        return $this->view('home', compact('activities', 'user'));
+        $processOptions = Process::where('file_type_id', null)->get();
+
+        return $this->view('home', compact('activities', 'user', 'processOptions'));
     }
 }

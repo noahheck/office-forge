@@ -13,6 +13,7 @@ class Update
     private $process;
 
     private $name;
+    private $file_type_id;
     private $active;
     private $details;
     private $instantiatingTeams;
@@ -22,11 +23,12 @@ class Update
      *
      * @return void
      */
-    public function __construct(Process $process, $name, $active, $details, $instantiatingTeams)
+    public function __construct(Process $process, $name, $file_type_id, $active, $details, $instantiatingTeams)
     {
         $this->process = $process;
 
         $this->name = $name;
+        $this->file_type_id = $file_type_id;
         $this->active = $active;
         $this->details = $details;
         $this->instantiatingTeams = $instantiatingTeams;
@@ -42,6 +44,7 @@ class Update
         $process = $this->process;
 
         $process->name = $this->name;
+        $process->file_type_id = $this->file_type_id;
         $process->details = $this->details;
         $process->active = $this->active;
 

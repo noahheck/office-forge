@@ -107,6 +107,11 @@ class FileType extends Model
         return $this->hasMany(Panel::class, 'file_type_id')->orderBy('order');
     }
 
+    public function processes()
+    {
+        return $this->hasMany(Process::class);
+    }
+
     public function icon(array $withClasses = [])
     {
         $withClasses[] = $this->icon;

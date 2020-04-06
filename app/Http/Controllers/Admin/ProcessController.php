@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\FileType;
 use App\Http\Controllers\Controller;
 use App\Jobs\Process\Create;
 use App\Jobs\Process\Update;
@@ -35,8 +36,9 @@ class ProcessController extends Controller
         $process->active = true;
 
         $teamOptions = Team::orderBy('name')->get();
+        $fileTypeOptions = FileType::orderBy('name')->get();
 
-        return $this->view('admin.processes.create', compact('process', 'teamOptions'));
+        return $this->view('admin.processes.create', compact('process', 'teamOptions', 'fileTypeOptions'));
     }
 
     /**
@@ -49,6 +51,7 @@ class ProcessController extends Controller
     {
         $this->dispatchNow($processCreated = new Create(
             $request->name,
+            $request->file_type_id,
             $request->has('active'),
             $request->details,
             $request->teams,
@@ -84,8 +87,9 @@ class ProcessController extends Controller
     public function edit(Process $process)
     {
         $teamOptions = Team::orderBy('name')->get();
+        $fileTypeOptions = FileType::orderBy('name')->get();
 
-        return $this->view('admin.processes.edit', compact('process', 'teamOptions'));
+        return $this->view('admin.processes.edit', compact('process', 'teamOptions', 'fileTypeOptions'));
     }
 
     /**
@@ -100,6 +104,7 @@ class ProcessController extends Controller
         $this->dispatchNow($processUpdated = new Update(
             $process,
             $request->name,
+            $request->file_type_id,
             $request->has('active'),
             $request->details,
             $request->teams

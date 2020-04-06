@@ -15,6 +15,7 @@ class CreateProcessesTable extends Migration
     {
         Schema::create('processes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('file_type_id')->nullable();
 
             $table->string('name');
             $table->text('details')->nullable();

@@ -43,6 +43,18 @@
 
         <div class="col-12 col-md-9">
 
+            @fileTypeSelectField([
+                'name' => 'file_type_id',
+                'label' => __('process.fileType'),
+                'value' => old('file_type_id', $process->file_type_id),
+                'fileTypes' => $fileTypeOptions,
+                'placeholder' => '',
+                'description' => __('process.fileTypeDescription'),
+                'required' => false,
+                'autofocus' => false,
+                'error' => $errors->has('file_type_id'),
+            ])
+
             @teamMultiSelectField([
                 'name' => 'teams',
                 'label' => __('process.instantiatingTeams'),

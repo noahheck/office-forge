@@ -114,6 +114,17 @@
 
                     <hr>
 
+                    @if ($__fileType = $process->fileType)
+
+                        <strong>{{ __('process.fileType') }}</strong>
+
+                        <br>
+
+                        {!! $__fileType->icon(['ml-3']) !!} {{ $__fileType->name }}
+
+                        <hr>
+                    @endif
+
                     <strong>{{ __('process.instantiatingTeams') }}</strong>
 
                     <br>

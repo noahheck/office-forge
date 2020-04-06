@@ -4,6 +4,8 @@ return [
     'name' => 'Name',
     'nameExamples' => 'Employee Onboarding, Quarterly Review, Monthly Billing, etc...',
     'active' => 'Active',
+    'fileType' => 'File Type',
+    'fileTypeDescription' => 'Choose which file type instances of this process are created for. Leave this field empty to create a Global process which doesn\'t apply to a specific File.',
     'instantiatingTeams' => 'Instantiating Teams',
     'teamsDescription' => 'Choose which team(s) members should be able to create instances of this process. Leave this field empty to prevent any instances of this process from being created.',
     'details' => 'Details',
