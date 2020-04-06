@@ -118,7 +118,7 @@
             <div class="card shadow activities-card">
                 <div class="card-header d-flex">
                     <h4 class="mb-0 flex-grow-1"><span class="fas fa-project-diagram mr-2"></span>{{ __('app.activities') }}</h4>
-                    <a class="btn btn-sm btn-outline-secondary border-0" href="{{ route("activities.create", ['file_id' => $file->id]) }}">
+                    <a class="btn btn-sm btn-outline-secondary border-0 rounded-circle" href="{{ route("activities.create", ['file_id' => $file->id]) }}">
                         <span class="fas fa-plus-circle"></span>
                     </a>
                 </div>

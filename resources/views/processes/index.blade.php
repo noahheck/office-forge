@@ -1,7 +1,7 @@
 @extends("layouts.app")
 
 @push('styles')
-    @style('css/projects.css')
+    @style('css/activities.css')
 @endpush
 
 @include("_component._location-bar", [

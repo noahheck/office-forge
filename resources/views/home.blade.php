@@ -18,7 +18,7 @@
             <div class="shadow card home--panel activities-panel">
                 <div class="card-header d-flex">
                     <h4 class="mb-0 flex-grow-1"><span class="fas fa-project-diagram"></span> {{ __('app.activities') }}</h4>
-                    <a class="btn btn-sm btn-outline-secondary flex-grow-0 border-0" href="{{ route("activities.create") }}">
+                    <a class="btn btn-sm btn-outline-secondary flex-grow-0 border-0 rounded-circle" href="{{ route("activities.create") }}">
                         <span class="fas fa-plus-circle"></span>
                     </a>
                 </div>

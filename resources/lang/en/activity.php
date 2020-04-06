@@ -38,6 +38,9 @@ return [
 
 
 
-    'countOfTotalTasksCompleted' => ':completed / :total Tasks Completed'
+    'countOfTotalTasksCompleted' => ':completed / :total Tasks Completed',
+
+    'noDetails' => 'No Details',
+    'noActiveTasks' => 'No Active Tasks',
 
 ];

@@ -68,9 +68,15 @@
 
                             <hr>
 
-                            <div class="editor-content">
-                                {!! App\safe_text_editor_content($activity->details) !!}
-                            </div>
+                            @if ($activity->details)
+                                <div class="editor-content">
+                                    {!! App\safe_text_editor_content($activity->details) !!}
+                                </div>
+                            @else
+                                <p class="text-muted">
+                                    <em>{{ __('activity.noDetails') }}</em>
+                                </p>
+                            @endif
 
 
 
@@ -101,7 +107,9 @@
 
                                 @empty
 
-                                    <em class="text-muted">No Active Tasks</em>
+                                    <p class="text-muted">
+                                        <em>{{ __('activity.noActiveTasks') }}</em>
+                                    </p>
 
                                 @endforelse
                             </div>
