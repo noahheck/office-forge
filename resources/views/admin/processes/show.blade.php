@@ -10,9 +10,6 @@
 
 @include("_component._location-bar", [
     'locationBar' => new \App\Navigation\LocationBar\Admin\Processes\Show($process),
-                    /*->addLink(new \App\Navigation\Link\Home)
-                    ->addLink(new \App\Navigation\Link\Admin\Processes())
-                    ->setCurrentLocation($process->name),*/
 ])
 
 @section('content')
@@ -64,10 +61,6 @@
                                 @if ($task->details)
                                     <span class="text-muted fas fa-align-left"></span>
                                 @endif
-
-                                <br>
-
-                                <span class="text-muted"><span class="fas fa-tasks"></span> {{ $numActions = count($task->actions->where('active', true)) }} {{ __('process.action' . (($numActions == 1) ? '' : 's')) }}</span>
 
                             </div>
                             <div class="sort-handle">

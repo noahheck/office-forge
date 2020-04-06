@@ -76,6 +76,11 @@
 .header-navbar {
     background-color: $navbar-bg;
     z-index: 1031;
+
+    .dropdown-menu {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
 }
 
 .header-navbar .icon {
@@ -359,18 +364,3 @@ h6 {
     }
 }
 
-
-
-/*
-.section-header {
-    margin-top: 10px;
-    background: rgb(255,255,255);
-    background: linear-gradient(0deg, rgba(255,255,255,1) 48%, rgba(164,164,164,1) 49%, rgba(164,164,164,1) 51%, rgba(255,255,255,1) 52%);
-
-    .title {
-        background-color: $white;
-        margin-left: 10px;
-        padding-left: 7px;
-        padding-right: 7px;
-    }
-}*/

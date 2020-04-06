@@ -24,6 +24,13 @@
 
     @endif
 
+    @if ($activity->process_id)
+        @hiddenField([
+            'name' => 'process_id',
+            'value' => $activity->process_id,
+        ])
+    @endif
+
     @errors('name', 'due_date', 'completed', 'details')
 
     @textField([

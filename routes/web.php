@@ -45,29 +45,6 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     });
 
-//    Route::resource('/projects', 'ProjectController');
-
-
-
-    Route::resource('/processes', 'Process\InstanceController')
-        ->parameter('processes','instance');
-
-    Route::resource('processes.tasks', 'Process\Instance\TaskController')
-        ->except(['create', 'store'])
-        ->parameter('processes', 'instance');
-
-    Route::patch("/processes/{instance}/tasks/{task}/complete", 'Process\Instance\TaskController@complete')->name('processes.tasks.complete');
-    Route::patch("/processes/{instance}/tasks/{task}/uncomplete", 'Process\Instance\TaskController@uncomplete')->name('processes.tasks.uncomplete');
-
-    Route::resource('processes.tasks.actions', 'Process\Instance\Task\ActionController')
-        ->except(['create', 'store'])
-        ->parameter('processes', 'instance');
-
-    Route::patch("/processes/{instance}/tasks/{task}/actions/{action}/complete", "Process\Instance\Task\ActionController@complete")->name('processes.tasks.actions.complete');
-    Route::patch("/processes/{instance}/tasks/{task}/actions/{action}/uncomplete", "Process\Instance\Task\ActionController@uncomplete")->name('processes.tasks.actions.uncomplete');
-
-
-
     Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
 
         Route::get('/', 'SettingsController@index')->name('index');
@@ -121,13 +98,6 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
             Route::resource('/tasks', 'TaskController');
             Route::post('/tasks/update-order', 'TaskController@updateOrder')->name('tasks.update-order');
-
-            Route::namespace('Task')->prefix('/tasks/{task}')->name('tasks.')->group(function() {
-
-                Route::resource('/actions', 'ActionController');
-                Route::post('/actions/update-order', 'ActionController@updateOrder')->name('actions.update-order');
-
-            });
 
         });
     });
