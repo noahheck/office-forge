@@ -20,10 +20,10 @@
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{"orderable": false}, null, null]'>
+                    <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{{--{"orderable": false}--}}null, null, null]'>
                         <thead>
                             <tr>
-                                <th class="w-50p">&nbsp;</th>
+                                <th class="w-100p">{{ __('process.fileType') }}</th>
                                 <th>{{ __('process.name') }}</th>
                                 <th class="w-50p">{{ __('process.active') }}</th>
                             </tr>
@@ -31,9 +31,15 @@
                         <tbody>
                             @foreach($processes as $process)
                                 <tr>
-                                    <td>
+                                        @if ($__fileType = $process->fileType)
+                                            <td data-sort="{{ $__fileType->name }}">
+                                                {!! $__fileType->icon() !!}&nbsp;{{ $__fileType->name }}
+                                            </td>
+                                        @else
+                                            <td data-sort="">
 
-                                    </td>
+                                            </td>
+                                        @endif
                                     <td data-sort="{{ $process->name }}">
                                         <a href="{{ route('admin.processes.show', [$process]) }}">
                                             {!! $process->name !!}
