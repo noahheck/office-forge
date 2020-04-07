@@ -31,15 +31,15 @@
                         <tbody>
                             @foreach($processes as $process)
                                 <tr>
-                                        @if ($__fileType = $process->fileType)
-                                            <td data-sort="{{ $__fileType->name }}">
-                                                {!! $__fileType->icon() !!}&nbsp;{{ $__fileType->name }}
-                                            </td>
-                                        @else
-                                            <td data-sort="">
+                                    @if ($__fileType = $process->fileType)
+                                        <td data-sort="{{ $__fileType->name }}">
+                                            {!! $__fileType->icon() !!}&nbsp;{{ $__fileType->name }}
+                                        </td>
+                                    @else
+                                        <td data-sort="">
 
-                                            </td>
-                                        @endif
+                                        </td>
+                                    @endif
                                     <td data-sort="{{ $process->name }}">
                                         <a href="{{ route('admin.processes.show', [$process]) }}">
                                             {!! $process->name !!}

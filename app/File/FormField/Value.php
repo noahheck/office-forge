@@ -31,9 +31,13 @@ class Value extends Model
         return $this->belongsTo(User::class, 'value_user');
     }
 
-    public function setValueDateAttribute($value)
+    public function setValueDateAttribute($value = null)
     {
-        $value_date = date('Y-m-d', strtotime($value));
+        $value_date = null;
+
+        if ($value) {
+            $value_date = date('Y-m-d', strtotime($value));
+        }
 
         $this->attributes['value_date'] = $value_date;
     }
@@ -41,6 +45,10 @@ class Value extends Model
     public function getValueDateAttribute()
     {
         $value_date = $this->attributes['value_date'];
+
+        if (!$value_date) {
+            return "";
+        }
 
         return date('m/d/Y', strtotime($value_date));
     }
