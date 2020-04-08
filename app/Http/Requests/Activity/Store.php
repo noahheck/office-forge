@@ -25,6 +25,7 @@ class Store extends FormRequest
     {
         return [
             'name' => 'required',
+            'owner_id' => 'required|int',
             'due_date' => 'date|nullable',
         ];
     }

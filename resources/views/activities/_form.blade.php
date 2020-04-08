@@ -77,7 +77,7 @@
         'value' => $activity->owner_id,
         'users' => $users,
         'placeholder' => __('activity.owner'),
-        'required' => false,
+        'required' => true,
         'autofocus' => false,
         'error' => $errors->has('owner_id'),
     ])

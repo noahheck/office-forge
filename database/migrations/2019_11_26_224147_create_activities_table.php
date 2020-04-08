@@ -20,7 +20,7 @@ class CreateActivitiesTable extends Migration
             $table->string('process_name', '1024')->nullable();
             $table->string('name', '1024');
             $table->date('due_date')->nullable();
-            $table->bigInteger('owner_id')->nullable();
+            $table->bigInteger('owner_id');
             $table->bigInteger('file_id')->nullable();
             $table->longText('process_details')->nullable();
             $table->longText('details')->nullable();
