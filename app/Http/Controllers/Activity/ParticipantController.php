@@ -10,6 +10,20 @@ class ParticipantController extends Controller
 {
     public function show(Request $request, Activity $activity)
     {
+        $participants = $activity->participants;
+
+        /*if ($participants->count() < 1) {
+
+            return redirect()->route('activities.participants.edit', [$activity]);
+        }*/
+
+        $participants->load('users');
+
+        return $this->view('activities.participants.index', compact('activity', 'participants'));
+    }
+
+    public function edit(Request $request, Activity $activity)
+    {
 
     }
 

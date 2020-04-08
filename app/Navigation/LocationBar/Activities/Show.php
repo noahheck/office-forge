@@ -11,7 +11,11 @@ class Show extends LocationBar
 {
     public function __construct(Activity $activity)
     {
-        parent::__construct($activity->name);
+        $name = $activity->process_name;
+
+        $name .= ($name) ? ' - ' . $activity->name : $activity->name;
+
+        parent::__construct($name);
 
         $this->addLink(new \App\Navigation\Link\Activities);
     }

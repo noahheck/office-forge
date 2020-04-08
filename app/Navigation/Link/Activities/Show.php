@@ -11,6 +11,10 @@ class Show extends Link
 {
     public function __construct(Activity $activity)
     {
-        parent::__construct(route('activities.show', [$activity]), $activity->name);
+        $name = $activity->process_name;
+
+        $name .= ($name) ? ' - ' . $activity->name : $activity->name;
+
+        parent::__construct(route('activities.show', [$activity]), $name);
     }
 }

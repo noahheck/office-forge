@@ -12,14 +12,18 @@
 
     <div class="row project {{ ($activity->isOverdue()) ? 'overdue' : '' }} justify-content-center">
 
-        <div class="col-12 col-md-10" style="max-width: 800px;">
+        <div class="col-12 col-md-10" style="max-width: 900px;">
             <div class="card shadow">
                 <div class="card-body">
 
                     <div class="border-bottom mb-3">
 
                         <h1 class="h3">
-                            <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                            @if ($activity->process_id)
+                                <span class="fas fa-clipboard-list"></span> {{ $activity->process_name }} - {{ $activity->name }}
+                            @else
+                                <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                            @endif
                         </h1>
 
                         @if ($file ?? false)
@@ -44,6 +48,27 @@
 
                                 <dt>{{ __('activity.dueDate') }}</dt>
                                 <dd class="project--due-date">{{ App\format_date($activity->due_date) }}</dd>
+
+                                <dt><a href="{{ route('activities.participants.index', [$activity]) }}">{{ __('activity.participants') }}</a></dt>
+                                <dd>
+                                    @forelse ($activity->participants as $participant)
+
+                                        @if ($loop->first)
+                                            <ul class="list-group">
+                                        @endif
+
+                                            <li class="list-group-item">
+                                                {!! $participant->user->iconAndName() !!}
+                                            </li>
+
+                                        @if ($loop->last)
+                                            </ul>
+                                        @endif
+
+                                    @empty
+                                        <em>{{ __('activity.noParticipants') }}</em>
+                                    @endforelse
+                                </dd>
 
                             </dl>
 

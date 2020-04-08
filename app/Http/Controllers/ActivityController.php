@@ -102,6 +102,8 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
+        $activity->load('tasks', 'tasks.assignedTo', 'tasks.assignedTo.headshots', 'participants', 'participants.users');
+
         $file = $activity->file;
 
         return $this->view('activities.show', compact('activity', 'file'));

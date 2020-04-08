@@ -43,4 +43,11 @@ return [
     'noDetails' => 'No Details',
     'noActiveTasks' => 'No Active Tasks',
 
+    'participant' => 'Participant',
+    'participants' => 'Participants',
+    'participantDescription' => "Participants are the users who are working on an Activity. They can have tasks assigned to them, participate in discussions, and upload media documents for the activity.",
+
+    'noParticipants' => 'No Participants',
+    'editParticipants' => 'Edit Participants',
+
 ];
