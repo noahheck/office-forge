@@ -33,6 +33,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         Route::resource('/tasks', 'TaskController');
 
+        Route::get('/participants', 'ParticipantController@show')->name('participants');
+        Route::post('/participants', 'ParticipantController@update')->name('participants.update');
+
     });
 
 

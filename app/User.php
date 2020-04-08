@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Activity\Participant;
 use App\Interfaces\Headshottable;
 use App\Traits\Headshottable as HeadshottableTrait;
 use App\Activity\Task;
@@ -78,15 +79,38 @@ class User extends Authenticatable implements Headshottable
         return $this->hasMany(Activity::class, 'owner_id')->orderBy('due_date');
     }
 
+    public function openActivities()
+    {
+        return $this->activities()->where('completed', false);
+    }
+
     public function createdActivities()
     {
         return $this->hasMany(Activity::class, 'created_by');
     }
 
-    public function openActivities()
+
+    public function ownedActivities()
     {
-        return $this->activities()->where('completed', false);
+        return $this->hasMany(Activity::class, 'owner_id')->orderBy('due_date');
     }
+
+    public function openOwnedActivities()
+    {
+        return $this->ownedActivities()->where('completed', false);
+    }
+
+    public function participatingActivities()
+    {
+        return $this->hasManyThrough(Activity::class, Participant::class)->orderBy('due_date');
+    }
+
+    public function openParticipatingActivities()
+    {
+        return $this->participatingActivities()->where('completed', false);
+    }
+
+
 
 
 

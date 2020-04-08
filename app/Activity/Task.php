@@ -16,6 +16,8 @@ class Task extends Model implements HasDueDateInterface
         IsEditorResource,
         HasDueDate;
 
+    protected $table = 'activity_tasks';
+
     protected $dates = [
         'due_date',
     ];

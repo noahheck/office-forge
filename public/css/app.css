@@ -24940,6 +24940,7 @@ h5.separator,
 h6.separator {
   z-index: 0;
   position: relative;
+  margin-top: 1rem;
 }
 
 h1.separator > span,

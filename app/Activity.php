@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Activity\Participant;
 use App\Activity\Task;
 use App\Traits\HasDueDate;
 use App\Traits\IsEditorResource;
@@ -31,6 +32,11 @@ class Activity extends Model
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function participants()
+    {
+        return $this->hasMany(Participant::class)->where('removed_at', null);
     }
 
     public function tasks()

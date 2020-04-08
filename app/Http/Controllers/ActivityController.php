@@ -27,11 +27,11 @@ class ActivityController extends Controller
         switch ($showFilter):
 
             case 'open':
-                $activitiesCollection = $request->user()->openActivities();
+                $activitiesCollection = $request->user()->openOwnedActivities();
                 break;
 
             case 'all':
-                $activitiesCollection = $request->user()->activities();
+                $activitiesCollection = $request->user()->ownedActivities();
                 break;
 
         endswitch;

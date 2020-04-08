@@ -26,7 +26,7 @@ class HomeController extends Controller
     {
         $user = $request->user();
 
-        $activities = $user->openActivities;
+        $activities = $user->openOwnedActivities;
         $activities->load('tasks');
 
         $processOptions = Process::where('file_type_id', null)->get();
