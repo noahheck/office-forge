@@ -11,6 +11,11 @@
 
             @errors('name')
 
+            @hiddenField([
+                'name' => 'return',
+                'value' => url()->previous(),
+            ])
+
             @textField([
                 'name' => 'name',
                 'label' => __('process.name'),

@@ -10,6 +10,7 @@ use App\Process;
 use App\Team;
 use App\Http\Requests\Admin\Process\Store as StoreRequest;
 use App\Http\Requests\Admin\Process\Update as UpdateRequest;
+use Illuminate\Http\Request;
 
 class ProcessController extends Controller
 {
@@ -30,10 +31,14 @@ class ProcessController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $process = new Process();
         $process->active = true;
+
+        if ($fileTypeId = $request->query('file_type_id')) {
+            $process->file_type_id = $fileTypeId;
+        }
 
         $teamOptions = Team::orderBy('name')->get();
         $fileTypeOptions = FileType::orderBy('name')->get();
@@ -61,6 +66,11 @@ class ProcessController extends Controller
         $process = $processCreated->getProcess();
 
         \App\flash_success(__('admin.process_created'));
+
+        /*if ($return = $request->return) {
+
+            return redirect($return);
+        }*/
 
         return redirect()->route('admin.processes.show', [$process]);
     }

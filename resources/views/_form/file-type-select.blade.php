@@ -21,7 +21,7 @@
             <option value="">--</option>
         @endif
         @foreach ($fileTypes as $fileType)
-            <option value="{{ $fileType->id }}" {{ ($value === $fileType->id) ? "selected" : "" }} data-content="{!! $fileType->icon() !!} {{ $fileType->name }}">{{ $fileType->name }}</option>
+            <option value="{{ $fileType->id }}" {{ ((int) $value === (int) $fileType->id) ? "selected" : "" }} data-content="{!! $fileType->icon() !!} {{ $fileType->name }}">{{ $fileType->name }}</option>
         @endforeach
     </select>
 </div>

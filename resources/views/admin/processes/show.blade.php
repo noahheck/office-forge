@@ -30,11 +30,15 @@
 
                     <hr>
 
-                    <div class="editor-content">
-                        {!! App\safe_text_editor_content($process->details) !!}
-                    </div>
+                    @if ($process->details)
 
-                    <hr>
+                        <div class="editor-content">
+                            {!! App\safe_text_editor_content($process->details) !!}
+                        </div>
+
+                        <hr>
+
+                    @endif
 
                     <div class="d-flex justify-content-between">
                         <h2 class="h4">
@@ -120,7 +124,10 @@
 
                         <br>
 
-                        {!! $__fileType->icon(['ml-3']) !!} {{ $__fileType->name }}
+                        {!! $__fileType->icon(['ml-3']) !!}
+                        <a href="{{ route('admin.file-types.show', [$__fileType]) }}">
+                            {{ $__fileType->name }}
+                        </a>
 
                         <hr>
                     @endif
