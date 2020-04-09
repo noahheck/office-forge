@@ -25,6 +25,9 @@ $__context = $context ?? false;
             <br>
         @endif
         <span class="text-muted mr-2">#{{ $activity->id }}</span>
+        @if ($activity->private)
+            <span class="fas fa-user-shield detail text-muted" title="{{ __('activity.thisActivityPrivateVisibility') }}"></span>
+        @endif
         @if ($activity->due_date)
             <span class="detail" title="{{ __('activity.dueDate') }}: {{ $__formattedDueDate = \App\format_date($activity->due_date) }}">
                 <span class="due-date"><span class="far fa-calendar-alt mr-1"></span>{{ $__formattedDueDate }}</span>

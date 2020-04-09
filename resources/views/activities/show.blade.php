@@ -55,10 +55,10 @@
 
                             @if ($activity->private)
                                 <p class="text-muted">
-                                    <span class="fas fa-lock"></span>
+                                    <span class="fas fa-user-shield"></span>
                                     {{ __('activity.thisActivityPrivateVisibility') }}
                                 </p>
-                            
+
                                 <hr>
                             @endif
 

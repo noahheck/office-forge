@@ -92,7 +92,12 @@
                         <a href="{{ route('activities.show', [$activity]) }}">
                             {{ $activity->name }}</a>
 
-                        <small class="text-muted">#{{ $activity->id }}</small>
+                        <small class="text-muted">
+                            #{{ $activity->id }}
+                            @if ($activity->private)
+                                <span class="fas fa-user-shield ml-1"></span>
+                            @endif
+                        </small>
                     </td>
                     <td>
                         @if ($activity->owner_id)
