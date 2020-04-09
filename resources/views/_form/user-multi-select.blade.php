@@ -1,9 +1,9 @@
 {{--
-@teamMultiSelectField([
+@userMultiSelectField([
     'name' => 'string: form field name',
     'label' => 'string: text label for form field',
     'values' => 'collection: the field's value',
-    'teams' => 'collection: collection of teams to display in the field',
+    'users' => 'collection: collection of users to display in the field',
     'placeholder' => 'string: example placeholder text',
     'description' => 'string: additional details describing this field',
     'required' => 'boolean: whether the field is required',
@@ -16,9 +16,9 @@
     @if ($description ?? false)
         <p>{{ $description }}</p>
     @endif
-    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" multiple>
-        @foreach ($teams as $team)
-            <option value="{{ $team->id }}"{{ ($values->contains($team)) ? " selected" : "" }} data-content="{!! $team->icon() !!} {{ $team->name }}">{{ $team->name }}</option>
+    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} multiple>
+        @foreach ($users as $user)
+            <option value="{{ $user->id }}"{{ ($values->contains($user)) ? " selected" : "" }} data-content="{!! $user->icon() !!} {{ $user->name }}">{{ $user->name }}</option>
         @endforeach
     </select>
 </div>

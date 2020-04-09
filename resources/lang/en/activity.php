@@ -49,5 +49,6 @@ return [
 
     'noParticipants' => 'No Participants',
     'editParticipants' => 'Edit Participants',
+    'participantsUpdated' => 'Participants Updated',
 
 ];

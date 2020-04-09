@@ -56,7 +56,10 @@
                             <ul class="list-group">
                         @endif
 
-                            {{--<a class="list-group-item list-group-item-action" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+                            <li class="list-group-item">
+                                {!! $participant->user->iconAndName() !!}
+                            </li>
+                                {{--<a class="list-group-item list-group-item-action" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
                                 <span class="far {{ ($task->completed) ? 'fa-check-square' : 'fa-square' }}"></span>
                                 {{ $task->title }}
                             </a>--}}

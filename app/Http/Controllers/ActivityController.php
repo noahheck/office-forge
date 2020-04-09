@@ -102,7 +102,7 @@ class ActivityController extends Controller
      */
     public function show(Activity $activity)
     {
-        $activity->load('tasks', 'tasks.assignedTo', 'tasks.assignedTo.headshots', 'participants', 'participants.users');
+        $activity->load('tasks', 'tasks.assignedTo', 'tasks.assignedTo.headshots', 'participants', 'participants.user');
 
         $file = $activity->file;
 
