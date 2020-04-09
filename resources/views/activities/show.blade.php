@@ -12,7 +12,7 @@
 
     <div class="row project {{ ($activity->isOverdue()) ? 'overdue' : '' }} justify-content-center">
 
-        <div class="col-12 col-md-10" style="max-width: 900px;">
+        <div class="col-12 col-md-10" style="max-width: 800px;">
             <div class="card shadow">
                 <div class="card-body">
 
@@ -36,7 +36,7 @@
                     </div>
                     <div class="row">
 
-                        <div class="col-12 col-md-3 order-md-2">
+                        {{--<div class="col-12 col-md-3 order-md-2">
 
                             <dl class="project-details">
                                 <dt>{{ __('activity.owner') }}</dt>
@@ -72,11 +72,9 @@
 
                             </dl>
 
-                        </div>
+                        </div>--}}
 
-                        <div class="col-12 col-md-9 order-md-1">
-
-
+                        <div class="col-12{{-- col-md-9 order-md-1--}}">
 
                             <p>
                                 <a class="btn btn-primary btn-sm float-right" href="{{ route('activities.edit', [$activity]) }}">
@@ -92,6 +90,41 @@
                             </p>
 
                             <hr>
+
+                            <dl class="row project-details">
+                                <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.owner') }}</dt>
+                                <dd class="col-12 col-sm-9 col-xl-10">
+                                    @if ($activity->owner_id)
+                                        {!! $activity->owner->iconAndName() !!}
+                                    @endif
+                                    <hr>
+                                </dd>
+
+                                <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.dueDate') }}</dt>
+                                <dd class="col-12 col-sm-9 col-xl-10 project--due-date">
+                                    {{ App\format_date($activity->due_date) }}
+                                    <hr>
+                                </dd>
+
+                                <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">
+                                    <a href="{{ route('activities.participants.index', [$activity]) }}">{{ __('activity.participants') }}
+                                    </a>
+                                </dt>
+                                <dd class="col-12 col-sm-9 col-xl-10">
+                                    @forelse ($activity->participants as $participant)
+                                        {!! $participant->user->iconAndName() !!}
+                                    @empty
+                                        <em class="text-muted">{{ __('activity.noParticipants') }}</em>
+                                    @endforelse
+                                </dd>
+
+                            </dl>
+
+                            <hr>
+
+
+
+
 
                             @if ($activity->process_id && $activity->process_details)
                                 <div class="editor-content">

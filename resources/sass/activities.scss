@@ -27,10 +27,12 @@
 
     .project-details {
 
-        dd {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        /*dd:not(:last-child) {
             padding-bottom: 15px;
             border-bottom: 1px solid $light-gray;
-        }
+        }*/
     }
 
     &.overdue {
