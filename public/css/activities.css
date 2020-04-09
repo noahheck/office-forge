@@ -23,10 +23,15 @@
 .project .project-details {
   padding-top: 10px;
   padding-bottom: 10px;
-  /*dd:not(:last-child) {
-      padding-bottom: 15px;
-      border-bottom: 1px solid $light-gray;
-  }*/
+}
+
+.project .project-details dd {
+  margin-bottom: 0;
+}
+
+.project .project-details dd hr {
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .project.overdue .project-details {

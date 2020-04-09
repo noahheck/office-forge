@@ -20,6 +20,7 @@ class Activity extends Model
     ];
 
     protected $casts = [
+        'private' => 'boolean',
         'active' => 'boolean',
         'completed' => 'boolean',
     ];

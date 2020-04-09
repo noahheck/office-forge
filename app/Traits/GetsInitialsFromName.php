@@ -12,7 +12,7 @@ trait GetsInitialsFromName
 
         $nameParts = explode(' ', $this->name);
 
-        return array_reduce($nameParts, function ($initials, $namePart) use ($nonInitialableParts) {
+        $allInitials = array_reduce($nameParts, function ($initials, $namePart) use ($nonInitialableParts) {
             if ($nonInitialableParts->contains($namePart) || preg_match("/^\W/", $namePart)) {
 
                 return $initials;
@@ -20,6 +20,8 @@ trait GetsInitialsFromName
 
             return $initials . substr($namePart, 0, 1);
         }, '');
+
+        return substr($allInitials, 0, 1) . substr($allInitials, -1);
     }
 
     public function getInitialsAttribute()

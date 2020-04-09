@@ -24,6 +24,7 @@ class CreateActivitiesTable extends Migration
             $table->bigInteger('file_id')->nullable();
             $table->longText('process_details')->nullable();
             $table->longText('details')->nullable();
+            $table->boolean('private')->default(false);
             $table->boolean('active')->default(true);
             $table->boolean('completed')->default(false);
 

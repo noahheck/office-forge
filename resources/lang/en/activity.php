@@ -11,13 +11,14 @@ return [
     'name' => 'Name',
     'owner' => 'Owner',
     'completed' => 'Completed',
+    'private' => 'Private',
     'details' => 'Details',
 
     'nameExample' => 'New product launch, New Employee Orientation - John Smith, etc...',
     'detailsExample' => 'Description of the project, ideas around possible solutions, etc...',
 
-
-
+    'privateDescription' => 'Private Activities are only viewable by the Owner, Participants, and System Administrators',
+    'thisActivityPrivateVisibility' => 'This Activity is Private and is visible only to the Activity Owner, Participants, and System Administrators.',
 
     'task' => 'Task',
     'tasks' => 'Tasks',

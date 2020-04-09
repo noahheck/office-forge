@@ -36,45 +36,7 @@
                     </div>
                     <div class="row">
 
-                        {{--<div class="col-12 col-md-3 order-md-2">
-
-                            <dl class="project-details">
-                                <dt>{{ __('activity.owner') }}</dt>
-                                <dd>
-                                    @if ($activity->owner_id)
-                                        {!! $activity->owner->iconAndName() !!}
-                                    @endif
-                                </dd>
-
-                                <dt>{{ __('activity.dueDate') }}</dt>
-                                <dd class="project--due-date">{{ App\format_date($activity->due_date) }}</dd>
-
-                                <dt><a href="{{ route('activities.participants.index', [$activity]) }}">{{ __('activity.participants') }}</a></dt>
-                                <dd>
-                                    @forelse ($activity->participants as $participant)
-
-                                        @if ($loop->first)
-                                            <ul class="list-group">
-                                        @endif
-
-                                            <li class="list-group-item">
-                                                {!! $participant->user->iconAndName() !!}
-                                            </li>
-
-                                        @if ($loop->last)
-                                            </ul>
-                                        @endif
-
-                                    @empty
-                                        <em>{{ __('activity.noParticipants') }}</em>
-                                    @endforelse
-                                </dd>
-
-                            </dl>
-
-                        </div>--}}
-
-                        <div class="col-12{{-- col-md-9 order-md-1--}}">
+                        <div class="col-12">
 
                             <p>
                                 <a class="btn btn-primary btn-sm float-right" href="{{ route('activities.edit', [$activity]) }}">
@@ -91,12 +53,19 @@
 
                             <hr>
 
+                            @if ($activity->private)
+                                <p class="text-muted">
+                                    <span class="fas fa-lock"></span>
+                                    {{ __('activity.thisActivityPrivateVisibility') }}
+                                </p>
+                            
+                                <hr>
+                            @endif
+
                             <dl class="row project-details">
                                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.owner') }}</dt>
                                 <dd class="col-12 col-sm-9 col-xl-10">
-                                    @if ($activity->owner_id)
-                                        {!! $activity->owner->iconAndName() !!}
-                                    @endif
+                                    {!! $activity->owner->iconAndName() !!}
                                     <hr>
                                 </dd>
 
@@ -112,7 +81,8 @@
                                 </dt>
                                 <dd class="col-12 col-sm-9 col-xl-10">
                                     @forelse ($activity->participants as $participant)
-                                        {!! $participant->user->iconAndName() !!}
+                                        {!! $participant->user->icon() !!}
+                                        <span class="sr-only">{{ $participant->user->name }}</span>
                                     @empty
                                         <em class="text-muted">{{ __('activity.noParticipants') }}</em>
                                     @endforelse
@@ -122,10 +92,6 @@
 
                             <hr>
 
-
-
-
-
                             @if ($activity->process_id && $activity->process_details)
                                 <div class="editor-content">
                                     {!! App\safe_text_editor_content($activity->process_details) !!}
@@ -134,6 +100,7 @@
                                 <hr>
 
                             @endif
+
 
                             @if ($activity->details)
                                 <div class="editor-content">

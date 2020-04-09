@@ -31,7 +31,23 @@
         ])
     @endif
 
-    @errors('name', 'due_date', 'completed', 'details')
+    @errors('name', 'due_date', 'completed', 'details', 'private')
+
+    @if ($showCompleted ?? false)
+
+        @checkboxSwitchField([
+            'name' => 'completed',
+            'id' => 'activity_' . $activity->id . '_completed',
+            'label' => __('activity.completed'),
+            'checked' => $activity->completed,
+            'value' => '1',
+            'required' => false,
+            'error' => $errors->has('completed'),
+        ])
+
+        <hr>
+
+    @endif
 
     @textField([
         'name' => 'name',
@@ -53,23 +69,6 @@
         'error' => $errors->has('due_date'),
     ])
 
-    @if ($showCompleted ?? false)
-
-        <hr>
-
-        @checkboxSwitchField([
-            'name' => 'completed',
-            'id' => 'activity_' . $activity->id . '_completed',
-            'label' => __('activity.completed'),
-            'checked' => $activity->completed,
-            'value' => '1',
-            'required' => false,
-            'error' => $errors->has('completed'),
-        ])
-
-        <hr>
-
-    @endif
 
     @userSelectField([
         'name' => 'owner_id',
@@ -81,6 +80,23 @@
         'autofocus' => false,
         'error' => $errors->has('owner_id'),
     ])
+
+    @unless ($activity->process_id)
+
+        @checkboxSwitchField([
+            'name' => 'private',
+            'id' => 'activity_private',
+            'label' => __('activity.private'),
+            'details' => __('activity.privateDescription'),
+            'checked' => old('private', $activity->private),
+            'value' => '1',
+            'required' => false,
+            'error' => $errors->has('private'),
+        ])
+
+        <hr>
+
+    @endunless
 
     @textEditorField([
         'name' => 'details',

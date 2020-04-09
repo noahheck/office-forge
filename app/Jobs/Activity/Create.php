@@ -16,6 +16,7 @@ class Create
     private $name;
     private $due_date;
     private $owner_id;
+    private $private;
     private $details;
     private $creator;
     private $editor_temp_id;
@@ -32,11 +33,21 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $due_date, $owner_id, $details, $creator, $editor_temp_id, $file_id = false, $process_id = false)
-    {
+    public function __construct(
+        $name,
+        $due_date,
+        $owner_id,
+        $private,
+        $details,
+        $creator,
+        $editor_temp_id,
+        $file_id = false,
+        $process_id = false
+    ) {
         $this->name = $name;
         $this->due_date = $due_date;
         $this->owner_id = $owner_id;
+        $this->private = $private;
         $this->details = $details;
         $this->creator = $creator;
         $this->editor_temp_id = $editor_temp_id;
@@ -59,6 +70,7 @@ class Create
         $activity = new Activity;
         $activity->name = $this->name;
         $activity->owner_id = $this->owner_id;
+        $activity->private = $this->private;
         $activity->details = $this->details;
         $activity->created_by = $this->creator->id;
 

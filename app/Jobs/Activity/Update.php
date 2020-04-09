@@ -14,6 +14,7 @@ class Update
     private $name;
     private $due_date;
     private $owner_id;
+    private $private;
     private $completed;
     private $details;
     private $creator;
@@ -28,12 +29,20 @@ class Update
      *
      * @return void
      */
-    public function __construct(Activity $activity, $name, $due_date, $owner_id, $completed, $details)
-    {
+    public function __construct(
+        Activity $activity,
+        $name,
+        $due_date,
+        $owner_id,
+        $private,
+        $completed,
+        $details
+    ) {
         $this->activity = $activity;
         $this->name = $name;
         $this->due_date = $due_date;
         $this->owner_id = $owner_id;
+        $this->private = $private;
         $this->completed = $completed;
         $this->details = $details;
     }
@@ -49,6 +58,7 @@ class Update
         $activity->name = $this->name;
         $activity->details = $this->details;
         $activity->owner_id = $this->owner_id;
+        $activity->private = $this->private;
 
         $activity->due_date = null;
         if ($this->due_date) {

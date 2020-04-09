@@ -80,6 +80,7 @@ class ActivityController extends Controller
             $request->name,
             $request->due_date,
             $request->owner_id,
+            $request->has('private'),
             $request->details,
             $request->user(),
             $request->temp_id,
@@ -138,6 +139,7 @@ class ActivityController extends Controller
             $request->name,
             $request->due_date,
             $request->owner_id,
+            $request->has('private'),
             $request->has('completed'),
             $request->details
         ));
