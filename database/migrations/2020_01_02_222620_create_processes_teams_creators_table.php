@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProcessesTeamsInstantiatorsTable extends Migration
+class CreateProcessesTeamsCreatorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateProcessesTeamsInstantiatorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('processes_teams_instantiators', function (Blueprint $table) {
+        Schema::create('processes_teams_creators', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('process_id');
             $table->bigInteger('team_id');
@@ -28,6 +28,6 @@ class CreateProcessesTeamsInstantiatorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('processes_teams_instantiators');
+        Schema::dropIfExists('processes_teams_creators');
     }
 }

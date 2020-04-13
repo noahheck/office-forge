@@ -132,11 +132,11 @@
                         <hr>
                     @endif
 
-                    <strong>{{ __('process.instantiatingTeams') }}</strong>
+                    <strong>{{ __('process.creatingTeams') }}</strong>
 
                     <br>
 
-                    @foreach ($process->instantiatingTeams as $team)
+                    @foreach ($process->creatingTeams as $team)
 
                         @if ($loop->first)
                             <ul class="list-group">

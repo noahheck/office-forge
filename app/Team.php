@@ -24,9 +24,9 @@ class Team extends Model
     }
 
 
-    public function instantiableProcesses()
+    public function creatableProcesses()
     {
-        return $this->belongsToMany(Process::class, 'processes_teams_instantiators');
+        return $this->belongsToMany(Process::class, 'processes_teams_creators');
     }
 
     public function fileTypeForms()

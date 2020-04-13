@@ -21,7 +21,7 @@ class CreateProcessesTable extends Migration
             $table->text('details')->nullable();
             $table->boolean('active')->default(true);
 
-            $table->dateTime('last_instantiated_at')->nullable();
+            $table->dateTime('last_created_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

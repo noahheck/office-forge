@@ -62,8 +62,8 @@
 
             @teamMultiSelectField([
                 'name' => 'teams',
-                'label' => __('process.instantiatingTeams'),
-                'values' => $process->instantiatingTeams,
+                'label' => __('process.creatingTeams'),
+                'values' => $process->creatingTeams,
                 'multiple' => true,
                 'teams' => $teamOptions,
                 'placeholder' => 'Select teams',

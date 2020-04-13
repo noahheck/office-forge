@@ -16,14 +16,14 @@ class Update
     private $file_type_id;
     private $active;
     private $details;
-    private $instantiatingTeams;
+    private $creatingTeams;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Process $process, $name, $file_type_id, $active, $details, $instantiatingTeams)
+    public function __construct(Process $process, $name, $file_type_id, $active, $details, $creatingTeams)
     {
         $this->process = $process;
 
@@ -31,7 +31,7 @@ class Update
         $this->file_type_id = $file_type_id;
         $this->active = $active;
         $this->details = $details;
-        $this->instantiatingTeams = $instantiatingTeams;
+        $this->creatingTeams = $creatingTeams;
     }
 
     /**
@@ -48,7 +48,7 @@ class Update
         $process->details = $this->details;
         $process->active = $this->active;
 
-        $process->instantiatingTeams()->sync($this->instantiatingTeams);
+        $process->creatingTeams()->sync($this->creatingTeams);
 
         $process->save();
     }

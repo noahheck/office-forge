@@ -17,24 +17,27 @@ class Process extends Model
         'active' => 'boolean',
     ];
 
-    public function instantiatingTeams()
+    public function creatingTeams()
     {
-        return $this->belongsToMany(Team::class, 'processes_teams_instantiators');
+        return $this->belongsToMany(Team::class, 'processes_teams_creators');
     }
 
-    public function instantiatingMembers()
+    public function creatingMembers()
     {
-        $this->load(['instantiatingTeams', 'instantiatingTeams.members']);
+        $this->load(['creatingTeams', 'creatingTeams.members']);
 
-        return $this->instantiatingTeams->map(function($team, $i) {
+        return $this->creatingTeams->map(function($team, $i) {
             return $team->members;
         })->flatten()->unique('id')->sortBy('name');
     }
 
-    public function canBeInstantiatedBy(User $user)
+    public function canBeCreatedBy(User $user)
     {
-        return $this->instantiatingMembers()->pluck('id')->contains($user->id);
+        return $this->creatingMembers()->pluck('id')->contains($user->id);
     }
+
+
+
 
     public function fileType()
     {
