@@ -6,10 +6,16 @@ $__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 
+$__user = Auth::user();
 
 $__processes = \App\Process::whereNull('file_type_id')->orderBy('name')->get();
 
 $__fileTypes = \App\FileType::orderBy('name')->get();
+
+$__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
+
+    return $fileType->isAccessibleBy($__user);
+});
 
 
 @endphp
@@ -100,7 +106,7 @@ $__fileTypes = \App\FileType::orderBy('name')->get();
                                 </a>
                             @endforeach
 
-                            @foreach ($__fileTypes as $__fileType)
+                            @foreach ($__fileTypesToCreate as $__fileType)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
                                     <span class="dropdown-header"><span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}</span>
