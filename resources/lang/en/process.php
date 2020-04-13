@@ -7,7 +7,7 @@ return [
     'fileType' => 'File Type',
     'fileTypeDescription' => 'Choose which file type instances of this process are created for. Leave this field empty to create a Global process which doesn\'t apply to a specific File.',
     'creatingTeams' => 'Creating Teams',
-    'teamsDescription' => 'Choose which team(s) members should be able to create instances of this process. Leave this field empty to prevent any instances of this process from being created.',
+    'teamsDescription' => 'Choose which team(s) members should be able to create instances of this process. Leave this field empty to allow instances of this process to be created by any staff member.',
     'details' => 'Details',
     'detailsExamples' => '',
     'detailsDescription' => 'Describe the process - Help your staff understand the purpose of the process, how it is used to help achieve company goals, regulations satisfied by successfully completing the process, and the reason(s) this process should be invoked.',
