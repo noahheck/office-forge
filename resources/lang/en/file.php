@@ -6,6 +6,11 @@ return [
     'name' => 'Name',
     'nameExamples' => 'Employee, Project, Customer, etc...',
     'icon' => 'Icon',
+    'teamAccessRestriction' => 'Team Access Restrictions',
+    'teamAccess' => 'Team Access',
+    'teamAccessRestrictionShortDescription' => 'These files are only accessible by members of these teams.',
+    'teamAccessUnrestrictedShortDescription' => 'These files are accessible by all staff members.',
+    'teamAccessRestrictionDescription' => 'These files will only be accessible by members of these teams. If no teams are selected, these files will be accessible by all of your staff.',
     'active' => 'Active',
     'active_description' => 'FileType types marked inactive can not have new FileTypes of that type created',
 

@@ -6,6 +6,7 @@ use App\FileType;
 use App\Http\Controllers\Controller;
 use App\Jobs\FileType\Create;
 use App\Jobs\FileType\Update;
+use App\Team;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\FileType\Store as StoreRequest;
 use App\Http\Requests\Admin\FileType\Update as UpdateRequest;
@@ -37,7 +38,9 @@ class FileTypeController extends Controller
         $fileType->active = true;
         $fileType->icon = FileType::DEFAULT_ICON;
 
-        return $this->view('admin.file-types.create', compact('fileType'));
+        $teamOptions = Team::all();
+
+        return $this->view('admin.file-types.create', compact('fileType', 'teamOptions'));
     }
 
     /**
@@ -51,7 +54,8 @@ class FileTypeController extends Controller
         $this->dispatchNow($fileCreated = new Create(
             $request->name,
             $request->icon,
-            $request->has('active')
+            $request->has('active'),
+            $request->teams
         ));
 
         $fileType = $fileCreated->getFile();
@@ -80,7 +84,9 @@ class FileTypeController extends Controller
      */
     public function edit(FileType $fileType)
     {
-        return $this->view('admin.file-types.edit', compact('fileType'));
+        $teamOptions = Team::all();
+
+        return $this->view('admin.file-types.edit', compact('fileType', 'teamOptions'));
     }
 
     /**
@@ -96,7 +102,8 @@ class FileTypeController extends Controller
             $fileType,
             $request->name,
             $request->icon,
-            $request->has('active')
+            $request->has('active'),
+            $request->teams
         ));
 
         flash_success(__('admin.fileType_updated'));

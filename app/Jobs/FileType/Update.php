@@ -14,18 +14,20 @@ class Update
     private $name;
     private $icon;
     private $active;
+    private $teams;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(FileType $file, $name, $icon, $active)
+    public function __construct(FileType $file, $name, $icon, $active, $teams)
     {
         $this->file = $file;
         $this->name = $name;
         $this->icon = $icon;
         $this->active = $active;
+        $this->teams = $teams;
     }
 
     /**
@@ -41,5 +43,7 @@ class Update
         $file->active = $this->active;
 
         $file->save();
+
+        $file->teams()->sync($this->teams);
     }
 }

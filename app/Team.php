@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\FileType\Form;
 use App\FileType\Panel;
 use App\Traits\GetsInitialsFromName;
 use Illuminate\Database\Eloquent\Model;
@@ -29,9 +30,14 @@ class Team extends Model
         return $this->belongsToMany(Process::class, 'processes_teams_creators');
     }
 
+    public function fileTypes()
+    {
+        return $this->belongsToMany(FileType::class, 'file_types_teams', 'team_id', 'file_type_id')->withTimestamps();
+    }
+
     public function fileTypeForms()
     {
-        return $this->belongsToMany(Team::class, 'file_type_forms_teams', 'team_id' , 'file_type_form_id')->withTimestamps();
+        return $this->belongsToMany(Form::class, 'file_type_forms_teams', 'team_id' , 'file_type_form_id')->withTimestamps();
     }
 
     public function fileTypePanels()

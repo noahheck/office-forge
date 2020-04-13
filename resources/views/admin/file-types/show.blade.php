@@ -38,6 +38,44 @@
 
             </div>
 
+
+
+            <div class="card mt-2">
+
+                <div class="card-body">
+
+                    <h3 class="h4"><span class="fas fa-user-friends mr-2"></span>{{ __('file.teamAccess') }}</h3>
+
+                    <hr>
+
+                    @forelse ($fileType->teams as $team)
+
+                        @if($loop->first)
+
+                            <p>{{ __('file.teamAccessRestrictionShortDescription') }}</p>
+
+                            <ul class="list-group">
+                        @endif
+
+                            <li class="list-group-item">
+                                {!! $team->icon() !!} {{ $team->name }}
+                            </li>
+
+                        @if ($loop->last)
+                            </ul>
+                        @endif
+
+                    @empty
+
+                        <p><em>{{ __('file.teamAccessUnrestrictedShortDescription') }}</em></p>
+
+                    @endforelse
+
+                </div>
+
+            </div>
+
+
         </div>
 
         <div class="col-12 col-md-8 col-xl-9 mt-3 mt-md-0">

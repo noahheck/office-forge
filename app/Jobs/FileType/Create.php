@@ -13,6 +13,7 @@ class Create
     private $name;
     private $icon;
     private $active;
+    private $teams;
 
     private $file;
 
@@ -21,11 +22,12 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $icon, $active)
+    public function __construct($name, $icon, $active, $teams)
     {
         $this->name = $name;
         $this->icon = $icon;
         $this->active = $active;
+        $this->teams = $teams;
     }
 
     public function getFile(): FileType
@@ -46,6 +48,8 @@ class Create
         $file->active = $this->active;
 
         $file->save();
+
+        $file->teams()->sync($this->teams);
 
         $this->file = $file;
     }

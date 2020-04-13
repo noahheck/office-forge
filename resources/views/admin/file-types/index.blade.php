@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="text-right">
                     <a href="{{ route('admin.file-types.create') }}" class="btn btn-primary">
-                        <span class="fas fa-user-plus"></span> {{ __('admin.newFileType') }}
+                        <span class="fas fa-folder-plus"></span> {{ __('admin.newFileType') }}
                     </a>
                 </div>
                 <hr>

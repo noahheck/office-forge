@@ -97,6 +97,11 @@ class FileType extends Model
         return $this->hasMany(File::class, 'file_type_id');
     }
 
+    public function teams()
+    {
+        return $this->belongsToMany(Team::class, 'file_types_teams', 'file_type_id', 'team_id');
+    }
+
     public function forms()
     {
         return $this->hasMany(Form::class)->orderBy('order');

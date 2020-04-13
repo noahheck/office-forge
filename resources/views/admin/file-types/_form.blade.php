@@ -5,7 +5,7 @@
         @method($method)
     @endif
 
-    @errors('name', 'icon')
+    @errors('name', 'icon', 'teams')
 
     @textField([
         'name' => 'name',
@@ -26,6 +26,19 @@
         </select>
     </div>
 
+    <hr>
+
+    @teamMultiSelectField([
+        'name' => 'teams',
+        'label' => __('file.teamAccessRestriction'),
+        'values' => old('teams', $fileType->teams),
+        'teams' => $teamOptions,
+        'placeholder' => __('app.selectTeams'),
+        'description' => __('file.teamAccessRestrictionDescription'),
+        'required' => false,
+        'autofocus' => false,
+        'error' => $errors->has('teams'),
+    ])
 
     <hr>
 
