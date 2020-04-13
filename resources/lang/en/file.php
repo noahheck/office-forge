@@ -24,6 +24,7 @@ return [
 
 
     'error_invalidFileType' => 'Invalid file type provided',
+    'error_unableToAccessFileType' => 'You are unable to access these files',
 
 
     'forms' => 'Forms',

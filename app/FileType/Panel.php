@@ -5,26 +5,17 @@ namespace App\FileType;
 use App\FileType;
 use App\FileType\Form\Field;
 use App\Team;
+use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Panel extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        GrantsAccessByTeamMembership;
 
     protected $table = 'file_type_panels';
-
-    // Same function as in Forms - extract to trait when appropriate
-    public function isAccessibleBy(User $user): bool
-    {
-        $formTeams = $this->teams;
-        $userTeams = $user->teams;
-
-        $sharedTeams = $formTeams->intersect($userTeams);
-
-        return $sharedTeams->count() > 0;
-    }
 
     public function fileType()
     {

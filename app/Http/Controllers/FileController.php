@@ -26,12 +26,26 @@ class FileController extends Controller
         $fileTypes = [];
         $files     = [];
 
+        $user = $request->user();
+
         if ($fileTypeFilter = $request->query('file_type')) {
             $fileType = FileType::find($fileTypeFilter);
+
+            if (!$user->can('viewAny', [File::class, $fileType])) {
+                flash_error(__('file.error_unableToAccessFileType'));
+
+                return redirect()->route('files.index');
+            }
 
             $files = File::where('file_type_id', $fileTypeFilter)->where('archived', false)->orderBy('name')->get();
         } else {
             $fileTypes = FileType::orderBy('name')->get();
+            $fileTypes->load('teams');
+
+
+            $fileTypes = $fileTypes->filter(function($fileType) use ($user) {
+                return $fileType->isAccessibleBy($user);
+            });
         }
 
         return $this->view('files.index', compact('fileTypes', 'fileType', 'fileTypeFilter', 'files'));
@@ -50,6 +64,12 @@ class FileController extends Controller
 
         if (!(optional($fileType)->id)) {
             flash_error(__('file.error_invalidFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        if (!$request->user()->can('create', [File::class, $fileType])) {
+            flash_error(__('file.error_unableToAccessFileType'));
 
             return redirect()->route('files.index');
         }
@@ -74,6 +94,12 @@ class FileController extends Controller
 
         if (!(optional($fileType)->id)) {
             flash_error(__('file.error_invalidFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        if (!$request->user()->can('create', [File::class, $fileType])) {
+            flash_error(__('file.error_unableToAccessFileType'));
 
             return redirect()->route('files.index');
         }
@@ -103,6 +129,13 @@ class FileController extends Controller
     public function show(Request $request, File $file)
     {
         $user     = $request->user();
+
+        if (!$user->can('view', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
         $fileType = $file->fileType;
 
         $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
@@ -128,8 +161,14 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function edit(File $file)
+    public function edit(Request $request, File $file)
     {
+        if (!$request->user()->can('update', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
         $fileType = $file->fileType;
 
         return $this->view('files.edit', compact('file', 'fileType'));
@@ -144,6 +183,12 @@ class FileController extends Controller
      */
     public function update(UpdateRequest $request, File $file)
     {
+        if (!$request->user()->can('update', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
         $this->dispatchNow($fileUpdated = new Update($file, $request->name));
 
         if ($photoFile = $request->file('new_file_photo')) {

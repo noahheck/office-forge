@@ -4,6 +4,7 @@ namespace App;
 
 use App\File\FormField\Value;
 use App\Interfaces\Headshottable;
+use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use App\Traits\Headshottable as HeadshottableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,7 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class File extends Model implements Headshottable
 {
     use SoftDeletes,
-        HeadshottableTrait;
+        HeadshottableTrait,
+        GrantsAccessByTeamMembership;
 
     protected $casts = [
         'archived' => 'boolean',
@@ -20,6 +22,11 @@ class File extends Model implements Headshottable
     public function scopeOrdered($query)
     {
         return $query->orderBy('name');
+    }
+
+    public function teams()
+    {
+        return $this->fileType->teams();
     }
 
     public function fileType()

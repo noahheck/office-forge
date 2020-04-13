@@ -4,12 +4,14 @@ namespace App;
 
 use App\FileType\Form;
 use App\FileType\Panel;
+use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FileType extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        GrantsAccessByTeamMembership;
 
     const DEFAULT_ICON = 'fas fa-star';
 
