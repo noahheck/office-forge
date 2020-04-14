@@ -39,9 +39,16 @@
                         <div class="col-12">
 
                             <p>
-                                <a class="btn btn-primary btn-sm float-right" href="{{ route('activities.edit', [$activity]) }}">
-                                    <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
-                                </a>
+
+                                @can('update', $activity)
+                                    <a class="btn btn-primary btn-sm float-right" href="{{ route('activities.edit', [$activity]) }}">
+                                        <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                    </a>
+                                @else
+                                    <span class="btn btn-secondary disabled btn-sm float-right" title="{{ __('activity.onlyActivityOwnerCanEdit') }}">
+                                        <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                    </span>
+                                @endcan
 
                                 @if ($activity->completed)
                                     <span class="project--completed-indicator">

@@ -38,6 +38,7 @@ return [
     'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',
 
 
+    'onlyActivityOwnerCanEdit' => "Only the Activity Owner can edit it's details",
 
     'countOfTotalTasksCompleted' => ':completed / :total Tasks Completed',
 
@@ -51,5 +52,9 @@ return [
     'noParticipants' => 'No Participants',
     'editParticipants' => 'Edit Participants',
     'participantsUpdated' => 'Participants Updated',
+
+    'error_unableToAccessActivity' => 'You are unable to access this Activity',
+    'error_unableToCreateActivityOfType' => 'You are unable to create Activities of this type.',
+    'error_unableToEditActivity' => 'You are unable to edit this Activity.',
 
 ];

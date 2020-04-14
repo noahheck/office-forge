@@ -22,21 +22,26 @@ class Process extends Model
         return $this->belongsToMany(Team::class, 'processes_teams_creators');
     }
 
-    public function creatingMembers()
-    {
-        $this->load(['creatingTeams', 'creatingTeams.members']);
-
-        return $this->creatingTeams->map(function($team, $i) {
-            return $team->members;
-        })->flatten()->unique('id')->sortBy('name');
-    }
-
     public function canBeCreatedBy(User $user)
     {
-        return $this->creatingMembers()->pluck('id')->contains($user->id);
+        $teams = $this->creatingTeams;
+
+        if ($teams->count() < 1) {
+
+            return true;
+        }
+
+        $userTeams = $user->teams;
+
+        $sharedTeams = $teams->intersect($userTeams);
+
+        return $sharedTeams->count() > 0;
     }
 
-
+    public function isAccessibleBy(User $user)
+    {
+        return $this->canBeCreatedBy($user);
+    }
 
 
     public function fileType()

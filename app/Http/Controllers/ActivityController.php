@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Activity\Store as StoreRequest;
 use App\Http\Requests\Activity\Update as UpdateRequest;
+use function App\flash_error;
 
 class ActivityController extends Controller
 {
@@ -63,6 +64,18 @@ class ActivityController extends Controller
 
         $activity->process_id = ($processId) ? $processId : null;
 
+        if ($file && !$request->user()->can('view', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        if (!$request->user()->can('create', [Activity::class, $process])) {
+            flash_error(__('activity.error_unableToCreateActivityOfType'));
+
+            return redirect()->route('home');
+        }
+
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
         return $this->view('activities.create', compact('activity', 'users', 'file', 'process'));
@@ -76,6 +89,14 @@ class ActivityController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $process = ($processId = $request->process_id) ? Process::find($processId) : false;
+
+        if (!$request->user()->can('create', [Activity::class, $process])) {
+            flash_error(__('activity.error_unableToCreateActivityOfType'));
+
+            return redirect()->route('home');
+        }
+
         $this->dispatchNow($activityCreated = new Create(
             $request->name,
             $request->due_date,
@@ -101,9 +122,15 @@ class ActivityController extends Controller
      * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function show(Activity $activity)
+    public function show(Request $request, Activity $activity)
     {
         $activity->load('tasks', 'tasks.assignedTo', 'tasks.assignedTo.headshots', 'participants', 'participants.user');
+
+        if (!$request->user()->can('view', $activity)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
 
         $file = $activity->file;
 
@@ -116,8 +143,14 @@ class ActivityController extends Controller
      * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function edit(Activity $activity)
+    public function edit(Request $request, Activity $activity)
     {
+        if (!$request->user()->can('update', $activity)) {
+            flash_error(__('activity.error_unableToEditActivity'));
+
+            return redirect()->route('activities.show', $activity);
+        }
+
         $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
 
         $file = $activity->file;
@@ -134,6 +167,12 @@ class ActivityController extends Controller
      */
     public function update(UpdateRequest $request, Activity $activity)
     {
+        if (!$request->user()->can('update', $activity)) {
+            flash_error(__('activity.error_unableToEditActivity'));
+
+            return redirect()->route('activities.show', $activity);
+        }
+
         $this->dispatchNow($activityUpdated = new Update(
             $activity,
             $request->name,

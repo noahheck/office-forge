@@ -10,13 +10,21 @@ $__user = Auth::user();
 
 $__processes = \App\Process::whereNull('file_type_id')->orderBy('name')->get();
 
+$__processes->load('creatingTeams');
+
+$__processesToCreate = $__processes->filter(function($process) use ($__user) {
+
+    return $process->canBeCreatedBy($__user);
+});
+
 $__fileTypes = \App\FileType::orderBy('name')->get();
+
+$__fileTypes->load('teams');
 
 $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
 
     return $fileType->isAccessibleBy($__user);
 });
-
 
 @endphp
 <!doctype html>
@@ -96,11 +104,12 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
                             <span class="dropdown-header"><span class="fa-fw fas fa-project-diagram"></span> {{ __('app.activities') }}</span>
                             <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
 
-                            @foreach ($__processes as $__process)
+                            @foreach ($__processesToCreate as $__process)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
                                     <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
                                 @endif
+
                                 <a class="dropdown-item" href="{{ route('activities.create', ['process_id' => $__process->id]) }}">
                                     {{ $__process->name }}
                                 </a>

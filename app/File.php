@@ -52,7 +52,9 @@ class File extends Model implements Headshottable
         if ($headshot = $this->currentHeadshot()) {
             $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'file-icon', 'icon', 'rounded'])));
 
-            return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'icon', $headshot->icon_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
+            $title = e($this->fileType->name) . ' - ' . e($this->name);
+
+            return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'icon', $headshot->icon_filename]) . "' title='" . $title . "' alt='" . $title . "'>";
         }
 
         return $this->fileType->icon($withClasses);

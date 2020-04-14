@@ -31,6 +31,12 @@ class HomeController extends Controller
 
         $processOptions = Process::where('file_type_id', null)->get();
 
+        $processOptions->load('creatingTeams');
+
+        $processOptions = $processOptions->filter(function($process) use ($user) {
+            return $process->canBeCreatedBy($user);
+        });
+
         return $this->view('home', compact('activities', 'user', 'processOptions'));
     }
 }

@@ -116,6 +116,17 @@
 
 .btn {
     @include border-radius(0);
+
+    .show > &.dropdown-toggle:not(.btn-light):not(.btn-light),
+    &:not(.btn-light):not(.btn-light) {
+        @include shadow-transition();
+        @include background-color-transition();
+        @include shadow(0,0,0,0,transparent);
+
+        &:not(:disabled):not(:disabled):active:focus {
+            @include shadow(0,0,0,0,transparent);
+        }
+    }
 }
 
 .btn-warning {
@@ -131,6 +142,11 @@
 
 .card {
     @include border-radius(0);
+}
+
+.dropdown-menu {
+    @include border-radius(0);
+    @include shadow($blurRadius:8px);
 }
 
 .list-group-item-action.active {
@@ -228,7 +244,7 @@
     @include border-radius();
     @include no-text-select();
     color: #090909;
-    margin-right: 6px;
+    //margin-right: 6px;
     padding: 4px;
 
     display: inline-block;
@@ -238,7 +254,7 @@
     @include border-rounded();
     @include no-text-select();
     color: #f9f9f9;
-    margin-right: 6px;
+    //margin-right: 6px;
     padding: 7px;
     display: inline-block;
 }

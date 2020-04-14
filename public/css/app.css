@@ -24734,6 +24734,20 @@ a.text-dark:focus {
   border-radius: 0;
 }
 
+.show > .btn.dropdown-toggle:not(.btn-light):not(.btn-light),
+.btn:not(.btn-light):not(.btn-light) {
+  -webkit-transition: box-shadow 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out;
+  -webkit-transition: background-color 0.2s;
+  transition: background-color 0.2s;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.show > .btn.dropdown-toggle:not(.btn-light):not(.btn-light):not(:disabled):not(:disabled):active:focus,
+.btn:not(.btn-light):not(.btn-light):not(:disabled):not(:disabled):active:focus {
+  box-shadow: 0 0 0 0 transparent;
+}
+
 .btn-warning {
   background-color: #f6993f;
   color: #fff;
@@ -24747,6 +24761,11 @@ a.text-dark:focus {
 
 .card {
   border-radius: 0;
+}
+
+.dropdown-menu {
+  border-radius: 0;
+  box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.5);
 }
 
 .list-group-item-action.active {
@@ -24836,7 +24855,6 @@ a.text-dark:focus {
   -o-user-select: none;
   -moz-user-select: none;
   color: #090909;
-  margin-right: 6px;
   padding: 4px;
   display: inline-block;
 }
@@ -24850,7 +24868,6 @@ a.text-dark:focus {
   -o-user-select: none;
   -moz-user-select: none;
   color: #f9f9f9;
-  margin-right: 6px;
   padding: 7px;
   display: inline-block;
 }

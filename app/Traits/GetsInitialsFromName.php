@@ -21,7 +21,7 @@ trait GetsInitialsFromName
             return $initials . substr($namePart, 0, 1);
         }, '');
 
-        return substr($allInitials, 0, 1) . substr($allInitials, -1);
+        return (strlen($allInitials) > 1) ? substr($allInitials, 0, 1) . substr($allInitials, -1) : $allInitials;
     }
 
     public function getInitialsAttribute()

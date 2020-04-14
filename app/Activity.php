@@ -25,6 +25,42 @@ class Activity extends Model
         'completed' => 'boolean',
     ];
 
+    public function isAccessibleBy(User $user)
+    {
+        // System administrators can view all Activities
+        if ($user->isAdministrator()) {
+
+            return true;
+        }
+
+        // Owner's can always access the Activity
+        if ($this->owner_id === $user->id) {
+
+            return true;
+        }
+
+        // Participant's on an Activity can view it
+        if ($this->participants->pluck('user_id')->contains($user->id)) {
+
+            return true;
+        }
+
+        // If it's a process activity, check the user is able to access that process
+        if ($this->process_id) {
+
+            return $this->process->isAccessibleBy($user);
+        }
+
+        // Public activities can be viewed by anyone
+        if (!$this->private) {
+
+            return true;
+        }
+
+        // All checks have been done - the user cannot access this Activity
+        return false;
+    }
+
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');

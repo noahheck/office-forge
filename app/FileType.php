@@ -125,6 +125,8 @@ class FileType extends Model
 
         $classes = e(implode(' ', $withClasses));
 
-        return "<span class='{$classes}'></span>";
+        $title = e($this->name);
+
+        return "<span class='{$classes}' title='{$title}'></span>";
     }
 }
