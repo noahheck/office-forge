@@ -41,7 +41,7 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
 
     Route::resource('/files', 'FileController');
-    Route::namespace('File')->prefix('/files/{file}')->name('files.')->group(function() {
+    Route::namespace('File')->prefix('/files/{file}')->name('files.')->middleware('can:view,file')->group(function() {
 
         Route::get('/forms', 'FormController@index')->name('forms.index');
         Route::get('/forms/{form}', 'FormController@show')->name('forms.show');
