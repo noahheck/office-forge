@@ -76,6 +76,11 @@ class Activity extends Model
         return $this->hasMany(Participant::class)->where('removed_at', null);
     }
 
+    public function participantUsers()
+    {
+        return $this->participants->pluck('user');
+    }
+
     public function tasks()
     {
         return $this->hasMany(Task::class);

@@ -36,7 +36,7 @@ class TaskController extends Controller
         $task->project_id = $activity->id;
         $task->assigned_to = $request->user()->id;
 
-        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+        $users = $activity->participantUsers()->push($activity->owner)->unique();
 
         return $this->view('activities.tasks.create', compact('task', 'activity', 'users'));
     }
@@ -83,7 +83,7 @@ class TaskController extends Controller
      */
     public function edit(Activity $activity, Task $task)
     {
-        $users = User::orderBy('active', 'DESC')->orderBy('name')->get();
+        $users = $activity->participantUsers()->push($activity->owner)->unique();
 
         return $this->view('activities.tasks.edit', compact('task', 'activity', 'users'));
     }
