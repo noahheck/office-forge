@@ -42,6 +42,9 @@ mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/page/files/index.js', 'public/js/page.files.index.js')
     .js('resources/js/page/files/_form.js', 'public/js/page.files._form.js')
 
+
+    .js('resources/js/page/activities/tasks/_form.js', 'public/js/page.activities.tasks._form.js')
+
     .extract([
         'jquery',
         'popper.js',

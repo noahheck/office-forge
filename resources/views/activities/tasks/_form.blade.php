@@ -1,3 +1,7 @@
+@push('scripts')
+    @script('js/page.activities.tasks._form.js')
+@endpush
+
 <form class="bold-labels" method="POST" action="{{ $action }}">
 
     @csrf
@@ -56,6 +60,10 @@
         'autofocus' => false,
         'error' => $errors->has('assigned_to'),
     ])
+
+    <button class="btn btn-sm mt-0 mb-3 sbtn-primary btn-link" type="button" id="assignToMeButton">
+        Assign to me
+    </button>
 
     @textEditorField([
         'name' => 'details',

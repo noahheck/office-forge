@@ -8,6 +8,7 @@
     "/css/files.css": "/css/files.css",
     "/css/admin.files.css": "/css/admin.files.css",
     "/js/manifest.js": "/js/manifest.js",
+    "/js/page.activities.tasks._form.js": "/js/page.activities.tasks._form.js",
     "/js/page.admin.file-types.forms.fields._form.js": "/js/page.admin.file-types.forms.fields._form.js",
     "/js/page.admin.file-types.forms.fields.index.js": "/js/page.admin.file-types.forms.fields.index.js",
     "/js/page.admin.file-types.forms.index.js": "/js/page.admin.file-types.forms.index.js",

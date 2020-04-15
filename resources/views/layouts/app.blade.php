@@ -36,9 +36,12 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
     <!-- CSRF Token -->
     @meta('csrf-token', csrf_token())
 
+
     @if(Session::has('success') || \Session::has('info') || \Session::has( 'warning') || \Session::has('error'))
         @meta('check-notifications', true)
     @endif
+
+    @meta('userId', $__user->id)
 
     @stack('meta')
 
