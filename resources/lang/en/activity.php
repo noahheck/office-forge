@@ -38,7 +38,8 @@ return [
     'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',
 
 
-    'onlyActivityOwnerCanEdit' => "Only the Activity Owner can edit it's details",
+    'onlyActivityOwnerCanEdit' => "Only the Activity's Owner can edit it's details",
+    'onlyOwnerAndParticipantsCanEditTasks' => "Only the Activity's Owner and Participants can edit the Task list",
 
     'countOfTotalTasksCompleted' => ':completed / :total Tasks Completed',
 

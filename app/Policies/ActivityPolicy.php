@@ -58,8 +58,7 @@ class ActivityPolicy
      */
     public function update(User $user, Activity $activity)
     {
-        return $user->isAdministrator()
-            || $activity->owner_id == $user->id;
+        return $activity->canBeEditedBy($user);
     }
 
     /**

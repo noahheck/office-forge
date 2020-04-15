@@ -61,6 +61,24 @@ class Activity extends Model
         return false;
     }
 
+    public function canBeEditedBy(User $user)
+    {
+        return $user->isAdministrator()
+        || $this->owner_id == $user->id;
+    }
+
+    public function canHaveTasksEditedBy(User $user)
+    {
+        if ($this->canBeEditedBy($user)) {
+
+            return true;
+        }
+
+        return $this->participants()->pluck('user_id')->contains($user->id);
+    }
+
+
+
     public function owner()
     {
         return $this->belongsTo(User::class, 'owner_id');

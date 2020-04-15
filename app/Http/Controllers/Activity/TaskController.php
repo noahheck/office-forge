@@ -11,6 +11,7 @@ use App\Jobs\Activity\Task\Update;
 use App\Activity\Task;
 use App\User;
 use Illuminate\Http\Request;
+use function App\flash_error;
 use function App\flash_success;
 
 class TaskController extends Controller
@@ -20,8 +21,14 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Activity $activity)
+    public function index(Request $request, Activity $activity)
     {
+        if (!$request->user()->can('view', $activity)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
         return $this->view('activities.tasks.index', compact('activity'));
     }
 
@@ -32,6 +39,12 @@ class TaskController extends Controller
      */
     public function create(Request $request, Activity $activity)
     {
+        if (!$request->user()->can('create', [Task::class, $activity])) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
         $task = new Task;
         $task->project_id = $activity->id;
         $task->assigned_to = $request->user()->id;
@@ -49,6 +62,12 @@ class TaskController extends Controller
      */
     public function store(StoreRequest $request, Activity $activity)
     {
+        if (!$request->user()->can('create', [Task::class, $activity])) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
         $this->dispatchNow($taskCreated = new Create(
             $activity,
             $request->title,
@@ -70,8 +89,14 @@ class TaskController extends Controller
      * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Activity $activity, Task $task)
+    public function show(Request $request, Activity $activity, Task $task)
     {
+        if (!$request->user()->can('view', $activity)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
         return $this->view('activities.tasks.show', compact('task', 'activity'));
     }
 
@@ -81,8 +106,14 @@ class TaskController extends Controller
      * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function edit(Activity $activity, Task $task)
+    public function edit(Request $request, Activity $activity, Task $task)
     {
+        if (!$request->user()->can('update', $task)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
         $users = $activity->participantUsers()->push($activity->owner)->unique();
 
         return $this->view('activities.tasks.edit', compact('task', 'activity', 'users'));
@@ -97,6 +128,12 @@ class TaskController extends Controller
      */
     public function update(UpdateRequest $request, Activity $activity, Task $task)
     {
+        if (!$request->user()->can('update', $task)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
         $this->dispatchNow($taskUpdated = new Update(
             $task,
             $request->title,

@@ -45,9 +45,10 @@
                                         <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
                                     </a>
                                 @else
-                                    <span class="btn btn-secondary disabled btn-sm float-right" title="{{ __('activity.onlyActivityOwnerCanEdit') }}">
+                                    <button class="btn btn-secondary disabled btn-sm float-right" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyActivityOwnerCanEdit') }}">
                                         <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
-                                    </span>
+                                    </button>
+                                    <span class="sr-only">{{ __('activity.onlyActivityOwnerCanEdit') }}</span>
                                 @endcan
 
                                 @if ($activity->completed)
@@ -156,9 +157,16 @@
                             </div>
 
                             <p>
-                                <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}">
-                                    <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
-                                </a>
+                                @can('create', [\App\Activity\Task::class, $activity])
+                                    <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}">
+                                        <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
+                                    </a>
+                                @else
+                                    <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
+                                        <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
+                                    </button>
+                                    <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>
+                                @endcan
                             </p>
 
                             <div class="project--task-list completed-tasks">

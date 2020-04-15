@@ -34,10 +34,18 @@
                         </div>
 
                         <div class="col-2 col-sm-3 col-xl-2 text-right">
-                            <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.edit', [$activity, $task]) }}" title="{{ __('activity.editTask') }}">
-                                <span class="fas fa-edit"></span>
-                                <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('activity.task') }}</span>
-                            </a>
+                            @can('update', $task)
+                                <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.edit', [$activity, $task]) }}" title="{{ __('activity.editTask') }}">
+                                    <span class="fas fa-edit"></span>
+                                    <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('activity.task') }}</span>
+                                </a>
+                            @else
+                                <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
+                                    <span class="fas fa-edit"></span>
+                                    <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('activity.task') }}</span>
+                                </button>
+                                <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>
+                            @endcan
                         </div>
                     </div>
 
