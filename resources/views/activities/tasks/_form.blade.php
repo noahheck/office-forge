@@ -61,8 +61,8 @@
         'error' => $errors->has('assigned_to'),
     ])
 
-    <button class="btn btn-sm mt-0 mb-3 sbtn-primary btn-link" type="button" id="assignToMeButton">
-        Assign to me
+    <button class="btn btn-sm mt-0 mb-3 btn-link" type="button" id="assignToMeButton">
+        {{ __('activity.task_assignToMe') }}
     </button>
 
     @textEditorField([

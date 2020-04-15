@@ -37,6 +37,8 @@ return [
     'taskDetails' => 'Details',
     'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',
 
+    'task_assignToMe' => 'Assign to me',
+
 
     'onlyActivityOwnerCanEdit' => "Only the Activity's Owner can edit it's details",
     'onlyOwnerAndParticipantsCanEditTasks' => "Only the Activity's Owner and Participants can edit the Task list",
