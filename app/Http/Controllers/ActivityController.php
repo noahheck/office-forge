@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity\ActivityProvider;
 use App\File;
 use App\Jobs\Activity\Create;
 use App\Jobs\Activity\Update;
@@ -20,7 +21,7 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, ActivityProvider $activityProvider)
     {
         // Default behavior is to show the user their own open activities
         $showFilter = ($request->query('show')) ? $request->query('show') : 'open';
@@ -28,16 +29,18 @@ class ActivityController extends Controller
         switch ($showFilter):
 
             case 'open':
-                $activitiesCollection = $request->user()->openOwnedActivities();
+                $activities = $activityProvider->getOpenActivitiesForUser($request->user());
+
                 break;
 
             case 'all':
-                $activitiesCollection = $request->user()->ownedActivities();
+
+                $activities = $activityProvider->getAllActivitiesForUser($request->user());
+
                 break;
 
         endswitch;
 
-        $activities = $activitiesCollection->get();
 
         $activities->load('owner', 'tasks');
 

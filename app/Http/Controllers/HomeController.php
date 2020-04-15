@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
+use App\Activity\ActivityProvider;
 use App\Process;
 use Illuminate\Http\Request;
 
@@ -22,11 +24,12 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index(Request $request, ActivityProvider $activityProvider)
     {
         $user = $request->user();
 
-        $activities = $user->openOwnedActivities;
+        $activities = $activityProvider->getOpenActivitiesForUser($user);
+
         $activities->load('tasks');
 
         $processOptions = Process::where('file_type_id', null)->get();
@@ -34,6 +37,7 @@ class HomeController extends Controller
         $processOptions->load('creatingTeams');
 
         $processOptions = $processOptions->filter(function($process) use ($user) {
+
             return $process->canBeCreatedBy($user);
         });
 
