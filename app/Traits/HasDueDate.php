@@ -6,6 +6,15 @@ namespace App\Traits;
 
 trait HasDueDate
 {
+    protected function getDueDate()
+    {
+        $today = \Auth::user()->today();
+
+        $dueDate = $today->setDateFrom($this->due_date)->setTime(23, 59, 59);
+
+        return $dueDate;
+    }
+
     public function isOverdue()
     {
         if (!$this->due_date) {
@@ -18,7 +27,7 @@ trait HasDueDate
 
         $today = \Auth::user()->today();
 
-        $dueDate = $this->due_date->setTime(23, 59, 59)->setTimezone($today->timezone);
+        $dueDate = $this->getDueDate();
 
         return $dueDate->lessThan($today);
     }
@@ -35,10 +44,7 @@ trait HasDueDate
 
         $today = \Auth::user()->today();
 
-        $dueDate = $this->due_date->setTime(12, 00, 00)->setTimezone($today->timezone)->setTime(23, 59, 59);
-
-        \Debugbar::info($today);
-        \Debugbar::info($dueDate);
+        $dueDate = $this->getDueDate();
 
         return $dueDate->isSameDay($today);
     }
