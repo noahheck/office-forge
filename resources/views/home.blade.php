@@ -56,6 +56,11 @@
                         @endif
                     @empty
 
+                        <div class="empty-resource border p-3">
+                            <span class="fas fa-project-diagram empty-resource-icon"></span>
+                            <p>{{ __('activity.description') }}</p>
+                        </div>
+
                     @endforelse
                 </div>
             </div>
