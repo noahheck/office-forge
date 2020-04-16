@@ -4,6 +4,9 @@ return [
     'newActivity' => 'New Activity',
     'editActivity' => 'Edit Activity',
 
+    'openActivities' => 'Open Activities',
+    'allActivities' => 'All Activities',
+
     'activityCreated' => 'Activity Created',
     'activityUpdated' => 'Activity Updated',
 

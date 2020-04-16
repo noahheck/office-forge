@@ -117,23 +117,55 @@
             {{-- Activities Panel --}}
             <div class="card shadow activities-card">
                 <div class="card-header d-flex">
-                    <h4 class="mb-0 flex-grow-1"><span class="fas fa-project-diagram mr-2"></span>{{ __('app.activities') }}</h4>
-                    <div class="dropdown">
-                        <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fas fa-plus-circle"></span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                    <h4 class="mb-0 flex-grow-0"><span class="fas fa-project-diagram mr-2"></span>{{ __('app.activities') }}</h4>
+                    <div class="d-flex flex-grow-1">
+                        <div class="dropdown flex-grow-1 ml-3">
+                            <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="showActivitiesDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @switch($activityView)
 
-                            <a class="dropdown-item" href="{{ route("activities.create", ['file_id' => $file->id]) }}">{{ __('activity.newActivity') }}</a>
+                                    @case('open')
+                                        {{ __('activity.openActivities') }}
+                                        @break
+
+                                    @case('all')
+                                        {{ __('activity.allActivities') }}
+                                        @break
+
+                                @endswitch
+                            </button>
+                            <div class="dropdown-menu sssdropdown-menu-right" aria-labelledby="showActivitiesDropdownMenuButton">
+
+                                @switch($activityView)
+
+                                    @case('open')
+                                        <a class="dropdown-item" href="{{ route('files.show', [$file, 'show_activities' => 'all']) }}">{{ __('activity.allActivities') }}</a>
+                                        @break
+
+                                    @case('all')
+                                        <a class="dropdown-item" href="{{ route('files.show', [$file]) }}">{{ __('activity.openActivities') }}</a>
+                                        @break
+
+                                @endswitch
+
+                            </div>
+                        </div>
+                        <div class="dropdown ml-2">
+                            <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="newActivityDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="fas fa-plus-circle"></span>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
+
+                                <a class="dropdown-item" href="{{ route("activities.create", ['file_id' => $file->id]) }}">{{ __('activity.newActivity') }}</a>
                             @foreach ($file->fileType->processes as $__process)
                                 @if ($loop->first)
-                                    <div class="dropdown-divider"></div>
-                                    <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
-                                @endif
-                                <a class="dropdown-item" href="{{ route('activities.create', ['file_id' => $file->id, 'process_id' => $__process->id]) }}">
-                                    {{ $__process->name }}
-                                </a>
-                            @endforeach
+                                        <div class="dropdown-divider"></div>
+                                        <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('activities.create', ['file_id' => $file->id, 'process_id' => $__process->id]) }}">
+                                        {{ $__process->name }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>

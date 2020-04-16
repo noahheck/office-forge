@@ -81,7 +81,7 @@ class User extends Authenticatable implements Headshottable
 
     public function openActivities()
     {
-        return $this->activities()->where('completed', false);
+        return $this->activities()->where('completed', false)->orderBy('due_date');
     }
 
     public function createdActivities()
@@ -97,7 +97,7 @@ class User extends Authenticatable implements Headshottable
 
     public function openOwnedActivities()
     {
-        return $this->ownedActivities()->where('completed', false);
+        return $this->ownedActivities()->where('completed', false)->orderBy('due_date');
     }
 
     public function participatingActivities()
@@ -107,7 +107,7 @@ class User extends Authenticatable implements Headshottable
 
     public function openParticipatingActivities()
     {
-        return $this->participatingActivities()->where('completed', false);
+        return $this->participatingActivities()->where('completed', false)->orderBy('due_date');
     }
 
 

@@ -5,6 +5,7 @@ namespace App\Activity;
 
 
 use App\Activity;
+use App\File;
 use App\User;
 
 class ActivityProvider
@@ -43,5 +44,15 @@ class ActivityProvider
         $allActivities = $ownedActivities->merge($participatingActivities)->unique()->sortBy('due_date');
 
         return $allActivities;
+    }
+
+    public function getOpenActivitiesForFile(File $file)
+    {
+        return $file->activities()->where('completed', false)->get();
+    }
+
+    public function getAllActivitiesForFile(File $file)
+    {
+        return $file->activities;
     }
 }

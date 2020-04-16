@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity\ActivityProvider;
 use App\File;
 use App\FileType;
 use App\Jobs\File\Create;
@@ -126,7 +127,7 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, File $file)
+    public function show(Request $request, File $file, ActivityProvider $activityProvider)
     {
         $user     = $request->user();
 
@@ -150,9 +151,23 @@ class FileController extends Controller
 
         $values   = $file->formFieldValues;
 
-        $activities = $file->activities;
+        // Default is to get open activities for this file
+        $activityView = $request->query('show_activities', 'open');
+        switch ($activityView):
 
-        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'values', 'activities'));
+            case 'open':
+                $activities = $activityProvider->getOpenActivitiesForFile($file);
+                break;
+
+            case 'all':
+                $activities = $activityProvider->getAllActivitiesForFile($file);
+                break;
+
+        endswitch;
+
+        $activities->load('owner', 'owner.headshots', 'tasks');
+
+        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'values', 'activities', 'activityView'));
     }
 
     /**

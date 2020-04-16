@@ -41,7 +41,7 @@ class File extends Model implements Headshottable
 
     public function activities()
     {
-        return $this->hasMany(Activity::class);
+        return $this->hasMany(Activity::class)->orderBy('due_date');
     }
 
 

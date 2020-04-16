@@ -40,9 +40,13 @@ hr.separator {
 
     .activities-card {
         .card-body {
-            //max-height: 700px;
             max-height: 80vh;
             overflow-y: auto;
+
+            @include media-breakpoint-up(md) {
+
+                min-height: 400px;
+            }
 
             .list-group.activities {
                 margin-bottom: 20px;

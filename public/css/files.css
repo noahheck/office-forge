@@ -79,6 +79,12 @@ hr.separator {
   overflow-y: auto;
 }
 
+@media (min-width: 768px) {
+  .file .activities-card .card-body {
+    min-height: 400px;
+  }
+}
+
 .file .activities-card .card-body .list-group.activities {
   margin-bottom: 20px;
 }
