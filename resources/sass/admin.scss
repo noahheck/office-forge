@@ -16,22 +16,6 @@
     margin-bottom: 15px;
 }
 
-.empty-resource {
-
-    text-align: center;
-
-    .empty-resource-icon {
-
-        @include border-radius(15px);
-
-        font-size: 96px;
-        color: $blue;
-        border: 1px solid $light-gray;
-        padding: 50px;
-        margin-bottom: 40px;
-    }
-}
-
 a.admin-module-link {
 
     text-align: center;

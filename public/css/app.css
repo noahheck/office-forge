@@ -24816,6 +24816,19 @@ a.text-dark:focus {
   background-color: #e3f3ff;
 }
 
+.empty-resource {
+  text-align: center;
+}
+
+.empty-resource .empty-resource-icon {
+  border-radius: 15px;
+  font-size: 96px;
+  color: #3490dc;
+  border: 1px solid #e3e3e3;
+  padding: 50px;
+  margin-bottom: 40px;
+}
+
 .skip-to-content-link {
   -webkit-border-top-right-radius: 3px;
   -webkit-border-bottom-right-radius: 3px;

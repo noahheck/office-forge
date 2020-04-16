@@ -39,7 +39,7 @@ hr.separator {
 
 
     .activities-card {
-        .card-body {
+        & > .card-body {
             max-height: 80vh;
             overflow-y: auto;
 
@@ -51,6 +51,7 @@ hr.separator {
             .list-group.activities {
                 margin-bottom: 20px;
             }
+
 
         }
     }

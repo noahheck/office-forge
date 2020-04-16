@@ -149,6 +149,12 @@ class FileController extends Controller
             return $panel->isAccessibleBy($user);
         });
 
+        $processes = $fileType->processes;
+        $processes->load('creatingTeams');
+        $processesToCreate = $fileType->processes->filter(function($process) use ($user) {
+            return $process->canBeCreatedBy($user);
+        });
+
         $values   = $file->formFieldValues;
 
         // Default is to get open activities for this file
@@ -167,7 +173,8 @@ class FileController extends Controller
 
         $activities->load('owner', 'owner.headshots', 'tasks');
 
-        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'values', 'activities', 'activityView'));
+
+        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'processesToCreate', 'values', 'activities', 'activityView'));
     }
 
     /**

@@ -1,6 +1,9 @@
 <?php
 
 return [
+
+    'description' => "Activities consolidate all of the work that needs to get done into one comfortable, familiar container. Assign tasks, track progress, upload files, and collaborate with your Team members without worrying about losing track of anything.",
+
     'newActivity' => 'New Activity',
     'editActivity' => 'Edit Activity',
 
@@ -17,7 +20,7 @@ return [
     'private' => 'Private',
     'details' => 'Details',
 
-    'nameExample' => 'New product launch, New Employee Orientation - John Smith, etc...',
+    'nameExample' => 'New product launch, New Employee Orientation, etc...',
     'detailsExample' => 'Description of the project, ideas around possible solutions, etc...',
 
     'privateDescription' => 'Private Activities are only viewable by the Owner, Participants, and System Administrators',

@@ -74,18 +74,18 @@ hr.separator {
   }
 }
 
-.file .activities-card .card-body {
+.file .activities-card > .card-body {
   max-height: 80vh;
   overflow-y: auto;
 }
 
 @media (min-width: 768px) {
-  .file .activities-card .card-body {
+  .file .activities-card > .card-body {
     min-height: 400px;
   }
 }
 
-.file .activities-card .card-body .list-group.activities {
+.file .activities-card > .card-body .list-group.activities {
   margin-bottom: 20px;
 }
 

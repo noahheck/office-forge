@@ -156,11 +156,12 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
 
                                 <a class="dropdown-item" href="{{ route("activities.create", ['file_id' => $file->id]) }}">{{ __('activity.newActivity') }}</a>
-                            @foreach ($file->fileType->processes as $__process)
-                                @if ($loop->first)
+                                @foreach ($processesToCreate as $__process)
+                                    @if ($loop->first)
                                         <div class="dropdown-divider"></div>
                                         <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
                                     @endif
+
                                     <a class="dropdown-item" href="{{ route('activities.create', ['file_id' => $file->id, 'process_id' => $__process->id]) }}">
                                         {{ $__process->name }}
                                     </a>
@@ -172,7 +173,7 @@
                 <div class="card-body">
 
 
-                    @foreach ($activities as $activity)
+                    @forelse ($activities as $activity)
 
                         @if($loop->first)
                             <div class="list-group activities">
@@ -188,7 +189,14 @@
                             </div>
                         @endif
 
-                    @endforeach
+                    @empty
+
+                        <div class="empty-resource border p-3">
+                            <span class="fas fa-project-diagram empty-resource-icon"></span>
+                            <p>{{ __('activity.description') }}</p>
+                        </div>
+
+                    @endforelse
 
                 </div>
             </div>
