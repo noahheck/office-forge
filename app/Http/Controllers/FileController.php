@@ -162,11 +162,11 @@ class FileController extends Controller
         switch ($activityView):
 
             case 'open':
-                $activities = $activityProvider->getOpenActivitiesForFile($file);
+                $activities = $activityProvider->getOpenActivitiesForFileAccessibleByUser($file, $user);
                 break;
 
             case 'all':
-                $activities = $activityProvider->getAllActivitiesForFile($file);
+                $activities = $activityProvider->getAllActivitiesForFileAccessibleByUser($file, $user);
                 break;
 
         endswitch;

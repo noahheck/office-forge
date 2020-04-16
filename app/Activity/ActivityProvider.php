@@ -46,13 +46,21 @@ class ActivityProvider
         return $allActivities;
     }
 
-    public function getOpenActivitiesForFile(File $file)
+    public function getOpenActivitiesForFileAccessibleByUser(File $file, User $user)
     {
-        return $file->activities()->where('completed', false)->get();
+        $activities = $file->activities()->where('completed', false)->get();
+
+        return $activities->filter(function($activity) use ($user) {
+            return $activity->isAccessibleBy($user);
+        });
     }
 
-    public function getAllActivitiesForFile(File $file)
+    public function getAllActivitiesForFileAccessibleByUser(File $file, User $user)
     {
-        return $file->activities;
+        $activities = $file->activities;
+
+        return $activities->filter(function($activity) use ($user) {
+            return $activity->isAccessibleBy($user);
+        });
     }
 }
