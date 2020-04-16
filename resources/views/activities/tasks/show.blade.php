@@ -18,7 +18,7 @@
 
 @section('content')
 
-    <div class="row justify-content-center task {{ ($task->isOverdue()) ? 'overdue' : '' }}">
+    <div class="row justify-content-center task {{ (!$activity->completed && $task->isOverdue()) ? 'overdue' : '' }}">
 
         <div class="col-12 col-md-9 col-lg-8">
             <div class="card shadow">
@@ -31,6 +31,11 @@
                                 <span class="fas fa-project-diagram"></span>
                                 {{ $activity->name }}
                             </h2>
+                            @if ($activity->completed)
+                                <span class="project--completed-indicator ml-4">
+                                    <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
+                                </span>
+                            @endif
                         </div>
 
                         <div class="col-2 col-sm-3 col-xl-2 text-right">

@@ -34,9 +34,15 @@
   margin-bottom: 10px;
 }
 
+.project.overdue .hide-if-overdue {
+  display: none;
+}
+
 .project.overdue .project-details {
   background-color: #fff3f3;
   border-color: transparent;
+  padding-top: 25px;
+  padding-bottom: 25px;
 }
 
 .project.overdue .project--due-date {
@@ -44,20 +50,21 @@
   font-weight: bold;
 }
 
-.project .project--completed-indicator {
+.project--completed-indicator {
   color: #38c172;
   font-size: 1.1em;
   font-weight: bold;
 }
 
-@media (min-width: 768px) {
-  .project--tasks {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 120px;
-    overflow-y: auto;
-  }
-}
+/*.project--tasks {
+
+    @include media-breakpoint-up(md) {
+        position: sticky;
+        top: $main-content-top-margin;
+        overflow-y: auto;
+    }
+
+}*/
 
 .project--task-list {
   list-style-type: none;

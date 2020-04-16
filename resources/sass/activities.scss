@@ -43,9 +43,15 @@
 
     &.overdue {
 
+        .hide-if-overdue {
+            display: none;
+        }
+
         .project-details {
             background-color: $red-highlight;
             border-color: transparent;
+            padding-top: 25px;
+            padding-bottom: 25px;
         }
 
         .project--due-date {
@@ -54,16 +60,15 @@
         }
 
     }
-
-    .project--completed-indicator {
-        color: $green;
-        font-size: 1.1em;
-        font-weight: bold;
-    }
-
 }
 
-.project--tasks {
+.project--completed-indicator {
+    color: $green;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+/*.project--tasks {
 
     @include media-breakpoint-up(md) {
         position: sticky;
@@ -71,7 +76,7 @@
         overflow-y: auto;
     }
 
-}
+}*/
 
 .project--task-list {
     list-style-type: none;

@@ -59,7 +59,7 @@
                                 &nbsp;
                             </p>
 
-                            <hr>
+                            <hr class="hide-if-overdue">
 
                             @if ($activity->private)
                                 <p class="text-muted">
@@ -67,7 +67,7 @@
                                     {{ __('activity.thisActivityPrivateVisibility') }}
                                 </p>
 
-                                <hr>
+                                <hr class="hide-if-overdue">
                             @endif
 
                             <dl class="row project-details">
@@ -98,7 +98,7 @@
 
                             </dl>
 
-                            <hr>
+                            <hr class="hide-if-overdue">
 
                             @if ($activity->process_id && $activity->process_details)
                                 <div class="editor-content">
@@ -130,7 +130,7 @@
                             <div class="project--task-list current-tasks">
                                 @forelse ($activity->tasks->where('completed', false) as $task)
 
-                                    <a class="task d-block @if($task->isDueToday()) due-today @elseif($task->isOverdue()) overdue @endif" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+                                    <a class="task d-block @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
                                         <span class="far fa-square"></span> <span class="task-title">{{ $task->title }}</span>
 
                                         <div class="task-attributes">
