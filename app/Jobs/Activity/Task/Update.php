@@ -21,7 +21,6 @@ class Update
     private $title;
     private $due_date;
     private $assigned_to;
-    private $completed;
     private $details;
 
     /**
@@ -29,13 +28,12 @@ class Update
      *
      * @return void
      */
-    public function __construct(Task $task, $title, $due_date, $assigned_to, $completed, $details)
+    public function __construct(Task $task, $title, $due_date, $assigned_to, $details)
     {
         $this->task = $task;
         $this->title = $title;
         $this->due_date = $due_date;
         $this->assigned_to = $assigned_to;
-        $this->completed = $completed;
         $this->details = $details;
     }
 
@@ -56,8 +54,6 @@ class Update
         if ($this->due_date) {
             $task->due_date = Carbon::parse($this->due_date);
         }
-
-        $task->completed = $this->completed;
 
         $task->save();
     }

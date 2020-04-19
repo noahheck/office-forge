@@ -32,24 +32,6 @@
         'error' => $errors->has('due_date'),
     ])
 
-    @if ($showCompleted ?? false)
-
-        <hr>
-
-        @checkboxSwitchField([
-            'name' => 'completed',
-            'id' => 'task_' . $task->id . '_completed',
-            'label' => __('activity.taskCompleted'),
-            'checked' => $task->completed,
-            'value' => '1',
-            'required' => false,
-            'error' => $errors->has('completed'),
-        ])
-
-        <hr>
-
-    @endif
-
     @userSelectField([
         'name' => 'assigned_to',
         'label' => __('activity.taskAssignedTo'),

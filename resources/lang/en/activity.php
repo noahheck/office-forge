@@ -35,6 +35,9 @@ return [
     'newTask' => 'New Task',
     'editTask' => 'Edit Task',
 
+    'completeTask' => 'Complete Task',
+    'reopenTask' => 'Reopen Task',
+
     'taskCreated' => 'Task Created',
     'taskUpdated' => 'Task Updated',
 
@@ -42,6 +45,7 @@ return [
     'taskTitleExample' => 'Complete TPS report, Process inventory, etc...',
     'taskDueDate' => 'Due Date',
     'taskAssignedTo' => 'Assigned To',
+    'taskAssigned' => 'Assigned',
     'taskCompleted' => 'Completed',
     'taskDetails' => 'Details',
     'taskDetailsExample' => 'Extra details, requirements, ideas around possible solutions, etc...',

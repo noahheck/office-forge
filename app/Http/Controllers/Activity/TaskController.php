@@ -6,7 +6,9 @@ use App\Activity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Activity\Task\Store as StoreRequest;
 use App\Http\Requests\Activity\Task\Update as UpdateRequest;
+use App\Jobs\Activity\Task\Complete;
 use App\Jobs\Activity\Task\Create;
+use App\Jobs\Activity\Task\Uncomplete;
 use App\Jobs\Activity\Task\Update;
 use App\Activity\Task;
 use App\User;
@@ -139,7 +141,6 @@ class TaskController extends Controller
             $request->title,
             $request->due_date,
             $request->assigned_to,
-            $request->has('completed'),
             $request->details
         ));
 
@@ -157,5 +158,36 @@ class TaskController extends Controller
     public function destroy(Activity $activity, Task $task)
     {
         //
+    }
+
+
+    public function complete(Request $request, Activity $activity, Task $task)
+    {
+        if (!$request->user()->can('update', $task)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
+        $this->dispatchNow($taskCompleted = new Complete($task, $request->user()));
+
+        flash_success(__('activity.taskUpdated'));
+
+        return redirect()->route('activities.show', [$activity]);
+    }
+
+    public function uncomplete(Request $request, Activity $activity, Task $task)
+    {
+        if (!$request->user()->can('update', $task)) {
+            flash_error(__('activity.error_unableToAccessActivity'));
+
+            return redirect()->route('home');
+        }
+
+        $this->dispatchNow($taskUncompleted = new Uncomplete($task, $request->user()));
+
+        flash_success(__('activity.taskUpdated'));
+
+        return redirect()->route('activities.tasks.show', [$activity, $task]);
     }
 }

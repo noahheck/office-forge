@@ -35,6 +35,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
 
         Route::resource('/tasks', 'TaskController');
+        Route::post('/tasks/{task}/complete', 'TaskController@complete')->name('tasks.complete');
+        Route::post('/tasks/{task}/uncomplete', 'TaskController@uncomplete')->name('tasks.uncomplete');
 
         Route::get('/participants', 'ParticipantController@show')->name('participants.index');
         Route::get('/participants/edit', 'ParticipantController@edit')->name('participants.edit');

@@ -10,15 +10,19 @@
 
 @section('content')
 
-    <h1>
-        <span class="fas fa-project-diagram"></span> {{ $activity->name }}
-    </h1>
-
     <div class="row justify-content-center">
 
         <div class="col-12 col-md-7 col-xl-8">
             <div class="card shadow">
                 <div class="card-body">
+
+                    <h2 class="h6 overflow-x-ellipsis">
+                        <a href="{{ route('activities.show', [$activity]) }}">
+                        <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                        </a>
+                    </h2>
+
+                    <hr>
 
                     <p class="text-right">
                         <a class="btn btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}">
