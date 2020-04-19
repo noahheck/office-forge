@@ -15,7 +15,6 @@ class Update
     private $due_date;
     private $owner_id;
     private $private;
-    private $completed;
     private $details;
     private $creator;
 
@@ -35,7 +34,6 @@ class Update
         $due_date,
         $owner_id,
         $private,
-        $completed,
         $details
     ) {
         $this->activity = $activity;
@@ -43,7 +41,6 @@ class Update
         $this->due_date = $due_date;
         $this->owner_id = $owner_id;
         $this->private = $private;
-        $this->completed = $completed;
         $this->details = $details;
     }
 
@@ -66,8 +63,6 @@ class Update
         }
 
         $activity->active = true;
-
-        $activity->completed = $this->completed;
 
         $activity->save();
     }

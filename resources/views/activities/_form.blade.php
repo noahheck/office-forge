@@ -31,23 +31,7 @@
         ])
     @endif
 
-    @errors('name', 'due_date', 'completed', 'details', 'private')
-
-    @if ($showCompleted ?? false)
-
-        @checkboxSwitchField([
-            'name' => 'completed',
-            'id' => 'activity_' . $activity->id . '_completed',
-            'label' => __('activity.completed'),
-            'checked' => $activity->completed,
-            'value' => '1',
-            'required' => false,
-            'error' => $errors->has('completed'),
-        ])
-
-        <hr>
-
-    @endif
+    @errors('name', 'due_date', 'details', 'private')
 
     @textField([
         'name' => 'name',

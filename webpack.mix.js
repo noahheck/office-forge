@@ -11,39 +11,48 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix
+    // App
+    .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
-    .sass('resources/sass/home.scss', 'public/css')
-    .sass('resources/sass/admin.scss', 'public/css')
-    .sass('resources/sass/settings.scss', 'public/css')
-    .sass('resources/sass/activities.scss', 'public/css')
-    // .sass('resources/sass/processes.scss', 'public/css')
-    .sass('resources/sass/files.scss', 'public/css')
-    .sass('resources/sass/admin/files.scss', 'public/css/admin.files.css')
 
+    // Home
+    .sass('resources/sass/home.scss', 'public/css')
+
+    // My settings
+    .sass('resources/sass/settings.scss', 'public/css')
     .js('resources/js/page/settings/photo.js', 'public/js/page.settings.photo.js')
 
-    .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
+    // Activities
+    .sass('resources/sass/activities.scss', 'public/css')
+    .js('resources/js/page/activities/tasks/_form.js', 'public/js/page.activities.tasks._form.js')
 
-    .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')
-    .js('resources/js/page/admin/processes/tasks/show.js', 'public/js/page.admin.processes.tasks.show.js')
-
-    .js('resources/js/page/admin/processes/tasks/actions/index.js', 'public/js/page.admin.processes.tasks.actions.index.js')
-
-
-    .js('resources/js/page/admin/file-types/forms/index.js', 'public/js/page.admin.file-types.forms.index.js')
-    .js('resources/js/page/admin/file-types/forms/show.js', 'public/js/page.admin.file-types.forms.show.js')
-    .js('resources/js/page/admin/file-types/forms/fields/index.js', 'public/js/page.admin.file-types.forms.fields.index.js')
-    .js('resources/js/page/admin/file-types/forms/fields/_form.js', 'public/js/page.admin.file-types.forms.fields._form.js')
-
-    .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
-
-
+    // Files
+    .sass('resources/sass/files.scss', 'public/css')
     .js('resources/js/page/files/index.js', 'public/js/page.files.index.js')
     .js('resources/js/page/files/_form.js', 'public/js/page.files._form.js')
 
 
-    .js('resources/js/page/activities/tasks/_form.js', 'public/js/page.activities.tasks._form.js')
+
+    // Admin
+    .sass('resources/sass/admin.scss', 'public/css')
+    .sass('resources/sass/admin/files.scss', 'public/css/admin.files.css')
+    .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
+    .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')
+    .js('resources/js/page/admin/processes/tasks/show.js', 'public/js/page.admin.processes.tasks.show.js')
+    .js('resources/js/page/admin/processes/tasks/actions/index.js', 'public/js/page.admin.processes.tasks.actions.index.js')
+    .js('resources/js/page/admin/file-types/forms/index.js', 'public/js/page.admin.file-types.forms.index.js')
+    .js('resources/js/page/admin/file-types/forms/show.js', 'public/js/page.admin.file-types.forms.show.js')
+    .js('resources/js/page/admin/file-types/forms/fields/index.js', 'public/js/page.admin.file-types.forms.fields.index.js')
+    .js('resources/js/page/admin/file-types/forms/fields/_form.js', 'public/js/page.admin.file-types.forms.fields._form.js')
+    .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
+
+
+
+
+
+
+
 
     .extract([
         'jquery',

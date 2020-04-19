@@ -29,7 +29,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 12:
+/***/ 4:
 /*!************************************************!*\
   !*** multi ./resources/js/page/files/_form.js ***!
   \************************************************/
@@ -41,4 +41,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[12,"/js/manifest","/js/vendor"]]]);
+},[[4,"/js/manifest","/js/vendor"]]]);

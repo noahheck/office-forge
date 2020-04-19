@@ -7,6 +7,9 @@ return [
     'newActivity' => 'New Activity',
     'editActivity' => 'Edit Activity',
 
+    'complete' => 'Complete',
+    'reopen' => 'Reopen',
+
     'openActivities' => 'Open Activities',
     'allActivities' => 'All Activities',
 

@@ -24,6 +24,7 @@
                             @else
                                 <span class="fas fa-project-diagram"></span> {{ $activity->name }}
                             @endif
+                            <small class="text-muted">#{{ $activity->id }}</small>
                         </h1>
 
                         @if ($file ?? false)
@@ -38,26 +39,64 @@
 
                         <div class="col-12">
 
-                            <p>
+                            <div class="d-flex align-items-center">
 
                                 @can('update', $activity)
-                                    <a class="btn btn-primary btn-sm float-right" href="{{ route('activities.edit', [$activity]) }}">
-                                        <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
-                                    </a>
-                                @else
-                                    <button class="btn btn-secondary disabled btn-sm float-right" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyActivityOwnerCanEdit') }}">
-                                        <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
-                                    </button>
-                                    <span class="sr-only">{{ __('activity.onlyActivityOwnerCanEdit') }}</span>
-                                @endcan
 
-                                @if ($activity->completed)
-                                    <span class="project--completed-indicator">
-                                        <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
-                                    </span>
-                                @endif
-                                &nbsp;
-                            </p>
+                                    <div class="flex-grow-1">
+
+                                        @if ($activity->completed)
+                                            <span class="project--completed-indicator">
+                                                <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
+                                            </span>
+                                        @else
+                                            <form action="{{ route('activities.complete', [$activity]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-light">
+                                                    <span class="far fa-square fa-lg"></span>
+                                                    {{ __('activity.complete') }}
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                    </div>
+
+                                    <div>
+
+                                        @if ($activity->completed)
+                                            <form action="{{ route('activities.uncomplete', [$activity]) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="btn btn-light btn-sm">
+                                                    <span class="fas fa-undo"></span>
+                                                    {{ __('activity.reopen') }}
+                                                </button>
+                                            </form>
+                                        @else
+                                            <a class="btn btn-primary btn-sm" href="{{ route('activities.edit', [$activity]) }}">
+                                                <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                            </a>
+                                        @endif
+
+                                    </div>
+
+                                @else
+                                    <div class="flex-grow-1">
+                                        @if ($activity->completed)
+                                            <span class="project--completed-indicator">
+                                                <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
+                                            </span>
+                                        @else
+                                            &nbsp;
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <button class="btn btn-secondary disabled btn-sm" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyActivityOwnerCanEdit') }}">
+                                            <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                        </button>
+                                        <span class="sr-only">{{ __('activity.onlyActivityOwnerCanEdit') }}</span>
+                                    </div>
+                                @endcan
+                            </div>
 
                             <hr class="hide-if-overdue">
 

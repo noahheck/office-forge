@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Activity\ActivityProvider;
 use App\File;
+use App\Jobs\Activity\Complete;
 use App\Jobs\Activity\Create;
+use App\Jobs\Activity\Uncomplete;
 use App\Jobs\Activity\Update;
 use App\Activity;
 use App\Process;
@@ -182,7 +184,6 @@ class ActivityController extends Controller
             $request->due_date,
             $request->owner_id,
             $request->has('private'),
-            $request->has('completed'),
             $request->details
         ));
 
@@ -200,5 +201,36 @@ class ActivityController extends Controller
     public function destroy(Activity $activity)
     {
         //
+    }
+
+
+    public function complete(Request $request, Activity $activity)
+    {
+        if (!$request->user()->can('update', $activity)) {
+            flash_error(__('activity.error_unableToEditActivity'));
+
+            return redirect()->route('activities.show', $activity);
+        }
+
+        $this->dispatchNow($activityCompleted = new Complete($activity, $request->user()));
+
+        \App\flash_success(__('activity.activityUpdated'));
+
+        return redirect()->route('activities.show', [$activity]);
+    }
+
+    public function uncomplete(Request $request, Activity $activity)
+    {
+        if (!$request->user()->can('update', $activity)) {
+            flash_error(__('activity.error_unableToEditActivity'));
+
+            return redirect()->route('activities.show', $activity);
+        }
+
+        $this->dispatchNow($activityCompleted = new Uncomplete($activity, $request->user()));
+
+        \App\flash_success(__('activity.activityUpdated'));
+
+        return redirect()->route('activities.show', [$activity]);
     }
 }
