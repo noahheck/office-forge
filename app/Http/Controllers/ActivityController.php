@@ -129,9 +129,11 @@ class ActivityController extends Controller
      */
     public function show(Request $request, Activity $activity)
     {
+        $user = $request->user();
+
         $activity->load('tasks', 'tasks.assignedTo', 'tasks.assignedTo.headshots', 'participants', 'participants.user');
 
-        if (!$request->user()->can('view', $activity)) {
+        if (!$user->can('view', $activity)) {
             flash_error(__('activity.error_unableToAccessActivity'));
 
             return redirect()->route('home');
@@ -139,7 +141,7 @@ class ActivityController extends Controller
 
         $file = $activity->file;
 
-        return $this->view('activities.show', compact('activity', 'file'));
+        return $this->view('activities.show', compact('activity', 'file', 'user'));
     }
 
     /**

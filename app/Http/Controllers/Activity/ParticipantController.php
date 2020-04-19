@@ -29,7 +29,7 @@ class ParticipantController extends Controller
 
     public function edit(Request $request, Activity $activity)
     {
-        if (!$request->user()->can('update', $activity)) {
+        if (!$request->user()->can('update', $activity) || $activity->completed) {
             flash_error(__('activity.error_unableToEditActivity'));
 
             return redirect()->route('activities.show', $activity);
@@ -50,7 +50,7 @@ class ParticipantController extends Controller
 
     public function update(UpdateRequest $request, Activity $activity)
     {
-        if (!$request->user()->can('update', $activity)) {
+        if (!$request->user()->can('update', $activity) || $activity->completed) {
             flash_error(__('activity.error_unableToEditActivity'));
 
             return redirect()->route('activities.show', $activity);

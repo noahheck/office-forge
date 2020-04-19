@@ -42,15 +42,17 @@
 
                         <p class="flex-grow-0 pl-2">
 
-                            @can('update', $activity)
-                                <a class="btn btn-primary text-nowrap" href="{{ route('activities.participants.edit', [$activity]) }}">
-                                    <span class="fas fa-edit"></span> {{ __('activity.editParticipants') }}
-                                </a>
-                            @else
-                                <span class="btn btn-secondary text-nowrap disabled" title="{{ __('activity.onlyActivityOwnerCanEdit') }}">
-                                    <span class="fas fa-edit"></span> {{ __('activity.editParticipants') }}
-                                </span>
-                            @endcan
+                            @unless($activity->completed)
+                                @can('update', $activity)
+                                    <a class="btn btn-primary text-nowrap" href="{{ route('activities.participants.edit', [$activity]) }}">
+                                        <span class="fas fa-edit"></span> {{ __('activity.editParticipants') }}
+                                    </a>
+                                @else
+                                    <span class="btn btn-secondary text-nowrap disabled" title="{{ __('activity.onlyActivityOwnerCanEdit') }}">
+                                        <span class="fas fa-edit"></span> {{ __('activity.editParticipants') }}
+                                    </span>
+                                @endcan
+                            @endunless
                         </p>
 
                     </div>

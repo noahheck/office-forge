@@ -123,7 +123,15 @@
                                 </dd>
 
                                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">
-                                    <a href="{{ route('activities.participants.index', [$activity]) }}">{{ __('activity.participants') }}
+                                    @php
+                                        if ($user->can('update', $activity) && !$activity->completed) {
+                                            $participantRoute = route('activities.participants.edit', [$activity]);
+                                        } else {
+                                            $participantRoute = route('activities.participants.index', [$activity]);
+                                        }
+                                    @endphp
+
+                                    <a href="{{ $participantRoute }}">{{ __('activity.participants') }}
                                     </a>
                                 </dt>
                                 <dd class="col-12 col-sm-9 col-xl-10">
