@@ -123,16 +123,7 @@
                                 </dd>
 
                                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">
-                                    @php
-                                        if ($user->can('update', $activity) && !$activity->completed) {
-                                            $participantRoute = route('activities.participants.edit', [$activity]);
-                                        } else {
-                                            $participantRoute = route('activities.participants.index', [$activity]);
-                                        }
-                                    @endphp
-
-                                    <a href="{{ $participantRoute }}">{{ __('activity.participants') }}
-                                    </a>
+                                    <a href="{{ $participantRoute }}">{{ __('activity.participants') }}</a>
                                 </dt>
                                 <dd class="col-12 col-sm-9 col-xl-10">
                                     @forelse ($activity->participants as $participant)
@@ -174,25 +165,40 @@
                                 <span><span class="fas fa-tasks"></span> Tasks</span>
                             </h4>
 
-                            <div class="project--task-list current-tasks">
+                            <div class="project--task-list current-tasks list-group">
                                 @forelse ($activity->tasks->where('completed', false) as $task)
 
-                                    <a class="task d-block @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
-                                        <span class="far fa-square"></span> <span class="task-title">{{ $task->title }}</span>
+                                    <div class="list-group-item d-flex task align-items-center">
 
-                                        <div class="task-attributes">
-                                            @if ($task->assigned_to)
-                                                {!! $task->assignedTo->icon() !!}
-                                            @endif
-                                            @if ($task->details)
-                                                <span class="fas fa-align-left"></span>
-                                            @endif
-                                            @if ($task->due_date)
-                                                <span class="project--task--due-date"><span class="far fa-calendar-alt calendar-icon"></span> {{ App\format_date($task->due_date) }}</span>
-                                            @endif
+                                        <div class="pr-sm-2">
+                                            @can('update', $task)
+                                                <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-light">
+                                                        <span class="far fa-square fa-lg"></span>
+                                                    </button>
+                                                </form>
+                                            @endcan
                                         </div>
 
-                                    </a>
+                                        <a class="flex-grow-1 pl-2 @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+                                            <span class="task-title">{{ $task->title }}</span>
+
+                                            <div class="task-attributes">
+                                                @if ($task->assigned_to)
+                                                    {!! $task->assignedTo->icon() !!}
+                                                @endif
+                                                @if ($task->details)
+                                                    <span class="fas fa-align-left"></span>
+                                                @endif
+                                                @if ($task->due_date)
+                                                    <span class="project--task--due-date"><span class="far fa-calendar-alt calendar-icon"></span> {{ App\format_date($task->due_date) }}</span>
+                                                @endif
+                                            </div>
+
+                                        </a>
+
+                                    </div>
 
                                 @empty
 
@@ -216,13 +222,13 @@
                                 @endcan
                             </p>
 
-                            <div class="project--task-list completed-tasks">
+                            <div class="list-group project--task-list completed-tasks">
                                 @foreach ($activity->tasks->where('completed', true) as $task)
 
-                                    <a class="task d-block" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+                                    <a class="list-group-item task d-block" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
                                         <span class="far fa-check-square"></span> <span class="task-title">{{ $task->title }}</span>
 
-                                        <div class="task-attributes">
+                                        <div class="task-attributes pl-3">
                                             @if ($task->assigned_to)
                                                 {!! $task->assignedTo->icon() !!}
                                             @endif

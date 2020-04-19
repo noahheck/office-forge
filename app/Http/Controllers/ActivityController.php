@@ -141,7 +141,11 @@ class ActivityController extends Controller
 
         $file = $activity->file;
 
-        return $this->view('activities.show', compact('activity', 'file', 'user'));
+        $participantRoute = ($user->can('update', $activity) && !$activity->completed) ?
+            route('activities.participants.edit', [$activity]) :
+            route('activities.participants.index', [$activity]);
+
+        return $this->view('activities.show', compact('activity', 'file', 'participantRoute'));
     }
 
     /**
