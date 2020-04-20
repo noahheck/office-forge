@@ -168,35 +168,95 @@
                             <div class="project--task-list current-tasks list-group">
                                 @forelse ($activity->tasks->where('completed', false) as $task)
 
-                                    <div class="list-group-item d-flex task align-items-center">
+                                    <div class="list-group-item p-0 task @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif">
 
-                                        <div class="pr-sm-2">
-                                            @can('update', $task)
-                                                <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-sm btn-light">
-                                                        <span class="far fa-square fa-lg"></span>
-                                                    </button>
-                                                </form>
-                                            @endcan
-                                        </div>
+                                        <div class="d-flex p-1 align-items-center task-header">
 
-                                        <a class="flex-grow-1 pl-2 @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
-                                            <span class="task-title">{{ $task->title }}</span>
-
-                                            <div class="task-attributes">
-                                                @if ($task->assigned_to)
-                                                    {!! $task->assignedTo->icon() !!}
-                                                @endif
-                                                @if ($task->details)
-                                                    <span class="fas fa-align-left"></span>
-                                                @endif
-                                                @if ($task->due_date)
-                                                    <span class="project--task--due-date"><span class="far fa-calendar-alt calendar-icon"></span> {{ App\format_date($task->due_date) }}</span>
-                                                @endif
+                                            <div class="pr-sm-1">
+                                                @can('update', $task)
+                                                    <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
+                                                        @csrf
+                                                        <button type="submit" class="btn btn-sm btn-light" data-toggle="tooltip" data-delay='{"show":300}' data-placement="bottom" title="{{ __('activity.completeTask') }}">
+                                                            <span class="far fa-square fa-lg"></span>
+                                                            <span class="sr-only">{{ __('activity.completeTask') }}</span>
+                                                        </button>
+                                                    </form>
+                                                @endcan
                                             </div>
 
-                                        </a>
+                                            <a class="flex-grow-1 pl-2" data-toggle="collapse" data-target="#task_content_{{ $task->id }}" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+                                                <span class="task-title">{{ $task->title }}</span>
+
+                                                <div class="task-attributes">
+                                                    @if ($task->assigned_to)
+                                                        {!! $task->assignedTo->icon() !!}
+                                                    @endif
+                                                    @if ($task->details)
+                                                        <span class="fas fa-align-left"></span>
+                                                    @endif
+                                                    @if ($task->due_date)
+                                                        <span class="project--task--due-date"><span class="far fa-calendar-alt calendar-icon"></span> {{ App\format_date($task->due_date) }}</span>
+                                                    @endif
+                                                </div>
+
+                                            </a>
+
+                                        </div>
+
+                                        <div class="collapse" id="task_content_{{ $task->id }}">
+
+                                            <div class="p-1 pt-2 mt-1 ml-5 border-top pb-3">
+
+                                                <dl class="row">
+                                                    <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.taskAssigned') }}</dt>
+                                                    <dd class="col-12 col-sm-9 col-xl-10">
+                                                        @if ($task->assigned_to)
+                                                            {!! $task->assignedTo->iconAndName() !!}
+                                                        @endif
+                                                    </dd>
+
+                                                    <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.taskDueDate') }}</dt>
+                                                    <dd class="col-12 col-sm-9 col-xl-10 task--due-date due-date">{{ App\format_date($task->due_date) }}</dd>
+
+                                                </dl>
+
+                                                <hr>
+
+                                                @if ($task->details)
+                                                    <div class="editor-content pr-2">
+                                                        {!! \App\safe_text_editor_content($task->details) !!}
+                                                    </div>
+                                                @else
+                                                    <em>{{ __('activity.noDetails') }}</em>
+                                                @endif
+
+                                                <hr>
+
+                                                <div class="d-flex">
+
+                                                    <div class="flex-grow-1">
+                                                        <a href="{{ route('activities.tasks.show', [$activity, $task]) }}" class="btn btn-link btn-sm">
+                                                            {{ __('activity.viewTask') }}<span class="far fa-arrow-alt-circle-right ml-1"></span>
+                                                        </a>
+                                                    </div>
+
+                                                    <div>
+
+                                                        @can('update', $task)
+                                                            <a href="{{ route('activities.tasks.edit', [$activity, $task]) }}" class="btn btn-sm btn-primary">
+                                                                <span class="fas fa-edit mr-1"></span>{{ __('app.edit') }}</a>
+                                                        @endcan
+
+                                                        <button class="btn btn-sm btn-secondary" data-toggle="collapse" data-target="#task_content_{{ $task->id }}">
+                                                            {{ __('app.close') }}
+                                                        </button>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
 
                                     </div>
 
@@ -225,7 +285,7 @@
                             <div class="list-group project--task-list completed-tasks">
                                 @foreach ($activity->tasks->where('completed', true) as $task)
 
-                                    <a class="list-group-item task d-block" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+                                    <a class="list-group-item p-1 task d-block" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
                                         <span class="far fa-check-square"></span> <span class="task-title">{{ $task->title }}</span>
 
                                         <div class="task-attributes pl-3">

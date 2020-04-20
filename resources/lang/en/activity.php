@@ -31,6 +31,7 @@ return [
 
     'task' => 'Task',
     'tasks' => 'Tasks',
+    'viewTask' => 'View Task',
     'addTask' => 'Add Task',
     'newTask' => 'New Task',
     'editTask' => 'Edit Task',

@@ -41,6 +41,8 @@ $(async function() {
 
     $('[data-toggle="popover"]').popover();
 
+    $('[data-toggle="tooltip"]').tooltip();
+
     $('.dt-table').DataTable();
 
     $('.dataTables_filter input[type=search]').focus();

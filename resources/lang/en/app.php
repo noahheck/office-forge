@@ -3,6 +3,8 @@
 return [
     'yes' => 'Yes',
     'no' => 'No',
+    'view' => 'View',
+    'close' => 'Close',
     'update' => 'Update',
     'save' => 'Save',
     'add' => 'Add',

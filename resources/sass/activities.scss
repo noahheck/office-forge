@@ -97,20 +97,23 @@
 
     .task {
 
-        @include background-color-transition();
+        .task-header {
 
-        &:hover {
-            text-decoration: none;
-            background-color: $blue-highlight;
+            @include background-color-transition();
 
-            a {
+            &:hover {
                 text-decoration: none;
+                background-color: $blue-highlight;
 
-                .task-title {
-                    text-decoration: underline;
+                a {
+                    text-decoration: none;
+
+                    .task-title {
+                        text-decoration: underline;
+                    }
                 }
-            }
 
+            }
         }
 
         .project--task--due-date {

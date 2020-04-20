@@ -84,21 +84,21 @@
   padding: 1px 2px;
 }
 
-.project--task-list .task {
+.project--task-list .task .task-header {
   -webkit-transition: background-color 0.2s;
   transition: background-color 0.2s;
 }
 
-.project--task-list .task:hover {
+.project--task-list .task .task-header:hover {
   text-decoration: none;
   background-color: #e3f3ff;
 }
 
-.project--task-list .task:hover a {
+.project--task-list .task .task-header:hover a {
   text-decoration: none;
 }
 
-.project--task-list .task:hover a .task-title {
+.project--task-list .task .task-header:hover a .task-title {
   text-decoration: underline;
 }
 

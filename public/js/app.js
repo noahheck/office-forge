@@ -1424,6 +1424,7 @@ $(function _callee() {
 
         case 10:
           $('[data-toggle="popover"]').popover();
+          $('[data-toggle="tooltip"]').tooltip();
           $('.dt-table').DataTable();
           $('.dataTables_filter input[type=search]').focus();
           $('.datepicker').datepicker({
@@ -1435,7 +1436,7 @@ $(function _callee() {
             zIndexOffset: 1031
           });
 
-        case 14:
+        case 15:
         case "end":
           return _context.stop();
       }
