@@ -1,5 +1,9 @@
 @extends("layouts.admin")
 
+@push('styles')
+    @style('css/document.css')
+@endpush
+
 @push('scripts')
     @script('js/page.admin.processes.tasks.show.js')
 @endpush
@@ -15,11 +19,11 @@
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center document-print-container">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
-            <div class="card">
+            <div class="card document">
                 <div class="card-body">
 
                     <h2>

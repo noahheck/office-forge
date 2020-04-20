@@ -2,6 +2,7 @@
 
 @push('styles')
     @style('css/activities.css')
+    @style('css/document.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -13,7 +14,7 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-7 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
             <h1 class="h2">
                 @if ($activity->process_id)
@@ -23,7 +24,7 @@
                 @endif
             </h1>
 
-            <div class="card shadow">
+            <div class="card shadow document">
 
                 <div class="card-header">
                     <h4 class="mb-0">

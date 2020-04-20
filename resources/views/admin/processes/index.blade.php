@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="text-right">
                     <a href="{{ route('admin.processes.create') }}" class="btn btn-primary">
-                        <span class="fas fa-user-plus"></span> {{ __('admin.newProcess') }}
+                        <span class="fas fa-plus"></span> {{ __('admin.newProcess') }}
                     </a>
                 </div>
                 <hr>

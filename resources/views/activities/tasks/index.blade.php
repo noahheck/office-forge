@@ -2,6 +2,7 @@
 
 @push('styles')
     @style('css/activities.css')
+    @style('css/document.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -12,8 +13,8 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-7 col-xl-8">
-            <div class="card shadow">
+        <div class="col-12 col-md-10 document-container">
+            <div class="card shadow document">
                 <div class="card-body">
 
                     <h2 class="h6 overflow-x-ellipsis">

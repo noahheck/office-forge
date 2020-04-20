@@ -1,5 +1,9 @@
 @extends("layouts.app")
 
+@push('styles')
+    @style('css/document.css')
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Activities\Create)
 ])
@@ -8,7 +12,7 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
             <h1>
                 @if ($process)
@@ -18,7 +22,7 @@
                 @endif
             </h1>
 
-            <div class="card shadow">
+            <div class="card shadow document">
                 <div class="card-body">
 
                     @include('activities._form', [

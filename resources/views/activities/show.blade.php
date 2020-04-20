@@ -2,6 +2,7 @@
 
 @push('styles')
     @style('css/activities.css')
+    @style('css/document.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -10,10 +11,10 @@
 
 @section('content')
 
-    <div class="row project {{ ($activity->isOverdue()) ? 'overdue' : '' }} justify-content-center">
+    <div class="row project {{ ($activity->isOverdue()) ? 'overdue' : '' }} justify-content-center document-print-container">
 
-        <div class="col-12 col-md-10" style="max-width: 800px;">
-            <div class="card shadow">
+        <div class="col-12 col-md-10 document-container">
+            <div class="card shadow document">
                 <div class="card-body">
 
                     <div class="border-bottom mb-3">
@@ -50,7 +51,7 @@
                                                 <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
                                             </span>
                                         @else
-                                            <form action="{{ route('activities.complete', [$activity]) }}" method="POST">
+                                            <form action="{{ route('activities.complete', [$activity]) }}" method="POST" class="no-print">
                                                 @csrf
                                                 <button type="submit" class="btn btn-light">
                                                     <span class="far fa-square fa-lg"></span>
@@ -66,13 +67,13 @@
                                         @if ($activity->completed)
                                             <form action="{{ route('activities.uncomplete', [$activity]) }}" method="POST">
                                                 @csrf
-                                                <button type="submit" class="btn btn-light btn-sm">
+                                                <button type="submit" class="btn btn-light btn-sm no-print">
                                                     <span class="fas fa-undo"></span>
                                                     {{ __('activity.reopen') }}
                                                 </button>
                                             </form>
                                         @else
-                                            <a class="btn btn-primary btn-sm" href="{{ route('activities.edit', [$activity]) }}">
+                                            <a class="btn btn-primary btn-sm no-print" href="{{ route('activities.edit', [$activity]) }}">
                                                 <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
                                             </a>
                                         @endif
@@ -230,9 +231,9 @@
                                                     <em>{{ __('activity.noDetails') }}</em>
                                                 @endif
 
-                                                <hr>
+                                                <hr class="no-print">
 
-                                                <div class="d-flex">
+                                                <div class="d-flex no-print">
 
                                                     <div class="flex-grow-1">
                                                         <a href="{{ route('activities.tasks.show', [$activity, $task]) }}" class="btn btn-link btn-sm">
@@ -269,7 +270,7 @@
                                 @endforelse
                             </div>
 
-                            <p>
+                            <p class="no-print">
                                 @can('create', [\App\Activity\Task::class, $activity])
                                     <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}">
                                         <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}

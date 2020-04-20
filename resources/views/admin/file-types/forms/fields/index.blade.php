@@ -6,6 +6,7 @@
 
 @push('styles')
     @style('css/admin.files.css')
+    @style('css/document.css')
 @endpush
 
 @push('meta')
@@ -19,15 +20,15 @@
 
 @section('content')
 
-    <div class="row justify-content-center form-preview">
+    <div class="row justify-content-center form-preview document-print-container">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
             <h1>
                 <span class="far fa-list-alt"></span> {{ $form->name }}
             </h1>
 
-            <div class="card">
+            <div class="card document">
 
                 <div class="card-body">
 

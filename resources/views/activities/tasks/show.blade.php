@@ -2,6 +2,7 @@
 
 @push('styles')
     @style('css/activities.css')
+    @style('css/document.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -18,13 +19,16 @@
 
 @section('content')
 
-    <div class="row justify-content-center task {{ (!$activity->completed && $task->isOverdue()) ? 'overdue' : '' }}">
+    <div class="row justify-content-center task {{ (!$activity->completed && $task->isOverdue()) ? 'overdue' : '' }} ">
 
-        <div class="col-12 col-md-9 col-lg-8">
-            <div class="card shadow">
+        <div class="col-12 col-md-10 document-container">
+            <div class="card shadow document">
                 <div class="card-body">
 
                     <h2 class="h6 overflow-x-ellipsis">
+                        <span class="print-only">
+                                {{ __('activity.activity') }}:
+                            </span>
                         <a href="{{ route('activities.show', [$activity]) }}">
                             <span class="fas fa-project-diagram"></span> {{ $activity->name }}
                         </a>
@@ -38,13 +42,13 @@
 
                             @if ($task->completed)
                                 <span class="project--completed-indicator">
-                                    <span class="fas fa-check"></span> {{ __('activity.completed') }}
+                                    <span class="fas fa-check mr-1"></span>{{ __('activity.completed') }}
                                 </span>
                             @else
                                 @can('update', $task)
                                     <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
                                         @csrf
-                                        <button type="submit" class="btn btn-light">
+                                        <button type="submit" class="btn btn-light no-print">
                                             <span class="far fa-square fa-lg"></span>
                                             {{ __('activity.completeTask') }}
                                         </button>
@@ -54,7 +58,7 @@
 
                         </div>
 
-                        <div class="">
+                        <div class="no-print">
                             @can('update', $task)
 
 
@@ -88,6 +92,9 @@
                     <div class="task-details">
 
                         <h3>
+                            <span class="print-only">
+                                {{ __('activity.task') }}:
+                            </span>
                             {{ $task->title }}
                         </h3>
 

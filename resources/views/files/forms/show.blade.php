@@ -2,6 +2,7 @@
 
 @push('styles')
     @style('css/files.css')
+    @style('css/document.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -12,9 +13,9 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
-            <div class="card shadow">
+            <div class="card shadow document">
 
                 <div class="card-body">
 

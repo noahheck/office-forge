@@ -67,3 +67,19 @@
 .no-text-decoration:hover {
     text-decoration: none;
 }
+
+.print-only {
+    display: none;
+}
+
+@media print {
+
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: unset;
+    }
+
+}

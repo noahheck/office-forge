@@ -1,5 +1,9 @@
 @extends("layouts.app")
 
+@push('styles')
+    @style('css/document.css')
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Activities\Participants\Edit($activity))
 ])
@@ -8,13 +12,13 @@
 
     <div class="row justify-content-center">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
             <h1>
                 <span class="fas fa-user-friends"></span> {{ __('activity.editParticipants') }}
             </h1>
 
-            <div class="card shadow">
+            <div class="card shadow document">
                 <div class="card-body">
 
                     <form class="bold-labels" action="{{ route("activities.participants.update", [$activity]) }}" method="POST">

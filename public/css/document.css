@@ -1,0 +1,46 @@
+/**
+ * sass/document.scss
+ */
+
+.document-container {
+  max-width: 800px;
+}
+
+@media print {
+  html {
+    font-size: 16pt;
+  }
+
+  .notifications,
+  .header-navbar,
+  .application-sidebar,
+  .location-bar {
+    display: none;
+  }
+
+  .document-print-container {
+    display: block;
+  }
+
+  .main-content,
+  .document-container {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+
+  .document {
+    border: none;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    display: block;
+  }
+
+  .document a {
+    text-decoration: none;
+  }
+}
+

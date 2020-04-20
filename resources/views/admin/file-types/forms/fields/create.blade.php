@@ -2,6 +2,7 @@
 
 @push('styles')
     @style('css/admin.files.css')
+    @style('css/document.css')
 @endpush
 
 @include("_component._location-bar", [
@@ -11,9 +12,9 @@
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center document-print-container">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
             <h1>
                 <span class="fas fa-pen-square"></span> {{ __('admin.newField') }}
@@ -21,7 +22,7 @@
 
             <p class="text-muted">{{ __('admin.newField_shortDescription') }}</p>
 
-            <div class="card">
+            <div class="card document">
                 <div class="card-body">
 
                     @include('admin.file-types.forms.fields._form', [

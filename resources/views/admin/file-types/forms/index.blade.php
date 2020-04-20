@@ -6,6 +6,7 @@
 
 @push('styles')
     @style('css/admin.files.css')
+    @style('css/document.css')
 @endpush
 
 @push('scripts')
@@ -18,15 +19,15 @@
 
 @section('content')
 
-    <div class="row justify-content-center">
+    <div class="row justify-content-center document-print-container">
 
-        <div class="col-12 col-md-10 col-xl-8">
+        <div class="col-12 col-md-10 document-container">
 
             <h1>
                 {!! $fileType->icon() !!} {{ $fileType->name }}
             </h1>
 
-            <div class="card">
+            <div class="card document">
 
                 <div class="card-body">
 
