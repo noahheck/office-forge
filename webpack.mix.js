@@ -26,6 +26,7 @@ mix
 
     // Activities
     .sass('resources/sass/activities.scss', 'public/css')
+    .js('resources/js/page/activities/show.js', 'public/js/page.activities.show.js')
     .js('resources/js/page/activities/tasks/_form.js', 'public/js/page.activities.tasks._form.js')
 
     // Files

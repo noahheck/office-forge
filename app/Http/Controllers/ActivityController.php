@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity\ActivityProvider;
+use App\Activity\Task;
 use App\File;
 use App\Jobs\Activity\Complete;
 use App\Jobs\Activity\Create;
@@ -145,7 +146,13 @@ class ActivityController extends Controller
             route('activities.participants.edit', [$activity]) :
             route('activities.participants.index', [$activity]);
 
-        return $this->view('activities.show', compact('activity', 'file', 'participantRoute'));
+        $newTask = new Task;
+        $newTask->project_id = $activity->id;
+        $newTask->assigned_to = $user->id;
+
+        $taskUserOptions = $activity->participantUsers()->push($activity->owner)->unique();
+
+        return $this->view('activities.show', compact('activity', 'file', 'participantRoute', 'newTask', 'taskUserOptions'));
     }
 
     /**

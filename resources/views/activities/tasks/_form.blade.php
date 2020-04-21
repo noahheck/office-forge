@@ -54,7 +54,7 @@
         'required' => false,
         'value' => old('details', $task->details),
         'placeholder' => __('activity.taskDetailsExample'),
-        'toolbar' => 'full',
+        'toolbar' => $toolbar ?? 'full',
         'resourceType' => get_class($task),
         'resourceId' => $task->id,
     ])
@@ -65,7 +65,7 @@
         {{ __('app.save') }}
     </button>
 
-    <a class="btn btn-secondary" href="{{ url()->previous(route('activities.index')) }}">
+    <a class="btn btn-secondary" href="{{ url()->previous(route('activities.index')) }}" id="taskFormCancelButton">
         {{ __('app.cancel') }}
     </a>
 

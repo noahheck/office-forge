@@ -11,6 +11,10 @@
     font-size: 16pt;
   }
 
+  body {
+    background-color: unset;
+  }
+
   .notifications,
   .header-navbar,
   .application-sidebar,
@@ -20,6 +24,7 @@
 
   .document-print-container {
     display: block;
+    overflow: visible;
   }
 
   .main-content,
@@ -28,7 +33,7 @@
     width: 100%;
     margin: 0;
     padding: 0;
-    display: block;
+    overflow: visible;
   }
 
   .document {
@@ -36,7 +41,7 @@
     box-shadow: none !important;
     -webkit-box-shadow: none !important;
     -moz-box-shadow: none !important;
-    display: block;
+    overflow: visible;
   }
 
   .document a {
