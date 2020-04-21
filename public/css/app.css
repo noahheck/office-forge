@@ -13152,7 +13152,7 @@ trix-toolbar {
 trix-toolbar .trix-button-row {
   -webkit-box-pack: start;
           justify-content: flex-start;
-  overflow-x: auto;
+  flex-wrap: wrap;
 }
 
 trix-toolbar .trix-button-group {

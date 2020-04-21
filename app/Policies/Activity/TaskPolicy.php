@@ -68,7 +68,27 @@ class TaskPolicy
      */
     public function delete(User $user, Task $task)
     {
-        //
+        if (!$task->id) {
+
+            return false;
+        }
+
+        if ($task->process_task_id) {
+
+            return false;
+        }
+
+        if ($user->isAdministrator()) {
+
+            return true;
+        }
+
+        if ($task->activity->owner_id == $user->id) {
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

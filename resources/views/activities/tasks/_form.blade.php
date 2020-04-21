@@ -61,12 +61,55 @@
 
     <hr>
 
-    <button type="submit" class="btn btn-primary">
-        {{ __('app.save') }}
-    </button>
+    <div class="d-flex">
 
-    <a class="btn btn-secondary" href="{{ url()->previous(route('activities.index')) }}" id="taskFormCancelButton">
-        {{ __('app.cancel') }}
-    </a>
+        <div class="flex-grow-1">
+
+            <button type="submit" class="btn btn-primary">
+                {{ __('app.save') }}
+            </button>
+
+            <a class="btn btn-secondary" href="{{ url()->previous(route('activities.index')) }}" id="taskFormCancelButton">
+                {{ __('app.cancel') }}
+            </a>
+
+        </div>
+
+        @can('delete', $task)
+
+            <div>
+                <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
+                    More Options
+                    <span class="fas fa-chevron-down"></span>
+                </button>
+            </div>
+
+        @endcan
+    </div>
 
 </form>
+
+@can('delete', $task)
+    <div class="collapse text-right" id="moreOptionsContainer">
+
+        <hr>
+
+        <div class="dropdown">
+
+            <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" id="deleteTaskButton">
+                <span class="far fa-trash-alt mr-1"></span>{{ __('activity.deleteTask') }}
+            </button>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="deleteTaskButton">
+                <form action="{{ route("activities.tasks.destroy", [$activity, $task]) }}" method="POST">
+                    @csrf @method('DELETE')
+                    <button type="submit" class="dropdown-item text-danger">
+                        <span class="far fa-trash-alt"></span>
+                        {{ __('activity.deleteTaskForGood') }}
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+@endcan

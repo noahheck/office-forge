@@ -8,12 +8,14 @@ use App\Http\Requests\Activity\Task\Store as StoreRequest;
 use App\Http\Requests\Activity\Task\Update as UpdateRequest;
 use App\Jobs\Activity\Task\Complete;
 use App\Jobs\Activity\Task\Create;
+use App\Jobs\Activity\Task\Delete;
 use App\Jobs\Activity\Task\Uncomplete;
 use App\Jobs\Activity\Task\Update;
 use App\Activity\Task;
 use App\User;
 use Illuminate\Http\Request;
 use function App\flash_error;
+use function App\flash_info;
 use function App\flash_success;
 
 class TaskController extends Controller
@@ -155,10 +157,26 @@ class TaskController extends Controller
      * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity, Task $task)
+    public function destroy(Request $request, Activity $activity, Task $task)
     {
-        //
+        $user = $request->user();
+
+        if (!$user->can('delete', $task)) {
+            flash_error(__('activity.error_unableToDeleteTask'));
+
+            return redirect()->route('activities.show', [$activity]);
+        }
+
+        $this->dispatchNow($taskDeleted = new Delete(
+            $task,
+            $user
+        ));
+
+        flash_info(__('activity.taskDeleted'));
+
+        return redirect()->route('activities.show', [$activity]);
     }
+
 
 
     public function complete(Request $request, Activity $activity, Task $task)

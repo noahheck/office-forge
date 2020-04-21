@@ -36,12 +36,15 @@ return [
     'addTask' => 'Add Task',
     'newTask' => 'New Task',
     'editTask' => 'Edit Task',
+    'deleteTask' => 'Delete Task',
+    'deleteTaskForGood' => 'Delete this Task for good',
 
     'completeTask' => 'Complete Task',
     'reopenTask' => 'Reopen Task',
 
     'taskCreated' => 'Task Created',
     'taskUpdated' => 'Task Updated',
+    'taskDeleted' => 'Task Deleted',
 
     'taskTitle' => 'Title',
     'taskTitleExample' => 'Complete TPS report, Process inventory, etc...',
@@ -74,5 +77,7 @@ return [
     'error_unableToAccessActivity' => 'You are unable to access this Activity',
     'error_unableToCreateActivityOfType' => 'You are unable to create Activities of this type.',
     'error_unableToEditActivity' => 'You are unable to edit this Activity.',
+
+    'error_unableToDeleteTask' => 'You are unable to delete this Task',
 
 ];
