@@ -30,6 +30,7 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::resource('/activities', 'ActivityController');
     Route::post('activities/{activity}/complete', 'ActivityController@complete')->name('activities.complete');
     Route::post('activities/{activity}/uncomplete', 'ActivityController@uncomplete')->name('activities.uncomplete');
+    Route::post('activities/{activity}/update-tasks-order', 'ActivityController@updateTasksOrder')->name('activities.update-tasks-order');
 
     Route::namespace('Activity')->prefix('/activities/{activity}')->name('activities.')->group(function() {
 

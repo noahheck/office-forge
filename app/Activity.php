@@ -104,6 +104,16 @@ class Activity extends Model
         return $this->hasMany(Task::class);
     }
 
+    public function openTasks()
+    {
+        return $this->tasks()->where('completed', false)->orderBy('order');
+    }
+
+    public function completedTasks()
+    {
+        return $this->tasks()->where('completed', true)->orderBy('completed_at');
+    }
+
     public function file()
     {
         return $this->belongsTo(File::class);

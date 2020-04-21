@@ -40,4 +40,9 @@ class Task extends Model implements HasDueDateInterface
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
+
+    public function completedBy()
+    {
+        return $this->belongsTo(User::class, 'completed_by');
+    }
 }

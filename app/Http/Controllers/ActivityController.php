@@ -7,6 +7,7 @@ use App\Activity\Task;
 use App\File;
 use App\Jobs\Activity\Complete;
 use App\Jobs\Activity\Create;
+use App\Jobs\Activity\Tasks\UpdateOrder;
 use App\Jobs\Activity\Uncomplete;
 use App\Jobs\Activity\Update;
 use App\Activity;
@@ -132,7 +133,19 @@ class ActivityController extends Controller
     {
         $user = $request->user();
 
-        $activity->load('tasks', 'tasks.assignedTo', 'tasks.assignedTo.headshots', 'participants', 'participants.user');
+        $activity->load(
+            'openTasks',
+            'openTasks.assignedTo',
+            'openTasks.assignedTo.headshots',
+            'completedTasks',
+            'completedTasks.assignedTo',
+            'completedTasks.assignedTo.headshots',
+            'completedTasks.completedBy',
+            'completedTasks.completedBy.headshots',
+            'participants',
+            'participants.user',
+            'participants.user.headshots'
+        );
 
         if (!$user->can('view', $activity)) {
             flash_error(__('activity.error_unableToAccessActivity'));
@@ -245,5 +258,20 @@ class ActivityController extends Controller
         \App\flash_success(__('activity.activityUpdated'));
 
         return redirect()->route('activities.show', [$activity]);
+    }
+
+    public function updateTasksOrder(Request $request, Activity $activity)
+    {
+        if (!$request->user()->can('update', $activity)) {
+            flash_error(__('activity.error_unableToEditActivity'));
+
+            return redirect()->route('activities.show', $activity);
+        }
+
+        $this->dispatchNow($taskOrderUpdated = new UpdateOrder($activity, $request->get('orderedTasks')));
+
+        return $this->json(true, [
+            'successMessage' => __('activity.activityUpdated'),
+        ]);
     }
 }

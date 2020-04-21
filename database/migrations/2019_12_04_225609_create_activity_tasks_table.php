@@ -21,6 +21,7 @@ class CreateActivityTasksTable extends Migration
             $table->string('title', 1024);
             $table->longText('details')->nullable();
             $table->longText('process_task_details')->nullable();
+            $table->integer('order');
             $table->date('due_date')->nullable();
             $table->bigInteger('assigned_to')->nullable();
             $table->boolean('completed')->default(false);

@@ -9,6 +9,10 @@
     @script('js/page.activities.show.js')
 @endpush
 
+@push('meta')
+    @meta('activityId', $activity->id)
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Activities\Show($activity))
 ])
@@ -170,10 +174,10 @@
                                 <span><span class="fas fa-tasks mr-1"></span>{{ __('activity.tasks') }}</span>
                             </h4>
 
-                            <div class="project--task-list current-tasks list-group">
-                                @forelse ($activity->tasks->where('completed', false) as $task)
+                            <div class="project--task-list current-tasks list-group" id="activityOpenTasks">
+                                @forelse ($activity->openTasks as $task)
 
-                                    <div class="list-group-item p-0 task @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif">
+                                    <div class="list-group-item p-0 task @if(!$activity->completed && $task->isDueToday()) due-today @elseif(!$activity->completed && $task->isOverdue()) overdue @endif" data-id="{{ $task->id }}">
 
                                         <div class="d-flex p-1 align-items-center task-header">
 
@@ -190,6 +194,7 @@
                                             </div>
 
                                             <a class="flex-grow-1 pl-2" data-toggle="collapse" data-target="#task_content_{{ $task->id }}" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
+
                                                 <span class="task-title">{{ $task->title }}</span>
 
                                                 <div class="task-attributes">
@@ -205,6 +210,12 @@
                                                 </div>
 
                                             </a>
+
+                                            @can('update', $activity)
+                                                <div class="pr-3 pl-2">
+                                                    <span class="sort-handle fas fa-arrows-alt-v"></span>
+                                                </div>
+                                            @endcan
 
                                         </div>
 
@@ -315,7 +326,7 @@
                             @endcan
 
                             <div class="list-group project--task-list completed-tasks">
-                                @foreach ($activity->tasks->where('completed', true) as $task)
+                                @foreach ($activity->completedTasks as $task)
 
                                     <a class="list-group-item p-1 task d-block" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
                                         <span class="far fa-check-square"></span> <span class="task-title">{{ $task->title }}</span>

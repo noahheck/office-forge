@@ -61,6 +61,7 @@ class Create
         $task->assigned_to = $this->assigned_to;
         $task->details = $this->details;
         $task->created_by = $this->creator->id;
+        $task->order = $this->activity->tasks->max('order') + 1;
 
         if ($this->due_date) {
             $task->due_date = Carbon::parse($this->due_date);
