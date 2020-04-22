@@ -15,6 +15,20 @@ $(function() {
     let activityId = meta.get('activityId');
 
     let $newTaskButton = $('#newTaskContainerToggleButton');
+    let $newTaskContainerCollapse = $('#newTaskContainer');
+    let $newTaskShowButtonContainer = $('#newTaskShowButtonContainer');
+    let $newTaskTitleField = $('#title');
+
+    $newTaskContainerCollapse.on('shown.bs.collapse', function () {
+        $newTaskTitleField.focus();
+    });
+
+    $(document).keyup(function(e) {
+        if (e.keyCode === 27) {
+            $newTaskContainerCollapse.collapse('hide');
+            $newTaskShowButtonContainer.collapse('show');
+        }
+    });
 
     $('#taskFormCancelButton').click(function(event) {
         event.preventDefault();

@@ -57,6 +57,18 @@ var activity = __webpack_require__(/*! App/activity */ "./resources/js/app/activ
 $(function () {
   var activityId = meta.get('activityId');
   var $newTaskButton = $('#newTaskContainerToggleButton');
+  var $newTaskContainerCollapse = $('#newTaskContainer');
+  var $newTaskShowButtonContainer = $('#newTaskShowButtonContainer');
+  var $newTaskTitleField = $('#title');
+  $newTaskContainerCollapse.on('shown.bs.collapse', function () {
+    $newTaskTitleField.focus();
+  });
+  $(document).keyup(function (e) {
+    if (e.keyCode === 27) {
+      $newTaskContainerCollapse.collapse('hide');
+      $newTaskShowButtonContainer.collapse('show');
+    }
+  });
   $('#taskFormCancelButton').click(function (event) {
     event.preventDefault();
     $newTaskButton.click();
