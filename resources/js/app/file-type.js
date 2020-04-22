@@ -6,6 +6,24 @@ let ajax = require('Services/ajax');
 
 let fileType = {};
 
+
+fileType.updatePanelsOrder = function(fileTypeId, panelsOrder) {
+
+    let route = {
+        name: 'admin.file-types.panels.update-order',
+        params: {
+            fileType: fileTypeId
+        }
+    };
+
+    let data = {
+        orderedPanels: panelsOrder
+    };
+
+    return ajax.post(route, data);
+};
+
+
 fileType.updateFormsOrder = function(fileTypeId, formsOrder) {
 
     let route = {

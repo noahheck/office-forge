@@ -27,6 +27,7 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::get('/editor-images/{editorImage}', 'EditorImageController@show')->name('editor-images.show');
 
 
+    // Activities
     Route::resource('/activities', 'ActivityController');
     Route::post('activities/{activity}/complete', 'ActivityController@complete')->name('activities.complete');
     Route::post('activities/{activity}/uncomplete', 'ActivityController@uncomplete')->name('activities.uncomplete');
@@ -34,27 +35,30 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     Route::namespace('Activity')->prefix('/activities/{activity}')->name('activities.')->group(function() {
 
-
+        // Tasks
         Route::resource('/tasks', 'TaskController');
         Route::post('/tasks/{task}/complete', 'TaskController@complete')->name('tasks.complete');
         Route::post('/tasks/{task}/uncomplete', 'TaskController@uncomplete')->name('tasks.uncomplete');
 
+        // Participants
         Route::get('/participants', 'ParticipantController@show')->name('participants.index');
         Route::get('/participants/edit', 'ParticipantController@edit')->name('participants.edit');
         Route::post('/participants', 'ParticipantController@update')->name('participants.update');
-
     });
 
 
+    // Files
     Route::resource('/files', 'FileController');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->middleware('can:view,file')->group(function() {
 
+        // Forms
         Route::get('/forms', 'FormController@index')->name('forms.index');
         Route::get('/forms/{form}', 'FormController@show')->name('forms.show');
         Route::put('/forms/{form}', 'FormController@update')->name('forms.update');
 
     });
 
+    // My Settings
     Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
 
         Route::get('/', 'SettingsController@index')->name('index');
@@ -71,29 +75,38 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     });
 
 
+    // Admin
     Route::middleware(['user.admin'])->namespace('Admin')->prefix('/admin')->name('admin.')->group(function() {
 
         Route::get('/', 'AdminController@index')->name('index');
 
+        // Users
         Route::resource('/users', 'UserController');
 
+        // Teams
         Route::resource('/teams', 'TeamController');
 
+        // Organization
         Route::get('/organization', 'OrganizationController@index')->name('organization');
         Route::post('/organization', 'OrganizationController@update')->name('organization.update');
 
+        // File Types
         Route::resource('/file-types', 'FileTypeController');
+
+        // File Types Forms
         Route::resource('file-types.forms', 'FileType\FormController');
         Route::post('/file-types/{fileType}/forms/update-order', 'FileType\FormController@updateOrder')
             ->name('file-types.forms.update-order');
-
 
         Route::resource('file-types.forms.fields', 'FileType\Form\FieldController');
         Route::post('/file-types/{fileType}/forms/{form}/fields/update-order', 'FileType\Form\FieldController@updateOrder')
             ->name('file-types.forms.fields.update-order');
 
-
+        // File Types Panels
         Route::resource('file-types.panels', 'FileType\PanelController');
+        Route::post('/file-types/{fileType}/panels/update-order', 'FileType\PanelController@updateOrder')
+            ->name('file-types.panels.update-order');
+
         Route::post('/file-types/{fileType}/panels/{panel}/add-field', 'FileType\PanelController@addField')
             ->name('file-types.panels.add-field');
         Route::delete('/file-types/{fileType}/panels/{panel}/fields/{field}', 'FileType\PanelController@removeField')
@@ -102,10 +115,12 @@ Route::middleware(['auth', 'user.active'])->group(function() {
             ->name('file-types.panels.update-field-order');
 
 
+        // Processes
         Route::resource('/processes', 'ProcessController');
 
         Route::namespace('Process')->prefix('/processes/{process}')->name('processes.')->group(function() {
 
+            // Tasks
             Route::resource('/tasks', 'TaskController');
             Route::post('/tasks/update-order', 'TaskController@updateOrder')->name('tasks.update-order');
 

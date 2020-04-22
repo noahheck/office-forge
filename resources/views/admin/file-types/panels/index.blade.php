@@ -10,7 +10,7 @@
 @endpush
 
 @push('scripts')
-{{--    @script('js/page.admin.file-types.forms.index.js')--}}
+    @script('js/page.admin.file-types.panels.index.js')
 @endpush
 
 @include("_component._location-bar", [
@@ -58,9 +58,9 @@
                                             {!! $team->icon() !!}
                                         @endforeach
                                     </div>
-                                    {{--<div class="sort-handle pl-3">
+                                    <div class="sort-handle pl-3">
                                         <span class="fas fa-arrows-alt-v"></span>
-                                    </div>--}}
+                                    </div>
                                 </li>
 
                             @endforeach

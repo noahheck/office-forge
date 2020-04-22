@@ -127,7 +127,7 @@
 
                                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.dueDate') }}</dt>
                                 <dd class="col-12 col-sm-9 col-xl-10 project--due-date">
-                                    {{ App\format_date($activity->due_date) }}
+                                    {{ App\format_date($activity->due_date) }}&nbsp;
                                     <hr>
                                 </dd>
 

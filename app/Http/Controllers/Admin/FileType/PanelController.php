@@ -13,6 +13,7 @@ use App\Jobs\FileType\Panel\Create;
 use App\Jobs\FileType\Panel\RemoveField;
 use App\Jobs\FileType\Panel\Update;
 use App\Jobs\FileType\Panel\UpdateFieldOrder;
+use App\Jobs\FileType\Panel\UpdateOrder;
 use App\Team;
 use Illuminate\Http\Request;
 use function App\flash_success;
@@ -114,6 +115,17 @@ class PanelController extends Controller
     public function destroy(FileType $fileType, Panel $panel)
     {
         //
+    }
+
+
+
+    public function updateOrder(Request $request, FileType $fileType)
+    {
+        $this->dispatchNow($panelsOrdered = new UpdateOrder($fileType, $request->get('orderedPanels')));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.panels_orderUpdated'),
+        ]);
     }
 
 

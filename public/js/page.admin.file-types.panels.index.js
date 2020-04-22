@@ -1,41 +1,53 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.admin.file-types.panels.show"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.admin.file-types.panels.index"],{
 
-/***/ "./resources/js/app/file-type/panel.js":
-/*!*********************************************!*\
-  !*** ./resources/js/app/file-type/panel.js ***!
-  \*********************************************/
+/***/ "./resources/js/app/file-type.js":
+/*!***************************************!*\
+  !*** ./resources/js/app/file-type.js ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * js/app/file-type/form.js
+ * js/app/file-type.js
  */
 var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
-var panel = {};
+var fileType = {};
 
-panel.updateFieldsOrder = function (fileTypeId, panelId, fieldsOrder) {
+fileType.updatePanelsOrder = function (fileTypeId, panelsOrder) {
   var route = {
-    name: 'admin.file-types.panels.update-field-order',
+    name: 'admin.file-types.panels.update-order',
     params: {
-      fileType: fileTypeId,
-      panel: panelId
+      fileType: fileTypeId
     }
   };
   var data = {
-    orderedFields: fieldsOrder
+    orderedPanels: panelsOrder
   };
   return ajax.post(route, data);
 };
 
-module.exports = panel;
+fileType.updateFormsOrder = function (fileTypeId, formsOrder) {
+  var route = {
+    name: 'admin.file-types.forms.update-order',
+    params: {
+      fileType: fileTypeId
+    }
+  };
+  var data = {
+    orderedForms: formsOrder
+  };
+  return ajax.post(route, data);
+};
+
+module.exports = fileType;
 
 /***/ }),
 
-/***/ "./resources/js/page/admin/file-types/panels/show.js":
-/*!***********************************************************!*\
-  !*** ./resources/js/page/admin/file-types/panels/show.js ***!
-  \***********************************************************/
+/***/ "./resources/js/page/admin/file-types/panels/index.js":
+/*!************************************************************!*\
+  !*** ./resources/js/page/admin/file-types/panels/index.js ***!
+  \************************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43,7 +55,7 @@ module.exports = panel;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 /**
- * js/page/admin/file-types/forms/show.js
+ * js/page/admin/file-types/panels/index.js
  */
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
@@ -53,44 +65,16 @@ var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/met
 
 var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 
-var encoder = __webpack_require__(/*! Services/html-encode */ "./resources/js/services/html-encode.js");
-
-var panel = __webpack_require__(/*! App/file-type/panel */ "./resources/js/app/file-type/panel.js");
-
-function loadFieldOptions(formId) {
-  var formFields = meta.get('form_' + formId, []);
-  var options = "<option value=''>--</option>";
-  formFields.forEach(function (field) {
-    options += "<option value='" + field.id + "'>" + encoder.encode(field.label) + "</option>";
-  });
-  $('#field_id').html(options);
-}
+var fileType = __webpack_require__(/*! App/file-type */ "./resources/js/app/file-type.js");
 
 $(function () {
   var fileTypeId = meta.get('fileTypeId');
-  var panelId = meta.get('panelId');
-  var formSelect = $('#form_id');
-  formSelect.change(function () {
-    loadFieldOptions(formSelect.val());
-  });
-  loadFieldOptions(formSelect.val());
-  var $form = $('#addFieldForm');
-  $form.submit(function (event) {
-    var fieldSelect = $('#field_id');
-    var fieldId = fieldSelect.val();
-
-    if (!fieldId) {
-      fieldSelect.attr('required', true);
-      event.preventDefault();
-      return false;
-    }
-  });
-  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('panelFields'), {
+  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('fileTypePanels'), {
     handle: '.sort-handle',
     animation: 150,
     direction: 'vertical',
     onEnd: function onEnd(evt) {
-      panel.updateFieldsOrder(fileTypeId, panelId, sortable.toArray()).then(function (response) {
+      fileType.updatePanelsOrder(fileTypeId, sortable.toArray()).then(function (response) {
         notify.success(response.data.successMessage);
       });
     }
@@ -193,28 +177,6 @@ ajax.get = function (route, data) {
 
 window.ajax = ajax;
 module.exports = ajax;
-
-/***/ }),
-
-/***/ "./resources/js/services/html-encode.js":
-/*!**********************************************!*\
-  !*** ./resources/js/services/html-encode.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-/**
- * js/services/html-encode.js
- */
-var encoder = {};
-
-encoder.encode = function (string) {
-  return string.replace(/[\u00A0-\u9999<>\&]/gim, function (i) {
-    return '&#' + i.charCodeAt(0) + ';';
-  });
-};
-
-module.exports = encoder;
 
 /***/ }),
 
@@ -346,16 +308,16 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 16:
-/*!*****************************************************************!*\
-  !*** multi ./resources/js/page/admin/file-types/panels/show.js ***!
-  \*****************************************************************/
+/***/ 15:
+/*!******************************************************************!*\
+  !*** multi ./resources/js/page/admin/file-types/panels/index.js ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/js/page/admin/file-types/panels/show.js */"./resources/js/page/admin/file-types/panels/show.js");
+module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/js/page/admin/file-types/panels/index.js */"./resources/js/page/admin/file-types/panels/index.js");
 
 
 /***/ })
 
-},[[16,"/js/manifest","/js/vendor"]]]);
+},[[15,"/js/manifest","/js/vendor"]]]);

@@ -14,6 +14,19 @@ var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/aja
 
 var fileType = {};
 
+fileType.updatePanelsOrder = function (fileTypeId, panelsOrder) {
+  var route = {
+    name: 'admin.file-types.panels.update-order',
+    params: {
+      fileType: fileTypeId
+    }
+  };
+  var data = {
+    orderedPanels: panelsOrder
+  };
+  return ajax.post(route, data);
+};
+
 fileType.updateFormsOrder = function (fileTypeId, formsOrder) {
   var route = {
     name: 'admin.file-types.forms.update-order',

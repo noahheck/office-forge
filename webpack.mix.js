@@ -40,15 +40,22 @@ mix
     // Admin
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/admin/files.scss', 'public/css/admin.files.css')
-    .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
-    .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')
-    .js('resources/js/page/admin/processes/tasks/show.js', 'public/js/page.admin.processes.tasks.show.js')
-    .js('resources/js/page/admin/processes/tasks/actions/index.js', 'public/js/page.admin.processes.tasks.actions.index.js')
-    .js('resources/js/page/admin/file-types/forms/index.js', 'public/js/page.admin.file-types.forms.index.js')
-    .js('resources/js/page/admin/file-types/forms/show.js', 'public/js/page.admin.file-types.forms.show.js')
-    .js('resources/js/page/admin/file-types/forms/fields/index.js', 'public/js/page.admin.file-types.forms.fields.index.js')
-    .js('resources/js/page/admin/file-types/forms/fields/_form.js', 'public/js/page.admin.file-types.forms.fields._form.js')
-    .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
+
+        // Processes
+        .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
+        .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')
+        .js('resources/js/page/admin/processes/tasks/show.js', 'public/js/page.admin.processes.tasks.show.js')
+        .js('resources/js/page/admin/processes/tasks/actions/index.js', 'public/js/page.admin.processes.tasks.actions.index.js')
+
+        // Files
+        .js('resources/js/page/admin/file-types/forms/index.js', 'public/js/page.admin.file-types.forms.index.js')
+        .js('resources/js/page/admin/file-types/forms/show.js', 'public/js/page.admin.file-types.forms.show.js')
+        .js('resources/js/page/admin/file-types/forms/fields/index.js', 'public/js/page.admin.file-types.forms.fields.index.js')
+        .js('resources/js/page/admin/file-types/forms/fields/_form.js', 'public/js/page.admin.file-types.forms.fields._form.js')
+
+        // Panels
+        .js('resources/js/page/admin/file-types/panels/index.js', 'public/js/page.admin.file-types.panels.index.js')
+        .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
 
 
 

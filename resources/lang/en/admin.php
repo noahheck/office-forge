@@ -122,6 +122,7 @@ return [
 
     'panel_removeFieldFromPanel' => 'Remove Field from Panel',
 
+    'panels_orderUpdated' => 'Panels order updated',
     'panel_fieldAdded' => 'Field added to Panel',
     'panel_fieldRemoved' => 'Field removed from Panel',
     'panel_fieldsOrderUpdated' => 'Panel details order updated',
