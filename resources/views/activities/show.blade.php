@@ -180,7 +180,13 @@
 
 
                             <h4 class="separator">
-                                <span><span class="fas fa-tasks mr-1"></span>{{ __('activity.tasks') }}</span>
+                                <span><span class="fas fa-tasks mr-1"></span>{{ __('activity.tasks') }}
+                                    @if ($activity->tasks->count() > 0)
+                                        <small class="text-muted" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
+                                            ({{ $activity->numberOfCompletedTasks() }}<span class="m-half">/</span>{{ $activity->numberOfTotalTasks() }})
+                                        </small>
+                                    @endif
+                                </span>
                             </h4>
 
                             @include("activities._tasklist")
