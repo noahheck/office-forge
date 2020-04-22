@@ -45,6 +45,7 @@ return [
 
     'taskCreated' => 'Task Created',
     'taskUpdated' => 'Task Updated',
+    'taskReopened' => 'Task Reopened',
     'taskDeleted' => 'Task Deleted',
 
     'taskTitle' => 'Title',

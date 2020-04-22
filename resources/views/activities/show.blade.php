@@ -174,67 +174,7 @@
                                 <span><span class="fas fa-tasks mr-1"></span>{{ __('activity.tasks') }}</span>
                             </h4>
 
-                            <div class="project--task-list current-tasks list-group" id="activityOpenTasks">
-                                @forelse ($activity->openTasks as $task)
-
-                                    @include("activities._task")
-
-                                @empty
-
-                                    <p class="text-muted">
-                                        <em>{{ __('activity.noActiveTasks') }}</em>
-                                    </p>
-
-                                @endforelse
-                            </div>
-
-                            @can('create', [\App\Activity\Task::class, $activity])
-
-                                <div class="collapse no-print" id="newTaskContainer">
-
-                                    <div class="row justify-content-center">
-
-                                        <div class="col-10 border p-3 m-2 mb-4" style="font-size: .8rem;">
-
-                                            <h4><span class="far fa-check-square mr-1"></span>{{ __('activity.newTask') }}</h4>
-
-                                            <hr>
-
-                                            @include ('activities.tasks._form', [
-                                                'task' => $newTask,
-                                                'users' => $taskUserOptions,
-                                                'action' => route('activities.tasks.store', [$activity]),
-                                                'toolbar' => 'min',
-                                            ])
-
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <p class="no-print collapse show" id="newTaskShowButtonContainer">
-                                    <a id="newTaskContainerToggleButton" class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}" data-toggle="collapse" data-target="#newTaskContainer, #newTaskShowButtonContainer">
-                                        <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
-                                    </a>
-                                </p>
-
-                            @else
-
-                                <p class="no-print">
-                                    <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
-                                        <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
-                                    </button>
-                                    <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>
-                                </p>
-                            @endcan
-
-                            <div class="list-group project--task-list completed-tasks">
-                                @foreach ($activity->completedTasks as $task)
-
-                                    @include("activities._task")
-
-                                @endforeach
-                            </div>
+                            @include("activities._tasklist")
 
                         </div>
 

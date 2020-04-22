@@ -1,24 +1,24 @@
-(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.admin.processes.tasks.index"],{
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([["/js/page.activities._tasklist"],{
 
-/***/ "./resources/js/app/process.js":
-/*!*************************************!*\
-  !*** ./resources/js/app/process.js ***!
-  \*************************************/
+/***/ "./resources/js/app/activity.js":
+/*!**************************************!*\
+  !*** ./resources/js/app/activity.js ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * js/app/process.js
+ * js/app/activity.js
  */
 var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
-var process = {};
+var activity = {};
 
-process.updateTasksOrder = function (processId, tasksOrder) {
+activity.updateTasksOrder = function (activityId, tasksOrder) {
   var route = {
-    name: 'admin.processes.tasks.update-order',
+    name: 'activities.update-tasks-order',
     params: {
-      process: processId
+      activity: activityId
     }
   };
   var data = {
@@ -27,14 +27,14 @@ process.updateTasksOrder = function (processId, tasksOrder) {
   return ajax.post(route, data);
 };
 
-module.exports = process;
+module.exports = activity;
 
 /***/ }),
 
-/***/ "./resources/js/page/admin/processes/tasks/index.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/page/admin/processes/tasks/index.js ***!
-  \**********************************************************/
+/***/ "./resources/js/page/activities/_tasklist.js":
+/*!***************************************************!*\
+  !*** ./resources/js/page/activities/_tasklist.js ***!
+  \***************************************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -42,7 +42,7 @@ module.exports = process;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 /**
- * js/page/admin/processes/tasks/index.js
+ * js/page/activities/_tasklist.js
  */
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
@@ -52,16 +52,21 @@ var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/met
 
 var notify = __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 
-var process = __webpack_require__(/*! App/process */ "./resources/js/app/process.js");
+var activity = __webpack_require__(/*! App/activity */ "./resources/js/app/activity.js");
 
 $(function () {
-  var processId = meta.get('processId');
-  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('processTasks'), {
+  var activityId = meta.get('activityId');
+  var $newTaskButton = $('#newTaskContainerToggleButton');
+  $('#taskFormCancelButton').click(function (event) {
+    event.preventDefault();
+    $newTaskButton.click();
+  });
+  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('activityOpenTasks'), {
     handle: '.sort-handle',
     animation: 150,
     direction: 'vertical',
     onEnd: function onEnd(evt) {
-      process.updateTasksOrder(processId, sortable.toArray()).then(function (response) {
+      activity.updateTasksOrder(activityId, sortable.toArray()).then(function (response) {
         notify.success(response.data.successMessage);
       });
     }
@@ -295,16 +300,16 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 8:
-/*!****************************************************************!*\
-  !*** multi ./resources/js/page/admin/processes/tasks/index.js ***!
-  \****************************************************************/
+/***/ 3:
+/*!*********************************************************!*\
+  !*** multi ./resources/js/page/activities/_tasklist.js ***!
+  \*********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/js/page/admin/processes/tasks/index.js */"./resources/js/page/admin/processes/tasks/index.js");
+module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/js/page/activities/_tasklist.js */"./resources/js/page/activities/_tasklist.js");
 
 
 /***/ })
 
-},[[8,"/js/manifest","/js/vendor"]]]);
+},[[3,"/js/manifest","/js/vendor"]]]);

@@ -27,13 +27,34 @@ class TaskController extends Controller
      */
     public function index(Request $request, Activity $activity)
     {
-        if (!$request->user()->can('view', $activity)) {
+        $user = $request->user();
+        if (!$user->can('view', $activity)) {
             flash_error(__('activity.error_unableToAccessActivity'));
 
             return redirect()->route('home');
         }
 
-        return $this->view('activities.tasks.index', compact('activity'));
+        $activity->load(
+            'openTasks',
+            'openTasks.assignedTo',
+            'openTasks.assignedTo.headshots',
+            'completedTasks',
+            'completedTasks.assignedTo',
+            'completedTasks.assignedTo.headshots',
+            'completedTasks.completedBy',
+            'completedTasks.completedBy.headshots',
+            'participants',
+            'participants.user',
+            'participants.user.headshots'
+        );
+
+        $newTask = new Task;
+        $newTask->project_id = $activity->id;
+        $newTask->assigned_to = $user->id;
+
+        $taskUserOptions = $activity->participantUsers()->push($activity->owner)->unique();
+
+        return $this->view('activities.tasks.index', compact('activity', 'newTask', 'taskUserOptions'));
     }
 
     /**
