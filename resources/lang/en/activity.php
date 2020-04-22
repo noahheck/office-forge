@@ -60,6 +60,8 @@ return [
     'task_assignToMe' => 'Assign to me',
 
 
+    'completedTasks' => 'Completed Tasks',
+
     'onlyActivityOwnerCanEdit' => "Only the Activity's Owner can edit it's details",
     'onlyOwnerAndParticipantsCanEditTasks' => "Only the Activity's Owner and Participants can edit the Task list",
 

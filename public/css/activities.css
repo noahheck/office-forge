@@ -34,18 +34,18 @@
   margin-bottom: 10px;
 }
 
-.project.overdue .hide-if-overdue {
+.project .overdue .hide-if-overdue {
   display: none;
 }
 
-.project.overdue .project-details {
+.project .overdue .project-details {
   background-color: #fff3f3;
   border-color: transparent;
   padding-top: 25px;
   padding-bottom: 25px;
 }
 
-.project.overdue .project--due-date {
+.project .overdue .project--due-date {
   color: #e3342f;
   font-weight: bold;
 }

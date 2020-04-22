@@ -16,47 +16,53 @@
     @endforelse
 </div>
 
-@can('create', [\App\Activity\Task::class, $activity])
+@if (!$activity->completed)
+    @can('create', [\App\Activity\Task::class, $activity])
 
-    <div class="collapse no-print" id="newTaskContainer">
+        <div class="collapse no-print" id="newTaskContainer">
 
-        <div class="row justify-content-center">
+            <div class="row justify-content-center">
 
-            <div class="col-10 border p-3 m-2 mb-4 shadow" style="font-size: .8rem;">
+                <div class="col-10 border p-3 m-2 mb-4 shadow" style="font-size: .8rem;">
 
-                <h4><span class="far fa-check-square mr-1"></span>{{ __('activity.newTask') }}</h4>
+                    <h4><span class="far fa-check-square mr-1"></span>{{ __('activity.newTask') }}</h4>
 
-                <hr>
+                    <hr>
 
-                @include ('activities.tasks._form', [
-                    'task' => $newTask,
-                    'users' => $taskUserOptions,
-                    'action' => route('activities.tasks.store', [$activity]),
-                ])
+                    @include ('activities.tasks._form', [
+                        'task' => $newTask,
+                        'users' => $taskUserOptions,
+                        'action' => route('activities.tasks.store', [$activity]),
+                    ])
 
+                </div>
             </div>
+
         </div>
 
-    </div>
+        <p class="no-print collapse show" id="newTaskShowButtonContainer">
+            <a id="newTaskContainerToggleButton" class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}" data-toggle="collapse" data-target="#newTaskContainer, #newTaskShowButtonContainer">
+                <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
+            </a>
+        </p>
 
-    <p class="no-print collapse show" id="newTaskShowButtonContainer">
-        <a id="newTaskContainerToggleButton" class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}" data-toggle="collapse" data-target="#newTaskContainer, #newTaskShowButtonContainer">
-            <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
-        </a>
-    </p>
+    @else
 
-@else
-
-    <p class="no-print">
-        <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
-            <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
-        </button>
-        <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>
-    </p>
-@endcan
+        <p class="no-print">
+            <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
+                <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
+            </button>
+            <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>
+        </p>
+    @endcan
+@endif
 
 <div class="list-group project--task-list completed-tasks">
     @foreach ($activity->completedTasks as $task)
+
+        @if ($loop->first)
+            <h5 class="separator"><span>{{ __('activity.completedTasks') }}</span></h5>
+        @endif
 
         @include("activities._task")
 

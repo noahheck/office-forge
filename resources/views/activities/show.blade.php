@@ -19,7 +19,7 @@
 
 @section('content')
 
-    <div class="row project {{ ($activity->isOverdue()) ? 'overdue' : '' }} justify-content-center document-print-container">
+    <div class="row project justify-content-center document-print-container">
 
         <div class="col-12 col-md-10 document-container">
             <div class="card shadow document">
@@ -118,7 +118,7 @@
                                 <hr class="hide-if-overdue">
                             @endif
 
-                            <dl class="row project-details">
+                            <dl class="row project-details {{ ($activity->isOverdue()) ? 'overdue' : '' }}">
                                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.owner') }}</dt>
                                 <dd class="col-12 col-sm-9 col-xl-10">
                                     {!! $activity->owner->iconAndName() !!}
@@ -131,6 +131,14 @@
                                     <hr>
                                 </dd>
 
+                                @if($activity->completed)
+                                    <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.completed') }}</dt>
+                                    <dd class="col-12 col-sm-9 col-xl-10">
+                                        {{ App\format_date($activity->completed_at) }}
+                                        <hr>
+                                    </dd>
+                                @endif
+
                                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">
                                     <a href="{{ $participantRoute }}">{{ __('activity.participants') }}</a>
                                 </dt>
@@ -142,6 +150,7 @@
                                         <em class="text-muted">{{ __('activity.noParticipants') }}</em>
                                     @endforelse
                                 </dd>
+
 
                             </dl>
 
