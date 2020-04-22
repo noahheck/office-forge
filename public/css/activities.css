@@ -56,6 +56,10 @@
   font-weight: bold;
 }
 
+.task--completed-indicator {
+  color: #38c172;
+}
+
 /*.project--tasks {
 
     @include media-breakpoint-up(md) {
@@ -103,7 +107,7 @@
 }
 
 .project--task-list .task .project--task--due-date {
-  font-size: 0.9em;
+  font-size: 0.8rem;
 }
 
 .project--task-list .task.overdue .calendar-icon,
@@ -122,13 +126,19 @@
 }
 
 .project--task-list.completed-tasks {
-  font-size: 0.9em;
+  font-size: 0.8rem;
+}
+
+.project--task-list.completed-tasks a .task-attributes,
+.project--task-list.completed-tasks a .task-title,
+.project--task-list.completed-tasks a:hover .task-attributes,
+.project--task-list.completed-tasks a:hover .task-title {
+  color: #666;
 }
 
 .project--task-list.completed-tasks a .task-title,
 .project--task-list.completed-tasks a:hover .task-title {
   text-decoration: line-through;
-  color: #666;
 }
 
 .task .task-details {

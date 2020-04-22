@@ -68,6 +68,10 @@
     font-weight: bold;
 }
 
+.task--completed-indicator {
+    color: $green;
+}
+
 /*.project--tasks {
 
     @include media-breakpoint-up(md) {
@@ -117,7 +121,7 @@
         }
 
         .project--task--due-date {
-            font-size: .9em;
+            font-size: .8rem;
         }
 
         &.overdue {
@@ -147,14 +151,18 @@
 
     &.completed-tasks {
 
-        font-size: .9em;
+        font-size: .8rem;
 
         a,
         a:hover {
 
+            .task-attributes,
+            .task-title {
+                color: $dark-gray;
+            }
+
             .task-title {
                 text-decoration: line-through;
-                color: $dark-gray;
             }
         }
     }

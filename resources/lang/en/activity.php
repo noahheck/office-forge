@@ -21,6 +21,7 @@ return [
     'name' => 'Name',
     'owner' => 'Owner',
     'completed' => 'Completed',
+    'completedBy' => 'Completed By',
     'private' => 'Private',
     'details' => 'Details',
 

@@ -20,6 +20,7 @@ class Task extends Model implements HasDueDateInterface
 
     protected $dates = [
         'due_date',
+        'completed_at',
     ];
 
     protected $casts = [
