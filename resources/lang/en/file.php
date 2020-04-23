@@ -28,6 +28,7 @@ return [
 
 
     'myFiles' => 'My Files',
+    'myFilesDescription' => 'My Files is a list of Files you want quick access to right from your Home Screen. Add Files to this list that you work with most often to access them anytime!',
     'addToMyFiles' => 'Add To My Files',
     'removeFromMyFiles' => 'Remove From My Files',
     'inMyFiles' => 'In My Files',

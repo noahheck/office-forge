@@ -100,8 +100,8 @@
                     @empty
 
                         <div class="empty-resource border p-3">
-                            <span class="fas fa-project-diagram empty-resource-icon"></span>
-                            <p>{{ __('activity.description') }}</p>
+                            <span class="fas fa-folder-open empty-resource-icon"></span>
+                            <p>{{ __('file.myFilesDescription') }}</p>
                         </div>
 
                     @endforelse

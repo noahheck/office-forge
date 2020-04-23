@@ -13831,6 +13831,12 @@ trix-editor:empty:not(:focus)::before {
   font-size: 9rem;
 }
 
+.thumbnail {
+  max-width: 200px;
+  max-height: 200px;
+  max-width: 100%;
+}
+
 .notifications {
   position: fixed;
   top: 15px;
