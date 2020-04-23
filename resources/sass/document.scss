@@ -2,8 +2,13 @@
  * sass/document.scss
  */
 
+@import "mixins";
+
 .document-container {
-    max-width: 800px;
+
+    @include media-breakpoint-up(xl) {
+        max-width: 800px;
+    }
 
     .document {
 

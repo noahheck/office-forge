@@ -2,8 +2,14 @@
  * sass/document.scss
  */
 
-.document-container {
-  max-width: 800px;
+/**
+ * sass/_mixins.scss
+ */
+
+@media (min-width: 1200px) {
+  .document-container {
+    max-width: 800px;
+  }
 }
 
 @media print {
