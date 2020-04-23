@@ -13,10 +13,9 @@ class FileType extends Model
     use SoftDeletes,
         GrantsAccessByTeamMembership;
 
-    const DEFAULT_ICON = 'fas fa-star';
+    const DEFAULT_ICON = 'fas fa-address-book';
 
     const ICON_OPTIONS = [
-        'Star' => 'fas fa-star',
         'Addresses' => 'fas fa-address-book',
         'Archive' => 'fas fa-archive',
         'Asterisk' => 'fas fa-asterisk',

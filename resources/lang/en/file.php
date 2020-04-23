@@ -27,6 +27,12 @@ return [
     'error_unableToAccessFileType' => 'You are unable to access these files',
 
 
+    'myFiles' => 'My Files',
+    'addToMyFiles' => 'Add To My Files',
+    'removeFromMyFiles' => 'Remove From My Files',
+    'inMyFiles' => 'In My Files',
+
+
     'forms' => 'Forms',
     'form' => 'Form',
     'form_name' => 'Name',

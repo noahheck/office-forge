@@ -58,6 +58,11 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
     });
 
+    Route::post('/my-files/add/{file}', 'MyFilesController@addToMyFiles')->name('add-to-my-files');
+    Route::post('/my-files/remove/{file}', 'MyFilesController@removeFromMyFiles')->name('remove-from-my-files');
+
+
+
     // My Settings
     Route::namespace('Settings')->prefix('/settings')->name('my-settings.')->group(function() {
 

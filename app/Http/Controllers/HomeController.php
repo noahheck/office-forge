@@ -30,7 +30,7 @@ class HomeController extends Controller
 
         $activities = $activityProvider->getOpenActivitiesForUser($user);
 
-        $activities->load('tasks');
+        $activities->load('tasks', 'owner', 'owner.headshots');
 
         $processOptions = Process::where('file_type_id', null)->get();
 
@@ -41,6 +41,10 @@ class HomeController extends Controller
             return $process->canBeCreatedBy($user);
         });
 
-        return $this->view('home', compact('activities', 'user', 'processOptions'));
+        $myFiles = $user->myFiles;
+
+        $myFiles->load('headshots', 'fileType');
+
+        return $this->view('home', compact('activities', 'user', 'processOptions', 'myFiles'));
     }
 }

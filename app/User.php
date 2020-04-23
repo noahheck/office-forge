@@ -111,6 +111,15 @@ class User extends Authenticatable implements Headshottable
     }
 
 
+    public function myFiles()
+    {
+        return $this->belongsToMany(File::class, "my_files")->withTimestamps()->orderBy('name');
+    }
+
+    public function inMyFiles(File $file)
+    {
+        return $this->myFiles->contains($file);
+    }
 
 
 

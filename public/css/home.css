@@ -14,12 +14,14 @@
   margin-right: 4px;
 }
 
-.activities-panel .card-body {
-  min-height: 400px;
-  overflow-y: auto;
+.home--panel {
+  margin-bottom: 10px;
 }
 
-.activities-panel .activities {
+.home--panel .card-body {
+  max-height: 75vh;
+  overflow-y: auto;
   margin-bottom: 20px;
+  min-height: 400px;
 }
 

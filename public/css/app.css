@@ -13823,6 +13823,10 @@ trix-editor:empty:not(:focus)::before {
   display: inline-block;
 }
 
+.file-icon {
+  font-size: 3rem;
+}
+
 .file-icon.file-thumbnail {
   font-size: 9rem;
 }

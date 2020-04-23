@@ -137,6 +137,10 @@ class FileController extends Controller
             return redirect()->route('files.index');
         }
 
+        $user->load('myFiles');
+
+        $inMyFiles = $user->inMyFiles($file);
+
         $fileType = $file->fileType;
 
         $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
@@ -174,7 +178,7 @@ class FileController extends Controller
         $activities->load('owner', 'owner.headshots', 'tasks');
 
 
-        return $this->view('files.show', compact('file', 'fileType', 'forms', 'panels', 'processesToCreate', 'values', 'activities', 'activityView'));
+        return $this->view('files.show', compact('file', 'inMyFiles', 'fileType', 'forms', 'panels', 'processesToCreate', 'values', 'activities', 'activityView'));
     }
 
     /**

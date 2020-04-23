@@ -5,17 +5,13 @@
 @import "variables";
 @import "_component/activity";
 
-.activities-panel {
+.home--panel {
+    margin-bottom: 10px;
 
     .card-body {
-        min-height: 400px;
+        max-height: 75vh;
         overflow-y: auto;
-    }
-
-    .activities {
         margin-bottom: 20px;
+        min-height: 400px;
     }
-
-
-
 }

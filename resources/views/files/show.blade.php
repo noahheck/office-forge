@@ -36,8 +36,48 @@
                     <hr>
 
                     <div class="text-center">
+
+                        @if($inMyFiles)
+
+                            <form action="{{ route("remove-from-my-files", [$file]) }}" method="POST">
+                                @csrf
+                                <div class="dropdown">
+
+                                    <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="fas fa-star mr-2" style="color: gold;"></span>{{ __('file.inMyFiles') }}
+                                    </button>
+
+                                    <div class="dropdown-menu">
+                                        <button type="submit" class="dropdown-item">
+                                            <span class="fas fa-times mr-2"></span>{{ __('file.removeFromMyFiles') }}
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                        @else
+
+                            <form action="{{ route("add-to-my-files", [$file]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-light">
+                                    <span class="far fa-star mr-2"></span>{{ __('file.addToMyFiles') }}
+                                </button>
+                            </form>
+
+                        @endif
+
+                    </div>
+
+
+
+
+                    <hr>
+
+                    <div class="text-center">
                         <a class="btn btn-primary" href="{{ route('files.edit', [$file]) }}">
-                            <span class="fas fa-edit mr-2"></span>{{ __('app.edit') }} {{ $fileType->name }}</a>
+                            <span class="fas fa-edit mr-2"></span>{{ __('app.edit') }} {{ $fileType->name }}
+                        </a>
                     </div>
                 </div>
             </div>

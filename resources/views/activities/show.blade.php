@@ -99,10 +99,12 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <button class="btn btn-secondary disabled btn-sm no-print" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyActivityOwnerCanEdit') }}">
-                                            <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
-                                        </button>
-                                        <span class="sr-only">{{ __('activity.onlyActivityOwnerCanEdit') }}</span>
+                                        @unless($activity->completed)
+                                            <button class="btn btn-secondary disabled btn-sm no-print" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyActivityOwnerCanEdit') }}">
+                                                <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                            </button>
+                                            <span class="sr-only">{{ __('activity.onlyActivityOwnerCanEdit') }}</span>
+                                        @endunless
                                     </div>
                                 @endcan
                             </div>
