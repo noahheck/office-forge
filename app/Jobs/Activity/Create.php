@@ -106,6 +106,7 @@ class Create
                 $task->process_task_id = $taskTemplate->id;
                 $task->title = $taskTemplate->name;
                 $task->process_task_details = $taskTemplate->details;
+                $task->order = $taskTemplate->order;
 
                 $task->activity_id = $activity->id;
                 $task->created_by = $this->creator->id;

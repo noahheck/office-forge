@@ -11,7 +11,11 @@
     .card-body {
         max-height: 75vh;
         overflow-y: auto;
-        margin-bottom: 20px;
         min-height: 400px;
+
+        .list-group {
+            margin-bottom: 20px;
+        }
+
     }
 }

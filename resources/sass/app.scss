@@ -96,10 +96,6 @@
 
     -webkit-transition: padding .2s, margin .2s;
     transition: padding .2s, margin .2s;
-
-    @include media-breakpoint-down(sm) {
-        padding-top: 60px;
-    }
 }
 
 

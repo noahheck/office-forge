@@ -21,7 +21,10 @@
 .home--panel .card-body {
   max-height: 75vh;
   overflow-y: auto;
-  margin-bottom: 20px;
   min-height: 400px;
+}
+
+.home--panel .card-body .list-group {
+  margin-bottom: 20px;
 }
 
