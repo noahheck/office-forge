@@ -6,7 +6,13 @@ $__context = $context ?? false;
     <div class="d-flex">
 
         <span class="flex-grow-1">
-            <span class="far fa-{{ $activity->completed ? 'check-' : '' }}square mr-2"></span><strong class="activity-name">{{ $activity->name }}</strong>
+            <span class="far fa-{{ $activity->completed ? 'check-' : '' }}square mr-1"></span>
+            <strong class="activity-name">
+                @if ($__process_name = $activity->process_name)
+                    <span class="fas fa-clipboard-list mr-2"></span>{{ $__process_name }} -
+                @endif
+                {{ $activity->name }}
+            </strong>
         </span>
         @if ($__owner = $activity->owner)
             <span class="flex-grow-0">
@@ -16,10 +22,6 @@ $__context = $context ?? false;
     </div>
 
     <div class="activity-details">
-        @if ($__process_name = $activity->process_name)
-            <span class="fas fa-clipboard-list mr-2"></span><strong>{{ $__process_name }}</strong>
-            <br>
-        @endif
         @if ($__context !== 'file' && $__file = $activity->file)
             {!! $__file->icon(['mhw-25p']) !!} {{ $__file->name }}
             <br>
