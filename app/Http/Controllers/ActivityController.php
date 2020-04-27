@@ -7,6 +7,7 @@ use App\Activity\Task;
 use App\File;
 use App\Jobs\Activity\Complete;
 use App\Jobs\Activity\Create;
+use App\Jobs\Activity\Delete;
 use App\Jobs\Activity\Tasks\UpdateOrder;
 use App\Jobs\Activity\Uncomplete;
 use App\Jobs\Activity\Update;
@@ -224,9 +225,19 @@ class ActivityController extends Controller
      * @param  \App\Activity  $activity
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Activity $activity)
+    public function destroy(Request $request, Activity $activity)
     {
-        //
+        if (!$request->user()->can('delete', $activity)) {
+            flash_error(__('activity.error_unableToEditActivity'));
+
+            return redirect()->route('activities.show', $activity);
+        }
+
+        $this->dispatchNow($activityDeleted = new Delete($activity, $request->user()));
+
+        \App\flash_info(__('activity.activityDeleted'));
+
+        return redirect()->route('home');
     }
 
 

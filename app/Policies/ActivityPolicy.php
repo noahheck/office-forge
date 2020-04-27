@@ -70,7 +70,22 @@ class ActivityPolicy
      */
     public function delete(User $user, Activity $activity)
     {
-        //
+        if (!$activity->id) {
+
+            return false;
+        }
+
+        if ($user->isAdministrator()) {
+
+            return true;
+        }
+
+        if ($activity->owner_id == $user->id) {
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

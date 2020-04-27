@@ -1,11 +1,9 @@
 <?php
 
-namespace App\Jobs\Activity\Task;
+namespace App\Jobs\Activity;
 
 use App\Activity;
-use App\Activity\Task;
 use App\User;
-use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -13,11 +11,7 @@ class Delete
 {
     use Dispatchable, Queueable;
 
-    /**
-     * @var Task
-     */
-    private $task;
-
+    private $activity;
     private $deletedBy;
 
     /**
@@ -25,9 +19,9 @@ class Delete
      *
      * @return void
      */
-    public function __construct(Task $task, User $deletedBy)
+    public function __construct(Activity $activity, User $deletedBy)
     {
-        $this->task = $task;
+        $this->activity = $activity;
         $this->deletedBy = $deletedBy;
     }
 
@@ -38,6 +32,6 @@ class Delete
      */
     public function handle()
     {
-        $this->task->delete();
+        $this->activity->delete();
     }
 }

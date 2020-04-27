@@ -79,7 +79,7 @@
 
             <div>
                 <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
-                    More Options
+                    {{ __('app.moreOptions') }}
                     <span class="fas fa-chevron-down"></span>
                 </button>
             </div>

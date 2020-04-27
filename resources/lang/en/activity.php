@@ -7,15 +7,20 @@ return [
 
     'newActivity' => 'New Activity',
     'editActivity' => 'Edit Activity',
+    'deleteActivity' => 'Delete Activity',
+    'deleteActivityForGood' => 'Delete this Activity for good',
 
     'complete' => 'Complete',
     'reopen' => 'Reopen',
+
+
 
     'openActivities' => 'Open Activities',
     'allActivities' => 'All Activities',
 
     'activityCreated' => 'Activity Created',
     'activityUpdated' => 'Activity Updated',
+    'activityDeleted' => 'Activity Deleted',
 
     'dueDate' => 'Due Date',
     'name' => 'Name',

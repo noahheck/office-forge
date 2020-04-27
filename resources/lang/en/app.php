@@ -16,6 +16,7 @@ return [
 
     'itemUpdated' => ':itemName updated',
     'options' => 'Options',
+    'moreOptions' => 'More Options',
 
 
     'showNavigationMenu' => 'Show Navigation Menu',
