@@ -132,13 +132,14 @@
                         <hr>
                     @endif
 
-                    <strong>{{ __('process.creatingTeams') }}</strong>
 
-                    <br>
-
-                    @foreach ($process->creatingTeams as $team)
+                    @forelse ($process->creatingTeams as $team)
 
                         @if ($loop->first)
+                            <strong>{{ __('process.creatingTeams') }}</strong>
+
+                            <br>
+
                             <ul class="list-group">
                         @endif
 
@@ -150,7 +151,11 @@
                             </ul>
                         @endif
 
-                    @endforeach
+                    @empty
+
+                        {{ __('process.teamsUnrestrictedDescription') }}
+
+                    @endforelse
 
                 </div>
             </div>

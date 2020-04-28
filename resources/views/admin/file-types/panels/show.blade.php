@@ -52,9 +52,10 @@
 
                     <hr>
 
-                    <strong>{{ __('file.panel_teamAccessApproval') }}</strong>
 
                     @if ($panel->teams->count() > 0)
+
+                        <strong>{{ __('file.panel_teamAccessApproval') }}</strong>
 
                         <p>{{ __('file.panel_teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">

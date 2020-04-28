@@ -56,7 +56,22 @@ class TaskPolicy
      */
     public function update(User $user, Task $task)
     {
-        return $task->activity->canHaveTasksEditedBy($user);
+        if ($user->isAdministrator()) {
+
+            return true;
+        }
+
+        if ($task->assigned_to == $user->id) {
+
+            return true;
+        }
+
+        if ($task->activity->owner_id == $user->id) {
+
+            return true;
+        }
+
+        return false;
     }
 
     /**

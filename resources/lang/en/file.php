@@ -39,9 +39,9 @@ return [
     'form_name' => 'Name',
     'form_nameExamples' => 'Contact Information, References, Insurance, etc...',
     'form_teamAccessApproval' => 'Team Access Approval',
-    'form_teamAccessApprovalDescription' => 'This form will only be accessible by members of these teams. If no teams are selected, this form will not be accessible by any of your staff.',
+    'form_teamAccessApprovalDescription' => 'This form will only be accessible by members of these teams. If no teams are selected, this form will be accessible by all of your staff.',
     'form_teamAccessApprovalShortDescription' => 'This form is only accessible by members of these teams.',
-    'form_unrestrictedDescription' => 'This form has not been approved for access by any teams. It will not be accessible by any of your staff.',
+    'form_unrestrictedDescription' => 'This form is accessible by all of your staff.',
     'form_active' => 'Active',
     'form_activeDescription' => 'Forms marked inactive will not appear on the File page for any files. You can re-activate a form if necessary; No data will be lost.',
     'form_noFormsToView' => "You don't have access to any Forms for this file.",
@@ -112,9 +112,9 @@ return [
     'panel_name' => 'Name',
     'panel_nameExamples' => 'Contact Information, References, Insurance, etc...',
     'panel_teamAccessApproval' => 'Team Access Approval',
-    'panel_teamAccessApprovalDescription' => 'This panel will only be accessible by members of these teams. If no teams are selected, this panel will not be accessible by any of your staff.',
+    'panel_teamAccessApprovalDescription' => 'This panel will only be accessible by members of these teams. If no teams are selected, this panel will be accessible by all of your staff.',
     'panel_teamAccessApprovalShortDescription' => 'This panel is only accessible by members of these teams.',
-    'panel_unrestrictedDescription' => 'This panel has not been approved for access by any teams. It will not be accessible by any of your staff.',
+    'panel_unrestrictedDescription' => 'This panel is accessible by all of your staff.',
     'panel_addField' => 'Add Field',
 
 

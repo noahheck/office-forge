@@ -20,7 +20,9 @@
     @endif
     <div class="input-group {{ ($required ?? false) ? 'required' : '' }}">
         <div class="input-group-prepend" title="{{ $fileType->name }}">
-            {!! $fileType->icon(['input-group-text']) !!}
+            <span class="input-group-text">
+                {!! $fileType->icon() !!}
+            </span>
         </div>
         <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
             @if (!($required ?? false))

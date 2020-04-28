@@ -47,9 +47,10 @@
 
                     <hr>
 
-                    <strong>{{ __('file.form_teamAccessApproval') }}</strong>
 
                     @if ($form->teams->count() > 0)
+
+                        <strong>{{ __('file.form_teamAccessApproval') }}</strong>
 
                         <p>{{ __('file.form_teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">
