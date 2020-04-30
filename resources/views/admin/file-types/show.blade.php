@@ -270,7 +270,7 @@
 
                                     <hr>
 
-                                    <a class="btn btn-primary" href="{{ route('admin.processes.create', [$fileType]) }}">{{ __('admin.process_createFirstProcessNow') }}</a>
+                                    <a class="btn btn-primary" href="{{ route('admin.processes.create', ['file_type_id' => $fileType]) }}">{{ __('admin.process_createFirstProcessNow') }}</a>
 
                                 </div>
 

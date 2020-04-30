@@ -75,7 +75,7 @@
                 @if ($task->completed)
                     <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.completed') }}</dt>
                     <dd class="col-12 col-sm-9 col-xl-10 task--due-date due-date">
-                        <span class="far fa-calendar-check mr-1 ssstask--completed-indicator"></span>{{ App\format_datetime($task->completed_at) }}
+                        <span class="far fa-calendar-check mr-1"></span>{{ App\format_datetime($task->completed_at) }}
                     </dd>
 
                     <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.completedBy') }}</dt>
@@ -88,13 +88,21 @@
 
             <hr>
 
+            @if ($task->process_task_details)
+                <div class="editor-content pr-2">
+                    {!! \App\safe_text_editor_content($task->process_task_details) !!}
+                </div>
+            @endif
+
             @if ($task->details)
                 <div class="editor-content pr-2">
                     {!! \App\safe_text_editor_content($task->details) !!}
                 </div>
-            @else
-                <em>{{ __('activity.noDetails') }}</em>
             @endif
+
+            @unless($task->process_task_details || $task->details)
+                <em>{{ __('activity.noDetails') }}</em>
+            @endunless
 
             <hr class="no-print">
 
