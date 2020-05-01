@@ -30,7 +30,7 @@
                                 {{ __('activity.activity') }}:
                             </span>
                         <a href="{{ route('activities.show', [$activity]) }}">
-                            <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                            {!! ($activity->process_id) ? \App\icon\processes(['mr-2']) : \App\icon\activities(['mr-2']) !!}{{ $activity->getFullName() }}
                         </a>
                     </h2>
 
@@ -42,15 +42,14 @@
 
                             @if ($task->completed)
                                 <span class="project--completed-indicator">
-                                    <span class="fas fa-check mr-1"></span>{{ __('activity.completed') }}
+                                    {!! \App\icon\check(['mr-1']) !!}{{ __('activity.completed') }}
                                 </span>
                             @else
                                 @can('update', $task)
                                     <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-light no-print">
-                                            <span class="far fa-square fa-lg"></span>
-                                            {{ __('activity.completeTask') }}
+                                            {!! \App\icon\uncheckedBox(['fa-lg', 'mr-1']) !!}{{ __('activity.completeTask') }}
                                         </button>
                                     </form>
                                 @endcan
@@ -66,13 +65,12 @@
                                     <form action="{{ route('activities.tasks.uncomplete', [$activity, $task]) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-light btn-sm">
-                                            <span class="fas fa-undo"></span>
-                                            {{ __('activity.reopenTask') }}
+                                            {!! \App\icon\undo(['mr-1']) !!}{{ __('activity.reopenTask') }}
                                         </button>
                                     </form>
                                 @else
                                     <a class="btn btn-sm btn-primary" href="{{ route('activities.tasks.edit', [$activity, $task]) }}" title="{{ __('activity.editTask') }}">
-                                        <span class="fas fa-edit"></span>
+                                        {!! \App\icon\edit() !!}
                                         <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('activity.task') }}</span>
                                     </a>
                                 @endif
@@ -80,7 +78,7 @@
                             @else
                                 @if (!$task->completed)
                                     <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
-                                        <span class="fas fa-edit"></span>
+                                        {!! \App\icon\edit() !!}
                                         <span class="d-none d-sm-inline">{{ __('app.edit') }} {{ __('activity.task') }}</span>
                                     </button>
                                     <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>

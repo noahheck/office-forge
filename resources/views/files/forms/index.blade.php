@@ -26,7 +26,7 @@
                     <hr>
 
                     <h2 class="h4">
-                        <span class="far fa-list-alt mr-2"></span>{{ __('file.forms') }}
+                        {{--<span class="far fa-list-alt mr-2"></span>--}}{!! \App\icon\forms(['mr-2']) !!}{{ __('file.forms') }}
                     </h2>
 
                     @if ($forms->count() > 0)

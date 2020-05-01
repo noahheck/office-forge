@@ -29,16 +29,16 @@
 
                         <h1 class="h3">
                             @if ($activity->process_id)
-                                <span class="fas fa-clipboard-list"></span> {{ $activity->process_name }} - {{ $activity->name }}
+                                {!! \App\icon\processes(['mr-2']) !!}{{ $activity->process_name }} - {{ $activity->name }}
                             @else
-                                <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                                {!! \App\icon\activities(['mr-2']) !!}{{ $activity->name }}
                             @endif
                             <small class="text-muted">#{{ $activity->id }}</small>
                         </h1>
 
                         @if ($file ?? false)
-                            <div class="d-flex align-items-center mb-2">
-                                {!! $file->icon(['mhw-35p', 'mr-3', 'ml-2']) !!}
+                            <div class="d-flex align-items-center mb-2 pl-4">
+                                {!! $file->icon(['mhw-35p', 'mr-2']) !!}
                                 <h5 class="mb-0"><a href="{{ route("files.show", [$file]) }}">{{ $file->name }}</a></h5>
                             </div>
                         @endif
@@ -56,13 +56,13 @@
 
                                         @if ($activity->completed)
                                             <span class="project--completed-indicator">
-                                                <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
+                                                {!! \App\icon\circleCheck(['mr-1']) !!}{{ __('activity.completed') }}
                                             </span>
                                         @else
                                             <form action="{{ route('activities.complete', [$activity]) }}" method="POST" class="no-print">
                                                 @csrf
                                                 <button type="submit" class="btn btn-light">
-                                                    <span class="far fa-square fa-lg"></span>
+                                                    {!! \App\icon\uncheckedBox(['fa-lg']) !!}
                                                     {{ __('activity.complete') }}
                                                 </button>
                                             </form>
@@ -76,13 +76,13 @@
                                             <form action="{{ route('activities.uncomplete', [$activity]) }}" method="POST">
                                                 @csrf
                                                 <button type="submit" class="btn btn-light btn-sm no-print">
-                                                    <span class="fas fa-undo"></span>
+                                                    {!! \App\icon\undo() !!}
                                                     {{ __('activity.reopen') }}
                                                 </button>
                                             </form>
                                         @else
                                             <a class="btn btn-primary btn-sm no-print" href="{{ route('activities.edit', [$activity]) }}">
-                                                <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('activity.editActivity') }}
                                             </a>
                                         @endif
 
@@ -92,7 +92,7 @@
                                     <div class="flex-grow-1">
                                         @if ($activity->completed)
                                             <span class="project--completed-indicator">
-                                                <span class="fas fa-check-circle"></span> {{ __('activity.completed') }}
+                                                {!! \App\icon\circleCheck() !!} {{ __('activity.completed') }}
                                             </span>
                                         @else
                                             &nbsp;
@@ -101,7 +101,7 @@
                                     <div>
                                         @unless($activity->completed)
                                             <button class="btn btn-secondary disabled btn-sm no-print" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyActivityOwnerCanEdit') }}">
-                                                <span class="fas fa-edit"></span> {{ __('activity.editActivity') }}
+                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('activity.editActivity') }}
                                             </button>
                                             <span class="sr-only">{{ __('activity.onlyActivityOwnerCanEdit') }}</span>
                                         @endunless
@@ -113,7 +113,7 @@
 
                             @if ($activity->private)
                                 <p class="text-muted">
-                                    <span class="fas fa-user-shield"></span>
+                                    {!! \App\icon\isPrivate() !!}
                                     {{ __('activity.thisActivityPrivateVisibility') }}
                                 </p>
 
@@ -136,7 +136,7 @@
                                 @if($activity->completed)
                                     <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.completed') }}</dt>
                                     <dd class="col-12 col-sm-9 col-xl-10">
-                                        {{ App\format_date($activity->completed_at) }}
+                                        {{ App\format_date($activity->completed_at) }}&nbsp;
                                         <hr>
                                     </dd>
                                 @endif
@@ -164,28 +164,28 @@
                                 </div>
 
                                 <hr>
-
                             @endif
-
 
                             @if ($activity->details)
                                 <div class="editor-content">
                                     {!! App\safe_text_editor_content($activity->details) !!}
                                 </div>
-                            @else
+                            @endif
+
+                            @unless ($activity->process_details || $activity->details)
                                 <p class="text-muted">
                                     <em>{{ __('activity.noDetails') }}</em>
                                 </p>
-                            @endif
+                            @endunless
 
 
 
 
                             <h4 class="separator">
-                                <span><span class="fas fa-tasks mr-1"></span>{{ __('activity.tasks') }}
+                                <span>{!! \App\icon\tasks(['mr-1']) !!}{{ __('activity.tasks') }}
                                     @if ($activity->tasks->count() > 0)
                                         <small class="text-muted" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
-                                            ({{ $activity->numberOfCompletedTasks() }}<span class="m-half">/</span>{{ $activity->numberOfTotalTasks() }})
+                                            ({{ $activity->numberOfCompletedTasks() }}<span class="p-half">/</span>{{ $activity->numberOfTotalTasks() }})
                                         </small>
                                     @endif
                                 </span>

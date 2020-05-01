@@ -233,7 +233,12 @@
                             <div class="d-flex">
 
                                 <h3 class="h4 flex-grow-1 mb-0">
-                                    <span class="fas fa-clipboard-list mr-2"></span>{{ __("app.processes") }}
+{{--                                    <span class="fas fa-clipboard-list mr-2"></span>--}}
+                                    <span class="fa-stack" style="font-size: .6em;">
+                                        <span class="fa-stack-2x fa-lg far fa-clipboard"></span>
+                                        <span class="fa-stack-1x fas fa-tasks"></span>
+                                    </span>
+                                    {{ __("app.processes") }}
                                 </h3>
 
                                 <a href="{{ route('admin.processes.create', ['file_type_id' => $fileType]) }}" class="btn btn-sm btn-primary">

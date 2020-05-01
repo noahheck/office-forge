@@ -80,7 +80,7 @@
             <div>
                 <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
                     {{ __('app.moreOptions') }}
-                    <span class="fas fa-chevron-down"></span>
+                    {!! \App\icon\chevronDown() !!}
                 </button>
             </div>
 
@@ -97,14 +97,14 @@
         <div class="dropdown">
 
             <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" id="deleteTaskButton">
-                <span class="far fa-trash-alt mr-1"></span>{{ __('activity.deleteTask') }}
+                {!! \App\icon\trash(['mr-1']) !!}{{ __('activity.deleteTask') }}
             </button>
 
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="deleteTaskButton">
                 <form action="{{ route("activities.tasks.destroy", [$activity, $task]) }}" method="POST">
                     @csrf @method('DELETE')
                     <button type="submit" class="dropdown-item text-danger">
-                        <span class="far fa-trash-alt"></span>
+                        {!! \App\icon\trash() !!}
                         {{ __('activity.deleteTaskForGood') }}
                     </button>
                 </form>

@@ -18,9 +18,9 @@
 
             <h1 class="h2">
                 @if ($activity->process_id)
-                    <span class="fas fa-clipboard-list"></span> {{ $activity->process_name }} - {{ $activity->name }}
+                    {!! \App\icon\processes(['mr-2']) !!}{{ $activity->getFullName() }}
                 @else
-                    <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                    {!! \App\icon\activities(['mr-2']) !!}{{ $activity->getFullName() }}
                 @endif
             </h1>
 
@@ -28,8 +28,7 @@
 
                 <div class="card-header">
                     <h4 class="mb-0">
-                        <span class="fas fa-user-friends"></span>
-                        {{ __('activity.participants') }}
+                        {!! \App\icon\participants(['mr-2']) !!}{{ __('activity.participants') }}
                     </h4>
                 </div>
 
@@ -46,11 +45,11 @@
                             @unless($activity->completed)
                                 @can('update', $activity)
                                     <a class="btn btn-primary text-nowrap" href="{{ route('activities.participants.edit', [$activity]) }}">
-                                        <span class="fas fa-edit"></span> {{ __('activity.editParticipants') }}
+                                        {!! \App\icon\edit(['mr-1']) !!}{{ __('activity.editParticipants') }}
                                     </a>
                                 @else
                                     <span class="btn btn-secondary text-nowrap disabled" title="{{ __('activity.onlyActivityOwnerCanEdit') }}">
-                                        <span class="fas fa-edit"></span> {{ __('activity.editParticipants') }}
+                                        {!! \App\icon\edit(['mr-1']) !!}{{ __('activity.editParticipants') }}
                                     </span>
                                 @endcan
                             @endunless
@@ -69,10 +68,6 @@
                             <li class="list-group-item">
                                 {!! $participant->user->iconAndName() !!}
                             </li>
-                                {{--<a class="list-group-item list-group-item-action" href="{{ route('activities.tasks.show', [$activity, $task]) }}">
-                                <span class="far {{ ($task->completed) ? 'fa-check-square' : 'fa-square' }}"></span>
-                                {{ $task->title }}
-                            </a>--}}
 
                         @if ($loop->last)
                             </ul>

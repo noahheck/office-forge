@@ -26,7 +26,7 @@
                     <hr>
 
                     <h2 class="h3">
-                        <span class="far fa-list-alt mr-2"></span>{{ $form->name }}
+                        {!! \App\icon\forms(['mr-2']) !!}{{ $form->name }}
                     </h2>
 
                     @formError

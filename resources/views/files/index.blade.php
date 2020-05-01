@@ -31,7 +31,7 @@
                 <div class="card-body">
                     <div class="text-right">
                         <a href="{{ route('files.create', ['file_type' => $fileType->id]) }}" class="btn btn-primary">
-                            <span class="fas fa-plus"></span> {{ __('app.new') }} {{ $fileType->name }}
+                            {{--<span class="fas fa-plus"></span>--}}{!! \App\icon\circlePlus(['mr-1']) !!}{{ __('app.new') }} {{ $fileType->name }}
                         </a>
                     </div>
                     <hr>
@@ -85,7 +85,7 @@
         {{-- Overview page - list the different file types the user has access to --}}
 
         <h1>
-            <span class="fas fa-folder-open mr-2"></span>{{ __('app.files') }}
+            {!! \App\icon\files(['mr-2']) !!}{{ __('app.files') }}
         </h1>
 
         <hr>

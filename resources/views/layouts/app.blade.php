@@ -104,13 +104,13 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
                             <span class="fas fa-plus-circle"></span> <span class="sr-only">Create New</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="addNewNavbarDropdown">
-                            <span class="dropdown-header"><span class="fa-fw fas fa-project-diagram"></span> {{ __('app.activities') }}</span>
+                            <span class="dropdown-header">{!! \App\icon\activities(['fa-fw']) !!} {{ __('app.activities') }}</span>
                             <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
 
                             @foreach ($__processesToCreate as $__process)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
-                                    <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
+                                    <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>
                                 @endif
 
                                 <a class="dropdown-item" href="{{ route('activities.create', ['process_id' => $__process->id]) }}">
@@ -121,7 +121,7 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
                             @foreach ($__fileTypesToCreate as $__fileType)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
-                                    <span class="dropdown-header"><span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}</span>
+                                    <span class="dropdown-header">{!! \App\icon\files(['fa-fw']) !!} {{ __('app.files') }}</span>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('files.create', ['file_type' => $__fileType->id]) }}">
                                     {!! $__fileType->icon(['fa-fw']) !!} {{ $__fileType->name }}
@@ -157,7 +157,7 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
         <ul>
             <li>
                 <a href="{{ route('home') }}" class="{{ ($__currentRouteName === 'home') ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-home"></span> {{ __('app.home') }}
+                    {!! \App\icon\home(['fa-fw']) !!} {{ __('app.home') }}
                 </a>
             </li>
             {{--<li>
@@ -167,12 +167,12 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
             </li>--}}
             <li>
                 <a href="{{ route('files.index') }}" class="{{ ($__isFilesRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-folder-open"></span> {{ __('app.files') }}
+                    {!! \App\icon\files(['fa-fw']) !!} {{ __('app.files') }}
                 </a>
             </li>
             <li>
                 <a href="{{ route('activities.index') }}" class="{{ ($__isActivitiesRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-project-diagram"></span> {{ __('app.activities') }}
+                    {!! \App\icon\activities(['fa-fw']) !!} {{ __('app.activities') }}
                 </a>
             </li>
             {{--<li>
@@ -182,13 +182,13 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
             </li>--}}
             <li class="divider">
                 <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-cog"></span> {{ __('app.mySettings') }}
+                    {!! \App\icon\mySettings(['fa-fw']) !!} {{ __('app.mySettings') }}
                 </a>
             </li>
             @admin
             <li>
                 <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
-                    <span class="fa-fw fas fa-cogs"></span> {{ __('app.admin') }}
+                    {!! \App\icon\adminSettings(['fa-fw']) !!} {{ __('app.admin') }}
                 </a>
             </li>
             @endadmin
@@ -199,7 +199,7 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
             </li>--}}
             <li class="divider">
                 <a href="{{ route('logout') }}">
-                    <span class="fa-fw fas fa-sign-out-alt"></span> {{ __('app.logout') }}
+                    {!! \App\icon\logOut(['fa-fw']) !!} {{ __('app.logout') }}
                 </a>
             </li>
         </ul>

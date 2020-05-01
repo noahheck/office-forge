@@ -15,7 +15,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-user-friends"></span> {{ __('activity.editParticipants') }}
+                {!! \App\icon\participants(['mr-2']) !!}{{ __('activity.editParticipants') }}
             </h1>
 
             <div class="card shadow document">

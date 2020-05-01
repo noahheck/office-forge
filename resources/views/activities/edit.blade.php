@@ -15,7 +15,11 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-project-diagram"></span> {{ __('activity.editActivity') }}
+                @if ($activity->process_id)
+                    {!! \App\icon\processes(['mr-2']) !!}{{ $activity->process_name }}{{ ($activity->name) ? ' - ' . $activity->name : '' }}
+                @else
+                    {!! \App\icon\activities(['mr-2']) !!}{{ __('activity.editActivity') }}
+                @endif
             </h1>
 
             <div class="card shadow document">

@@ -9,13 +9,13 @@
                     <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
                         @csrf
                         <button type="submit" class="btn btn-sm btn-light" data-toggle="tooltip" data-delay='{"show":300}' data-placement="bottom" title="{{ __('activity.completeTask') }}">
-                            <span class="far fa-square fa-lg"></span>
+                            {!! \App\icon\uncheckedBox(['fa-lg']) !!}
                             <span class="sr-only">{{ __('activity.completeTask') }}</span>
                         </button>
                     </form>
                 @endcan
             @else
-                <span class="far fa-check-square"></span>
+                {!! \App\icon\checkedBox() !!}
             @endif
         </div>
 
@@ -28,14 +28,14 @@
                     {!! $task->assignedTo->icon() !!}
                 @endif
                 @if ($task->details)
-                    <span class="fas fa-align-left"></span>
+                    {!! \App\icon\text() !!}
                 @endif
                 @if ($task->due_date)
-                    <span class="project--task--due-date"><span class="far fa-calendar-alt calendar-icon"></span> {{ App\format_date($task->due_date) }}</span>
+                    <span class="project--task--due-date">{!! \App\icon\calendar(['calendar-icon', 'mr-1']) !!}{{ App\format_date($task->due_date) }}</span>
                 @endif
                 @if ($task->completed)
                     <span title="{{ __('activity.completed') }} {{ \App\format_datetime($task->completed_at) }}">
-                        <span class="far fa-calendar-check mr-1"></span>{{ \App\format_date($task->completed_at) }}
+                        {!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_date($task->completed_at) }}
                     </span>
                 @endif
             </div>
@@ -45,7 +45,7 @@
         @if (!$task->completed)
             @can('update', $activity)
                 <div class="pr-3 pl-2">
-                    <span class="sort-handle fas fa-arrows-alt-v"></span>
+                    {!! \App\icon\verticalSort(['sort-handle']) !!}
                 </div>
             @endcan
         @endif
@@ -67,7 +67,7 @@
                 <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.taskDueDate') }}</dt>
                 <dd class="col-12 col-sm-9 col-xl-10 task--due-date due-date">
                     @if ($task->due_date)
-                        <span class="far fa-calendar-alt mr-1"></span>{{ App\format_date($task->due_date) }}
+                    {!! \App\icon\calendar(['mr-1']) !!}{{ App\format_date($task->due_date) }}
                     @endif
                     &nbsp;
                 </dd>
@@ -75,7 +75,7 @@
                 @if ($task->completed)
                     <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.completed') }}</dt>
                     <dd class="col-12 col-sm-9 col-xl-10 task--due-date due-date">
-                        <span class="far fa-calendar-check mr-1"></span>{{ App\format_datetime($task->completed_at) }}
+                        {!! \App\icon\calendarCheck(['mr-1']) !!}{{ App\format_datetime($task->completed_at) }}
                     </dd>
 
                     <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.completedBy') }}</dt>
@@ -110,7 +110,7 @@
 
                 <div class="flex-grow-1">
                     <a href="{{ route('activities.tasks.show', [$activity, $task]) }}" class="btn btn-link btn-sm">
-                        {{ __('activity.viewTask') }}<span class="far fa-arrow-alt-circle-right ml-1"></span>
+                        {{ __('activity.viewTask') }}{!! \App\icon\go(['ml-1']) !!}
                     </a>
                 </div>
 
@@ -119,7 +119,7 @@
                     @if (!$task->completed)
                         @can('update', $task)
                             <a href="{{ route('activities.tasks.edit', [$activity, $task]) }}" class="btn btn-sm btn-primary">
-                                <span class="fas fa-edit mr-1"></span>{{ __('app.edit') }}</a>
+                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}</a>
                         @endcan
                     @endif
 

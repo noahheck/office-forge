@@ -6,6 +6,7 @@ use App\Utility\RandomColorGenerator;
 use Illuminate\Support\Str;
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/strings.php";
+require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/icons.php";
 
 function flash_message($category, $message) {
     return \Session::push($category, $message);

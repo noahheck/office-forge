@@ -26,6 +26,15 @@ class Activity extends Model
         'completed' => 'boolean',
     ];
 
+    public function getFullName()
+    {
+        $name = $this->process_name;
+        $name .= ($name && $this->name) ? ' - ' : '';
+        $name .= $this->name;
+
+        return $name;
+    }
+
     public function isAccessibleBy(User $user)
     {
         // System administrators can view all Activities

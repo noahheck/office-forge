@@ -25,7 +25,7 @@
 
                 <div class="col-10 border p-3 m-2 mb-4 shadow" style="font-size: .8rem;">
 
-                    <h4><span class="far fa-check-square mr-1"></span>{{ __('activity.newTask') }}</h4>
+                    <h4>{!! \App\icon\checkedBox(['mr-1']) !!}{{ __('activity.newTask') }}</h4>
 
                     <hr>
 
@@ -42,7 +42,7 @@
 
         <p class="no-print collapse show" id="newTaskShowButtonContainer">
             <a id="newTaskContainerToggleButton" class="btn btn-sm btn-primary" href="{{ route('activities.tasks.create', [$activity]) }}" data-toggle="collapse" data-target="#newTaskContainer, #newTaskShowButtonContainer">
-                <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
+                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('activity.addTask') }}
             </a>
         </p>
 
@@ -50,7 +50,7 @@
 
         <p class="no-print">
             <button class="btn btn-sm btn-secondary disabled" data-trigger="hover focus" data-toggle="popover" data-content="{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}">
-                <span class="fas fa-plus-circle"></span> {{ __('activity.addTask') }}
+                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('activity.addTask') }}
             </button>
             <span class="sr-only">{{ __('activity.onlyOwnerAndParticipantsCanEditTasks') }}</span>
         </p>
@@ -61,7 +61,7 @@
     @foreach ($activity->completedTasks as $task)
 
         @if ($loop->first)
-            <h5 class="separator"><span>{{ __('activity.completedTasks') }}</span></h5>
+            <h5 class="separator"><span>{!! \App\icon\check(['mr-1', 'fa-sm']) !!}{{ __('activity.completedTasks') }}</span></h5>
         @endif
 
         @include("activities._task")

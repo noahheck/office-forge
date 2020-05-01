@@ -15,7 +15,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-tasks"></span> {{ __('activity.newTask') }}
+                {!! \App\icon\tasks(['mr-2']) !!}{{ __('activity.newTask') }}
             </h1>
 
             <div class="card shadow document">

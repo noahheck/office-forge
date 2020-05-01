@@ -16,9 +16,9 @@
 
             <h1>
                 @if ($process)
-                    <span class="fas fa-clipboard-list mr-2"></span>{{ $process->name }}
+                    {!! \App\icon\processes(['mr-2']) !!}{{ $process->name }}
                 @else
-                    <span class="fas fa-project-diagram mr-2"></span>{{ __('activity.newActivity') }}
+                    {!! \App\icon\activities(['mr-2']) !!}{{ __('activity.newActivity') }}
                 @endif
             </h1>
 

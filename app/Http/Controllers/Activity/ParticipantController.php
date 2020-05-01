@@ -17,7 +17,7 @@ class ParticipantController extends Controller
     {
         $participants = $activity->participants;
 
-        if ($participants->count() < 1) {
+        if ($participants->count() < 1 && $request->user()->can('update', $activity)) {
 
             return redirect()->route('activities.participants.edit', [$activity]);
         }

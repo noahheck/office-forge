@@ -23,17 +23,17 @@
 
                     <h2 class="h6 overflow-x-ellipsis">
                         <a href="{{ route('activities.show', [$activity]) }}">
-                        <span class="fas fa-project-diagram"></span> {{ $activity->name }}
+                            {!! ($activity->process_id) ? \App\icon\processes(['mr-2']) : \App\icon\activities(['mr-2']) !!}{{ $activity->getFullName() }}
                         </a>
                     </h2>
 
                     <hr>
 
                     <h3>
-                        <span class="far fa-check-square mr-2"></span>{{ __('activity.tasks') }}
+                        {!! \App\icon\checkedBox(['mr-2']) !!}{{ __('activity.tasks') }}
                         @if ($activity->tasks->count() > 0)
                             <small class="text-muted" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
-                                ({{ $activity->numberOfCompletedTasks() }}<span class="m-half">/</span>{{ $activity->numberOfTotalTasks() }})
+                                ({{ $activity->numberOfCompletedTasks() }}<span class="p-half">/</span>{{ $activity->numberOfTotalTasks() }})
                             </small>
                         @endif
                     </h3>

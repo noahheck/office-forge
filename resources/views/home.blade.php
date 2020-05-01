@@ -17,7 +17,7 @@
 
             <div class="shadow card home--panel activities-panel">
                 <div class="card-header d-flex">
-                    <h4 class="mb-0 flex-grow-1"><span class="fas fa-briefcase mr-1"></span>My Work</h4>
+                    <h4 class="mb-0 flex-grow-1">{!! \App\icon\myWork(['mr-1']) !!}My Work</h4>
                     <div class="dropdown">
                         <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="fas fa-plus-circle"></span>
@@ -28,7 +28,7 @@
                             @foreach ($processOptions as $__process)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
-                                    <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
+                                    <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('activities.create', ['process_id' => $__process->id]) }}">
                                     {{ $__process->name }}
@@ -57,7 +57,7 @@
                     @empty
 
                         <div class="empty-resource border p-3">
-                            <span class="fas fa-project-diagram empty-resource-icon"></span>
+                            {!! \App\icon\activities(['empty-resource-icon']) !!}
                             <p>{{ __('activity.description') }}</p>
                         </div>
 
@@ -72,7 +72,7 @@
 
             <div class="shadow card home--panel my-files-panel">
                 <div class="card-header">
-                    <h4 class="mb-0 flex-grow-1"><span class="fas fa-folder-open mr-1"></span>{{ __('file.myFiles') }}</h4>
+                    <h4 class="mb-0 flex-grow-1">{!! \App\icon\files(['mr-1']) !!}{{ __('file.myFiles') }}</h4>
                 </div>
                 <div class="card-body">
                     @forelse ($myFiles as $file)
@@ -100,7 +100,7 @@
                     @empty
 
                         <div class="empty-resource border p-3">
-                            <span class="fas fa-folder-open empty-resource-icon"></span>
+                            {!! \App\icon\files(['empty-resource-icon']) !!}
                             <p>{{ __('file.myFilesDescription') }}</p>
                         </div>
 

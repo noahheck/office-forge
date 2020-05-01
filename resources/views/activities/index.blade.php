@@ -12,12 +12,12 @@
 
     <div class="float-right">
         <a href="{{ route('activities.create') }}" class="btn btn-primary">
-            <span class="fas fa-plus-circle"></span> {{ __('activity.newActivity') }}
+            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('activity.newActivity') }}
         </a>
     </div>
 
     <h1>
-        <span class="fas fa-project-diagram"></span> {{ __('app.activities') }}
+        {!! \App\icon\activities(['mr-2']) !!}{{ __('app.activities') }}
     </h1>
 
 
@@ -121,7 +121,7 @@
             @empty
 
                 <div class="empty-resource border p-3">
-                    <span class="fas fa-project-diagram empty-resource-icon"></span>
+                    {!! \App\icon\activities(['empty-resource-icon']) !!}
                     <p>{{ __('activity.description') }}</p>
                 </div>
 

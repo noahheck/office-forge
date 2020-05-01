@@ -44,7 +44,7 @@
                                 <div class="dropdown">
 
                                     <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="fas fa-star mr-2" style="color: gold;"></span>{{ __('file.inMyFiles') }}
+                                        {!! \App\icon\inMyFiles(['mr-2']) !!}{{ __('file.inMyFiles') }}
                                     </button>
 
                                     <div class="dropdown-menu">
@@ -61,7 +61,7 @@
                             <form action="{{ route("add-to-my-files", [$file]) }}" method="POST">
                                 @csrf
                                 <button type="submit" class="btn btn-light">
-                                    <span class="far fa-star mr-2"></span>{{ __('file.addToMyFiles') }}
+                                    {!! \App\icon\notInMyFiles(['mr-2']) !!}{{ __('file.addToMyFiles') }}
                                 </button>
                             </form>
 
@@ -76,7 +76,7 @@
 
                     <div class="text-center">
                         <a class="btn btn-primary" href="{{ route('files.edit', [$file]) }}">
-                            <span class="fas fa-edit mr-2"></span>{{ __('app.edit') }} {{ $fileType->name }}
+                            {!! \App\icon\edit(['mr-2']) !!}{{ __('app.edit') }} {{ $fileType->name }}
                         </a>
                     </div>
                 </div>
@@ -105,7 +105,7 @@
 
                 <div class="card shadow panels mb-3">
                     <div class="card-header">
-                        <h4 class="mb-0"><span class="fas fa-th-list mr-2"></span>{{ __('file.details') }}</h4>
+                        <h4 class="mb-0">{!! \App\icon\fileDetails(['mr-2']) !!}{{ __('file.details') }}</h4>
                     </div>
                     <div class="card-body">
 
@@ -124,7 +124,7 @@
                                 <div class="tab-content panels-content" id="panelsContent">
                                     @foreach ($panels as $panel)
                                         <div class="panel-fields tab-pane @if ($loop->first) show active @endif" id="panel_panel_{{ $panel->id }}" role="tabpanel" aria-labelledby="panel_tab_{{ $panel->id }}">
-                                            <h4><span class="fas fa-th-list mr-2"></span>{{ $panel->name }}</h4>
+                                            <h4>{!! \App\icon\fileDetails(['mr-2']) !!}{{ $panel->name }}</h4>
 
                                             <hr>
 
@@ -157,7 +157,7 @@
             {{-- Activities Panel --}}
             <div class="card shadow activities-card">
                 <div class="card-header d-flex">
-                    <h4 class="mb-0 flex-grow-0"><span class="fas fa-project-diagram mr-2"></span>{{ __('app.activities') }}</h4>
+                    <h4 class="mb-0 flex-grow-0">{!! \App\icon\activities(['mr-2']) !!}{{ __('app.activities') }}</h4>
                     <div class="d-flex flex-grow-1">
                         <div class="dropdown flex-grow-1 ml-3">
                             <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="showActivitiesDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -173,7 +173,7 @@
 
                                 @endswitch
                             </button>
-                            <div class="dropdown-menu sssdropdown-menu-right" aria-labelledby="showActivitiesDropdownMenuButton">
+                            <div class="dropdown-menu" aria-labelledby="showActivitiesDropdownMenuButton">
 
                                 @switch($activityView)
 
@@ -199,7 +199,7 @@
                                 @foreach ($processesToCreate as $__process)
                                     @if ($loop->first)
                                         <div class="dropdown-divider"></div>
-                                        <span class="dropdown-header"><span class="fa-fw fas fa-clipboard-list"></span> {{ __('app.processes') }}</span>
+                                        <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>
                                     @endif
 
                                     <a class="dropdown-item" href="{{ route('activities.create', ['file_id' => $file->id, 'process_id' => $__process->id]) }}">
@@ -232,7 +232,7 @@
                     @empty
 
                         <div class="empty-resource border p-3">
-                            <span class="fas fa-project-diagram empty-resource-icon"></span>
+                            {!! \App\icon\activities(['empty-resource-icon']) !!}
                             <p>{{ __('activity.description') }}</p>
                         </div>
 
