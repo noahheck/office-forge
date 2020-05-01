@@ -28,7 +28,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="far fa-list-alt mr-2"></span>{{ $form->name }}
+                        {!! \App\icon\forms(['mr-2']) !!}{{ $form->name }}
                     </h2>
 
                     <hr>
@@ -36,11 +36,15 @@
                     <div class="d-flex justify-content-between">
 
                         <span>
-                            <span class="far fa-{{ $form->active ?? false ? 'check-' : '' }}square mr-1"></span>{{ __('file.form_active') }}
+                            @if ($form->active)
+                                {!! \App\icon\checkedBox(['mr-1']) !!}{{ __('file.form_active') }}
+                            @else
+                                {!! \App\icon\uncheckedBox(['mr-1']) !!}{{ __('file.form_active') }}
+                            @endif
                         </span>
 
                         <a href="{{ route('admin.file-types.forms.edit', [$fileType, $form]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-edit"></span> {{ __('admin.editForm') }}
+                            {!! \App\icon\edit(['mr-1']) !!}{{ __('admin.editForm') }}
                         </a>
 
                     </div>
@@ -50,7 +54,7 @@
 
                     @if ($form->teams->count() > 0)
 
-                        <strong>{{ __('file.form_teamAccessApproval') }}</strong>
+                        <strong>{!! \App\icon\teams(['mr-2']) !!}{{ __('file.form_teamAccessApproval') }}</strong>
 
                         <p>{{ __('file.form_teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">
@@ -69,7 +73,7 @@
 
                     <div class="d-flex">
                         <h3 class="h4 flex-grow-1">
-                            <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
+                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('file.fields') }}
                         </h3>
                     </div>
 
@@ -102,11 +106,11 @@
 
                                         <div class="flex-grow-1">
                                             <a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                <span class="fas fa-edit"></span> {{ __('app.edit') }}
+                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                             </a>
                                         </div>
                                         <div>
-                                            <span class="sort-handle fas fa-arrows-alt-v"></span>
+                                            {!! \App\icon\verticalSort(['sort-handle']) !!}
                                         </div>
 
                                     </div>
@@ -120,7 +124,7 @@
 
                         <p class="text-right mt-3">
                             <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
-                                <span class="fas fa-plus mr-2"></span>{{ __('admin.newField') }}
+                                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
                             </a>
                         </p>
 
@@ -152,7 +156,7 @@
 
                                         <div class="flex-grow-1">
                                             <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                <span class="fas fa-edit"></span> {{ __('app.edit') }}
+                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                             </a>
                                         </div>
 
@@ -178,7 +182,7 @@
                                     <div class="card-body text-center">
 
                                         <div class="empty-resource">
-                                            <span class="fas fa-pen-square empty-resource-icon"></span>
+                                            {!! \App\icon\formFields(['empty-resource-icon']) !!}
                                         </div>
 
                                         <p>{{ __('admin.field_description') }}</p>

@@ -58,13 +58,13 @@
 
                                     {!!
                                         ($user->administrator)
-                                        ? "<span class='fa-fw fas fa-user-tie' title='" . __('user.administrator') . "'></span>"
+                                        ? \App\icon\userAdmin(['fa-fw'], __('user.administrator'))
                                         : ""
                                     !!}
 
                                     {!!
                                         ($user->system_administrator)
-                                        ? "<span class='fa-fw fas fa-user-cog' title='" . __('user.systemAdministrator') . "'></span>"
+                                        ? \App\icon\userSystemAdmin(['fa-fw'], __('user.systemAdministrator'))
                                         : ""
                                     !!}
 
@@ -73,7 +73,13 @@
                                     {!! $user->iconAndName() !!}
                                 </td>
                                 <td>{{ $user->job_title }}</td>
-                                <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}"><span class="far fa{{ ($user->active) ? '-check' : '' }}-square"></span></td>
+                                <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}">
+                                    @if ($user->active)
+                                        {!! \App\icon\checkedBox() !!}
+                                    @else
+                                        {!! \App\icon\uncheckedBox() !!}
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

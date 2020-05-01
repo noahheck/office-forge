@@ -25,7 +25,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="far fa-list-alt"></span> {{ $form->name }}
+                {!! \App\icon\forms(['mr-2']) !!}{{ $form->name }}
             </h1>
 
             <div class="card document">
@@ -35,11 +35,11 @@
                     <div class="d-flex">
 
                         <h2 class="flex-grow-1 mb-0">
-                            <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
+                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('file.fields') }}
                         </h2>
 
                         <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary">
-                            <span class="fas fa-plus mr-2"></span>{{ __('admin.newField') }}
+                            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
                         </a>
 
                     </div>
@@ -72,11 +72,11 @@
 
                                     <div class="flex-grow-1">
                                         <a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                            <span class="fas fa-edit"></span> {{ __('app.edit') }}
+                                            {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                         </a>
                                     </div>
                                     <div>
-                                        <span class="sort-handle fas fa-arrows-alt-v"></span>
+                                        {!! \App\icon\verticalSort(['sort-handle']) !!}
                                     </div>
 
                                 </div>
@@ -89,46 +89,46 @@
                         @endforeach
 
 
-                            @foreach ($form->fields->where('active', false) as $field)
+                        @foreach ($form->fields->where('active', false) as $field)
 
-                                @if ($loop->first)
+                            @if ($loop->first)
 
-                                    <hr class="mt-5">
-                                    <h4 class="text-muted mssst-4">{{ __('admin.inactive_fields') }}</h4>
+                                <hr class="mt-5">
+                                <h4 class="text-muted">{{ __('admin.inactive_fields') }}</h4>
 
-                                    <ul class="list-group form-fields" id="formFields_inactive">
-                                @endif
+                                <ul class="list-group form-fields" id="formFields_inactive">
+                            @endif
 
-                                    <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
+                                <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
+                                    <div class="flex-grow-1">
+
+                                        @if ($field->separator)
+                                            <hr class="separator">
+                                        @endif
+
+                                        @include('_form_field.' . $field->field_type, [
+                                            'field' => $field,
+                                            'value' => optional((object) []),
+                                            'readonly' => true,
+                                        ])
+
+                                    </div>
+                                    <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
+
                                         <div class="flex-grow-1">
-
-                                            @if ($field->separator)
-                                                <hr class="separator">
-                                            @endif
-
-                                            @include('_form_field.' . $field->field_type, [
-                                                'field' => $field,
-                                                'value' => optional((object) []),
-                                                'readonly' => true,
-                                            ])
-
+                                            <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
+                                            </a>
                                         </div>
-                                        <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
-                                            <div class="flex-grow-1">
-                                                <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
-                                                    <span class="fas fa-edit"></span> {{ __('app.edit') }}
-                                                </a>
-                                            </div>
+                                    </div>
+                                </li>
 
-                                        </div>
-                                    </li>
+                            @if ($loop->last)
+                                </ul>
+                            @endif
 
-                                @if ($loop->last)
-                                    </ul>
-                                @endif
-
-                            @endforeach
+                        @endforeach
 
                     @else
 
@@ -140,7 +140,7 @@
                                     <div class="card-body text-center">
 
                                         <div class="empty-resource">
-                                            <span class="fas fa-pen-square empty-resource-icon"></span>
+                                            {!! \App\icon\formFields(['empty-resource-icon']) !!}
                                         </div>
 
                                         <p>{{ __('admin.field_description') }}</p>

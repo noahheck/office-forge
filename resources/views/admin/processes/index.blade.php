@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-clipboard-list"></span> {{ __('admin.processes') }}
+        {!! \App\icon\processes(['mr-2']) !!}{{ __('admin.processes') }}
     </h1>
 
 
@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="text-right">
                     <a href="{{ route('admin.processes.create') }}" class="btn btn-primary">
-                        <span class="fas fa-plus"></span> {{ __('admin.newProcess') }}
+                        {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newProcess') }}
                     </a>
                 </div>
                 <hr>
@@ -62,7 +62,7 @@
                     <div class="card-body text-center">
 
                         <div class="empty-resource">
-                            <span class="fas fa-clipboard-list empty-resource-icon"></span>
+                            {!! \App\icon\processes(['empty-resource-icon']) !!}
                         </div>
 
                         <p>{{ __('admin.process_description') }}</p>

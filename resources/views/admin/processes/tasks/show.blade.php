@@ -27,7 +27,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="fas fa-clipboard-check mr-2"></span>{{ $task->name }}
+                        {!! \App\icon\tasks(['mr-2']) !!}{{ $task->name }}
                     </h2>
 
                     <hr>
@@ -35,11 +35,15 @@
                     <div class="d-flex justify-content-between">
 
                         <span>
-                            <span class="far fa-{{ $task->active ?? false ? 'check-' : '' }}square mr-1"></span>{{ __('process.task_active') }}
+                            @if($task->active)
+                                {!! \App\icon\checkedBox(['mr-1']) !!}{{ __('process.task_active') }}
+                            @else
+                                {!! \App\icon\uncheckedBox(['mr-1']) !!}{{ __('process.task_active') }}
+                            @endif
                         </span>
 
                         <a href="{{ route('admin.processes.tasks.edit', [$process, $task]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-edit"></span> {{ __('admin.editTask') }}
+                            {!! \App\icon\edit(['mr-1']) !!}{{ __('admin.editTask') }}
                         </a>
 
                     </div>

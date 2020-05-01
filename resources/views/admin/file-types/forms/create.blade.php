@@ -15,7 +15,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="far fa-list-alt"></span> {{ __('admin.newForm') }}
+                {!! \App\icon\forms(['mr-2']) !!}{{ __('admin.newForm') }}
             </h1>
 
             <p class="text-muted">{{ __('admin.newForm_shortDescription') }}</p>

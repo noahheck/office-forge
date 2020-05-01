@@ -44,7 +44,7 @@
 
                 <div class="card-body">
 
-                    <h3 class="h4"><span class="fas fa-user-friends mr-2"></span>{{ __('file.teamAccess') }}</h3>
+                    <h4>{!! \App\icon\teams(['mr-1']) !!}{{ __('file.teamAccess') }}</h4>
 
                     <hr>
 
@@ -91,14 +91,14 @@
                             <div class="d-flex">
 
                                 <h3 class="h4 flex-grow-1 mb-0">
-                                    <span class="far fa-list-alt mr-2"></span>{{ __("file.forms") }}
-                                        <a href="{{ route('admin.file-types.forms.index', [$fileType]) }}">
-                                            <span class="far fa-arrow-alt-circle-right"></span>
-                                        </a>
+                                    {!! \App\icon\forms(['mr-2']) !!}{{ __("file.forms") }}
+                                    <a href="{{ route('admin.file-types.forms.index', [$fileType]) }}">
+                                        {!! \App\icon\go() !!}
+                                    </a>
                                 </h3>
 
                                 <a href="{{ route('admin.file-types.forms.create', [$fileType]) }}" class="btn btn-sm btn-primary">
-                                    <span class="fas fa-plus mr-2"></span>{{ __('admin.newForm') }}
+                                    {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newForm') }}
                                 </a>
 
                             </div>
@@ -124,7 +124,7 @@
                                 <div class="text-center">
 
                                     <div class="empty-resource">
-                                        <span class="far fa-list-alt empty-resource-icon"></span>
+                                        {!! \App\icon\forms(['empty-resource-icon']) !!}
                                     </div>
 
                                     <p>{{ __('admin.form_description') }}</p>
@@ -163,14 +163,14 @@
                             <div class="d-flex">
 
                                 <h3 class="h4 flex-grow-1 mb-0">
-                                    <span class="fas fa-th-list mr-2"></span>{{ __("file.panels") }}
+                                    {!! \App\icon\fileDetails(['mr-2']) !!}{{ __("file.panels") }}
                                     <a href="{{ route('admin.file-types.panels.index', [$fileType]) }}">
-                                        <span class="far fa-arrow-alt-circle-right"></span>
+                                        {!! \App\icon\go() !!}
                                     </a>
                                 </h3>
 
                                 <a href="{{ route('admin.file-types.panels.create', [$fileType]) }}" class="btn btn-sm btn-primary">
-                                    <span class="fas fa-plus mr-2"></span>{{ __('admin.newPanel') }}
+                                    {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newPanel') }}
                                 </a>
 
                             </div>
@@ -196,7 +196,7 @@
                                 <div class="text-center">
 
                                     <div class="empty-resource">
-                                        <span class="fas fa-th-list empty-resource-icon"></span>
+                                        {!! \App\icon\fileDetails(['empty-resource-icon']) !!}
                                     </div>
 
                                     <p>{{ __('admin.panel_description') }}</p>
@@ -209,11 +209,9 @@
 
                             @endif
 
-
                         </div>
 
                     </div>
-
 
                 </div>
 
@@ -233,16 +231,11 @@
                             <div class="d-flex">
 
                                 <h3 class="h4 flex-grow-1 mb-0">
-{{--                                    <span class="fas fa-clipboard-list mr-2"></span>--}}
-                                    <span class="fa-stack" style="font-size: .6em;">
-                                        <span class="fa-stack-2x fa-lg far fa-clipboard"></span>
-                                        <span class="fa-stack-1x fas fa-tasks"></span>
-                                    </span>
-                                    {{ __("app.processes") }}
+                                    {!! \App\icon\processes(['mr-2']) !!}{{ __("app.processes") }}
                                 </h3>
 
                                 <a href="{{ route('admin.processes.create', ['file_type_id' => $fileType]) }}" class="btn btn-sm btn-primary">
-                                    <span class="fas fa-plus mr-2"></span>{{ __('admin.newProcess') }}
+                                    {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newProcess') }}
                                 </a>
 
                             </div>
@@ -268,7 +261,7 @@
                                 <div class="text-center">
 
                                     <div class="empty-resource">
-                                        <span class="fas fa-clipboard-list empty-resource-icon"></span>
+                                        {!! \App\icon\processes(['empty-resource-icon']) !!}
                                     </div>
 
                                     <p>{{ __('admin.process_description') }}</p>

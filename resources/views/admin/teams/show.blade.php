@@ -6,15 +6,14 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-friends"></span>
-        {{ $team->name }}
+        {!! \App\icon\teams(['mr-2']) !!}{{ $team->name }}
     </h1>
 
     <div class="card">
         <div class="card-body">
             <div class="text-right">
                 <a href="{{ route('admin.teams.edit', [$team]) }}" class="btn btn-primary">
-                    <span class="fas fa-edit"></span> {{ __('admin.editTeam') }}
+                    {!! \App\icon\edit(['mr-1']) !!}{{ __('admin.editTeam') }}
                 </a>
             </div>
 

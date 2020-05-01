@@ -25,7 +25,7 @@
 
                 <div class="col-10 border p-3 m-2 mb-4 shadow" style="font-size: .8rem;">
 
-                    <h4>{!! \App\icon\checkedBox(['mr-1']) !!}{{ __('activity.newTask') }}</h4>
+                    <h4>{!! \App\icon\tasks(['mr-1']) !!}{{ __('activity.newTask') }}</h4>
 
                     <hr>
 

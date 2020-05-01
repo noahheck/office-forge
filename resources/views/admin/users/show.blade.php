@@ -6,14 +6,14 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user"></span> {{ $user->name }}
+        {!! \App\icon\user(['mr-2']) !!}{{ $user->name }}
     </h1>
 
     <div class="card">
         <div class="card-body">
             <div class="text-right">
                 <a href="{{ route('admin.users.edit', [$user]) }}" class="btn btn-primary">
-                    <span class="fas fa-user-edit"></span> {{ __('admin.editUser') }}
+                    {!! \App\icon\userEdit(['mr-1']) !!}{{ __('admin.editUser') }}
                 </a>
             </div>
 
@@ -25,7 +25,7 @@
                         <dd>{{ $user->name }}</dd>
 
                         <dt>{{ __('user.email') }}</dt>
-                        <dd><a href="mailto:{{ $user->email }}"><span class="fas fa-envelope"></span> {{ $user->email }}</a></dd>
+                        <dd><a href="mailto:{{ $user->email }}">{!! \App\icon\email(['mr-1']) !!}{{ $user->email }}</a></dd>
 
                         <dt>{{ __('user.jobTitle') }}</dt>
                         <dd>{{ $user->job_title }}</dd>

@@ -23,7 +23,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-clipboard-list mr-2"></span>{{ $process->name }}
+                {!! \App\icon\processes(['mr-2']) !!}{{ $process->name }}
             </h1>
 
             <div class="card document">
@@ -31,7 +31,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="fas fa-clipboard-check mr-2"></span>{{ __('admin.tasks') }}
+                        {!! \App\icon\tasks(['mr-2']) !!}{{ __('admin.tasks') }}
                     </h2>
 
                     <hr>
@@ -40,7 +40,7 @@
 
                         <p class="text-right">
                             <a class="btn btn-sm btn-primary" href="{{ route('admin.processes.tasks.create', [$process]) }}">
-                                <span class="fas fa-plus"></span> {{ __('admin.addTask') }}
+                                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.addTask') }}
                             </a>
                         </p>
 
@@ -52,17 +52,17 @@
 
                                 <li class="list-group-item d-flex" data-id="{{ $task->id }}">
                                     <div class="flex-grow-1">
-                                        <span class="far fa-square mr-2"></span>
+                                        {!! \App\icon\uncheckedBox() !!}
                                         <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
                                             {{ $task->name }}
                                         </a>
                                         @if ($task->details)
-                                            <span class="text-muted fas fa-align-left"></span>
+                                            {!! \App\icon\text(['text-muted']) !!}
                                         @endif
 
                                     </div>
                                     <div class="sort-handle">
-                                        <span class="fas fa-arrows-alt-v"></span>
+                                        {!! \App\icon\verticalSort() !!}
                                     </div>
                                 </li>
 
@@ -71,8 +71,6 @@
                             @endif
 
                         @endforeach
-
-
 
                     @else
 
@@ -84,7 +82,7 @@
                                     <div class="card-body text-center">
 
                                         <div class="empty-resource">
-                                            <span class="fas fa-clipboard-check empty-resource-icon"></span>
+                                            {!! \App\icon\tasks(['empty-resource-icon']) !!}
                                         </div>
 
                                         <p>{{ __('admin.task_description') }}</p>

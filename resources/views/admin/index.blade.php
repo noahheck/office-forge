@@ -6,18 +6,18 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-cogs"></span> {{ __('admin.systemSettings') }}
+        {!! \App\icon\adminSettings(['mr-2']) !!}{{ __('admin.systemSettings') }}
     </h1>
 
     <hr>
 
-    <h3><span class="fas fa-users-cog"></span> Users / Teams</h3>
+    <h3>{!! \App\icon\usersTeams(['mr-2']) !!}Users / Teams</h3>
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="{{ route('admin.users.index') }}">
                 <div class="card-body">
-                    <span class="fas fa-users module-icon"></span>
+                    {!! \App\icon\users(['module-icon']) !!}
                     {{ __('admin.users') }}
                 </div>
             </a>
@@ -26,7 +26,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="{{ route('admin.teams.index') }}">
                 <div class="card-body">
-                    <span class="fas fa-user-friends module-icon"></span>
+                    {!! \App\icon\teams(['module-icon']) !!}
                     {{ __('app.teams') }}
                 </div>
             </a>
@@ -35,13 +35,13 @@
 
     <hr>
 
-    <h3><span class="fas fa-tools"></span> System Setup</h3>
+    <h3>{!! \App\icon\systemSetup(['mr-2']) !!}System Setup</h3>
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="{{ route('admin.organization') }}">
                 <div class="card-body">
-                    <span class="fas fa-building module-icon"></span>
+                    {!! \App\icon\organization(['module-icon']) !!}
                     Organization
                 </div>
             </a>
@@ -50,7 +50,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="{{ route('admin.file-types.index') }}">
                 <div class="card-body">
-                    <span class="fas fa-folder-open module-icon"></span>
+                    {!! \App\icon\files(['module-icon']) !!}
                     Files
                 </div>
             </a>
@@ -59,7 +59,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="{{ route('admin.processes.index') }}">
                 <div class="card-body">
-                    <span class="fas fa-clipboard-list module-icon"></span>
+                    {!! \App\icon\processes(['module-icon']) !!}
                     {{ __('app.processes') }}
                 </div>
             </a>
@@ -77,13 +77,13 @@
 
     <hr>
 
-    <h3><span class="fas fa-sliders-h"></span> System Configuration</h3>
+    <h3>{!! \App\icon\systemConfiguration(['mr-2']) !!}System Configuration</h3>
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
-                    <span class="fas fa-download module-icon"></span>
+                    {!! \App\icon\backups(['module-icon']) !!}
                     Backups
                 </div>
             </a>
@@ -92,7 +92,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
-                    <span class="fas fa-envelope module-icon"></span>
+                    {!! \App\icon\email(['module-icon']) !!}
                     Mail
                 </div>
             </a>
@@ -101,7 +101,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
-                    <span class="fas fa-server module-icon"></span>
+                    {!! \App\icon\server(['module-icon']) !!}
                     Server
                 </div>
             </a>
@@ -110,7 +110,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
-                    <span class="fas fa-sync-alt module-icon"></span>
+                    {!! \App\icon\updates(['module-icon']) !!}
                     Updates
                 </div>
             </a>
@@ -119,7 +119,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
-                    <span class="fas fa-shield-alt module-icon"></span>
+                    {!! \App\icon\security(['module-icon']) !!}
                     Security
                 </div>
             </a>
@@ -128,7 +128,7 @@
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link" href="#">
                 <div class="card-body">
-                    <span class="fas fa-plug fa-rotate-90 module-icon"></span>
+                    {!! \App\icon\plugins(['module-icon']) !!}
                     Plugins
                 </div>
             </a>

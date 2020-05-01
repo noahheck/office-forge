@@ -15,7 +15,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-th-list"></span> {{ __('admin.editPanel') }}
+                {!! \App\icon\fileDetails(['mr-2']) !!}{{ __('admin.editPanel') }}
             </h1>
 
             <p class="text-muted">{{ __('admin.editPanel_shortDescription') }}</p>

@@ -33,7 +33,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="fas fa-th-list mr-2"></span>{{ $panel->name }}
+                        {!! \App\icon\fileDetails(['mr-2']) !!}{{ $panel->name }}
                     </h2>
 
                     <hr>
@@ -45,7 +45,7 @@
                         </span>
 
                         <a href="{{ route('admin.file-types.panels.edit', [$fileType, $panel]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-edit"></span> {{ __('admin.editPanel') }}
+                            {!! \App\icon\edit(['mr-1']) !!}{{ __('admin.editPanel') }}
                         </a>
 
                     </div>
@@ -55,7 +55,7 @@
 
                     @if ($panel->teams->count() > 0)
 
-                        <strong>{{ __('file.panel_teamAccessApproval') }}</strong>
+                        <strong>{!! \App\icon\teams(['mr-2']) !!}{{ __('file.panel_teamAccessApproval') }}</strong>
 
                         <p>{{ __('file.panel_teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">
@@ -74,7 +74,7 @@
 
                     <div class="d-flex">
                         <h3 class="h4 flex-grow-1">
-                            <span class="fas fa-pen-square mr-2"></span>{{ __('file.fields') }}
+                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('file.fields') }}
                         </h3>
                     </div>
 
@@ -101,13 +101,13 @@
                                         <div class="flex-grow-1">
                                             <div class="dropdown">
                                                 <button class="btn btn-outline-danger border-0 btn-sm" type="button" id="removeFieldDropdownMenuButton_{{ $field->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="fas fa-times"></span>
+                                                    {!! \App\icon\x() !!}
                                                 </button>
                                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="removeFieldDropdownMenuButton_{{ $field->id }}">
                                                     <form action="{{ route("admin.file-types.panels.remove-field", [$fileType, $panel, $field]) }}" method="POST">
                                                         @csrf @method('DELETE')
                                                         <button type="submit" class="dropdown-item text-danger">
-                                                            <span class="far fa-trash-alt"></span>
+                                                            {!! \App\icon\trash() !!}
                                                             {{ __('admin.panel_removeFieldFromPanel') }}
                                                         </button>
                                                     </form>
@@ -115,7 +115,7 @@
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="sort-handle fas fa-arrows-alt-v"></span>
+                                            {!! \App\icon\verticalSort(['sort-handle']) !!}
                                         </div>
 
                                     </div>
@@ -137,12 +137,10 @@
                                     <div class="card-body text-center">
 
                                         <div class="empty-resource">
-                                            <span class="fas fa-pen-square empty-resource-icon"></span>
+                                            {!! \App\icon\formFields(['empty-resource-icon']) !!}
                                         </div>
 
                                         <p>{{ __('admin.panel_description') }}</p>
-
-{{--                                        <p>{{ __('admin.panel_fieldsDescription') }}</p>--}}
 
                                     </div>
                                 </div>
@@ -155,14 +153,13 @@
 
 
 
-
                     <div class="card shadow mt-5">
 
                         <div class="card-body">
 
                             <div class="d-flex">
                                 <h3 class="h4 flex-grow-1">
-                                    <span class="fas fa-pen-square mr-2"></span>{{ __('file.panel_addField') }}
+                                    {!! \App\icon\formFields(['mr-2']) !!}{{ __('file.panel_addField') }}
                                 </h3>
                             </div>
 
@@ -176,7 +173,6 @@
 
                                     <div class="col-12">
                                         <p class="text-center">{{ __('admin.panel_fieldsDescription') }}</p>
-
                                         <hr>
                                     </div>
 
@@ -217,7 +213,7 @@
                                     <div class="col-12 col-md-3 d-flex align-items-center">
 
                                         <button type="submit" class="btn btn-primary">
-                                            <span class="fas fa-plus"></span> {{ __('file.panel_addField') }}
+                                            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('file.panel_addField') }}
                                         </button>
 
                                     </div>

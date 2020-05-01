@@ -24,8 +24,7 @@
                 <div class="card-body">
 
                     <h1 class="h3">
-                        <span class="fas fa-clipboard-list"></span>
-                        {{ $process->name }}
+                        {!! \App\icon\processes(['mr-2']) !!}{{ $process->name }}
                     </h1>
 
                     <hr>
@@ -42,14 +41,14 @@
 
                     <div class="d-flex justify-content-between">
                         <h2 class="h4">
-                            <span class="fas fa-clipboard-check mr-2"></span>{{ __('admin.tasks') }}
+                            {!! \App\icon\tasks(['mr-2']) !!}{{ __('admin.tasks') }}
                         </h2>
                         <a href="{{ route('admin.processes.tasks.index', [$process]) }}">
-                            <span class="far fa-arrow-alt-circle-right"></span> {{ __('admin.tasks') }}
+                            {!! \App\icon\go(['mr-1']) !!}{{ __('admin.tasks') }}
                         </a>
                     </div>
 
-                    @forelse ($process->tasks as $task)
+                    @forelse ([] as $a)//$process->tasks as $task)
 
                         @if ($loop->first)
                             <ul class="list-group" id="processTasks">
@@ -58,17 +57,17 @@
                         <li class="list-group-item d-flex" data-id="{{ $task->id }}">
                             <div class="flex-grow-1">
 
-                                <span class="far fa-square"></span>
+                                {!! \App\icon\uncheckedBox() !!}
                                 <a href="{{ route('admin.processes.tasks.show', [$process, $task]) }}">
                                     {{ $task->name }}
                                 </a>
                                 @if ($task->details)
-                                    <span class="text-muted fas fa-align-left"></span>
+                                    {!! \App\icon\text(['text-muted']) !!}
                                 @endif
 
                             </div>
                             <div class="sort-handle">
-                                <span class="fas fa-arrows-alt-v"></span>
+                                {!! \App\icon\verticalSort() !!}
                             </div>
                         </li>
 
@@ -78,7 +77,9 @@
 
                     @empty
 
-                        <div class="text-center border p-4">
+                        <div class="text-center border p-4 empty-resource">
+
+                            {!! \App\icon\tasks(['empty-resource-icon']) !!}
 
                             <p>{{ __('admin.task_description') }}</p>
 
@@ -88,7 +89,7 @@
 
                     <div class="text-right mt-3">
                         <a href="{{ route('admin.processes.tasks.create', [$process]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-plus"></span> {{ __('admin.addTask') }}
+                            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.addTask') }}
                         </a>
                     </div>
 
@@ -107,11 +108,15 @@
                     <div class="d-flex justify-content-between">
 
                         <span>
-                            <span class="far fa-{{ $process->active ?? false ? 'check-' : '' }}square"></span> {{ __('process.active') }}
+                            @if ($process->active)
+                                {!! \App\icon\checkedBox(['mr-2']) !!}{{ __('process.active') }}
+                            @else
+                                {!! \App\icon\uncheckedBox(['mr-2']) !!}{{ __('process.active') }}
+                            @endif
                         </span>
 
                         <a href="{{ route('admin.processes.edit', [$process]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-edit"></span> {{ __('admin.editProcess') }}
+                            {!! \App\icon\edit(['mr-1']) !!}{{ __('admin.editProcess') }}
                         </a>
 
                     </div>
@@ -120,7 +125,7 @@
 
                     @if ($__fileType = $process->fileType)
 
-                        <strong>{{ __('process.fileType') }}</strong>
+                        <strong>{!! \App\icon\files(['mr-2']) !!}{{ __('process.fileType') }}</strong>
 
                         <br>
 
@@ -136,7 +141,7 @@
                     @forelse ($process->creatingTeams as $team)
 
                         @if ($loop->first)
-                            <strong>{{ __('process.creatingTeams') }}</strong>
+                            <strong>{!! \App\icon\teams(['mr-2']) !!}{{ __('process.creatingTeams') }}</strong>
 
                             <br>
 

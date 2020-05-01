@@ -18,7 +18,7 @@
                 <div class="card-body">
 
                     <h2>
-                        <span class="fas fa-pen-square"></span> {{ $field->label }}
+                        {!! \App\icon\formFields(['mr-2']) !!}{{ $field->label }}
                     </h2>
 
                     <hr>
@@ -26,11 +26,15 @@
                     <div class="d-flex justify-content-between">
 
                         <span>
-                            <span class="far fa-{{ $field->active ?? false ? 'check-' : '' }}square"></span> {{ __('file.field_active') }}
+                            @if ($field->active)
+                                {!! \App\icon\checkedBox(['mr-2']) !!}{{ __('file.field_active') }}
+                            @else
+                                {!! \App\icon\uncheckedBox(['mr-2']) !!}{{ __('file.field_active') }}
+                            @endif
                         </span>
 
                         <a href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}" class="btn btn-sm btn-primary">
-                            <span class="fas fa-edit"></span> {{ __('admin.editField') }}
+                            {!! \App\icon\edit(['mr-1']) !!}{{ __('admin.editField') }}
                         </a>
 
                     </div>

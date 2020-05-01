@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-edit"></span> {{ __('admin.editUser') }}
+        {!! \App\icon\userEdit(['mr-2']) !!}{{ __('admin.editUser') }}
     </h1>
 
     <p class="text-muted">{{ __('admin.editUser_shortDescription') }}</p>

@@ -10,7 +10,7 @@
         <div class="col-12 col-md-6">
 
             <div class="user-photo">
-                {!! $user->thumbnail(['rounded', 'shadow']) !!}
+                {!! $user->thumbnail(['rounded']) !!}
             </div>
 
             @errors('name', 'job_title', 'email', 'timezone')

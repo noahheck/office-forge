@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-friends"></span> {{ __('app.teams') }}
+        {!! \App\icon\teams(['mr-2']) !!}{{ __('app.teams') }}
     </h1>
 
     <div class="card">
@@ -14,7 +14,7 @@
             @if($teams->count() > 0)
                 <div class="text-right">
                     <a href="{{ route('admin.teams.create') }}" class="btn btn-primary">
-                        <span class="fas fa-plus-circle"></span> {{ __('admin.newTeam') }}
+                        {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newTeam') }}
                     </a>
                 </div>
                 <hr>
@@ -53,7 +53,7 @@
                             <div class="card-body text-center">
 
                                 <div class="empty-resource">
-                                    <span class="fas fa-user-friends empty-resource-icon"></span>
+                                    {!! \App\icon\teams(['empty-resource-icon']) !!}
                                 </div>
 
                                 <p>{{ __('admin.team_description') }}</p>

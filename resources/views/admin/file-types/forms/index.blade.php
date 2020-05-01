@@ -24,7 +24,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                {!! $fileType->icon() !!} {{ $fileType->name }}
+                {!! $fileType->icon(['mr-2']) !!}{{ $fileType->name }}
             </h1>
 
             <div class="card document">
@@ -34,11 +34,11 @@
                     <div class="d-flex">
 
                         <h2 class="flex-grow-1 mb-0">
-                            <span class="far fa-list-alt mr-2"></span>{{ __('admin.forms') }}
+                            {!! \App\icon\forms(['mr-2']) !!}{{ __('admin.forms') }}
                         </h2>
 
                         <a href="{{ route('admin.file-types.forms.create', [$fileType]) }}" class="btn btn-primary">
-                            <span class="fas fa-plus mr-2"></span>{{ __('admin.newForm') }}
+                            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newForm') }}
                         </a>
 
                     </div>
@@ -59,7 +59,7 @@
                                         @endforeach
                                     </div>
                                     <div class="sort-handle pl-3">
-                                        <span class="fas fa-arrows-alt-v"></span>
+                                        {!! \App\icon\verticalSort() !!}
                                     </div>
                                 </li>
 
@@ -77,7 +77,7 @@
                                     <div class="card-body text-center">
 
                                         <div class="empty-resource">
-                                            <span class="far fa-list-alt empty-resource-icon"></span>
+                                            {!! \App\icon\forms(['empty-resource-icon']) !!}
                                         </div>
 
                                         <p>{{ __('admin.form_description') }}</p>

@@ -9,6 +9,12 @@ function go($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function edit($classes = []) {
+    $classes[] = "fas fa-edit";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function undo($classes = []) {
     $classes[] = "fas fa-undo";
 
@@ -75,8 +81,20 @@ function chevronDown($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function email($classes = []) {
+    $classes[] = "fas fa-envelope";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function trash($classes = []) {
     $classes[] = "far fa-trash-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function x($classes = []) {
+    $classes[] = "fas fa-times";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
@@ -128,11 +146,14 @@ function logOut($classes = []) {
 
 
 
-function edit($classes = []) {
-    $classes[] = "fas fa-edit";
+function teams($classes = []) {
+    $classes[] = "fas fa-user-friends";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
+
+
+
 
 
 function myWork($classes = []) {
@@ -168,6 +189,12 @@ function forms($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function formFields($classes = []) {
+    $classes[] = "fas fa-pen-square";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 // Activities
 function tasks($classes = []) {
@@ -184,6 +211,122 @@ function isPrivate($classes = []) {
 
 function participants($classes = []) {
     $classes[] = "fas fa-user-friends";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
+// My Settings
+function myDetails($classes = []) {
+    $classes[] = "far fa-address-card";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function myPassword($classes = []) {
+    $classes[] = "fas fa-user-shield";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function myPhoto($classes = []) {
+    $classes[] = "fas fa-portrait";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
+// Admin Settings
+function usersTeams($classes = []) {
+    $classes[] = "fas fa-users-cog";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function users($classes = []) {
+    $classes[] = "fas fa-users";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function user($classes = []) {
+    $classes[] = "fas fa-user";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function userPlus($classes = []) {
+    $classes[] = "fas fa-user-plus";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function userEdit($classes = []) {
+    $classes[] = "fas fa-user-edit";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function userAdmin($classes = [], $title = '') {
+    $classes[] = "fas fa-user-tie";
+
+    $titleAttr = ($title) ? " title='" . \e($title) . "'" : '';
+
+    return "<span class='" . implode(' ', $classes) . "'{$titleAttr}></span>";
+}
+
+function userSystemAdmin($classes = [], $title = '') {
+    $classes[] = "fas fa-user-cog";
+
+    $titleAttr = ($title) ? " title='" . \e($title) . "'" : '';
+
+    return "<span class='" . implode(' ', $classes) . "'{$titleAttr}></span>";
+}
+
+function systemSetup($classes = []) {
+    $classes[] = "fas fa-tools";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function organization($classes = []) {
+    $classes[] = "fas fa-building";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function systemConfiguration($classes = []) {
+    $classes[] = "fas fa-sliders-h";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function backups($classes = []) {
+    $classes[] = "fas fa-download";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function server($classes = []) {
+    $classes[] = "fas fa-server";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function updates($classes = []) {
+    $classes[] = "fas fa-sync-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function security($classes = []) {
+    $classes[] = "fas fa-shield-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function plugins($classes = []) {
+    $classes[] = "fas fa-plug fa-rotate-90";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }

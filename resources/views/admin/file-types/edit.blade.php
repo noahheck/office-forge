@@ -14,7 +14,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-folder-open"></span> {{ __('admin.editFileType') }}
+                {!! \App\icon\files(['mr-2']) !!}{{ __('admin.editFileType') }}
             </h1>
 
             <p class="text-muted">{{ __('admin.editFileType_shortDescription') }}</p>

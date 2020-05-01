@@ -45,7 +45,9 @@ $(async function() {
 
     $('.dt-table').DataTable();
 
-    $('.dataTables_filter input[type=search]').focus();
+    if (!$("[autofocus]").length) {
+        $('.dataTables_filter input[type=search]').focus();
+    }
 
     $('.datepicker').datepicker({
         autoclose: true,

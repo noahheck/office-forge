@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-user-plus"></span> {{ __('admin.newUser') }}
+        {!! \App\icon\userPlus(['mr-2']) !!} {{ __('admin.newUser') }}
     </h1>
 
     <p class="text-muted">{{ __('admin.newUser_shortDescription') }}</p>

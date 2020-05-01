@@ -24,7 +24,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                {!! $fileType->icon() !!} {{ $fileType->name }}
+                {!! $fileType->icon(['mr-2']) !!}{{ $fileType->name }}
             </h1>
 
             <div class="card document">
@@ -34,11 +34,11 @@
                     <div class="d-flex">
 
                         <h2 class="flex-grow-1 mb-0">
-                            <span class="fas fa-th-list mr-2"></span>{{ __('admin.panels') }}
+                            {!! \App\icon\fileDetails(['mr-2']) !!}{{ __('admin.panels') }}
                         </h2>
 
                         <a href="{{ route('admin.file-types.panels.create', [$fileType]) }}" class="btn btn-primary">
-                            <span class="fas fa-plus mr-2"></span>{{ __('admin.newPanel') }}
+                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('admin.newPanel') }}
                         </a>
 
                     </div>
@@ -59,7 +59,7 @@
                                         @endforeach
                                     </div>
                                     <div class="sort-handle pl-3">
-                                        <span class="fas fa-arrows-alt-v"></span>
+                                        {!! \App\icon\verticalSort() !!}
                                     </div>
                                 </li>
 
@@ -77,7 +77,7 @@
                                     <div class="card-body text-center">
 
                                         <div class="empty-resource">
-                                            <span class="fas fa-th-list empty-resource-icon"></span>
+                                            {!! \App\icon\fileDetails(['empty-resource-icon']) !!}
                                         </div>
 
                                         <p>{{ __('admin.panel_description') }}</p>

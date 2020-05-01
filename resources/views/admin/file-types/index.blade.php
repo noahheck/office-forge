@@ -6,7 +6,7 @@
 
 @section('content')
     <h1>
-        <span class="fas fa-folder-open"></span> {{ __('admin.file-types') }}
+        {!! \App\icon\files(['mr-2']) !!}{{ __('admin.file-types') }}
     </h1>
 
 
@@ -15,7 +15,7 @@
             <div class="card-body">
                 <div class="text-right">
                     <a href="{{ route('admin.file-types.create') }}" class="btn btn-primary">
-                        <span class="fas fa-folder-plus"></span> {{ __('admin.newFileType') }}
+                        {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newFileType') }}
                     </a>
                 </div>
                 <hr>

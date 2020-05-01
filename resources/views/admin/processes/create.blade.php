@@ -15,7 +15,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-clipboard-list"></span> {{ __('admin.newProcess') }}
+                {!! \App\icon\processes(['mr-2']) !!}{{ __('admin.newProcess') }}
             </h1>
 
             <p class="text-muted">{{ __('admin.newProcess_shortDescription') }}</p>

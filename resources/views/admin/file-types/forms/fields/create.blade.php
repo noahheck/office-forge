@@ -17,7 +17,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                <span class="fas fa-pen-square"></span> {{ __('admin.newField') }}
+                {!! \App\icon\formFields(['mr-2']) !!}{{ __('admin.newField') }}
             </h1>
 
             <p class="text-muted">{{ __('admin.newField_shortDescription') }}</p>
