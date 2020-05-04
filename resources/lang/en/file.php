@@ -117,5 +117,8 @@ return [
     'panel_unrestrictedDescription' => 'This panel is accessible by all of your staff.',
     'panel_addField' => 'Add Field',
 
-
+    'formDocs' => 'FormDocs',
+    'formDoc' => 'FormDoc',
+    'formDoc_name' => 'Name',
+    'formDoc_active' => 'Active',
 ];

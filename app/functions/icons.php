@@ -189,11 +189,18 @@ function forms($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function formDocs($classes = []) {
+    $classes[] = "fas fa-file-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function formFields($classes = []) {
     $classes[] = "fas fa-pen-square";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
+
 
 
 // Activities

@@ -126,4 +126,9 @@ return [
     'panel_fieldAdded' => 'Field added to Panel',
     'panel_fieldRemoved' => 'Field removed from Panel',
     'panel_fieldsOrderUpdated' => 'Panel details order updated',
+
+
+    'newFormDoc' => 'New FormDoc',
+    'formDoc_description' => 'FormDocs help you collect, organize, and present your data so you can manage and your grow your business. Collecting data in FormDocs is comfortable and predictable, and enables Office Forge to expose powerful reporting functionality to your organization!',
+    'formDoc_createFirstFormDocNow' => 'Create your first FormDoc now!',
 ];

@@ -120,6 +120,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
             ->name('file-types.panels.update-field-order');
 
 
+        // File Types FormDocs
+        Route::resource('file-types.form-docs', 'FileType\FormDocController');
+
         // Processes
         Route::resource('/processes', 'ProcessController');
 

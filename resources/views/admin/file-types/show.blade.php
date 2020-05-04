@@ -288,6 +288,76 @@
 
 
 
+
+                <div class="col-12 col-xl-6 mb-3">
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="d-flex">
+
+                                <h3 class="h4 flex-grow-1 mb-0">
+                                    {!! \App\icon\formDocs(['mr-2']) !!}{{ __("file.formDocs") }}
+                                    <a href="{{ route('admin.file-types.form-docs.index', [$fileType]) }}">
+                                        {!! \App\icon\go() !!}
+                                    </a>
+                                </h3>
+
+                                <a href="{{ route('admin.file-types.form-docs.create', [$fileType]) }}" class="btn btn-sm btn-primary">
+                                    {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newFormDoc') }}
+                                </a>
+
+                            </div>
+                            <hr>
+
+                            @if($fileType->formDocs->count() > 0)
+
+                                <ul class="list-group fileType-resource-list-group">
+
+                                    @foreach ($fileType->formDocs as $formDoc)
+
+                                        <li class="list-group-item">
+                                            <a href="{{ route('admin.file-types.form-docs.show', [$fileType, $formDoc]) }}">{{ $formDoc->name }}</a>
+                                            {{-- Will be outputting the team restrictions here as well --}}
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            @else
+
+                                <div class="text-center">
+
+                                    <div class="empty-resource">
+                                        {!! \App\icon\formDocs(['empty-resource-icon']) !!}
+                                    </div>
+
+                                    <p>{{ __('admin.formDoc_description') }}</p>
+
+                                    <hr>
+
+                                    <a class="btn btn-primary" href="{{ route('admin.file-types.form-docs.create', [$fileType]) }}">{{ __('admin.formDoc_createFirstFormDocNow') }}</a>
+
+                                </div>
+
+                            @endif
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
             </div>
 
         </div>

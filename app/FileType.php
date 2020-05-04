@@ -3,6 +3,7 @@
 namespace App;
 
 use App\FileType\Form;
+use App\FileType\FormDoc;
 use App\FileType\Panel;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
@@ -117,6 +118,12 @@ class FileType extends Model
     {
         return $this->hasMany(Process::class);
     }
+
+    public function formDocs()
+    {
+        return $this->hasMany(FormDoc::class);
+    }
+
 
     public function icon(array $withClasses = [])
     {
