@@ -51,7 +51,16 @@
             <a class="card admin-module-link" href="{{ route('admin.file-types.index') }}">
                 <div class="card-body">
                     {!! \App\icon\files(['module-icon']) !!}
-                    Files
+                    {{ __('app.files') }}
+                </div>
+            </a>
+        </div>
+
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+            <a class="card admin-module-link" href="{{ route('admin.form-docs.index') }}">
+                <div class="card-body">
+                    {!! \App\icon\formDocs(['module-icon']) !!}
+                    {{ __('app.formDocs') }}
                 </div>
             </a>
         </div>

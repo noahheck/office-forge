@@ -299,12 +299,12 @@
 
                                 <h3 class="h4 flex-grow-1 mb-0">
                                     {!! \App\icon\formDocs(['mr-2']) !!}{{ __("file.formDocs") }}
-                                    <a href="{{ route('admin.file-types.form-docs.index', [$fileType]) }}">
+                                    {{--<a href="{{ route('admin.file-types.form-docs.index', [$fileType]) }}">
                                         {!! \App\icon\go() !!}
-                                    </a>
+                                    </a>--}}
                                 </h3>
 
-                                <a href="{{ route('admin.file-types.form-docs.create', [$fileType]) }}" class="btn btn-sm btn-primary">
+                                <a href="{{ route('admin.form-docs.create', ['file_type_id' => $fileType]) }}" class="btn btn-sm btn-primary">
                                     {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newFormDoc') }}
                                 </a>
 
@@ -318,7 +318,7 @@
                                     @foreach ($fileType->formDocs as $formDoc)
 
                                         <li class="list-group-item">
-                                            <a href="{{ route('admin.file-types.form-docs.show', [$fileType, $formDoc]) }}">{{ $formDoc->name }}</a>
+                                            <a href="{{ route('admin.form-docs.show', [$formDoc]) }}">{{ $formDoc->name }}</a>
                                             {{-- Will be outputting the team restrictions here as well --}}
                                         </li>
 
@@ -338,7 +338,7 @@
 
                                     <hr>
 
-                                    <a class="btn btn-primary" href="{{ route('admin.file-types.form-docs.create', [$fileType]) }}">{{ __('admin.formDoc_createFirstFormDocNow') }}</a>
+                                    <a class="btn btn-primary" href="{{ route('admin.form-docs.create', ['file_type_id' => $fileType]) }}">{{ __('admin.formDoc_createFirstFormDocNow') }}</a>
 
                                 </div>
 

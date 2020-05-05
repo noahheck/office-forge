@@ -3,7 +3,7 @@
 namespace App;
 
 use App\FileType\Form;
-use App\FileType\FormDoc;
+use App\FormDoc;
 use App\FileType\Panel;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;

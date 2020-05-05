@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFileTypeFormDocsTable extends Migration
+class CreateFormDocsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class CreateFileTypeFormDocsTable extends Migration
      */
     public function up()
     {
-        Schema::create('file_type_form_docs', function (Blueprint $table) {
+        Schema::create('form_docs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('file_type_id');
+            $table->bigInteger('file_type_id')->nullable();
             $table->string('name');
             $table->boolean('active')->default(true);
+            $table->dateTime('last_created_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +31,6 @@ class CreateFileTypeFormDocsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('file_type_form_docs');
+        Schema::dropIfExists('form_docs');
     }
 }

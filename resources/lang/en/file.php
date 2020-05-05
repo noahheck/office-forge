@@ -120,5 +120,6 @@ return [
     'formDocs' => 'FormDocs',
     'formDoc' => 'FormDoc',
     'formDoc_name' => 'Name',
+    'formDoc_nameExamples' => 'Progress Update, Shift Report, etc...',
     'formDoc_active' => 'Active',
 ];

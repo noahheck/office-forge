@@ -1,8 +1,7 @@
 <?php
 
-namespace App\FileType;
+namespace App;
 
-use App\FileType;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -10,7 +9,7 @@ class FormDoc extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'file_type_form_docs';
+    protected $table = 'form_docs';
 
     protected $casts = [
         'active' => 'boolean',
