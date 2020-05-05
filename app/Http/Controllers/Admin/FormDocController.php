@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\FormDoc;
 use App\Http\Controllers\Controller;
 use App\Jobs\FormDoc\Create;
+use App\Jobs\FormDoc\Update;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\FormDocs\Store as StoreRequest;
+use App\Http\Requests\Admin\FormDocs\Update as UpdateRequest;
 use function App\flash_success;
 
 class FormDocController extends Controller
@@ -64,7 +66,7 @@ class FormDocController extends Controller
      */
     public function show(FormDoc $formDoc)
     {
-        //
+        return $this->view('admin.form-docs.show', compact('formDoc'));
     }
 
     /**
@@ -75,7 +77,7 @@ class FormDocController extends Controller
      */
     public function edit(FormDoc $formDoc)
     {
-        //
+        return $this->view('admin.form-docs.edit', compact('formDoc'));
     }
 
     /**
@@ -85,9 +87,13 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FormDoc $formDoc)
+    public function update(UpdateRequest $request, FormDoc $formDoc)
     {
-        //
+        $this->dispatchNow($formDocUpdated = new Update($formDoc, $request->name, $request->has('active')));
+
+        flash_success(__('admin.formDoc_updated'));
+
+        return redirect()->route('admin.form-docs.show', [$formDoc]);
     }
 
     /**

@@ -131,6 +131,10 @@ return [
     'formDoc_description' => 'FormDocs help you collect, organize, and present your data so you can manage and your grow your business. Collecting data in FormDocs is comfortable and predictable, and enables Office Forge to expose powerful reporting functionality to your organization!',
     'newFormDoc' => 'New FormDoc',
     'newFormDoc_shortDescription' => 'Create a new FormDoc',
+    'editFormDoc' => 'Edit FormDoc',
+    'editFormDoc_shortDescription' => 'Edit a FormDoc',
     'formDoc_createFirstFormDocNow' => 'Create your first FormDoc now!',
+
     'formDoc_created' => 'FormDoc created',
+    'formDoc_updated' => 'FormDoc updated',
 ];
