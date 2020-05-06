@@ -28,11 +28,11 @@
                 <div class="card-body">
 
                     <h2>
-                        {!! \App\icon\forms(['mr-2']) !!}{{ $formDoc->name }}
+                        {!! \App\icon\formDocs(['mr-2']) !!}{{ $formDoc->name }}
                     </h2>
 
                     @if ($fileType = $formDoc->fileType)
-                        <h3>{!! $fileType->iconAndName() !!}</h3>
+                        <h5 class="pl-4">{!! $fileType->icon(['mr-2']) !!}<a href="{{ route('admin.file-types.show', [$fileType]) }}">{{ $fileType->name }}</a></h5>
                     @endif
 
                     <hr>

@@ -122,6 +122,7 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         // FormDocs
         Route::resource('form-docs', 'FormDocController');
+        Route::resource('form-docs.fields', 'FormDoc\FieldController');
 
         // Processes
         Route::resource('/processes', 'ProcessController');

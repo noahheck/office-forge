@@ -10,7 +10,7 @@
         <div class="col-12">
 
             @if ($fileType = $formDoc->fileType)
-                <h3>{!! $fileType->iconAndName() !!}</h3>
+                <h5>{!! $fileType->iconAndName() !!}</h5>
 
                 @hiddenField([
                     'name' => 'file_type_id',
@@ -20,7 +20,7 @@
                 <hr>
             @endif
 
-            @errors('name', 'active')
+            @errors('name', 'active', 'teams')
 
             @textField([
                 'name' => 'name',
