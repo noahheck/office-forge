@@ -8,10 +8,12 @@ use App\FileType\Form;
 use App\FileType\Panel;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\Form\Field as FieldTrait;
 
 class Field extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        FieldTrait;
 
     protected $table = 'file_type_form_fields';
 
@@ -20,7 +22,6 @@ class Field extends Model
         'active' => 'boolean',
         'order' => 'integer',
         'options' => 'object',
-        'panel_display' => 'boolean',
     ];
 
     public function form()
@@ -48,42 +49,14 @@ class Field extends Model
         return $query->where('active', false);
     }
 
-    public function fieldName()
-    {
-        return 'field_' . $this->id;
-    }
 
-    public function selectOptions()
-    {
-        $select_options = optional($this->options)->select_options ?? [];
-
-        return array_combine($select_options, $select_options);
-    }
-
-    public function decimalPlaces()
-    {
-        return optional($this->options)->decimal_places;
-    }
-
-    public function userTeam()
-    {
-        return optional($this->options)->user_team;
-    }
-
-    public function fileTypeId()
-    {
-        return optional($this->options)->file_type;
-    }
 
     public function fileType()
     {
         return $this->belongsTo(FileType::class, 'file_type_id');
     }
 
-    public function getFileTypeIdAttribute()
-    {
-        return $this->fileTypeId();
-    }
+
 
 
 

@@ -13,7 +13,7 @@
             <div class="card document">
                 <div class="card-body">
 
-                    @include('admin.file-types.forms.fields._form', [
+                    @include('admin._fields._form', [
                         'action' => route($fieldUpdateRouteName, $fieldUpdateRouteParams),
                         'method' => 'PUT',
                         'showActive' => true,

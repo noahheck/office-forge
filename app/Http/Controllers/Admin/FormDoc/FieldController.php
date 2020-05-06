@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\Admin\FormDoc;
 
+use App\FileType;
 use App\FormDoc;
 use App\FormDoc\Field;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\FormDoc\Field\Store as StoreRequest;
+use App\Jobs\FormDoc\Field\Create;
+use App\Team;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class FieldController extends Controller
 {
@@ -26,7 +31,21 @@ class FieldController extends Controller
      */
     public function create(FormDoc $formDoc)
     {
-        //
+        $field = new Field();
+        $field->active = true;
+        $field->form_doc_id = $formDoc->id;
+        $field->type = 'text';
+
+        $allTeams = Team::all();
+        $allFileTypes = FileType::all();
+
+        return $this->view('admin.form-docs.fields.create', compact(
+            'fileType',
+            'formDoc',
+            'field',
+            'allTeams',
+            'allFileTypes'
+        ));
     }
 
     /**
@@ -35,9 +54,25 @@ class FieldController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, FormDoc $formDoc)
+    public function store(StoreRequest $request, FormDoc $formDoc)
     {
-        //
+        $this->dispatchNow($fieldCreated = new Create(
+            $formDoc,
+            $request->label,
+            $request->description,
+            $request->field_type,
+            $request->has('separator'),
+            $request->select_options,
+            $request->decimal_places,
+            $request->user_team,
+            $request->file_type
+        ));
+
+        flash_success(__('admin.field_created'));
+
+        $url = ($request->has('return')) ? $request->return : route('admin.form-docs.show', [$formDoc]);
+
+        return redirect($url);
     }
 
     /**

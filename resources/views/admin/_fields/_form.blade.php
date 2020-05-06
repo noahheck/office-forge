@@ -49,7 +49,7 @@
                 'details' => __('file.field_fieldTypeDescription'),
                 'value' => $field->field_type,
                 'options' => \App\filetype_field_options(),
-                'placeholder' => 'string: example placeholder text',
+                'placeholder' => '',
                 'required' => true,
                 'autofocus' => false,
                 'error' => $errors->has('field_type'),

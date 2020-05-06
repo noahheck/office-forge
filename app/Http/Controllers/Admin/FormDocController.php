@@ -8,8 +8,8 @@ use App\Jobs\FormDoc\Create;
 use App\Jobs\FormDoc\Update;
 use App\Team;
 use Illuminate\Http\Request;
-use App\Http\Requests\Admin\FormDocs\Store as StoreRequest;
-use App\Http\Requests\Admin\FormDocs\Update as UpdateRequest;
+use App\Http\Requests\Admin\FormDoc\Store as StoreRequest;
+use App\Http\Requests\Admin\FormDoc\Update as UpdateRequest;
 use function App\flash_success;
 
 class FormDocController extends Controller

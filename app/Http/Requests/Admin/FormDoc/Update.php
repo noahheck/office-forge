@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Admin\FormDocs;
+namespace App\Http\Requests\Admin\FormDoc;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Store extends FormRequest
+class Update extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,6 +25,7 @@ class Store extends FormRequest
     {
         return [
             'name' => 'required',
+            'active' => 'boolean|nullable',
         ];
     }
 }
