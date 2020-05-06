@@ -32,7 +32,7 @@
                     </h2>
 
                     @if ($fileType = $formDoc->fileType)
-                        <h3>{!! $fileType->icon() !!} {{ $fileType->name }}</h3>
+                        <h3>{!! $fileType->iconAndName() !!}</h3>
                     @endif
 
                     <hr>
@@ -56,24 +56,24 @@
                     <hr>
 
 
-                    {{--@if ($form->teams->count() > 0)
+                    @if ($formDoc->teams->count() > 0)
 
-                        <strong>{!! \App\icon\teams(['mr-2']) !!}{{ __('file.form_teamAccessApproval') }}</strong>
+                        <strong>{!! \App\icon\teams(['mr-2']) !!}{{ __('formDoc.teamAccessApproval') }}</strong>
 
-                        <p>{{ __('file.form_teamAccessApprovalShortDescription') }}</p>
+                        <p>{{ __('formDoc.teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">
-                            @foreach ($form->teams as $team)
+                            @foreach ($formDoc->teams as $team)
                                 <li class="list-group-item">{!! $team->icon() !!} {{ $team->name }}</li>
                             @endforeach
                         </ul>
 
                     @else
 
-                        <p>{{ __('file.form_unrestrictedDescription') }}</p>
+                        <p>{{ __('formDoc.unrestrictedDescription') }}</p>
 
                         <hr>
 
-                    @endif--}}
+                    @endif
 
                     {{--<div class="d-flex">
                         <h3 class="h4 flex-grow-1">

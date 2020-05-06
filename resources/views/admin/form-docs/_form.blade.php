@@ -10,7 +10,7 @@
         <div class="col-12">
 
             @if ($fileType = $formDoc->fileType)
-                <h3>{!! $fileType->icon() !!} {{ $fileType->name }}</h3>
+                <h3>{!! $fileType->iconAndName() !!}</h3>
 
                 @hiddenField([
                     'name' => 'file_type_id',
@@ -32,19 +32,19 @@
                 'error' => $errors->has('name'),
             ])
 
-            {{--<hr>
+            <hr>
 
             @teamMultiSelectField([
                 'name' => 'teams',
-                'label' => __('file.form_teamAccessApproval'),
-                'values' => old('teams', $form->teams),
+                'label' => __('formDoc.teamAccessApproval'),
+                'values' => old('teams', $formDoc->teams),
                 'teams' => $teamOptions,
                 'placeholder' => __('app.selectTeams'),
-                'description' => __('file.form_teamAccessApprovalDescription'),
+                'description' => __('formDoc.teamAccessApprovalDescription'),
                 'required' => false,
                 'autofocus' => false,
                 'error' => $errors->has('teams'),
-            ])--}}
+            ])
 
             @if ($showActive ?? false)
 

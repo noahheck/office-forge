@@ -44,4 +44,9 @@ class Team extends Model
     {
         return $this->belongsToMany(Panel::class, 'file_type_panels_teams', 'team_id', 'file_type_panel_id')->withTimestamps();
     }
+
+    public function formDocs()
+    {
+        return $this->belongsToMany(FormDoc::class, 'form_docs_teams')->withTimestamps();
+    }
 }

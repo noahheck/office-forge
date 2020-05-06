@@ -135,4 +135,15 @@ class FileType extends Model
 
         return "<span class='{$classes}' title='{$title}'></span>";
     }
+
+    public function iconAndName($withClasses = [], bool $wrapped = true): string
+    {
+        $output = $this->icon($withClasses) . ' ' . e($this->name);
+
+        if ($wrapped) {
+            $output = "<span class='file-type-icon-and-name' data-id='" . $this->id . "'>" . $output . "</span>";
+        }
+
+        return $output;
+    }
 }

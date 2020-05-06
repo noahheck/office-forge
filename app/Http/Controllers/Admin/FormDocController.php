@@ -6,6 +6,7 @@ use App\FormDoc;
 use App\Http\Controllers\Controller;
 use App\Jobs\FormDoc\Create;
 use App\Jobs\FormDoc\Update;
+use App\Team;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\FormDocs\Store as StoreRequest;
 use App\Http\Requests\Admin\FormDocs\Update as UpdateRequest;
@@ -34,11 +35,14 @@ class FormDocController extends Controller
     {
         $formDoc = new FormDoc();
         $formDoc->active = true;
+
         if ($file_type_id = $request->file_type_id) {
             $formDoc->file_type_id = $file_type_id;
         }
 
-        return $this->view('admin.form-docs.create', compact('formDoc'));
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.form-docs.create', compact('formDoc', 'teamOptions'));
     }
 
     /**
@@ -49,7 +53,11 @@ class FormDocController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $this->dispatchNow($formDocCreated = new Create($request->name, $request->file_type_id));
+        $this->dispatchNow($formDocCreated = new Create(
+            $request->name,
+            $request->teams,
+            $request->file_type_id
+        ));
 
         $formDoc = $formDocCreated->getFormDoc();
 
@@ -77,7 +85,9 @@ class FormDocController extends Controller
      */
     public function edit(FormDoc $formDoc)
     {
-        return $this->view('admin.form-docs.edit', compact('formDoc'));
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.form-docs.edit', compact('formDoc', 'teamOptions'));
     }
 
     /**
@@ -89,7 +99,12 @@ class FormDocController extends Controller
      */
     public function update(UpdateRequest $request, FormDoc $formDoc)
     {
-        $this->dispatchNow($formDocUpdated = new Update($formDoc, $request->name, $request->has('active')));
+        $this->dispatchNow($formDocUpdated = new Update(
+            $formDoc,
+            $request->name,
+            $request->teams,
+            $request->has('active')
+        ));
 
         flash_success(__('admin.formDoc_updated'));
 

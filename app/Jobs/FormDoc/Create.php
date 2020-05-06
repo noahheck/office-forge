@@ -11,6 +11,7 @@ class Create
     use Dispatchable, Queueable;
 
     private $name;
+    private $teams;
     private $file_type_id;
 
     private $formDoc;
@@ -20,9 +21,10 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $file_type_id = null)
+    public function __construct($name, $teams, $file_type_id = null)
     {
         $this->name = $name;
+        $this->teams = $teams;
         $this->file_type_id = $file_type_id;
     }
 
@@ -44,6 +46,8 @@ class Create
         $formDoc->file_type_id = $this->file_type_id;
 
         $formDoc->save();
+
+        $formDoc->teams()->sync($this->teams);
 
         $this->formDoc = $formDoc;
     }
