@@ -75,18 +75,21 @@
 
                     @endif
 
-                    {{--<div class="d-flex">
+                    <hr>
+
+                    <div class="d-flex">
                         <h3 class="h4 flex-grow-1">
-                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('file.fields') }}
+                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('formDoc.fields') }}
+                            <a href="{{ route('admin.form-docs.fields.index', [$formDoc]) }}">{!! \App\icon\go() !!}</a>
                         </h3>
                     </div>
 
 
 
 
-                    @if ($form->fields->count() > 0)
+                    @if ($formDoc->fields->count() > 0)
 
-                        @foreach ($form->fields->where('active', true) as $field)
+                        @foreach ($formDoc->fields->where('active', true) as $field)
 
                             @if ($loop->first)
                                 <ul class="list-group form-fields" id="formFields_active">
@@ -109,7 +112,7 @@
                                     <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                         <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                            <a class="btn btn-sm btn-primary" href="{{ route('admin.form-docs.fields.edit', [$formDoc, $field]) }}">
                                                 {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                             </a>
                                         </div>
@@ -127,13 +130,13 @@
                         @endforeach
 
                         <p class="text-right mt-3">
-                            <a href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}" class="btn btn-primary btn-sm">
+                            <a href="{{ route('admin.form-docs.fields.create', [$formDoc]) }}" class="btn btn-primary btn-sm">
                                 {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
                             </a>
                         </p>
 
 
-                        @foreach ($form->fields->where('active', false) as $field)
+                        @foreach ($formDoc->fields->where('active', false) as $field)
 
                             @if ($loop->first)
 
@@ -159,7 +162,7 @@
                                     <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                         <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-secondary" href="{{ route('admin.file-types.forms.fields.edit', [$fileType, $form, $field]) }}">
+                                            <a class="btn btn-sm btn-secondary" href="{{ route('admin.form-docs.fields.edit', [$formDoc, $field]) }}">
                                                 {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                             </a>
                                         </div>
@@ -172,9 +175,6 @@
                             @endif
 
                         @endforeach
-
-
-
 
                     @else
 
@@ -189,13 +189,13 @@
                                             {!! \App\icon\formFields(['empty-resource-icon']) !!}
                                         </div>
 
-                                        <p>{{ __('admin.field_description') }}</p>
+                                        <p>{{ __('formDoc.field_description') }}</p>
 
-                                        <p>{{ __('admin.field_typesDescription') }}</p>
+                                        <p>{{ __('formDoc.field_typesDescription') }}</p>
 
                                         <hr>
 
-                                        <a class="btn btn-primary" href="{{ route('admin.file-types.forms.fields.create', [$fileType, $form]) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
+                                        <a class="btn btn-primary" href="{{ route('admin.form-docs.fields.create', [$formDoc]) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
                                     </div>
                                 </div>
 
@@ -203,7 +203,7 @@
 
                         </div>
 
-                    @endif--}}
+                    @endif
 
                 </div>
             </div>

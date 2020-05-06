@@ -16,7 +16,7 @@ class FieldController extends Controller
      */
     public function index(FormDoc $formDoc)
     {
-        //
+        return $this->view('admin.form-docs.fields.index', compact('formDoc'));
     }
 
     /**
