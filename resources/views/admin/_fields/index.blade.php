@@ -1,34 +1,3 @@
-@extends("layouts.admin")
-
-@push('scripts')
-{{--    @script('js/page.admin.file-types.forms.fields.index.js')--}}
-@endpush
-
-@push('styles')
-{{--    @style('css/admin.files.css')--}}
-    @style('css/document.css')
-@endpush
-
-@push('meta')
-    @meta('formDocId', $formDoc->id)
-@endpush
-
-@include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Fields\Index($formDoc),
-])
-
-@include('admin._fields.index', [
-    'formStructure' => $formDoc,
-    'formIconFunction' => '\App\icon\formDocs',
-    'newFieldRouteName' => 'admin.form-docs.fields.create',
-    'newFieldRouteParams' => [$formDoc],
-    'fieldEditRouteName' => 'admin.form-docs.fields.edit',
-    'fieldEditRouteParams' => [$formDoc],
-    'emptyResourceFieldDescription' => __('formDoc.field_description'),
-    'emptyResourceFieldTypeDescription' => __('formDoc.field_typesDescription'),
-])
-
-{{--
 @section('content')
 
     <div class="row justify-content-center form-preview document-print-container">
@@ -36,7 +5,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                {!! \App\icon\formDocs(['mr-2']) !!}{{ $formDoc->name }}
+                {!! $formIconFunction(['mr-2']) !!}{{ $formStructure->name }}
             </h1>
 
             <div class="card document">
@@ -46,10 +15,10 @@
                     <div class="d-flex">
 
                         <h2 class="flex-grow-1 mb-0">
-                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('formDoc.fields') }}
+                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('file.fields') }}
                         </h2>
 
-                        <a href="{{ route('admin.form-docs.fields.create', [$formDoc]) }}" class="btn btn-primary">
+                        <a href="{{ route($newFieldRouteName, $newFieldRouteParams) }}" class="btn btn-primary">
                             {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
                         </a>
 
@@ -57,9 +26,9 @@
 
                     <hr>
 
-                    @if ($formDoc->fields->count() > 0)
+                    @if ($formStructure->fields->count() > 0)
 
-                        @foreach ($formDoc->fields->where('active', true) as $field)
+                        @foreach ($formStructure->fields->where('active', true) as $field)
 
                             @if ($loop->first)
                                 <ul class="list-group form-fields" id="formFields_active">
@@ -82,7 +51,7 @@
                                 <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                     <div class="flex-grow-1">
-                                        <a class="btn btn-sm btn-primary" href="{{ route('admin.form-docs.fields.edit', [$formDoc, $field]) }}">
+                                        <a class="btn btn-sm btn-primary" href="{{ route($fieldEditRouteName, array_merge($fieldEditRouteParams, [$field])) }}">
                                             {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                         </a>
                                     </div>
@@ -100,7 +69,7 @@
                         @endforeach
 
 
-                        @foreach ($formDoc->fields->where('active', false) as $field)
+                        @foreach ($formStructure->fields->where('active', false) as $field)
 
                             @if ($loop->first)
 
@@ -127,7 +96,7 @@
                                     <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
 
                                         <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-secondary" href="{{ route('admin.form-docs.fields.edit', [$formDoc, $field]) }}">
+                                            <a class="btn btn-sm btn-secondary" href="{{ route($fieldEditRouteName, array_merge($fieldEditRouteParams, [$field])) }}">
                                                 {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
                                             </a>
                                         </div>
@@ -154,13 +123,13 @@
                                             {!! \App\icon\formFields(['empty-resource-icon']) !!}
                                         </div>
 
-                                        <p>{{ __('formDoc.field_description') }}</p>
+                                        <p>{{ $emptyResourceFieldDescription }}</p>
 
-                                        <p>{{ __('formDoc.field_typesDescription') }}</p>
+                                        <p>{{ $emptyResourceFieldTypeDescription }}</p>
 
                                         <hr>
 
-                                        <a class="btn btn-primary" href="{{ route('admin.form-docs.fields.create', [$formDoc]) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
+                                        <a class="btn btn-primary" href="{{ route($newFieldRouteName, $newFieldRouteParams) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
                                     </div>
                                 </div>
 
@@ -174,10 +143,8 @@
 
             </div>
 
-
         </div>
 
     </div>
 
 @endsection
---}}
