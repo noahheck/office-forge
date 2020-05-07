@@ -10,6 +10,7 @@ use App\Http\Requests\Admin\FormDoc\Field\Store as StoreRequest;
 use App\Http\Requests\Admin\FormDoc\Field\Update as UpdateRequest;
 use App\Jobs\FormDoc\Field\Create;
 use App\Jobs\FormDoc\Field\Update;
+use App\Jobs\FormDoc\Fields\UpdateOrder;
 use App\Team;
 use Illuminate\Http\Request;
 use function App\flash_success;
@@ -145,5 +146,15 @@ class FieldController extends Controller
     public function destroy(FormDoc $formDoc, Field $field)
     {
         //
+    }
+
+
+    public function updateOrder(Request $request, FormDoc $formDoc)
+    {
+        $this->dispatchNow($fieldsOrdered = new UpdateOrder($formDoc, $request->get('orderedFields')));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.fields_orderUpdated'),
+        ]);
     }
 }

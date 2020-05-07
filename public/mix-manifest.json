@@ -8,6 +8,7 @@
     "/css/files.css": "/css/files.css",
     "/css/admin.css": "/css/admin.css",
     "/css/admin.files.css": "/css/admin.files.css",
+    "/css/admin._field.css": "/css/admin._field.css",
     "/js/manifest.js": "/js/manifest.js",
     "/js/page.activities._tasklist.js": "/js/page.activities._tasklist.js",
     "/js/page.activities.show.js": "/js/page.activities.show.js",
@@ -18,6 +19,8 @@
     "/js/page.admin.file-types.forms.show.js": "/js/page.admin.file-types.forms.show.js",
     "/js/page.admin.file-types.panels.index.js": "/js/page.admin.file-types.panels.index.js",
     "/js/page.admin.file-types.panels.show.js": "/js/page.admin.file-types.panels.show.js",
+    "/js/page.admin.form-docs.fields.index.js": "/js/page.admin.form-docs.fields.index.js",
+    "/js/page.admin.form-docs.show.js": "/js/page.admin.form-docs.show.js",
     "/js/page.admin.processes.show.js": "/js/page.admin.processes.show.js",
     "/js/page.admin.processes.tasks.actions.index.js": "/js/page.admin.processes.tasks.actions.index.js",
     "/js/page.admin.processes.tasks.index.js": "/js/page.admin.processes.tasks.index.js",
@@ -25,6 +28,5 @@
     "/js/page.files._form.js": "/js/page.files._form.js",
     "/js/page.files.index.js": "/js/page.files.index.js",
     "/js/page.settings.photo.js": "/js/page.settings.photo.js",
-    "/js/vendor.js": "/js/vendor.js",
-    "/css/admin._field.css": "/css/admin._field.css"
+    "/js/vendor.js": "/js/vendor.js"
 }

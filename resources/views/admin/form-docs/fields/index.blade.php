@@ -1,11 +1,10 @@
 @extends("layouts.admin")
 
 @push('scripts')
-{{--    @script('js/page.admin.file-types.forms.fields.index.js')--}}
+    @script('js/page.admin.form-docs.fields.index.js')
 @endpush
 
 @push('styles')
-{{--    @style('css/admin.files.css')--}}
     @style('css/document.css')
 @endpush
 

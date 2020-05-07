@@ -1,11 +1,10 @@
 @extends("layouts.admin")
 
 @push('scripts')
-{{--    @script('js/page.admin.file-types.forms.show.js')--}}
+    @script('js/page.admin.form-docs.show.js')
 @endpush
 
 @push('styles')
-{{--    @style('css/admin.files.css')--}}
     @style('css/document.css')
     @style('css/admin._field.css')
 @endpush
@@ -71,8 +70,6 @@
 
                         <p>{{ __('formDoc.unrestrictedDescription') }}</p>
 
-                        <hr>
-
                     @endif
 
                     <hr>
@@ -97,7 +94,7 @@
                         @foreach ($formDoc->fields->where('active', true) as $field)
 
                             @if ($loop->first)
-                                <ul class="list-group form-fields" id="formFields_active">
+                                <ul class="list-group form-fields" id="formDocFields_active">
                             @endif
 
                                 <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">

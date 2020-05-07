@@ -123,6 +123,8 @@ Route::middleware(['auth', 'user.active'])->group(function() {
         // FormDocs
         Route::resource('form-docs', 'FormDocController');
         Route::resource('form-docs.fields', 'FormDoc\FieldController');
+        Route::post('/form-docs/{formDoc}/fields/update-order', 'FormDoc\FieldController@updateOrder')
+            ->name('form-docs.fields.update-order');
 
         // Processes
         Route::resource('/processes', 'ProcessController');
