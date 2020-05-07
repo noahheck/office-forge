@@ -13146,7 +13146,11 @@ div.dt-buttons a.btn.processing:after {
 
 trix-toolbar {
   border: 1px solid #c9c9c9;
-  border-bottom: 0;
+  background-color: #fff;
+  margin-bottom: -1px;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 108px;
 }
 
 trix-toolbar .trix-button-row {

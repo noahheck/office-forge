@@ -11,11 +11,14 @@
 trix-toolbar {
 
     border: 1px solid $medium-gray;
-    border-bottom: 0;
+    background-color: $white;
+    margin-bottom: -1px;
+
+    position: sticky;
+    top: $total-header-height;
 
     .trix-button-row {
         justify-content: flex-start;
-        //flex-wrap: wrap;
         overflow-x: auto;
     }
 
