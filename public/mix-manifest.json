@@ -25,5 +25,6 @@
     "/js/page.files._form.js": "/js/page.files._form.js",
     "/js/page.files.index.js": "/js/page.files.index.js",
     "/js/page.settings.photo.js": "/js/page.settings.photo.js",
-    "/js/vendor.js": "/js/vendor.js"
+    "/js/vendor.js": "/js/vendor.js",
+    "/css/admin._field.css": "/css/admin._field.css"
 }

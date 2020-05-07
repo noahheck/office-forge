@@ -7,6 +7,7 @@
 @push('styles')
     @style('css/admin.files.css')
     @style('css/document.css')
+    @style('css/admin._field.css')
 @endpush
 
 @push('meta')

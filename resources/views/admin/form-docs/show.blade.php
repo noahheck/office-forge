@@ -7,10 +7,10 @@
 @push('styles')
 {{--    @style('css/admin.files.css')--}}
     @style('css/document.css')
+    @style('css/admin._field.css')
 @endpush
 
 @push('meta')
-{{--    @meta('fileTypeId', $fileType->id)--}}
     @meta('formDocId', $formDoc->id)
 @endpush
 
@@ -77,11 +77,16 @@
 
                     <hr>
 
-                    <div class="d-flex">
+                    <div class="d-flex mt-3 mb-3">
                         <h3 class="h4 flex-grow-1">
                             {!! \App\icon\formFields(['mr-2']) !!}{{ __('formDoc.fields') }}
                             <a href="{{ route('admin.form-docs.fields.index', [$formDoc]) }}">{!! \App\icon\go() !!}</a>
                         </h3>
+                        <div class="flex-grow-0">
+                            <a href="{{ route('admin.form-docs.fields.create', [$formDoc]) }}" class="btn btn-sm btn-outline-primary">
+                                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
+                            </a>
+                        </div>
                     </div>
 
 

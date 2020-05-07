@@ -2205,6 +2205,17 @@ module.exports = routing;
 
 /***/ }),
 
+/***/ "./resources/sass/admin/_field.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/admin/_field.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/admin/files.scss":
 /*!*****************************************!*\
   !*** ./resources/sass/admin/files.scss ***!
@@ -2272,9 +2283,9 @@ module.exports = routing;
 /***/ }),
 
 /***/ 0:
-/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/document.scss ./resources/sass/home.scss ./resources/sass/settings.scss ./resources/sass/activities.scss ./resources/sass/files.scss ./resources/sass/admin.scss ./resources/sass/admin/files.scss ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************/
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/document.scss ./resources/sass/home.scss ./resources/sass/settings.scss ./resources/sass/activities.scss ./resources/sass/files.scss ./resources/sass/admin.scss ./resources/sass/admin/files.scss ./resources/sass/admin/_field.scss ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2286,7 +2297,8 @@ __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/s
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/activities.scss */"./resources/sass/activities.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/files.scss */"./resources/sass/files.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin.scss */"./resources/sass/admin.scss");
-module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin/files.scss */"./resources/sass/admin/files.scss");
+__webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin/files.scss */"./resources/sass/admin/files.scss");
+module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin/_field.scss */"./resources/sass/admin/_field.scss");
 
 
 /***/ })

@@ -1,3 +1,7 @@
+@push('styles')
+    @style('css/admin._field.css')
+@endpush
+
 @section('content')
 
     <div class="row justify-content-center form-preview document-print-container">

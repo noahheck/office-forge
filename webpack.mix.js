@@ -40,7 +40,7 @@ mix
     // Admin
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/admin/files.scss', 'public/css/admin.files.css')
-
+    .sass('resources/sass/admin/_field.scss', 'public/css/admin._field.css')
         // Processes
         .js('resources/js/page/admin/processes/show.js', 'public/js/page.admin.processes.show.js')
         .js('resources/js/page/admin/processes/tasks/index.js', 'public/js/page.admin.processes.tasks.index.js')

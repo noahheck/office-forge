@@ -1,0 +1,23 @@
+/**
+ * sass/admin/_field.scss
+ */
+@import '../variables';
+
+.form-preview {
+
+    .form-field-list-item {
+        &:hover {
+            background-color: $blue-highlight;
+        }
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    hr.separator {
+        border-top: 2px solid $medium-gray;
+        margin-bottom: 2rem;
+        width: 90%;
+    }
+}
