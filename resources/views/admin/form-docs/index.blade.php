@@ -20,7 +20,7 @@
                 </div>
                 <hr>
                 <div class="table-responsive">
-                    <table id="formDocs" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{{--{"orderable": false}--}}null, null, null]'>
+                    <table id="formDocs" class="table table-striped table-bordered dt-table" data-order='[[ 0, "asc" ]]'>
                         <thead>
                             <tr>
                                 <th>{{ __('formDoc.name') }}</th>

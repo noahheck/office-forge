@@ -73,8 +73,8 @@
                                     <th class="w-75p">{{ __('activity.dueDate') }}</th>
                                     <th class="w-50p">&nbsp;</th>
                                     <th>{{ __('activity.name') }}</th>
-                                    <th>{{ __('activity.owner') }}</th>
-                                    <th>{{ __('app.file') }}</th>
+                                    <th class="w-100p">{{ __('activity.owner') }}</th>
+                                    <th class="w-100p">{{ __('app.file') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -86,7 +86,11 @@
                         {{ App\format_date($activity->due_date) }}
                     </td>
                     <td data-sort="{{ ($activity->completed) ? '1' : '0' }}" class="text-center">
-                        <span class="{{ ($activity->completed) ? "fas fa-check-square" : 'far fa-square' }}"></span>
+                        @if ($activity->completed)
+                            {!! \App\icon\checkedBox() !!}
+                        @else
+                            {!! \App\icon\uncheckedBox() !!}
+                        @endif
                     </td>
                     <td>
                         <a href="{{ route('activities.show', [$activity]) }}">
@@ -105,9 +109,9 @@
                         @endif
                     </td>
                     <td>
-                        @if ($activity->file_id)
-                            {!! $activity->file->icon() !!}
-                            <a href="{{ route('files.show', [$activity->file_id]) }}">{{ $activity->file->name }}</a>
+                        @if ($activity->file_id && $__file = $activity->file)
+                            {!! $__file->icon() !!}
+                            <a href="{{ route('files.show', [$__file->id]) }}">{{ $__file->name }}</a>
                         @endif
                     </td>
                 </tr>
