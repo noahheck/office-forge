@@ -1,8 +1,8 @@
 <?php
 
-namespace App\FormDoc;
+namespace App\FormDoc\Template;
 
-use App\FormDoc;
+use App\FormDoc\Template;
 use App\Traits\Form\Field as FieldTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -12,7 +12,7 @@ class Field extends Model
     use SoftDeletes,
         FieldTrait;
 
-    protected $table = "form_doc_fields";
+    protected $table = "form_doc_template_fields";
 
     protected $casts = [
         'separator' => 'boolean',
@@ -21,8 +21,8 @@ class Field extends Model
         'options' => 'object',
     ];
 
-    public function formDoc()
+    public function formDocTemplate()
     {
-        return $this->belongsTo(FormDoc::class);
+        return $this->belongsTo(Template::class);
     }
 }

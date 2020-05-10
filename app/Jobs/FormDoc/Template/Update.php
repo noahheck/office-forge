@@ -1,36 +1,31 @@
 <?php
 
-namespace App\Jobs\FormDoc;
+namespace App\Jobs\FormDoc\Template;
 
-use App\FormDoc;
+use App\FormDoc\Template as FormDoc;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class Create
+class Update
 {
     use Dispatchable, Queueable;
 
+    private $formDoc;
     private $name;
     private $teams;
-    private $file_type_id;
-
-    private $formDoc;
+    private $active;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($name, $teams, $file_type_id = null)
+    public function __construct(FormDoc $formDoc, $name, $teams, $active)
     {
+        $this->formDoc = $formDoc;
         $this->name = $name;
         $this->teams = $teams;
-        $this->file_type_id = $file_type_id;
-    }
-
-    public function getFormDoc(): FormDoc
-    {
-        return $this->formDoc;
+        $this->active = $active;
     }
 
     /**
@@ -40,15 +35,12 @@ class Create
      */
     public function handle()
     {
-        $formDoc = new FormDoc();
+        $formDoc = $this->formDoc;
         $formDoc->name = $this->name;
-        $formDoc->active = true;
-        $formDoc->file_type_id = $this->file_type_id;
+        $formDoc->active = $this->active;
 
         $formDoc->save();
 
         $formDoc->teams()->sync($this->teams);
-
-        $this->formDoc = $formDoc;
     }
 }

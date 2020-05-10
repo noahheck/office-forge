@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormDocsTable extends Migration
+class CreateFormDocTemplatesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateFormDocsTable extends Migration
      */
     public function up()
     {
-        Schema::create('form_docs', function (Blueprint $table) {
+        Schema::create('form_doc_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('file_type_id')->nullable();
             $table->string('name');
@@ -31,6 +31,6 @@ class CreateFormDocsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_docs');
+        Schema::dropIfExists('form_doc_templates');
     }
 }

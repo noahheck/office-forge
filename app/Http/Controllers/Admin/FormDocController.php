@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\FormDoc;
+use App\FormDoc\Template as FormDoc;
 use App\Http\Controllers\Controller;
-use App\Jobs\FormDoc\Create;
-use App\Jobs\FormDoc\Update;
+use App\Jobs\FormDoc\Template\Create;
+use App\Jobs\FormDoc\Template\Update;
 use App\Team;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\FormDoc\Store as StoreRequest;

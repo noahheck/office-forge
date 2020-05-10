@@ -4,13 +4,13 @@
 namespace App\Navigation\LocationBar\Admin\FormDocs\Fields;
 
 
-use App\FormDoc;
-use App\FormDoc\Field;
+use App\FormDoc\Template;
+use App\FormDoc\Template\Field;
 use App\Navigation\LocationBar;
 
 class Show extends LocationBar
 {
-    public function __construct(FormDoc $formDoc, Field $field)
+    public function __construct(Template $formDoc, Field $field)
     {
         parent::__construct($field->label);
 

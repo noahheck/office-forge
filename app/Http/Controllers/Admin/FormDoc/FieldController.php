@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin\FormDoc;
 
 use App\FileType;
-use App\FormDoc;
-use App\FormDoc\Field;
+use App\FormDoc\Template as FormDoc;
+use App\FormDoc\Template\Field;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FormDoc\Field\Store as StoreRequest;
 use App\Http\Requests\Admin\FormDoc\Field\Update as UpdateRequest;
-use App\Jobs\FormDoc\Field\Create;
-use App\Jobs\FormDoc\Field\Update;
-use App\Jobs\FormDoc\Fields\UpdateOrder;
+use App\Jobs\FormDoc\Template\Field\Create;
+use App\Jobs\FormDoc\Template\Field\Update;
+use App\Jobs\FormDoc\Template\Fields\UpdateOrder;
 use App\Team;
 use Illuminate\Http\Request;
 use function App\flash_success;

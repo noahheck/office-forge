@@ -311,11 +311,11 @@
                             </div>
                             <hr>
 
-                            @if($fileType->formDocs->count() > 0)
+                            @if($fileType->formDocTemplates->count() > 0)
 
                                 <ul class="list-group fileType-resource-list-group">
 
-                                    @foreach ($fileType->formDocs as $formDoc)
+                                    @foreach ($fileType->formDocTemplates as $formDoc)
 
                                         <li class="list-group-item">
                                             <a href="{{ route('admin.form-docs.show', [$formDoc]) }}">{{ $formDoc->name }}</a>

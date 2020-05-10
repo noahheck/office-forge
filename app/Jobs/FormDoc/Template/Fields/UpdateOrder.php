@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Jobs\FormDoc\Fields;
+namespace App\Jobs\FormDoc\Template\Fields;
 
-use App\FormDoc;
+use App\FormDoc\Template as FormDoc;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 

@@ -1,25 +1,27 @@
 <?php
 
-namespace App\Jobs\FormDoc\Field;
+namespace App\Jobs\FormDoc\Template\Field;
 
-use App\FormDoc\Field;
+use App\FormDoc\Template;
+use App\FormDoc\Template\Field;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class Update
+class Create
 {
     use Dispatchable, Queueable;
 
-    private $field;
+    private $formDoc;
     private $label;
     private $description;
     private $field_type;
     private $separator;
-    private $active;
     private $selectOptions;
     private $decimalPlaces;
     private $userTeam;
     private $fileType;
+
+    private $field;
 
     /**
      * Create a new job instance.
@@ -27,27 +29,30 @@ class Update
      * @return void
      */
     public function __construct(
-        Field $field,
+        Template $formDoc,
         $label,
         $description,
         $field_type,
         $separator,
-        $active,
         $selectOptions,
         $decimalPlaces,
         $userTeam,
         $fileType
     ) {
-        $this->field = $field;
+        $this->formDoc = $formDoc;
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
         $this->separator = $separator;
-        $this->active = $active;
         $this->selectOptions = $selectOptions;
         $this->decimalPlaces = $decimalPlaces;
         $this->userTeam = $userTeam;
         $this->fileType = $fileType;
+    }
+
+    public function getField(): Field
+    {
+        return $this->field;
     }
 
     /**
@@ -57,12 +62,14 @@ class Update
      */
     public function handle()
     {
-        $field = $this->field;
+        $field = new Field;
+        $field->form_doc_template_id = $this->formDoc->id;
         $field->field_type = $this->field_type;
         $field->label = $this->label;
         $field->description = $this->description;
         $field->separator = $this->separator;
-        $field->active = $this->active;
+        $field->active = true;
+        $field->order = $this->formDoc->fields->max('order') + 1;
 
         $options = new \StdClass;
         $options->select_options = $this->selectOptions;
@@ -73,5 +80,7 @@ class Update
         $field->options = $options;
 
         $field->save();
+
+        $this->field = $field;
     }
 }

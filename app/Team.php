@@ -4,6 +4,7 @@ namespace App;
 
 use App\FileType\Form;
 use App\FileType\Panel;
+use App\FormDoc\Template;
 use App\Traits\GetsInitialsFromName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -45,8 +46,8 @@ class Team extends Model
         return $this->belongsToMany(Panel::class, 'file_type_panels_teams', 'team_id', 'file_type_panel_id')->withTimestamps();
     }
 
-    public function formDocs()
+    public function formDocTemplates()
     {
-        return $this->belongsToMany(FormDoc::class, 'form_docs_teams')->withTimestamps();
+        return $this->belongsToMany(Template::class, 'form_doc_templates_teams', 'team_id', 'form_doc_template_id')->withTimestamps();
     }
 }

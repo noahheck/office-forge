@@ -190,7 +190,7 @@ function forms($classes = []) {
 }
 
 function formDocs($classes = []) {
-    $classes[] = "fas fa-file-alt";
+    $classes[] = "fas fa-file-invoice";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }

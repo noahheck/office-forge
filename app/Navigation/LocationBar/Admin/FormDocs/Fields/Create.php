@@ -4,14 +4,12 @@
 namespace App\Navigation\LocationBar\Admin\FormDocs\Fields;
 
 
-use App\FileType;
-use App\FormDoc;
+use App\FormDoc\Template;
 use App\Navigation\LocationBar;
-use App\Process;
 
 class Create extends LocationBar
 {
-    public function __construct(FormDoc $formDoc)
+    public function __construct(Template $formDoc)
     {
         parent::__construct(__('app.addNew'));
 

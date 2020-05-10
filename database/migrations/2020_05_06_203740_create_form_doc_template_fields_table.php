@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormDocFieldsTable extends Migration
+class CreateFormDocTemplateFieldsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateFormDocFieldsTable extends Migration
      */
     public function up()
     {
-        Schema::create('form_doc_fields', function (Blueprint $table) {
+        Schema::create('form_doc_template_fields', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->bigInteger('form_doc_id');
+            $table->bigInteger('form_doc_template_id');
             $table->string('field_type');
             $table->string('label');
             $table->string('placeholder')->nullable();
@@ -38,6 +38,6 @@ class CreateFormDocFieldsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('form_doc_fields');
+        Schema::dropIfExists('form_doc_template_fields');
     }
 }

@@ -1,18 +1,20 @@
 <?php
 
-namespace App;
+namespace App\FormDoc;
 
-use App\FormDoc\Field;
+use App\FileType;
+use App\FormDoc\Template\Field;
+use App\Team;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class FormDoc extends Model
+class Template extends Model
 {
     use SoftDeletes,
         GrantsAccessByTeamMembership;
 
-    protected $table = 'form_docs';
+    protected $table = 'form_doc_templates';
 
     protected $casts = [
         'active' => 'boolean',
@@ -25,11 +27,11 @@ class FormDoc extends Model
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class, 'form_docs_teams')->withTimestamps();
+        return $this->belongsToMany(Team::class, 'form_doc_templates_teams', 'form_doc_template_id', 'team_id')->withTimestamps();
     }
 
     public function fields()
     {
-        return $this->hasMany(Field::class)->orderBy('order');
+        return $this->hasMany(Field::class, 'form_doc_template_id')->orderBy('order');
     }
 }

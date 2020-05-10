@@ -4,15 +4,13 @@
 namespace App\Navigation\Link\Admin\FormDocs\Fields;
 
 
-use App\FormDoc;
-use App\FormDoc\Field;
+use App\FormDoc\Template;
+use App\FormDoc\Template\Field;
 use App\Navigation\Link;
-use App\Process;
-use App\Process\Task;
 
 class Show extends Link
 {
-    public function __construct(FormDoc $formDoc, Field $field)
+    public function __construct(Template $formDoc, Field $field)
     {
         parent::__construct(route('admin.form-docs.fields.show', [$formDoc, $field]), $field->label);
     }

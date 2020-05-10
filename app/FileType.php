@@ -3,8 +3,8 @@
 namespace App;
 
 use App\FileType\Form;
-use App\FormDoc;
 use App\FileType\Panel;
+use App\FormDoc\Template;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -119,9 +119,9 @@ class FileType extends Model
         return $this->hasMany(Process::class);
     }
 
-    public function formDocs()
+    public function formDocTemplates()
     {
-        return $this->hasMany(FormDoc::class);
+        return $this->hasMany(Template::class);
     }
 
 

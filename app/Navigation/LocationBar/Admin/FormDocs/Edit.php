@@ -4,12 +4,12 @@
 namespace App\Navigation\LocationBar\Admin\FormDocs;
 
 
-use App\FormDoc;
+use App\FormDoc\Template;
 use App\Navigation\LocationBar;
 
 class Edit extends LocationBar
 {
-    public function __construct(FormDoc $formDoc)
+    public function __construct(Template $formDoc)
     {
         parent::__construct(__('app.edit'));
 
