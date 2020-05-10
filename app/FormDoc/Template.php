@@ -3,6 +3,7 @@
 namespace App\FormDoc;
 
 use App\FileType;
+use App\FormDoc;
 use App\FormDoc\Template\Field;
 use App\Team;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
@@ -33,5 +34,10 @@ class Template extends Model
     public function fields()
     {
         return $this->hasMany(Field::class, 'form_doc_template_id')->orderBy('order');
+    }
+
+    public function instances()
+    {
+        return $this->hasMany(FormDoc::class, 'form_doc_template_id');
     }
 }

@@ -44,6 +44,11 @@ class File extends Model implements Headshottable
         return $this->hasMany(Activity::class)->orderBy('due_date');
     }
 
+    public function formDocs()
+    {
+        return $this->hasMany(FormDoc::class, 'file_id');
+    }
+
 
 
 

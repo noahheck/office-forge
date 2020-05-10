@@ -110,21 +110,6 @@ class User extends Authenticatable implements Headshottable
         return $this->participatingActivities()->where('completed', false)->orderBy('due_date');
     }
 
-
-    public function myFiles()
-    {
-        return $this->belongsToMany(File::class, "my_files")->withTimestamps()->orderBy('name');
-    }
-
-    public function inMyFiles(File $file)
-    {
-        return $this->myFiles->contains($file);
-    }
-
-
-
-
-
     public function createdTasks()
     {
         return $this->hasMany(Task::class, 'created_by');
@@ -136,6 +121,25 @@ class User extends Authenticatable implements Headshottable
     }
 
 
+
+
+    public function createdFormDocs()
+    {
+        return $this->hasMany(FormDoc::class, 'creator_id');
+    }
+
+
+
+
+    public function myFiles()
+    {
+        return $this->belongsToMany(File::class, "my_files")->withTimestamps()->orderBy('name');
+    }
+
+    public function inMyFiles(File $file)
+    {
+        return $this->myFiles->contains($file);
+    }
 
 
 

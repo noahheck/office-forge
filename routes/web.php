@@ -47,6 +47,10 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     });
 
 
+    // FormDocs
+    Route::resource('/form-docs', 'FormDocController');
+
+
     // Files
     Route::resource('/files', 'FileController');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->middleware('can:view,file')->group(function() {
