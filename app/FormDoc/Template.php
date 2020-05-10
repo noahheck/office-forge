@@ -21,6 +21,11 @@ class Template extends Model
         'active' => 'boolean',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
     public function fileType()
     {
         return $this->belongsTo(FileType::class);

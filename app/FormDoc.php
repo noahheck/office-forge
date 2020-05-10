@@ -35,8 +35,22 @@ class FormDoc extends Model
         return $this->hasMany(Field::class, 'form_doc_id');
     }
 
+    /**
+     * Scope a query to only include documents that have been published
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->whereNotNull('published_at');
+    }
+
+
     public function isPublished()
     {
         return !is_null($this->published_at);
     }
+
+
 }

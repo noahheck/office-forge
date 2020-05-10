@@ -2,11 +2,13 @@
 $__currentRouteName  = Route::currentRouteName();
 $__isFilesRoute      = Str::startsWith($__currentRouteName, 'files');
 $__isActivitiesRoute = Str::startsWith($__currentRouteName, 'activities');
+$__isFormDocsRoute   = Str::startsWith($__currentRouteName, 'form-docs');
 $__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 
 $__user = Auth::user();
+
 
 $__processes = \App\Process::whereNull('file_type_id')->orderBy('name')->get();
 
@@ -17,6 +19,7 @@ $__processesToCreate = $__processes->filter(function($process) use ($__user) {
     return $process->canBeCreatedBy($__user);
 });
 
+
 $__fileTypes = \App\FileType::orderBy('name')->get();
 
 $__fileTypes->load('teams');
@@ -24,6 +27,16 @@ $__fileTypes->load('teams');
 $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
 
     return $fileType->isAccessibleBy($__user);
+});
+
+
+$__formDocTemplates = \App\FormDoc\Template::whereNull('file_type_id')->active()->orderBy('name')->get();
+
+$__formDocTemplates->load('teams');
+
+$__formDocTemplatesToCreate = $__formDocTemplates->filter(function($template) use ($__user) {
+
+    return $template->isAccessibleBy($__user);
 });
 
 @endphp
@@ -118,6 +131,18 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
                                 </a>
                             @endforeach
 
+                            @foreach ($__formDocTemplatesToCreate as $__template)
+
+                                @if ($loop->first)
+                                    <div class="dropdown-divider"></div>
+                                    <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
+                                @endif
+
+                                <a class="dropdown-item" href="{{ route('form-docs.create', ['form_doc_template_id' => $__template->id]) }}">
+                                    {{ $__template->name }}
+                                </a>
+                            @endforeach
+
                             @foreach ($__fileTypesToCreate as $__fileType)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
@@ -175,22 +200,22 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
                     {!! \App\icon\activities(['fa-fw']) !!} {{ __('app.activities') }}
                 </a>
             </li>
-            {{--<li>
-                <a href="#">
-                    <span class="fa-fw fas fa-file"></span> {{ __('app.documents') }}
+            <li>
+                <a href="{{ route('form-docs.index') }}" class="{{ ($__isFormDocsRoute) ? 'current' : '' }}">
+                    {!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}
                 </a>
-            </li>--}}
+            </li>
             <li class="divider">
                 <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
                     {!! \App\icon\mySettings(['fa-fw']) !!} {{ __('app.mySettings') }}
                 </a>
             </li>
             @admin
-            <li>
-                <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
-                    {!! \App\icon\adminSettings(['fa-fw']) !!} {{ __('app.admin') }}
-                </a>
-            </li>
+                <li>
+                    <a href="{{ route('admin.index') }}" class="{{ ($__isAdminRoute) ? 'current' : '' }}">
+                        {!! \App\icon\adminSettings(['fa-fw']) !!} {{ __('app.admin') }}
+                    </a>
+                </li>
             @endadmin
             {{--<li>
                 <a href="#">

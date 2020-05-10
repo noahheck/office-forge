@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FormDoc;
+use App\FormDoc\Template;
 use Illuminate\Http\Request;
 
 class FormDocController extends Controller
@@ -12,9 +13,25 @@ class FormDocController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+
+        // Temporarily return all instances
+        $formDocs = FormDoc::published()->orderBy('published_at')->get();
+
+        $formDocs->load('creator, file');
+
+        $templates = Template::whereNull('file_type_id')->active()->orderBy('name')->get();
+
+        $templates->load('teams');
+
+        $templates = $templates->filter(function($template) use ($user) {
+
+            return $template->isAccessibleBy($user);
+        });
+
+        return $this->view('form-docs.index', compact('formDocs', 'templates'));
     }
 
     /**

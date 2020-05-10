@@ -1,6 +1,12 @@
 <?php
 
 return [
+
+    'newFormDoc' => 'New FormDoc',
+
+    'publicationDate' => 'Date',
+    'creator' => 'Creator',
+
     'name' => 'Name',
     'nameExamples' => 'Progress Update, Shift Report, etc...',
     'active' => 'Active',
