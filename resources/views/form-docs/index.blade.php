@@ -40,7 +40,7 @@
                 @if($loop->first)
 
                     <div class="table-responsive">
-                        <table id="projects" class="projects table table-striped table-bordered dt-table">
+                        <table id="projects" class="projects table table-striped table-bordered dt-table" data-order='[[ 0, "desc" ]]'>
                             <thead>
                                 <tr>
                                     <th class="w-150p">{{ __('formDoc.submitted') }}</th>

@@ -6,7 +6,9 @@ use App\File;
 use App\FormDoc;
 use App\FormDoc\Template;
 use App\Http\Requests\FormDoc\Store as StoreRequest;
+use App\Http\Requests\FormDoc\Update as UpdateRequest;
 use App\Jobs\FormDoc\Create;
+use App\Jobs\FormDoc\Update;
 use Illuminate\Http\Request;
 use function App\flash_error;
 use function App\flash_success;
@@ -23,7 +25,7 @@ class FormDocController extends Controller
         $user = $request->user();
 
         // Temporarily return all instances
-        $formDocs = FormDoc::submitted()->orderBy('submitted_at')->get();
+        $formDocs = FormDoc::submitted()->orderBy('submitted_at', 'DESC')->get();
         $formDocs->load(['creator', 'file']);
 
         $templates = Template::whereNull('file_type_id')->active()->orderBy('name')->get();
@@ -133,7 +135,16 @@ class FormDocController extends Controller
      */
     public function edit(FormDoc $formDoc)
     {
-        //
+        if ($formDoc->isSubmitted()) {
+
+            flash_error(__('formDoc.error_formDocAlreadySubmitted'));
+
+            return redirect(url()->previous());
+        }
+
+        $file = $formDoc->file;
+
+        return $this->view('form-docs.edit', compact('formDoc', 'file'));
     }
 
     /**
@@ -143,9 +154,26 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FormDoc $formDoc)
+    public function update(UpdateRequest $request, FormDoc $formDoc)
     {
-        //
+        $submitted = $request->has('save_submit');
+
+        $this->dispatchNow($formDocUpdate = new Update($formDoc, $submitted, $request->all()));
+
+        $message = ($submitted) ? __('formDoc.submittedSuccessfully') : __('formDoc.savedSuccessfully');
+        flash_success($message);
+
+        if ($return = $request->get('return')) {
+
+            return redirect($return);
+        }
+
+        if ($file = $formDoc->file) {
+
+            return redirect()->route('files.show', [$file]);
+        }
+
+        return redirect()->route('form-docs.show', [$formDoc]);
     }
 
     /**

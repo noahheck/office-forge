@@ -29,7 +29,7 @@
 
         @include('_form_field.' . $field->field_type, [
             'field' => $field,
-            'value' => optional($values->firstWhere('form_doc_template_field_id', $field->id)),
+            'value' => optional($values->firstWhere($valueKey, $field->id)),
             'autofocus' => $loop->first,
         ])
 

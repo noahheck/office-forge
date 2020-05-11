@@ -4,8 +4,12 @@
     @style('css/document.css')
 @endpush
 
+@push('meta')
+    @meta('formDocId', $formDoc->id)
+@endpush
+
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar\FormDocs\Create)
+    'locationBar' => (new \App\Navigation\LocationBar\FormDocs\Edit($formDoc))
 ])
 
 @section('content')
@@ -34,10 +38,11 @@
                     <hr>
 
                     @include('form-docs._form', [
-                        'action' => route('form-docs.store'),
-                        'fields' => $template->fields,
+                        'action' => route('form-docs.update', [$formDoc]),
+                        'method' => 'PUT',
+                        'fields' => $formDoc->fields,
                         'values' => $formDoc->fields,
-                        'valueKey' => 'form_doc_template_field_id',
+                        'valueKey' => 'id',
                     ])
 
                 </div>
