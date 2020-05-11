@@ -36,6 +36,7 @@ mix
     .js('resources/js/page/files/_form.js', 'public/js/page.files._form.js')
 
     // FormDocs
+    .sass('resources/sass/formDocs.scss', 'public/css')
     .js('resources/js/page/admin/form-docs/show.js', 'public/js/page.admin.form-docs.show.js')
     .js('resources/js/page/admin/form-docs/fields/index.js', 'public/js/page.admin.form-docs.fields.index.js')
 

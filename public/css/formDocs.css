@@ -1,0 +1,20 @@
+/**
+ * sass/formDocs.scss
+ */
+
+.formDoc--fields .panel-field {
+  padding-bottom: 10px;
+}
+
+.formDoc--fields .field-label {
+  font-weight: bold;
+}
+
+.formDoc--fields .field-value {
+  padding-left: 20px;
+}
+
+.formDoc--fields .checkbox-container {
+  font-size: 1.1rem;
+}
+

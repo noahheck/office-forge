@@ -43,9 +43,11 @@ class FormDocController extends Controller
      */
     public function create(Request $request)
     {
+        $user = $request->user();
+
         $templateId = $request->query('form_doc_template_id');
         $template = Template::find($templateId);
-        if (!$template || !$template->isAccessibleBy($request->user())) {
+        if (!$template || !$template->isAccessibleBy($user)) {
             flash_error(__('formDoc.error_unableToAccessFormDocType'));
 
             return redirect()->route('form-docs.index');
@@ -53,7 +55,7 @@ class FormDocController extends Controller
 
         $fileId = $request->query('file_id');
         $file = File::find($fileId);
-        if ($file && !$request->user()->can('view', $file)) {
+        if ($file && !$user->can('view', $file)) {
             flash_error(__('file.error_unableToAccessFileType'));
 
             return redirect()->route('files.index');
@@ -68,6 +70,7 @@ class FormDocController extends Controller
         $formDoc = new FormDoc();
         $formDoc->form_doc_template_id = $templateId;
         $formDoc->file_id = ($fileId) ? $fileId : null;
+        $formDoc->creator_id = $user->id;
         $formDoc->name = $template->name;
 
         return $this->view('form-docs.create', compact('template', 'file', 'formDoc'));
@@ -117,7 +120,9 @@ class FormDocController extends Controller
      */
     public function show(FormDoc $formDoc)
     {
-        //
+        $file = $formDoc->file;
+
+        return $this->view('form-docs.show', compact('formDoc', 'file'));
     }
 
     /**
