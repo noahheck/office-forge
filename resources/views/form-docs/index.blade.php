@@ -43,10 +43,10 @@
                         <table id="projects" class="projects table table-striped table-bordered dt-table">
                             <thead>
                                 <tr>
-                                    <th class="w-50p">{{ __('formDoc.publicationDate') }}</th>
+                                    <th class="w-150p">{{ __('formDoc.submitted') }}</th>
                                     <th>{{ __('formDoc.name') }}</th>
-                                    <th class="w-100p">{{ __('formDoc.creator') }}</th>
-                                    <th class="w-100p">{{ __('app.file') }}</th>
+                                    <th class="w-150p">{{ __('formDoc.creator') }}</th>
+                                    <th class="w-150p">{{ __('app.file') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -54,8 +54,8 @@
                 @endif
 
                 <tr>
-                    <td data-sort="{{ $formDoc->published_at }}">
-                        {{ App\format_date($formDoc->published_at) }}
+                    <td data-sort="{{ $formDoc->submitted_at }}">
+                        {{ App\format_datetime($formDoc->submitted_at) }}
                     </td>
                     <td data-sort="{{ $formDoc->name }}">
                         <a href="{{ route('form-docs.show', [$formDoc]) }}">

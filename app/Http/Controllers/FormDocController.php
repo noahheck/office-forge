@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\File;
 use App\FormDoc;
 use App\FormDoc\Template;
+use App\Http\Requests\FormDoc\Store as StoreRequest;
+use App\Jobs\FormDoc\Create;
 use Illuminate\Http\Request;
+use function App\flash_error;
+use function App\flash_success;
 
 class FormDocController extends Controller
 {
@@ -18,14 +23,11 @@ class FormDocController extends Controller
         $user = $request->user();
 
         // Temporarily return all instances
-        $formDocs = FormDoc::published()->orderBy('published_at')->get();
-
-        $formDocs->load('creator, file');
+        $formDocs = FormDoc::submitted()->orderBy('submitted_at')->get();
+        $formDocs->load(['creator', 'file']);
 
         $templates = Template::whereNull('file_type_id')->active()->orderBy('name')->get();
-
         $templates->load('teams');
-
         $templates = $templates->filter(function($template) use ($user) {
 
             return $template->isAccessibleBy($user);
@@ -39,9 +41,36 @@ class FormDocController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $templateId = $request->query('form_doc_template_id');
+        $template = Template::find($templateId);
+        if (!$template || !$template->isAccessibleBy($request->user())) {
+            flash_error(__('formDoc.error_unableToAccessFormDocType'));
+
+            return redirect()->route('form-docs.index');
+        }
+
+        $fileId = $request->query('file_id');
+        $file = File::find($fileId);
+        if ($file && !$request->user()->can('view', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        if ($fileId && ($template->file_type_id != $file->file_type_id)) {
+            flash_error(__('formDoc.error_fileIdMismatch'));
+
+            return redirect()->route('form-docs.index');
+        }
+
+        $formDoc = new FormDoc();
+        $formDoc->form_doc_template_id = $templateId;
+        $formDoc->file_id = ($fileId) ? $fileId : null;
+        $formDoc->name = $template->name;
+
+        return $this->view('form-docs.create', compact('template', 'file', 'formDoc'));
     }
 
     /**
@@ -50,9 +79,34 @@ class FormDocController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $template = Template::find($request->form_doc_template_id);
+
+        $file = ($fileId = $request->file_id) ? File::find($fileId) : null;
+
+        $user = $request->user();
+
+        $submitted = $request->has('save_submit');
+
+        $this->dispatchNow($formDocCreated = new Create($template, $file, $user, $submitted, $request->all()));
+
+        $formDoc = $formDocCreated->getFormDoc();
+
+        $message = ($submitted) ? __('formDoc.submittedSuccessfully') : __('formDoc.savedSuccessfully');
+        flash_success($message);
+
+        if ($return = $request->get('return')) {
+
+            return redirect($return);
+        }
+
+        if ($file) {
+
+            return redirect()->route('files.show', [$file]);
+        }
+
+        return redirect()->route('form-docs.show', [$formDoc]);
     }
 
     /**

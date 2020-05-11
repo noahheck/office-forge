@@ -4,7 +4,8 @@ return [
 
     'newFormDoc' => 'New FormDoc',
 
-    'publicationDate' => 'Date',
+    'submissionDate' => 'Date',
+    'submitted' => 'Submitted',
     'creator' => 'Creator',
 
     'name' => 'Name',
@@ -20,4 +21,13 @@ return [
     'fields' => 'Fields',
     'field_description' => 'Fields are the containers your staff will input data into. Each Field represents a single, distinct data point your organization is interested in for this FormDoc.',
     'field_typesDescription' => 'Office Forge contains several different field types to help ensure your organization is able to collect the information it needs for you to do your work effectively.',
+
+
+
+
+    'submittedSuccessfully' => 'Your form has been submitted successfully.',
+    'savedSuccessfully' => 'Your form has been saved. It is still draft state.',
+
+    'error_unableToAccessFormDocType' => 'You are unable to access these FormDocs.',
+    'error_fileIdMismatch' => 'This FormDoc cannot be created for this file type.',
 ];

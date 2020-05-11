@@ -254,9 +254,7 @@
     @include border-radius();
     @include no-text-select();
     color: #090909;
-    //margin-right: 6px;
     padding: 4px;
-
     display: inline-block;
 }
 
@@ -264,7 +262,6 @@
     @include border-rounded();
     @include no-text-select();
     color: #f9f9f9;
-    //margin-right: 6px;
     padding: 7px;
     display: inline-block;
 }
@@ -281,8 +278,18 @@
 
 .thumbnail {
     max-width: 200px;
-    max-height: 200px;
     max-width: 100%;
+    max-height: 200px;
+}
+
+
+
+
+.dt-table {
+    .headshot {
+        max-height: 35px;
+        max-width: 35px;
+    }
 }
 
 

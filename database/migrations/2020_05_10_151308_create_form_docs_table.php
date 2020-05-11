@@ -20,9 +20,9 @@ class CreateFormDocsTable extends Migration
             $table->bigInteger('file_id')->nullable();
             $table->bigInteger('creator_id');
             $table->string('name');
-            $table->dateTime('published_at')->nullable();
 
             $table->timestamps();
+            $table->dateTime('submitted_at')->nullable();
             $table->softDeletes();
         });
     }

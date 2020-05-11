@@ -12,7 +12,7 @@ class FormDoc extends Model
     use SoftDeletes;
 
     protected $dates = [
-        'published_at',
+        'submitted_at',
     ];
 
     public function template()
@@ -35,22 +35,14 @@ class FormDoc extends Model
         return $this->hasMany(Field::class, 'form_doc_id');
     }
 
-    /**
-     * Scope a query to only include documents that have been published
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopePublished($query)
+    public function scopeSubmitted($query)
     {
-        return $query->whereNotNull('published_at');
+        return $query->whereNotNull('submitted_at');
     }
 
 
-    public function isPublished()
+    public function isSubmitted()
     {
-        return !is_null($this->published_at);
+        return !is_null($this->submitted_at);
     }
-
-
 }

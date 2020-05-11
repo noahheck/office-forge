@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\FileType\Form;
+namespace App\Form;
 
 use Illuminate\Validation\Rule;
 
@@ -10,7 +10,7 @@ use App\FileType\Form;
 
 class FieldValidationRulesGenerator
 {
-    public function generateRulesForForm(Form $form)
+    public function generateRulesForForm($form)
     {
         $stateAbbreviations = implode(',', array_keys(USStates::statesIndexedByAbbreviation()));
 
@@ -69,7 +69,7 @@ class FieldValidationRulesGenerator
 
 
 
-    public function generateNameAttributesForForm(Form $form)
+    public function generateNameAttributesForForm($form)
     {
         $attributeNames = [];
 

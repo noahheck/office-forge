@@ -1,10 +1,7 @@
 <?php
 
 
-namespace App\File\FormField;
-
-
-use App\FileType\Form\Field;
+namespace App\Form;
 
 class DataMapper
 {
@@ -14,7 +11,7 @@ class DataMapper
     }
 
 
-    public function updateFieldValue(Field $field, Value $value, $inputData)
+    public function updateFieldValue($field, $value, $inputData)
     {
         $field_id = $field->id;
 

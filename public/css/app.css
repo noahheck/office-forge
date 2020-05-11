@@ -13356,6 +13356,10 @@ trix-editor:empty:not(:focus)::before {
   width: 100px;
 }
 
+.w-150p {
+  width: 150px;
+}
+
 .mh-25p {
   max-height: 25px;
 }
@@ -13837,8 +13841,13 @@ trix-editor:empty:not(:focus)::before {
 
 .thumbnail {
   max-width: 200px;
-  max-height: 200px;
   max-width: 100%;
+  max-height: 200px;
+}
+
+.dt-table .headshot {
+  max-height: 35px;
+  max-width: 35px;
 }
 
 .notifications {

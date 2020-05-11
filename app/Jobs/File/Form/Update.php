@@ -3,9 +3,9 @@
 namespace App\Jobs\File\Form;
 
 use App\File;
-use App\File\FormField\DataMapper;
 use App\File\FormField\Value;
 use App\FileType\Form;
+use App\Form\DataMapper;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 

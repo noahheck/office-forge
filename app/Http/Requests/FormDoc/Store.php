@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\File\Forms;
+namespace App\Http\Requests\FormDoc;
 
-use App\FileType\Form;
 use App\Form\FieldValidationRulesGenerator;
+use App\FormDoc\Template;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Update extends FormRequest
+class Store extends FormRequest
 {
     private $nameAttributes;
 
@@ -17,7 +17,8 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        return $this->form->isAccessibleBy($this->user());
+        // @todo Make sure authorization is in place correctly
+        return true;
     }
 
     public function attributes()
@@ -32,9 +33,11 @@ class Update extends FormRequest
      */
     public function rules(FieldValidationRulesGenerator $generator)
     {
-        $rules = $generator->generateRulesForForm($this->form);
+        $template = Template::find($this->form_doc_template_id);
 
-        $this->nameAttributes = $generator->generateNameAttributesForForm($this->form);
+        $rules = $generator->generateRulesForForm($template);
+
+        $this->nameAttributes = $generator->generateNameAttributesForForm($template);
 
         return $rules;
     }
