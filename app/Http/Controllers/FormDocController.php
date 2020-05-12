@@ -9,6 +9,7 @@ use App\Http\Requests\FormDoc\Store as StoreRequest;
 use App\Http\Requests\FormDoc\Update as UpdateRequest;
 use App\Jobs\FormDoc\Create;
 use App\Jobs\FormDoc\Update;
+use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 use function App\flash_error;
 use function App\flash_success;
@@ -43,7 +44,7 @@ class FormDocController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Request $request, MemberProvider $memberProvider)
     {
         $user = $request->user();
 
@@ -75,7 +76,7 @@ class FormDocController extends Controller
         $formDoc->creator_id = $user->id;
         $formDoc->name = $template->name;
 
-        return $this->view('form-docs.create', compact('template', 'file', 'formDoc'));
+        return $this->view('form-docs.create', compact('template', 'file', 'formDoc', 'memberProvider'));
     }
 
     /**
@@ -133,7 +134,7 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function edit(FormDoc $formDoc)
+    public function edit(FormDoc $formDoc, MemberProvider $memberProvider)
     {
         if ($formDoc->isSubmitted()) {
 
@@ -144,7 +145,7 @@ class FormDocController extends Controller
 
         $file = $formDoc->file;
 
-        return $this->view('form-docs.edit', compact('formDoc', 'file'));
+        return $this->view('form-docs.edit', compact('formDoc', 'file', 'memberProvider'));
     }
 
     /**

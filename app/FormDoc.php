@@ -4,12 +4,17 @@ namespace App;
 
 use App\FormDoc\Field;
 use App\FormDoc\Template;
+use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
+
 class FormDoc extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes,
+        GrantsAccessByTeamMembership,
+        HasRelationships;
 
     protected $dates = [
         'submitted_at',
@@ -33,6 +38,16 @@ class FormDoc extends Model
     public function fields()
     {
         return $this->hasMany(Field::class, 'form_doc_id');
+    }
+
+    public function teams()
+    {
+        return $this->hasManyDeep(
+            Team::class,
+            [Template::class, 'form_doc_templates_teams',],
+            ['id',                   'form_doc_template_id', 'id'],
+            ['form_doc_template_id', 'id',                   'team_id',]
+        );
     }
 
     public function scopeSubmitted($query)

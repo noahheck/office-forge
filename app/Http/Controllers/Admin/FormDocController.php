@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Jobs\FormDoc\Template\Create;
 use App\Jobs\FormDoc\Template\Update;
 use App\Team;
+use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\FormDoc\Store as StoreRequest;
 use App\Http\Requests\Admin\FormDoc\Update as UpdateRequest;
@@ -72,9 +73,9 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function show(FormDoc $formDoc)
+    public function show(FormDoc $formDoc, MemberProvider $memberProvider)
     {
-        return $this->view('admin.form-docs.show', compact('formDoc'));
+        return $this->view('admin.form-docs.show', compact('formDoc', 'memberProvider'));
     }
 
     /**

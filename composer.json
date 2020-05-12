@@ -16,6 +16,7 @@
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^1.0",
+        "staudenmeir/eloquent-has-many-deep": "1.11",
         "tightenco/ziggy": "^0.8.1"
     },
     "require-dev": {

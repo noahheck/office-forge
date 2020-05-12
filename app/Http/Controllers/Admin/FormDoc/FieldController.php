@@ -12,6 +12,7 @@ use App\Jobs\FormDoc\Template\Field\Create;
 use App\Jobs\FormDoc\Template\Field\Update;
 use App\Jobs\FormDoc\Template\Fields\UpdateOrder;
 use App\Team;
+use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -22,9 +23,9 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FormDoc $formDoc)
+    public function index(FormDoc $formDoc, MemberProvider $memberProvider)
     {
-        return $this->view('admin.form-docs.fields.index', compact('formDoc'));
+        return $this->view('admin.form-docs.fields.index', compact('formDoc', 'memberProvider'));
     }
 
     /**

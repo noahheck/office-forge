@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Activity\ActivityProvider;
+use App\Document\DocumentProvider;
 use App\File;
 use App\FileType;
 use App\Jobs\File\Create;
@@ -127,8 +128,12 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, File $file, ActivityProvider $activityProvider)
-    {
+    public function show(
+        Request $request,
+        File $file,
+        ActivityProvider $activityProvider,
+        DocumentProvider $documentProvider
+    ) {
         $user     = $request->user();
 
         if (!$user->can('view', $file)) {
@@ -151,6 +156,10 @@ class FileController extends Controller
 
         $panels = $fileType->panels->filter(function($panel, $key) use($user) {
             return $panel->isAccessibleBy($user);
+        });
+
+        $formDocTemplates = $fileType->formDocTemplates->filter(function($template, $key) use($user) {
+            return $template->isAccessibleBy($user);
         });
 
         $processes = $fileType->processes;
@@ -177,8 +186,25 @@ class FileController extends Controller
 
         $activities->load('owner', 'owner.headshots', 'tasks');
 
+        $documents = $documentProvider->getDocumentsForFileAccessibleByUser($file, $user);
 
-        return $this->view('files.show', compact('file', 'inMyFiles', 'fileType', 'forms', 'panels', 'processesToCreate', 'values', 'activities', 'activityView'));
+        $documents->loadMissing('creator', 'teams');
+
+        \Debugbar::info($documents);
+
+        return $this->view('files.show', compact(
+            'file',
+            'inMyFiles',
+            'fileType',
+            'forms',
+            'panels',
+            'processesToCreate',
+            'values',
+            'activities',
+            'activityView',
+            'documents',
+            'formDocTemplates'
+        ));
     }
 
     /**

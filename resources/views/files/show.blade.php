@@ -155,7 +155,7 @@
 
 
             {{-- Activities Panel --}}
-            <div class="card shadow activities-card">
+            <div class="card shadow activities-card mb-3">
                 <div class="card-header d-flex">
                     <h4 class="mb-0 flex-grow-0">{!! \App\icon\activities(['mr-2']) !!}{{ __('app.activities') }}</h4>
                     <div class="d-flex flex-grow-1">
@@ -191,7 +191,7 @@
                         </div>
                         <div class="dropdown ml-2">
                             <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="newActivityDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="fas fa-plus-circle"></span>
+                                {!! \App\icon\circlePlus() !!}
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
 
@@ -234,6 +234,105 @@
                         <div class="empty-resource border p-3">
                             {!! \App\icon\activities(['empty-resource-icon']) !!}
                             <p>{{ __('activity.description') }}</p>
+                        </div>
+
+                    @endforelse
+
+                </div>
+            </div>
+            {{-- End Activities Panel --}}
+
+
+
+
+
+
+
+
+
+
+
+
+            {{-- Documents Panel --}}
+            <div class="card shadow activities-card mb-3">
+                <div class="card-header d-flex">
+                    <h4 class="mb-0 flex-grow-0">{!! \App\icon\formDocs(['mr-2']) !!}{{ __('app.formDocs') }}</h4>
+                    <div class="d-flex flex-grow-1">
+                        <div class="dropdown flex-grow-1 ml-3">
+                            {{--<button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="showActivitiesDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                @switch($activityView)
+
+                                    @case('open')
+                                    {{ __('activity.openActivities') }}
+                                    @break
+
+                                    @case('all')
+                                    {{ __('activity.allActivities') }}
+                                    @break
+
+                                @endswitch
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="showActivitiesDropdownMenuButton">
+
+                                @switch($activityView)
+
+                                    @case('open')
+                                    <a class="dropdown-item" href="{{ route('files.show', [$file, 'show_activities' => 'all']) }}">{{ __('activity.allActivities') }}</a>
+                                    @break
+
+                                    @case('all')
+                                    <a class="dropdown-item" href="{{ route('files.show', [$file]) }}">{{ __('activity.openActivities') }}</a>
+                                    @break
+
+                                @endswitch
+
+                            </div>--}}
+                        </div>
+                        <div class="dropdown ml-2">
+                            <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="newActivityDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {!! \App\icon\circlePlus([]) !!}
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
+
+{{--                                <a class="dropdown-item" href="{{ route("activities.create", ['file_id' => $file->id]) }}">{{ __('activity.newActivity') }}</a>--}}
+                                @foreach ($formDocTemplates as $__template)
+                                    @if ($loop->first)
+                                        <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
+                                    @endif
+
+                                    <a class="dropdown-item" href="{{ route('form-docs.create', ['file_id' => $file->id, 'form_doc_template_id' => $__template->id]) }}">
+                                        {{ $__template->name }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+
+
+                    @forelse ($documents as $formDoc)
+
+                        @if($loop->first)
+                            <div class="list-group formDocs">
+                                @endif
+
+                                <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
+                                    {{--@include("_component._activity", [
+                                        'context' => 'file',
+                                    ])--}}
+                                    {{ $formDoc->name }}
+                                </a>
+
+                                @if($loop->last)
+                            </div>
+                        @endif
+
+                    @empty
+
+                        <div class="empty-resource border p-3">
+                            {!! \App\icon\formDocs(['empty-resource-icon']) !!}
+                            <p>{{ __('admin.formDoc_description') }}</p>
                         </div>
 
                     @endforelse
