@@ -125,9 +125,16 @@
     }
 }
 
+@each $color, $value in $theme-colors {
+    .btn-#{$color}:focus {
+        background-color: darken($value, 10%);
+    }
+}
+
 .btn-warning {
     background-color: $warning-orange;
     color: $white;
+    border-color: $warning-orange;
 
     &:hover,
     &:focus {
@@ -135,6 +142,9 @@
         color: $white;
     }
 }
+
+
+
 
 .card {
     @include border-radius(0);

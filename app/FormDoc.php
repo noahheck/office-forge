@@ -13,7 +13,6 @@ use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 class FormDoc extends Model
 {
     const WORK_ITEM_KEY = 'form-doc';
-    const WORK_ITEM_EDIT_ROUTE = 'form-docs.edit';
 
     use SoftDeletes,
         GrantsAccessByTeamMembership,
@@ -22,6 +21,16 @@ class FormDoc extends Model
     protected $dates = [
         'submitted_at',
     ];
+
+    public function workItemListHref()
+    {
+        if ($this->submitted) {
+
+            return route("form-docs.show", [$this]);
+        }
+
+        return route('form-docs.edit', [$this]);
+    }
 
     public function template()
     {

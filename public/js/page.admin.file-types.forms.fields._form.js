@@ -54,7 +54,9 @@ $(function () {
     }
   });
   sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('selectOptionsList'), {
-    handle: '.sort-handle'
+    handle: '.sort-handle',
+    animation: 150,
+    direction: 'vertical'
   });
   $('.select-option-item .delete-button').click(function () {
     $(this).parent().remove();

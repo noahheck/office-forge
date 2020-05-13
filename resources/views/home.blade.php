@@ -50,7 +50,7 @@
                             <div class="list-group activities">
                         @endif
 
-                            <a class="list-group-item list-group-item-action" href="{{ route($workItem::WORK_ITEM_EDIT_ROUTE, [$workItem]) }}">
+                            <a class="list-group-item list-group-item-action" href="{{ $workItem->workItemListHref() }}">
 
                                 @include("_component._" . $workItem::WORK_ITEM_KEY)
 

@@ -13694,9 +13694,42 @@ trix-editor:empty:not(:focus)::before {
   box-shadow: 0 0 0 0 transparent;
 }
 
+.btn-primary:focus {
+  background-color: #2176bd;
+}
+
+.btn-secondary:focus {
+  background-color: #545b62;
+}
+
+.btn-success:focus {
+  background-color: #2d995b;
+}
+
+.btn-info:focus {
+  background-color: #3f9ae5;
+}
+
+.btn-warning:focus {
+  background-color: #ffe817;
+}
+
+.btn-danger:focus {
+  background-color: #c51f1a;
+}
+
+.btn-light:focus {
+  background-color: #dae0e5;
+}
+
+.btn-dark:focus {
+  background-color: #1d2124;
+}
+
 .btn-warning {
   background-color: #f6993f;
   color: #fff;
+  border-color: #f6993f;
 }
 
 .btn-warning:hover,

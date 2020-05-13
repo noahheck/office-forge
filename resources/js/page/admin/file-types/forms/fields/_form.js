@@ -60,7 +60,9 @@ $(function() {
     });
 
     Sortable.create(document.getElementById('selectOptionsList'), {
-        handle: '.sort-handle'
+        handle: '.sort-handle',
+        animation: 150,
+        direction: 'vertical',
     });
 
     $('.select-option-item .delete-button').click(function() {

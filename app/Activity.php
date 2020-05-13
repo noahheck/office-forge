@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Activity extends Model
 {
     const WORK_ITEM_KEY = 'activity';
-    const WORK_ITEM_EDIT_ROUTE = 'activities.edit';
 
     use SoftDeletes,
         IsEditorResource,
@@ -28,6 +27,11 @@ class Activity extends Model
         'active' => 'boolean',
         'completed' => 'boolean',
     ];
+
+    public function workItemListHref()
+    {
+        return route('activities.show', [$this]);
+    }
 
     public function getFullName()
     {
