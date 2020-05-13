@@ -12,6 +12,9 @@ use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class FormDoc extends Model
 {
+    const WORK_ITEM_KEY = 'form-doc';
+    const WORK_ITEM_EDIT_ROUTE = 'form-docs.edit';
+
     use SoftDeletes,
         GrantsAccessByTeamMembership,
         HasRelationships;

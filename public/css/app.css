@@ -13831,6 +13831,11 @@ trix-editor:empty:not(:focus)::before {
   display: inline-block;
 }
 
+.user-icon.mhw-25p {
+  font-size: 10px;
+  padding: 4px;
+}
+
 .file-icon {
   font-size: 3rem;
 }

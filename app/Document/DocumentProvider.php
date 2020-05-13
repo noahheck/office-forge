@@ -17,6 +17,13 @@ class DocumentProvider
         $this->formDoc = $formDoc;
     }
 
+
+    public function getOpenDocumentsForUser(User $user)
+    {
+        return $user->createdFormDocs()->whereNull('submitted_at')->orderBy('created_at')->get();
+    }
+
+
     public function getDocumentsForFileAccessibleByUser(File $file, User $user)
     {
         $allFormDocs = $file->formDocs()->submitted()->orderBy('submitted_at', 'DESC')->get();

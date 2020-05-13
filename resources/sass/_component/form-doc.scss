@@ -1,12 +1,11 @@
 /**
- * sass/_component/activity.scss
+ * sass/_component/form-doc.scss
  */
 
-@import "../mixins";
 @import "../variables";
+@import "../mixins";
 
-.activity--list-item {
-
+.form-doc--list-item {
     display: flex;
 
     .icon-container {
@@ -30,33 +29,16 @@
         }
     }
 
-    &.completed .icon-container .icon {
-        border-color: $indigo;
-        background-color: $indigo;
-    }
-
-    &.overdue .icon-container .icon {
-        border-color: $red;
-        background-color: $red;
-    }
-
-    &.due-today .icon-container .icon {
-        border-color: $warning-orange;
-        background-color: $warning-orange;
-    }
-
-    &.overdue,
-    &.due-today {
-        .due-date {
-            font-weight: bold;
-        }
+    &.submitted .icon-container .icon {
+        border-color: $purple;
+        background-color: $purple;
     }
 
     .details-container {
         padding-left: 15px;
         flex-grow: 1;
 
-        .activity--name {
+        .form-doc--name {
             color: $blue;
             font-weight: bold;
         }
@@ -65,18 +47,15 @@
             display: flex;
             justify-content: space-between;
 
-            .activity-details {
+            .doc-details {
                 flex-grow: 1;
             }
 
-            .owner {
+            .creator {
                 flex-grow: 0;
                 display: flex;
                 align-items: flex-end;
             }
         }
     }
-
-
-
 }

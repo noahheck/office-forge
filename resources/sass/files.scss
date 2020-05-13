@@ -6,6 +6,7 @@
 @import "mixins";
 @import "files/panel";
 @import "_component/activity";
+@import "_component/form-doc.scss";
 
 hr.separator {
     border-top: 2px solid $medium-gray;

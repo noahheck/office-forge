@@ -259,7 +259,9 @@
                     <h4 class="mb-0 flex-grow-0">{!! \App\icon\formDocs(['mr-2']) !!}{{ __('app.formDocs') }}</h4>
                     <div class="d-flex flex-grow-1">
                         <div class="dropdown flex-grow-1 ml-3">
-                            {{--<button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="showActivitiesDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{--
+                            // Potential place for a filter dropdown or similar
+                            <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="showActivitiesDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 @switch($activityView)
 
                                     @case('open')
@@ -294,7 +296,6 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
 
-{{--                                <a class="dropdown-item" href="{{ route("activities.create", ['file_id' => $file->id]) }}">{{ __('activity.newActivity') }}</a>--}}
                                 @foreach ($formDocTemplates as $__template)
                                     @if ($loop->first)
                                         <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
@@ -318,10 +319,9 @@
                                 @endif
 
                                 <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
-                                    {{--@include("_component._activity", [
+                                    @include("_component._form-doc", [
                                         'context' => 'file',
-                                    ])--}}
-                                    {{ $formDoc->name }}
+                                    ])
                                 </a>
 
                                 @if($loop->last)

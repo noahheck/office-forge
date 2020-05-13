@@ -30,7 +30,7 @@ class ActivityProvider
 
         $allActivities = $ownedActivities->merge($participatingActivities)->unique()->sortBy('due_date');
 
-        return $allActivities;
+        return $this->sortActivities($allActivities);
     }
 
     public function getAllActivitiesForUser(User $user)
@@ -43,24 +43,31 @@ class ActivityProvider
 
         $allActivities = $ownedActivities->merge($participatingActivities)->unique()->sortBy('due_date');
 
-        return $allActivities;
+        return $this->sortActivities($allActivities);
     }
 
     public function getOpenActivitiesForFileAccessibleByUser(File $file, User $user)
     {
         $activities = $file->activities()->where('completed', false)->get();
 
-        return $activities->filter(function($activity) use ($user) {
+        return $this->sortActivities($activities->filter(function($activity) use ($user) {
             return $activity->isAccessibleBy($user);
-        });
+        }));
     }
 
     public function getAllActivitiesForFileAccessibleByUser(File $file, User $user)
     {
         $activities = $file->activities;
 
-        return $activities->filter(function($activity) use ($user) {
+        return $this->sortActivities($activities->filter(function($activity) use ($user) {
             return $activity->isAccessibleBy($user);
+        }));
+    }
+
+    private function sortActivities($activities)
+    {
+        return $activities->sortBy(function($activity) {
+            return [$activity->completed, $activity->due_date];
         });
     }
 }

@@ -188,7 +188,9 @@ class User extends Authenticatable implements Headshottable
             return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'icon', $headshot->icon_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
         }
 
-        return "<span class='user-icon' style='background-color: {$this->color};' title='" . e($this->name) . "'>{$this->initials}</span>";
+        $classes = e(implode(' ', array_merge($withClasses, ['user-icon'])));
+
+        return "<span class='{$classes}' style='background-color: {$this->color};' title='" . e($this->name) . "'>{$this->initials}</span>";
     }
 
     public function thumbnail($withClasses = []): string

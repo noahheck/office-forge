@@ -39,15 +39,20 @@
                 </div>
 
                 <div class="card-body">
-                    @forelse ($activities as $activity)
+                    @forelse ($myWork as $workItem)
+
+                        @php
+                        $activity = $workItem;
+                        $formDoc = $workItem;
+                        @endphp
 
                         @if($loop->first)
                             <div class="list-group activities">
                         @endif
 
-                            <a class="list-group-item list-group-item-action" href="{{ route("activities.show", [$activity]) }}">
+                            <a class="list-group-item list-group-item-action" href="{{ route($workItem::WORK_ITEM_EDIT_ROUTE, [$workItem]) }}">
 
-                                @include("_component._activity")
+                                @include("_component._" . $workItem::WORK_ITEM_KEY)
 
                             </a>
 

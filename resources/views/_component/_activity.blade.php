@@ -1,9 +1,36 @@
 @php
 $__context = $context ?? false;
 @endphp
-<div class="activity @if($activity->isDueToday()) due-today @elseif($activity->isOverdue()) overdue @endif">
+<div class="activity--list-item @if($activity->completed) completed @elseif($activity->isDueToday()) due-today @elseif($activity->isOverdue()) overdue @endif">
 
-    <div class="d-flex">
+    <div class="icon-container">
+        <span class="icon">
+            @if ($activity->process_id)
+                {!! \App\icon\processes(['fa-fw']) !!}
+            @else
+                {!! \App\icon\activities(['fa-fw']) !!}
+            @endif
+        </span>
+    </div>
+
+    <div class="details-container">
+        <div class="activity--name">{{ $activity->getFullName() }}</div>
+        <div class="details">
+            <div class="activity-details">
+                @if ($activity->due_date)
+                    <div class="due-date">{{ \App\format_date($activity->due_date) }}</div>
+                @endif
+                @if ($__context !== 'file' && $__file = $activity->file)
+                    <div>{!! $__file->icon(['mr-2', 'mhw-25p']) !!}{{ $__file->name }}</div>
+                @endif
+            </div>
+            <div class="owner">
+                <span>{!! $activity->owner->icon(['mr-2', 'mhw-25p']) !!}{{ $activity->owner->name }}</span>
+            </div>
+        </div>
+    </div>
+
+    {{--<div class="d-flex">
 
         <span class="flex-grow-0 pr-2">
             <span class="far fa-{{ $activity->completed ? 'check-' : '' }}square mr-1"></span>
@@ -43,6 +70,6 @@ $__context = $context ?? false;
                 {!! $__owner->iconAndName(['mhw-25p']) !!}
             </span>
         @endif
-    </div>
+    </div>--}}
 
 </div>
