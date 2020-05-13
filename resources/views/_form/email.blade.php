@@ -16,5 +16,16 @@
     @if ($details ?? false)
         - {{ $details }}
     @endif
-    <input type="email" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>
+
+
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <div class="input-group-text">
+                {!! \App\icon\email() !!}
+            </div>
+        </div>
+        <input type="email" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>
+    </div>
+
+
 </div>
