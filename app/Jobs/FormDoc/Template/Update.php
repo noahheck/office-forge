@@ -3,6 +3,7 @@
 namespace App\Jobs\FormDoc\Template;
 
 use App\FormDoc\Template as FormDoc;
+use App\FormDoc\Template;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -10,7 +11,7 @@ class Update
 {
     use Dispatchable, Queueable;
 
-    private $formDoc;
+    private $template;
     private $name;
     private $teams;
     private $active;
@@ -20,9 +21,9 @@ class Update
      *
      * @return void
      */
-    public function __construct(FormDoc $formDoc, $name, $teams, $active)
+    public function __construct(Template $template, $name, $teams, $active)
     {
-        $this->formDoc = $formDoc;
+        $this->template = $template;
         $this->name = $name;
         $this->teams = $teams;
         $this->active = $active;
@@ -35,12 +36,12 @@ class Update
      */
     public function handle()
     {
-        $formDoc = $this->formDoc;
-        $formDoc->name = $this->name;
-        $formDoc->active = $this->active;
+        $template = $this->template;
+        $template->name = $this->name;
+        $template->active = $this->active;
 
-        $formDoc->save();
+        $template->save();
 
-        $formDoc->teams()->sync($this->teams);
+        $template->teams()->sync($this->teams);
     }
 }

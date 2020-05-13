@@ -2,7 +2,7 @@
 
 namespace App\Jobs\FormDoc\Template\Fields;
 
-use App\FormDoc\Template as FormDoc;
+use App\FormDoc\Template;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -10,7 +10,7 @@ class UpdateOrder
 {
     use Dispatchable, Queueable;
 
-    private $formDoc;
+    private $template;
     private $orderedFields;
 
     /**
@@ -18,9 +18,9 @@ class UpdateOrder
      *
      * @return void
      */
-    public function __construct(FormDoc $formDoc, $orderedFields)
+    public function __construct(Template $template, $orderedFields)
     {
-        $this->formDoc = $formDoc;
+        $this->template = $template;
         $this->orderedFields = $orderedFields;
     }
 
@@ -33,7 +33,7 @@ class UpdateOrder
     {
         $fieldOrderMap = array_flip($this->orderedFields);
 
-        $fields = $this->formDoc->fields;
+        $fields = $this->template->fields;
 
         foreach ($fields as $field) {
 

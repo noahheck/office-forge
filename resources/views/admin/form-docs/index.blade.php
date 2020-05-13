@@ -10,7 +10,7 @@
     </h1>
 
 
-    @if (count($formDocs) > 0)
+    @if (count($templates) > 0)
         <div class="card">
             <div class="card-body">
                 <div class="text-right">
@@ -29,14 +29,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($formDocs as $formDoc)
+                            @foreach($templates as $template)
                                 <tr>
-                                    <td data-sort="{{ $formDoc->name }}">
-                                        <a href="{{ route('admin.form-docs.show', [$formDoc]) }}">
-                                            {{ $formDoc->name }}
+                                    <td data-sort="{{ $template->name }}">
+                                        <a href="{{ route('admin.form-docs.show', [$template]) }}">
+                                            {{ $template->name }}
                                         </a>
                                     </td>
-                                    @if ($__fileType = $formDoc->fileType)
+                                    @if ($__fileType = $template->fileType)
                                         <td data-sort="{{ $__fileType->name }}">
                                             {!! $__fileType->icon() !!}&nbsp;{{ $__fileType->name }}
                                         </td>
@@ -45,8 +45,8 @@
 
                                         </td>
                                     @endif
-                                    <td class="text-center" data-order="{{ $formDoc->active ? '1' : '0' }}">
-                                        @if ($formDoc->active)
+                                    <td class="text-center" data-order="{{ $template->active ? '1' : '0' }}">
+                                        @if ($template->active)
                                             {!! \App\icon\checkedBox() !!}
                                         @else
                                             {!! \App\icon\uncheckedBox() !!}

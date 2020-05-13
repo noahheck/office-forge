@@ -5,7 +5,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Edit($formDoc),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Edit($template),
 ])
 
 @section('content')
@@ -24,7 +24,7 @@
                 <div class="card-body">
 
                     @include('admin.form-docs._form', [
-                        'action' => route('admin.form-docs.update', [$formDoc]),
+                        'action' => route('admin.form-docs.update', [$template]),
                         'method' => 'PUT',
                         'showActive' => true,
                     ])

@@ -5,11 +5,11 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Fields\Show($formDoc, $field),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Fields\Show($template, $field),
 ])
 
 @include('admin._fields.show', [
     'field' => $field,
     'fieldEditRouteName' => 'admin.form-docs.fields.edit',
-    'fieldEditRouteParams' => [$formDoc, $field],
+    'fieldEditRouteParams' => [$template, $field],
 ])

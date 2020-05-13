@@ -9,20 +9,20 @@
 @endpush
 
 @push('meta')
-    @meta('formDocId', $formDoc->id)
+    @meta('formDocId', $template->id)
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Fields\Index($formDoc),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\FormDocs\Fields\Index($template),
 ])
 
 @include('admin._fields.index', [
-    'formStructure' => $formDoc,
+    'formStructure' => $template,
     'formIconFunction' => '\App\icon\formDocs',
     'newFieldRouteName' => 'admin.form-docs.fields.create',
-    'newFieldRouteParams' => [$formDoc],
+    'newFieldRouteParams' => [$template],
     'fieldEditRouteName' => 'admin.form-docs.fields.edit',
-    'fieldEditRouteParams' => [$formDoc],
+    'fieldEditRouteParams' => [$template],
     'emptyResourceFieldDescription' => __('formDoc.field_description'),
     'emptyResourceFieldTypeDescription' => __('formDoc.field_typesDescription'),
 ])

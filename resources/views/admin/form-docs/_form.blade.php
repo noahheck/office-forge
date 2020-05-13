@@ -9,7 +9,7 @@
 
         <div class="col-12">
 
-            @if ($fileType = $formDoc->fileType)
+            @if ($fileType = $template->fileType)
                 <h5>{!! $fileType->iconAndName() !!}</h5>
 
                 @hiddenField([
@@ -25,7 +25,7 @@
             @textField([
                 'name' => 'name',
                 'label' => __('file.formDoc_name'),
-                'value' => old('name', $formDoc->name),
+                'value' => old('name', $template->name),
                 'placeholder' => __('formDoc.nameExamples'),
                 'required' => true,
                 'autofocus' => true,
@@ -37,7 +37,7 @@
             @teamMultiSelectField([
                 'name' => 'teams',
                 'label' => __('formDoc.teamAccessApproval'),
-                'values' => old('teams', $formDoc->teams),
+                'values' => old('teams', $template->teams),
                 'teams' => $teamOptions,
                 'placeholder' => __('app.selectTeams'),
                 'description' => __('formDoc.teamAccessApprovalDescription'),
@@ -55,7 +55,7 @@
                     'id' => 'formDoc_active',
                     'label' => __('formDoc.active'),
                     'details' => __('formDoc.activeDescription'),
-                    'checked' => $formDoc->active,
+                    'checked' => old('active', $template->active),
                     'value' => '1',
                     'required' => false,
                     'error' => $errors->has('active'),

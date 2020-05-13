@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\FormDoc;
 
 use App\FileType;
+use App\FormDoc\Template;
 use App\FormDoc\Template as FormDoc;
 use App\FormDoc\Template\Field;
 use App\Http\Controllers\Controller;
@@ -23,9 +24,11 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(FormDoc $formDoc, MemberProvider $memberProvider)
+    public function index(Template $formDoc, MemberProvider $memberProvider)
     {
-        return $this->view('admin.form-docs.fields.index', compact('formDoc', 'memberProvider'));
+        $template = $formDoc;
+
+        return $this->view('admin.form-docs.fields.index', compact('template', 'memberProvider'));
     }
 
     /**
@@ -33,8 +36,10 @@ class FieldController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(FormDoc $formDoc)
+    public function create(Template $formDoc)
     {
+        $template = $formDoc;
+
         $field = new Field();
         $field->active = true;
         $field->form_doc_id = $formDoc->id;
@@ -45,7 +50,7 @@ class FieldController extends Controller
 
         return $this->view('admin.form-docs.fields.create', compact(
             'fileType',
-            'formDoc',
+            'template',
             'field',
             'allTeams',
             'allFileTypes'
@@ -58,10 +63,12 @@ class FieldController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, FormDoc $formDoc)
+    public function store(StoreRequest $request, Template $formDoc)
     {
+        $template = $formDoc;
+
         $this->dispatchNow($fieldCreated = new Create(
-            $formDoc,
+            $template,
             $request->label,
             $request->description,
             $request->field_type,
@@ -74,7 +81,7 @@ class FieldController extends Controller
 
         flash_success(__('admin.field_created'));
 
-        $url = ($request->has('return')) ? $request->return : route('admin.form-docs.show', [$formDoc]);
+        $url = ($request->has('return')) ? $request->return : route('admin.form-docs.show', [$template]);
 
         return redirect($url);
     }
@@ -85,9 +92,11 @@ class FieldController extends Controller
      * @param  \App\FormDoc\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function show(FormDoc $formDoc, Field $field)
+    public function show(Template $formDoc, Field $field)
     {
-        return $this->view('admin.form-docs.fields.show', compact('formDoc', 'field'));
+        $template = $formDoc;
+
+        return $this->view('admin.form-docs.fields.show', compact('template', 'field'));
     }
 
     /**
@@ -96,13 +105,15 @@ class FieldController extends Controller
      * @param  \App\FormDoc\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function edit(FormDoc $formDoc, Field $field)
+    public function edit(Template $formDoc, Field $field)
     {
+        $template = $formDoc;
+
         $allTeams = Team::all();
         $allFileTypes = FileType::all();
 
         return $this->view('admin.form-docs.fields.edit', compact(
-            'formDoc',
+            'template',
             'field',
             'allTeams',
             'allFileTypes'
@@ -116,8 +127,10 @@ class FieldController extends Controller
      * @param  \App\FormDoc\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, FormDoc $formDoc, Field $field)
+    public function update(UpdateRequest $request, Template $formDoc, Field $field)
     {
+        $template = $formDoc;
+
         $this->dispatchNow($fieldUpdated = new Update(
             $field,
             $request->label,
@@ -133,7 +146,7 @@ class FieldController extends Controller
 
         flash_success(__('admin.field_updated'));
 
-        $returnUrl = $request->has('return') ? $request->return : route('admin.form-docs.show', [$formDoc]);
+        $returnUrl = $request->has('return') ? $request->return : route('admin.form-docs.show', [$template]);
 
         return redirect($returnUrl);
     }
@@ -144,15 +157,17 @@ class FieldController extends Controller
      * @param  \App\FormDoc\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FormDoc $formDoc, Field $field)
+    public function destroy(Template $formDoc, Field $field)
     {
-        //
+        $template = $formDoc;
     }
 
 
-    public function updateOrder(Request $request, FormDoc $formDoc)
+    public function updateOrder(Request $request, Template $formDoc)
     {
-        $this->dispatchNow($fieldsOrdered = new UpdateOrder($formDoc, $request->get('orderedFields')));
+        $template = $formDoc;
+
+        $this->dispatchNow($fieldsOrdered = new UpdateOrder($template, $request->get('orderedFields')));
 
         return $this->json(true, [
             'successMessage' => __('admin.fields_orderUpdated'),

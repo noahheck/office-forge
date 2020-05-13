@@ -11,7 +11,7 @@ class Create
 {
     use Dispatchable, Queueable;
 
-    private $formDoc;
+    private $template;
     private $label;
     private $description;
     private $field_type;
@@ -29,7 +29,7 @@ class Create
      * @return void
      */
     public function __construct(
-        Template $formDoc,
+        Template $template,
         $label,
         $description,
         $field_type,
@@ -39,7 +39,7 @@ class Create
         $userTeam,
         $fileType
     ) {
-        $this->formDoc = $formDoc;
+        $this->template = $template;
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
@@ -63,13 +63,13 @@ class Create
     public function handle()
     {
         $field = new Field;
-        $field->form_doc_template_id = $this->formDoc->id;
+        $field->form_doc_template_id = $this->template->id;
         $field->field_type = $this->field_type;
         $field->label = $this->label;
         $field->description = $this->description;
         $field->separator = $this->separator;
         $field->active = true;
-        $field->order = $this->formDoc->fields->max('order') + 1;
+        $field->order = $this->template->fields->max('order') + 1;
 
         $options = new \StdClass;
         $options->select_options = $this->selectOptions;

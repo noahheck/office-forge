@@ -2,7 +2,7 @@
 
 namespace App\Jobs\FormDoc\Template;
 
-use App\FormDoc\Template as FormDoc;
+use App\FormDoc\Template;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -14,7 +14,7 @@ class Create
     private $teams;
     private $file_type_id;
 
-    private $formDoc;
+    private $template;
 
     /**
      * Create a new job instance.
@@ -28,9 +28,9 @@ class Create
         $this->file_type_id = $file_type_id;
     }
 
-    public function getFormDoc(): FormDoc
+    public function getTemplate(): Template
     {
-        return $this->formDoc;
+        return $this->template;
     }
 
     /**
@@ -40,15 +40,15 @@ class Create
      */
     public function handle()
     {
-        $formDoc = new FormDoc();
-        $formDoc->name = $this->name;
-        $formDoc->active = true;
-        $formDoc->file_type_id = $this->file_type_id;
+        $template = new Template();
+        $template->name = $this->name;
+        $template->active = true;
+        $template->file_type_id = $this->file_type_id;
 
-        $formDoc->save();
+        $template->save();
 
-        $formDoc->teams()->sync($this->teams);
+        $template->teams()->sync($this->teams);
 
-        $this->formDoc = $formDoc;
+        $this->template = $template;
     }
 }

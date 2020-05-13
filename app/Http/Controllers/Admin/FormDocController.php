@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\FormDoc\Template as FormDoc;
+use App\FormDoc\Template;
 use App\Http\Controllers\Controller;
 use App\Jobs\FormDoc\Template\Create;
 use App\Jobs\FormDoc\Template\Update;
@@ -22,9 +22,9 @@ class FormDocController extends Controller
      */
     public function index()
     {
-        $formDocs = FormDoc::orderBy('name')->get();
+        $templates = Template::orderBy('name')->get();
 
-        return $this->view('admin.form-docs.index', compact('formDocs'));
+        return $this->view('admin.form-docs.index', compact('templates'));
     }
 
     /**
@@ -34,16 +34,16 @@ class FormDocController extends Controller
      */
     public function create(Request $request)
     {
-        $formDoc = new FormDoc();
-        $formDoc->active = true;
+        $template = new Template();
+        $template->active = true;
 
         if ($file_type_id = $request->file_type_id) {
-            $formDoc->file_type_id = $file_type_id;
+            $template->file_type_id = $file_type_id;
         }
 
         $teamOptions = Team::orderBy('name')->get();
 
-        return $this->view('admin.form-docs.create', compact('formDoc', 'teamOptions'));
+        return $this->view('admin.form-docs.create', compact('template', 'teamOptions'));
     }
 
     /**
@@ -54,28 +54,30 @@ class FormDocController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $this->dispatchNow($formDocCreated = new Create(
+        $this->dispatchNow($templateCreated = new Create(
             $request->name,
             $request->teams,
             $request->file_type_id
         ));
 
-        $formDoc = $formDocCreated->getFormDoc();
+        $template = $templateCreated->getTemplate();
 
         flash_success(__('admin.formDoc_created'));
 
-        return redirect()->route('admin.form-docs.show', [$formDoc]);
+        return redirect()->route('admin.form-docs.show', [$template]);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\FormDoc  $formDoc
+     * @param  \App\FormDoc\Template  $template
      * @return \Illuminate\Http\Response
      */
-    public function show(FormDoc $formDoc, MemberProvider $memberProvider)
+    public function show(Template $formDoc, MemberProvider $memberProvider)
     {
-        return $this->view('admin.form-docs.show', compact('formDoc', 'memberProvider'));
+        $template = $formDoc;
+
+        return $this->view('admin.form-docs.show', compact('template', 'memberProvider'));
     }
 
     /**
@@ -84,11 +86,13 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function edit(FormDoc $formDoc)
+    public function edit(Template $formDoc)
     {
+        $template = $formDoc;
+
         $teamOptions = Team::orderBy('name')->get();
 
-        return $this->view('admin.form-docs.edit', compact('formDoc', 'teamOptions'));
+        return $this->view('admin.form-docs.edit', compact('template', 'teamOptions'));
     }
 
     /**
@@ -98,10 +102,11 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, FormDoc $formDoc)
+    public function update(UpdateRequest $request, Template $formDoc)
     {
-        $this->dispatchNow($formDocUpdated = new Update(
-            $formDoc,
+        $template = $formDoc;
+        $this->dispatchNow($templateUpdated = new Update(
+            $template,
             $request->name,
             $request->teams,
             $request->has('active')
@@ -115,11 +120,11 @@ class FormDocController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\FormDoc  $formDoc
+     * @param  \App\FormDoc\Template  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FormDoc $formDoc)
+    public function destroy(Template $formDoc)
     {
-        //
+        $template = $formDoc;
     }
 }

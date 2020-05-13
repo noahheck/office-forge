@@ -9,9 +9,9 @@ use App\Navigation\LocationBar;
 
 class Show extends LocationBar
 {
-    public function __construct(Template $formDoc)
+    public function __construct(Template $template)
     {
-        parent::__construct($formDoc->name);
+        parent::__construct($template->name);
 
         $this->addLink(new \App\Navigation\Link\Admin\Home);
         $this->addLink(new \App\Navigation\Link\Admin\FormDocs);
