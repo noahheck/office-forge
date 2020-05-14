@@ -28,6 +28,7 @@ return [
     'submittedSuccessfully' => 'Your form has been submitted successfully.',
     'savedSuccessfully' => 'Your form has been saved. It is still draft state.',
 
+    'error_unableToAccessFormDoc' => 'You are unable to access this FormDoc.',
     'error_unableToAccessFormDocType' => 'You are unable to access these FormDocs.',
     'error_fileIdMismatch' => 'This FormDoc cannot be created for this file type.',
     'error_formDocAlreadySubmitted' => 'This FormDoc has already been submitted and cannot be edited.',

@@ -27,13 +27,19 @@ class FormDocController extends Controller
 
         // Temporarily return all instances
         $formDocs = FormDoc::submitted()->orderBy('submitted_at', 'DESC')->get();
-        $formDocs->load(['creator', 'file']);
+        $formDocs->load(['creator', 'file', 'teams']);
 
+        $formDocs = $formDocs->filter(function($formDoc, $key) use ($user) {
+
+            return $user->can('view', $formDoc);
+        });
+
+        // @todo Replace with TemplateProvider
         $templates = Template::whereNull('file_type_id')->active()->orderBy('name')->get();
         $templates->load('teams');
         $templates = $templates->filter(function($template) use ($user) {
 
-            return $template->isAccessibleBy($user);
+            return $user->can('create', [FormDoc::class, $template]);
         });
 
         return $this->view('form-docs.index', compact('formDocs', 'templates'));
@@ -50,7 +56,7 @@ class FormDocController extends Controller
 
         $templateId = $request->query('form_doc_template_id');
         $template = Template::find($templateId);
-        if (!$template || !$template->isAccessibleBy($user)) {
+        if (!$template || !$user->can('create', [FormDoc::class, $template])) {
             flash_error(__('formDoc.error_unableToAccessFormDocType'));
 
             return redirect()->route('form-docs.index');
@@ -87,11 +93,29 @@ class FormDocController extends Controller
      */
     public function store(StoreRequest $request)
     {
+        $user = $request->user();
+
         $template = Template::find($request->form_doc_template_id);
+
+        if (!$template || !$user->can('create', [FormDoc::class, $template])) {
+            flash_error(__('formDoc.error_unableToAccessFormDocType'));
+
+            return redirect()->route('form-docs.index');
+        }
 
         $file = ($fileId = $request->file_id) ? File::find($fileId) : null;
 
-        $user = $request->user();
+        if ($file && !$user->can('view', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        if ($fileId && ($template->file_type_id != $file->file_type_id)) {
+            flash_error(__('formDoc.error_fileIdMismatch'));
+
+            return redirect()->route('form-docs.index');
+        }
 
         $submitted = $request->has('save_submit');
 
@@ -121,8 +145,14 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function show(FormDoc $formDoc)
+    public function show(Request $request, FormDoc $formDoc)
     {
+        if (!$request->user()->can('view', $formDoc)) {
+            flash_error(__('formDoc.error_unableToAccessFormDoc'));
+
+            return redirect()->route('form-docs.index');
+        }
+
         $file = $formDoc->file;
 
         return $this->view('form-docs.show', compact('formDoc', 'file'));
@@ -134,11 +164,17 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function edit(FormDoc $formDoc, MemberProvider $memberProvider)
+    public function edit(Request $request, FormDoc $formDoc, MemberProvider $memberProvider)
     {
         if ($formDoc->isSubmitted()) {
 
             flash_error(__('formDoc.error_formDocAlreadySubmitted'));
+
+            return redirect(url()->previous());
+        }
+
+        if (!$request->user()->can('update', $formDoc)) {
+            flash_error(__('formDoc.error_unableToAccessFormDoc'));
 
             return redirect(url()->previous());
         }
@@ -157,6 +193,19 @@ class FormDocController extends Controller
      */
     public function update(UpdateRequest $request, FormDoc $formDoc)
     {
+        if ($formDoc->isSubmitted()) {
+
+            flash_error(__('formDoc.error_formDocAlreadySubmitted'));
+
+            return redirect(url()->previous());
+        }
+
+        if (!$request->user()->can('update', $formDoc)) {
+            flash_error(__('formDoc.error_unableToAccessFormDoc'));
+
+            return redirect(url()->previous());
+        }
+
         $submitted = $request->has('save_submit');
 
         $this->dispatchNow($formDocUpdate = new Update($formDoc, $submitted, $request->all()));

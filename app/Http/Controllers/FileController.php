@@ -190,8 +190,6 @@ class FileController extends Controller
 
         $documents->loadMissing('creator', 'teams');
 
-        \Debugbar::info($documents);
-
         return $this->view('files.show', compact(
             'file',
             'inMyFiles',

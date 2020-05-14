@@ -32,7 +32,7 @@ class DocumentProvider
 
         return $allFormDocs->filter(function($formDoc, $key) use ($user) {
 
-            return $formDoc->isAccessibleBy($user);
+            return $user->can('view', $formDoc);
         });
     }
 }
