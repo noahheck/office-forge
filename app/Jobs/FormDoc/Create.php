@@ -79,5 +79,8 @@ class Create
 
             $field->save();
         }
+
+        $this->template->last_created_at = now();
+        $this->template->save();
     }
 }
