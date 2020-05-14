@@ -34,6 +34,15 @@
                                     {{ $__process->name }}
                                 </a>
                             @endforeach
+                            @foreach ($templates as $__template)
+                                @if ($loop->first)
+                                    <div class="dropdown-divider"></div>
+                                    <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('form-docs.create', ['form_doc_template_id' => $__template->id]) }}">
+                                    {{ $__template->name }}
+                                </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>

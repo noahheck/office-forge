@@ -31,5 +31,6 @@ return [
     'error_unableToAccessFormDoc' => 'You are unable to access this FormDoc.',
     'error_unableToAccessFormDocType' => 'You are unable to access these FormDocs.',
     'error_fileIdMismatch' => 'This FormDoc cannot be created for this file type.',
+    'error_fileTypeIdMismatch' => 'This FormDoc cannot be created unless attached to a file.',
     'error_formDocAlreadySubmitted' => 'This FormDoc has already been submitted and cannot be edited.',
 ];

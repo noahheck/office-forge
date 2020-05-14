@@ -6,6 +6,7 @@ use App\Activity\ActivityProvider;
 use App\Document\DocumentProvider;
 use App\File;
 use App\FileType;
+use App\FormDoc\Template\TemplateProvider;
 use App\Jobs\File\Create;
 use App\Jobs\File\Update;
 use App\Jobs\Headshottable\Upload;
@@ -132,7 +133,8 @@ class FileController extends Controller
         Request $request,
         File $file,
         ActivityProvider $activityProvider,
-        DocumentProvider $documentProvider
+        DocumentProvider $documentProvider,
+        TemplateProvider $templateProvider
     ) {
         $user     = $request->user();
 
@@ -158,9 +160,7 @@ class FileController extends Controller
             return $panel->isAccessibleBy($user);
         });
 
-        $formDocTemplates = $fileType->formDocTemplates->filter(function($template, $key) use($user) {
-            return $template->isAccessibleBy($user);
-        });
+        $formDocTemplates = $templateProvider->getTemplatesCreatableByUser($user, $file->file_type_id);
 
         $processes = $fileType->processes;
         $processes->load('creatingTeams');
@@ -168,7 +168,7 @@ class FileController extends Controller
             return $process->canBeCreatedBy($user);
         });
 
-        $values   = $file->formFieldValues;
+        $values = $file->formFieldValues;
 
         // Default is to get open activities for this file
         $activityView = $request->query('show_activities', 'open');

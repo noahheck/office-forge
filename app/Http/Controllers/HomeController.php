@@ -6,6 +6,7 @@ use App\Activity;
 use App\Activity\ActivityProvider;
 use App\Document\DocumentProvider;
 use App\FormDoc;
+use App\FormDoc\Template\TemplateProvider;
 use App\Process;
 use Illuminate\Http\Request;
 
@@ -24,10 +25,14 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, ActivityProvider $activityProvider, DocumentProvider $documentProvider)
-    {
+    public function index(
+        Request $request,
+        ActivityProvider $activityProvider,
+        DocumentProvider $documentProvider,
+        TemplateProvider $templateProvider
+    ) {
         $user = $request->user();
 
         $activities = $activityProvider->getOpenActivitiesForUser($user);
@@ -65,10 +70,19 @@ class HomeController extends Controller
             return $process->canBeCreatedBy($user);
         });
 
+        $templates = $templateProvider->getTemplatesCreatableByUser($user);
+
         $myFiles = $user->myFiles;
 
         $myFiles->load('headshots', 'fileType');
 
-        return $this->view('home', compact('activities', 'user', 'processOptions', 'myFiles', 'myWork'));
+        return $this->view('home', compact(
+            'activities',
+            'user',
+            'processOptions',
+            'myFiles',
+            'myWork',
+            'templates'
+        ));
     }
 }

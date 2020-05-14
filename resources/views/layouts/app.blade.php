@@ -7,16 +7,18 @@ $__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 
-$__user = Auth::user();
 
+// Variables from view composer:
+// $_user
+// $_formDocTemplates
 
 $__processes = \App\Process::whereNull('file_type_id')->orderBy('name')->get();
 
 $__processes->load('creatingTeams');
 
-$__processesToCreate = $__processes->filter(function($process) use ($__user) {
+$__processesToCreate = $__processes->filter(function($process) use ($_user) {
 
-    return $process->canBeCreatedBy($__user);
+    return $process->canBeCreatedBy($_user);
 });
 
 
@@ -24,19 +26,9 @@ $__fileTypes = \App\FileType::orderBy('name')->get();
 
 $__fileTypes->load('teams');
 
-$__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($__user) {
+$__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
-    return $fileType->isAccessibleBy($__user);
-});
-
-
-$__formDocTemplates = \App\FormDoc\Template::whereNull('file_type_id')->active()->orderBy('name')->get();
-
-$__formDocTemplates->load('teams');
-
-$__formDocTemplatesToCreate = $__formDocTemplates->filter(function($template) use ($__user) {
-
-    return $template->isAccessibleBy($__user);
+    return $fileType->isAccessibleBy($_user);
 });
 
 @endphp
@@ -54,7 +46,7 @@ $__formDocTemplatesToCreate = $__formDocTemplates->filter(function($template) us
         @meta('check-notifications', true)
     @endif
 
-    @meta('userId', $__user->id)
+    @meta('userId', $_user->id)
 
     @stack('meta')
 
@@ -131,7 +123,7 @@ $__formDocTemplatesToCreate = $__formDocTemplates->filter(function($template) us
                                 </a>
                             @endforeach
 
-                            @foreach ($__formDocTemplatesToCreate as $__template)
+                            @foreach ($_formDocTemplates as $__template)
 
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>

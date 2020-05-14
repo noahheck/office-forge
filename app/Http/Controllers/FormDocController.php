@@ -76,6 +76,12 @@ class FormDocController extends Controller
             return redirect()->route('form-docs.index');
         }
 
+        if (!$fileId && $template->file_type_id !== null) {
+            flash_error(__('formDoc.error_fileTypeIdMismatch'));
+
+            return redirect()->route('form-docs.index');
+        }
+
         $formDoc = new FormDoc();
         $formDoc->form_doc_template_id = $templateId;
         $formDoc->file_id = ($fileId) ? $fileId : null;
