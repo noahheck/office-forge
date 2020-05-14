@@ -26,7 +26,7 @@ class ActivityController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, ActivityProvider $activityProvider)
+    public function index(Request $request, ActivityProvider $activityProvider, Process\ProcessProvider $processProvider)
     {
         // Default behavior is to show the user their own open activities
         $showFilter = ($request->query('show')) ? $request->query('show') : 'open';
@@ -49,8 +49,9 @@ class ActivityController extends Controller
 
         $activities->load('owner', 'tasks');
 
-        return $this->view('activities.index', compact('activities', 'showFilter'));
+        $processes = $processProvider->getProcessesCreatableByUser($request->user());
 
+        return $this->view('activities.index', compact('activities', 'showFilter', 'processes'));
     }
 
     /**

@@ -11,16 +11,7 @@ $__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
 // Variables from view composer:
 // $_user
 // $_formDocTemplates
-
-$__processes = \App\Process::whereNull('file_type_id')->orderBy('name')->get();
-
-$__processes->load('creatingTeams');
-
-$__processesToCreate = $__processes->filter(function($process) use ($_user) {
-
-    return $process->canBeCreatedBy($_user);
-});
-
+// $_processes
 
 $__fileTypes = \App\FileType::orderBy('name')->get();
 
@@ -112,7 +103,7 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
                             <span class="dropdown-header">{!! \App\icon\activities(['fa-fw']) !!} {{ __('app.activities') }}</span>
                             <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
 
-                            @foreach ($__processesToCreate as $__process)
+                            @foreach ($_processes as $__process)
                                 @if ($loop->first)
                                     <div class="dropdown-divider"></div>
                                     <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>

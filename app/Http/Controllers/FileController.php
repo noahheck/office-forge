@@ -10,6 +10,7 @@ use App\FormDoc\Template\TemplateProvider;
 use App\Jobs\File\Create;
 use App\Jobs\File\Update;
 use App\Jobs\Headshottable\Upload;
+use App\Process\ProcessProvider;
 use Illuminate\Http\Request;
 use App\Http\Requests\File\Store as StoreRequest;
 use App\Http\Requests\File\Update as UpdateRequest;
@@ -134,7 +135,8 @@ class FileController extends Controller
         File $file,
         ActivityProvider $activityProvider,
         DocumentProvider $documentProvider,
-        TemplateProvider $templateProvider
+        TemplateProvider $templateProvider,
+        ProcessProvider $processProvider
     ) {
         $user     = $request->user();
 
@@ -162,11 +164,7 @@ class FileController extends Controller
 
         $formDocTemplates = $templateProvider->getTemplatesCreatableByUser($user, $file->file_type_id);
 
-        $processes = $fileType->processes;
-        $processes->load('creatingTeams');
-        $processesToCreate = $fileType->processes->filter(function($process) use ($user) {
-            return $process->canBeCreatedBy($user);
-        });
+        $processesToCreate = $processProvider->getProcessesCreatableByUser($user, $file->file_type_id);
 
         $values = $file->formFieldValues;
 

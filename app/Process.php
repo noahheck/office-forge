@@ -17,6 +17,11 @@ class Process extends Model
         'active' => 'boolean',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
     public function creatingTeams()
     {
         return $this->belongsToMany(Team::class, 'processes_teams_creators');

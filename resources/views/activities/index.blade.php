@@ -11,9 +11,25 @@
 @section('content')
 
     <div class="float-right">
-        <a href="{{ route('activities.create') }}" class="btn btn-primary">
-            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('activity.newActivity') }}
-        </a>
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="newActivityButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('activity.newActivity') }}
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityButton">
+                <a class="dropdown-item" href="{{ route("activities.create") }}">{{ __('activity.newActivity') }}</a>
+
+                @foreach ($processes as $__process)
+                    @if ($loop->first)
+                        <div class="dropdown-divider"></div>
+                        <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>
+                    @endif
+
+                    <a class="dropdown-item" href="{{ route('activities.create', ['process_id' => $__process->id]) }}">
+                        {{ $__process->name }}
+                    </a>
+                @endforeach
+            </div>
+        </div>
     </div>
 
     <h1>

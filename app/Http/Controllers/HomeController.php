@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Activity;
 use App\Activity\ActivityProvider;
 use App\Document\DocumentProvider;
-use App\FormDoc;
 use App\FormDoc\Template\TemplateProvider;
-use App\Process;
+use App\Process\ProcessProvider;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -31,7 +29,8 @@ class HomeController extends Controller
         Request $request,
         ActivityProvider $activityProvider,
         DocumentProvider $documentProvider,
-        TemplateProvider $templateProvider
+        TemplateProvider $templateProvider,
+        ProcessProvider $processProvider
     ) {
         $user = $request->user();
 
@@ -61,14 +60,7 @@ class HomeController extends Controller
             return 0;
         });
 
-        $processOptions = Process::where('file_type_id', null)->get();
-
-        $processOptions->load('creatingTeams');
-
-        $processOptions = $processOptions->filter(function($process) use ($user) {
-
-            return $process->canBeCreatedBy($user);
-        });
+        $processOptions = $processProvider->getProcessesCreatableByUser($user);
 
         $templates = $templateProvider->getTemplatesCreatableByUser($user);
 
