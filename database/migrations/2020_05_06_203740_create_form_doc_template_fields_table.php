@@ -20,7 +20,6 @@ class CreateFormDocTemplateFieldsTable extends Migration
             $table->string('field_type');
             $table->string('label');
             $table->text('description')->nullable();
-            $table->boolean('separator')->default(false);
             $table->boolean('active')->default(true);
             $table->integer('order');
             $table->json('options')->nullable();

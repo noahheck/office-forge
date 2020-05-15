@@ -23,10 +23,6 @@
 
     @foreach ($fields as $field)
 
-        @if ($field->separator)
-            <hr class="separator">
-        @endif
-
         @include('_form_field.' . $field->field_type, [
             'field' => $field,
             'value' => optional($values->firstWhere($valueKey, $field->id)),

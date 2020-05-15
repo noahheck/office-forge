@@ -189,20 +189,9 @@
 
             </div>
 
-            <hr>
-
-            @checkboxSwitchField([
-                'name' => 'separator',
-                'id' => 'field_separator',
-                'label' => __('file.field_separator'),
-                'details' => __('file.field_separatorDescription'),
-                'checked' => $field->separator,
-                'value' => '1',
-                'required' => false,
-                'error' => $errors->has('separator'),
-            ])
-
             @if ($showActive ?? false)
+
+                <hr>
 
                 @checkboxSwitchField([
                     'name' => 'active',
@@ -216,8 +205,6 @@
                 ])
 
             @endif
-
-
 
         </div>
 
