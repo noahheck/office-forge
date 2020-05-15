@@ -110,7 +110,7 @@
                     </td>
                     <td>
                         <a href="{{ route('activities.show', [$activity]) }}">
-                            {{ $activity->name }}</a>
+                            {{ $activity->getFullName() }}</a>
 
                         <small class="text-muted">
                             #{{ $activity->id }}

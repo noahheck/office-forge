@@ -17,11 +17,22 @@ $__context = $context ?? false;
         <div class="activity--name">{{ $activity->getFullName() }}</div>
         <div class="details">
             <div class="activity-details">
-                @if ($activity->due_date)
-                    <div class="due-date">{{ \App\format_date($activity->due_date) }}</div>
-                @endif
                 @if ($__context !== 'file' && $__file = $activity->file)
                     <div>{!! $__file->icon(['mr-2', 'mhw-25p']) !!}{{ $__file->name }}</div>
+                @endif
+                @if ($activity->due_date)
+                    <span class="due-date">{!! \App\icon\calendar(['mr-1']) !!}{{ \App\format_date($activity->due_date) }}</span>
+                @endif
+                @if ($activity->tasks->count() > 0)
+                    @php
+                        $__earliestOpenTask = optional($activity->earliestOpenTaskWithDueDate());
+                    @endphp
+                    <div class="detail @if($__earliestOpenTask->isOverdue()) overdue @elseif($__earliestOpenTask->isDueToday()) due-today @endif" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
+                        <span class="fas fa-tasks mr-1"></span>{{ $activity->numberOfCompletedTasks() }}/{{ $activity->numberOfTotalTasks() }}
+                        @if ($__earliestOpenTask->due_date)
+                            <small class="due-date">{!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_date($__earliestOpenTask->due_date) }}</small>
+                        @endif
+                    </div>
                 @endif
             </div>
             <div class="owner">

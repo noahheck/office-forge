@@ -53,11 +53,6 @@
   background-color: #f6993f;
 }
 
-.activity--list-item.overdue .due-date,
-.activity--list-item.due-today .due-date {
-  font-weight: bold;
-}
-
 .activity--list-item .details-container {
   padding-left: 15px;
   -webkit-box-flex: 1;

@@ -141,6 +141,13 @@ class Activity extends Model
         return $this->belongsTo(Process::class);
     }
 
+
+
+    public function earliestOpenTaskWithDueDate()
+    {
+        return $this->tasks->where('completed', false)->whereNotNull('due_date')->sortBy('due_date')->first();
+    }
+
     public function numberOfTotalTasks()
     {
         return count($this->tasks);
