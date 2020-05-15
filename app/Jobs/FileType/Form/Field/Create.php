@@ -33,7 +33,6 @@ class Create
         $label,
         $description,
         $field_type,
-        $separator,
         $selectOptions,
         $decimalPlaces,
         $userTeam,
@@ -43,7 +42,6 @@ class Create
         $this->label = $label;
         $this->description = $description;
         $this->field_type = $field_type;
-        $this->separator = $separator;
         $this->selectOptions = $selectOptions;
         $this->decimalPlaces = $decimalPlaces;
         $this->userTeam = $userTeam;
@@ -67,7 +65,6 @@ class Create
         $field->field_type = $this->field_type;
         $field->label = $this->label;
         $field->description = $this->description;
-        $field->separator = $this->separator;
         $field->active = true;
         $field->order = $this->form->fields->max('order') + 1;
 

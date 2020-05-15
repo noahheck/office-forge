@@ -71,7 +71,6 @@ class Create
             $field->field_type = $templateField->field_type;
             $field->label = $templateField->label;
             $field->description = $templateField->description;
-            $field->separator = $templateField->separator;
             $field->order = $templateField->order;
             $field->options = $templateField->options;
 

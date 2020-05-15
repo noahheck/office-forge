@@ -13614,6 +13614,11 @@ trix-editor:empty:not(:focus)::before {
           flex-grow: 1;
 }
 
+.form--section-header h3 {
+  background-color: #e3e3e3;
+  padding: 4px;
+}
+
 ::-webkit-input-placeholder {
   color: #c9c9c9 !important;
   opacity: 1;

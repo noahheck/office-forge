@@ -18,3 +18,10 @@
         flex-grow: 1;
     }
 }
+
+.form--section-header {
+    h3 {
+        background-color: $light-gray;
+        padding: 4px;
+    }
+}
