@@ -32,7 +32,13 @@
                     <dl class="row">
                         @if ($file)
                             <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ $file->fileType->name }}:</dt>
-                            <dd class="col-12 col-sm-9 col-xl-10">{!! $file->icon(['mhw-35p', 'mr-2']) !!}{{ $file->name }}</dd>
+                            <dd class="col-12 col-sm-9 col-xl-10">{!! $file->icon(['mhw-35p', 'mr-2']) !!}
+                                @can('view', $file)
+                                    <a href="{{ route("files.show", [$file]) }}">{{ $file->name }}</a>
+                                @else
+                                    {{ $file->name }}
+                                @endcan
+                            </dd>
                         @endif
 
                         <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('formDoc.creator') }}:</dt>
