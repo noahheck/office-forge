@@ -52,12 +52,10 @@
 
                     </div>
 
-                    <hr>
 
+                    <h3 class="h4">{!! \App\icon\teams(['mr-2']) !!}{{ __('formDoc.teamAccessApproval') }}</h3>
 
                     @if ($template->teams->count() > 0)
-
-                        <strong>{!! \App\icon\teams(['mr-2']) !!}{{ __('formDoc.teamAccessApproval') }}</strong>
 
                         <p>{{ __('formDoc.teamAccessApprovalShortDescription') }}</p>
                         <ul class="list-group mb-3">
@@ -68,7 +66,32 @@
 
                     @else
 
-                        <p>{{ __('formDoc.unrestrictedDescription') }}</p>
+                        <p><em>{{ __('formDoc.unrestrictedDescription') }}</em></p>
+
+                        <hr>
+
+                    @endif
+
+
+                    <h3 class="h4">{!! \App\icon\processes(['mr-2']) !!}{{ __('app.processes') }}</h3>
+
+                    @if ($template->processes->count() > 0)
+
+                        <p>{{ __('formDoc.completedAsPartOfProcessShortDescription') }}</p>
+                        <ul class="list-group mb-3">
+                            @foreach ($template->processes as $process)
+                                <li class="list-group-item">
+                                    <a href="{{ route('admin.processes.show', [$process]) }}">
+                                        {!! \App\icon\processes(['mr-2']) !!}{{ $process->name }}
+                                    </a>
+
+                                </li>
+                            @endforeach
+                        </ul>
+
+                    @else
+
+                        <p><em>{{ __('formDoc.noProcessesDescription') }}</em></p>
 
                     @endif
 

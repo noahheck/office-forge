@@ -18,6 +18,9 @@ return [
     'teamAccessApprovalShortDescription' => 'This FormDoc is only accessible by members of these teams.',
     'unrestrictedDescription' => 'This FormDoc is accessible by all of your staff.',
 
+    'completedAsPartOfProcessShortDescription' => 'This FormDoc is set to be completed as part of the following Processes.',
+    'noProcessesDescription' => 'This FormDoc is not set to be completed as part of any Processes.',
+
     'fields' => 'Fields',
     'field_description' => 'Fields are the containers your staff will input data into. Each Field represents a single, distinct data point your organization is interested in for this FormDoc.',
     'field_typesDescription' => 'Office Forge contains several different field types to help ensure your organization is able to collect the information it needs for you to do your work effectively.',
