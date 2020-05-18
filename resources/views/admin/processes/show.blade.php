@@ -39,6 +39,106 @@
 
                     @endif
 
+
+                    <h2 class="h4">
+                        {!! \App\icon\formDocs(['mr-2']) !!}{{ __('app.formDocs') }}
+                    </h2>
+
+                    @forelse($process->templates as $template)
+
+                        @if ($loop->first)
+                            <ul class="list-group mb-2" id="processFormDocs">
+                        @endif
+
+                            <li class="list-group-item d-flex">
+
+                                <span class="flex-grow-1">
+                                    <a href="{{ route('admin.form-docs.show', [$template]) }}">
+                                        {!! \App\icon\formDocs(['mr-2']) !!}{{ $template->name }}
+                                    </a>
+                                </span>
+
+                                <div class="dropdown flex-grow-0">
+                                    <button class="btn btn-outline-danger border-0 btn-sm" type="button" id="removeTemplateDropdownMenuButton_{{ $template->id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {!! \App\icon\x() !!}
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="removeTemplateDropdownMenuButton_{{ $template->id }}">
+                                        <form action="{{ route("admin.processes.remove-template", [$process]) }}" method="POST">
+                                            @csrf @method('DELETE')
+                                            @hiddenField([
+                                                'name' => 'template_id',
+                                                'value' => $template->id,
+                                            ])
+                                            <button type="submit" class="dropdown-item text-danger">
+                                                {!! \App\icon\trash() !!}
+                                                {{ __('admin.process_removeFormDocFromProcess') }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </li>
+
+                        @if ($loop->last)
+                            </ul>
+                        @endif
+
+                    @empty
+
+                        <em>{{ __('admin.process_noFormDocs') }}</em>
+
+                    @endforelse
+
+                    <div class="collapse" id="newTemplateContainer">
+
+                        <div class="card shadow">
+                            <div class="card-body">
+
+                                <form action="{{ route('admin.processes.add-template', [$process]) }}" method="POST" class="bold-labels">
+
+                                    @csrf
+
+                                    @selectField([
+                                        'name' => 'template_id',
+                                        'label' => __('admin.process_addFormDoc'),
+                                        'details' => '',
+                                        'value' => '',
+                                        'options' => $templateOptions,
+                                        'placeholder' => '',
+                                        'required' => true,
+                                        'autofocus' => false,
+                                        'error' => false,
+                                        'readonly' => false,
+                                    ])
+
+                                    <hr>
+
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-sm btn-primary">
+                                            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.process_addFormDoc') }}
+                                        </button>
+
+                                        <button type="button" id="newTemplateContainerCancelButton" class="btn btn-sm btn-secondary" {{--href="{{ route('activities.tasks.create', [$activity]) }}"--}} data-toggle="collapse" data-target="#newTemplateContainer, #newTemplateShowButtonContainer">
+                                            {{ __('app.cancel') }}
+                                        </button>
+
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-right no-print collapse show" id="newTemplateShowButtonContainer">
+                        <button id="newTemplateContainerToggleButton" class="btn btn-sm btn-primary" {{--href="{{ route('activities.tasks.create', [$activity]) }}"--}} data-toggle="collapse" data-target="#newTemplateContainer, #newTemplateShowButtonContainer">
+                            {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.process_addFormDoc') }}
+                        </button>
+                    </p>
+
+
+
+                    <hr>
+
                     <div class="d-flex justify-content-between">
                         <h2 class="h4">
                             {!! \App\icon\tasks(['mr-2']) !!}{{ __('admin.tasks') }}
@@ -48,7 +148,7 @@
                         </a>
                     </div>
 
-                    @forelse ([] as $a)//$process->tasks as $task)
+                    @forelse ($process->tasks as $task)
 
                         @if ($loop->first)
                             <ul class="list-group" id="processTasks">

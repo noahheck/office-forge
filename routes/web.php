@@ -132,6 +132,10 @@ Route::middleware(['auth', 'user.active'])->group(function() {
 
         // Processes
         Route::resource('/processes', 'ProcessController');
+        Route::post('/processes/{process}/add-template', 'ProcessController@addTemplate')
+            ->name('processes.add-template');
+        Route::delete('/processes/{process}/remove-template', 'ProcessController@removeTemplate')
+            ->name('processes.remove-template');
 
         Route::namespace('Process')->prefix('/processes/{process}')->name('processes.')->group(function() {
 

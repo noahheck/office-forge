@@ -44,6 +44,12 @@ return [
     'process_created' => 'Process created',
     'process_updated' => 'Process updated',
 
+    'process_noFormDocs' => 'No FormDocs',
+    'process_addFormDoc' => 'Add FormDoc',
+    'process_removeFormDocFromProcess' => 'Remove FormDoc from Process',
+
+    'process_error_invalidFormDocTemplate' => 'That FormDoc is invalid for this Process',
+    'process_templateAdded' => 'FormDoc added',
 
     'tasks' => 'Tasks',
     'addTask' => 'Add Task',

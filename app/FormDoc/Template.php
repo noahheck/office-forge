@@ -5,6 +5,7 @@ namespace App\FormDoc;
 use App\FileType;
 use App\FormDoc;
 use App\FormDoc\Template\Field;
+use App\Process;
 use App\Team;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
@@ -29,6 +30,11 @@ class Template extends Model
     public function fileType()
     {
         return $this->belongsTo(FileType::class);
+    }
+
+    public function processes()
+    {
+        return $this->belongsToMany(Process::class, 'form_doc_templates_processes', 'form_doc_template_id', 'process_id');
     }
 
     public function teams()

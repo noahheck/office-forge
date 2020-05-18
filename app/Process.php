@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\FormDoc\Template;
 use App\Process\Instance;
 use App\Process\Task;
 use App\Traits\IsEditorResource;
@@ -62,6 +63,11 @@ class Process extends Model
     public function activeTasks()
     {
         return $this->tasks()->where('active', true);
+    }
+
+    public function templates()
+    {
+        return $this->belongsToMany(Template::class, 'form_doc_templates_processes', 'process_id', 'form_doc_template_id');
     }
 
     public function activities()
