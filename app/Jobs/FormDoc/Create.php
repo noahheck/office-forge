@@ -2,6 +2,7 @@
 
 namespace App\Jobs\FormDoc;
 
+use App\Activity;
 use App\File;
 use App\Form\DataMapper;
 use App\FormDoc;
@@ -17,6 +18,7 @@ class Create
 
     private $template;
     private $file;
+    private $activity;
     private $creator;
     private $submitted;
     private $fieldDetails;
@@ -28,10 +30,17 @@ class Create
      *
      * @return void
      */
-    public function __construct(Template $template, ?File $file, User $creator, $submitted, $fieldDetails)
-    {
+    public function __construct(
+        Template $template,
+        ?File $file,
+        ?Activity $activity,
+        User $creator,
+        $submitted,
+        $fieldDetails
+    ) {
         $this->template = $template;
         $this->file = $file;
+        $this->activity = $activity;
         $this->creator = $creator;
         $this->submitted = $submitted;
         $this->fieldDetails = $fieldDetails;
@@ -56,6 +65,10 @@ class Create
         $formDoc->creator_id = $this->creator->id;
 
         $formDoc->submitted_at = ($this->submitted) ? now() : null;
+
+        if ($this->activity) {
+            $formDoc->activity_id = $this->activity->id;
+        }
 
         $formDoc->save();
 

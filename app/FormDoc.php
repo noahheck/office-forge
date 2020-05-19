@@ -42,6 +42,11 @@ class FormDoc extends Model
         return $this->belongsTo(File::class, 'file_id');
     }
 
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class, 'activity_id');
+    }
+
     public function creator()
     {
         return $this->belongsTo(User::class, 'creator_id');

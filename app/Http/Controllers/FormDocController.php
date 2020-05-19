@@ -125,7 +125,7 @@ class FormDocController extends Controller
 
         $submitted = $request->has('save_submit');
 
-        $this->dispatchNow($formDocCreated = new Create($template, $file, $user, $submitted, $request->all()));
+        $this->dispatchNow($formDocCreated = new Create($template, $file, null, $user, $submitted, $request->all()));
 
         $formDoc = $formDocCreated->getFormDoc();
 

@@ -4,9 +4,12 @@ namespace App\Jobs\Activity;
 
 use App\Activity;
 use App\Activity\Task;
+use App\File;
 use App\Process;
+use App\Jobs\FormDoc\Create as CreateFormDoc;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Foundation\Bus\Dispatchable;
 
 class Create
@@ -65,7 +68,7 @@ class Create
      *
      * @return void
      */
-    public function handle(Process $processModel)
+    public function handle(Process $processModel, File $fileModel, Dispatcher $dispatcher)
     {
         $activity = new Activity;
         $activity->name = $this->name;
@@ -80,8 +83,11 @@ class Create
             $activity->due_date = Carbon::parse($this->due_date);
         }
 
+        $file = null;
         if ($this->file_id) {
             $activity->file_id = $this->file_id;
+
+            $file = $fileModel->find($this->file_id);
         }
 
         $process = false;
@@ -112,6 +118,17 @@ class Create
                 $task->created_by = $this->creator->id;
 
                 $task->save();
+            }
+
+            foreach ($process->templates as $template) {
+                $dispatcher->dispatchNow(new CreateFormDoc(
+                    $template,
+                    $file,
+                    $activity,
+                    $this->creator,
+                    false,
+                    []
+                ));
             }
         }
 

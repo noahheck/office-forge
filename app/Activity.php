@@ -131,6 +131,11 @@ class Activity extends Model
         return $this->tasks()->where('completed', true)->orderBy('completed_at');
     }
 
+    public function formDocs()
+    {
+        return $this->hasMany(FormDoc::class);
+    }
+
     public function file()
     {
         return $this->belongsTo(File::class);

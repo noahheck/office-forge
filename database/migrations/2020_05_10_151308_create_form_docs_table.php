@@ -18,6 +18,7 @@ class CreateFormDocsTable extends Migration
 
             $table->bigInteger('form_doc_template_id');
             $table->bigInteger('file_id')->nullable();
+            $table->bigInteger('activity_id')->nullable();
             $table->bigInteger('creator_id');
             $table->string('name');
 
