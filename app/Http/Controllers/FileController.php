@@ -182,11 +182,11 @@ class FileController extends Controller
 
         endswitch;
 
-        $activities->load('owner', 'owner.headshots', 'tasks');
+        $activities->load('owner', 'owner.headshots', 'tasks', 'formDocs');
 
         $documents = $documentProvider->getDocumentsForFileAccessibleByUser($file, $user);
 
-        $documents->loadMissing('creator', 'teams');
+        $documents->loadMissing('creator', 'teams', 'activity');
 
         return $this->view('files.show', compact(
             'file',

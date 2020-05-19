@@ -15,7 +15,7 @@ $__context = $context ?? false;
                     <div>{{ \App\format_datetime($formDoc->submitted_at) }}</div>
                 @endif
                 @if ($__context !== 'file' && $__file = $formDoc->file)
-                        <div>{!! $__file->icon(['mr-2', 'mhw-25p']) !!}{{ $__file->name }}</div>
+                    <div>{!! $__file->icon(['mr-2', 'mhw-25p']) !!}{{ $__file->name }}</div>
                 @endif
             </div>
             <div class="creator">

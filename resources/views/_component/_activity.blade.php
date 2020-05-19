@@ -23,15 +23,34 @@ $__context = $context ?? false;
                 @if ($activity->due_date)
                     <span class="due-date">{!! \App\icon\calendar(['mr-1']) !!}{{ \App\format_date($activity->due_date) }}</span>
                 @endif
-                @if ($activity->tasks->count() > 0)
+                @if ($activity->private || $activity->tasks->count() > 0 || $activity->formDocs->count() > 0)
+
                     @php
                         $__earliestOpenTask = optional($activity->earliestOpenTaskWithDueDate());
                     @endphp
-                    <div class="detail @if($__earliestOpenTask->isOverdue()) overdue @elseif($__earliestOpenTask->isDueToday()) due-today @endif" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
-                        <span class="fas fa-tasks mr-1"></span>{{ $activity->numberOfCompletedTasks() }}/{{ $activity->numberOfTotalTasks() }}
-                        @if ($__earliestOpenTask->due_date)
-                            <small class="due-date">{!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_date($__earliestOpenTask->due_date) }}</small>
+                    <div class="detail @if($__earliestOpenTask->isOverdue()) overdue @elseif($__earliestOpenTask->isDueToday()) due-today @endif">
+
+                        @if ($activity->private)
+                            <span class="mr-2" title="{{ __('activity.thisActivityPrivateVisibility') }}">
+                                {!! \App\icon\isPrivate() !!}
+                            </span>
                         @endif
+
+                        @if ($activity->tasks->count() > 0)
+                            <span class="mr-2" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
+                                {!! \App\icon\tasks(['mr-1']) !!}{{ $activity->numberOfCompletedTasks() }}/{{ $activity->numberOfTotalTasks() }}
+                                @if ($__earliestOpenTask->due_date)
+                                    <small class="due-date">{!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_date($__earliestOpenTask->due_date) }}</small>
+                                @endif
+                            </span>
+                        @endif
+
+                        @if ($activity->formDocs->count() > 0)
+                            <span class="mr-2" title="{{ __('activity.countOfTotalFormDocsCompleted', ['completed' => $activity->numberOfCompletedFormDocs(), 'total' => $activity->numberOfTotalFormDocs()]) }}">
+                                {!! \App\icon\formDocs(['mr-1']) !!}{{ $activity->numberOfCompletedFormDocs() }}/{{ $activity->numberOfTotalFormDocs() }}
+                            </span>
+                        @endif
+
                     </div>
                 @endif
             </div>
@@ -40,47 +59,5 @@ $__context = $context ?? false;
             </div>
         </div>
     </div>
-
-    {{--<div class="d-flex">
-
-        <span class="flex-grow-0 pr-2">
-            <span class="far fa-{{ $activity->completed ? 'check-' : '' }}square mr-1"></span>
-        </span>
-        <strong class="activity-name flex-grow-1">
-            @if ($__process_name = $activity->process_name)
-                <span class="fas fa-clipboard-list mr-2"></span>{{ $__process_name }} -
-            @endif
-            {{ $activity->name }}
-        </strong>
-
-    </div>
-
-    <div class="activity-details d-flex">
-        <span class="flex-grow-1">
-            @if ($__context !== 'file' && $__file = $activity->file)
-                {!! $__file->icon(['mhw-25p']) !!} {{ $__file->name }}
-                <br>
-            @endif
-            <span class="text-muted mr-2">#{{ $activity->id }}</span>
-            @if ($activity->private)
-                <span class="fas fa-user-shield detail text-muted" title="{{ __('activity.thisActivityPrivateVisibility') }}"></span>
-            @endif
-            @if ($activity->due_date)
-                <span class="detail" title="{{ __('activity.dueDate') }}: {{ $__formattedDueDate = \App\format_date($activity->due_date) }}">
-                    <span class="due-date"><span class="far fa-calendar-alt mr-1"></span>{{ $__formattedDueDate }}</span>
-                </span>
-            @endif
-            @if ($activity->tasks->count() > 0)
-                <span class="detail" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
-                    <span class="fas fa-tasks mr-1"></span>{{ $activity->numberOfCompletedTasks() }}/{{ $activity->numberOfTotalTasks() }}
-                </span>
-            @endif
-        </span>
-        @if ($__owner = $activity->owner)
-                <span class="flex-grow-0 text-right">
-                {!! $__owner->iconAndName(['mhw-25p']) !!}
-            </span>
-        @endif
-    </div>--}}
 
 </div>

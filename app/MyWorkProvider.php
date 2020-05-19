@@ -22,7 +22,7 @@ class MyWorkProvider
     {
         $activities = $this->activityProvider->getOpenActivitiesForUser($user);
 
-        $activities->load('tasks', 'owner', 'owner.headshots');
+        $activities->load('tasks', 'owner', 'owner.headshots', 'formDocs');
 
         $documents = $this->documentProvider->getOpenDocumentsForUser($user);
 
