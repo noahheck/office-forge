@@ -53,6 +53,16 @@
                             <li class="list-group-item d-flex">
 
                                 <span class="flex-grow-1">
+                                    @if ($template->active)
+                                        <span title="{{ __('formDoc.active') }}">
+                                            {!! \App\icon\checkedBox(['mr-2']) !!}
+                                        </span>
+                                    @else
+                                        <span title="{{ __('formDoc.inactive') }}">
+                                            {!! \App\icon\uncheckedBox(['mr-2']) !!}
+                                        </span>
+                                    @endif
+
                                     <a href="{{ route('admin.form-docs.show', [$template]) }}">
                                         {!! \App\icon\formDocs(['mr-2']) !!}{{ $template->name }}
                                     </a>

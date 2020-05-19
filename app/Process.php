@@ -70,6 +70,11 @@ class Process extends Model
         return $this->belongsToMany(Template::class, 'form_doc_templates_processes', 'process_id', 'form_doc_template_id');
     }
 
+    public function activeTemplates()
+    {
+        return $this->templates()->where('active', true);
+    }
+
     public function activities()
     {
         return $this->hasMany(Activity::class);

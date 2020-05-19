@@ -76,7 +76,7 @@ class Create
 
         $formDocId = $formDoc->id;
 
-        foreach ($this->template->fields as $templateField) {
+        foreach ($this->template->activeFields as $templateField) {
 
             $field = new Field;
             $field->form_doc_id = $formDocId;

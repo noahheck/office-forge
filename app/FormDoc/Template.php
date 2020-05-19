@@ -47,6 +47,11 @@ class Template extends Model
         return $this->hasMany(Field::class, 'form_doc_template_id')->orderBy('order');
     }
 
+    public function activeFields()
+    {
+        return $this->fields()->where('active', true);
+    }
+
     public function instances()
     {
         return $this->hasMany(FormDoc::class, 'form_doc_template_id');

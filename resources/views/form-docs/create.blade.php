@@ -35,7 +35,7 @@
 
                     @include('form-docs._form', [
                         'action' => route('form-docs.store'),
-                        'fields' => $template->fields,
+                        'fields' => $template->activeFields,
                         'values' => $formDoc->fields,
                         'valueKey' => 'form_doc_template_field_id',
                     ])

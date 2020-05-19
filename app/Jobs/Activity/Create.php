@@ -120,7 +120,7 @@ class Create
                 $task->save();
             }
 
-            foreach ($process->templates as $template) {
+            foreach ($process->activeTemplates as $template) {
                 $dispatcher->dispatchNow(new CreateFormDoc(
                     $template,
                     $file,
