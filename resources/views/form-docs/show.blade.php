@@ -32,7 +32,7 @@
                     <dl class="row">
                         @if ($file)
                             <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ $file->fileType->name }}:</dt>
-                            <dd class="col-12 col-sm-9 col-xl-10">{!! $file->icon(['mhw-35p', 'mr-2']) !!}
+                            <dd class="col-12 col-sm-9 col-xl-10">{!! $file->icon(['fa-fw', 'mhw-35p', 'mr-2', 'fs-24px']) !!}
                                 @can('view', $file)
                                     <a href="{{ route("files.show", [$file]) }}">{{ $file->name }}</a>
                                 @else
@@ -40,6 +40,22 @@
                                 @endcan
                             </dd>
                         @endif
+
+                            @if ($activity)
+                                <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('activity.activity') }}:</dt>
+                                <dd class="col-12 col-sm-9 col-xl-10">
+                                    @if ($activity->process_id)
+                                        {!! \App\icon\processes(['fa-fw', 'mr-2', 'fs-24px']) !!}
+                                    @else
+                                        {!! \App\icon\activities(['fa-fw', 'mr-2', 'fs-24px']) !!}
+                                    @endif
+                                    @can('view', $activity)
+                                        <a href="{{ route("activities.show", [$activity]) }}">{{ $activity->getFullName() }}</a>
+                                    @else
+                                        {{ $activity->getFullName() }}
+                                    @endcan
+                                </dd>
+                            @endif
 
                         <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('formDoc.creator') }}:</dt>
                         <dd class="col-12 col-sm-9 col-xl-10">{!! $formDoc->creator->icon(['mhw-35p', 'mr-2']) !!}{{ $formDoc->creator->name }}</dd>

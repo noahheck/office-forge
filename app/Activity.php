@@ -163,4 +163,15 @@ class Activity extends Model
         return count($this->tasks->where('completed', true));
     }
 
+
+    public function numberOfTotalFormDocs()
+    {
+        return count($this->formDocs);
+    }
+
+    public function numberOfCompletedFormDocs()
+    {
+        return count($this->formDocs->whereNotNull('submitted_at'));
+    }
+
 }

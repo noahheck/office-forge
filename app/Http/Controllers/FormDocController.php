@@ -161,7 +161,9 @@ class FormDocController extends Controller
 
         $file = $formDoc->file;
 
-        return $this->view('form-docs.show', compact('formDoc', 'file'));
+        $activity = $formDoc->activity;
+
+        return $this->view('form-docs.show', compact('formDoc', 'file', 'activity'));
     }
 
     /**

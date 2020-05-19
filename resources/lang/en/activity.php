@@ -71,6 +71,8 @@ return [
     'onlyOwnerAndParticipantsCanEditTasks' => "Only the Activity's Owner and Participants can edit the Task list",
 
     'countOfTotalTasksCompleted' => ':completed / :total Tasks Completed',
+    'countOfTotalFormDocsCompleted' => ':completed / :total FormDocs Completed',
+
 
     'noDetails' => 'No Details',
     'noActiveTasks' => 'No Active Tasks',

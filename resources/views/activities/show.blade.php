@@ -179,6 +179,27 @@
                             @endunless
 
 
+                            @if ($activity->formDocs->count() > 0)
+                                <h4 class="separator">
+                                    <span>{!! \App\icon\formDocs(['mr-2']) !!}{{ __('app.formDocs') }}
+                                        <small class="text-muted" title="{{ __('activity.countOfTotalFormDocsCompleted', ['completed' => $activity->numberOfCompletedFormDocs(), 'total' => $activity->numberOfTotalFormDocs()]) }}">
+                                            ({{ $activity->numberOfCompletedFormDocs() }}<span class="p-half">/</span>{{ $activity->numberOfTotalFormDocs() }})
+                                        </small>
+                                    </span>
+                                </h4>
+
+                                <div class="list-group activities">
+
+                                    @foreach ($activity->formDocs as $formDoc)
+                                        <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
+
+                                            @include("_component._form-doc")
+
+                                        </a>
+                                    @endforeach
+
+                                </div>
+                            @endif
 
 
                             <h4 class="separator">
