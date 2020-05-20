@@ -38,6 +38,9 @@ class Delete
      */
     public function handle()
     {
+        $this->task->deleted_by = $this->deletedBy->id;
+        $this->task->save();
+
         $this->task->delete();
     }
 }

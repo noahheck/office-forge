@@ -33,6 +33,7 @@ class CreateActivitiesTable extends Migration
             $table->timestamp('completed_at')->nullable();
             $table->bigInteger('completed_by')->nullable();
             $table->softDeletes();
+            $table->bigInteger('deleted_by')->nullable();
         });
     }
 

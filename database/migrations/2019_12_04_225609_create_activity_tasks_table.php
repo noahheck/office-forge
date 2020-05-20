@@ -31,6 +31,7 @@ class CreateActivityTasksTable extends Migration
             $table->bigInteger('created_by');
             $table->timestamps();
             $table->softDeletes();
+            $table->bigInteger('deleted_by')->nullable();
         });
     }
 

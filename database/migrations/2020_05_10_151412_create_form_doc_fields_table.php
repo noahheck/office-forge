@@ -40,6 +40,8 @@ class CreateFormDocFieldsTable extends Migration
             $table->longText('value_longtext')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
+            $table->bigInteger('deleted_by')->nullable();
         });
     }
 

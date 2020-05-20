@@ -7,10 +7,12 @@ use App\Traits\Form\Value as ValueTrait;
 use App\Traits\Form\Field as FieldTrait;
 use App\FormDoc\Template\Field as TemplateField;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Field extends Model
 {
-    use ValueTrait,
+    use SoftDeletes,
+        ValueTrait,
         FieldTrait;
 
     protected $table = "form_doc_fields";
