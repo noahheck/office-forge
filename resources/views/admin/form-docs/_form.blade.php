@@ -9,7 +9,21 @@
 
         <div class="col-12">
 
-            @if ($fileType = $template->fileType)
+            @if ($canSelectFileType)
+
+                @fileTypeSelectField([
+                    'name' => 'file_type_id',
+                    'label' => __('app.fileType'),
+                    'value' => $template->file_type_id,
+                    'fileTypes' => $fileTypeSelectOptions,
+                    'placeholder' => '',
+                    'description' => '',
+                    'required' => false,
+                    'autofocus' => true,
+                    'error' => $errors->has('file_type_id'),
+                ])
+
+            @elseif ($fileType = $template->fileType)
                 <h5>{!! $fileType->iconAndName() !!}</h5>
 
                 @hiddenField([
@@ -19,6 +33,7 @@
 
                 <hr>
             @endif
+
 
             @errors('name', 'active', 'teams')
 

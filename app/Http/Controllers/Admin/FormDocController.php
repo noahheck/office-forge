@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\FileType;
 use App\FormDoc\Template;
 use App\Http\Controllers\Controller;
 use App\Jobs\FormDoc\Template\Create;
@@ -43,7 +44,15 @@ class FormDocController extends Controller
 
         $teamOptions = Team::orderBy('name')->get();
 
-        return $this->view('admin.form-docs.create', compact('template', 'teamOptions'));
+        $canSelectFileType = true;
+        $fileTypeSelectOptions = FileType::orderBy('name')->get();
+
+        return $this->view('admin.form-docs.create', compact(
+            'template',
+            'teamOptions',
+            'canSelectFileType',
+            'fileTypeSelectOptions'
+        ));
     }
 
     /**
@@ -92,7 +101,15 @@ class FormDocController extends Controller
 
         $teamOptions = Team::orderBy('name')->get();
 
-        return $this->view('admin.form-docs.edit', compact('template', 'teamOptions'));
+        $canSelectFileType = is_null($template->last_created_at);
+        $fileTypeSelectOptions = FileType::orderBy('name')->get();
+
+        return $this->view('admin.form-docs.edit', compact(
+            'template',
+            'teamOptions',
+            'canSelectFileType',
+            'fileTypeSelectOptions'
+        ));
     }
 
     /**
@@ -109,6 +126,7 @@ class FormDocController extends Controller
             $template,
             $request->name,
             $request->teams,
+            $request->file_type_id,
             $request->has('active')
         ));
 
