@@ -25,6 +25,7 @@ class CreateFormDocsTable extends Migration
             $table->timestamps();
             $table->dateTime('submitted_at')->nullable();
             $table->softDeletes();
+            $table->bigInteger('deleted_by')->nullable();
         });
     }
 

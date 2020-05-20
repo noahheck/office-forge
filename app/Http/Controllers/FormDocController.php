@@ -7,11 +7,14 @@ use App\FormDoc;
 use App\FormDoc\Template;
 use App\Http\Requests\FormDoc\Store as StoreRequest;
 use App\Http\Requests\FormDoc\Update as UpdateRequest;
+use App\Http\Requests\FormDoc\Destroy as DestroyRequest;
 use App\Jobs\FormDoc\Create;
+use App\Jobs\FormDoc\Delete;
 use App\Jobs\FormDoc\Update;
 use App\Team\MemberProvider;
 use Illuminate\Http\Request;
 use function App\flash_error;
+use function App\flash_info;
 use function App\flash_success;
 
 class FormDocController extends Controller
@@ -240,8 +243,12 @@ class FormDocController extends Controller
      * @param  \App\FormDoc  $formDoc
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FormDoc $formDoc)
+    public function destroy(DestroyRequest $request, FormDoc $formDoc)
     {
-        //
+        $this->dispatchNow($formDocDeleted = new Delete($formDoc, $request->user()));
+
+        flash_info(__('formDoc.deletedSuccessfully'));
+
+        return redirect()->route('home');
     }
 }

@@ -3,6 +3,8 @@
 return [
 
     'newFormDoc' => 'New FormDoc',
+    'deleteFormDoc' => 'Delete FormDoc',
+    'deleteFormDocForGood' => 'Delete this FormDoc for good',
 
     'submissionDate' => 'Date',
     'submitted' => 'Submitted',
@@ -28,9 +30,9 @@ return [
 
 
 
-
     'submittedSuccessfully' => 'Your form has been submitted successfully.',
     'savedSuccessfully' => 'Your form has been saved. It is still draft state.',
+    'deletedSuccessfully' => 'The form has been deleted.',
 
     'error_unableToAccessFormDoc' => 'You are unable to access this FormDoc.',
     'error_unableToAccessFormDocType' => 'You are unable to access these FormDocs.',

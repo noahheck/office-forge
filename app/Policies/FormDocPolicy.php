@@ -71,7 +71,10 @@ class FormDocPolicy
      */
     public function delete(User $user, FormDoc $formDoc)
     {
-        return ($user->isAdministrator() || $user->id == $formDoc->creator_id);
+        return $formDoc->id // FormDoc has been saved already
+            && !$formDoc->isSubmitted() // The FormDoc has not been submitted
+            && ($user->isAdministrator() || $user->id == $formDoc->creator_id) // The user is the author of the FormDoc or an Administrator
+            ;
     }
 
     /**
