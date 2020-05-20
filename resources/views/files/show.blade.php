@@ -296,7 +296,7 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
 
-                                @foreach ($formDocTemplates as $__template)
+                                @forelse ($formDocTemplates as $__template)
                                     @if ($loop->first)
                                         <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
                                     @endif
@@ -304,7 +304,11 @@
                                     <a class="dropdown-item" href="{{ route('form-docs.create', ['file_id' => $file->id, 'form_doc_template_id' => $__template->id]) }}">
                                         {{ $__template->name }}
                                     </a>
-                                @endforeach
+                                @empty
+                                    <div class="p-3 text-muted">
+                                        {{ __('file.formDoc_noFormDocsForThisFileType', ['fileType' => $file->fileType->name]) }}.
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>

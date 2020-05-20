@@ -121,4 +121,6 @@ return [
     'formDoc_name' => 'Name',
     'formDoc_nameExamples' => 'Progress Update, Shift Report, etc...',
     'formDoc_active' => 'Active',
+
+    'formDoc_noFormDocsForThisFileType' => 'There are no FormDocs for you to fill out for this :fileType',
 ];
