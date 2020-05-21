@@ -13148,6 +13148,7 @@ trix-toolbar {
   border: 1px solid #c9c9c9;
   background-color: #fff;
   margin-bottom: -1px;
+  z-index: 2;
   position: -webkit-sticky;
   position: sticky;
   top: 108px;

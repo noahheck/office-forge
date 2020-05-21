@@ -43,12 +43,11 @@ class HomeController extends Controller
         $myFiles->load('headshots', 'fileType');
 
         return $this->view('home', compact(
-            'activities',
             'user',
-            'processOptions',
-            'myFiles',
             'myWork',
-            'templates'
+            'processOptions',
+            'templates',
+            'myFiles'
         ));
     }
 }

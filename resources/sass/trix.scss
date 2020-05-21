@@ -13,6 +13,7 @@ trix-toolbar {
     border: 1px solid $medium-gray;
     background-color: $white;
     margin-bottom: -1px;
+    z-index: 2;
 
     position: sticky;
     top: $total-header-height;
