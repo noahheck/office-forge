@@ -49,7 +49,6 @@ class FieldController extends Controller
         $allFileTypes = FileType::all();
 
         return $this->view('admin.form-docs.fields.create', compact(
-            'fileType',
             'template',
             'field',
             'allTeams',
