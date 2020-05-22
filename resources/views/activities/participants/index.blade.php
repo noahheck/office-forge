@@ -17,11 +17,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1 class="h2">
-                @if ($activity->process_id)
-                    {!! \App\icon\processes(['mr-2']) !!}{{ $activity->getFullName() }}
-                @else
-                    {!! \App\icon\activities(['mr-2']) !!}{{ $activity->getFullName() }}
-                @endif
+                {!! $activity->icon(['mr-2']) !!}{{ $activity->getFullName() }}
             </h1>
 
             <div class="card shadow document">

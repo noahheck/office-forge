@@ -42,6 +42,11 @@ class Activity extends Model
         return $name;
     }
 
+    public function icon($withClasses = [])
+    {
+        return \App\icon\forActivity($this, $withClasses);
+    }
+
     public function isAccessibleBy(User $user)
     {
         // System administrators can view all Activities

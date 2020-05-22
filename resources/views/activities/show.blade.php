@@ -28,11 +28,7 @@
                     <div class="border-bottom mb-3">
 
                         <h1 class="h3">
-                            @if ($activity->process_id)
-                                {!! \App\icon\processes(['mr-2']) !!}{{ $activity->process_name }} - {{ $activity->name }}
-                            @else
-                                {!! \App\icon\activities(['mr-2']) !!}{{ $activity->name }}
-                            @endif
+                            {!!$activity->icon(['mr-2']) !!}{{ $activity->getFullName() }}
                             <small class="text-muted">#{{ $activity->id }}</small>
                         </h1>
 

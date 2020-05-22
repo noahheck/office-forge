@@ -337,3 +337,15 @@ function plugins($classes = []) {
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
+
+
+
+
+function forActivity($activity, $classes = []) {
+    if ($activity->process_id) {
+
+        return processes($classes);
+    }
+
+    return activities($classes);
+}

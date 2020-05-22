@@ -23,7 +23,7 @@
 
                     <h2 class="h6 overflow-x-ellipsis">
                         <a href="{{ route('activities.show', [$activity]) }}">
-                            {!! ($activity->process_id) ? \App\icon\processes(['mr-2']) : \App\icon\activities(['mr-2']) !!}{{ $activity->getFullName() }}
+                            {!! $activity->icon(['mr-2']) !!}{{ $activity->getFullName() }}
                         </a>
                     </h2>
 

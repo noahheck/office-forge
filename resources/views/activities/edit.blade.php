@@ -16,9 +16,9 @@
 
             <h1>
                 @if ($activity->process_id)
-                    {!! \App\icon\processes(['mr-2']) !!}{{ $activity->process_name }}{{ ($activity->name) ? ' - ' . $activity->name : '' }}
+                    {!! $activity->icon(['mr-2']) !!}{{ $activity->getFullName() }}
                 @else
-                    {!! \App\icon\activities(['mr-2']) !!}{{ __('activity.editActivity') }}
+                    {!! $activity->icon(['mr-2']) !!}{{ __('activity.editActivity') }}
                 @endif
             </h1>
 

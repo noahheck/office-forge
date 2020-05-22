@@ -16,9 +16,9 @@
 
             <h1>
                 @if ($process)
-                    {!! \App\icon\processes(['mr-2']) !!}{{ $process->name }}
+                    {!! $activity->icon(['mr-2']) !!}{{ $process->name }}
                 @else
-                    {!! \App\icon\activities(['mr-2']) !!}{{ __('activity.newActivity') }}
+                    {!! $activity->icon(['mr-2']) !!}{{ __('activity.newActivity') }}
                 @endif
             </h1>
 

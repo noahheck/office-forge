@@ -8,6 +8,7 @@ return [
 
     'submissionDate' => 'Date',
     'submitted' => 'Submitted',
+    'started' => 'Started',
     'creator' => 'Creator',
 
     'name' => 'Name',

@@ -5,11 +5,7 @@ $__context = $context ?? false;
 
     <div class="icon-container">
         <span class="icon">
-            @if ($activity->process_id)
-                {!! \App\icon\processes(['fa-fw']) !!}
-            @else
-                {!! \App\icon\activities(['fa-fw']) !!}
-            @endif
+            {!! $activity->icon(['fa-fw']) !!}
         </span>
     </div>
 
