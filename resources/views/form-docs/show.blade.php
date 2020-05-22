@@ -1,5 +1,7 @@
 @extends("layouts.app")
 
+@section('title'){{ $formDoc->name }}@endsection
+
 @push('styles')
     @style('css/document.css')
     @style('css/formDocs.css')

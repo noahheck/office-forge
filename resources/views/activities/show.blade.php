@@ -1,5 +1,7 @@
 @extends("layouts.app")
 
+@section('title'){{ $activity->getFullName() }}@endsection
+
 @push('styles')
     @style('css/activities.css')
     @style('css/document.css')

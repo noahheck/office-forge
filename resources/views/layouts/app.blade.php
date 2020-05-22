@@ -41,7 +41,7 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
     @stack('meta')
 
-    <title>{{ config('app.name', 'Office Forge') }}</title>
+    <title>@yield('title', config('app.name', 'Office Forge'))</title>
 
 
     <!-- Scripts -->

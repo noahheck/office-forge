@@ -24,7 +24,7 @@ $__context = $context ?? false;
                     @php
                         $__earliestOpenTask = optional($activity->earliestOpenTaskWithDueDate());
                     @endphp
-                    <div class="detail @if($__earliestOpenTask->isOverdue()) overdue @elseif($__earliestOpenTask->isDueToday()) due-today @endif">
+                    <div class="detail @if(!$activity->completed && $__earliestOpenTask->isOverdue()) overdue @elseif(!$activity->completed && $__earliestOpenTask->isDueToday()) due-today @endif">
 
                         @if ($activity->private)
                             <span class="mr-2" title="{{ __('activity.thisActivityPrivateVisibility') }}">
