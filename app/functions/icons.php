@@ -58,7 +58,19 @@ function text($classes = []) {
 }
 
 function calendar($classes = []) {
-    $classes[] = "far fa-calendar-alt";
+    $classes[] = "fas fa-calendar-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function calendarDay($classes = []) {
+    $classes[] = "fas fa-calendar-day";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function calendarWeek($classes = []) {
+    $classes[] = "fas fa-calendar-week";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }

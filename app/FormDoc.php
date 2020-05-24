@@ -32,6 +32,11 @@ class FormDoc extends Model
         return route('form-docs.edit', [$this]);
     }
 
+    public function icon($withClasses = [])
+    {
+        return \App\icon\formDocs($withClasses);
+    }
+
     public function template()
     {
         return $this->belongsTo(Template::class, 'form_doc_template_id');
