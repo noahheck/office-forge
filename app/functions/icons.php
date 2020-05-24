@@ -81,6 +81,30 @@ function calendarCheck($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+
+
+
+
+
+function overDue($classes = []) {
+    $classes[] = "fas fa-calendar-times";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function inProgress($classes = []) {
+    $classes[] = "fas fa-business-time";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function dueToday($classes = []) {
+    return calendarDay($classes);
+}
+
+
+
+
 function verticalSort($classes = []) {
     $classes[] = "fas fa-arrows-alt-v";
 

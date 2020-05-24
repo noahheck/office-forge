@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\FormDoc\Template\TemplateProvider;
-use App\MyWorkProvider;
+use App\User\WorkProvider;
 use App\Process\ProcessProvider;
 use Illuminate\Http\Request;
 
@@ -26,13 +26,13 @@ class HomeController extends Controller
      */
     public function index(
         Request $request,
-        MyWorkProvider $myWorkProvider,
+        WorkProvider $workProvider,
         TemplateProvider $templateProvider,
         ProcessProvider $processProvider
     ) {
         $user = $request->user();
 
-        $myWork = $myWorkProvider->getMyWork($user);
+        $myWork = $workProvider->getWorkForUser($user);
 
         $processOptions = $processProvider->getProcessesCreatableByUser($user);
 

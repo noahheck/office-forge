@@ -1,13 +1,14 @@
 <?php
 
 
-namespace App;
+namespace App\User;
 
 
+use App\User;
 use App\Activity\ActivityProvider;
 use App\Document\DocumentProvider;
 
-class MyWorkProvider
+class WorkProvider
 {
     private $activityProvider;
     private $documentProvider;
@@ -18,7 +19,7 @@ class MyWorkProvider
         $this->documentProvider = $documentProvider;
     }
 
-    public function getMyWork(User $user)
+    public function getWorkForUser(User $user)
     {
         $activities = $this->activityProvider->getOpenActivitiesForUser($user);
 
@@ -28,7 +29,7 @@ class MyWorkProvider
 
         $documents->load('file', 'file.headshots');
 
-        $myWork = $activities->concat($documents)->sortBy(function($workItem, $key) {
+        $activities = $activities->sortBy(function($workItem, $key) {
 
             $workItemKey = $workItem::WORK_ITEM_KEY;
             switch ($workItemKey):
@@ -50,14 +51,25 @@ class MyWorkProvider
                     return $due_date;
                     break;
 
-                case ('form-doc'):
-                    return $workItem->created_at;
-                    break;
-
             endswitch;
 
             return 0;
         });
+
+        $overdueActivities = $activities->filter(function($activity) {
+            return $activity->isOverdue();
+        });
+
+        $dueTodayActivities = $activities->filter(function($activity) {
+            return $activity->isDueToday();
+        });
+
+        $myWork = [
+            'inProgress' => $documents,
+            'overDue' => $overdueActivities,
+            'dueToday' => $dueTodayActivities,
+
+        ];
 
         return $myWork;
     }

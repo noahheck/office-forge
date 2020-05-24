@@ -20,3 +20,15 @@
 
     }
 }
+
+.work-type-container h4 {
+    z-index: 2;
+    position: sticky;
+    top: $total-header-height;
+    padding: 7px;
+    background-color: $light-gray;
+
+    span {
+        background-color: inherit;
+    }
+}

@@ -28,6 +28,13 @@ return [
     'home' => 'Home',
     'messages' => 'Messages',
 
+    'myFiles' => 'My Files',
+    'myWork' => 'My Work',
+
+    'inProgress' => 'In Progress',
+    'overDue' => 'Overdue',
+    'dueToday' => 'Due Today',
+
     'files' => 'Files',
     'file' => 'File',
     'fileTypes' => 'File Types',
