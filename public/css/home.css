@@ -180,6 +180,100 @@
           align-items: flex-end;
 }
 
+/**
+ * sass/_component/form-doc.scss
+ */
+
+/**
+ * sass/_mixins.scss
+ */
+
+.task--list-item {
+  display: -webkit-box;
+  display: flex;
+}
+
+.task--list-item .icon-container {
+  -webkit-box-flex: 0;
+          flex-grow: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.task--list-item .icon-container .icon {
+  display: inline-block;
+  background-color: #999;
+  border: 1px solid #999;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 7px;
+  font-size: 18px;
+}
+
+.task--list-item:not(.work-list--list-item) .icon-container .icon {
+  border-radius: 10px;
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .task--list-item:not(.work-list--list-item) .icon-container .icon {
+    padding: 2px 13px;
+    font-size: 30px;
+  }
+}
+
+.task--list-item.completed .icon-container .icon {
+  border-color: #6574cd;
+  background-color: #6574cd;
+}
+
+.task--list-item.overdue .icon-container .icon {
+  border-color: #e3342f;
+  background-color: #e3342f;
+}
+
+.task--list-item.due-today .icon-container .icon {
+  border-color: #f6993f;
+  background-color: #f6993f;
+}
+
+.task--list-item .details-container {
+  padding-left: 15px;
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
+.task--list-item .details-container .form-doc--name {
+  color: #3490dc;
+  font-weight: bold;
+}
+
+.task--list-item .details-container .details {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+}
+
+.task--list-item .details-container .details .doc-details {
+  -webkit-box-flex: 1;
+          flex-grow: 1;
+}
+
+.task--list-item .details-container .details .creator {
+  -webkit-box-flex: 0;
+          flex-grow: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: end;
+          align-items: flex-end;
+}
+
 .home--panel {
   margin-bottom: 10px;
 }

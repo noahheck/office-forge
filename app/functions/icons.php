@@ -99,7 +99,13 @@ function inProgress($classes = []) {
 }
 
 function dueToday($classes = []) {
+
     return calendarDay($classes);
+}
+
+function dueThisWeek($classes = []) {
+
+    return calendarWeek($classes);
 }
 
 

@@ -16,7 +16,7 @@ $__context = $context ?? false;
                 $__earliestOpenTask = optional($activity->earliestOpenTaskWithDueDate());
             @endphp
 
-            <div class="activity-details @if(!$activity->completed && $__earliestOpenTask->isOverdue()) overdue @elseif(!$activity->completed && $__earliestOpenTask->isDueToday()) due-today @endif">
+            <div class="activity-details">
                 <small>
                     @if ($activity->private)
                         <span class="mr-2" title="{{ __('activity.thisActivityPrivateVisibility') }}">
@@ -31,7 +31,7 @@ $__context = $context ?? false;
                     @endif
 
                     @if ($activity->tasks->count() > 0)
-                        <span class="mr-2" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
+                        <span class="mr-2 @if(!$activity->completed && $__earliestOpenTask->isOverdue()) overdue @elseif(!$activity->completed && $__earliestOpenTask->isDueToday()) due-today @endif" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
                             {!! \App\icon\tasks(['mr-1']) !!}{{ $activity->numberOfCompletedTasks() }}/{{ $activity->numberOfTotalTasks() }}
                             @if ($__earliestOpenTask->due_date)
                                 <small class="due-date">{!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_date($__earliestOpenTask->due_date) }}</small>

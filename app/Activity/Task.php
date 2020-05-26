@@ -12,6 +12,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Task extends Model implements HasDueDateInterface
 {
+    const WORK_ITEM_KEY = 'task';
+
     use SoftDeletes,
         IsEditorResource,
         HasDueDate;
@@ -26,6 +28,11 @@ class Task extends Model implements HasDueDateInterface
     protected $casts = [
         'completed' => 'boolean',
     ];
+
+    public function workItemListHref()
+    {
+        return route('activities.tasks.show', [$this->activity_id, $this]);
+    }
 
     public function scopeOpen($query)
     {

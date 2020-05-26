@@ -34,6 +34,7 @@ return [
     'inProgress' => 'In Progress',
     'overDue' => 'Overdue',
     'dueToday' => 'Due Today',
+    'dueThisWeek' => 'Due This Week',
 
     'files' => 'Files',
     'file' => 'File',

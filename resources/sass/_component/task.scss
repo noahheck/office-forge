@@ -1,0 +1,87 @@
+/**
+ * sass/_component/form-doc.scss
+ */
+
+@import "../variables";
+@import "../mixins";
+
+.task--list-item {
+    display: flex;
+
+    .icon-container {
+        flex-grow: 0;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .icon {
+            display: inline-block;
+            background-color: $med-dark-gray;
+            border: 1px solid $med-dark-gray;
+            color: $white;
+            @include border-radius(4px);
+
+            padding: 1px 7px;
+            font-size: 18px;
+
+        }
+    }
+
+    &:not(.work-list--list-item) {
+        .icon-container .icon {
+            @include border-radius(10px);
+            @include shadow(1px, 2px, 2px);
+            @include media-breakpoint-up(md) {
+                padding: 2px 13px;
+                font-size: 30px;
+            }
+        }
+    }
+
+
+
+
+    &.completed .icon-container .icon {
+        border-color: $indigo;
+        background-color: $indigo;
+    }
+
+    &.overdue .icon-container .icon {
+        border-color: $red;
+        background-color: $red;
+    }
+
+    &.due-today .icon-container .icon {
+        border-color: $warning-orange;
+        background-color: $warning-orange;
+    }
+
+
+
+
+    .details-container {
+        padding-left: 15px;
+        flex-grow: 1;
+
+        .form-doc--name {
+            color: $blue;
+            font-weight: bold;
+        }
+
+        .details {
+            display: flex;
+            justify-content: space-between;
+
+            .doc-details {
+                flex-grow: 1;
+            }
+
+            .creator {
+                flex-grow: 0;
+                display: flex;
+                align-items: flex-end;
+            }
+        }
+    }
+}

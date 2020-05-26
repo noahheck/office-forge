@@ -75,7 +75,7 @@
 
                             <hr>
 
-                            @foreach (['overDue', 'inProgress', 'dueToday'] as $workType)
+                            @foreach (['overDue', 'inProgress', 'dueToday', 'dueThisWeek'] as $workType)
 
                                 @php
                                 $iconFunction = "\App\icon\\" . $workType;
@@ -85,7 +85,8 @@
 
                                     @php
                                     $activity = $workItem;
-                                    $formDoc = $workItem;
+                                    $formDoc  = $workItem;
+                                    $task     = $workItem;
                                     @endphp
 
                                     @if ($loop->first)

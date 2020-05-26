@@ -48,4 +48,22 @@ trait HasDueDate
 
         return $dueDate->isSameDay($today);
     }
+
+    public function isDueThisWeek()
+    {
+        if (!$this->due_date) {
+            return null;
+        }
+
+        if ($this->completed) {
+            return false;
+        }
+
+
+        $today = \Auth::user()->today();
+
+        $dueDate = $this->getDueDate();
+
+        return $dueDate->isSameWeek($today);
+    }
 }

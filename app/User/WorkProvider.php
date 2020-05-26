@@ -4,6 +4,7 @@
 namespace App\User;
 
 
+use App\Activity\Task\TaskProvider;
 use App\User;
 use App\Activity\ActivityProvider;
 use App\Document\DocumentProvider;
@@ -12,11 +13,16 @@ class WorkProvider
 {
     private $activityProvider;
     private $documentProvider;
+    private $taskProvider;
 
-    public function __construct(ActivityProvider $activityProvider, DocumentProvider $documentProvider)
-    {
+    public function __construct(
+        ActivityProvider $activityProvider,
+        DocumentProvider $documentProvider,
+        TaskProvider $taskProvider
+    ) {
         $this->activityProvider = $activityProvider;
         $this->documentProvider = $documentProvider;
+        $this->taskProvider     = $taskProvider;
     }
 
     public function getWorkForUser(User $user)
@@ -29,23 +35,27 @@ class WorkProvider
 
         $documents->load('file', 'file.headshots');
 
-        $activities = $activities->sortBy(function($workItem, $key) {
+        $tasks = $this->taskProvider->getOpenTasksForUser($user);
 
-            $workItemKey = $workItem::WORK_ITEM_KEY;
+        $tasks->load('activity');
+
+        $activities = $activities->sortBy(function($activity, $key) {
+
+            $workItemKey = $activity::WORK_ITEM_KEY;
             switch ($workItemKey):
 
                 case ('activity'):
 
-                    $due_date = optional($workItem->earliestOpenTaskWithDueDate())->due_date;
+                    $due_date = optional($activity->earliestOpenTaskWithDueDate())->due_date;
 
-                    if (!$due_date || ($workItem->due_date && $due_date > $workItem->due_date)) {
+                    if (!$due_date || ($activity->due_date && $due_date > $activity->due_date)) {
 
-                        $due_date = $workItem->due_date;
+                        $due_date = $activity->due_date;
                     }
 
                     if (!$due_date) {
 
-                        $due_date = $workItem->created_at->addCenturies(1);
+                        $due_date = $activity->created_at->addCenturies(1);
                     }
 
                     return $due_date;
@@ -64,11 +74,35 @@ class WorkProvider
             return $activity->isDueToday();
         });
 
+        $dueThisWeekActivities = $activities->filter(function($activity) {
+            return $activity->isDueThisWeek();
+        })->reject(function($activity) use ($dueTodayActivities) {
+            return $dueTodayActivities->contains($activity);
+        });
+
+        $overdueTasks = $tasks->filter(function($task) {
+            return $task->isOverdue();
+        });
+
+        $dueTodayTasks = $tasks->filter(function($task) {
+            return $task->isDueToday();
+        });
+
+        $dueThisWeekTasks = $tasks->filter(function($task) {
+            return $task->isDueThisWeek();
+        })->reject(function($task) use($dueTodayTasks) {
+            return $dueTodayTasks->contains($task);
+        });
+
+        $overdue = $overdueActivities->merge($overdueTasks)->sortBy('due_date');
+        $dueToday = $dueTodayActivities->merge($dueTodayTasks)->sortBy('due_date');
+        $dueThisWeek = $dueThisWeekActivities->merge($dueThisWeekTasks)->sortBy('due_date');
+
         $myWork = [
             'inProgress' => $documents,
-            'overDue' => $overdueActivities,
-            'dueToday' => $dueTodayActivities,
-
+            'overDue' => $overdue,
+            'dueToday' => $dueToday,
+            'dueThisWeek' => $dueThisWeek,
         ];
 
         return $myWork;
