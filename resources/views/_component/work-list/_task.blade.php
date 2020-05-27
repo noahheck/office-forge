@@ -13,17 +13,17 @@ $__context = $context ?? false;
             <div class="task-details">
                 <div>
                     <small>
-                        @if ($activity->due_date)
+                        @if ($task->due_date)
                             <span class="due-date mr-2">{!! \App\icon\calendar(['mr-1']) !!}{{ \App\format_date($task->due_date) }}</span>
                         @endif
-                        {{--@if ($task->isSubmitted())
-                            {{ \App\format_datetime($formDoc->submitted_at) }}
-                        @else
-                            <strong>{{ __('formDoc.started') }}:</strong> {{ \App\format_datetime($formDoc->created_at) }}
+                        <span>
+                            {!! $task->activity->icon(['mr-1']) !!}{{ $task->activity->name }}
+                        </span>
+                        @if ($__file = $task->activity->file)
+                            <span>
+                                {!! $__file->icon(['ml-2', 'mr-1', 'mhw-25p']) !!}{{ $__file->name }}
+                            </span>
                         @endif
-                        @if ($__context !== 'file' && $__file = $formDoc->file)
-                            {!! $__file->icon(['ml-2', 'mr-2', 'mhw-25p']) !!}{{ $__file->name }}
-                        @endif--}}
                     </small>
                 </div>
             </div>
