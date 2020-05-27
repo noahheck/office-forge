@@ -94,7 +94,7 @@
                                         @php
                                           $hasWorkInList = false;
                                         @endphp
-                                        
+
                                         @foreach (['overDue', 'inProgress', 'dueToday', 'dueThisWeek'] as $workType)
 
                                             @php
