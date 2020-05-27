@@ -288,7 +288,7 @@
   margin-bottom: 20px;
 }
 
-.work-type-container h4 {
+.my-work-content h4 {
   z-index: 2;
   position: -webkit-sticky;
   position: sticky;
@@ -297,7 +297,7 @@
   background-color: #e3e3e3;
 }
 
-.work-type-container h4 span {
+.my-work-content h4 span {
   background-color: inherit;
 }
 

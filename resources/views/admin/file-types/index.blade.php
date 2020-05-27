@@ -56,7 +56,7 @@
                     <div class="card-body text-center">
 
                         <div class="empty-resource">
-                            <span class="fas fa-folder-open empty-resource-icon"></span>
+                            {!! \App\icon\files(['empty-resource-icon']) !!}
                         </div>
 
                         <p>{{ __('admin.fileType_description') }}</p>

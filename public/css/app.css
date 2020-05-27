@@ -13797,6 +13797,11 @@ trix-editor:empty:not(:focus)::before {
   font-weight: bold;
 }
 
+.nav-tabs .nav-link.active {
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
 .bootstrap-select .btn.dropdown-toggle {
   border-radius: 3px;
   border: 1px solid #e3e3e3;

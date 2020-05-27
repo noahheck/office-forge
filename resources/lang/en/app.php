@@ -30,11 +30,15 @@ return [
 
     'myFiles' => 'My Files',
     'myWork' => 'My Work',
+    'myWorkDescription' => 'My Work is a list of all of the Tasks, Activities, and FormDocs you should be focusing on right now. Find all of these things in one place so you can focus on the things that matter!',
 
     'inProgress' => 'In Progress',
     'overDue' => 'Overdue',
     'dueToday' => 'Due Today',
     'dueThisWeek' => 'Due This Week',
+
+    'myActivities' => 'My Activities',
+    'myActivitiesDescription' => 'My Activities is a list of all of the open Activities you own or are participating in. Come here for convenient access to all of your obligations and opportunities!!',
 
     'files' => 'Files',
     'file' => 'File',

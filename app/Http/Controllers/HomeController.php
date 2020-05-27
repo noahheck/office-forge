@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity\ActivityProvider;
 use App\FormDoc\Template\TemplateProvider;
 use App\User\WorkProvider;
 use App\Process\ProcessProvider;
@@ -28,7 +29,8 @@ class HomeController extends Controller
         Request $request,
         WorkProvider $workProvider,
         TemplateProvider $templateProvider,
-        ProcessProvider $processProvider
+        ProcessProvider $processProvider,
+        ActivityProvider $activityProvider
     ) {
         $user = $request->user();
 
@@ -37,6 +39,8 @@ class HomeController extends Controller
         $processOptions = $processProvider->getProcessesCreatableByUser($user);
 
         $templates = $templateProvider->getTemplatesCreatableByUser($user);
+
+        $activities = $activityProvider->getOpenActivitiesForUser($user);
 
         $myFiles = $user->myFiles;
 
@@ -47,6 +51,7 @@ class HomeController extends Controller
             'myWork',
             'processOptions',
             'templates',
+            'activities',
             'myFiles'
         ));
     }

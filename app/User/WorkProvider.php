@@ -78,6 +78,8 @@ class WorkProvider
             return $activity->isDueThisWeek();
         })->reject(function($activity) use ($dueTodayActivities) {
             return $dueTodayActivities->contains($activity);
+        })->reject(function($activity) use ($overdueActivities) {
+            return $overdueActivities->contains($activity);
         });
 
         $overdueTasks = $tasks->filter(function($task) {
@@ -92,6 +94,8 @@ class WorkProvider
             return $task->isDueThisWeek();
         })->reject(function($task) use($dueTodayTasks) {
             return $dueTodayTasks->contains($task);
+        })->reject(function($task) use($overdueTasks) {
+            return $overdueTasks->contains($task);
         });
 
         $overdue = $overdueActivities->merge($overdueTasks)->sortBy('due_date');
