@@ -91,10 +91,13 @@
                                 <div class="tab-content my-work-content" id="myWork_content">
                                     <div class="tab-pane show active" id="myWork" role="tabpanel" aria-labelledby="myWork_tab">
 
+                                        @php
+                                          $hasWorkInList = false;
+                                        @endphp
+                                        
                                         @foreach (['overDue', 'inProgress', 'dueToday', 'dueThisWeek'] as $workType)
 
                                             @php
-                                                $hasWorkInList = false;
                                                 $iconFunction = "\App\icon\\" . $workType;
                                             @endphp
 
