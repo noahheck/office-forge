@@ -23,7 +23,9 @@ $__context = $context ?? false;
                             {!! \App\icon\isPrivate() !!}
                         </span>
                     @endif
-                    @if ($activity->due_date)
+                    @if ($activity->completed)
+                        <span class="mr-2">{{ __('activity.completed') }}: {{ \App\format_datetime($activity->completed_at) }}</span>
+                    @elseif ($activity->due_date)
                         <span class="due-date mr-2">{!! \App\icon\calendar(['mr-1']) !!}{{ \App\format_date($activity->due_date) }}</span>
                     @endif
                     @if ($__file = $activity->file)

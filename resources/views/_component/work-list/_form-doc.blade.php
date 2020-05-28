@@ -15,13 +15,14 @@ $__context = $context ?? false;
                     <small>
 
                         @if ($formDoc->isSubmitted())
-                            {{ \App\format_datetime($formDoc->submitted_at) }}
+                            {{ __('formDoc.submitted') }}: {{ \App\format_datetime($formDoc->submitted_at) }}
                         @else
                             <strong>{{ __('formDoc.started') }}:</strong> {{ \App\format_datetime($formDoc->created_at) }}
                         @endif
                         @if ($__context !== 'file' && $__file = $formDoc->file)
                             {!! $__file->icon(['ml-2', 'mr-2', 'mhw-25p']) !!}{{ $__file->name }}
                         @endif
+
                     </small>
                 </div>
             </div>

@@ -39,6 +39,11 @@ class Task extends Model implements HasDueDateInterface
         return $query->where('completed', false);
     }
 
+    public function scopeCompleted($query)
+    {
+        return $query->where('completed', true);
+    }
+
     public function createdBy()
     {
         return $this->belongsTo(User::class, 'created_by');

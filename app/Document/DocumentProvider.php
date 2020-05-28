@@ -23,6 +23,11 @@ class DocumentProvider
         return $user->createdFormDocs()->whereNull('submitted_at')->orderBy('created_at')->get();
     }
 
+    public function getCompletedDocumentsForUser(User $user)
+    {
+        return $user->createdFormDocs()->whereNotNull('submitted_at')->orderBy('submitted_at', 'DESC')->get();
+    }
+
 
     public function getDocumentsForFileAccessibleByUser(File $file, User $user)
     {

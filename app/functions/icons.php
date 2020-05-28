@@ -108,6 +108,36 @@ function dueThisWeek($classes = []) {
     return calendarWeek($classes);
 }
 
+function dueNextWeek($classes = []) {
+
+    return calendarWeek($classes);
+}
+
+function dueLater($classes = []) {
+
+    return calendar($classes);
+};
+
+function completedToday($classes = []) {
+
+    return calendarDay($classes);
+}
+
+function completedThisWeek($classes = []) {
+
+    return calendarWeek($classes);
+}
+
+function completedThisMonth($classes = []) {
+
+    return calendar($classes);
+}
+
+function completedEarlier($classes = []) {
+
+    return calendar($classes);
+}
+
 
 
 
@@ -170,6 +200,12 @@ function processes($classes = []) {
 
 function mySettings($classes = []) {
     $classes[] = "fas fa-cog";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function userActivity($classes = []) {
+    $classes[] = "fas fa-business-time";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }

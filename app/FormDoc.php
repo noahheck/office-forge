@@ -24,7 +24,7 @@ class FormDoc extends Model
 
     public function workItemListHref()
     {
-        if ($this->submitted) {
+        if ($this->submitted_at) {
 
             return route("form-docs.show", [$this]);
         }

@@ -34,7 +34,7 @@ class HomeController extends Controller
     ) {
         $user = $request->user();
 
-        $myWork = $workProvider->getWorkForUser($user);
+        $myWork = $workProvider->getOpenWorkForUser($user, false);
 
         $processOptions = $processProvider->getProcessesCreatableByUser($user);
 

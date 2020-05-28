@@ -1,11 +1,12 @@
 @php
-$__currentRouteName  = Route::currentRouteName();
-$__isFilesRoute      = Str::startsWith($__currentRouteName, 'files');
-$__isActivitiesRoute = Str::startsWith($__currentRouteName, 'activities');
-$__isFormDocsRoute   = Str::startsWith($__currentRouteName, 'form-docs');
-$__isProcessesRoute  = Str::startsWith($__currentRouteName, 'processes');
-$__isAdminRoute      = Str::startsWith($__currentRouteName, 'admin.');
-$__isSettingsRoute   = Str::startsWith($__currentRouteName, 'my-settings.');
+$__currentRouteName    = Route::currentRouteName();
+$__isFilesRoute        = Str::startsWith($__currentRouteName, 'files');
+$__isActivitiesRoute   = Str::startsWith($__currentRouteName, 'activities');
+$__isFormDocsRoute     = Str::startsWith($__currentRouteName, 'form-docs');
+$__isProcessesRoute    = Str::startsWith($__currentRouteName, 'processes');
+$__isAdminRoute        = Str::startsWith($__currentRouteName, 'admin.');
+$__isSettingsRoute     = Str::startsWith($__currentRouteName, 'my-settings.');
+$__isUserActivityRoute = Str::startsWith($__currentRouteName, 'user-activity');
 
 
 // Variables from view composer:
@@ -189,6 +190,11 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
                 </a>
             </li>
             <li class="divider">
+                <a href="{{ route('user-activity') }}" class="{{ ($__isUserActivityRoute) ? 'current' : '' }}">
+                    {!! \App\icon\userActivity(['fa-fw']) !!} {{ __('app.userActivity') }}
+                </a>
+            </li>
+            <li>
                 <a href="{{ route('my-settings.index') }}" class="{{ ($__isSettingsRoute) ? 'current' : '' }}">
                     {!! \App\icon\mySettings(['fa-fw']) !!} {{ __('app.mySettings') }}
                 </a>

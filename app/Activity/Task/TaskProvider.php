@@ -25,4 +25,11 @@ class TaskProvider
 
         return $assignedTasks->sortBy('due_date');
     }
+
+    public function getCompletedTasksForUser(User $user)
+    {
+        $assignedTasks = $user->assignedTasks()->completed()->get();
+
+        return $assignedTasks->sortBy('completed_at');
+    }
 }

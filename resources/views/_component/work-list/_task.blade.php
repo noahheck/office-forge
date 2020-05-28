@@ -13,7 +13,9 @@ $__context = $context ?? false;
             <div class="task-details">
                 <div>
                     <small>
-                        @if ($task->due_date)
+                        @if ($task->completed)
+                            <span class="mr-2">{{ __('activity.taskCompleted') }}: {{ \App\format_datetime($task->completed_at) }}</span>
+                        @elseif ($task->due_date)
                             <span class="due-date mr-2">{!! \App\icon\calendar(['mr-1']) !!}{{ \App\format_date($task->due_date) }}</span>
                         @endif
                         <span>
