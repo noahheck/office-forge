@@ -121,11 +121,11 @@ class WorkProvider
 
 
 
-        $overdue = $this->sortOpenWork($overdueActivities->merge($overdueTasks)->sortBy('due_date'));
-        $dueToday = $this->sortOpenWork($dueTodayActivities->merge($dueTodayTasks)->sortBy('due_date'));
-        $dueThisWeek = $this->sortOpenWork($dueThisWeekActivities->merge($dueThisWeekTasks)->sortBy('due_date'));
-        $dueNextWeek = $this->sortOpenWork($dueNextWeekActivities->merge($dueNextWeekTasks)->sortBy('due_date'));
-        $dueLater = $this->sortOpenWork($dueLaterActivities->merge($dueLaterTasks)->sortBy('due_date'));
+        $overdue = $this->sortOpenWork($overdueActivities->concat($overdueTasks)->sortBy('due_date'));
+        $dueToday = $this->sortOpenWork($dueTodayActivities->concat($dueTodayTasks)->sortBy('due_date'));
+        $dueThisWeek = $this->sortOpenWork($dueThisWeekActivities->concat($dueThisWeekTasks)->sortBy('due_date'));
+        $dueNextWeek = $this->sortOpenWork($dueNextWeekActivities->concat($dueNextWeekTasks)->sortBy('due_date'));
+        $dueLater = $this->sortOpenWork($dueLaterActivities->concat($dueLaterTasks)->sortBy('due_date'));
 
         $openWork = [
             'inProgress' => $documents,
