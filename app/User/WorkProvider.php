@@ -39,22 +39,20 @@ class WorkProvider
 
         $tasks->load('activity');
 
+        $today = $user->today();
 
-        $overdueActivities = $activities->filter(function($activity) {
+
+
+        [$overdueActivities, $activities] = $activities->partition(function($activity) {
             return $activity->isOverdue();
         });
 
-        $dueTodayActivities = $activities->filter(function($activity) {
+        [$dueTodayActivities, $activities] = $activities->partition(function($activity) {
             return $activity->isDueToday();
         });
 
-        $dueThisWeekActivities = $activities->filter(function($activity) {
-
+        [$dueThisWeekActivities, $activities] = $activities->partition(function($activity) {
             return $activity->isDueThisWeek();
-        })->reject(function($activity) use ($dueTodayActivities, $overdueActivities) {
-
-            return $dueTodayActivities->contains($activity)
-                || $overdueActivities->contains($activity);
         });
 
         $dueNextWeekActivities = collect([]);
@@ -62,61 +60,34 @@ class WorkProvider
 
         if ($includeDueLater) {
 
-            $dueNextWeekActivities = $activities->filter(function($activity) {
-
-                return $activity->due_date && $activity->due_date->isNextWeek();
-            });
-
-            $dueLaterActivities = $activities->reject(function($activity) use (
-                $overdueActivities,
-                $dueTodayActivities,
-                $dueThisWeekActivities,
-                $dueNextWeekActivities
-            ) {
-                return $overdueActivities->contains($activity)
-                    || $dueTodayActivities->contains($activity)
-                    || $dueThisWeekActivities->contains($activity)
-                    || $dueNextWeekActivities->contains($activity);
+            [$dueNextWeekActivities, $dueLaterActivities] = $activities->partition(function($activity) use ($today) {
+                return $activity->due_date
+                    && $activity->due_date->copy()->tz($today->tz)->isNextWeek();
             });
         }
 
 
-        $overdueTasks = $tasks->filter(function($task) {
+
+        [$overdueTasks, $tasks] = $tasks->partition(function($task) {
             return $task->isOverdue();
         });
 
-        $dueTodayTasks = $tasks->filter(function($task) {
+        [$dueTodayTasks, $tasks] = $tasks->partition(function($task) {
             return $task->isDueToday();
         });
 
-        $dueThisWeekTasks = $tasks->filter(function($task) {
+        [$dueThisWeekTasks, $tasks] = $tasks->partition(function($task) {
             return $task->isDueThisWeek();
-        })->reject(function($task) use($dueTodayTasks,$overdueTasks) {
-            return $dueTodayTasks->contains($task)
-                || $overdueTasks->contains($task);
         });
 
         $dueNextWeekTasks = collect([]);
         $dueLaterTasks = collect([]);
 
         if ($includeDueLater) {
-
-            $dueNextWeekTasks = $tasks->filter(function($task) {
-                return $task->due_date && $task->due_date->isNextWeek();
+            [$dueThisWeekTasks, $dueLaterTasks] = $tasks->partition(function($task) use ($today) {
+                return $task->due_date
+                    && $task->due_date->copy()->tz($today->tz)->isNextWeek();
             });
-
-            $dueLaterTasks = $tasks->reject(function($task) use (
-                $overdueTasks,
-                $dueTodayTasks,
-                $dueThisWeekTasks,
-                $dueNextWeekTasks
-            ) {
-                return $overdueTasks->contains($task)
-                    || $dueTodayTasks->contains($task)
-                    || $dueThisWeekTasks->contains($task)
-                    || $dueNextWeekTasks->contains($task);
-            });
-
         }
 
 
@@ -166,87 +137,46 @@ class WorkProvider
 
 
 
-        $completedTodayActivities = $activities->filter(function($activity) use ($today) {
+        [$completedTodayActivities, $activities] = $activities->partition(function($activity) use ($today) {
             return $activity->completed_at->clone()->tz($today->tz)->isSameDay($today);
         });
 
-        $completedThisWeekActivities = $activities->filter(function($activity) use ($today) {
+        [$completedThisWeekActivities, $activities] = $activities->partition(function($activity) use ($today) {
             return $activity->completed_at->clone()->tz($today->tz)->isSameWeek($today);
-        })->reject(function($activity) use ($completedTodayActivities) {
-            return $completedTodayActivities->contains($activity);
         });
 
-        $completedThisMonthActivities = $activities->filter(function($activity) use ($today) {
+        [$completedThisMonthActivities, $completedEarlierActivities] = $activities->partition(function($activity) use ($today) {
             return $activity->completed_at->clone()->tz($today->tz)->isSameMonth($today);
-        })->reject(function($activity) use ($completedTodayActivities, $completedThisWeekActivities) {
-            return $completedTodayActivities->contains($activity) || $completedThisWeekActivities->contains($activity);
-        });
-
-        $completedEarlierActivities = $activities->reject(function($activity) use (
-            $completedTodayActivities,
-            $completedThisWeekActivities,
-            $completedThisMonthActivities
-        ) {
-            return $completedTodayActivities->contains($activity)
-                || $completedThisWeekActivities->contains($activity)
-                || $completedThisMonthActivities->contains($activity);
         });
 
 
 
-        $completedTodayDocuments = $documents->filter(function($doc) use ($today) {
+        [$completedTodayDocuments, $documents] = $documents->partition(function($doc) use ($today) {
             return $doc->submitted_at->clone()->tz($today->tz)->isSameDay($today);
         });
 
-        $completedThisWeekDocuments = $documents->filter(function($doc) use ($today) {
+        [$completedThisWeekDocuments, $documents] = $documents->partition(function($doc) use ($today) {
             return $doc->submitted_at->clone()->tz($today->tz)->isSameWeek($today);
-        })->reject(function($doc) use ($completedTodayDocuments) {
-            return $completedTodayDocuments->contains($doc);
         });
 
-        $completedThisMonthDocuments = $documents->filter(function($doc) use ($today) {
-            return $doc->submitted_at->clone()->tz($today->tz)->isSameMonth($today);
-        })->reject(function($doc) use ($completedTodayDocuments, $completedThisWeekDocuments) {
-            return $completedTodayDocuments->contains($doc) || $completedThisWeekDocuments->contains($doc);
-        });
-
-        $completedEarlierDocuments = $documents->reject(function($doc) use (
-            $completedTodayDocuments,
-            $completedThisWeekDocuments,
-            $completedThisMonthDocuments
-        ) {
-            return $completedTodayDocuments->contains($doc)
-                || $completedThisWeekDocuments->contains($doc)
-                || $completedThisMonthDocuments->contains($doc);
+        [$completedThisMonthDocuments, $completedEarlierDocuments] = $documents->partition(function($doc) use ($today) {
+            return $doc->submitted_at->clone()->tz($today->tz)->isSameWeek($today);
         });
 
 
 
-        $completedTodayTasks = $tasks->filter(function($task) use ($today) {
+        [$completedTodayTasks, $tasks] = $tasks->partition(function($task) use ($today) {
             return $task->completed_at->clone()->tz($today->tz)->isSameDay($today);
         });
 
-        $completedThisWeekTasks = $tasks->filter(function($task) use ($today) {
+        [$completedThisWeekTasks, $tasks] = $tasks->partition(function($task) use ($today) {
             return $task->completed_at->clone()->tz($today->tz)->isSameWeek($today);
-        })->reject(function($task) use ($completedTodayTasks) {
-            return $completedTodayTasks->contains($task);
         });
 
-        $completedThisMonthTasks = $tasks->filter(function($task) use ($today) {
+        [$completedThisMonthTasks, $completedEarlierTasks] = $tasks->partition(function($task) use ($today) {
             return $task->completed_at->clone()->tz($today->tz)->isSameMonth($today);
-        })->reject(function($task) use ($completedTodayTasks, $completedThisWeekTasks) {
-            return $completedTodayTasks->contains($task) || $completedThisWeekTasks->contains($task);
         });
 
-        $completedEarlierTasks = $tasks->reject(function($task) use (
-            $completedTodayTasks,
-            $completedThisWeekTasks,
-            $completedThisMonthTasks
-        ) {
-            return $completedTodayTasks->contains($task)
-                || $completedThisWeekTasks->contains($task)
-                || $completedThisMonthTasks->contains($task);
-        });
 
 
         $completedToday = $this->sortCompletedWork(
