@@ -4,7 +4,11 @@ $__context = $context ?? false;
 <div class="task--list-item work-list--list-item @if($task->completed) completed @elseif($task->isDueToday()) due-today @elseif($task->isOverdue()) overdue @endif">
     <div class="icon-container">
         <span class="icon">
-            {!! \App\icon\uncheckedBox(['fa-fw']) !!}
+            @if ($task->completed)
+                {!! \App\icon\checkedBox(['fa-fw']) !!}
+            @else
+                {!! \App\icon\uncheckedBox(['fa-fw']) !!}
+            @endif
         </span>
     </div>
     <div class="details-container">

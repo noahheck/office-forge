@@ -160,7 +160,7 @@ class WorkProvider
         });
 
         [$completedThisMonthDocuments, $completedEarlierDocuments] = $documents->partition(function($doc) use ($today) {
-            return $doc->submitted_at->clone()->tz($today->tz)->isSameWeek($today);
+            return $doc->submitted_at->clone()->tz($today->tz)->isSameMonth($today);
         });
 
 
