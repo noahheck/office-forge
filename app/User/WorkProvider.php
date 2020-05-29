@@ -167,17 +167,17 @@ class WorkProvider
 
 
         $completedTodayActivities = $activities->filter(function($activity) use ($today) {
-            return $activity->completed_at->isSameDay($today);
+            return $activity->completed_at->clone()->tz($today->tz)->isSameDay($today);
         });
 
         $completedThisWeekActivities = $activities->filter(function($activity) use ($today) {
-            return $activity->completed_at->isSameWeek($today);
+            return $activity->completed_at->clone()->tz($today->tz)->isSameWeek($today);
         })->reject(function($activity) use ($completedTodayActivities) {
             return $completedTodayActivities->contains($activity);
         });
 
         $completedThisMonthActivities = $activities->filter(function($activity) use ($today) {
-            return $activity->completed_at->isSameMonth($today);
+            return $activity->completed_at->clone()->tz($today->tz)->isSameMonth($today);
         })->reject(function($activity) use ($completedTodayActivities, $completedThisWeekActivities) {
             return $completedTodayActivities->contains($activity) || $completedThisWeekActivities->contains($activity);
         });
@@ -195,17 +195,17 @@ class WorkProvider
 
 
         $completedTodayDocuments = $documents->filter(function($doc) use ($today) {
-            return $doc->submitted_at->isSameDay($today);
+            return $doc->submitted_at->clone()->tz($today->tz)->isSameDay($today);
         });
 
         $completedThisWeekDocuments = $documents->filter(function($doc) use ($today) {
-            return $doc->submitted_at->isSameWeek($today);
+            return $doc->submitted_at->clone()->tz($today->tz)->isSameWeek($today);
         })->reject(function($doc) use ($completedTodayDocuments) {
             return $completedTodayDocuments->contains($doc);
         });
 
         $completedThisMonthDocuments = $documents->filter(function($doc) use ($today) {
-            return $doc->submitted_at->isSameMonth($today);
+            return $doc->submitted_at->clone()->tz($today->tz)->isSameMonth($today);
         })->reject(function($doc) use ($completedTodayDocuments, $completedThisWeekDocuments) {
             return $completedTodayDocuments->contains($doc) || $completedThisWeekDocuments->contains($doc);
         });
@@ -223,17 +223,17 @@ class WorkProvider
 
 
         $completedTodayTasks = $tasks->filter(function($task) use ($today) {
-            return $task->completed_at->isSameDay($today);
+            return $task->completed_at->clone()->tz($today->tz)->isSameDay($today);
         });
 
         $completedThisWeekTasks = $tasks->filter(function($task) use ($today) {
-            return $task->completed_at->isSameWeek($today);
+            return $task->completed_at->clone()->tz($today->tz)->isSameWeek($today);
         })->reject(function($task) use ($completedTodayTasks) {
             return $completedTodayTasks->contains($task);
         });
 
         $completedThisMonthTasks = $tasks->filter(function($task) use ($today) {
-            return $task->completed_at->isSameMonth($today);
+            return $task->completed_at->clone()->tz($today->tz)->isSameMonth($today);
         })->reject(function($task) use ($completedTodayTasks, $completedThisWeekTasks) {
             return $completedTodayTasks->contains($task) || $completedThisWeekTasks->contains($task);
         });
@@ -250,19 +250,19 @@ class WorkProvider
 
 
         $completedToday = $this->sortCompletedWork(
-            $completedTodayDocuments->merge($completedTodayActivities)->merge($completedTodayTasks)
+            $completedTodayDocuments->concat($completedTodayActivities)->concat($completedTodayTasks)
         );
 
         $completedThisWeek = $this->sortCompletedWork(
-            $completedThisWeekDocuments->merge($completedThisWeekActivities)->merge($completedThisWeekTasks)
+            $completedThisWeekDocuments->concat($completedThisWeekActivities)->concat($completedThisWeekTasks)
         );
 
         $completedThisMonth = $this->sortCompletedWork(
-            $completedThisMonthDocuments->merge($completedThisMonthActivities)->merge($completedThisMonthTasks)
+            $completedThisMonthDocuments->concat($completedThisMonthActivities)->concat($completedThisMonthTasks)
         );
 
         $completedEarlier = $this->sortCompletedWork(
-            $completedEarlierDocuments->merge($completedEarlierActivities)->merge($completedEarlierTasks)
+            $completedEarlierDocuments->concat($completedEarlierActivities)->concat($completedEarlierTasks)
         );
 
 
