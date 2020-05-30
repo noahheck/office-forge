@@ -37,6 +37,15 @@ class FormDoc extends Model
         return \App\icon\formDocs($withClasses);
     }
 
+    public function scopeSubmittedSince($query, $since = '')
+    {
+        if (!$since) {
+            return $query;
+        }
+
+        return $query->where('submitted_at', ">=", $since);
+    }
+
     public function template()
     {
         return $this->belongsTo(Template::class, 'form_doc_template_id');

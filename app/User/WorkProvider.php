@@ -119,17 +119,19 @@ class WorkProvider
 
 
 
-    public function getCompletedWorkForUser(User $user)//, $startDate, $endDate)
+    public function getCompletedWorkForUser(User $user, $timeFrame = '')
     {
-        $activities = $this->activityProvider->getCompletedActivitiesForUser($user);
+        $since = ($timeFrame) ? $user->timeAgo($timeFrame)->tz('UTC') : '';
+
+        $activities = $this->activityProvider->getCompletedActivitiesForUser($user, $since);
 
         $activities->load('tasks', 'owner', 'owner.headshots', 'formDocs', 'file', 'file.fileType', 'file.headshots');
 
-        $documents = $this->documentProvider->getCompletedDocumentsForUser($user);
+        $documents = $this->documentProvider->getCompletedDocumentsForUser($user, $since);
 
         $documents->load('file', 'file.fileType', 'file.headshots', 'activity', 'activity.file.headshots');
 
-        $tasks = $this->taskProvider->getCompletedTasksForUser($user);
+        $tasks = $this->taskProvider->getCompletedTasksForUser($user, $since);
 
         $tasks->load('activity', 'activity.file', 'activity.file.fileType', 'activity.file.headshots');
 

@@ -20,6 +20,10 @@ mix
     // Home
     .sass('resources/sass/home.scss', 'public/css')
 
+    // User Activity
+    .sass('resources/sass/user-activity.scss', 'public/css')
+    .js('resources/js/page/user-activity.js', 'public/js/page.user-activity.js')
+
     // My settings
     .sass('resources/sass/settings.scss', 'public/css')
     .js('resources/js/page/settings/photo.js', 'public/js/page.settings.photo.js')

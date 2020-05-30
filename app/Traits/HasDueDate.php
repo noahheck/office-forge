@@ -6,6 +6,15 @@ namespace App\Traits;
 
 trait HasDueDate
 {
+    public function scopeCompletedSince($query, $since = '')
+    {
+        if (!$since) {
+            return $query;
+        }
+
+        return $query->where('completed_at', ">=", $since);
+    }
+
     protected function getDueDate()
     {
         $today = \Auth::user()->today();

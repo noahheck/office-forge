@@ -46,11 +46,13 @@ class ActivityProvider
         return $this->sortActivities($allActivities);
     }
 
-    public function getCompletedActivitiesForUser(User $user)
-    {
-        $ownedActivities = $user->completedOwnedActivities;
 
-        $participatingActivities = $this->activity->where('completed', true)->whereHas('participants', function ($query) use ($user) {
+
+    public function getCompletedActivitiesForUser(User $user, $since = '')
+    {
+        $ownedActivities = $user->completedOwnedActivities()->completedSince($since)->get();
+
+        $participatingActivities = $this->activity->where('completed', true)->completedSince($since)->whereHas('participants', function ($query) use ($user) {
             $query->where('user_id', '=', $user->id);
         })->get();
 
@@ -58,6 +60,8 @@ class ActivityProvider
 
         return $this->sortActivities($allActivities);
     }
+
+
 
     public function getOpenActivitiesForFileAccessibleByUser(File $file, User $user)
     {

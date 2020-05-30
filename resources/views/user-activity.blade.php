@@ -2,7 +2,11 @@
 
 @push('styles')
     @style('css/document.css')
-    @style('css/home.css')
+    @style('css/user-activity.css')
+@endpush
+
+@push('scripts')
+    @script('js/page.user-activity.js')
 @endpush
 
 @include("_component._location-bar", [
@@ -54,6 +58,28 @@
                                 'readonly' => false,
                             ])
                         @endadmin
+
+                        <div id="completedWorkTimeFrameContainer" class="collapse {{ ($workStatus === 'completed') ? 'show' : '' }}">
+
+                            @selectField([
+                                'name' => 'timeFrame',
+                                'label' => 'From',
+                                'details' => '',
+                                'value' => $timeFrame,
+                                'options' => [
+                                    'week' => 'The Last Week',
+                                    'month' => 'The Last Month',
+                                    'year' => 'The Last Year',
+                                    'all_time' => 'All Time',
+                                ],
+                                'placeholder' => '',
+                                'required' => true,
+                                'autofocus' => true,
+                                'error' => $errors->has('work_status'),
+                                'readonly' => false,
+                            ])
+
+                        </div>
 
                         <button type="submit" class="btn btn-primary btn-sm">
                             {{ __('app.submit') }}

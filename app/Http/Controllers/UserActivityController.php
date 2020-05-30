@@ -12,6 +12,9 @@ class UserActivityController extends Controller
     {
         $workStatus = $request->work_status ?? 'open';
         $userId = $request->user ?? $request->user()->id;
+        $timeFrame = $request->timeFrame ?? 'week';
+
+        $timeSince = $timeFrame === 'all_time' ? '' : $timeFrame;
 
         $userId = (int) $userId;
 
@@ -23,7 +26,7 @@ class UserActivityController extends Controller
         switch ($workStatus):
 
             case "completed":
-                $workItems = $workProvider->getCompletedWorkForUser($user);
+                $workItems = $workProvider->getCompletedWorkForUser($user, $timeSince);
                 break;
 
             case "open":
@@ -40,6 +43,7 @@ class UserActivityController extends Controller
         return $this->view('user-activity', compact(
             'workStatus',
             'userId',
+            'timeFrame',
             'workItems',
             'userSelectOptions'));
     }

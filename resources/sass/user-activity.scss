@@ -1,0 +1,20 @@
+/**
+ * sass/home.scss
+ */
+
+@import "variables";
+@import "_component/activity";
+@import "_component/form-doc";
+@import "_component/task";
+
+.my-work-content h4 {
+    z-index: 2;
+    position: sticky;
+    top: $total-header-height;
+    padding: 7px;
+    background-color: $light-gray;
+
+    span {
+        background-color: inherit;
+    }
+}
