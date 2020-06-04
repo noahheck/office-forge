@@ -42,6 +42,14 @@ function timezone_name($timezone) {
     return timezone_options()[$timezone] ?? '';
 }
 
+/**
+ * Returns the correct timezone_options() $key from provided $value
+ * e.g., $description = 'Mountain' return 'America/Denver'
+ */
+function timezone_from_description($description) {
+    return array_flip(timezone_options())[$description] ?? '';
+}
+
 function format_date($date = null) {
     return ($date) ? $date->format('m/d/Y') : '';
 }
