@@ -16,3 +16,6 @@ The Files System allows administrators to organize the information that's import
 
 Check out the documentation on [installing Office Forge](docs/installing.md).
 
+## Release Process
+
+Check out the documentation on how we manage our [monthly product releases](docs/release-process.md).
