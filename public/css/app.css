@@ -13695,6 +13695,28 @@ trix-editor:empty:not(:focus)::before {
   overflow-y: auto;
 }
 
+@media (min-width: 768px) {
+  .header-navbar .navbar-brand {
+    margin-top: -2px;
+  }
+}
+
+.header-navbar .navbar-brand > .app-logo {
+  max-height: 25px;
+  vertical-align: middle;
+}
+
+.header-navbar .navbar-brand > span {
+  vertical-align: middle;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header-navbar .navbar-brand > span {
+    display: inline;
+  }
+}
+
 .header-navbar .icon {
   max-width: 21px;
   max-height: 21px;

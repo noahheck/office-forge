@@ -81,6 +81,27 @@
         max-height: 50vh;
         overflow-y: auto;
     }
+
+    @include media-breakpoint-up(md) {
+
+        .navbar-brand {
+            margin-top: -2px;
+        }
+    }
+
+    .navbar-brand > .app-logo {
+        max-height: 25px;
+        vertical-align: middle;
+    }
+     .navbar-brand > span {
+         vertical-align: middle;
+         display: none;
+
+         @include media-breakpoint-up(md) {
+            display: inline;
+         }
+
+     }
 }
 
 .header-navbar .icon {
