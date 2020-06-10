@@ -120,6 +120,11 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
                 <!-- Right Side Of Navbar -->
                 <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="{{ route('manual') }}">
+                            {!! \App\icon\help() !!}
+                        </a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a id="addNewNavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="fas fa-plus-circle"></span> <span class="sr-only">Create New</span>

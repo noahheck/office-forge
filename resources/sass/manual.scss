@@ -1,0 +1,82 @@
+/**
+ * sass/manual.scss
+ */
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+@import '_utilities.scss';
+@import '_mixins.scss';
+@import '_header-navbar.scss';
+
+
+body {
+    background-color: $body-bg;
+    padding-top: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+.nav-sidebar {
+
+    .nav-header {
+        img {
+            max-height: 30px;
+            margin-right: 8px;
+        }
+
+        h2 {
+            line-height: 1.4;
+            margin-bottom: 0;
+        }
+
+        background-color: $white;
+        color: $blue;
+        display: flex;
+        padding: 8px;
+        //border: 1px solid $light-gray;
+        margin-bottom: 8px;
+    }
+
+    h3 {
+        color: $blue;
+        padding: 8px 4px;
+    }
+
+    .list-group {
+
+        @include border-radius(0);
+
+        .list-group-item-action {
+            border-left: 4px solid $light-gray;
+
+            &:hover {
+                border-left-color: lighten($blue, 20%);
+            }
+
+            &.active {
+                color: $black;
+                border-color: $light-gray;
+                border-left-color: $blue;
+                background-color: $light-gray;
+                //background-color: $navbar-bg;
+            }
+        }
+
+    }
+
+
+}

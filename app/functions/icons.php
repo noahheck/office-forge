@@ -51,6 +51,12 @@ function checkedBox($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function help($classes = []) {
+    $classes[] = "fas fa-question-circle";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function text($classes = []) {
     $classes[] = "fas fa-align-left";
 

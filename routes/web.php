@@ -27,6 +27,9 @@ Route::middleware(['auth', 'user.active'])->group(function() {
     Route::get('/editor-images/{editorImage}', 'EditorImageController@show')->name('editor-images.show');
 
 
+    // Help Docs
+    Route::get('/manual/{key?}', 'ManualController@index')->name('manual');
+
     // Activity reporting
     Route::get('/activity', 'UserActivityController@index')->name('user-activity');
 
