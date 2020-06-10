@@ -198,7 +198,6 @@
                                 <a class="dropdown-item" href="{{ route("activities.create", ['file_id' => $file->id]) }}">{{ __('activity.newActivity') }}</a>
                                 @foreach ($processesToCreate as $__process)
                                     @if ($loop->first)
-                                        <div class="dropdown-divider"></div>
                                         <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>
                                     @endif
 

@@ -13809,6 +13809,24 @@ trix-editor:empty:not(:focus)::before {
 .dropdown-menu {
   border-radius: 0;
   box-shadow: 2px 4px 8px 0 rgba(0, 0, 0, 0.5);
+  padding: 0;
+}
+
+.dropdown-header {
+  color: #343a40;
+  background-color: #e9ecef;
+  font-size: 0.9rem;
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+  background-color: #3490dc;
+  color: #eee;
+}
+
+.dropdown-item.text-danger:hover,
+.dropdown-item.text-danger:focus {
+  background-color: #ffe4e4;
 }
 
 .list-group-item-action.active {

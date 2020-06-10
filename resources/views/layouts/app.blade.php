@@ -130,7 +130,6 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
                             @foreach ($_processes as $__process)
                                 @if ($loop->first)
-                                    <div class="dropdown-divider"></div>
                                     <span class="dropdown-header">{!! \App\icon\processes(['fa-fw']) !!} {{ __('app.processes') }}</span>
                                 @endif
 
@@ -142,7 +141,6 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
                             @foreach ($_formDocTemplates as $__template)
 
                                 @if ($loop->first)
-                                    <div class="dropdown-divider"></div>
                                     <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
                                 @endif
 
@@ -153,7 +151,6 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
                             @foreach ($__fileTypesToCreate as $__fileType)
                                 @if ($loop->first)
-                                    <div class="dropdown-divider"></div>
                                     <span class="dropdown-header">{!! \App\icon\files(['fa-fw']) !!} {{ __('app.files') }}</span>
                                 @endif
                                 <a class="dropdown-item" href="{{ route('files.create', ['file_type' => $__fileType->id]) }}">
