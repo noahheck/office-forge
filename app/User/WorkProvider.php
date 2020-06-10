@@ -62,7 +62,7 @@ class WorkProvider
 
             [$dueNextWeekActivities, $dueLaterActivities] = $activities->partition(function($activity) use ($today) {
                 return $activity->due_date
-                    && $activity->due_date->copy()->tz($today->tz)->isNextWeek();
+                    && $activity->due_date->isNextWeek();
             });
         }
 
@@ -84,9 +84,10 @@ class WorkProvider
         $dueLaterTasks = collect([]);
 
         if ($includeDueLater) {
-            [$dueThisWeekTasks, $dueLaterTasks] = $tasks->partition(function($task) use ($today) {
+            [$dueNextWeekTasks, $dueLaterTasks] = $tasks->partition(function($task) use ($today) {
+
                 return $task->due_date
-                    && $task->due_date->copy()->tz($today->tz)->isNextWeek();
+                    && $task->due_date->isNextWeek();
             });
         }
 
