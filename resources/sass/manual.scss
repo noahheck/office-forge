@@ -19,6 +19,7 @@
 body {
     background-color: $body-bg;
     padding-top: 60px;
+    padding-bottom: 30px;
 }
 
 
@@ -31,6 +32,14 @@ body {
 
 
 .nav-sidebar {
+
+    @include media-breakpoint-up(md) {
+
+        position: sticky;
+        top: $navbar-height;
+
+    }
+
 
     .nav-header {
         img {
@@ -60,6 +69,8 @@ body {
 
         @include border-radius(0);
 
+        margin-bottom: 15px;
+
         .list-group-item-action {
             border-left: 4px solid $light-gray;
 
@@ -72,11 +83,36 @@ body {
                 border-color: $light-gray;
                 border-left-color: $blue;
                 background-color: $light-gray;
-                //background-color: $navbar-bg;
             }
         }
 
     }
+}
 
 
+
+.tip,
+.note,
+.warning {
+    margin: 15px;
+    padding: 15px;
+    border: 1px solid $light-gray;
+
+
+    h5 {
+        border-bottom: 1px solid $light-gray;
+        padding-bottom: 8px;
+    }
+}
+
+.tip {
+    background-color: $blue-highlight;
+}
+
+.note {
+    background-color: $dark-white;
+}
+
+.warning {
+    background-color: $orange-highlight;
 }

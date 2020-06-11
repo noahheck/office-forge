@@ -11640,6 +11640,15 @@ a.text-dark:focus {
 body {
   background-color: #e6ecf3;
   padding-top: 60px;
+  padding-bottom: 30px;
+}
+
+@media (min-width: 768px) {
+  .nav-sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 55px;
+  }
 }
 
 .nav-sidebar .nav-header {
@@ -11668,6 +11677,7 @@ body {
 
 .nav-sidebar .list-group {
   border-radius: 0;
+  margin-bottom: 15px;
 }
 
 .nav-sidebar .list-group .list-group-item-action {
@@ -11683,5 +11693,32 @@ body {
   border-color: #e3e3e3;
   border-left-color: #3490dc;
   background-color: #e3e3e3;
+}
+
+.tip,
+.note,
+.warning {
+  margin: 15px;
+  padding: 15px;
+  border: 1px solid #e3e3e3;
+}
+
+.tip h5,
+.note h5,
+.warning h5 {
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 8px;
+}
+
+.tip {
+  background-color: #e3f3ff;
+}
+
+.note {
+  background-color: #f9f9f9;
+}
+
+.warning {
+  background-color: #fff3e3;
 }
 

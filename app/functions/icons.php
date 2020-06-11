@@ -9,6 +9,12 @@ function go($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function warning($classes = []) {
+    $classes[] = "fas fa-exclamation-circle";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function edit($classes = []) {
     $classes[] = "fas fa-edit";
 
@@ -87,6 +93,11 @@ function calendarCheck($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function lightBulb($classes = []) {
+    $classes[] = "far fa-lightbulb";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
 
 
 

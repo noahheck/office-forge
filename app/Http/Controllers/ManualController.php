@@ -8,11 +8,14 @@ class ManualController extends Controller
 {
     public function index(Request $request, $key = null)
     {
-        if ($key && !view()->exists("help.section.{$key}")) {
+        if ($key && !view()->exists("manual.en.{$key}")) {
+
             abort(404);
         }
 
-        return view('manual.en.index', [
+        $key = $key ?? 'home';
+
+        return view('manual.manual', [
             'key' => $key,
         ]);
     }
