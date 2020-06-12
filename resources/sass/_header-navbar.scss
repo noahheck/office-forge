@@ -1,0 +1,62 @@
+/**
+ * sass/header-navbar.scss
+ */
+
+.header-navbar {
+    background-color: $navbar-bg;
+    z-index: 1031;
+
+    .dropdown-menu {
+        max-height: 50vh;
+        overflow-y: auto;
+    }
+
+    @include media-breakpoint-up(md) {
+
+        .navbar-brand {
+            margin-top: -2px;
+        }
+    }
+
+    .navbar-brand > .app-logo {
+        max-height: 25px;
+        vertical-align: middle;
+    }
+    .navbar-brand > span {
+        vertical-align: middle;
+        display: none;
+
+        @include media-breakpoint-up(md) {
+            display: inline;
+        }
+
+    }
+
+    .icon {
+        max-width: 21px;
+        max-height: 21px;
+    }
+}
+
+
+.skip-to-content-link {
+    @include border-right-radius();
+    @include position-transition(left);
+
+    position: fixed;
+    top: 10px;
+    left: -124px;
+    background-color: $navbar-bg;
+    border: 1px solid $dark-gray;
+    border-left: none;
+    padding: 4px;
+    padding-right: 24px;
+
+    color: $white;
+
+    &:hover,
+    &:focus {
+        left: 0;
+        color: $white;
+    }
+}

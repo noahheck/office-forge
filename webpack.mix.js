@@ -12,6 +12,11 @@ const mix = require('laravel-mix');
  */
 
 mix
+
+    // Help manual
+    .sass('resources/sass/manual.scss', 'public/css')
+
+
     // App
     .js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
