@@ -8,12 +8,14 @@ We opt for a relatively short, monthly release cadence for a couple of reasons. 
 
 A short release cycle also helps us focus on creating incremental improvements. It's very unlikely that the first version of a feature will be its final form; after all, 4 weeks is not a long time when it comes to feature development. We don't ship broken features though, and a *lovable* version of almost any feature is possible to create in 4 weeks.
 
-New versions are published on the 7th of each month.
+## Release Process
 
-To keep git-based deployments less complex, we consider the master branch our production-deployable code. When a release cycle begins, a new release branch is to be created from the current master and given an appropriate name: e.g., release-2020-06 for the June 2020 release. New product work for that release cycle should be PR-ed into that release branch.
+Around the first of the month, we create a new release branch from the current main and give it an appropriate name: e.g., release-2020-06 for the June 2020 release. Between then and release day, no new features will be included in the release (feature freeze). Bug hunting and feature polishing PRs during that time should be created for the release branch as well as into main.
 
-With very limited exception, PRs should always be targeted to the current release branch. We don't like old, stale pull requests; the PR should be created when it's ready to be merged (we'll perform each merge into the release branch as a squash commit, but feel free to create whatever incremental commits you desire on your branch). After a PR is accepted, it will get deployed with the next release, so it needs to be functional as-is. We don't, however, expect it to be feature complete. There's time in the next cycle (or the one after that) to iron out the kinks and get it completed. There's never an expectation that a first iteration will be perfect.
+Beta releases may be tagged periodically during the release period. We do our best to apply the principles of semantic versioning.
+ 
+We publish a new version of Office Forge on the 7th of each month.
 
-Beginning on the first of the month, we generally change our focus from feature work to polishing the new release. We do our best to ensure new features function as they are intended to. We write a blog post announcing the exciting new features and any deprecations that come up during the release.
+## Pull Requests
 
-On the 7th, we merge the release branch into the master branch and publish a new version of Office Forge.
+We don't like old, stale pull requests; the PR should be created when it's ready to be merged (we'll perform each merge into the release branch as a squash commit, but feel free to create whatever incremental commits you desire on your branch). After a PR is accepted, it will get deployed with the next release, so it needs to be functional as-is. We don't, however, expect it to be feature complete. There's time in the next cycle (or the one after that!) to iron out the kinks and get it completed. There's never an expectation that a first iteration will be perfect.
