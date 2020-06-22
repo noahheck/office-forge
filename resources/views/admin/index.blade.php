@@ -39,7 +39,7 @@
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="{{ route('admin.organization') }}">
+            <a class="card admin-module-link not-implemented" href="{{--{{ route('admin.organization') }}--}}#">
                 <div class="card-body">
                     {!! \App\icon\organization(['module-icon']) !!}
                     Organization
@@ -90,7 +90,7 @@
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\backups(['module-icon']) !!}
                     Backups
@@ -99,7 +99,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\email(['module-icon']) !!}
                     Mail
@@ -108,7 +108,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\server(['module-icon']) !!}
                     Server
@@ -117,7 +117,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\updates(['module-icon']) !!}
                     Updates
@@ -126,7 +126,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\security(['module-icon']) !!}
                     Security
@@ -135,7 +135,7 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+            <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\plugins(['module-icon']) !!}
                     Plugins

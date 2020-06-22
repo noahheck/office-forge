@@ -34,3 +34,7 @@ a.admin-module-link:hover {
   color: #3490dc;
 }
 
+a.admin-module-link.not-implemented {
+  color: #c9c9c9;
+}
+

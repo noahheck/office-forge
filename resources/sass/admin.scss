@@ -33,4 +33,7 @@ a.admin-module-link {
         color: $blue;
     }
 
+    &.not-implemented {
+        color: $medium-gray;
+    }
 }
