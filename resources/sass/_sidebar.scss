@@ -43,10 +43,11 @@
     overflow-x: hidden;
     white-space: nowrap;
 
-    height: 100%;
+    height: calc(100% - 55px);
     z-index: 1029;
 
     background-color: $navbar-bg;
+    border-top: 1px solid $blue;
 
     @include media-breakpoint-down(md) {
         width: 0;
@@ -62,7 +63,7 @@
         margin: 0;
         padding: 0;
 
-        border-top: 1px solid $blue;
+        //border-top: 1px solid $blue;
 
         li {
 

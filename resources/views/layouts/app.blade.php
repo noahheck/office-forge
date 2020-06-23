@@ -1,6 +1,5 @@
 @php
 $__currentRouteName    = Route::currentRouteName();
-$__isFilesRoute        = Str::startsWith($__currentRouteName, 'files');
 $__isActivitiesRoute   = Str::startsWith($__currentRouteName, 'activities');
 $__isFormDocsRoute     = Str::startsWith($__currentRouteName, 'form-docs');
 $__isProcessesRoute    = Str::startsWith($__currentRouteName, 'processes');
@@ -22,6 +21,20 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
     return $fileType->isAccessibleBy($_user);
 });
+
+$__isFilesRoute     = Str::startsWith($__currentRouteName, 'files');
+$__activeFileTypeId = false;
+
+if ($__isFilesRoute) {
+    $__fileTypeFilter_fileId = Request::get('file_type');
+
+    if (!$__fileTypeFilter_fileId) {
+        $__file = request()->file;
+    }
+
+    $__activeFileTypeId = $__fileTypeFilter_fileId ?? $__file->file_type_id;
+}
+
 
 @endphp
 <!doctype html>
@@ -195,17 +208,16 @@ $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
                     {!! \App\icon\home(['fa-fw']) !!} {{ __('app.home') }}
                 </a>
             </li>
-            {{--<li>
-                <a href="#">
-                    <span class="fa-fw far fa-envelope"></span> {{ __('app.messages') }}
-                </a>
-            </li>--}}
-            <li>
-                <a href="{{ route('files.index') }}" class="{{ ($__isFilesRoute) ? 'current' : '' }}">
-                    {!! \App\icon\files(['fa-fw']) !!} {{ __('app.files') }}
-                </a>
-            </li>
-            <li>
+
+            @foreach ($__fileTypesToCreate as $__fileType)
+                <li class="{{ $loop->first ? 'divider' : '' }}">
+                    <a href="{{ route('files.index', ['file_type' => $__fileType]) }}" class="{{ ($__isFilesRoute && $__activeFileTypeId == $__fileType->id) ? 'current' : '' }}">
+                        {!! $__fileType->icon(['fa-fw']) !!} {{ Str::plural($__fileType->name) }}
+                    </a>
+                </li>
+            @endforeach
+
+            <li class="divider">
                 <a href="{{ route('activities.index') }}" class="{{ ($__isActivitiesRoute) ? 'current' : '' }}">
                     {!! \App\icon\activities(['fa-fw']) !!} {{ __('app.activities') }}
                 </a>

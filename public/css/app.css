@@ -13860,9 +13860,10 @@ trix-editor:empty:not(:focus)::before {
   width: 210px;
   overflow-x: hidden;
   white-space: nowrap;
-  height: 100%;
+  height: calc(100% - 55px);
   z-index: 1029;
   background-color: #282923;
+  border-top: 1px solid #3490dc;
 }
 
 @media (max-width: 991.98px) {
@@ -13880,7 +13881,6 @@ trix-editor:empty:not(:focus)::before {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  border-top: 1px solid #3490dc;
 }
 
 .application-sidebar ul li a {
