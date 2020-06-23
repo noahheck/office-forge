@@ -12,15 +12,8 @@ $__isUserActivityRoute = Str::startsWith($__currentRouteName, 'user-activity');
 // $_user
 // $_formDocTemplates
 // $_processes
-
-$__fileTypes = \App\FileType::orderBy('name')->get();
-
-$__fileTypes->load('teams');
-
-$__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
-
-    return $fileType->isAccessibleBy($_user);
-});
+// $__fileTypes
+// $__fileTypesToCreate
 
 $__isFilesRoute     = Str::startsWith($__currentRouteName, 'files');
 $__activeFileTypeId = false;
@@ -32,7 +25,7 @@ if ($__isFilesRoute) {
         $__file = request()->file;
     }
 
-    $__activeFileTypeId = $__fileTypeFilter_fileId ?? $__file->file_type_id;
+    $__activeFileTypeId = $__fileTypeFilter_fileId ?? optional($__file)->file_type_id;
 }
 
 

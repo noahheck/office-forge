@@ -94,6 +94,11 @@ class FileType extends Model
         'active' => 'boolean',
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
     public function files()
     {
         return $this->hasMany(File::class, 'file_type_id');

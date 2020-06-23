@@ -43,7 +43,7 @@ class FileController extends Controller
 
             $files = File::where('file_type_id', $fileTypeFilter)->where('archived', false)->orderBy('name')->get();
         } else {
-            $fileTypes = FileType::orderBy('name')->get();
+            $fileTypes = FileType::active()->orderBy('name')->get();
             $fileTypes->load('teams');
 
 
