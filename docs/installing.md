@@ -1,5 +1,11 @@
 # Installing
 
+### All-in-one Installation
+
+If you're looking for an easy way to get started with installing Office Forge on your own server, take a look at [our installation process](https://github.com/noahheck/office-forge-install) which can install and configure your Office Forge server with ease. Check out the project for more details!
+
+### Setting up your own server
+
 We build and distribute Office Forge on top of the Laravel application framework. In order to install and run the application, you should have a server set up with:
 
 - PHP (version 7.2 or later)
