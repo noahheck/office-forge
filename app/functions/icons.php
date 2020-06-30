@@ -433,6 +433,11 @@ function plugins($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function developer($classes = []) {
+    $classes[] = "fas fa-laptop-code";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
 
 
 

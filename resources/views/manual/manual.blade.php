@@ -93,6 +93,7 @@
         <div class="card">
             <div class="card-body">
 
+
                 <div class="row">
 
                     <div class="col-12 col-md-4 col-lg-3">
@@ -110,7 +111,7 @@
                                 <a class="list-group-item list-group-item-action{{ $key == 'home' ? ' active' : '' }}" href="{{ route('manual', ['home']) }}">
                                     Home
                                 </a>
-                                <a class="list-group-item list-group-item-action{{ $key == 'dashboard' ? ' active' : '' }}" href="{{ route('manual', ['dashboard']) }}">
+                                {{--<a class="list-group-item list-group-item-action{{ $key == 'dashboard' ? ' active' : '' }}" href="{{ route('manual', ['dashboard']) }}">
                                     Dashboard
                                 </a>
                                 <a class="list-group-item list-group-item-action{{ $key == 'files' ? ' active' : '' }}" href="{{ route('manual', ['files']) }}">
@@ -118,7 +119,7 @@
                                 </a>
                                 <a class="list-group-item list-group-item-action{{ $key == 'activities' ? ' active' : '' }}" href="{{ route('manual', ['activities']) }}">
                                     Activities
-                                </a>
+                                </a>--}}
 
                             </div>
 
@@ -137,7 +138,14 @@
                     </div>
 
                 </div>
-            </div>
+
+                <div class="copyright-info">
+
+                    <hr>
+
+                    &copy; {{ date('Y') }} - Pillar Falls Software, LLC
+
+                </div>
         </div>
 
     </div>

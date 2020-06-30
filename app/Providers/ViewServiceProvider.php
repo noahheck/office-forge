@@ -158,6 +158,7 @@ EOT;
 
         \Blade::component('manual.components.tip', 'tip');
         \Blade::component('manual.components.note', 'note');
+        \Blade::component('manual.components.technote', 'technote');
         \Blade::component('manual.components.warning', 'warning');
     }
 }

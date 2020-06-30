@@ -11697,6 +11697,7 @@ body {
 
 .tip,
 .note,
+.technote,
 .warning {
   margin: 15px;
   padding: 15px;
@@ -11705,6 +11706,7 @@ body {
 
 .tip h5,
 .note h5,
+.technote h5,
 .warning h5 {
   border-bottom: 1px solid #e3e3e3;
   padding-bottom: 8px;
@@ -11720,5 +11722,16 @@ body {
 
 .warning {
   background-color: #fff3e3;
+}
+
+.technote {
+  color: #fff;
+  background-color: #333;
+}
+
+.copyright-info {
+  font-size: 0.8rem;
+  text-align: right;
+  color: #666;
 }
 

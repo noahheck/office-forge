@@ -1,4 +1,4 @@
 <div class="note">
-    <h5>{!! \App\icon\edit(['mr-2']) !!}Note</h5>
+    <h5>{!! \App\icon\edit(['mr-2']) !!}{{ __('manual.note') }}</h5>
     {{ $slot }}
 </div>
