@@ -73,6 +73,9 @@ return [
     'login' => 'Log in',
     'register' => 'Register',
     'logout' => 'Log out',
+    'email' => 'Email',
+    'password' => 'Password',
+    'rememberMe' => 'Remember Me',
 
 
 
