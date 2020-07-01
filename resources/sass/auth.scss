@@ -1,0 +1,23 @@
+/**
+ * sass/app.scss
+ */
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Fontawesome
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
+
+
+@import '_form.scss';
+
+.main-content {
+    padding-top: $main-content-top-margin;
+}
+
+label {
+    font-weight: bold;
+}

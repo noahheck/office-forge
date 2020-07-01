@@ -16,6 +16,8 @@ mix
     // Help manual
     .sass('resources/sass/manual.scss', 'public/css')
 
+    // Authentication pages
+    .sass('resources/sass/auth.scss', 'public/css')
 
     // App
     .js('resources/js/app.js', 'public/js')
