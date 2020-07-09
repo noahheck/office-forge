@@ -11643,6 +11643,12 @@ body {
   padding-bottom: 30px;
 }
 
+h1 {
+  border-bottom: 1px solid #e3e3e3;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
 @media (min-width: 768px) {
   .nav-sidebar {
     position: -webkit-sticky;
