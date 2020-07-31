@@ -39,7 +39,7 @@
 
     <div class="row">
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link not-implemented" href="{{--{{ route('admin.organization') }}--}}#">
+            <a class="card admin-module-link" href="{{ route('admin.organization') }}">
                 <div class="card-body">
                     {!! \App\icon\organization(['module-icon']) !!}
                     Organization

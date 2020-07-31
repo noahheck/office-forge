@@ -1,9 +1,82 @@
 @extends("layouts.admin")
 
+@push('styles')
+    @style('css/document.css')
+@endpush
+
+@include("_component._location-bar", [
+    'locationBar' => new \App\Navigation\LocationBar\Admin\Organization\Index,
+])
+
 @section('content')
-    <h1>
+
+
+
+
+
+    <div class="row justify-content-center document-print-container">
+        <div class="col-12 col-md-10 document-container">
+
+            <h1>
+                {!! \App\icon\organization(['mr-2']) !!}{{ __('admin.organizationDetails') }}
+            </h1>
+
+            <p class="text-muted">{{ __('admin.organizationDetails_shortDescription') }}</p>
+
+            <div class="card document">
+                <div class="card-body">
+
+                    <form action="{{ route("admin.organization.update") }}" method="POST" class="bold-labels">
+                        @csrf
+
+                        @errors('name', 'phone', '')
+
+                        @textField([
+                            'name' => 'name',
+                            'label' => __('admin.organization_name'),
+                            'value' => old('name', $organization->name),
+                            'placeholder' => '',
+                            'required' => true,
+                            'autofocus' => true,
+                            'error' => $errors->has('name'),
+                        ])
+
+                        @phoneField([
+                            'name' => 'phone',
+                            'label' => __('admin.organization_phone'),
+                            'details' => '',
+                            'value' => $organization->phone,
+                            'required' => false,
+                            'autofocus' => false,
+                            'error' => $errors->has('phone'),
+                            'readonly' => false,
+                        ])
+
+                        <hr>
+
+                        <button type="submit" class="btn btn-primary">
+                            {{ __('app.save') }}
+                        </button>
+
+                        <a class="btn btn-secondary" href="{{ url()->previous(route('admin.index')) }}">
+                            {{ __('app.cancel') }}
+                        </a>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
+
+    {{--<h1>
         <span class="fas fa-building"></span> {{ __('admin.organizationSettings') }}
-    </h1>
+    </h1>--}}
 
     {{--<hr>
 

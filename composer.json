@@ -9,6 +9,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.2",
+        "appstract/laravel-options": "^5.1",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
         "graham-campbell/markdown": "^12.0",

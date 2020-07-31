@@ -143,6 +143,7 @@
     @include border-radius(0);
     @include shadow($blurRadius:8px);
     padding: 0;
+    z-index: 1030;
 }
 
 .dropdown-header {

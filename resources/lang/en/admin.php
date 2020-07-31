@@ -29,7 +29,11 @@ return [
     'team_createFirstTeamNow' => 'Create your first team now!',
     'team_selectMembers' => 'Select the users who should be members of this team:',
 
-    'organizationSettings' => 'Organization Settings',
+    'organizationDetails' => 'Organization Details',
+    'organizationDetails_shortDescription' => 'Details about your organization',
+    'organization_name' => 'Name',
+    'organization_phone' => 'Phone',
+    'organization_detailsUpdated' => 'Organization Details updated',
 
 
 
