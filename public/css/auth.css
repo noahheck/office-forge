@@ -11447,6 +11447,7 @@ a.text-dark:focus {
 
 .main-content {
   padding-top: 120px;
+  padding-bottom: 120px;
 }
 
 label {

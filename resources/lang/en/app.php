@@ -16,6 +16,7 @@ return [
     'create' => 'Create',
     'new' => 'New',
     'addNew' => 'Add New',
+    'continue' => 'Continue',
 
     'itemUpdated' => ':itemName updated',
     'options' => 'Options',
@@ -76,6 +77,20 @@ return [
     'email' => 'Email',
     'password' => 'Password',
     'rememberMe' => 'Remember Me',
+
+
+
+    'setup.welcome' => 'Welcome to your new Office Forge server!',
+    'setup.provide-key' => 'Please provide your server setup key to get started:',
+    'setup.key' => 'Setup Key',
+    'setup.provided-key-invalid' => 'The provided key was invalid.',
+    'setup.get-started-organization' => "Let's get started by gathering some information on your organization.",
+    'setup.organization-details' => "Please fill in the following information about your organization. If you don't have any of the details now, you'll always be able to fill them in later. (We'll need to have your organization's name to continue, though.)",
+    'setup.get-started-user' => "Now, let's create your first user account.",
+    'setup.user-details' => "Please fill in the following information for the system administrator.",
+    'setup.user-password-details' => "You'll also need to set an initial password for this user's account. If this is your account, please choose a strong password. If this account is for another person, they'll be able to change the password when they log in.",
+    'setup.completed' => 'Congratulations! Your Office Forge server is now set up!',
+    'setup.continue-to-app' => 'You may now log into the application to complete set up.',
 
 
 

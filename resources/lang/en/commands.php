@@ -1,6 +1,10 @@
 <?php
 
 return [
+
+    'confirm-proceed' => 'Do you want to proceed?',
+    'exiting' => '    Exiting',
+
     'user.name' => "What is the user's name?",
     'user.email' => "What is the user's email address?",
     'user.timezone' => "What is the user's timezone?",
@@ -13,4 +17,9 @@ return [
     'user.is-system-administrator' => "Is this user a system administrator?",
 
     'user.created' => 'User :id created successfully',
+
+
+    'setup-key.generate-new-key' => 'Generating setup key...',
+    'setup-key.invalidate-existing' => 'This will invalidate any existing setup key.',
+    'setup-key.key-is' => 'The setup key is:',
 ];
