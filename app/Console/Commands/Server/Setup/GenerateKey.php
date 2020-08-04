@@ -43,7 +43,7 @@ class GenerateKey extends Command
     {
         $this->line(__('commands.setup-key.generate-new-key'));
 
-        if ($options->get(Setup::KEY_OPTION, true)) {
+        if ($options->get(Setup::KEY_OPTION, false)) {
             $this->line(__('commands.setup-key.invalidate-existing'));
 
             if (!$this->confirm(__('commands.confirm-proceed'))) {
