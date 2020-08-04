@@ -70,10 +70,10 @@ After the configuration has been completed, execute the application's database m
 php ./artisan migrate
 ``` 
 
-In order to access the application, you'll need to create a user account for yourself. Execute the following command and follow the on screen prompts to set up your account:
+The rest of the server installation process is performed via a setup wizard accessible through the web browser. Generate a setup auth key and provide it to the wizard to complete the setup:
 
 ```bash
-php ./artisan of:create-user
+php ./artisan of:generate-setup-key
 ```
 
 ### Updating
