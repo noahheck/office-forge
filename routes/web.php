@@ -11,11 +11,27 @@
 |
 */
 
-Auth::routes(['register' => false]);
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::middleware(['auth', 'user.active'])->group(function() {
+Route::middleware(['server.not-setup'])->group(function() {
+    Route::get('/setup', 'Server\SetupController@index')->name('server-setup');
+    Route::post('/setup/key', 'Server\SetupController@key')->name('server-setup.key');
+
+    Route::get('/setup/organization', 'Server\SetupController@organization')->name('server-setup.organization');
+    Route::post('/setup/organization', 'Server\SetupController@organizationSave')->name('server-setup.organization-save');
+
+    Route::get('/setup/user', 'Server\SetupController@user')->name('server-setup.user');
+    Route::post('/setup/user', 'Server\SetupController@userSave')->name('server-setup.user-save');
+
+    Route::get('/setup/completed', 'Server\SetupController@completed')->name('server-setup.completed');
+});
+
+Route::middleware(['server.setup'])->group(function() {
+    Auth::routes(['register' => false]);
+});
+
+Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
     Route::get('/', 'HomeController@index')->name('home');
 

@@ -4,6 +4,8 @@ namespace App\Http;
 
 use App\Http\Middleware\VerifyActive;
 use App\Http\Middleware\VerifyAdmininstrator;
+use App\Http\Middleware\VerifyServerNotSetup;
+use App\Http\Middleware\VerifyServerSetup;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -66,6 +68,8 @@ class Kernel extends HttpKernel
 
         'user.active' => VerifyActive::class,
         'user.admin' => VerifyAdmininstrator::class,
+        'server.setup' => VerifyServerSetup::class,
+        'server.not-setup' => VerifyServerNotSetup::class,
     ];
 
     /**
