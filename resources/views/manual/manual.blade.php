@@ -114,6 +114,9 @@
                                 <a class="list-group-item list-group-item-action{{ $key == 'introduction' ? ' active' : '' }}" href="{{ route('manual', ['introduction']) }}">
                                    Introduction
                                 </a>
+                                <a class="list-group-item list-group-item-action{{ $key == 'access-controls' ? ' active' : '' }}" href="{{ route('manual', ['access-controls']) }}">
+                                    Access Controls
+                                </a>
                                 {{--<a class="list-group-item list-group-item-action{{ $key == 'dashboard' ? ' active' : '' }}" href="{{ route('manual', ['dashboard']) }}">
                                     Dashboard
                                 </a>
