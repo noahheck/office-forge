@@ -34,6 +34,15 @@ return [
     'inMyFiles' => 'In My Files',
 
 
+    'accessLocks' => 'Access Locks',
+    'accessLock_name' => 'Name',
+    'accessLock_nameExamples' => 'Marketing Dept, Northwest Region, Warehousing, etc...',
+    'accessLock_details' => 'Details',
+    'accessLock_detailsDescription' => 'Additional information regarding the purpose of this Access Lock. This will be shown to staff when deciding which Access Locks to assign to Files, so feel free to be descriptive.',
+    'accessLocksShortDescription' => 'These files are optionally restricted to users allowed to open these locks.',
+    'accessLocksUnrestrictedShortDescription' => 'These files will be accessible by all members of any of the allowed Teams.',
+
+
     'forms' => 'Forms',
     'form' => 'Form',
     'form_name' => 'Name',

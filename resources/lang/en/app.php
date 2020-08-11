@@ -26,6 +26,7 @@ return [
     'showNavigationMenu' => 'Show Navigation Menu',
     'toggleNavigation' => 'Toggle Navigation',
 
+    'viewHelpDocs' => 'View the Help Docs',
 
     'home' => 'Home',
     'messages' => 'Messages',

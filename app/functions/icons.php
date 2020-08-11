@@ -188,6 +188,24 @@ function x($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function accessLock($classes = []) {
+    $classes[] = "fas fa-user-lock";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function lock($classes = []) {
+    $classes[] = "fas fa-lock";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function accessKey($classes = []) {
+    $classes[] = "fas fa-key";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 
 // Main options

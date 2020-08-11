@@ -125,6 +125,9 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         // File Types
         Route::resource('/file-types', 'FileTypeController');
 
+        // File Types Access Locks
+        Route::resource('file-types.access-locks', 'FileType\AccessLockController');
+
         // File Types Forms
         Route::resource('file-types.forms', 'FileType\FormController');
         Route::post('/file-types/{fileType}/forms/update-order', 'FileType\FormController@updateOrder')
