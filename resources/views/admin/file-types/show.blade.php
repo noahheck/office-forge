@@ -20,7 +20,7 @@
 
     <div class="row fileType-show">
 
-        <div class="col-12 col-md-4 col-xl-3">
+        <div class="col-12 col-md-5 col-xl-3">
 
             <div class="card">
 
@@ -76,9 +76,55 @@
             </div>
 
 
+
+
+            <div class="card mt-2">
+
+                <div class="card-body">
+
+                    <h4>
+                        {!! \App\icon\accessLock(['mr-1']) !!}{{ __('file.accessLocks') }}
+                        <a href="{{ route('admin.file-types.access-locks.index', [$fileType]) }}">
+                            {!! \App\icon\go([]) !!}
+                        </a>
+                    </h4>
+
+                    <hr>
+
+                    @forelse ($fileType->accessLocks as $lock)
+
+                        @if($loop->first)
+
+                            <p>{{ __('file.accessLocksShortDescription') }}</p>
+
+                            <ul class="list-group">
+                                @endif
+
+                                <li class="list-group-item">
+                                    {!! \App\icon\lock() !!} {{ $lock->name }}
+                                </li>
+
+                                @if ($loop->last)
+                            </ul>
+                        @endif
+
+                    @empty
+
+                        <p><em>{{ __('file.accessLocksUnrestrictedShortDescription') }}</em></p>
+
+                    @endforelse
+
+                </div>
+
+            </div>
+
+
+
+
+
         </div>
 
-        <div class="col-12 col-md-8 col-xl-9 mt-3 mt-md-0">
+        <div class="col-12 col-md-7 col-xl-9 mt-3 mt-md-0">
 
             <div class="row">
 

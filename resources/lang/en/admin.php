@@ -89,6 +89,14 @@ return [
     'fileType_created' => 'File Type created',
     'fileType_updated' => 'File Type updated',
 
+    'accessLocks' => 'Access Locks',
+    'newAccessLock' => 'New Access Lock',
+    'newAccessLock_shortDescription' => 'Create a new Access Lock',
+    'accessLock_description' => "Access Locks work hand in hand with Team Access Restrictions to ensure your organization's information is protected. Access Locks let you further restrict access to your Files by providing the keys to a file to only those users who need them. Secure your information by department, region, specialization, or any other way that makes sense for your business!",
+    'accessLock_createFirstAccessLockNow' => 'Create your first Access Lock now!',
+    'accessLock_created' => 'Access Lock created',
+    'accessLock_updated' => 'Access Lock updated',
+
     'forms' => 'Forms',
     'addForm' => 'Add Form',
     'newForm' => 'New Form',
