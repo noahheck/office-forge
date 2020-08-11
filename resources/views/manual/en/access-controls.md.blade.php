@@ -17,6 +17,10 @@ For example, consider a FileType resource named "Employee". These Files represen
 
 Team Access Restrictions are used to ensure a Staff Member must be a member of a designated Team in order to view any resources of a particular type. The "Employee" Files discussed above can be restricted for access only to members of the "HR" and "Management" Teams. Unless a Staff Member is a member of one of these Teams, they will be unable to access any "Employee" files.
 
+@warning
+Resource Types that don't have any Team Access Restrictions will be accessible by all staff members.
+@endwarning
+
 ### Access Locks and Access Keys
 
 Team Access Restrictions are a great tool for granting a wide blanket of access to Resource types, but trying to use Teams to implement all necessary levels of access control can quickly become unruly.

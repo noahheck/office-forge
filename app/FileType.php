@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\FileType\AccessLock;
 use App\FileType\Form;
 use App\FileType\Panel;
 use App\FormDoc\Template;
@@ -127,6 +128,11 @@ class FileType extends Model
     public function formDocTemplates()
     {
         return $this->hasMany(Template::class);
+    }
+
+    public function accessLocks()
+    {
+        return $this->hasMany(AccessLock::class)->orderBy('name');
     }
 
 
