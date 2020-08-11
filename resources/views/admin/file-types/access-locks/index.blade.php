@@ -33,9 +33,11 @@
 
                     <div class="d-flex">
 
-                        <h2 class="flex-grow-1 mb-0">
-                            {!! \App\icon\accessLock(['mr-2']) !!}{{ __('admin.accessLocks') }}
-                        </h2>
+                        <div class="flex-grow-1">
+                            <h2 class="mb-0 d-inline-block">
+                                {!! \App\icon\accessLock(['mr-2']) !!}{{ __('admin.accessLocks') }}
+                            </h2>
+                        </div>
 
                         <a href="{{ route('admin.file-types.access-locks.create', [$fileType]) }}" class="btn btn-primary">
                             {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newAccessLock') }}
@@ -45,6 +47,14 @@
 
                     <hr>
 
+                    <div class="text-right pb-3">
+
+                        <a href="{{ route('manual', ['access-controls']) }}" target="_blank" class="btn btn-link">
+                            {!! \App\icon\help(['mr-2']) !!}{{ __('app.viewHelpDocs') }}
+                        </a>
+
+                    </div>
+
                     @if ($fileType->accessLocks->count() > 0)
 
                         <ul class="list-group" id="fileTypeAccessLocks">
@@ -53,7 +63,7 @@
 
                                 <li class="list-group-item" data-id="{{ $lock->id  }}">
                                     <div>
-                                        <a href="{{ route('admin.file-types.access-locks.show', [$fileType, $lock]) }}">{!! \App\icon\lock(['mr-2']) !!}{{ $lock->name }}</a>
+                                        <a href="{{ route('admin.file-types.access-locks.edit', [$fileType, $lock]) }}">{!! \App\icon\lock(['mr-2']) !!}{{ $lock->name }}</a>
                                     </div>
 
                                 </li>

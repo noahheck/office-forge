@@ -18,7 +18,7 @@ class CreateAccessLocksTable extends Migration
 
             $table->bigInteger('file_type_id');
             $table->string('name');
-            $table->text('details');
+            $table->text('details')->nullable();
 
             $table->timestamps();
 
@@ -34,6 +34,6 @@ class CreateAccessLocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('access_locks');
+        Schema::dropIfExists('file_type_access_locks');
     }
 }

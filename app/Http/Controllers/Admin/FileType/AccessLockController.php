@@ -6,7 +6,9 @@ use App\FileType;
 use App\FileType\AccessLock;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileType\AccessLocks\Store as StoreRequest;
+use App\Http\Requests\Admin\FileType\AccessLocks\Update as UpdateRequest;
 use App\Jobs\FileType\AccessLock\Create;
+use App\Jobs\FileType\AccessLock\Update;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -66,7 +68,7 @@ class AccessLockController extends Controller
      */
     public function show(FileType $fileType, AccessLock $accessLock)
     {
-        //
+        return $this->view('admin.file-types.access-locks.show', compact('fileType', 'accessLock'));
     }
 
     /**
@@ -77,19 +79,24 @@ class AccessLockController extends Controller
      */
     public function edit(FileType $fileType, AccessLock $accessLock)
     {
-        //
+        return $this->view('admin.file-types.access-locks.edit', compact('fileType', 'accessLock'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  UpdateRequest  $request
+     * @param FileType $fileType
      * @param  \App\FileType\AccessLock  $accessLock
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FileType $fileType, AccessLock $accessLock)
+    public function update(UpdateRequest $request, FileType $fileType, AccessLock $accessLock)
     {
-        //
+        $this->dispatchNow($accessLockUpdated = new Update($accessLock, $request->name, $request->details));
+
+        flash_success(__('admin.accessLock_updated'));
+
+        return redirect($request->return);
     }
 
     /**
