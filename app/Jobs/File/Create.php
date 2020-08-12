@@ -13,6 +13,7 @@ class Create
 
     private $fileType;
     private $name;
+    private $accessLocks;
 
     private $file;
 
@@ -21,10 +22,11 @@ class Create
      *
      * @return void
      */
-    public function __construct(FileType $fileType, $name)
+    public function __construct(FileType $fileType, $name, $accessLocks)
     {
         $this->fileType = $fileType;
         $this->name = $name;
+        $this->accessLocks = $accessLocks;
     }
 
     public function getFile(): File
@@ -44,6 +46,8 @@ class Create
         $file->name = $this->name;
 
         $file->save();
+
+        $file->accessLocks()->sync($this->accessLocks);
 
         $this->file = $file;
     }

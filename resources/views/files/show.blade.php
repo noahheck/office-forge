@@ -35,6 +35,23 @@
 
                     <hr>
 
+                    <div class="">
+                        <h5 class="">{!! \App\icon\accessLock(['mr-2']) !!}{{ __('file.accessLocks') }}</h5>
+                        @foreach ($file->accessLocks as $accessLock)
+                            @if($loop->first)
+                                <ul class="list-group">
+                            @endif
+                                <li class="list-group-item">
+                                    {!! \App\icon\lock(['mr-2']) !!}{{ $accessLock->name }}
+                                </li>
+                            @if($loop->last)
+                                </ul>
+                            @endif
+                        @endforeach
+                    </div>
+
+                    <hr>
+
                     <div class="text-center">
 
                         @if($inMyFiles)

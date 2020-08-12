@@ -13,16 +13,18 @@ class Update
 
     private $file;
     private $name;
+    private $accessLocks;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(File $file, $name)
+    public function __construct(File $file, $name, $accessLocks)
     {
         $this->file = $file;
         $this->name = $name;
+        $this->accessLocks = $accessLocks;
     }
 
     /**
@@ -36,5 +38,7 @@ class Update
         $file->name = $this->name;
 
         $file->save();
+
+        $file->accessLocks()->sync($this->accessLocks);
     }
 }

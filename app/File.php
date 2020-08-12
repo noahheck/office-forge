@@ -3,6 +3,7 @@
 namespace App;
 
 use App\File\FormField\Value;
+use App\FileType\AccessLock;
 use App\Interfaces\Headshottable;
 use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use App\Traits\Headshottable as HeadshottableTrait;
@@ -47,6 +48,11 @@ class File extends Model implements Headshottable
     public function formDocs()
     {
         return $this->hasMany(FormDoc::class, 'file_id');
+    }
+
+    public function accessLocks()
+    {
+        return $this->belongsToMany(AccessLock::class, 'file_access_locks')->orderBy('name')->withTimestamps();
     }
 
 

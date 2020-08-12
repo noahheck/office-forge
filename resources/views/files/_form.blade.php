@@ -44,6 +44,25 @@
 
     <hr>
 
+    {{-- Begin Access Lock Stuff --}}
+
+    @errors('accessLocks')
+
+    @multiSelectField([
+        'name' => 'accessLocks',
+        'label' => __('file.accessLocks'),
+        'values' => $file->accessLocks,
+        'options' => $fileType->accessLocks->pluck('name', 'id'),
+        'placeholder' => __('file.accessLocks'),
+        'description' => '',
+        'required' => false,
+        'autofocus' => false,
+        'error' => $errors->has('accessLocks'),
+    ])
+
+
+    {{-- End Access Lock Stuff --}}
+
     <button type="submit" class="btn btn-primary">
         {{ __('app.save') }}
     </button>

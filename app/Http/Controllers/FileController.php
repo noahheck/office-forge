@@ -110,7 +110,8 @@ class FileController extends Controller
 
         $this->dispatchNow($fileCreated = new Create(
             $fileType,
-            $request->name
+            $request->name,
+            $request->accessLocks
         ));
 
         $file = $fileCreated->getFile();
@@ -237,7 +238,7 @@ class FileController extends Controller
             return redirect()->route('files.index');
         }
 
-        $this->dispatchNow($fileUpdated = new Update($file, $request->name));
+        $this->dispatchNow($fileUpdated = new Update($file, $request->name, $request->accessLocks));
 
         if ($photoFile = $request->file('new_file_photo')) {
             $this->dispatchNow($photoUploaded = new Upload($file, $photoFile, $request->user()));
