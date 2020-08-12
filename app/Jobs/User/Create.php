@@ -20,6 +20,7 @@ class Create
     private $active;
     private $administrator;
     private $system_administrator;
+    private $accessKeys;
 
     /**
      * @var User
@@ -39,7 +40,8 @@ class Create
         string $password,
         bool $active,
         bool $administrator,
-        bool $system_administrator
+        bool $system_administrator,
+        array $accessKeys = []
     )
     {
         $this->name                 = $name;
@@ -50,6 +52,7 @@ class Create
         $this->active               = $active;
         $this->administrator        = $administrator;
         $this->system_administrator = $system_administrator;
+        $this->accessKeys           = $accessKeys;
     }
 
     public function getUser(): User
@@ -80,6 +83,8 @@ class Create
         $user->system_administrator = $this->system_administrator;
 
         $user->save();
+
+        $user->accessKeys()->sync($this->accessKeys);
 
         $this->user = $user;
     }

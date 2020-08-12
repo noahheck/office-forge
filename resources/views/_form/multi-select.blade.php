@@ -12,7 +12,9 @@
 ])
 --}}
 <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    <label for="{{ $name }}">{{ $label }}</label>
+    @if ($label)
+        <label for="{{ $name }}">{{ $label }}</label>
+    @endif
     @if ($description ?? false)
         <p>{{ $description }}</p>
     @endif

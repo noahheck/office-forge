@@ -102,6 +102,10 @@ return [
     'accessLock_updated' => 'Access Lock updated',
     'accessLock_deleted' => 'Access Lock deleted',
 
+    'accessKeys' => 'Access Keys',
+    'accessKeys_description' => 'Access to Files is controlled by assigning different Access Locks to individual Files. Unless a User is provided one or more corresponding Access Keys, they will be unable to access that File.',
+    'accessKeys_selectForUser' => 'Please indicate which Access Keys this user should be provided.',
+
     'forms' => 'Forms',
     'addForm' => 'Add Form',
     'newForm' => 'New Form',

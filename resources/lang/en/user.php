@@ -2,6 +2,7 @@
 
 return [
 
+    'details' => 'Details',
     'name' => 'Name',
     'nameExample' => 'John Doe',
     'jobTitle' => 'Job Title',

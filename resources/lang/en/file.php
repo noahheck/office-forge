@@ -35,6 +35,7 @@ return [
 
 
     'accessLocks' => 'Access Locks',
+    'accessKeys' => 'Access Keys',
     'accessLock_name' => 'Name',
     'accessLock_nameExamples' => 'Marketing Dept, Northwest Region, Warehousing, etc...',
     'accessLock_details' => 'Details',

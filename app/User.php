@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Activity\Participant;
+use App\FileType\AccessLock;
 use App\Interfaces\Headshottable;
 use App\Traits\Headshottable as HeadshottableTrait;
 use App\Activity\Task;
@@ -139,7 +140,10 @@ class User extends Authenticatable implements Headshottable
     }
 
 
-
+    public function accessKeys()
+    {
+        return $this->belongsToMany(AccessLock::class, 'user_access_keys')->orderBy('name')->withTimestamps();
+    }
 
     public function myFiles()
     {
