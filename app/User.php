@@ -55,6 +55,11 @@ class User extends Authenticatable implements Headshottable
         return $query->orderBy('name');
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
 
 
     public function isAdministrator()
@@ -143,6 +148,13 @@ class User extends Authenticatable implements Headshottable
     public function accessKeys()
     {
         return $this->belongsToMany(AccessLock::class, 'user_access_keys')->orderBy('name')->withTimestamps();
+    }
+
+    public function accessKeysForFileType(FileType $fileType)
+    {
+        return $this->accessKeys->filter(function($accessKey) use ($fileType) {
+            return $accessKey->file_type_id === $fileType->id;
+        });
     }
 
     public function myFiles()

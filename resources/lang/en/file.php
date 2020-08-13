@@ -43,6 +43,14 @@ return [
     'accessLocksShortDescription' => 'These files are optionally restricted to users allowed to open these locks.',
     'accessLocksUnrestrictedShortDescription' => 'These files will be accessible by all members of any of the allowed Teams.',
 
+    'accessLockUnrestrictedShortDescription' => 'This file has no Access Locks assigned to it.',
+    'viewAccessDetails' => 'View Access Details',
+    'filesOfTypeNoTeamRestrictions' => ':type Files have no Team access restrictions.',
+    'filesOfTypeRestrictedByTeams' => ':type Files are restricted for access to members of these Teams:',
+    'fileOfTypeNoAccessLockRestrictions' => 'This :type File is not restricted by any Access Locks.',
+    'fileOfTypeRestrictedByAccessLocks' => 'This :type File is restricted to users with Keys for one of these Access Locks:',
+    'fileOfTypeAccessibleByUsers' => 'This :type File is accessible by these Staff Members:',
+
 
     'forms' => 'Forms',
     'form' => 'Form',

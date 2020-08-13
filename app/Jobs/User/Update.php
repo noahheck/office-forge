@@ -37,7 +37,7 @@ class Update
         bool $administrator,
         bool $system_administrator,
         string $password = '',
-        array $accessKeys = []
+        array $accessKeys = null
     ) {
         $this->user                 = $user;
         $this->name                 = $name;

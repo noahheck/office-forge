@@ -11,6 +11,7 @@ use App\Jobs\File\Create;
 use App\Jobs\File\Update;
 use App\Jobs\Headshottable\Upload;
 use App\Process\ProcessProvider;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\File\Store as StoreRequest;
 use App\Http\Requests\File\Update as UpdateRequest;
@@ -264,4 +265,33 @@ class FileController extends Controller
 //    {
         //
 //    }
+
+    /**
+     * Show the users who can access this File
+     *
+     * @param  \App\File  $file
+     * @return \Illuminate\Http\Response
+     */
+    public function access(Request $request, File $file)
+    {
+        $user = $request->user();
+
+        if (!$user->can('view', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        $fileType = $file->fileType;
+
+        $users = User::active()->ordered()->get();
+        $users->load('teams', 'accessKeys', 'headshots');
+
+        $accessingUsers = $users->filter(function($user) use ($file) {
+
+            return $user->can('view', $file);
+        });
+
+        return $this->view('files.access', compact('file', 'fileType', 'accessingUsers'));
+    }
 }

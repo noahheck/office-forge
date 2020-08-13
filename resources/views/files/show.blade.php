@@ -37,9 +37,9 @@
 
                     <div class="">
                         <h5 class="">{!! \App\icon\accessLock(['mr-2']) !!}{{ __('file.accessLocks') }}</h5>
-                        @foreach ($file->accessLocks as $accessLock)
+                        @forelse ($file->accessLocks as $accessLock)
                             @if($loop->first)
-                                <ul class="list-group">
+                                <ul class="list-group mb-2">
                             @endif
                                 <li class="list-group-item">
                                     {!! \App\icon\lock(['mr-2']) !!}{{ $accessLock->name }}
@@ -47,7 +47,12 @@
                             @if($loop->last)
                                 </ul>
                             @endif
-                        @endforeach
+                        @empty
+                            <p><em>{{ __('file.accessLockUnrestrictedShortDescription') }}</em></p>
+                        @endforelse
+                        <a href="{{ route('files.access', [$fileType, $file]) }}">
+                            {!! \App\icon\accessLock(['mr-2']) !!}{{ __('file.viewAccessDetails') }}
+                        </a>
                     </div>
 
                     <hr>
