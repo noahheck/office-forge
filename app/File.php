@@ -13,8 +13,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class File extends Model implements Headshottable
 {
     use SoftDeletes,
-        HeadshottableTrait,
-        GrantsAccessByTeamMembership;
+        HeadshottableTrait;
 
     protected $casts = [
         'archived' => 'boolean',

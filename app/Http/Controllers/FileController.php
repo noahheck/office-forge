@@ -161,7 +161,7 @@ class FileController extends Controller
         $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
 
         $forms = $fileType->forms->filter(function($form, $key) use($user) {
-            return $form->isAccessibleBy($user);
+            return $user->can('view', $form);
         });
 
         $panels = $fileType->panels->filter(function($panel, $key) use($user) {

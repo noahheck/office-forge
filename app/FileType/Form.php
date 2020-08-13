@@ -12,8 +12,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Form extends Model
 {
-    use SoftDeletes,
-        GrantsAccessByTeamMembership;
+    use SoftDeletes;
 
     protected $table = 'file_type_forms';
 
