@@ -160,12 +160,12 @@ class FileController extends Controller
 
         $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
 
-        $forms = $fileType->forms->filter(function($form, $key) use($user) {
+        $forms = $fileType->forms->filter(function($form) use($user) {
             return $user->can('view', $form);
         });
 
-        $panels = $fileType->panels->filter(function($panel, $key) use($user) {
-            return $panel->isAccessibleBy($user);
+        $panels = $fileType->panels->filter(function($panel) use($user) {
+            return $user->can('view', $panel);
         });
 
         $formDocTemplates = $templateProvider->getTemplatesCreatableByUser($user, $file->file_type_id);
@@ -260,8 +260,8 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(File $file)
-    {
+//    public function destroy(File $file)
+//    {
         //
-    }
+//    }
 }
