@@ -5,15 +5,12 @@ namespace App\FileType;
 use App\FileType;
 use App\FileType\Form\Field;
 use App\Team;
-use App\Traits\Authorization\GrantsAccessByTeamMembership;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Form extends Model
 {
-    use SoftDeletes,
-        GrantsAccessByTeamMembership;
+    use SoftDeletes;
 
     protected $table = 'file_type_forms';
 

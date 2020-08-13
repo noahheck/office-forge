@@ -11,6 +11,7 @@ use App\Jobs\File\Create;
 use App\Jobs\File\Update;
 use App\Jobs\Headshottable\Upload;
 use App\Process\ProcessProvider;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\File\Store as StoreRequest;
 use App\Http\Requests\File\Update as UpdateRequest;
@@ -41,14 +42,19 @@ class FileController extends Controller
                 return redirect()->route('files.index');
             }
 
-            $files = File::where('file_type_id', $fileTypeFilter)->where('archived', false)->orderBy('name')->get();
+            $files = File::where('file_type_id', $fileTypeFilter)
+                ->where('archived', false)
+                ->orderBy('name')
+                ->get();
+
+            $files->load('fileType', 'fileType.teams', 'accessLocks');
         } else {
             $fileTypes = FileType::active()->orderBy('name')->get();
             $fileTypes->load('teams');
 
 
             $fileTypes = $fileTypes->filter(function($fileType) use ($user) {
-                return $fileType->isAccessibleBy($user);
+                return $user->can('view', $fileType);
             });
         }
 
@@ -110,7 +116,8 @@ class FileController extends Controller
 
         $this->dispatchNow($fileCreated = new Create(
             $fileType,
-            $request->name
+            $request->name,
+            $request->accessLocks
         ));
 
         $file = $fileCreated->getFile();
@@ -154,12 +161,12 @@ class FileController extends Controller
 
         $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
 
-        $forms = $fileType->forms->filter(function($form, $key) use($user) {
-            return $form->isAccessibleBy($user);
+        $forms = $fileType->forms->filter(function($form) use($user) {
+            return $user->can('view', $form);
         });
 
-        $panels = $fileType->panels->filter(function($panel, $key) use($user) {
-            return $panel->isAccessibleBy($user);
+        $panels = $fileType->panels->filter(function($panel) use($user) {
+            return $user->can('view', $panel);
         });
 
         $formDocTemplates = $templateProvider->getTemplatesCreatableByUser($user, $file->file_type_id);
@@ -237,7 +244,7 @@ class FileController extends Controller
             return redirect()->route('files.index');
         }
 
-        $this->dispatchNow($fileUpdated = new Update($file, $request->name));
+        $this->dispatchNow($fileUpdated = new Update($file, $request->name, $request->accessLocks));
 
         if ($photoFile = $request->file('new_file_photo')) {
             $this->dispatchNow($photoUploaded = new Upload($file, $photoFile, $request->user()));
@@ -254,8 +261,37 @@ class FileController extends Controller
      * @param  \App\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(File $file)
-    {
+//    public function destroy(File $file)
+//    {
         //
+//    }
+
+    /**
+     * Show the users who can access this File
+     *
+     * @param  \App\File  $file
+     * @return \Illuminate\Http\Response
+     */
+    public function access(Request $request, File $file)
+    {
+        $user = $request->user();
+
+        if (!$user->can('view', $file)) {
+            flash_error(__('file.error_unableToAccessFileType'));
+
+            return redirect()->route('files.index');
+        }
+
+        $fileType = $file->fileType;
+
+        $users = User::active()->ordered()->get();
+        $users->load('teams', 'accessKeys', 'headshots');
+
+        $accessingUsers = $users->filter(function($user) use ($file) {
+
+            return $user->can('view', $file);
+        });
+
+        return $this->view('files.access', compact('file', 'fileType', 'accessingUsers'));
     }
 }

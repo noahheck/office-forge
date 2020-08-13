@@ -2,6 +2,9 @@
 
 namespace App\Policies;
 
+use App\Authorization\AccessLockAndKey;
+use App\Authorization\Administrator;
+use App\Authorization\SharedTeamMembership;
 use App\File;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,6 +12,20 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class FilePolicy
 {
     use HandlesAuthorization;
+
+    private $sharedTeamMembership;
+    private $accessLockAndKey;
+    private $administrator;
+
+    public function __construct(
+        SharedTeamMembership $sharedTeamMembership,
+        AccessLockAndKey $accessLockAndKey,
+        Administrator $administrator
+    ) {
+        $this->sharedTeamMembership = $sharedTeamMembership;
+        $this->accessLockAndKey = $accessLockAndKey;
+        $this->administrator = $administrator;
+    }
 
     /**
      * Determine whether the user can view any files.
@@ -18,7 +35,8 @@ class FilePolicy
      */
     public function viewAny(User $user, $fileType)
     {
-        return $fileType->isAccessibleBy($user);
+        return $this->administrator->authorize($user)
+            || $this->sharedTeamMembership->authorize($user, $fileType);
     }
 
     /**
@@ -30,7 +48,11 @@ class FilePolicy
      */
     public function view(User $user, File $file)
     {
-        return $file->isAccessibleBy($user);
+        return $this->administrator->authorize($user)
+            || (
+                   $this->sharedTeamMembership->authorize($user, $file->fileType)
+                && $this->accessLockAndKey->authorize($user, $file)
+            );
     }
 
     /**
@@ -41,7 +63,8 @@ class FilePolicy
      */
     public function create(User $user, $fileType)
     {
-        return $fileType->isAccessibleBy($user);
+        return $this->administrator->authorize($user)
+            || $this->sharedTeamMembership->authorize($user, $fileType);
     }
 
     /**
@@ -53,7 +76,11 @@ class FilePolicy
      */
     public function update(User $user, File $file)
     {
-        return $file->isAccessibleBy($user);
+        return $this->administrator->authorize($user)
+            || (
+                   $this->sharedTeamMembership->authorize($user, $file->fileType)
+                && $this->accessLockAndKey->authorize($user, $file)
+            );
     }
 
     /**

@@ -17,6 +17,7 @@ return [
     'new' => 'New',
     'addNew' => 'Add New',
     'continue' => 'Continue',
+    'accessDetails' => 'Access Details',
 
     'itemUpdated' => ':itemName updated',
     'options' => 'Options',

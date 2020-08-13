@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\FileType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\Store as StoreRequest;
 use App\Http\Requests\Admin\User\Update as UpdateRequest;
@@ -39,7 +40,10 @@ class UserController extends Controller
         $user->active = true;
         $user->timezone = $request->user()->timezone;
 
-        return $this->view('admin.users.create', compact('user'));
+        $fileTypes = FileType::active()->orderBy('name')->get();
+        $fileTypes->load('accessLocks');
+
+        return $this->view('admin.users.create', compact('user', 'fileTypes'));
     }
 
     /**
@@ -58,7 +62,8 @@ class UserController extends Controller
             $request->password,
             $request->has('active'),
             $request->has('administrator'),
-            $request->has('system_administrator')
+            $request->has('system_administrator'),
+            $request->accessKeys
         ));
 
         $user = $userCreated->getUser();
@@ -89,8 +94,12 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
+        $fileTypes = FileType::active()->orderBy('name')->get();
+        $fileTypes->load('accessLocks');
+
         return $this->view('admin.users.edit', [
             'user' => $user,
+            'fileTypes' => $fileTypes,
         ]);
     }
 
@@ -112,7 +121,8 @@ class UserController extends Controller
             $request->has('active'),
             $request->has('administrator'),
             $request->has('system_administrator'),
-            $request->password ?? ''
+            $request->password ?? '',
+            $request->accessKeys
         ));
 
         \App\flash_success(__('admin.user_updated'));

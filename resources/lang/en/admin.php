@@ -96,8 +96,15 @@ return [
     'editAccessLock_shortDescription' => 'Edit an Access Lock',
     'accessLock_description' => "Access Locks work hand in hand with Team Access Restrictions to ensure your organization's information is protected. Access Locks let you further restrict access to your Files by providing the keys to a file to only those users who need them. Secure your information by department, region, specialization, or any other way that makes sense for your business!",
     'accessLock_createFirstAccessLockNow' => 'Create your first Access Lock now!',
+    'deleteAccessLock' => 'Delete Access Lock',
+    'deleteAccessLockForGood' => 'Delete this Access Lock for good',
     'accessLock_created' => 'Access Lock created',
     'accessLock_updated' => 'Access Lock updated',
+    'accessLock_deleted' => 'Access Lock deleted',
+
+    'accessKeys' => 'Access Keys',
+    'accessKeys_description' => 'Access to Files is controlled by assigning different Access Locks to individual Files. Unless a User is provided one or more corresponding Access Keys, they will be unable to access that File.',
+    'accessKeys_selectForUser' => 'Please indicate which Access Keys this user should be provided.',
 
     'forms' => 'Forms',
     'addForm' => 'Add Form',

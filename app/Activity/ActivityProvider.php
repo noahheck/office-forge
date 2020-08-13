@@ -68,7 +68,7 @@ class ActivityProvider
         $activities = $file->activities()->where('completed', false)->get();
 
         return $this->sortActivities($activities->filter(function($activity) use ($user) {
-            return $activity->isAccessibleBy($user);
+            return $user->can('view', $activity);
         }));
     }
 
@@ -77,7 +77,7 @@ class ActivityProvider
         $activities = $file->activities;
 
         return $this->sortActivities($activities->filter(function($activity) use ($user) {
-            return $activity->isAccessibleBy($user);
+            return $user->can('view', $activity);
         }));
     }
 

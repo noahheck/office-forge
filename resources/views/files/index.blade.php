@@ -44,15 +44,17 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @foreach($files as $file)
-                                <tr>
-                                    <td data-sort="{{ $file->name }}">
-                                        <a href="{{ route('files.show', [$file]) }}">
-                                            {!! $file->name !!}
-                                        </a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                @foreach($files as $file)
+                                    @can('view', $file)
+                                        <tr>
+                                            <td data-sort="{{ $file->name }}">
+                                                <a href="{{ route('files.show', [$file]) }}">
+                                                    {!! $file->name !!}
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endcan
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

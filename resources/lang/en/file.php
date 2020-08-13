@@ -35,12 +35,21 @@ return [
 
 
     'accessLocks' => 'Access Locks',
+    'accessKeys' => 'Access Keys',
     'accessLock_name' => 'Name',
     'accessLock_nameExamples' => 'Marketing Dept, Northwest Region, Warehousing, etc...',
     'accessLock_details' => 'Details',
     'accessLock_detailsDescription' => 'Additional information regarding the purpose of this Access Lock. This will be shown to staff when deciding which Access Locks to assign to Files, so feel free to be descriptive.',
     'accessLocksShortDescription' => 'These files are optionally restricted to users allowed to open these locks.',
     'accessLocksUnrestrictedShortDescription' => 'These files will be accessible by all members of any of the allowed Teams.',
+
+    'accessLockUnrestrictedShortDescription' => 'This file has no Access Locks assigned to it.',
+    'viewAccessDetails' => 'View Access Details',
+    'filesOfTypeNoTeamRestrictions' => ':type Files have no Team access restrictions.',
+    'filesOfTypeRestrictedByTeams' => ':type Files are restricted for access to members of these Teams:',
+    'fileOfTypeNoAccessLockRestrictions' => 'This :type File is not restricted by any Access Locks.',
+    'fileOfTypeRestrictedByAccessLocks' => 'This :type File is restricted to users with Keys for one of these Access Locks:',
+    'fileOfTypeAccessibleByUsers' => 'This :type File is accessible by these Staff Members:',
 
 
     'forms' => 'Forms',

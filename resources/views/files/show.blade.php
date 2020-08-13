@@ -35,6 +35,28 @@
 
                     <hr>
 
+                    <div class="">
+                        <h5 class="">{!! \App\icon\accessLock(['mr-2']) !!}{{ __('file.accessLocks') }}</h5>
+                        @forelse ($file->accessLocks as $accessLock)
+                            @if($loop->first)
+                                <ul class="list-group mb-2">
+                            @endif
+                                <li class="list-group-item">
+                                    {!! \App\icon\lock(['mr-2']) !!}{{ $accessLock->name }}
+                                </li>
+                            @if($loop->last)
+                                </ul>
+                            @endif
+                        @empty
+                            <p><em>{{ __('file.accessLockUnrestrictedShortDescription') }}</em></p>
+                        @endforelse
+                        <a href="{{ route('files.access', [$fileType, $file]) }}">
+                            {!! \App\icon\accessLock(['mr-2']) !!}{{ __('file.viewAccessDetails') }}
+                        </a>
+                    </div>
+
+                    <hr>
+
                     <div class="text-center">
 
                         @if($inMyFiles)
@@ -319,15 +341,15 @@
 
                         @if($loop->first)
                             <div class="list-group formDocs">
-                                @endif
+                        @endif
 
-                                <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
-                                    @include("_component._form-doc", [
-                                        'context' => 'file',
-                                    ])
-                                </a>
+                            <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
+                                @include("_component._form-doc", [
+                                    'context' => 'file',
+                                ])
+                            </a>
 
-                                @if($loop->last)
+                        @if($loop->last)
                             </div>
                         @endif
 

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Activity\Participant;
+use App\FileType\AccessLock;
 use App\Interfaces\Headshottable;
 use App\Traits\Headshottable as HeadshottableTrait;
 use App\Activity\Task;
@@ -52,6 +53,11 @@ class User extends Authenticatable implements Headshottable
     public function scopeOrdered($query)
     {
         return $query->orderBy('name');
+    }
+
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
     }
 
 
@@ -139,7 +145,17 @@ class User extends Authenticatable implements Headshottable
     }
 
 
+    public function accessKeys()
+    {
+        return $this->belongsToMany(AccessLock::class, 'user_access_keys')->orderBy('name')->withTimestamps();
+    }
 
+    public function accessKeysForFileType(FileType $fileType)
+    {
+        return $this->accessKeys->filter(function($accessKey) use ($fileType) {
+            return $accessKey->file_type_id === $fileType->id;
+        });
+    }
 
     public function myFiles()
     {

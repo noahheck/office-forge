@@ -20,6 +20,7 @@ class Update
     private $active;
     private $administrator;
     private $system_administrator;
+    private $accessKeys;
 
     /**
      * Create a new job instance.
@@ -35,7 +36,8 @@ class Update
         bool $active,
         bool $administrator,
         bool $system_administrator,
-        string $password = ''
+        string $password = '',
+        array $accessKeys = null
     ) {
         $this->user                 = $user;
         $this->name                 = $name;
@@ -46,6 +48,7 @@ class Update
         $this->administrator        = $administrator;
         $this->system_administrator = $system_administrator;
         $this->password             = $password;
+        $this->accessKeys           = $accessKeys;
     }
 
 
@@ -73,6 +76,8 @@ class Update
         }
 
         $user->save();
+
+        $user->accessKeys()->sync($this->accessKeys);
 
         $this->user = $user;
     }

@@ -8,8 +8,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FileType\AccessLocks\Store as StoreRequest;
 use App\Http\Requests\Admin\FileType\AccessLocks\Update as UpdateRequest;
 use App\Jobs\FileType\AccessLock\Create;
+use App\Jobs\FileType\AccessLock\Delete;
 use App\Jobs\FileType\AccessLock\Update;
 use Illuminate\Http\Request;
+use function App\flash_info;
 use function App\flash_success;
 
 class AccessLockController extends Controller
@@ -105,8 +107,12 @@ class AccessLockController extends Controller
      * @param  \App\FileType\AccessLock  $accessLock
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FileType $fileType, AccessLock $accessLock)
+    public function destroy(Request $request, FileType $fileType, AccessLock $accessLock)
     {
-        //
+        $this->dispatchNow($accessLockDeleted = new Delete($accessLock, $request->user()));
+
+        flash_info(__('admin.accessLock_deleted'));
+
+        return redirect($request->return);
     }
 }

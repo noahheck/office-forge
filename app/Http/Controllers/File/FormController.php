@@ -15,13 +15,16 @@ class FormController extends Controller
 {
     public function index(Request $request, File $file)
     {
-        $user     = $request->user();
+        $user = $request->user();
+
+        abort_unless($user->can('view', $file), 403, __('app.error_noAccess', ['itemName' => $file->fileType->name]));
+
         $fileType = $file->fileType;
 
         $fileType->load(['forms', 'forms.teams']);
 
         $forms = $fileType->forms->filter(function($form, $key) use($user) {
-            return $form->isAccessibleBy($user);
+            return $user->can('view', $form);
         });
 
         return $this->view('files.forms.index', compact('file', 'fileType', 'forms'));
@@ -29,11 +32,13 @@ class FormController extends Controller
 
     public function show(Request $request, File $file, Form $form, MemberProvider $memberProvider)
     {
-        $user     = $request->user();
-        abort_unless($form->isAccessibleBy($user), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
+        $user = $request->user();
+
+        abort_unless($user->can('view', $file), 403, __('app.error_noAccess', ['itemName' => $file->fileType->name]));
+        abort_unless($user->can('update', $form), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
 
         $fileType = $file->fileType;
-        $values   = $file->formFieldValues;
+        $values = $file->formFieldValues;
 
         return $this->view('files.forms.show', compact(
             'file',
@@ -46,11 +51,17 @@ class FormController extends Controller
 
     public function update(UpdateRequest $request, File $file, Form $form)
     {
+        $user = $request->user();
+
+        abort_unless($user->can('view', $file), 403, __('app.error_noAccess', ['itemName' => $file->fileType->name]));
+        abort_unless($user->can('update', $form), 403, __('app.error_noAccess', ['itemName' => __('file.form')]));
+
         $this->dispatchNow($formUpdated = new Update($file, $form, $request->all()));
 
         flash_success(__('app.itemUpdated', ['itemName' => $form->name]));
 
         if ($return = $request->get('return')) {
+
             return redirect($return);
         }
 

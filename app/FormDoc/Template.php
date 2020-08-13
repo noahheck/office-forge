@@ -7,14 +7,12 @@ use App\FormDoc;
 use App\FormDoc\Template\Field;
 use App\Process;
 use App\Team;
-use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Template extends Model
 {
-    use SoftDeletes,
-        GrantsAccessByTeamMembership;
+    use SoftDeletes;
 
     protected $table = 'form_doc_templates';
 

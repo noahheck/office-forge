@@ -4,7 +4,6 @@ namespace App;
 
 use App\FormDoc\Field;
 use App\FormDoc\Template;
-use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -15,7 +14,6 @@ class FormDoc extends Model
     const WORK_ITEM_KEY = 'form-doc';
 
     use SoftDeletes,
-        GrantsAccessByTeamMembership,
         HasRelationships;
 
     protected $dates = [
