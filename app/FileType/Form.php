@@ -5,8 +5,6 @@ namespace App\FileType;
 use App\FileType;
 use App\FileType\Form\Field;
 use App\Team;
-use App\Traits\Authorization\GrantsAccessByTeamMembership;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

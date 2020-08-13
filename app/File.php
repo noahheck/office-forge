@@ -5,7 +5,6 @@ namespace App;
 use App\File\FormField\Value;
 use App\FileType\AccessLock;
 use App\Interfaces\Headshottable;
-use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use App\Traits\Headshottable as HeadshottableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;

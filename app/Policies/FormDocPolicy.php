@@ -2,6 +2,8 @@
 
 namespace App\Policies;
 
+use App\Authorization\Administrator;
+use App\Authorization\SharedTeamMembership;
 use App\FormDoc;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -9,6 +11,15 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class FormDocPolicy
 {
     use HandlesAuthorization;
+
+    private $sharedTeamMembership;
+    private $administrator;
+
+    public function __construct(SharedTeamMembership $sharedTeamMembership, Administrator $administrator)
+    {
+        $this->sharedTeamMembership = $sharedTeamMembership;
+        $this->administrator = $administrator;
+    }
 
     /**
      * Determine whether the user can view any form docs.
@@ -30,13 +41,13 @@ class FormDocPolicy
      */
     public function view(User $user, FormDoc $formDoc)
     {
-//        return false;
-
         if ($user->id == $formDoc->creator_id) {
+
             return true;
         }
 
-        return $formDoc->isAccessibleBy($user);
+        return $this->administrator->authorize($user)
+            || $this->sharedTeamMembership->authorize($user, $formDoc);
     }
 
     /**
@@ -47,7 +58,7 @@ class FormDocPolicy
      */
     public function create(User $user, $template)
     {
-        return $template->isAccessibleBy($user);
+        return $this->sharedTeamMembership->authorize($user, $template);
     }
 
     /**
@@ -73,8 +84,11 @@ class FormDocPolicy
     {
         return $formDoc->id // FormDoc has been saved already
             && !$formDoc->isSubmitted() // The FormDoc has not been submitted
-            && ($user->isAdministrator() || $user->id == $formDoc->creator_id) // The user is the author of the FormDoc or an Administrator
-            ;
+            && (
+                // The user is the author of the FormDoc or an Administrator
+                $this->administrator->authorize($user)
+                || $user->id == $formDoc->creator_id
+            );
     }
 
     /**
@@ -86,7 +100,7 @@ class FormDocPolicy
      */
     public function restore(User $user, FormDoc $formDoc)
     {
-        return $user->isAdministrator();
+        return $this->administrator->authorize($user);
     }
 
     /**

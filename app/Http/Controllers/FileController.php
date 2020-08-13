@@ -53,7 +53,7 @@ class FileController extends Controller
 
 
             $fileTypes = $fileTypes->filter(function($fileType) use ($user) {
-                return $fileType->isAccessibleBy($user);
+                return $user->can('view', $fileType);
             });
         }
 

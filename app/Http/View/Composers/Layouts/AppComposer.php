@@ -2,6 +2,7 @@
 
 namespace App\Http\View\Composers\Layouts;
 
+use App\File;
 use App\FormDoc\Template\TemplateProvider;
 use App\Process\ProcessProvider;
 use Illuminate\View\View;
@@ -32,7 +33,7 @@ class AppComposer
 
         $__fileTypesToCreate = $__fileTypes->filter(function($fileType) use ($_user) {
 
-            return $fileType->isAccessibleBy($_user);
+            return $_user->can('create', [File::class, $fileType]);
         });
 
 

@@ -336,15 +336,15 @@
 
                         @if($loop->first)
                             <div class="list-group formDocs">
-                                @endif
+                        @endif
 
-                                <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
-                                    @include("_component._form-doc", [
-                                        'context' => 'file',
-                                    ])
-                                </a>
+                            <a class="list-group-item list-group-item-action" href="{{ route("form-docs.show", [$formDoc]) }}">
+                                @include("_component._form-doc", [
+                                    'context' => 'file',
+                                ])
+                            </a>
 
-                                @if($loop->last)
+                        @if($loop->last)
                             </div>
                         @endif
 

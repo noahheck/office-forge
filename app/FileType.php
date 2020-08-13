@@ -6,14 +6,12 @@ use App\FileType\AccessLock;
 use App\FileType\Form;
 use App\FileType\Panel;
 use App\FormDoc\Template;
-use App\Traits\Authorization\GrantsAccessByTeamMembership;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FileType extends Model
 {
-    use SoftDeletes,
-        GrantsAccessByTeamMembership;
+    use SoftDeletes;
 
     const DEFAULT_ICON = 'fas fa-address-book';
 
