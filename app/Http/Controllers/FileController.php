@@ -41,7 +41,12 @@ class FileController extends Controller
                 return redirect()->route('files.index');
             }
 
-            $files = File::where('file_type_id', $fileTypeFilter)->where('archived', false)->orderBy('name')->get();
+            $files = File::where('file_type_id', $fileTypeFilter)
+                ->where('archived', false)
+                ->orderBy('name')
+                ->get();
+
+            $files->load('fileType', 'fileType.teams', 'accessLocks');
         } else {
             $fileTypes = FileType::active()->orderBy('name')->get();
             $fileTypes->load('teams');
