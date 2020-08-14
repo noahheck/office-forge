@@ -50,7 +50,7 @@
                         @empty
                             <p><em>{{ __('file.accessLockUnrestrictedShortDescription') }}</em></p>
                         @endforelse
-                        <a href="{{ route('files.access', [$fileType, $file]) }}">
+                        <a href="{{ route('files.access', [$file]) }}">
                             {!! \App\icon\accessLock(['mr-2']) !!}{{ __('file.viewAccessDetails') }}
                         </a>
                     </div>
