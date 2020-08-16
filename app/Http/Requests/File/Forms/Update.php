@@ -17,7 +17,7 @@ class Update extends FormRequest
      */
     public function authorize()
     {
-        return $this->form->isAccessibleBy($this->user());
+        return $this->user()->can('update', $this->form);
     }
 
     public function attributes()
