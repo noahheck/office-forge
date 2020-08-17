@@ -173,6 +173,12 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
             Route::post('/tasks/update-order', 'TaskController@updateOrder')->name('tasks.update-order');
 
         });
+
+
+        // Server
+        Route::get('/server', 'ServerController@index')->name('server');
+        Route::get('/server/phpinfo', 'ServerController@phpinfo')->name('server.phpinfo');
+
     });
 
 });

@@ -164,4 +164,46 @@ return [
 
     'formDoc_created' => 'FormDoc created',
     'formDoc_updated' => 'FormDoc updated',
+
+
+
+    'server' => 'Server',
+    'server_operatingSystem' => 'Operating System',
+    'server_noOSDetailsAvailable' => 'No operating system details are available for this server.',
+
+    'server_php' => 'PHP',
+    'server_php_viewPhpInfo' => 'View PHP Info',
+    'server_php_php_version' => 'PHP Version',
+    'server_php_php_uname' => 'PHP Uname',
+    'server_php_zend_version' => 'Zend Engine Version',
+    'server_php_extensions_loaded' => 'Extensions Loaded',
+    'server_php_zend_extensions_loaded' => 'Zend Extensions Loaded',
+    'server_noPHPDetailsAvailable' => 'No PHP details are available for this server.',
+
+    'server_php_phpinfo' => 'PHP Info',
+
+    'server_database' => 'Database',
+    'server_database_driver' => 'Database Driver',
+    'server_database_url' => 'Database URL',
+    'server_database_host' => 'Database Host',
+    'server_database_port' => 'Database Port',
+    'server_database_database' => 'Database Name',
+    'server_database_username' => 'Database Username',
+    'server_database_password' => 'Database Password',
+    'server_database_unix_socket' => 'Unix Socket',
+    'server_database_collation' => 'Database Collation',
+    'server_database_prefix' => 'Database Prefix',
+    'server_database_prefix_indexes' => 'Database Prefix Indexes',
+    'server_database_strict' => 'Database Strict',
+    'server_database_engine' => 'Database Engine',
+    'server_database_options' => 'Database Options',
+    'server_noDatabaseDetailsAvailable' => 'No database details are available for this server.',
+
+    'server_diskDrive' => 'Disk Drive',
+    'server_diskDrive_totalSpace' => 'Total Disk Space',
+    'server_diskDrive_freeSpace' => 'Total Free Space',
+    'server_diskDrive_usedSpace' => 'Total Used Space',
+    'server_noDiskDriveDetailsAvailable' => 'No Disk Drive details are available for this server.',
+
+
 ];

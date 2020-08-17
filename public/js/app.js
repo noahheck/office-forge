@@ -2205,6 +2205,17 @@ module.exports = routing;
 
 /***/ }),
 
+/***/ "./resources/sass/admin/server.scss":
+/*!******************************************!*\
+  !*** ./resources/sass/admin/server.scss ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -2305,9 +2316,9 @@ module.exports = routing;
 /***/ }),
 
 /***/ 0:
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/manual.scss ./resources/sass/auth.scss ./resources/sass/app.scss ./resources/sass/document.scss ./resources/sass/home.scss ./resources/sass/user-activity.scss ./resources/sass/settings.scss ./resources/sass/activities.scss ./resources/sass/files.scss ./resources/sass/formDocs.scss ./resources/sass/admin.scss ./resources/sass/admin/files.scss ./resources/sass/admin/_field.scss ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/manual.scss ./resources/sass/auth.scss ./resources/sass/app.scss ./resources/sass/document.scss ./resources/sass/home.scss ./resources/sass/user-activity.scss ./resources/sass/settings.scss ./resources/sass/activities.scss ./resources/sass/files.scss ./resources/sass/formDocs.scss ./resources/sass/admin.scss ./resources/sass/admin/server.scss ./resources/sass/admin/files.scss ./resources/sass/admin/_field.scss ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2323,6 +2334,7 @@ __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/a
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/files.scss */"./resources/sass/files.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/formDocs.scss */"./resources/sass/formDocs.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin.scss */"./resources/sass/admin.scss");
+__webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin/server.scss */"./resources/sass/admin/server.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin/files.scss */"./resources/sass/admin/files.scss");
 module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/admin/_field.scss */"./resources/sass/admin/_field.scss");
 

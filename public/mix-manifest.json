@@ -11,6 +11,7 @@
     "/css/files.css": "/css/files.css",
     "/css/formDocs.css": "/css/formDocs.css",
     "/css/admin.css": "/css/admin.css",
+    "/css/admin.server.css": "/css/admin.server.css",
     "/css/admin.files.css": "/css/admin.files.css",
     "/css/admin._field.css": "/css/admin._field.css",
     "/js/manifest.js": "/js/manifest.js",

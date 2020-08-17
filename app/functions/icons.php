@@ -2,6 +2,13 @@
 
 namespace App\icon;
 
+// Brand
+function php($classes = []) {
+    $classes[] = "fab fa-php";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 // Generic
 function go($classes = []) {
     $classes[] = "far fa-arrow-alt-circle-right";
@@ -453,6 +460,18 @@ function plugins($classes = []) {
 
 function developer($classes = []) {
     $classes[] = "fas fa-laptop-code";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function database($classes = []) {
+    $classes[] = "fas fa-database";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function diskDrive($classes = []) {
+    $classes[] = "fas fa-hdd";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }

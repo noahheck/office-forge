@@ -53,6 +53,7 @@ mix
 
     // Admin
     .sass('resources/sass/admin.scss', 'public/css')
+    .sass('resources/sass/admin/server.scss', 'public/css/admin.server.css')
     .sass('resources/sass/admin/files.scss', 'public/css/admin.files.css')
     .sass('resources/sass/admin/_field.scss', 'public/css/admin._field.css')
         // Processes

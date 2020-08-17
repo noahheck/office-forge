@@ -1,0 +1,16 @@
+/**
+ * sass/admin/server.scss
+ */
+
+.server-details-card {
+
+    .card-body {
+        height: 300px;
+        overflow-y: auto;
+
+        dd {
+            font-family: monospace;
+        }
+    }
+
+}

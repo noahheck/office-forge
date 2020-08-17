@@ -89,6 +89,16 @@
     <h3>{!! \App\icon\systemConfiguration(['mr-2']) !!}System Configuration</h3>
 
     <div class="row">
+
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+            <a class="card admin-module-link" href="{{ route('admin.server') }}">
+                <div class="card-body">
+                    {!! \App\icon\server(['module-icon']) !!}
+                    {{ __('admin.server') }}
+                </div>
+            </a>
+        </div>
+
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
@@ -103,15 +113,6 @@
                 <div class="card-body">
                     {!! \App\icon\email(['module-icon']) !!}
                     Mail
-                </div>
-            </a>
-        </div>
-
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link not-implemented" href="#">
-                <div class="card-body">
-                    {!! \App\icon\server(['module-icon']) !!}
-                    Server
                 </div>
             </a>
         </div>
