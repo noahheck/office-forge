@@ -2,6 +2,7 @@
 
 return [
     'systemSettings' => 'System Settings',
+    'settings' => 'Settings',
 
     'users' => 'Users',
     'setUpSystemUsers' => 'Set up the users of the system',
@@ -205,5 +206,16 @@ return [
     'server_diskDrive_usedSpace' => 'Total Used Space',
     'server_noDiskDriveDetailsAvailable' => 'No Disk Drive details are available for this server.',
 
-
+    'server_updates' => 'Updates',
+    'server_updateSettings' => 'Update Settings',
+    'server_updateSettings_shortDescription' => 'Configuration settings for server updates',
+    'server_updateSchedule' => 'Schedule',
+    'server_updateScheduleDescription' => 'How often updates should be applied',
+    'server_updateSchedule_daily' => 'Daily',
+    'server_updateSchedule_weeklyOnMonday' => 'Weekly on Mondays',
+    'server_updateSchedule_monthlyOnFirstMonday' => 'Monthly - first Monday each month',
+    'server_updateSchedule_disabled' => 'Disabled (not recommended)',
+    'server_updateTime' => 'Time',
+    'server_updateTimeDescription' => 'The time of day updates should be applied - UTC Time',
+    'server_updateSettings_saved' => 'Server Update Settings Saved',
 ];

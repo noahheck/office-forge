@@ -18,8 +18,19 @@
     <div class="row">
         <div class="col-12 col-md-6 mb-5">
             <div class="card shadow server-details-card">
-                <div class="card-header">
-                    <h4 class="mb-0">{!! \App\icon\server(['mr-2']) !!}{{ __('admin.server_operatingSystem') }}</h4>
+                <div class="card-header d-flex">
+                    <h4 class="mb-0 flex-grow-1">{!! \App\icon\server(['mr-2']) !!}{{ __('admin.server_operatingSystem') }}</h4>
+                    <div class="flex-grow-0">
+                        <div class="dropdown">
+                            <a href='#' class="dropdown-toggle" id="updatesDropdownButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ __('admin.server_updates') }} <span class="caret"></span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="updatesDropdownButton">
+                                <a class="dropdown-item" href="{{ route('admin.server.updates.settings') }}">{!! \App\icon\adminSettings(['fa-fw', 'mr-2']) !!}{{ __('admin.settings') }}</a>
+                                <a class="dropdown-item" href="#">History</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     @forelse ($osDetails as $key => $value)
