@@ -218,4 +218,17 @@ return [
     'server_updateTime' => 'Time',
     'server_updateTimeDescription' => 'The time of day updates should be applied - UTC Time',
     'server_updateSettings_saved' => 'Server Update Settings Saved',
+
+    'server_history' => 'History',
+    'server_updateHistory' => 'Update History',
+    'server_updateHistory_shortDescription' => 'Review the history of updates for this server',
+    'server_update' => 'Update',
+    'server_update_shortDescription' => 'Review a server update log',
+    'server_update_successful' => 'Successful',
+    'server_update_date' => 'Date',
+    'server_update_startTime' => 'Start Time',
+    'server_update_endTime' => 'End Time',
+    'server_update_log' => 'Log',
+
+
 ];

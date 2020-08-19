@@ -27,7 +27,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="updatesDropdownButton">
                                 <a class="dropdown-item" href="{{ route('admin.server.updates.settings') }}">{!! \App\icon\adminSettings(['fa-fw', 'mr-2']) !!}{{ __('admin.settings') }}</a>
-                                <a class="dropdown-item" href="#">History</a>
+                                <a class="dropdown-item" href="{{ route('admin.server.updates.history') }}">{!! \App\icon\history(['fa-fw', 'mr-2']) !!}{{ __('admin.server_history') }}</a>
                             </div>
                         </div>
                     </div>
