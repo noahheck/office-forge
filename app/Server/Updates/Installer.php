@@ -35,12 +35,12 @@ class Installer
             }
 
             $output[] = '';
-            $output[] = "Running 'apt upgrade -y'";
-            exec("apt upgrade -y", $output, $execResponse);
+            $output[] = "Running 'apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" upgrade'";
+            exec("apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" upgrade", $output, $execResponse);
 
             // $execResponse will be anything other than 0 if unsuccessful
             if ($execResponse) {
-                throw new \Exception("Error performing 'apt upgrade -y'");
+                throw new \Exception("Error performing 'apt-get -y -o Dpkg::Options::=\"--force-confdef\" -o Dpkg::Options::=\"--force-confold\" upgrade'");
             }
 
             $output[] = '';
