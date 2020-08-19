@@ -179,6 +179,11 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::get('/server', 'ServerController@index')->name('server');
         Route::get('/server/phpinfo', 'ServerController@phpinfo')->name('server.phpinfo');
 
+        Route::get('/server/updates/settings', 'Server\UpdatesController@settings')->name('server.updates.settings');
+        Route::post('/server/updates/settings', 'Server\UpdatesController@saveSettings')->name('server.updates.save-settings');
+
+        Route::get('/server/updates/history', 'Server\UpdatesController@history')->name('server.updates.history');
+        Route::get('/server/updates/history/{update}', 'Server\UpdatesController@update')->name('server.updates.history.update');
     });
 
 });

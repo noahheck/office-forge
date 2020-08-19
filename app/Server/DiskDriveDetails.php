@@ -23,7 +23,7 @@ class DiskDriveDetails
 
     /**
      * https://www.php.net/manual/en/function.disk-total-space.php#75971
-     * 
+     *
      * @param $bytes
      * @return string
      */

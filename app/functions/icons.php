@@ -476,6 +476,11 @@ function diskDrive($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function history($classes = []) {
+    $classes[] = "fas fa-history";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
 
 
 function forActivity($activity, $classes = []) {
