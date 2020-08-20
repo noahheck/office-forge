@@ -21,7 +21,7 @@
 
 
             <div class="table-responsive">
-                <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{"orderable": false}, null, null, null]'>
+                <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 2, "desc" ]]' sssdata-columns='[{"orderable": false}, null, null, null]'>
                     <thead>
                     <tr>
                         <th class="w-50p">{{ __('admin.server_update_successful') }}</th>
