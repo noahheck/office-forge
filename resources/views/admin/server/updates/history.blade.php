@@ -21,11 +21,10 @@
 
 
             <div class="table-responsive">
-                <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 2, "desc" ]]' sssdata-columns='[{"orderable": false}, null, null, null]'>
+                <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "desc" ]]'>
                     <thead>
                     <tr>
                         <th class="w-50p">{{ __('admin.server_update_successful') }}</th>
-                        <th>{{ __('admin.server_update_date') }}</th>
                         <th>{{ __('admin.server_update_startTime') }}</th>
                         <th>{{ __('admin.server_update_endTime') }}</th>
                     </tr>
@@ -42,11 +41,8 @@
                             </td>
                             <td>
                                 <a href="{{ route('admin.server.updates.history.update', [$update]) }}">
-                                    {{ \App\format_date($update->created_at) }}
+                                    {{ \App\format_datetime($update->created_at) }}
                                 </a>
-                            </td>
-                            <td>
-                                {{ \App\format_datetime($update->created_at) }}
                             </td>
                             <td>{{ \App\format_datetime($update->updated_at) }}</td>
                         </tr>
@@ -54,15 +50,6 @@
                     </tbody>
                 </table>
             </div>
-
-
-
-
-
-
-
-
-
 
         </div>
     </div>
