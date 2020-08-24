@@ -422,6 +422,12 @@ function organization($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function fileStore($classes = []) {
+    $classes[] = "fas fa-archive";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function systemConfiguration($classes = []) {
     $classes[] = "fas fa-sliders-h";
 

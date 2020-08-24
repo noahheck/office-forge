@@ -53,6 +53,7 @@ return [
 
     'files' => 'Files',
     'file' => 'File',
+    'fileStore' => 'File Store',
     'fileTypes' => 'File Types',
     'fileType' => 'File Type',
     'formDocs' => 'FormDocs',

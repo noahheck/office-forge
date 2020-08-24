@@ -5,6 +5,7 @@ namespace App;
 use App\FileType\Form;
 use App\FileType\Panel;
 use App\FormDoc\Template;
+use App\FileStore\Drive;
 use App\Traits\GetsInitialsFromName;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -49,5 +50,10 @@ class Team extends Model
     public function formDocTemplates()
     {
         return $this->belongsToMany(Template::class, 'form_doc_templates_teams', 'team_id', 'form_doc_template_id')->withTimestamps();
+    }
+
+    public function drives()
+    {
+        return $this->belongsToMany(Drive::class, 'filestore_drives_teams');
     }
 }

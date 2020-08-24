@@ -175,6 +175,10 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         });
 
 
+        // FileStore
+        Route::resource('/drives', 'DriveController');
+
+
         // Server
         Route::get('/server', 'ServerController@index')->name('server');
         Route::get('/server/phpinfo', 'ServerController@phpinfo')->name('server.phpinfo');
