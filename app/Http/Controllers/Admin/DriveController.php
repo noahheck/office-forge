@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\FileStore\Drive;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Drives\Store as StoreRequest;
+use App\Jobs\FileStore\Drive\Create;
+use App\Team;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class DriveController extends Controller
 {
@@ -15,7 +19,9 @@ class DriveController extends Controller
      */
     public function index()
     {
-        //
+        $drives = Drive::ordered()->get();
+
+        return $this->view('admin.drives.index', compact('drives'));
     }
 
     /**
@@ -25,7 +31,11 @@ class DriveController extends Controller
      */
     public function create()
     {
-        //
+        $drive = new Drive();
+
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.drives.create', compact('drive', 'teamOptions'));
     }
 
     /**
@@ -34,9 +44,19 @@ class DriveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($driveCreated = new Create(
+            $request->name,
+            $request->description,
+            $request->teams
+        ));
+
+        $drive = $driveCreated->getDrive();
+
+        flash_success(__('admin.'));
+
+        return redirect()->route('admin.drives.show', [$drive]);
     }
 
     /**

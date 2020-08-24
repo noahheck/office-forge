@@ -167,6 +167,17 @@ return [
     'formDoc_updated' => 'FormDoc updated',
 
 
+    'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',
+    'fileStore_driveDescription' => 'FileStore organizes these resources into Drives to provide access only to Team members who need it.',
+    'fileStore_versionsDescription' => "FileStore also keeps track of each version of the files you upload, so you'll never lose track of your work!",
+    'fileStore_createFirstDriveNow' => 'Create your first Drive now!',
+    'newDrive' => 'New Drive',
+    'newDrive_shortDescription' => 'Create a new FileStore Drive',
+
+    'drive_created' => 'FileStore Drive created',
+    'drive_updated' => 'FileStore Drive updated',
+
+
 
     'server' => 'Server',
     'server_operatingSystem' => 'Operating System',

@@ -477,13 +477,19 @@ function database($classes = []) {
 }
 
 function diskDrive($classes = []) {
-    $classes[] = "fas fa-hdd";
+    $classes[] = "far fa-hdd";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
 function history($classes = []) {
     $classes[] = "fas fa-history";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function drive($classes = []) {
+    $classes[] = "fas fa-hdd";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
