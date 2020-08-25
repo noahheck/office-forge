@@ -1,5 +1,6 @@
 @php
 $__currentRouteName    = Route::currentRouteName();
+$__isFileStoreRoute    = Str::startsWith($__currentRouteName, 'drives');
 $__isActivitiesRoute   = Str::startsWith($__currentRouteName, 'activities');
 $__isFormDocsRoute     = Str::startsWith($__currentRouteName, 'form-docs');
 $__isProcessesRoute    = Str::startsWith($__currentRouteName, 'processes');
@@ -199,6 +200,12 @@ if ($__isFilesRoute) {
             <li>
                 <a href="{{ route('home') }}" class="{{ ($__currentRouteName === 'home') ? 'current' : '' }}">
                     {!! \App\icon\home(['fa-fw']) !!} {{ __('app.home') }}
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('drives.index') }}" class="{{ ($__isFileStoreRoute) ? 'current' : '' }}">
+                    {!! \App\icon\fileStore(['fa-fw']) !!} {{ __('app.fileStore') }}
                 </a>
             </li>
 

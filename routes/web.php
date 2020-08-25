@@ -50,6 +50,17 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     Route::get('/activity', 'UserActivityController@index')->name('user-activity');
 
 
+    // FileStore
+    Route::get('/drives', 'DriveController@index')->name('drives.index');
+    Route::get('/drives/{drive}', 'DriveController@show')->name('drives.show');
+
+    Route::prefix('/drives/{drive}')->namespace('Drive')->name('drives.')->group(function() {
+
+        Route::resource('/folders', 'FolderController');
+
+    });
+
+
     // Activities
     Route::resource('/activities', 'ActivityController');
     Route::post('activities/{activity}/complete', 'ActivityController@complete')->name('activities.complete');

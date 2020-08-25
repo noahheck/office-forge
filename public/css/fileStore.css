@@ -1,0 +1,32 @@
+/**
+ * sass/fileStore.scss
+ */
+
+.index .no-drives-available {
+  text-align: center;
+}
+
+.index .no-drives-available .icon {
+  font-size: 76px;
+  color: #3490dc;
+}
+
+.index .drive .card-body {
+  padding: 0;
+  display: -webkit-box;
+  display: flex;
+}
+
+.index .drive .card-body .icon-container {
+  -webkit-box-flex: 0;
+          flex-grow: 0;
+  background-color: #3490dc;
+  color: #fff;
+  padding: 15px;
+  font-size: 56px;
+}
+
+.index .drive .card-body .name--description {
+  padding: 15px;
+}
+

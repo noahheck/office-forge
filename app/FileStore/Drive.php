@@ -17,6 +17,11 @@ class Drive extends Model
         return $this->belongsToMany(Team::class, 'filestore_drives_teams', 'filestore_drive_id', 'team_id');
     }
 
+    public function folders()
+    {
+        return $this->hasMany(Folder::class)->ordered();
+    }
+
     public function scopeOrdered($query)
     {
         return $query->orderBy('name');

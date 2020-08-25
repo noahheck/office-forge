@@ -1,0 +1,42 @@
+/**
+ * sass/fileStore.scss
+ */
+
+@import "variables";
+
+.index {
+
+    .no-drives-available {
+        text-align: center;
+
+        .icon {
+            font-size: 76px;
+            color: $blue;
+        }
+    }
+
+    .drive {
+
+        .card-body {
+            padding: 0;
+            display: flex;
+
+            .icon-container {
+                flex-grow: 0;
+
+                background-color: $blue;
+                color: $white;
+                padding: 15px;
+                font-size: 56px;
+            }
+
+            .name--description {
+                padding: 15px;
+            }
+        }
+
+
+
+    }
+
+}

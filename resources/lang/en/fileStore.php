@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'fileStore' => 'File Store',
+    'fileStore' => 'FileStore',
+    'description' => 'FileStore allows you to upload and share documents and media files with staff in your organization.',
+    'noAccessDescription' => "You don't have access to any FileStore Drives yet. Contact your administrator for more information.",
     'drive' => 'Drive',
     'drives' => 'Drives',
 

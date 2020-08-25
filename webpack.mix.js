@@ -27,6 +27,9 @@ mix
     // Home
     .sass('resources/sass/home.scss', 'public/css')
 
+    // FileStore
+    .sass('resources/sass/fileStore.scss', 'public/css')
+
     // User Activity
     .sass('resources/sass/user-activity.scss', 'public/css')
     .js('resources/js/page/user-activity.js', 'public/js/page.user-activity.js')
