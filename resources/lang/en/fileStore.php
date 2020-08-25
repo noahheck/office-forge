@@ -11,5 +11,6 @@ return [
     'drive_descriptionExamples' => '',
     'drive_teamAccessApproval' => 'Team Access Approval',
     'drive_teamAccessApprovalDescription' => 'This Drive will only be accessible by members of these teams. If no teams are selected, this Drive will be accessible by all of your staff.',
-
+    'drive_teamAccessApprovalShortDescription' => 'This Drive is only accessible by members of these teams.',
+    'drive_unrestrictedDescription' => 'This Drive is accessible by all of your staff.',
 ];

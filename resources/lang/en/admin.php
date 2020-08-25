@@ -173,6 +173,8 @@ return [
     'fileStore_createFirstDriveNow' => 'Create your first Drive now!',
     'newDrive' => 'New Drive',
     'newDrive_shortDescription' => 'Create a new FileStore Drive',
+    'editDrive' => 'Edit Drive',
+    'editDrive_shortDescription' => 'Edit a FileStore Drive',
 
     'drive_created' => 'FileStore Drive created',
     'drive_updated' => 'FileStore Drive updated',

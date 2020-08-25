@@ -30,7 +30,7 @@
                             @foreach($drives as $drive)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('admin.drives.edit', [$drive]) }}">
+                                        <a href="{{ route('admin.drives.show', [$drive]) }}">
                                             {{ $drive->name }}
                                         </a>
                                     </td>
