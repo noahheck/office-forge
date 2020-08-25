@@ -20,4 +20,14 @@ class Folder extends Model
     {
         return $query->orderBy('name');
     }
+
+    public function folders()
+    {
+        return $this->hasMany(self::class, 'parent_folder_id');
+    }
+
+    public function parentFolder()
+    {
+        return $this->belongsTo(self::class, 'parent_folder_id');
+    }
 }

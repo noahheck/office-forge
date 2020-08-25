@@ -1,18 +1,12 @@
 @extends("layouts.app")
 
-@section('title'){{ $drive->name }}@endsection
-
 @push('styles')
     @style('css/document.css')
     @style('css/fileStore.css')
 @endpush
 
-@push('meta')
-    @meta('driveId', $drive->id)
-@endpush
-
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar\Drives\Show($drive))
+    'locationBar' => (new \App\Navigation\LocationBar\Drives\Folders\Index($drive)),
 ])
 
 @section('content')
@@ -37,25 +31,39 @@
 
                     <div class="text-right">
                         <a href="{{ route('drives.folders.create', [$drive]) }}" class="btn btn-primary btn-sm">
-                            {!! \App\icon\circlePlus([]) !!}&nbsp;Add&nbsp;Folder
+                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
                         </a>
                     </div>
 
-                    @foreach ($drive->topLevelFolders as $folder)
+                    <hr>
+
+                    <h3>{!! \App\icon\folder(['mr-2']) !!}{{ __('fileStore.folders') }}</h3>
+
+                    @forelse ($drive->topLevelFolders as $folder)
 
                         @if($loop->first)
                             <div class="list-group mt-2">
-                        @endif
+                                @endif
 
-                            <a class="list-group-item list-group-item-action" href="{{ route('drives.folders.show', [$drive, $folder]) }}">
-                                {!! \App\icon\files(['mr-2']) !!}{{ $folder->name }}
-                            </a>
+                                <a class="list-group-item list-group-item-action" href="{{ route('drives.folders.show', [$drive, $folder]) }}">
+                                    {!! \App\icon\files(['mr-2']) !!}{{ $folder->name }}
+                                </a>
 
-                        @if ($loop->last)
+                                @if ($loop->last)
                             </div>
                         @endif
 
-                    @endforeach
+                    @empty
+
+                        <p><em>{{ __('fileStore.noFolders') }}</em></p>
+
+                        <p class="text-center">
+                            <a class="btn btn-primary" href="{{ route('drives.folders.create', [$drive]) }}">
+                                {{ __('fileStore.createFolderNow') }}
+                            </a>
+                        </p>
+
+                    @endforelse
 
                 </div>
 
@@ -63,4 +71,5 @@
         </div>
 
     </div>
+
 @endsection

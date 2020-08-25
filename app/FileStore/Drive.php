@@ -22,6 +22,11 @@ class Drive extends Model
         return $this->hasMany(Folder::class)->ordered();
     }
 
+    public function topLevelFolders()
+    {
+        return $this->hasMany(Folder::class)->whereNull('parent_folder_id')->ordered();
+    }
+
     public function scopeOrdered($query)
     {
         return $query->orderBy('name');

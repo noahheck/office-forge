@@ -19,7 +19,7 @@ class CreateFilestoreFoldersTable extends Migration
             $table->bigInteger('drive_id');
             $table->bigInteger('parent_folder_id')->nullable();
             $table->string('name');
-            $table->text('description');
+            $table->text('description')->nullable();
 
             $table->timestamps();
             $table->softDeletes();

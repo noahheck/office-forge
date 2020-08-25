@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Drive;
 use App\FileStore\Drive;
 use App\FileStore\Folder;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Drive\Folders\Store as StoreRequest;
+use App\Jobs\FileStore\Drive\Folder\Create;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class FolderController extends Controller
 {
@@ -14,9 +17,11 @@ class FolderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Drive $drive)
+    public function index(Request $request, Drive $drive)
     {
-        //
+        abort_unless($request->user()->can('view', $drive), 403);
+
+        return $this->view('drives.folders.index', compact('drive'));
     }
 
     /**
@@ -24,9 +29,15 @@ class FolderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Drive $drive)
+    public function create(Request $request, Drive $drive)
     {
-        //
+        abort_unless($request->user()->can('view', $drive), 403);
+
+        $folder = new Folder;
+
+        $folder->drive_id = $drive->id;
+
+        return $this->view('drives.folders.create', compact('folder', 'drive'));
     }
 
     /**
@@ -35,9 +46,19 @@ class FolderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Drive $drive)
+    public function store(StoreRequest $request, Drive $drive)
     {
-        //
+        $this->dispatchNow($folderCreated = new Create(
+            $drive,
+            $request->name,
+            $request->description
+        ));
+
+        flash_success(__('fileStore.folder_created'));
+
+        $folder = $folderCreated->getFolder();
+
+        return redirect()->route('drives.folders.show', [$drive, $folder]);
     }
 
     /**
@@ -46,9 +67,11 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function show(Folder $folder, Drive $drive)
+    public function show(Request $request, Drive $drive, Folder $folder)
     {
-        //
+        abort_unless($request->user()->can('view', $drive), 403);
+
+        return $this->view('drives.folders.show', compact('drive', 'folder'));
     }
 
     /**

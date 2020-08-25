@@ -494,6 +494,18 @@ function drive($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function folder($classes = []) {
+    $classes[] = "fas fa-folder-open";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function folderUp($classes = []) {
+    $classes[] = "fas fa-arrow-circle-up";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 function forActivity($activity, $classes = []) {
     if ($activity->process_id) {
