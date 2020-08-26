@@ -58,6 +58,8 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
         Route::resource('/folders', 'FolderController');
 
+        Route::resource('/files', 'MediaFileController');
+
     });
 
 

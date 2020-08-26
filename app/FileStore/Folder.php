@@ -30,4 +30,9 @@ class Folder extends Model
     {
         return $this->belongsTo(self::class, 'parent_folder_id');
     }
+
+    public function mediaFiles()
+    {
+        return $this->hasMany(MediaFile::class)->ordered();
+    }
 }

@@ -22,9 +22,19 @@ class Drive extends Model
         return $this->hasMany(Folder::class)->ordered();
     }
 
+    public function mediaFiles()
+    {
+        return $this->hasMany(MediaFile::class)->ordered();
+    }
+
     public function topLevelFolders()
     {
         return $this->hasMany(Folder::class)->whereNull('parent_folder_id')->ordered();
+    }
+
+    public function topLevelMediaFiles()
+    {
+        return $this->hasMany(MediaFile::class)->whereNull('parent_folder_id')->ordered();
     }
 
     public function scopeOrdered($query)
