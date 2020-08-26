@@ -16,6 +16,19 @@ class Show extends LocationBar
 
         $this->addLink(new \App\Navigation\Link\FileStore);
         $this->addLink(new \App\Navigation\Link\Drives\Show($drive));
-        $this->addLink(new \App\Navigation\Link\Drives\Folders($drive));
+
+
+        $folders = collect([]);
+
+        $parentFolder = $folder;
+
+        while ($parentFolder = $parentFolder->parentFolder) {
+            $folders->push($parentFolder);
+        }
+
+        $folders->reverse()->each(function($folder) use ($drive) {
+            $this->addLink(new \App\Navigation\Link\Drives\Folders\Show($drive, $folder));
+        });
+
     }
 }

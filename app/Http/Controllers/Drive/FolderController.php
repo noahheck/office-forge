@@ -36,6 +36,7 @@ class FolderController extends Controller
         $folder = new Folder;
 
         $folder->drive_id = $drive->id;
+        $folder->parent_folder_id = $request->query('parent_folder_id');
 
         return $this->view('drives.folders.create', compact('folder', 'drive'));
     }
@@ -51,7 +52,8 @@ class FolderController extends Controller
         $this->dispatchNow($folderCreated = new Create(
             $drive,
             $request->name,
-            $request->description
+            $request->description,
+            $request->parent_folder_id
         ));
 
         flash_success(__('fileStore.folder_created'));
@@ -80,7 +82,7 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Folder $folder, Drive $drive)
+    public function edit(Drive $drive, Folder $folder)
     {
         //
     }

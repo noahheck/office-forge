@@ -37,7 +37,7 @@
 
                     <div class="text-right">
                         <a href="{{ route('drives.folders.create', [$drive]) }}" class="btn btn-primary btn-sm">
-                            {!! \App\icon\circlePlus([]) !!}&nbsp;Add&nbsp;Folder
+                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
                         </a>
                     </div>
 

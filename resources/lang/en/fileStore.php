@@ -20,9 +20,11 @@ return [
     'folders' => 'Folders',
     'addFolder' => 'Add Folder',
     'newFolder' => 'New Folder',
+    'editFolder' => 'Edit Folder',
     'noFolders' => 'There are no Folders here yet.',
     'createFolderNow' => 'Create a Folder now',
 
+    'folder_childFolderOf' => 'Child folder of :parent',
     'folder_name' => 'Name',
     'folder_nameExamples' => '',
     'folder_description' => 'Description',

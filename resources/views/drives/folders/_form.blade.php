@@ -5,9 +5,22 @@
         @method($method)
     @endif
 
+    @hiddenField([
+        'name' => 'parent_folder_id',
+        'value' => $folder->parent_folder_id,
+    ])
+
     <div class="row">
 
         <div class="col-12">
+
+            @if ($parent = $folder->parentFolder)
+
+                {!! \App\icon\folder(['mr-2']) !!}{{ __('fileStore.folder_childFolderOf', ['parent' => $parent->name]) }}
+
+                <hr>
+
+            @endif
 
             @errors('name', 'description')
 

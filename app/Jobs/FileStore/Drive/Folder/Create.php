@@ -14,6 +14,7 @@ class Create
     private $drive;
     private $name;
     private $description;
+    private $parentFolderId;
 
     private $folder;
 
@@ -22,11 +23,12 @@ class Create
      *
      * @return void
      */
-    public function __construct(Drive $drive, $name, $description)
+    public function __construct(Drive $drive, $name, $description, $parentFolderId)
     {
         $this->drive = $drive;
         $this->name = $name;
         $this->description = $description;
+        $this->parentFolderId = $parentFolderId;
     }
 
     public function getFolder(): Folder
@@ -46,6 +48,7 @@ class Create
         $folder->drive_id = $this->drive->id;
         $folder->name = $this->name;
         $folder->description = $this->description;
+        $folder->parent_folder_id = $this->parentFolderId;
 
         $folder->save();
 
