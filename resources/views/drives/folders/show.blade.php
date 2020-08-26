@@ -17,6 +17,21 @@
 
             <h1>{!! \App\icon\drive(['mr-2']) !!}{{ $drive->name }}</h1>
 
+
+            @foreach ($drive->teams as $team)
+
+                @if ($loop->first)
+                    <p>
+                        <small>
+                @endif
+                    {!! $team->icon() !!}
+                @if ($loop->last)
+                        </small>
+                    </p>
+                @endif
+
+            @endforeach
+
             <div class="card shadow document">
                 <div class="card-body">
 

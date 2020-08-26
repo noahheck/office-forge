@@ -6,7 +6,9 @@ use App\FileStore\Drive;
 use App\FileStore\Folder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Drive\Folders\Store as StoreRequest;
+use App\Http\Requests\Drive\Folders\Update as UpdateRequest;
 use App\Jobs\FileStore\Drive\Folder\Create;
+use App\Jobs\FileStore\Drive\Folder\Update;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -82,9 +84,11 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Drive $drive, Folder $folder)
+    public function edit(Request $request, Drive $drive, Folder $folder)
     {
-        //
+        abort_unless($request->user()->can('view', $drive), 403);
+
+        return $this->view('drives.folders.edit', compact('drive', 'folder'));
     }
 
     /**
@@ -94,9 +98,13 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Drive $drive, Folder $folder)
+    public function update(UpdateRequest $request, Drive $drive, Folder $folder)
     {
-        //
+        $this->dispatchNow($folderUpdated = new Update($folder, $request->name, $request->description));
+
+        flash_success(__('fileStore.folder_updated'));
+
+        return redirect()->route('drives.folders.show', [$drive, $folder]);
     }
 
     /**
