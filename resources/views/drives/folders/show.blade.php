@@ -81,7 +81,7 @@
 
                     <div class="text-right mb-3">
                         <a class="btn btn-primary btn-sm" href="{{ route('drives.folders.create', [$drive, 'parent_folder_id' => $folder->id]) }}">
-                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
+                            {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
                         </a>
                     </div>
 

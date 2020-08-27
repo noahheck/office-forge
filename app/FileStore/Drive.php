@@ -34,7 +34,7 @@ class Drive extends Model
 
     public function topLevelMediaFiles()
     {
-        return $this->hasMany(MediaFile::class)->whereNull('parent_folder_id')->ordered();
+        return $this->hasMany(MediaFile::class)->whereNull('folder_id')->ordered();
     }
 
     public function scopeOrdered($query)

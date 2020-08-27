@@ -13,11 +13,13 @@ class MediaFileController extends Controller
      * Display a listing of the resource.
      *
      * @param Drive $drive
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function index(Drive $drive)
+    public function index(Request $request, Drive $drive)
     {
-        //
+        abort_unless($request->user()->can('view', $drive), 403);
+
+        return $this->view('drives.media-files.index', compact('drive'));
     }
 
     /**

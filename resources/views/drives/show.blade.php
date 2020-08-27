@@ -36,26 +36,42 @@
                     <hr>
 
                     <div class="text-right">
+
+                        <a href="{{ route('drives.files.create', [$drive]) }}" class="btn btn-primary btn-sm">
+                            {!! \App\icon\mediaFileUpload(['mr-2']) !!}{{ __('fileStore.uploadFile') }}
+                        </a>
+
                         <a href="{{ route('drives.folders.create', [$drive]) }}" class="btn btn-primary btn-sm">
-                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
+                            {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
                         </a>
                     </div>
 
-                    @foreach ($drive->topLevelFolders as $folder)
+                    @if ($drive->topLevelFolders->count() > 0 || $drive->topLevelMediaFiles->count() > 0)
+                        @php
+                            $listOpened = true;
+                        @endphp
+                        <div class="list-group mt-2">
+                    @endif
 
-                        @if($loop->first)
-                            <div class="list-group mt-2">
-                        @endif
+                        @foreach ($drive->topLevelFolders as $folder)
 
                             <a class="list-group-item list-group-item-action" href="{{ route('drives.folders.show', [$drive, $folder]) }}">
-                                {!! \App\icon\files(['mr-2']) !!}{{ $folder->name }}
+                                {!! \App\icon\folder(['mr-2']) !!}{{ $folder->name }}
                             </a>
 
-                        @if ($loop->last)
-                            </div>
-                        @endif
+                        @endforeach
 
-                    @endforeach
+                        @foreach ($drive->topLevelMediaFiles as $file)
+
+                            <a class="list-group-item list-group-item-action" href="{{ route('drives.files.show', [$drive, $file]) }}">
+                                {!! \App\icon\mediaFile(['mr-2']) !!}{{ $file->name }}
+                            </a>
+
+                        @endforeach
+
+                    @if ($listOpened ?? false)
+                        </div>
+                    @endif
 
                 </div>
 

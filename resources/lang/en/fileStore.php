@@ -33,4 +33,9 @@ return [
     'folder_created' => 'Folder created',
     'folder_updated' => 'Folder updated',
 
+    'file' => 'File',
+    'files' => 'Files',
+    'uploadFile' => 'Upload File',
+    'noFiles' => 'There are no Files here yet.',
+    'uploadFileNow' => 'Upload a File now',
 ];

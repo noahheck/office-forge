@@ -506,6 +506,24 @@ function folderUp($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function folderPlus($classes = []) {
+    $classes[] = "fas fa-folder-plus";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function mediaFile($classes = []) {
+    $classes[] = "fas fa-file";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function mediaFileUpload($classes = []) {
+    $classes[] = "fas fa-file-upload";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 function forActivity($activity, $classes = []) {
     if ($activity->process_id) {
