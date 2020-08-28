@@ -28,6 +28,8 @@ try {
     require('Component/money-field');
     require('Component/integer-field');
     require('Component/decimal-field');
+    require('Component/file-input-field');
+
 
     let dt = require('datatables.net-bs4');
     let buttons = require('datatables.net-buttons-bs4');

@@ -20,7 +20,7 @@ class CreateFilestoreMediaFilesTable extends Migration
             $table->bigInteger('folder_id')->nullable();
             $table->string('name');
             $table->string('mimetype');
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->string('original_filename');
             $table->bigInteger('filesize');
             $table->text('description')->nullable();

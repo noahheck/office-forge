@@ -1484,6 +1484,8 @@ try {
 
   __webpack_require__(/*! Component/decimal-field */ "./resources/js/component/decimal-field.js");
 
+  __webpack_require__(/*! Component/file-input-field */ "./resources/js/component/file-input-field.js");
+
   var dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
   var buttons = __webpack_require__(/*! datatables.net-buttons-bs4 */ "./node_modules/datatables.net-buttons-bs4/js/buttons.bootstrap4.js"); // let buttons = require('datatables.net-buttons');
@@ -1585,6 +1587,44 @@ $(function () {
       if (numCharsAfterDecimal >= numDecimalPlaces) {
         return false;
       }
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/component/file-input-field.js":
+/*!****************************************************!*\
+  !*** ./resources/js/component/file-input-field.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/component/file-input-field.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+$(function () {
+  $('.file-upload-field-input').change(function () {
+    var file = this.files[0];
+    var inputName = $(this).attr('name');
+    var labelId = "customFileLabel_" + inputName;
+    $('#' + labelId).text(file.name);
+    var imagePreviewContainer = $('#fileUploadImagePreviewContainer_' + inputName);
+
+    if (file.type.toString().match(/^image\//)) {
+      var image = $('#fileUploadImagePreview_' + inputName);
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        image.attr('src', e.target.result);
+      };
+
+      reader.readAsDataURL(this.files[0]);
+      imagePreviewContainer.addClass('previewing-image');
+    } else {
+      imagePreviewContainer.removeClass('previewing-image');
     }
   });
 });

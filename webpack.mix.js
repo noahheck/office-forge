@@ -29,6 +29,7 @@ mix
 
     // FileStore
     .sass('resources/sass/fileStore.scss', 'public/css')
+    .js('resources/js/page/drives/files/_form.js', 'public/js/page.drives.files._form.js')
 
     // User Activity
     .sass('resources/sass/user-activity.scss', 'public/css')

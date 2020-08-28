@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Drive;
 use App\FileStore\Drive;
 use App\FileStore\MediaFile;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Drive\File\Store as StoreRequest;
+use App\Jobs\FileStore\Drive\MediaFile\Create;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class MediaFileController extends Controller
 {
@@ -28,9 +31,17 @@ class MediaFileController extends Controller
      * @param Drive $drive
      * @return void
      */
-    public function create(Drive $drive)
+    public function create(Request $request, Drive $drive)
     {
-        //
+        $user = $request->user();
+        abort_unless($user->can('view', $drive), 403);
+
+        $mediaFile = new MediaFile;
+        $mediaFile->drive_id = $drive->id;
+        $mediaFile->folder_id = $request->query('folder_id');
+        $mediaFile->uploaded_by = $user->id;
+
+        return $this->view('drives.media-files.create', compact('drive', 'mediaFile'));
     }
 
     /**
@@ -40,9 +51,26 @@ class MediaFileController extends Controller
      * @param Drive $drive
      * @return void
      */
-    public function store(Request $request, Drive $drive)
+    public function store(StoreRequest $request, Drive $drive)
     {
-        //
+        $this->dispatchNow($mediaFileCreated = new Create(
+            $drive,
+            $request->folder_id,
+            $request->file,
+            $request->name,
+            $request->description,
+            $request->user()
+        ));
+
+        flash_success(__('fileStore.file_uploaded'));
+
+        $mediaFile = $mediaFileCreated->getMediaFile();
+
+        if (!$return = $request->return) {
+            $return = route('drives.files.show', [$drive, $mediaFile]);
+        }
+
+        return redirect($return);
     }
 
     /**

@@ -148,13 +148,13 @@ EOT;
         \Blade::include('_form/decimal',           'decimalField');
         \Blade::include('_form/textarea',          'textareaField');
         \Blade::include('_form/text-editor',       'textEditorField');
+        \Blade::include('_form/file-upload',       'fileUploadField');
         \Blade::include('_form/user-select',       'userSelectField');
         \Blade::include('_form/user-multi-select', 'userMultiSelectField');
         \Blade::include('_form/team-select',       'teamSelectField');
         \Blade::include('_form/team-multi-select', 'teamMultiSelectField');
         \Blade::include('_form/file-type-select',  'fileTypeSelectField');
         \Blade::include('_form/file-select',       'fileSelectField');
-
 
 
         \Blade::component('manual.components.tip', 'tip');

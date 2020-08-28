@@ -38,4 +38,11 @@ return [
     'uploadFile' => 'Upload File',
     'noFiles' => 'There are no Files here yet.',
     'uploadFileNow' => 'Upload a File now',
+    'file_name' => 'Name',
+    'file_nameExamples' => '',
+    'file_description' => 'Description',
+    'file_descriptionExamples' => '',
+    'file_extensionExample' => '.extension',
+
+    'file_uploaded' => 'File uploaded',
 ];
