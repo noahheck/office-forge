@@ -28,6 +28,7 @@ return [
     'folder_name' => 'Name',
     'folder_nameExamples' => '',
     'folder_description' => 'Description',
+    'folder_noDescription' => 'No description',
     'folder_descriptionExamples' => '',
 
     'folder_created' => 'Folder created',
@@ -42,8 +43,10 @@ return [
     'file_name' => 'Name',
     'file_nameExamples' => '',
     'file_description' => 'Description',
+    'file_noDescription' => 'No description',
     'file_descriptionExamples' => '',
     'file_extensionExample' => '.extension',
+    'file_uploadedBy' => 'Uploaded by',
 
     'file_uploaded' => 'File uploaded',
     'file_updated' => 'File updated',

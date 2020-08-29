@@ -46,32 +46,10 @@
                         </a>
                     </div>
 
-                    @if ($drive->topLevelFolders->count() > 0 || $drive->topLevelMediaFiles->count() > 0)
-                        @php
-                            $listOpened = true;
-                        @endphp
-                        <div class="list-group mt-2">
-                    @endif
-
-                        @foreach ($drive->topLevelFolders as $folder)
-
-                            <a class="list-group-item list-group-item-action" href="{{ route('drives.folders.show', [$drive, $folder]) }}">
-                                {!! \App\icon\folder(['mr-2']) !!}{{ $folder->name }}
-                            </a>
-
-                        @endforeach
-
-                        @foreach ($drive->topLevelMediaFiles as $file)
-
-                            <a class="list-group-item list-group-item-action" href="{{ route('drives.files.show', [$drive, $file]) }}">
-                                {!! \App\icon\mediaFile(['mr-2']) !!}{{ $file->name }}
-                            </a>
-
-                        @endforeach
-
-                    @if ($listOpened ?? false)
-                        </div>
-                    @endif
+                    @include('drives._folders-and-files', [
+                        'folders' => $drive->topLevelFolders,
+                        'mediaFiles' => $drive->topLevelMediaFiles,
+                    ])
 
                 </div>
 

@@ -35,7 +35,7 @@
             <div class="card shadow document">
                 <div class="card-body">
 
-                    <h2>{!! \App\icon\mediaFile(['mr-2']) !!}{{ $mediaFile->name }}</h2>
+                    <h2>{!! $mediaFile->icon(['mr-2']) !!}{{ $mediaFile->name }}</h2>
 
                     <hr>
 
@@ -44,11 +44,13 @@
                         <div class="flex-grow-1">
 
                             <p>
-                                @if ($description = $mediaFile->description)
-                                    {!! nl2br(e($mediaFile->description)) !!}
-                                @else
-                                    <em>No Description</em>
-                                @endif
+                                <strong>{{ __('fileStore.file_updated') }}:</strong>
+                                {{ \App\format_datetime($mediaFile->updated_at) }}
+                            </p>
+
+                            <p>
+                                <strong>{{ __('fileStore.file_uploadedBy') }}:</strong>
+                                {!! $mediaFile->uploadedBy->iconAndName(['mhw-35p']) !!}
                             </p>
 
                         </div>
@@ -65,7 +67,17 @@
 
                     <hr>
 
-                    <a class="btn btn-primary" href="{{ route('drives.files.download', [$drive, $mediaFile, $mediaFile->name]) }}">
+                    <p>
+                        @if ($description = $mediaFile->description)
+                            {!! nl2br(e($mediaFile->description)) !!}
+                        @else
+                            <em>{{ __('fileStore.file_noDescription') }}</em>
+                        @endif
+                    </p>
+
+                    <hr>
+
+                    <a class="btn btn-primary" href="{{ $mediaFile->downloadLink() }}">
                         {!! \App\icon\mediaFileDownload(['mr-2']) !!}Download
                     </a>
 

@@ -47,7 +47,7 @@
                                 @if ($description = $folder->description)
                                     {!! nl2br(e($folder->description)) !!}
                                 @else
-                                    <em>No Description</em>
+                                    <em>{{ __('fileStore.folder_noDescription') }}</em>
                                 @endif
                             </p>
 
@@ -90,32 +90,10 @@
                         </a>
                     </div>
 
-                    @if ($folder->folders->count() > 0 || $folder->mediaFiles->count() > 0)
-                        @php
-                            $listOpened = true;
-                        @endphp
-                        <div class="list-group mt-2">
-                    @endif
-
-                    @foreach ($folder->folders as $child)
-
-                        <a class="list-group-item list-group-item-action" href="{{ route('drives.folders.show', [$drive, $child]) }}">
-                            {!! \App\icon\folder(['mr-2']) !!}{!! $child->name !!}
-                        </a>
-
-                    @endforeach
-
-                    @foreach ($folder->mediaFiles as $file)
-
-                        <a class="list-group-item list-group-item-action" href="{{ route('drives.files.show', [$drive, $file]) }}">
-                            {!! \App\icon\mediaFile(['mr-2']) !!}{{ $file->name }}
-                        </a>
-
-                    @endforeach
-
-                    @if ($listOpened ?? false)
-                        </div>
-                    @endif
+                    @include('drives._folders-and-files', [
+                        'folders' => $folder->folders,
+                        'mediaFiles' => $folder->mediaFiles,
+                    ])
 
                 </div>
 

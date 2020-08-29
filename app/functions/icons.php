@@ -533,6 +533,75 @@ function mediaFileDownload($classes = []) {
 
 
 
+function file_file($classes = []) {
+    $classes[] = "fas fa-file";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_word($classes = []) {
+    $classes[] = "fas fa-file-word";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_video($classes = []) {
+    $classes[] = "fas fa-file-video";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_presentation($classes = []) {
+    $classes[] = "fas fa-file-powerpoint";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_pdf($classes = []) {
+    $classes[] = "fas fa-file-pdf";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_image($classes = []) {
+    $classes[] = "fas fa-file-image";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_spreadsheet($classes = []) {
+    $classes[] = "fas fa-file-excel";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_code($classes = []) {
+    $classes[] = "fas fa-file-code";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_audio($classes = []) {
+    $classes[] = "fas fa-file-audio";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_archive($classes = []) {
+    $classes[] = "fas fa-file-archive";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_csv($classes = []) {
+    $classes[] = "fas fa-file-csv";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
+
+
 function forActivity($activity, $classes = []) {
     if ($activity->process_id) {
 

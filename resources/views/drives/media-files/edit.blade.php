@@ -34,7 +34,7 @@
             <div class="card shadow document">
                 <div class="card-body">
 
-                    <h2>{!! \App\icon\mediaFile(['mr-2']) !!}{{ $mediaFile->name }}</h2>
+                    <h2>{!! $mediaFile->icon(['mr-2']) !!}{{ $mediaFile->name }}</h2>
 
                     <hr>
 

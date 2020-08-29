@@ -2,11 +2,23 @@
 
 namespace App\FileStore;
 
+use App\User;
+use App\Utility\MimeTypeIconFunctionMapper;
 use Illuminate\Database\Eloquent\Model;
 
 class MediaFile extends Model
 {
     protected $table = 'filestore_media_files';
+
+    public function downloadLink()
+    {
+        return route('drives.files.download', [$this->drive, $this, $this->name]);
+    }
+
+    public function icon($withClasses = [])
+    {
+        return MimeTypeIconFunctionMapper::iconForMimetype($this->mimetype, $withClasses);
+    }
 
     public function getNameWithoutExtensionAttribute()
     {
@@ -48,5 +60,10 @@ class MediaFile extends Model
     public function folder()
     {
         return $this->belongsTo(Folder::class);
+    }
+
+    public function uploadedBy()
+    {
+        return $this->belongsTo(User::class, 'uploaded_by');
     }
 }
