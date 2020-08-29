@@ -71,7 +71,7 @@ class Create
 
         $mediaFile->save();
 
-        $filesystem->put(DIRECTORY_SEPARATOR . 'media-files' . DIRECTORY_SEPARATOR . $filename, $this->file);
+        $filesystem->putFileAs(DIRECTORY_SEPARATOR . 'media-files' . DIRECTORY_SEPARATOR, $this->file, $filename);
 
         $this->mediaFile = $mediaFile;
     }

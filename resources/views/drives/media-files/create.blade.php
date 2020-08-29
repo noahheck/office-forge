@@ -26,6 +26,7 @@
 
                     @include('drives.media-files._form', [
                         'action' => route('drives.files.store', [$drive]),
+                        'upload' => true,
                     ])
 
                 </div>

@@ -33,23 +33,27 @@
 
             @errors('file', 'name', 'description')
 
-            @fileUploadField([
-                'name' => 'file',
-                'label' => __('fileStore.file'),
-                'details' => '',
-                'placeholder' => 'string: example placeholder text',
-                'required' => true,
-                'autofocus' => true,
-                'error' => $errors->has('file'),
-                'readonly' => false,
-            ])
+            @if ($upload)
+
+                @fileUploadField([
+                    'name' => 'file',
+                    'label' => __('fileStore.file'),
+                    'details' => '',
+                    'placeholder' => 'string: example placeholder text',
+                    'required' => true,
+                    'autofocus' => true,
+                    'error' => $errors->has('file'),
+                    'readonly' => false,
+                ])
+
+            @endif
 
             @textField([
                 'name' => 'name',
                 'label' => __('fileStore.file_name'),
-                'value' => old('name', $mediaFile->name),
+                'value' => old('name', $mediaFile->nameWithoutExtension),
                 'placeholder' => __('fileStore.file_nameExamples'),
-                'inputGroupAppendText' => __('fileStore.file_extensionExample'),
+                'inputGroupAppendText' => $mediaFile->extension ?? __('fileStore.file_extensionExample'),
                 'required' => true,
                 'autofocus' => false,
                 'error' => $errors->has('name'),

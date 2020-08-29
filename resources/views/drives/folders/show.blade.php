@@ -84,7 +84,7 @@
                         <a href="{{ route('drives.files.create', [$drive, 'folder_id' => $folder->id]) }}" class="btn btn-primary btn-sm">
                             {!! \App\icon\mediaFileUpload(['mr-2']) !!}{{ __('fileStore.uploadFile') }}
                         </a>
-                        
+
                         <a class="btn btn-primary btn-sm" href="{{ route('drives.folders.create', [$drive, 'parent_folder_id' => $folder->id]) }}">
                             {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
                         </a>

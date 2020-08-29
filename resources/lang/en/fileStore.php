@@ -36,6 +36,7 @@ return [
     'file' => 'File',
     'files' => 'Files',
     'uploadFile' => 'Upload File',
+    'editFile' => 'Edit File',
     'noFiles' => 'There are no Files here yet.',
     'uploadFileNow' => 'Upload a File now',
     'file_name' => 'Name',
@@ -45,4 +46,5 @@ return [
     'file_extensionExample' => '.extension',
 
     'file_uploaded' => 'File uploaded',
+    'file_updated' => 'File updated',
 ];

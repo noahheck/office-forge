@@ -524,6 +524,14 @@ function mediaFileUpload($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function mediaFileDownload($classes = []) {
+    $classes[] = "fas fa-file-download";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
+
 
 function forActivity($activity, $classes = []) {
     if ($activity->process_id) {

@@ -6,12 +6,23 @@ use App\FileStore\Drive;
 use App\FileStore\MediaFile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Drive\File\Store as StoreRequest;
+use App\Http\Requests\Drive\File\Update as UpdateRequest;
 use App\Jobs\FileStore\Drive\MediaFile\Create;
+use App\Jobs\FileStore\Drive\MediaFile\Update;
 use Illuminate\Http\Request;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use function App\flash_success;
+
 
 class MediaFileController extends Controller
 {
+    private $filesystem;
+
+    public function __construct(Filesystem $filesystem)
+    {
+        $this->filesystem = $filesystem;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -76,13 +87,20 @@ class MediaFileController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param Request $request
      * @param Drive $drive
      * @param \App\FileStore\MediaFile $mediaFile
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function show(Drive $drive, MediaFile $mediaFile)
+    public function show(Request $request, Drive $drive, MediaFile $file)
     {
-        //
+        $user = $request->user();
+        abort_unless($user->can('view', $drive), 403);
+        abort_unless($drive->id === $file->drive_id, 400);
+
+        $mediaFile = $file;
+
+        return $this->view('drives.media-files.show', compact('drive', 'mediaFile'));
     }
 
     /**
@@ -90,11 +108,17 @@ class MediaFileController extends Controller
      *
      * @param Drive $drive
      * @param \App\FileStore\MediaFile $mediaFile
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function edit(Drive $drive, MediaFile $mediaFile)
+    public function edit(Request $request, Drive $drive, MediaFile $file)
     {
-        //
+        $user = $request->user();
+        abort_unless($user->can('view', $drive), 403);
+        abort_unless($drive->id === $file->drive_id, 400);
+
+        $mediaFile = $file;
+
+        return $this->view('drives.media-files.edit', compact('drive', 'mediaFile'));
     }
 
     /**
@@ -103,11 +127,19 @@ class MediaFileController extends Controller
      * @param \Illuminate\Http\Request $request
      * @param Drive $drive
      * @param \App\FileStore\MediaFile $mediaFile
-     * @return void
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Drive $drive, MediaFile $mediaFile)
+    public function update(UpdateRequest $request, Drive $drive, MediaFile $file)
     {
-        //
+        $this->dispatchNow($mediaFileUpdated = new Update($file, $request->name, $request->description));
+
+        flash_success(__('fileStore.file_updated'));
+
+        if (!$return = $request->return) {
+            $return = route('drives.files.show', [$drive, $file]);
+        }
+
+        return redirect($return);
     }
 
     /**
@@ -117,8 +149,21 @@ class MediaFileController extends Controller
      * @param \App\FileStore\MediaFile $mediaFile
      * @return void
      */
-    public function destroy(Drive $drive, MediaFile $mediaFile)
+    public function destroy(Drive $drive, MediaFile $file)
     {
         //
+    }
+
+
+    public function download(Request $request, Drive $drive, MediaFile $file, $filename)
+    {
+        $user = $request->user();
+        abort_unless($user->can('view', $drive), 403);
+        abort_unless($drive->id === $file->drive_id, 400);
+
+        return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
+                'filename="' . $file->name . '"',
+            ])
+            ->setLastModified($file->updated_at);
     }
 }
