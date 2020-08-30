@@ -524,6 +524,12 @@ function mediaFileUpload($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function mediaFilePreview($classes = []) {
+    $classes[] = "fas fa-external-link-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function mediaFileDownload($classes = []) {
     $classes[] = "fas fa-file-download";
 

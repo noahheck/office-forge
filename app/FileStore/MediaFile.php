@@ -16,9 +16,26 @@ class MediaFile extends Model implements IsHeadshottable
 
     protected $table = 'filestore_media_files';
 
-    public function downloadLink()
+    public function downloadUrl()
     {
         return route('drives.files.download', [$this->drive, $this, $this->name]);
+    }
+
+    public function previewUrl()
+    {
+        return route('drives.files.preview', [$this->drive, $this, $this->name]);
+    }
+
+    public function canPreviewInBrowser(): bool
+    {
+        $previewableMimeTypes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'application/pdf',
+        ];
+
+        return in_array($this->mimetype, $previewableMimeTypes);
     }
 
     public function icon($withClasses = [])

@@ -75,8 +75,14 @@
 
                         <div class="flex-grow-0">
 
-                            <a class="btn btn-primary btn-sm" href="{{ $mediaFile->downloadLink() }}">
-                                {!! \App\icon\mediaFileDownload(['mr-2']) !!}Download
+                            @if ($mediaFile->canPreviewInBrowser())
+                                <a class="btn btn-primary btn-sm" target="_blank"  href="{{ $mediaFile->previewUrl() }}">
+                                    {!! \App\icon\mediaFilePreview(['mr-2']) !!}{{ __('app.preview') }}
+                                </a>
+                            @endif
+
+                            <a class="btn btn-primary btn-sm" href="{{ $mediaFile->downloadUrl() }}">
+                                {!! \App\icon\mediaFileDownload(['mr-2']) !!}{{ __('app.download') }}
                             </a>
 
                         </div>

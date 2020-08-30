@@ -19,6 +19,11 @@ return [
     'continue' => 'Continue',
     'accessDetails' => 'Access Details',
 
+
+    'upload' => 'Upload',
+    'download' => 'Download',
+    'preview' => 'Preview',
+
     'itemUpdated' => ':itemName updated',
     'options' => 'Options',
     'moreOptions' => 'More Options',

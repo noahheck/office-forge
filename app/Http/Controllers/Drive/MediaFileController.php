@@ -155,6 +155,18 @@ class MediaFileController extends Controller
     }
 
 
+    public function preview(Request $request, Drive $drive, MediaFile $file, $filename)
+    {
+        $user = $request->user();
+        abort_unless($user->can('view', $drive), 403);
+        abort_unless($drive->id === $file->drive_id, 400);
+
+        return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
+                'Content-Disposition' => 'inline',
+            ])
+            ->setLastModified($file->updated_at);
+    }
+
     public function download(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
@@ -162,7 +174,7 @@ class MediaFileController extends Controller
         abort_unless($drive->id === $file->drive_id, 400);
 
         return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
-                'filename="' . $file->name . '"',
+                'Content-Disposition' => 'attachment; filename="' . $file->name . '"',
             ])
             ->setLastModified($file->updated_at);
     }
