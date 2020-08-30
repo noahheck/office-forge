@@ -2,12 +2,18 @@
 
 namespace App\FileStore;
 
+use App\Interfaces\Headshottable as IsHeadshottable;
+use App\Traits\Headshottable;
 use App\User;
 use App\Utility\MimeTypeIconFunctionMapper;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class MediaFile extends Model
+class MediaFile extends Model implements IsHeadshottable
 {
+    use SoftDeletes,
+        Headshottable;
+
     protected $table = 'filestore_media_files';
 
     public function downloadLink()
@@ -17,6 +23,25 @@ class MediaFile extends Model
 
     public function icon($withClasses = [])
     {
+        if ($headshot = $this->currentHeadshot()) {
+            $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'icon',])));
+
+            return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'icon', $headshot->icon_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
+        }
+
+        return MimeTypeIconFunctionMapper::iconForMimetype($this->mimetype, $withClasses);
+    }
+
+    public function thumbnail($withClasses = [])
+    {
+        if ($headshot = $this->currentHeadshot()) {
+            $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'thumbnail',])));
+
+            return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'thumb', $headshot->thumb_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
+        }
+
+        $withClasses = array_merge($withClasses, ['thumbnail']);
+
         return MimeTypeIconFunctionMapper::iconForMimetype($this->mimetype, $withClasses);
     }
 

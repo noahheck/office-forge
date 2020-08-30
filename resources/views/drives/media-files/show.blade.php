@@ -11,7 +11,7 @@
 
 @section('content')
 
-    <div class="row project justify-content-center document-print-container folder-show">
+    <div class="row project justify-content-center document-print-container media-files-show">
 
         <div class="col-12 col-md-10 document-container">
 
@@ -39,6 +39,24 @@
 
                     <hr>
 
+                    <div class="text-center">
+
+                        {!! $mediaFile->thumbnail([]) !!}
+
+                    </div>
+
+                    <hr>
+
+                    <p>
+                        @if ($description = $mediaFile->description)
+                            {!! nl2br(e($mediaFile->description)) !!}
+                        @else
+                            <em>{{ __('fileStore.file_noDescription') }}</em>
+                        @endif
+                    </p>
+
+                    <hr>
+
                     <div class="d-flex">
 
                         <div class="flex-grow-1">
@@ -57,8 +75,8 @@
 
                         <div class="flex-grow-0">
 
-                            <a class="btn btn-primary btn-sm" href="{{ route('drives.files.edit', [$drive, $mediaFile]) }}">
-                                {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}
+                            <a class="btn btn-primary btn-sm" href="{{ $mediaFile->downloadLink() }}">
+                                {!! \App\icon\mediaFileDownload(['mr-2']) !!}Download
                             </a>
 
                         </div>
@@ -67,19 +85,11 @@
 
                     <hr>
 
-                    <p>
-                        @if ($description = $mediaFile->description)
-                            {!! nl2br(e($mediaFile->description)) !!}
-                        @else
-                            <em>{{ __('fileStore.file_noDescription') }}</em>
-                        @endif
-                    </p>
-
-                    <hr>
-
-                    <a class="btn btn-primary" href="{{ $mediaFile->downloadLink() }}">
-                        {!! \App\icon\mediaFileDownload(['mr-2']) !!}Download
-                    </a>
+                    <div class="text-right">
+                        <a class="btn btn-primary btn-sm" href="{{ route('drives.files.edit', [$drive, $mediaFile]) }}">
+                            {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}
+                        </a>
+                    </div>
 
                 </div>
 

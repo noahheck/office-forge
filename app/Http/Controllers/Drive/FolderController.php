@@ -75,6 +75,8 @@ class FolderController extends Controller
     {
         abort_unless($request->user()->can('view', $drive), 403);
 
+        $folder->load('mediaFiles', 'mediaFiles.headshots');
+
         return $this->view('drives.folders.show', compact('drive', 'folder'));
     }
 

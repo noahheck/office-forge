@@ -34,3 +34,8 @@
   padding: 6px 10px;
 }
 
+.media-files-show .fas.thumbnail {
+  font-size: 128px;
+  color: #3490dc;
+}
+

@@ -4,8 +4,10 @@ namespace App\Jobs\FileStore\Drive\MediaFile;
 
 use App\FileStore\Drive;
 use App\FileStore\MediaFile;
+use App\Jobs\Headshottable\Upload;
 use App\User;
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Contracts\Filesystem\Filesystem;
@@ -48,7 +50,7 @@ class Create
      *
      * @return void
      */
-    public function handle(Filesystem $filesystem)
+    public function handle(Filesystem $filesystem, Dispatcher $dispatcher)
     {
         $dotExtension = ($extension = $this->file->getClientOriginalExtension()) ? '.' . $extension : '';
         $name = $this->name . $dotExtension;
@@ -74,5 +76,15 @@ class Create
         $filesystem->putFileAs(DIRECTORY_SEPARATOR . 'media-files' . DIRECTORY_SEPARATOR, $this->file, $filename);
 
         $this->mediaFile = $mediaFile;
+
+        if (in_array($mediaFile->mimetype, ['image/jpeg', 'image/png'])) {
+
+            $dispatcher->dispatchNow($headshotHandled = new Upload(
+                $mediaFile,
+                $this->file,
+                $this->uploaded_by
+            ));
+
+        }
     }
 }
