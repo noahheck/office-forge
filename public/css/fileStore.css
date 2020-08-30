@@ -2,6 +2,10 @@
  * sass/fileStore.scss
  */
 
+/**
+ * sass/_mixins.scss
+ */
+
 .index .no-drives-available {
   text-align: center;
 }
@@ -28,6 +32,34 @@
 
 .index .drive .card-body .name--description {
   padding: 15px;
+}
+
+.files-and-folders-list-group .media-file-item {
+  padding: 0;
+}
+
+.files-and-folders-list-group .media-file-item .media-file-link {
+  padding: 0.75rem 1.25rem;
+  color: #666;
+  white-space: nowrap;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.files-and-folders-list-group .media-file-item .media-file-options {
+  display: none;
+  white-space: nowrap;
+}
+
+.files-and-folders-list-group .media-file-item .media-file-options .btn {
+  margin: 0;
+  margin-top: 8px;
+  margin-right: 4px;
+}
+
+.files-and-folders-list-group .media-file-item:hover .media-file-options {
+  display: block;
 }
 
 .folder-show .parent-folder-list-group .list-group-item {
