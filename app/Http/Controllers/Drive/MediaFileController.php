@@ -11,6 +11,7 @@ use App\Jobs\FileStore\Drive\MediaFile\Create;
 use App\Jobs\FileStore\Drive\MediaFile\Update;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Filesystem\Filesystem;
+use function App\flash_info;
 use function App\flash_success;
 
 
@@ -156,9 +157,23 @@ class MediaFileController extends Controller
      * @param \App\FileStore\MediaFile $mediaFile
      * @return void
      */
-    public function destroy(Drive $drive, MediaFile $file)
+    public function destroy(Request $request, Drive $drive, MediaFile $file)
     {
-        //
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('delete', $file), 403);
+
+        $folder = $file->folder;
+
+        $file->delete();
+
+        flash_info(__('fileStore.file_deleted'));
+
+        if ($folder) {
+            return redirect()->route('drives.folders.show', [$drive, $folder]);
+        }
+
+        return redirect()->route('drives.show', [$drive]);
     }
 
 

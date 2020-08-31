@@ -38,6 +38,7 @@ return [
     'files' => 'Files',
     'uploadFile' => 'Upload File',
     'editFile' => 'Edit File',
+    'deleteFile' => 'Delete File',
     'noFiles' => 'There are no Files here yet.',
     'uploadFileNow' => 'Upload a File now',
     'file_name' => 'Name',
@@ -50,4 +51,5 @@ return [
 
     'file_uploaded' => 'File uploaded',
     'file_updated' => 'File updated',
+    'file_deleted' => 'File deleted',
 ];

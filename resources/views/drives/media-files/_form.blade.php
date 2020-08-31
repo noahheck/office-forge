@@ -78,12 +78,52 @@
 
     <hr>
 
-    <button type="submit" class="btn btn-primary">
-        {{ __('app.save') }}
-    </button>
+    <div class="d-flex">
 
-    <a class="btn btn-secondary" href="{{ url()->previous(route('admin.drives.index')) }}">
-        {{ __('app.cancel') }}
-    </a>
+        <div class="flex-grow-1">
+
+            <button type="submit" class="btn btn-primary">
+                {{ __('app.save') }}
+            </button>
+
+            <a class="btn btn-secondary" href="{{ url()->previous(route('admin.drives.index')) }}">
+                {{ __('app.cancel') }}
+            </a>
+
+        </div>
+
+        @if($mediaFile->id)
+            @can('delete', $mediaFile)
+                <div>
+                    <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
+                        {{ __('app.moreOptions') }}
+                        {!! \App\icon\chevronDown() !!}
+                    </button>
+                </div>
+            @endcan
+        @endif
+
+    </div>
 
 </form>
+
+
+@if ($mediaFile->id)
+    @can('delete', $mediaFile)
+
+        <div class="collapse text-right" id="moreOptionsContainer">
+
+            <hr>
+
+            <form class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger">
+                    {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                </button>
+            </form>
+
+        </div>
+
+    @endcan
+@endif

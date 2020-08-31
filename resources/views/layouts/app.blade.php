@@ -49,6 +49,11 @@ if ($__isFilesRoute) {
 
     @stack('meta')
 
+    @meta('vocab-cancel', __('app.cancel'))
+    @meta('vocab-confirm', __('app.confirm'))
+    @meta('vocab-confirm-delete', __('app.confirmDelete'))
+    @meta('vocab-sure-delete-this', __('app.sureDeleteThis'))
+
     <title>@yield('title', config('app.name', 'Office Forge'))</title>
 
     <!-- ****** faviconit.com favicons ****** -->
@@ -96,6 +101,10 @@ if ($__isFilesRoute) {
 <body>
 
     <div id="notifications" class="notifications" aria-live>
+
+    </div>
+
+    <div id="popups" class="popups" aria-live>
 
     </div>
 

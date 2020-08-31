@@ -73,7 +73,7 @@ class MediaFilePolicy
      */
     public function delete(User $user, MediaFile $mediaFile)
     {
-        //
+        return $this->sharedTeamMembership->authorize($user, $mediaFile->drive);
     }
 
     /**
