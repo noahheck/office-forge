@@ -12,7 +12,7 @@ const mix = require('laravel-mix');
  */
 
 mix
-
+    .version()
     // Help manual
     .sass('resources/sass/manual.scss', 'public/css')
 
