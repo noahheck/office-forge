@@ -1366,11 +1366,13 @@ __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
 __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 
-$(function _callee() {
+var confirm = __webpack_require__(/*! Services/confirm */ "./resources/js/services/confirm.js");
+
+$(function _callee2() {
   var $body, notifications;
-  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
     while (1) {
-      switch (_context.prev = _context.next) {
+      switch (_context2.prev = _context2.next) {
         case 0:
           $body = $('body');
           $('#toggleApplicationSidebarButton').click(function () {
@@ -1378,15 +1380,15 @@ $(function _callee() {
           });
 
           if (!meta.get('check-notifications', false)) {
-            _context.next = 10;
+            _context2.next = 10;
             break;
           }
 
-          _context.next = 5;
+          _context2.next = 5;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get('notifications'));
 
         case 5:
-          notifications = _context.sent;
+          notifications = _context2.sent;
           notifications.data.success.forEach(function (message) {
             notify.success(message);
           });
@@ -1417,10 +1419,45 @@ $(function _callee() {
             clearBtn: true,
             zIndexOffset: 1031
           });
+          $('.confirm-delete-form').submit(function _callee(e) {
+            var $form, confirmed;
+            return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
+              while (1) {
+                switch (_context.prev = _context.next) {
+                  case 0:
+                    $form = $(this);
 
-        case 15:
+                    if (!$form.data('deleteConfirmed')) {
+                      _context.next = 3;
+                      break;
+                    }
+
+                    return _context.abrupt("return", true);
+
+                  case 3:
+                    e.preventDefault();
+                    _context.next = 6;
+                    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(confirm["delete"]($form.data('deleteItemTitle')));
+
+                  case 6:
+                    confirmed = _context.sent;
+
+                    if (confirmed) {
+                      $form.data('deleteConfirmed', true);
+                      $form.submit();
+                    }
+
+                  case 8:
+                  case "end":
+                    return _context.stop();
+                }
+              }
+            }, null, this);
+          });
+
+        case 16:
         case "end":
-          return _context.stop();
+          return _context2.stop();
       }
     }
   });
@@ -1483,6 +1520,8 @@ try {
   __webpack_require__(/*! Component/integer-field */ "./resources/js/component/integer-field.js");
 
   __webpack_require__(/*! Component/decimal-field */ "./resources/js/component/decimal-field.js");
+
+  __webpack_require__(/*! Component/file-input-field */ "./resources/js/component/file-input-field.js");
 
   var dt = __webpack_require__(/*! datatables.net-bs4 */ "./node_modules/datatables.net-bs4/js/dataTables.bootstrap4.js");
 
@@ -1585,6 +1624,44 @@ $(function () {
       if (numCharsAfterDecimal >= numDecimalPlaces) {
         return false;
       }
+    }
+  });
+});
+
+/***/ }),
+
+/***/ "./resources/js/component/file-input-field.js":
+/*!****************************************************!*\
+  !*** ./resources/js/component/file-input-field.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/component/file-input-field.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+$(function () {
+  $('.file-upload-field-input').change(function () {
+    var file = this.files[0];
+    var inputName = $(this).attr('name');
+    var labelId = "customFileLabel_" + inputName;
+    $('#' + labelId).text(file.name);
+    var imagePreviewContainer = $('#fileUploadImagePreviewContainer_' + inputName);
+
+    if (file.type.toString().match(/^image\//)) {
+      var image = $('#fileUploadImagePreview_' + inputName);
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        image.attr('src', e.target.result);
+      };
+
+      reader.readAsDataURL(this.files[0]);
+      imagePreviewContainer.addClass('previewing-image');
+    } else {
+      imagePreviewContainer.removeClass('previewing-image');
     }
   });
 });
@@ -2033,6 +2110,63 @@ module.exports = charCodes;
 
 /***/ }),
 
+/***/ "./resources/js/services/confirm.js":
+/*!******************************************!*\
+  !*** ./resources/js/services/confirm.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/services/confirm.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
+
+var confirm = {};
+var popupsContainer = '';
+var confirmVocab = 'Confirm';
+var cancelVocab = 'Cancel';
+var confirmDeleteVocab = 'Confirm Delete';
+var sureDeleteThisVocab = 'Are you sure you want to delete this?';
+$(function () {
+  popupsContainer = $('#popups');
+  confirmVocab = meta.get('vocab-confirm');
+  cancelVocab = meta.get('vocab-cancel');
+  confirmDeleteVocab = meta.get('vocab-confirm-delete');
+  sureDeleteThisVocab = meta.get('vocab-sure-delete-this');
+});
+
+function showPopup(title, message) {
+  return new Promise(function (resolve, reject) {
+    var modalMarkup = '<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">' + '  <div class="modal-dialog">' + '    <div class="modal-content shadow">' + '      <div class="modal-header">' + '        <h5 class="modal-title" id="confirmModalLabel">' + title + '</h5>' + '      </div>' + '      <div class="modal-body">' + message + '      </div>' + '      <div class="modal-footer">' + '        <button type="button" class="btn btn-secondary" id="confirmModal_cancelButton">' + cancelVocab + '</button>' + '        <button type="button" class="btn btn-warning" id="confirmModal_confirmButton">' + confirmVocab + '</button>' + '      </div>' + '    </div>' + '  </div>' + '</div>';
+    popupsContainer.html(modalMarkup);
+    var modal = $('#confirmModal');
+    $('#confirmModal_confirmButton').click(function () {
+      resolve(true);
+      modal.modal('hide');
+    });
+    $('#confirmModal_cancelButton').click(function () {
+      resolve(false);
+      modal.modal('hide');
+    });
+    modal.modal({
+      backdrop: 'static'
+    }).on('hidden.bs.modal', function () {
+      $(this).remove();
+    });
+  });
+}
+
+confirm["delete"] = function (item) {
+  return showPopup('<span class="fas fa-trash-alt text-danger mr-2"></span>' + confirmDeleteVocab, sureDeleteThisVocab + '<div class="text-center mt-4 mb-4 fs-16px">' + item + '</div>');
+};
+
+module.exports = confirm;
+
+/***/ }),
+
 /***/ "./resources/js/services/meta.js":
 /*!***************************************!*\
   !*** ./resources/js/services/meta.js ***!
@@ -2249,6 +2383,17 @@ module.exports = routing;
 
 /***/ }),
 
+/***/ "./resources/sass/fileStore.scss":
+/*!***************************************!*\
+  !*** ./resources/sass/fileStore.scss ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "./resources/sass/files.scss":
 /*!***********************************!*\
   !*** ./resources/sass/files.scss ***!
@@ -2316,9 +2461,9 @@ module.exports = routing;
 /***/ }),
 
 /***/ 0:
-/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/manual.scss ./resources/sass/auth.scss ./resources/sass/app.scss ./resources/sass/document.scss ./resources/sass/home.scss ./resources/sass/user-activity.scss ./resources/sass/settings.scss ./resources/sass/activities.scss ./resources/sass/files.scss ./resources/sass/formDocs.scss ./resources/sass/admin.scss ./resources/sass/admin/server.scss ./resources/sass/admin/files.scss ./resources/sass/admin/_field.scss ***!
-  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/manual.scss ./resources/sass/auth.scss ./resources/sass/app.scss ./resources/sass/document.scss ./resources/sass/home.scss ./resources/sass/fileStore.scss ./resources/sass/user-activity.scss ./resources/sass/settings.scss ./resources/sass/activities.scss ./resources/sass/files.scss ./resources/sass/formDocs.scss ./resources/sass/admin.scss ./resources/sass/admin/server.scss ./resources/sass/admin/files.scss ./resources/sass/admin/_field.scss ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2328,6 +2473,7 @@ __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/a
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/app.scss */"./resources/sass/app.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/document.scss */"./resources/sass/document.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/home.scss */"./resources/sass/home.scss");
+__webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/fileStore.scss */"./resources/sass/fileStore.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/user-activity.scss */"./resources/sass/user-activity.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/settings.scss */"./resources/sass/settings.scss");
 __webpack_require__(/*! /home/noah/Source/noahheck/office-forge/resources/sass/activities.scss */"./resources/sass/activities.scss");

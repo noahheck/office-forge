@@ -9,6 +9,7 @@ let $ = require('jquery');
 let meta = require('Services/meta');
 require('Services/ajax');
 require('Services/notify');
+let confirm = require('Services/confirm');
 
 $(async function() {
 
@@ -56,6 +57,23 @@ $(async function() {
         todayBtn: 'linked',
         clearBtn: true,
         zIndexOffset: 1031,
+    });
+
+    $('.confirm-delete-form').submit(async function(e) {
+        let $form = $(this);
+
+        if ($form.data('deleteConfirmed')) {
+            return true;
+        }
+
+        e.preventDefault();
+
+        let confirmed = await confirm.delete($form.data('deleteItemTitle'));
+
+        if (confirmed) {
+            $form.data('deleteConfirmed', true);
+            $form.submit();
+        }
     });
 
 });

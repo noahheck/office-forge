@@ -11445,6 +11445,22 @@ a.text-dark:focus {
   padding: 4px;
 }
 
+.file-upload-group .file-upload-image-preview-container {
+  display: none;
+  text-align: center;
+  padding: 15px;
+}
+
+.file-upload-group .file-upload-image-preview-container img {
+  opacity: 0.5;
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.file-upload-group .file-upload-image-preview-container.previewing-image {
+  display: block;
+}
+
 .main-content {
   padding-top: 120px;
   padding-bottom: 120px;

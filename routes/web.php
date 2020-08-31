@@ -50,6 +50,22 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     Route::get('/activity', 'UserActivityController@index')->name('user-activity');
 
 
+    // FileStore
+    Route::get('/drives', 'DriveController@index')->name('drives.index');
+    Route::get('/drives/{drive}', 'DriveController@show')->name('drives.show');
+
+    Route::prefix('/drives/{drive}')->namespace('Drive')->name('drives.')->group(function() {
+
+        Route::resource('/folders', 'FolderController');
+
+        Route::resource('/files', 'MediaFileController');
+
+        Route::get('/files/{file}/preview/{filename}', 'MediaFileController@preview')->name('files.preview');
+        Route::get('/files/{file}/download/{filename}', 'MediaFileController@download')->name('files.download');
+
+    });
+
+
     // Activities
     Route::resource('/activities', 'ActivityController');
     Route::post('activities/{activity}/complete', 'ActivityController@complete')->name('activities.complete');
@@ -173,6 +189,10 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
             Route::post('/tasks/update-order', 'TaskController@updateOrder')->name('tasks.update-order');
 
         });
+
+
+        // FileStore
+        Route::resource('/drives', 'DriveController');
 
 
         // Server

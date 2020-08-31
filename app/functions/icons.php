@@ -422,6 +422,12 @@ function organization($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function fileStore($classes = []) {
+    $classes[] = "fas fa-archive";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function systemConfiguration($classes = []) {
     $classes[] = "fas fa-sliders-h";
 
@@ -471,7 +477,7 @@ function database($classes = []) {
 }
 
 function diskDrive($classes = []) {
-    $classes[] = "fas fa-hdd";
+    $classes[] = "far fa-hdd";
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
@@ -481,6 +487,125 @@ function history($classes = []) {
 
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
+
+function drive($classes = []) {
+    $classes[] = "fas fa-hdd";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function folder($classes = []) {
+    $classes[] = "fas fa-folder-open";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function folderUp($classes = []) {
+    $classes[] = "fas fa-arrow-circle-up";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function folderPlus($classes = []) {
+    $classes[] = "fas fa-folder-plus";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function mediaFile($classes = []) {
+    $classes[] = "fas fa-file";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function mediaFileUpload($classes = []) {
+    $classes[] = "fas fa-file-upload";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function mediaFilePreview($classes = []) {
+    $classes[] = "fas fa-external-link-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function mediaFileDownload($classes = []) {
+    $classes[] = "fas fa-file-download";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
+
+
+function file_file($classes = []) {
+    $classes[] = "fas fa-file";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_word($classes = []) {
+    $classes[] = "fas fa-file-word";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_video($classes = []) {
+    $classes[] = "fas fa-file-video";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_presentation($classes = []) {
+    $classes[] = "fas fa-file-powerpoint";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_pdf($classes = []) {
+    $classes[] = "fas fa-file-pdf";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_image($classes = []) {
+    $classes[] = "fas fa-file-image";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_spreadsheet($classes = []) {
+    $classes[] = "fas fa-file-excel";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_code($classes = []) {
+    $classes[] = "fas fa-file-code";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_audio($classes = []) {
+    $classes[] = "fas fa-file-audio";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_archive($classes = []) {
+    $classes[] = "fas fa-file-archive";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function file_csv($classes = []) {
+    $classes[] = "fas fa-file-csv";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
 
 
 function forActivity($activity, $classes = []) {

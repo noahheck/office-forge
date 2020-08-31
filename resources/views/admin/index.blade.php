@@ -74,14 +74,15 @@
             </a>
         </div>
 
-        {{--<div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link" href="#">
+        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+            <a class="card admin-module-link" href="{{ route('admin.drives.index') }}">
                 <div class="card-body">
-                    <span class="fas fa-project-diagram module-icon"></span>
-                    {{ __('app.projects') }}
+                    {!! \App\icon\fileStore(['module-icon']) !!}
+                    {{ __('app.fileStore') }}
                 </div>
             </a>
-        </div>--}}
+        </div>
+
     </div>
 
     <hr>

@@ -13,11 +13,20 @@ return [
     'add' => 'Add',
     'edit' => 'Edit',
     'cancel' => 'Cancel',
+    'confirm' => 'Confirm',
     'create' => 'Create',
     'new' => 'New',
     'addNew' => 'Add New',
     'continue' => 'Continue',
     'accessDetails' => 'Access Details',
+
+    'confirmDelete' => 'Confirm Delete',
+    'sureDeleteThis' => 'Are you sure you want to delete this?',
+
+
+    'upload' => 'Upload',
+    'download' => 'Download',
+    'preview' => 'Preview',
 
     'itemUpdated' => ':itemName updated',
     'options' => 'Options',
@@ -53,6 +62,7 @@ return [
 
     'files' => 'Files',
     'file' => 'File',
+    'fileStore' => 'FileStore',
     'fileTypes' => 'File Types',
     'fileType' => 'File Type',
     'formDocs' => 'FormDocs',
