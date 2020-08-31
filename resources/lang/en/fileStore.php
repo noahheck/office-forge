@@ -16,6 +16,9 @@ return [
     'drive_teamAccessApprovalShortDescription' => 'This Drive is only accessible by members of these teams.',
     'drive_unrestrictedDescription' => 'This Drive is accessible by all of your staff.',
 
+    'theresNothingHere' => "There's nothing here",
+    'safelyUploadAndShare' => 'Upload a file to keep it secure and safely share it with your colleagues',
+
     'folder' => 'Folder',
     'folders' => 'Folders',
     'addFolder' => 'Add Folder',

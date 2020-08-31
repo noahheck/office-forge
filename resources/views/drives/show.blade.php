@@ -46,10 +46,14 @@
                         </a>
                     </div>
 
-                    @include('drives._folders-and-files', [
-                        'folders' => $drive->topLevelFolders,
-                        'mediaFiles' => $drive->topLevelMediaFiles,
-                    ])
+                    @if ($drive->topLevelFolders->count() > 0 || $drive->topLevelMediaFiles->count() > 0)
+                        @include('drives._folders-and-files', [
+                            'folders' => $drive->topLevelFolders,
+                            'mediaFiles' => $drive->topLevelMediaFiles,
+                        ])
+                    @else
+                        @include('drives._no-folders-or-files')
+                    @endif
 
                 </div>
 

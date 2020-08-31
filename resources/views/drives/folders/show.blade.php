@@ -106,10 +106,14 @@
                         </a>
                     </div>
 
-                    @include('drives._folders-and-files', [
-                        'folders' => $folder->folders,
-                        'mediaFiles' => $folder->mediaFiles,
-                    ])
+                    @if ($folder->folders->count() > 0 || $folder->mediaFiles->count() > 0)
+                        @include('drives._folders-and-files', [
+                            'folders' => $folder->folders,
+                            'mediaFiles' => $folder->mediaFiles,
+                        ])
+                    @else
+                        @include('drives._no-folders-or-files')
+                    @endif
 
                 </div>
 
