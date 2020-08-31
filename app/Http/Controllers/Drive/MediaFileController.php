@@ -64,6 +64,9 @@ class MediaFileController extends Controller
      */
     public function store(StoreRequest $request, Drive $drive)
     {
+        $user = $request->user();
+        abort_unless($user->can('view', $drive), 403);
+
         $this->dispatchNow($mediaFileCreated = new Create(
             $drive,
             $request->folder_id,
@@ -95,8 +98,8 @@ class MediaFileController extends Controller
     public function show(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
-        abort_unless($user->can('view', $drive), 403);
         abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('view', $file), 403);
 
         $mediaFile = $file;
 
@@ -113,8 +116,8 @@ class MediaFileController extends Controller
     public function edit(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
-        abort_unless($user->can('view', $drive), 403);
         abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('update', $file), 403);
 
         $mediaFile = $file;
 
@@ -131,6 +134,10 @@ class MediaFileController extends Controller
      */
     public function update(UpdateRequest $request, Drive $drive, MediaFile $file)
     {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('update', $file), 403);
+
         $this->dispatchNow($mediaFileUpdated = new Update($file, $request->name, $request->description));
 
         flash_success(__('fileStore.file_updated'));
@@ -158,8 +165,8 @@ class MediaFileController extends Controller
     public function preview(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
-        abort_unless($user->can('view', $drive), 403);
         abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('view', $file), 403);
 
         return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
                 'Content-Disposition' => 'inline',
@@ -170,8 +177,8 @@ class MediaFileController extends Controller
     public function download(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
-        abort_unless($user->can('view', $drive), 403);
         abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('view', $file), 403);
 
         return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
                 'Content-Disposition' => 'attachment; filename="' . $file->name . '"',

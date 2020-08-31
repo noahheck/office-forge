@@ -25,7 +25,12 @@ class DriveController extends Controller
         abort_unless($request->user()->can('view', $drive), 403);
 
          $drive->load('topLevelFolders');
-         $drive->load('topLevelMediaFiles', 'topLevelMediaFiles.headshots');
+         $drive->load(
+             'topLevelMediaFiles',
+             'topLevelMediaFiles.headshots',
+             'topLevelMediaFiles.drive',
+             'topLevelMediaFiles.drive.teams'
+         );
 
         return $this->view('drives.show', compact('drive'));
     }
