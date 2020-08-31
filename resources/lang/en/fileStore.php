@@ -21,6 +21,7 @@ return [
     'addFolder' => 'Add Folder',
     'newFolder' => 'New Folder',
     'editFolder' => 'Edit Folder',
+    'deleteFolder' => 'Delete Folder',
     'noFolders' => 'There are no Folders here yet.',
     'createFolderNow' => 'Create a Folder now',
 
@@ -33,6 +34,7 @@ return [
 
     'folder_created' => 'Folder created',
     'folder_updated' => 'Folder updated',
+    'folder_deleted' => 'Folder deleted',
 
     'file' => 'File',
     'files' => 'Files',

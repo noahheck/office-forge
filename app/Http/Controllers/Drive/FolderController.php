@@ -10,6 +10,7 @@ use App\Http\Requests\Drive\Folders\Update as UpdateRequest;
 use App\Jobs\FileStore\Drive\Folder\Create;
 use App\Jobs\FileStore\Drive\Folder\Update;
 use Illuminate\Http\Request;
+use function App\flash_info;
 use function App\flash_success;
 
 class FolderController extends Controller
@@ -73,6 +74,7 @@ class FolderController extends Controller
      */
     public function show(Request $request, Drive $drive, Folder $folder)
     {
+        abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('view', $drive), 403);
 
         $folder->load('mediaFiles', 'mediaFiles.headshots', 'mediaFiles.drive', 'mediaFiles.drive.teams');
@@ -88,6 +90,7 @@ class FolderController extends Controller
      */
     public function edit(Request $request, Drive $drive, Folder $folder)
     {
+        abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('view', $drive), 403);
 
         return $this->view('drives.folders.edit', compact('drive', 'folder'));
@@ -102,6 +105,9 @@ class FolderController extends Controller
      */
     public function update(UpdateRequest $request, Drive $drive, Folder $folder)
     {
+        abort_unless($folder->drive_id === $drive->id, 403);
+        abort_unless($request->user()->can('view', $drive), 403);
+
         $this->dispatchNow($folderUpdated = new Update($folder, $request->name, $request->description));
 
         flash_success(__('fileStore.folder_updated'));
@@ -115,8 +121,21 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Drive $drive, Folder $folder)
+    public function destroy(Request $request, Drive $drive, Folder $folder)
     {
-        //
+        abort_unless($folder->drive_id === $drive->id, 403);
+        abort_unless($request->user()->can('delete', $folder), 403);
+
+        $parentFolder = $folder->parentFolder;
+
+        $folder->delete();
+
+        flash_info(__('fileStore.file_deleted'));
+
+        if ($parentFolder) {
+            return redirect()->route('drives.folders.show', [$drive, $parentFolder]);
+        }
+
+        return redirect()->route('drives.show', [$drive]);
     }
 }

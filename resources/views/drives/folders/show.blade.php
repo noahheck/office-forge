@@ -55,9 +55,25 @@
 
                         <div class="flex-grow-0">
 
-                            <a class="btn btn-primary btn-sm" href="{{ route('drives.folders.edit', [$drive, $folder]) }}">
-                                {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFolder') }}
-                            </a>
+                            <div class="btn-group">
+                                <a class="btn btn-primary btn-sm" href="{{ route('drives.folders.edit', [$drive, $folder]) }}">
+                                    {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFolder') }}
+                                </a>
+                                @can('delete', $folder)
+                                    <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">{{ __('app.moreOptions') }}</span>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <form id="deleteFolderForm" action="{{ route('drives.folders.destroy', [$drive, $folder]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $folder->name }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="dropdown-item text-danger">
+                                                {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFolder') }}
+                                            </button>
+                                        </form>
+                                    </div>
+                                @endcan
+                            </div>
 
                         </div>
 
