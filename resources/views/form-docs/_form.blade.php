@@ -69,23 +69,14 @@
 
         <hr>
 
-        <div class="dropdown">
-
-            <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" id="deleteFormDocButton">
-                {!! \App\icon\trash(['mr-1']) !!}{{ __('formDoc.deleteFormDoc') }}
+        <form action="{{ route('form-docs.destroy', [$formDoc]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $formDoc->name }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm">
+                {!! \App\icon\trash() !!}
+                {{ __('formDoc.deleteFormDoc') }}
             </button>
-
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="deleteTaskButton">
-                <form action="{{ route('form-docs.destroy', [$formDoc]) }}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="dropdown-item text-danger">
-                        {!! \App\icon\trash() !!}
-                        {{ __('formDoc.deleteFormDocForGood') }}
-                    </button>
-                </form>
-            </div>
-        </div>
+        </form>
 
     </div>
 @endcan

@@ -130,22 +130,14 @@
 
         <hr>
 
-        <div class="dropdown">
-
-            <button type="button" class="btn btn-outline-danger dropdown-toggle" data-toggle="dropdown" id="deleteTaskButton">
-                <span class="far fa-trash-alt mr-1"></span>{{ __('activity.deleteActivity') }}
+        <form action="{{ route("activities.destroy", [$activity]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $activity->name }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm">
+                {!! \App\icon\trash() !!}
+                {{ __('activity.deleteActivity') }}
             </button>
-
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="deleteTaskButton">
-                <form action="{{ route("activities.destroy", [$activity]) }}" method="POST">
-                    @csrf @method('DELETE')
-                    <button type="submit" class="dropdown-item text-danger">
-                        <span class="far fa-trash-alt"></span>
-                        {{ __('activity.deleteActivityForGood') }}
-                    </button>
-                </form>
-            </div>
-        </div>
+        </form>
 
     </div>
 @endcan
