@@ -11649,6 +11649,24 @@ h1 {
   margin-bottom: 15px;
 }
 
+p {
+  margin-bottom: 12px;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-warning {
+  background-color: #f6993f;
+  border-color: #f6993f;
+  color: #fff;
+}
+
+.btn-warning:hover {
+  background-color: #f47f0e;
+}
+
 @media (min-width: 768px) {
   .nav-sidebar {
     position: -webkit-sticky;
@@ -11739,5 +11757,15 @@ h1 {
   font-size: 0.8rem;
   text-align: right;
   color: #666;
+}
+
+.manual-image-container {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.manual-image-container img {
+  max-width: 100%;
 }
 

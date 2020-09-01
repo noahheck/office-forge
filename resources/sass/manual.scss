@@ -29,10 +29,24 @@ h1 {
 
 }
 
+p {
+    margin-bottom: 12px;
+}
 
 
+.btn {
+    @include border-radius(0);
+}
 
+.btn-warning {
+    background-color: #f6993f;
+    border-color: #f6993f;
+    color: #fff;
 
+    &:hover {
+        background-color: #f47f0e;
+    }
+}
 
 
 
@@ -132,4 +146,18 @@ h1 {
     font-size: .8rem;
     text-align: right;
     color: $dark-gray;
+}
+
+
+.manual-image-container {
+
+    text-align: center;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    img {
+        max-width: 100%;
+    }
+
 }

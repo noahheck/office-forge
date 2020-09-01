@@ -161,5 +161,17 @@ EOT;
         \Blade::component('manual.components.note', 'note');
         \Blade::component('manual.components.technote', 'technote');
         \Blade::component('manual.components.warning', 'warning');
+
+        \Blade::directive('manualImage', function($expression) {
+            return <<<EOT
+<?php
+    list(\$image, \$alt) = [$expression];
+    echo "<div class='manual-image-container'>";
+    echo "<img src='" . asset('images/manual/' . \$image) . "' alt='" . e(\$alt) . "'>";
+    echo "</div>";
+?>
+EOT;
+
+        });
     }
 }
