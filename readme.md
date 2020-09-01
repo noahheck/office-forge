@@ -12,6 +12,10 @@ The Process Management System in Office Forge is a tool allowing administrators 
 
 The Files System allows administrators to organize the information that's important to the business in the way that best expresses their competitive advantages. There are tools for collecting, tracking, and sharing the information staff members need to do their work correctly and efficiently.
 
+### FileStore
+
+FileStore provides organizations with a cloud-based file hosting and sharing system. This system allows organizations to upload, manage access to, and share files among their staff members. 
+
 ## Installation
 
 Check out the documentation on [installing Office Forge](docs/installing.md).
