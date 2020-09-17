@@ -43,7 +43,7 @@
                     <tbody>
                         @foreach($users as $user)
                             <tr>
-                                <td class="text-center">
+                                <td class="text-center" data-search="">
                                     @checkboxSwitchField([
                                         'name' => 'members[]',
                                         'id' => 'member_' . $user->id,
@@ -69,11 +69,11 @@
                                     !!}
 
                                 </td>
-                                <td data-sort="{{ $user->name }}">
+                                <td data-sort="{{ $user->name }}" data-search="{{ $user->name }}">
                                     {!! $user->iconAndName() !!}
                                 </td>
                                 <td>{{ $user->job_title }}</td>
-                                <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}">
+                                <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}" data-search="">
                                     @if ($user->active)
                                         {!! \App\icon\checkedBox() !!}
                                     @else

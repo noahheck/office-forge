@@ -31,7 +31,7 @@
                         <tbody>
                             @foreach($templates as $template)
                                 <tr>
-                                    <td data-sort="{{ $template->name }}">
+                                    <td data-sort="{{ $template->name }}" data-search="{{ $template->name }}">
                                         <a href="{{ route('admin.form-docs.show', [$template]) }}">
                                             {{ $template->name }}
                                         </a>

@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach($drives as $drive)
                                 <tr>
-                                    <td>
+                                    <td data-sort="{{ $drive->name }}" data-search="{{ $drive->name }}">
                                         <a href="{{ route('admin.drives.show', [$drive]) }}">
                                             {{ $drive->name }}
                                         </a>

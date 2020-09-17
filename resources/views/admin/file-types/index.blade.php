@@ -31,15 +31,15 @@
                         <tbody>
                             @foreach($fileTypes as $fileType)
                                 <tr>
-                                    <td class="text-center">
+                                    <td class="text-center" data-search="">
                                         {!! $fileType->icon() !!}
                                     </td>
-                                    <td data-sort="{{ $fileType->name }}">
+                                    <td data-sort="{{ $fileType->name }}" data-search="{{ $fileType->name }}">
                                         <a href="{{ route('admin.file-types.show', [$fileType]) }}">
                                             {{ $fileType->name }}
                                         </a>
                                     </td>
-                                    <td class="text-center" data-order="{{ $fileType->active ? '1' : '0' }}"><span class="far fa{{ ($fileType->active) ? '-check' : '' }}-square"></span></td>
+                                    <td class="text-center" data-order="{{ $fileType->active ? '1' : '0' }}" data-search=""><span class="far fa{{ ($fileType->active) ? '-check' : '' }}-square"></span></td>
                                 </tr>
                             @endforeach
                         </tbody>

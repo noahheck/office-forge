@@ -8,6 +8,10 @@
     ],
     "license": "MIT",
     "require": {
+        "ext-gd": "*",
+        "ext-gmp": "*",
+        "ext-json": "*",
+        "ext-zip": "*",
         "php": "^7.2",
         "appstract/laravel-options": "^5.1",
         "doctrine/dbal": "^2.10",

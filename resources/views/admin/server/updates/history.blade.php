@@ -32,7 +32,7 @@
                     <tbody>
                     @foreach($updates as $update)
                         <tr>
-                            <td class="text-center" data-order="{{ $update->successful ? '1' : '0' }}">
+                            <td class="text-center" data-order="{{ $update->successful ? '1' : '0' }}" data-search="">
                                 @if ($update->successful)
                                     {!! \App\icon\checkedBox() !!}
                                 @else

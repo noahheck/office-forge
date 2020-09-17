@@ -47,7 +47,7 @@
                                 @foreach($files as $file)
                                     @can('view', $file)
                                         <tr>
-                                            <td data-sort="{{ $file->name }}">
+                                            <td data-sort="{{ $file->name }}" data-search="{{ $file->name }}">
                                                 <a href="{{ route('files.show', [$file]) }}">
                                                     {!! $file->name !!}
                                                 </a>

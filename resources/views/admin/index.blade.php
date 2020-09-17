@@ -118,32 +118,32 @@
             </a>
         </div>
 
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+        {{--<div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\updates(['module-icon']) !!}
                     Updates
                 </div>
             </a>
-        </div>
+        </div>--}}
 
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+        {{--<div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\security(['module-icon']) !!}
                     Security
                 </div>
             </a>
-        </div>
+        </div>--}}
 
-        <div class="col-6 col-sm-4 col-md-3 col-xl-2">
+        {{--<div class="col-6 col-sm-4 col-md-3 col-xl-2">
             <a class="card admin-module-link not-implemented" href="#">
                 <div class="card-body">
                     {!! \App\icon\plugins(['module-icon']) !!}
                     Plugins
                 </div>
             </a>
-        </div>
+        </div>--}}
 
     </div>
 

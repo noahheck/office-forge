@@ -45,7 +45,7 @@
                                     !!}
 
                                 </td>
-                                <td data-sort="{{ $user->name }}">
+                                <td data-sort="{{ $user->name }}" data-search="{{ $user->name }}">
                                     <a href="{{ route('admin.users.edit', [$user]) }}">
                                         {!! $user->iconAndName() !!}
                                     </a>
