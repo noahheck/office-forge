@@ -7,6 +7,7 @@ use App\Http\Requests\Drive\UploadFiles as UploadFilesRequest;
 use App\Jobs\FileStore\Drive\MediaFile\Create;
 use App\Utility\FilenameParser;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class DriveController extends Controller
 {
@@ -40,6 +41,7 @@ class DriveController extends Controller
 
     public function uploadFiles(UploadFilesRequest $request, Drive $drive, FilenameParser $filenameParser)
     {
+        $count = 0;
         foreach ($request->file('files') as $file) {
 
             $filename = $filenameParser->parseFilenameParts($file->getClientOriginalName())['filename'];
@@ -52,7 +54,11 @@ class DriveController extends Controller
                 '',
                 $request->user()
             ));
+
+            $count++;
         }
+
+        flash_success(trans_choice('fileStore.files_uploaded', $count, ['count' => $count]));
 
         return redirect($request->return);
     }

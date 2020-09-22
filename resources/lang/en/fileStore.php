@@ -59,4 +59,5 @@ return [
     'file_uploaded' => 'File uploaded',
     'file_updated' => 'File updated',
     'file_deleted' => 'File deleted',
+    'files_uploaded' => 'File uploaded|:count files uploaded',
 ];
