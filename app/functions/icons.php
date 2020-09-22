@@ -10,6 +10,13 @@ function php($classes = []) {
 }
 
 // Generic
+
+function spinner($classes = []) {
+    $classes[] = "spinner-icon fas fa-spinner";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function go($classes = []) {
     $classes[] = "far fa-arrow-alt-circle-right";
 

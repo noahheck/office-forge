@@ -20,7 +20,29 @@
     <div class="row project justify-content-center document-print-container">
 
         <div class="col-12 col-md-10 document-container">
-            <div class="card shadow document">
+            <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
+
+                <form action="{{ route('drives.upload-files', [$drive]) }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
+
+                    @csrf
+
+                    @hiddenField([
+                        'name' => 'return',
+                        'value' => url()->current(),
+                    ])
+
+                    <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
+
+                    <label for="files_input">
+                        {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $drive->name]))) !!}
+                    </label>
+
+                    <span class="files-are-uploading-indicator">
+                        {!! \App\icon\spinner(['fa-spin']) !!}
+                    </span>
+
+                </form>
+
                 <div class="card-body">
 
                     <h2>{!! \App\icon\drive(['mr-2']) !!}{{ $drive->name }}</h2>

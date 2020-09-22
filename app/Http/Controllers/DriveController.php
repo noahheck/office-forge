@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\FileStore\Drive;
+use App\Http\Requests\Drive\UploadFiles as UploadFilesRequest;
+use App\Jobs\FileStore\Drive\MediaFile\Create;
+use App\Utility\FilenameParser;
 use Illuminate\Http\Request;
 
 class DriveController extends Controller
@@ -33,5 +36,24 @@ class DriveController extends Controller
          );
 
         return $this->view('drives.show', compact('drive'));
+    }
+
+    public function uploadFiles(UploadFilesRequest $request, Drive $drive, FilenameParser $filenameParser)
+    {
+        foreach ($request->file('files') as $file) {
+
+            $filename = $filenameParser->parseFilenameParts($file->getClientOriginalName())['filename'];
+
+            $this->dispatchNow($mediaFileCreated = new Create(
+                $drive,
+                $request->folder_id,
+                $file,
+                $filename,
+                '',
+                $request->user()
+            ));
+        }
+
+        return redirect($request->return);
     }
 }

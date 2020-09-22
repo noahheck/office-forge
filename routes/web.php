@@ -53,6 +53,7 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     // FileStore
     Route::get('/drives', 'DriveController@index')->name('drives.index');
     Route::get('/drives/{drive}', 'DriveController@show')->name('drives.show');
+    Route::post('/drives/{drive}/upload-files', 'DriveController@uploadFiles')->name('drives.upload-files');
 
     Route::prefix('/drives/{drive}')->namespace('Drive')->name('drives.')->group(function() {
 

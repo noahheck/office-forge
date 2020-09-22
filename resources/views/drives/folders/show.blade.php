@@ -32,7 +32,34 @@
 
             @endforeach
 
-            <div class="card shadow document">
+            <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
+
+                <form action="{{ route('drives.upload-files', [$drive]) }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
+
+                    @csrf
+
+                    @hiddenField([
+                        'name' => 'return',
+                        'value' => url()->current(),
+                    ])
+
+                    @hiddenField([
+                        'name' => 'folder_id',
+                        'value' => $folder->id,
+                    ])
+
+                    <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
+
+                    <label for="files_input">
+                        {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $folder->name]))) !!}
+                    </label>
+
+                    <span class="files-are-uploading-indicator">
+                        {!! \App\icon\spinner(['fa-spin']) !!}
+                    </span>
+
+                </form>
+
                 <div class="card-body">
 
                     <h2>{!! \App\icon\folder(['mr-2']) !!}{{ $folder->name }}</h2>

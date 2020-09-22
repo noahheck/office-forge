@@ -27,6 +27,7 @@ return [
     'deleteFolder' => 'Delete Folder',
     'noFolders' => 'There are no Folders here yet.',
     'createFolderNow' => 'Create a Folder now',
+    'dropFilesToTarget' => "Drop files here to upload to \n :target",
 
     'folder_childFolderOf' => 'Child folder of :parent',
     'folder_name' => 'Name',
@@ -53,6 +54,7 @@ return [
     'file_descriptionExamples' => '',
     'file_extensionExample' => '.extension',
     'file_uploadedBy' => 'Uploaded by',
+
 
     'file_uploaded' => 'File uploaded',
     'file_updated' => 'File updated',

@@ -1,3 +1,7 @@
+// Stimulus
+import { Application } from "stimulus";
+import { definitionsFromContext } from "stimulus/webpack-helpers";
+
 window._ = require('lodash');
 
 /**
@@ -33,6 +37,13 @@ try {
 
     let dt = require('datatables.net-bs4');
     let buttons = require('datatables.net-buttons-bs4');
+
+
+    // Stimulus controllers
+    const application = Application.start()
+    const context = require.context("./controllers", true, /\.js$/)
+    application.load(definitionsFromContext(context))
+
     // let buttons = require('datatables.net-buttons');
              /*require( 'datatables.net-buttons/js/buttons.colVis.js' )(); // Column visibility
              require( 'datatables.net-buttons/js/buttons.html5.js' )();  // HTML 5 file export

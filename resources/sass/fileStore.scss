@@ -41,6 +41,53 @@
 }
 
 
+.drag-drop-file-upload-target {
+
+    display: flex;
+    flex-direction: column;
+
+    .drag-drop-file-upload-form {
+        display: none;
+
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background-color: rgba(236, 236, 255, .8);
+        border: 10px dashed $blue;
+
+        text-align: center;
+
+        label,
+        .files-are-uploading-indicator {
+            color: $blue;
+            font-size: 36px;
+            padding-top: 15px;
+            font-weight: bold;
+        }
+
+    }
+
+    &.is-being-dragged-over {
+
+        .drag-drop-file-upload-form {
+            display: block;
+        }
+
+    }
+
+    .files-are-uploading-indicator {
+        display: none;
+    }
+
+    &.files-are-uploading {
+        .files-are-uploading-indicator {
+            display: block;
+        }
+    }
+}
+
+
 .files-and-folders-list-group {
 
     .media-file-item {

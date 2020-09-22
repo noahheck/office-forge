@@ -31,6 +31,7 @@
     "datatables.net-buttons": "^1.6.1",
     "datatables.net-buttons-bs4": "^1.6.1",
     "sortablejs": "^1.10.2",
+    "stimulus": "^1.1.1",
     "trix": "^1.2.1"
   }
 }
