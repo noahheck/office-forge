@@ -44,10 +44,27 @@ Click the <button class="btn btn-primary btn-sm">{!! \App\icon\mediaFileUpload([
 Select a file to upload (supported files will display a preview of the selected file), change the filename if desired, and optionally provide some additional information about the file. Click the <button class="btn btn-primary btn-sm">Save</button> button to upload the file to FileStore.
 
 @tip
+
 Most modern browsers allow drag-and-drop of files onto the File form, which can save considerable time compared to navigating through the File selection dialog window.
+
 @endtip
 
 Once a file has been uploaded, it can immediately be viewed and downloaded by any Staff Member who has access to the Drive.
+
+### Organizing Files with Folders
+
+Within a Drive, uploaded files can be further organized through the use of Folders. Click the <button class="btn btn-primary btn-sm">{!! \App\icon\folderPlus(['mr-2']) !!}Add Folder</button> button to create a new Folder in the current view. Once created, files can then be uploaded into a Folder to help keep your FileStore organized. You can also create any number of child folders within a Drive.
+
+@tip
+A thoughtful FileStore organization scheme can really help your Staff Members, ensuring they can access and use their tools and resources efficiently.
+@endtip
+
+### Uploading Multiple Files at Once
+
+For desktop browsers that support the drag-and-drop api (most modern browsers), you can upload one or more files at once by dragging them from your desktop directly into the Drive or Folder of your choice:
+
+@manualImage('fileStore_dragAndDrop.png', 'FileStore Drive showing a file being dragged over it causing it to be highlighted and have instructions on how to upload the file to the Drive appear.')
+
 
 ### Deleting Files
 
@@ -59,10 +76,3 @@ Uploaded files can be deleted from the Edit File screen. You'll be prompted to c
 Once a file has been deleted, it's gone for good.
 @endwarning
 
-### Organizing Files with Folders
-
-Within a Drive, uploaded files can be further organized through the use of Folders. Click the <button class="btn btn-primary btn-sm">{!! \App\icon\folderPlus(['mr-2']) !!}Add Folder</button> button to create a new Folder in the current view. Once created, files can then be uploaded into a Folder to help keep your FileStore organized. You can also create any number of child folders within a Drive.
-
-@tip
-A thoughtful FileStore organization scheme can really help your Staff Members, ensuring they can access and use their tools and resources efficiently.
-@endtip
