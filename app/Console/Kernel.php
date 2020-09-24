@@ -29,6 +29,9 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('of:generate-backup')
             ->hourly();
+
+        $schedule->command('of:delete-old-backups')
+            ->daily();
     }
 
     /**

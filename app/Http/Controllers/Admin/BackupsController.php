@@ -6,6 +6,7 @@ use App\Backups;
 use App\Backups\Backup;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Backups\SaveSettings as SaveSettingsRequest;
+use App\Jobs\Backups\DeleteOldBackups;
 use App\Jobs\Backups\Generate;
 use App\Jobs\Backups\SaveSettings;
 use App\Options;
