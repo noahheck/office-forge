@@ -57,7 +57,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="#">
+                                    <a href="{{ route('admin.backups.show', [$backup]) }}">
                                         {{ \App\format_datetime($backup->started) }}
                                     </a>
                                 </td>

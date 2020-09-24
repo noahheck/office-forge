@@ -248,6 +248,8 @@ return [
     'backups_settings' => 'Backups Settings',
     'backups_generateBackupNow' => 'Generate backup now',
     'backups_settings_shortDescription' => 'Configuration settings for database backups',
+    'backups_backup' => 'Backup',
+    'backups_backup_shortDescription' => 'Review a database backup entry',
     'backups_time' => 'Time',
     'backups_timeDescription' => 'The time of day daily backups should be created - UTC Time',
     'backups_storageTime' => 'Storage Time',
@@ -266,6 +268,8 @@ return [
     'backups_completedTime' => 'Completed Time',
     'backups_filename' => 'Filename',
     'backups_fileSize' => 'File size',
+
+    'backups_downloadBackupFile' => 'Download Backup File',
 
 
 

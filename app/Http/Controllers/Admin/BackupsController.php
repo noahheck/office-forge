@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Backups\SaveSettings as SaveSettingsRequest;
 use App\Jobs\Backups\Generate;
 use App\Jobs\Backups\SaveSettings;
 use App\Options;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use function App\flash_success;
 
@@ -45,5 +46,17 @@ class BackupsController extends Controller
         flash_success("Backup generated");
 
         return redirect()->route('admin.backups');
+    }
+
+    public function show(Backup $backup)
+    {
+        return $this->view('admin.backups.show', compact('backup'));
+    }
+
+    public function download(Backup $backup, Filesystem $disk)
+    {
+        abort_unless($disk->exists('/backups/' . $backup->filename), 404);
+
+        return $disk->download('/backups/' . $backup->filename);
     }
 }
