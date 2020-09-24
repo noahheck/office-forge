@@ -43,16 +43,32 @@
                         <dt>{{ __('admin.backups_fileSize') }}</dt>
                         <dd>{{ \App\format_filesize($backup->filesize) }}</dd>
 
+
+
                     </dl>
 
                     <hr>
 
-                    <div class="text-center">
-                        <a class="btn btn-primary" href="{{ route('admin.backups.download', [$backup]) }}" target="_blank">
-                            {!! \App\icon\mediaFileDownload(['d-block', 'fs-48px', 'mb-3', 'mt-3']) !!}
-                            {{ __('admin.backups_downloadBackupFile') }}
-                        </a>
-                    </div>
+                    @if ($backup->successful)
+
+                        <div class="text-center">
+                            <a class="btn btn-primary" href="{{ route('admin.backups.download', [$backup]) }}" target="_blank">
+                                {!! \App\icon\mediaFileDownload(['d-block', 'fs-48px', 'mb-3', 'mt-3']) !!}
+                                {{ __('admin.backups_downloadBackupFile') }}
+                            </a>
+                        </div>
+
+                    @else
+
+                        <p>
+                            <strong>Error:</strong>
+                        </p>
+
+                        <p>
+                            {!! nl2br(e($backup->error)) !!}
+                        </p>
+
+                    @endif
 
                 </div>
             </div>
