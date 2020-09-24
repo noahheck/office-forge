@@ -26,6 +26,8 @@ class Kernel extends ConsoleKernel
     {
          $schedule->command('of:server-install-updates')
                   ->hourlyAt(20);
+
+
     }
 
     /**

@@ -12,51 +12,61 @@
     <div class="card">
         <div class="card-body">
             <div class="text-right">
-                <a href="{{ route('admin.backups.settings') }}" class="btn btn-primary">
-                    {!! \App\icon\adminSettings(['mr-1']) !!}{{ __('admin.settings') }}
-                </a>
+                <div class="btn-group">
+
+                    <a href="{{ route('admin.backups.settings') }}" class="btn btn-primary">
+                        {!! \App\icon\adminSettings(['mr-1']) !!}{{ __('admin.settings') }}
+                    </a>
+                    <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="sr-only">{{ __('app.moreOptions') }}</span>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <form action="{{ route('admin.backups.generate') }}" method="POST">
+                            @csrf
+
+                            <button type="submit" class="dropdown-item">
+                                {{ __('admin.backups_generateBackupNow') }}
+                            </button>
+                        </form>
+
+                    </div>
+
+                </div>
+
             </div>
             <hr>
             <div class="table-responsive">
-                <table id="users" class="table table-striped table-bordered dt-table" data-order='[[ 1, "asc" ]]' data-columns='[{"orderable": false}, null, null, null]'>
+                <table id="backups" class="table table-striped table-bordered dt-table">
                     <thead>
                         <tr>
-                            <th class="w-50p">&nbsp;</th>
-                            <th>{{ __('user.name') }}</th>
-                            <th>{{ __('user.jobTitle') }}</th>
-                            <th class="w-50p">{{ __('user.active') }}</th>
+                            <th class="w-100p text-center">{{ __('admin.backups_successful') }}</th>
+                            <th>{{ __('admin.backups_startTime') }}</th>
+                            <th>{{ __('admin.backups_completedTime') }}</th>
+                            <th class="">{{ __('admin.backups_filename') }}</th>
+                            <th class="w-100p">{{ __('admin.backups_fileSize') }}</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach([] as $user)
+                        @foreach($backups as $backup)
                             <tr>
-                                <td>
-
-                                    {!!
-                                        ($user->administrator)
-                                        ? \App\icon\userAdmin(['fa-fw'], __('user.administrator'))
-                                        : ""
-                                    !!}
-
-                                    {!!
-                                        ($user->system_administrator)
-                                        ? \App\icon\userSystemAdmin(['fa-fw'], __('user.systemAdministrator'))
-                                        : ""
-                                    !!}
-
-                                </td>
-                                <td data-sort="{{ $user->name }}" data-search="{{ $user->name }}">
-                                    <a href="{{ route('admin.users.edit', [$user]) }}">
-                                        {!! $user->iconAndName() !!}
-                                    </a>
-                                </td>
-                                <td>{{ $user->job_title }}</td>
-                                <td class="text-center" data-order="{{ $user->active ? '1' : '0' }}">
-                                    @if ($user->active)
+                                <td class="text-center">
+                                    @if ($backup->successful)
                                         {!! \App\icon\checkedBox() !!}
                                     @else
                                         {!! \App\icon\uncheckedBox() !!}
                                     @endif
+                                </td>
+                                <td>
+                                    <a href="#">
+                                        {{ \App\format_datetime($backup->started) }}
+                                    </a>
+                                </td>
+                                <td>{{ \App\format_datetime($backup->completed) }}</td>
+                                <td>
+                                    {{ $backup->filename }}
+                                </td>
+                                <td>
+                                    {{ \App\format_filesize($backup->filesize) }}
                                 </td>
                             </tr>
                         @endforeach

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Backups;
+use App\Backups\Backup;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Backups\SaveSettings as SaveSettingsRequest;
+use App\Jobs\Backups\Generate;
 use App\Jobs\Backups\SaveSettings;
 use App\Options;
 use Illuminate\Http\Request;
@@ -14,7 +16,9 @@ class BackupsController extends Controller
 {
     public function index()
     {
-        return $this->view('admin.backups.index');
+        $backups = Backup::ordered()->get();
+
+        return $this->view('admin.backups.index', compact('backups'));
     }
 
     public function settings(Options $options)
@@ -30,6 +34,15 @@ class BackupsController extends Controller
         $this->dispatchNow($settingsSaved = new SaveSettings($request->time, $request->storageTime));
 
         flash_success(__('admin.backups_settingsSaved'));
+
+        return redirect()->route('admin.backups');
+    }
+
+    public function generate()
+    {
+        $this->dispatchNow($backupCreated = new Generate());
+
+        flash_success("Backup generated");
 
         return redirect()->route('admin.backups');
     }

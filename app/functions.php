@@ -4,6 +4,7 @@ namespace App;
 
 use App\Utility\RandomColorGenerator;
 use Illuminate\Support\Str;
+use function foo\func;
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/strings.php";
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/icons.php";
@@ -68,6 +69,25 @@ function format_datetime($datetime) {
 function format_date_string($dateString) {
 
     return date('m/d/Y', strtotime($dateString));
+}
+
+// https://stackoverflow.com/a/2510459/2422852
+function format_filesize($bytes) {
+    $units = array('B', 'KB', 'MB', 'GB', 'TB');
+
+    $bytes = max($bytes, 0);
+    $pow = floor(($bytes ? log($bytes) : 0) / log(1024));
+    $pow = min($pow, count($units) - 1);
+
+    $bytes /= pow(1024, $pow);
+
+    return round($bytes, 1) . ' ' . $units[$pow];
+}
+
+
+
+function temp_directory_path() {
+    return \storage_path('app/temp');
 }
 
 function temp_id() {

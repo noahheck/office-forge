@@ -246,6 +246,7 @@ return [
 
     'backups' => 'Backups',
     'backups_settings' => 'Backups Settings',
+    'backups_generateBackupNow' => 'Generate backup now',
     'backups_settings_shortDescription' => 'Configuration settings for database backups',
     'backups_time' => 'Time',
     'backups_timeDescription' => 'The time of day daily backups should be created - UTC Time',
@@ -258,6 +259,14 @@ return [
     'backups_storageTime_six-months' => 'Six months',
     'backups_storageTime_one-year' => 'One year',
     'backups_storageTime_indefinitely' => 'Indefinitely',
+    'backups_settingsSaved' => 'Backup settings saved',
+
+    'backups_successful' => 'Successful',
+    'backups_startTime' => 'Start Time',
+    'backups_completedTime' => 'Completed Time',
+    'backups_filename' => 'Filename',
+    'backups_fileSize' => 'File size',
+
 
 
 ];
