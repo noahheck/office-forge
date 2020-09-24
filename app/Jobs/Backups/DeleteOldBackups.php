@@ -30,7 +30,7 @@ class DeleteOldBackups
      */
     public function handle(Options $options, Dispatcher $dispatcher)
     {
-        $storageTimeOption = $options->get(Backups::STORAGE_TIME_OPTION, 30);
+        $storageTimeOption = $options->get(Backups::STORAGE_TIME_OPTION, Backups::STORAGE_TIME_OPTION_DEFAULT);
 
         // 0 is for indefinite storage of backups
         if (!$storageTimeOption) {

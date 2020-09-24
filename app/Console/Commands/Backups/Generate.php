@@ -44,7 +44,7 @@ class Generate extends Command
     public function handle(Options $options, Dispatcher $dispatcher)
     {
         if (!$this->option('force')) {
-            $scheduleTime = $options->get(Backups::TIME_OPTION);
+            $scheduleTime = $options->get(Backups::TIME_OPTION, Backups::TIME_OPTION_DEFAULT);
 
             if (!$this->shouldRunThisHour($scheduleTime)) {
                 $this->line('Updates should not run at this time');

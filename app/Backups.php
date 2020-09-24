@@ -7,7 +7,10 @@ namespace App;
 class Backups
 {
     const TIME_OPTION = 'backups.time';
+    const TIME_OPTION_DEFAULT = '00:00';
+
     const STORAGE_TIME_OPTION = 'backups.storage-time';
+    const STORAGE_TIME_OPTION_DEFAULT = 30;
 
     public static function storageTimeOptions()
     {
