@@ -25,7 +25,7 @@ class Install
 
     public function getUpdate(): Update
     {
-
+        return $this->update;
     }
 
     /**

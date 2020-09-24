@@ -101,10 +101,10 @@
         </div>
 
         <div class="col-6 col-sm-4 col-md-3 col-xl-2">
-            <a class="card admin-module-link not-implemented" href="#">
+            <a class="card admin-module-link" href="{{ route('admin.backups') }}">
                 <div class="card-body">
                     {!! \App\icon\backups(['module-icon']) !!}
-                    Backups
+                    {{ __('admin.backups') }}
                 </div>
             </a>
         </div>

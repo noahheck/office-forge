@@ -244,4 +244,33 @@ return [
     'server_update_log' => 'Log',
 
 
+    'backups' => 'Backups',
+    'backups_settings' => 'Backups Settings',
+    'backups_generateBackupNow' => 'Generate backup now',
+    'backups_settings_shortDescription' => 'Configuration settings for database backups',
+    'backups_backup' => 'Backup',
+    'backups_backup_shortDescription' => 'Review a database backup entry',
+    'backups_time' => 'Time',
+    'backups_timeDescription' => 'The time of day daily backups should be created - UTC Time',
+    'backups_storageTime' => 'Storage Time',
+    'backups_storageTimeDescription' => 'How long backups should be stored before being removed',
+    'backups_storageTime_week' => 'One week',
+    'backups_storageTime_one-month' => 'One month',
+    'backups_storageTime_two-months' => 'Two months',
+    'backups_storageTime_three-months' => 'Three months',
+    'backups_storageTime_six-months' => 'Six months',
+    'backups_storageTime_one-year' => 'One year',
+    'backups_storageTime_indefinitely' => 'Indefinitely',
+    'backups_settingsSaved' => 'Backup settings saved',
+
+    'backups_successful' => 'Successful',
+    'backups_startTime' => 'Start Time',
+    'backups_completedTime' => 'Completed Time',
+    'backups_filename' => 'Filename',
+    'backups_fileSize' => 'File size',
+
+    'backups_downloadBackupFile' => 'Download Backup File',
+
+
+
 ];

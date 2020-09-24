@@ -205,6 +205,15 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
         Route::get('/server/updates/history', 'Server\UpdatesController@history')->name('server.updates.history');
         Route::get('/server/updates/history/{update}', 'Server\UpdatesController@update')->name('server.updates.history.update');
+
+
+        // Backups
+        Route::get('/backups', 'BackupsController@index')->name('backups');
+        Route::get('/backups/settings', 'BackupsController@settings')->name('backups.settings');
+        Route::post('/backups/settings', 'BackupsController@saveSettings')->name('backups.save-settings');
+        Route::post('/backups/generate', 'BackupsController@generate')->name('backups.generate');
+        Route::get('/backups/{backup}', 'BackupsController@show')->name('backups.show');
+        Route::get('/backups/{backup}/download', 'BackupsController@download')->name('backups.download');
     });
 
 });

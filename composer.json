@@ -8,11 +8,11 @@
     ],
     "license": "MIT",
     "require": {
+        "php": "^7.2",
         "ext-gd": "*",
         "ext-gmp": "*",
         "ext-json": "*",
         "ext-zip": "*",
-        "php": "^7.2",
         "appstract/laravel-options": "^5.1",
         "doctrine/dbal": "^2.10",
         "fideloper/proxy": "^4.0",
@@ -22,6 +22,7 @@
         "laravel/framework": "^6.2",
         "laravel/helpers": "^1.1",
         "laravel/tinker": "^1.0",
+        "spatie/db-dumper": "^2.17",
         "staudenmeir/eloquent-has-many-deep": "1.11",
         "tightenco/ziggy": "^0.8.1"
     },
