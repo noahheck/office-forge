@@ -5,12 +5,15 @@ namespace App\Console\Commands\Server\Updates;
 use App\Jobs\Server\Updates\Install;
 use App\Options;
 use App\Server\Updates;
+use App\Traits\Commands\HasScheduledHourlyTime;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Bus\Dispatcher;
 
 class InstallUpdates extends Command
 {
+    use HasScheduledHourlyTime;
+
     /**
      * The name and signature of the console command.
      *
@@ -88,14 +91,5 @@ class InstallUpdates extends Command
         }
 
         return $runToday;
-    }
-
-    private function shouldRunThisHour($scheduleTime)
-    {
-        $timeToRun = substr($scheduleTime, 0, 2);
-
-        $thisHour = now()->format('H');
-
-        return (string) $timeToRun === (string) $thisHour;
     }
 }
