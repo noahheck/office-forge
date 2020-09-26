@@ -229,7 +229,7 @@ return [
     'server_updateSchedule_monthlyOnFirstMonday' => 'Monthly - first Monday each month',
     'server_updateSchedule_disabled' => 'Disabled (not recommended)',
     'server_updateTime' => 'Time',
-    'server_updateTimeDescription' => 'The time of day updates should be applied - UTC Time',
+    'server_updateTimeDescription' => 'The time of day updates should be applied - :timezone Time',
     'server_updateSettings_saved' => 'Server Update Settings Saved',
 
     'server_history' => 'History',
@@ -253,7 +253,7 @@ return [
     'backups_backup' => 'Backup',
     'backups_backup_shortDescription' => 'Review a database backup entry',
     'backups_time' => 'Time',
-    'backups_timeDescription' => 'The time of day daily backups should be created - UTC Time',
+    'backups_timeDescription' => 'The time of day daily backups should be created - :timezone Time',
     'backups_storageTime' => 'Storage Time',
     'backups_storageTimeDescription' => 'How long backups should be stored before being removed',
     'backups_storageTime_week' => 'One week',

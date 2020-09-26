@@ -55,6 +55,20 @@ function format_date($date = null) {
     return ($date) ? $date->format('m/d/Y') : '';
 }
 
+function format_time($dateTime = null) {
+    if (!$dateTime) {
+        return '';
+    }
+
+    static $userTimezone = false;
+
+    if (!$userTimezone) {
+        $userTimezone = \Auth::user()->timezone;
+    }
+
+    return $dateTime->copy()->tz($userTimezone)->format('g:i a');
+}
+
 function format_datetime($datetime) {
 
     static $userTimezone = false;

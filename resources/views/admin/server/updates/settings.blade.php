@@ -26,6 +26,8 @@
                     <form action="{{ route('admin.server.updates.save-settings') }}" method="POST" class="bold-labels">
                         @csrf
 
+                        @errors('schedule', 'time')
+
                         @selectField([
                             'name' => 'schedule',
                             'label' => __('admin.server_updateSchedule'),
@@ -44,7 +46,7 @@
                             'label' => __('admin.server_updateTime'),
                             'details' => __('admin.server_updateTimeDescription', ['timezone' => \App\timezone_name(Auth::user()->timezone)]),
                             'value' => old('time', $time),
-                            'options' => array_combine(\App\Server\Updates::timeOptions(), \App\Server\Updates::timeOptions()),
+                            'options' => \App\Server\Updates::timeOptions(),
                             'placeholder' => '',
                             'required' => true,
                             'autofocus' => true,

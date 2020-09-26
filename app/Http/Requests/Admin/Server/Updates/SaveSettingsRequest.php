@@ -24,7 +24,7 @@ class SaveSettingsRequest extends FormRequest
     public function rules()
     {
         $scheduleOptions = implode(',', array_keys(\App\Server\Updates::scheduleOptions()));
-        $timeOptions = implode(',', \App\Server\Updates::timeOptions());
+        $timeOptions = implode(',', array_keys(\App\Server\Updates::timeOptions()));
 
         return [
             'schedule' => 'required|in:' . $scheduleOptions,

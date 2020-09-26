@@ -24,7 +24,7 @@ class SaveSettings extends FormRequest
      */
     public function rules()
     {
-        $timeOptions = implode(',', Backups::timeOptions());
+        $timeOptions = implode(',', array_keys(Backups::timeOptions()));
         $storageTimeOptions = implode(',', array_keys(Backups::storageTimeOptions()));
 
         return [

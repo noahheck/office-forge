@@ -33,9 +33,9 @@
                         @selectField([
                             'name' => 'time',
                             'label' => __('admin.backups_time'),
-                            'details' => __('admin.backups_timeDescription'),
+                            'details' => __('admin.backups_timeDescription', ['timezone' => \App\timezone_name(Auth::user()->timezone)]),
                             'value' => old('time', $time),
-                            'options' => array_combine(\App\Backups::timeOptions(), \App\Backups::timeOptions()),
+                            'options' => \App\Backups::timeOptions(),
                             'placeholder' => '',
                             'required' => true,
                             'autofocus' => true,

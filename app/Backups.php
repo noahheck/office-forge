@@ -27,8 +27,20 @@ class Backups
 
     public static function timeOptions()
     {
-        return array_map(function($hour) {
+        $utcTimes = array_map(function($hour) {
             return str_pad($hour, 2, '0', STR_PAD_LEFT) . ':00';
         }, range(0, 23));
+
+        $timeOptions =  array_flip($utcTimes);
+
+        $now = now();
+
+        array_walk($timeOptions, function(&$value, $utcTime) use($now) {
+            $time = $now->setTimeFromTimeString($utcTime);
+
+            $value = \App\format_time($time);
+        });
+
+        return $timeOptions;
     }
 }
