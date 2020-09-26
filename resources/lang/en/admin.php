@@ -245,6 +245,8 @@ return [
 
 
     'backups' => 'Backups',
+    'backups_description' => "Office Forge Backups are copies of your organization's database information. These files are generated daily and can be used to recreate or repair your Office Forge system after a data loss event (data corruption, natural disaster, hardware failure, etc). It is recommended to regularly download a copy of the most recent backup file and store it in a location separate from the server.",
+    'backups_descriptionDatabaseOnly' => 'Note: In order to preserve server resources, these backup files only contain database information; application code, server configuration, media files, headshot images, and editor images are not included.',
     'backups_settings' => 'Backups Settings',
     'backups_generateBackupNow' => 'Generate backup now',
     'backups_settings_shortDescription' => 'Configuration settings for database backups',

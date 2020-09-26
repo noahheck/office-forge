@@ -11,30 +11,40 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="text-right">
-                <div class="btn-group">
+            <div class="d-sm-flex">
 
-                    <a href="{{ route('admin.backups.settings') }}" class="btn btn-primary">
-                        {!! \App\icon\adminSettings(['mr-1']) !!}{{ __('admin.settings') }}
-                    </a>
-                    <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">{{ __('app.moreOptions') }}</span>
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <form action="{{ route('admin.backups.generate') }}" method="POST">
-                            @csrf
+                <div class="flex-grow-1 p-2">
+                    <p>{{ __('admin.backups_description') }}</p>
+                    <p><em>{{ __('admin.backups_descriptionDatabaseOnly') }}</em></p>
+                </div>
 
-                            <button type="submit" class="dropdown-item">
-                                {{ __('admin.backups_generateBackupNow') }}
-                            </button>
-                        </form>
+                <div class="flex-grow-0 text-right">
+                    <div class="btn-group">
+
+                        <a href="{{ route('admin.backups.settings') }}" class="btn btn-primary ws-nowrap">
+                            {!! \App\icon\adminSettings(['mr-1']) !!}{{ __('admin.settings') }}
+                        </a>
+                        <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="sr-only">{{ __('app.moreOptions') }}</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <form action="{{ route('admin.backups.generate') }}" method="POST">
+                                @csrf
+
+                                <button type="submit" class="dropdown-item">
+                                    {{ __('admin.backups_generateBackupNow') }}
+                                </button>
+                            </form>
+
+                        </div>
 
                     </div>
 
                 </div>
-
             </div>
+
             <hr>
+
             <div class="table-responsive">
                 <table id="backups" class="table table-striped table-bordered dt-table">
                     <thead>

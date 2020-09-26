@@ -11541,6 +11541,10 @@ a.text-dark:focus {
   font-size: 96px !important;
 }
 
+.ws-nowrap {
+  white-space: nowrap;
+}
+
 .overflow-x-ellipsis {
   white-space: nowrap;
   overflow: hidden;
