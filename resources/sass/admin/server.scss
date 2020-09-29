@@ -2,6 +2,8 @@
  * sass/admin/server.scss
  */
 
+@import "../variables";
+
 .server-details-card {
 
     .card-body {
@@ -14,16 +16,14 @@
     }
 
 }
+.output-log {
+    background-color: #eee;
+    font-family: monospace;
+    border: 1px solid #999;
+    padding: 5px;
+    white-space: nowrap;
+    overflow-x: auto;
 
-.update-details {
-
-    .output-log {
-        background-color: #eee;
-        font-family: monospace;
-        border: 1px solid #999;
-        padding: 5px;
-        white-space: nowrap;
-        overflow-x: auto;
-    }
-
+    max-height: 80vh;
 }
+

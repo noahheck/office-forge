@@ -214,6 +214,11 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::post('/backups/generate', 'BackupsController@generate')->name('backups.generate');
         Route::get('/backups/{backup}', 'BackupsController@show')->name('backups.show');
         Route::get('/backups/{backup}/download', 'BackupsController@download')->name('backups.download');
+
+
+        // Logs
+        Route::get('/logs', 'LogsController@index')->name('logs');
+        Route::get('/logs/{logFile}', 'LogsController@show')->name('logs.show');
     });
 
 });

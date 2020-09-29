@@ -495,6 +495,18 @@ function history($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function logs($classes = []) {
+    $classes[] = "fas fa-file-medical-alt";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
+
+
+
+
+
 function drive($classes = []) {
     $classes[] = "fas fa-hdd";
 

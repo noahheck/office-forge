@@ -4,6 +4,10 @@ return [
     'systemSettings' => 'System Settings',
     'settings' => 'Settings',
 
+    'users_teams' => 'Users / Teams',
+    'systemSetup' => 'System Setup',
+    'systemAdministration' => 'System Administration',
+
     'users' => 'Users',
     'setUpSystemUsers' => 'Set up the users of the system',
     'organizeStaffIntoGroups' => 'Organize your staff members into functional groups',
@@ -30,6 +34,7 @@ return [
     'team_createFirstTeamNow' => 'Create your first team now!',
     'team_selectMembers' => 'Select the users who should be members of this team:',
 
+    'organization' => 'Organization',
     'organizationDetails' => 'Organization Details',
     'organizationDetails_shortDescription' => 'Details about your organization',
     'organization_name' => 'Name',
@@ -274,5 +279,9 @@ return [
     'backups_downloadBackupFile' => 'Download Backup File',
 
 
+
+    'logs' => 'Logs',
+    'logs_description' => 'Log files contain debugging information that can be helpful in troubleshooting problems, identifying performance issues, and validating system operations. These log files are written to automatically when certain situations are encountered within Office Forge.',
+    'logs_logFile_shortDescription' => 'Review a log file',
 
 ];
