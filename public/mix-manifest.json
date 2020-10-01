@@ -1,8 +1,8 @@
 {
     "/js/app.js": "/js/app.js?id=57da268eba7d470cbd4b",
-    "/css/manual.css": "/css/manual.css?id=90dcb4920b1189f728db",
-    "/css/auth.css": "/css/auth.css?id=995d1eaf14a305d0950b",
-    "/css/app.css": "/css/app.css?id=e6e035f076c9e90d3b4e",
+    "/css/manual.css": "/css/manual.css?id=50628a2c0cf503d0dbe3",
+    "/css/auth.css": "/css/auth.css?id=3407c35ec5817e579af1",
+    "/css/app.css": "/css/app.css?id=4c77e53f5deab3309bf1",
     "/css/document.css": "/css/document.css?id=91b4c54bab2003f7216c",
     "/css/home.css": "/css/home.css?id=8c7ec9265575688aaec7",
     "/css/fileStore.css": "/css/fileStore.css?id=a6147209476d429d95d0",
@@ -36,5 +36,5 @@
     "/js/page.files.index.js": "/js/page.files.index.js?id=7bd2d4d7451bf258d81f",
     "/js/page.settings.photo.js": "/js/page.settings.photo.js?id=aa74d08b3fa5be194c97",
     "/js/page.user-activity.js": "/js/page.user-activity.js?id=488b8d2a826dff1c2120",
-    "/js/vendor.js": "/js/vendor.js?id=4c4d15a98f0500d47699"
+    "/js/vendor.js": "/js/vendor.js?id=df2a749b6a1971d97714"
 }
