@@ -109,7 +109,7 @@ function temp_id() {
 }
 
 function safe_text_editor_content($content) {
-    $allowedTags = ['div', 'h2', 'h3', 'br', 'strong', 'em', 'u', 'blockquote', 'pre', 'ul', 'ol', 'li', 'img', 'figure', 'figcaption'];
+    $allowedTags = ['div', 'h2', 'h3', 'br', 'strong', 'em', 'u', 'a', 'blockquote', 'pre', 'ul', 'ol', 'li', 'img', 'figure', 'figcaption'];
     $tagsStripped = strip_tags($content, '<' . implode('><', $allowedTags) . '>');
     return $tagsStripped;
 }
