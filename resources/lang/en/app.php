@@ -17,7 +17,9 @@ return [
     'create' => 'Create',
     'new' => 'New',
     'addNew' => 'Add New',
+    'createNew' => 'Create New',
     'continue' => 'Continue',
+    'skipToContent' => 'Skip to content',
     'accessDetails' => 'Access Details',
 
     'confirmDelete' => 'Confirm Delete',

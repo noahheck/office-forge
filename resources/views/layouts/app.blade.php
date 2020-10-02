@@ -112,7 +112,7 @@ if ($__isFilesRoute) {
         <div class="container-fluid">
 
             <span>
-                <a href="#mainContent" class="skip-to-content-link">Skip to content</a>
+                <a href="#mainContent" class="skip-to-content-link">{{ __('app.skipToContent') }}</a>
                 <button type="button" id="toggleApplicationSidebarButton" class="btn toggle-application-sidebar-button">
                     <span class="fas fa-bars"></span>
                     <span class="sr-only">{{ __('app.showNavigationMenu') }}</span>
@@ -143,7 +143,7 @@ if ($__isFilesRoute) {
                     </li>
                     <li class="nav-item dropdown">
                         <a id="addNewNavbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="fas fa-plus-circle"></span> <span class="sr-only">Create New</span>
+                            <span class="fas fa-plus-circle"></span> <span class="sr-only">{{ __('app.createNew') }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="addNewNavbarDropdown">
                             <span class="dropdown-header">{!! \App\icon\activities(['fa-fw']) !!} {{ __('app.activities') }}</span>
@@ -188,10 +188,20 @@ if ($__isFilesRoute) {
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="{{ route('my-settings.index') }}">
+                                {!! \App\icon\mySettings(['fa-fw']) !!} {{ __('app.mySettings') }}
+                            </a>
+                            @admin
+                                <a href="{{ route('admin.index') }}" class="dropdown-item">
+                                    {!! \App\icon\adminSettings(['fa-fw']) !!} {{ __('app.admin') }}
+                                </a>
+                            @endadmin
+                            <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
-                                {{ __('app.logout') }}
+                                {!! \App\icon\logOut(['fa-fw']) !!} {{ __('app.logout') }}
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -253,11 +263,6 @@ if ($__isFilesRoute) {
                     </a>
                 </li>
             @endadmin
-            {{--<li>
-                <a href="#">
-                    <span class="fa-fw far fa-question-circle"></span> {{ __('app.help') }}
-                </a>
-            </li>--}}
             <li class="divider">
                 <a href="{{ route('logout') }}">
                     {!! \App\icon\logOut(['fa-fw']) !!} {{ __('app.logout') }}

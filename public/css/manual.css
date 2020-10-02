@@ -11564,9 +11564,20 @@ a.text-dark:focus {
   overflow-y: auto;
 }
 
+.header-navbar .dropdown.show {
+  background-color: #666;
+  margin-top: -8px;
+  padding-top: 8px;
+  margin-bottom: -8px;
+}
+
 @media (min-width: 768px) {
   .header-navbar .navbar-brand {
     margin-top: -2px;
+  }
+
+  .header-navbar .dropdown-menu {
+    margin-top: -1px;
   }
 }
 

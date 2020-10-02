@@ -11,10 +11,21 @@
         overflow-y: auto;
     }
 
+    .dropdown.show {
+        background-color: $dark-gray;
+        margin-top: -8px;
+        padding-top: 8px;
+        margin-bottom: -8px;
+    }
+
     @include media-breakpoint-up(md) {
 
         .navbar-brand {
             margin-top: -2px;
+        }
+
+        .dropdown-menu {
+            margin-top: -1px;
         }
     }
 
