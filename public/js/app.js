@@ -3581,7 +3581,7 @@ __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 var confirm = __webpack_require__(/*! Services/confirm */ "./resources/js/services/confirm.js");
 
 $(function _callee2() {
-  var $body, notifications;
+  var $body, notifications, $autoFocusFields;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
@@ -3618,11 +3618,6 @@ $(function _callee2() {
           $('[data-toggle="popover"]').popover();
           $('[data-toggle="tooltip"]').tooltip();
           $('.dt-table').DataTable();
-
-          if (!$("[autofocus]").length) {
-            $('.dataTables_filter input[type=search]').focus();
-          }
-
           $('.datepicker').datepicker({
             autoclose: true,
             todayHighlight: true,
@@ -3631,6 +3626,15 @@ $(function _callee2() {
             clearBtn: true,
             zIndexOffset: 1031
           });
+          $autoFocusFields = $("[autofocus]");
+          console.log($autoFocusFields);
+
+          if (!$autoFocusFields.length) {
+            $('.dataTables_filter input[type=search]').focus();
+          } else {
+            $autoFocusFields.blur()[0].focus();
+          }
+
           $('.confirm-delete-form').submit(function _callee(e) {
             var $form, confirmed;
             return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
@@ -3667,7 +3671,7 @@ $(function _callee2() {
             }, null, this);
           });
 
-        case 16:
+        case 18:
         case "end":
           return _context2.stop();
       }

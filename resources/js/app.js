@@ -46,10 +46,6 @@ $(async function() {
 
     $('.dt-table').DataTable();
 
-    if (!$("[autofocus]").length) {
-        $('.dataTables_filter input[type=search]').focus();
-    }
-
     $('.datepicker').datepicker({
         autoclose: true,
         todayHighlight: true,
@@ -58,6 +54,16 @@ $(async function() {
         clearBtn: true,
         zIndexOffset: 1031,
     });
+
+    let $autoFocusFields = $("[autofocus]");
+
+    console.log($autoFocusFields);
+
+    if (!$autoFocusFields.length) {
+        $('.dataTables_filter input[type=search]').focus();
+    } else {
+        $autoFocusFields.blur()[0].focus();
+    }
 
     $('.confirm-delete-form').submit(async function(e) {
         let $form = $(this);
