@@ -34,6 +34,7 @@
                 <button type="button" class="trix-button" data-trix-attribute="bold" data-trix-key="b" title="Bold" tabindex="-1"><span class="fas fa-bold"></span></button>
                 <button type="button" class="trix-button" data-trix-attribute="italic" data-trix-key="i" title="Italic" tabindex="-1"><span class="fas fa-italic"></span></button>
                 <button type="button" class="trix-button" data-trix-attribute="underline" data-trix-key="u" title="Underline" tabindex="-1"><span class="fas fa-underline"></span></button>
+                <button type="button" class="trix-button" data-trix-attribute="href" data-trix-action="link" data-trix-key="k" title="Link" tabindex="-1"><span class="fas fa-link"></span></button>
             </span>
 
             @if ($toolbar === 'full')
@@ -62,7 +63,19 @@
             </span>
 
         </div>
-        {{--<div class="trix-dialogs" data-trix-dialogs></div>--}}
+
+        <div class="trix-dialogs" data-trix-dialogs>
+            <div class="trix-dialog trix-dialog--link" data-trix-dialog="href" data-trix-dialog-attribute="href">
+                <div class="trix-dialog__link-fields">
+                    <input type="url" name="href" value="https://" class="trix-input trix-input--dialog" placeholder="Enter a URL…" aria-label="URL" required="" data-trix-input="" disabled="disabled">
+                    <div class="trix-button-group">
+                        <input type="button" class="trix-button trix-button--dialog" value="Link" data-trix-method="setAttribute">
+                        <input type="button" class="trix-button trix-button--dialog" value="Unlink" data-trix-method="removeAttribute">
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </trix-toolbar>
     <input type="hidden" id="temp_id_{{ $name }}" name="temp_id" value="{{ $__tempId }}">
     <input type="hidden" id="{{ $id }}" name="{{ $name }}" value="{{ $value }}">

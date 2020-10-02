@@ -54,6 +54,18 @@ trix-toolbar {
         background-color: $blue-highlight;
     }
 
+    .trix-dialog {
+        border-radius: 0;
+        font-size: 1em;
+        top: 4px;
+        margin-left: auto;
+        margin-right: auto;
+        border: 1px solid $light-gray;
+
+        .trix-button:focus {
+            background-color: $light-gray;
+        }
+    }
 }
 
 trix-editor {
