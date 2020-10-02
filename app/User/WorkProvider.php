@@ -39,6 +39,10 @@ class WorkProvider
 
         $tasks->load('activity');
 
+        $tasks = $tasks->filter(function($task, $index) {
+            return !$task->activity->completed;
+        });
+
         $today = $user->today();
 
 
