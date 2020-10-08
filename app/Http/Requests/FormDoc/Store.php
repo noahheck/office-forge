@@ -37,6 +37,9 @@ class Store extends FormRequest
 
         $rules = $generator->generateRulesForForm($template);
 
+        $rules['date'] = 'required';
+        $rules['time'] = 'required';
+
         $this->nameAttributes = $generator->generateNameAttributesForForm($template);
 
         return $rules;

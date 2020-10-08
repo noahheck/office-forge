@@ -24,6 +24,7 @@
     <div class="row">
 
         <div class="col-6">
+
             @dateField([
                 'name' => 'date',
                 'label' => __('app.date'),
@@ -35,6 +36,9 @@
                 'error' => $errors->has('date'),
                 'readonly' => false,
             ])
+
+            @errors('date')
+
         </div>
 
         <div class="col-6">
@@ -49,6 +53,7 @@
                 'error' => $errors->has('time'),
                 'readonly' => false,
             ])
+            @errors('time')
         </div>
 
     </div>

@@ -37,6 +37,9 @@ class Update extends FormRequest
 
         $rules = $generator->generateRulesForForm($formDoc);
 
+        $rules['date'] = 'required';
+        $rules['time'] = 'required';
+
         $this->nameAttributes = $generator->generateNameAttributesForForm($formDoc);
 
         return $rules;
