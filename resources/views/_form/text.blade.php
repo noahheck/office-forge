@@ -10,13 +10,16 @@
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
     'readonly' => 'boolean: whether the field is in read-only state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    <label for="{{ $name }}">{{ $label }}</label>
-    @if ($details ?? false)
-        - {{ $details }}
-    @endif
+@unless($fieldOnly ?? false)
+    <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
+        <label for="{{ $name }}">{{ $label }}</label>
+        @if ($details ?? false)
+            - {{ $details }}
+        @endif
+@endunless
     @if ($inputGroupAppendText ?? false)
         <div class="input-group">
     @endif
@@ -28,4 +31,6 @@
             </div>
         </div>
     @endif
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless

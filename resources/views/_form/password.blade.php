@@ -8,12 +8,17 @@
     'required' => 'boolean: whether the field is required',
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    <label for="{{ $name }}">{{ $label }}</label>
-    @if ($details ?? false)
-        - {{ $details }}
-    @endif
+@unless($fieldOnly ?? false)
+    <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
+        <label for="{{ $name }}">{{ $label }}</label>
+        @if ($details ?? false)
+            - {{ $details }}
+        @endif
+@endunless
     <input type="password" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }}>
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless

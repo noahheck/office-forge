@@ -10,13 +10,16 @@
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
     'readonly' => 'boolean: whether the field is in read-only state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    <label for="{{ $name }}">{{ $label }}</label>
-    @if ($details ?? false)
-        - {{ $details }}
-    @endif
+@unless($fieldOnly ?? false)
+    <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
+        <label for="{{ $name }}">{{ $label }}</label>
+        @if ($details ?? false)
+            - {{ $details }}
+        @endif
+@endunless
     <select class="custom-select" id="{{ $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
         @if (!($required ?? false))
             <option value="">--</option>
@@ -25,4 +28,6 @@
             <option value="{{ $key }}"{{ ($value === $key) ? " selected" : "" }}>{{ $text }}</option>
         @endforeach
     </select>
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless

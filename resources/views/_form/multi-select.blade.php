@@ -9,18 +9,23 @@
     'required' => 'boolean: whether the field is required',
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    @if ($label)
-        <label for="{{ $name }}">{{ $label }}</label>
-    @endif
-    @if ($description ?? false)
-        <p>{{ $description }}</p>
-    @endif
+@unless($fieldOnly ?? false)
+    <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
+        @if ($label)
+            <label for="{{ $name }}">{{ $label }}</label>
+        @endif
+        @if ($description ?? false)
+            <p>{{ $description }}</p>
+        @endif
+@endunless
     <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} multiple>
         @foreach ($options as $key => $option)
             <option value="{{ $key }}"{{ ($values->contains($key)) ? " selected" : "" }}>{{ $option }}</option>
         @endforeach
     </select>
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless

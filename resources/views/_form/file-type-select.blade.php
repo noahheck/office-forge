@@ -9,13 +9,16 @@
     'required' => 'boolean: whether the field is required',
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    <label for="{{ $name }}">{{ $label }}</label>
-    @if ($description ?? false)
-        <p>{{ $description }}</p>
-    @endif
+@unless($fieldOnly ?? false)
+    <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
+        <label for="{{ $name }}">{{ $label }}</label>
+        @if ($description ?? false)
+            <p>{{ $description }}</p>
+        @endif
+@endunless
     <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true">
         @if (!($required ?? false))
             <option value="">--</option>
@@ -24,4 +27,6 @@
             <option value="{{ $fileType->id }}" {{ ((int) $value === (int) $fileType->id) ? "selected" : "" }} data-content="{!! $fileType->icon() !!} {{ $fileType->name }}">{{ $fileType->name }}</option>
         @endforeach
     </select>
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless
