@@ -107,6 +107,12 @@ function calendarCheck($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function clock($classes = []) {
+    $classes[] = "far fa-clock";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function lightBulb($classes = []) {
     $classes[] = "far fa-lightbulb";
 

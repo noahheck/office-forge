@@ -20,6 +20,8 @@ class Create
     private $file;
     private $activity;
     private $creator;
+    private $date;
+    private $time;
     private $submitted;
     private $fieldDetails;
 
@@ -35,6 +37,8 @@ class Create
         ?File $file,
         ?Activity $activity,
         User $creator,
+        $date,
+        $time,
         $submitted,
         $fieldDetails
     ) {
@@ -42,6 +46,8 @@ class Create
         $this->file = $file;
         $this->activity = $activity;
         $this->creator = $creator;
+        $this->date = $date;
+        $this->time = $time;
         $this->submitted = $submitted;
         $this->fieldDetails = $fieldDetails;
     }
@@ -63,6 +69,9 @@ class Create
         $formDoc->file_id = ($this->file) ? $this->file->id : null;
         $formDoc->name = $this->template->name;
         $formDoc->creator_id = $this->creator->id;
+
+        $formDoc->date = $this->date;
+        $formDoc->time = $this->time;
 
         $formDoc->submitted_at = ($this->submitted) ? now() : null;
 

@@ -25,6 +25,8 @@ return [
     'confirmDelete' => 'Confirm Delete',
     'sureDeleteThis' => 'Are you sure you want to delete this?',
 
+    'date' => 'Date',
+    'time' => 'Time',
 
     'upload' => 'Upload',
     'download' => 'Download',

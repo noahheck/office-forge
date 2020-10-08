@@ -21,6 +21,40 @@
         'value' => old('return', url()->previous()),
     ])
 
+    <div class="row">
+
+        <div class="col-6">
+            @dateField([
+                'name' => 'date',
+                'label' => __('app.date'),
+                'details' => '',
+                'value' => old('date', $formDoc->date),
+                'placeholder' => '',
+                'required' => true,
+                'autofocus' => false,
+                'error' => $errors->has('date'),
+                'readonly' => false,
+            ])
+        </div>
+
+        <div class="col-6">
+            @timeField([
+                'name' => 'time',
+                'label' => __('app.time'),
+                'details' => '',
+                'value' => old('time', $formDoc->time),
+                'placeholder' => '',
+                'required' => true,
+                'autofocus' => false,
+                'error' => $errors->has('time'),
+                'readonly' => false,
+            ])
+        </div>
+
+    </div>
+
+    <hr>
+
     @foreach ($fields as $field)
 
         @include('_form_field.' . $field->field_type, [

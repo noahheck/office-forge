@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use function App\flash_error;
 use function App\flash_info;
 use function App\flash_success;
+use function App\format_date;
 
 class FormDocController extends Controller
 {
@@ -90,6 +91,8 @@ class FormDocController extends Controller
         $formDoc->file_id = ($fileId) ? $fileId : null;
         $formDoc->creator_id = $user->id;
         $formDoc->name = $template->name;
+        $formDoc->date = $user->today();
+        $formDoc->time = $user->today();
 
         return $this->view('form-docs.create', compact('template', 'file', 'formDoc', 'memberProvider'));
     }
@@ -128,7 +131,16 @@ class FormDocController extends Controller
 
         $submitted = $request->has('save_submit');
 
-        $this->dispatchNow($formDocCreated = new Create($template, $file, null, $user, $submitted, $request->all()));
+        $this->dispatchNow($formDocCreated = new Create(
+            $template,
+            $file,
+            null,
+            $user,
+            $request->date,
+            $request->time,
+            $submitted,
+            $request->all()
+        ));
 
         $formDoc = $formDocCreated->getFormDoc();
 
@@ -219,7 +231,13 @@ class FormDocController extends Controller
 
         $submitted = $request->has('save_submit');
 
-        $this->dispatchNow($formDocUpdate = new Update($formDoc, $submitted, $request->all()));
+        $this->dispatchNow($formDocUpdate = new Update(
+            $formDoc,
+            $request->date,
+            $request->time,
+            $submitted,
+            $request->all()
+        ));
 
         $message = ($submitted) ? __('formDoc.submittedSuccessfully') : __('formDoc.savedSuccessfully');
         flash_success($message);

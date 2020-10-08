@@ -62,6 +62,9 @@
                         <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('formDoc.creator') }}:</dt>
                         <dd class="col-12 col-sm-9 col-xl-10">{!! $formDoc->creator->icon(['mhw-35p', 'mr-2']) !!}{{ $formDoc->creator->name }}</dd>
 
+                        <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('app.date') }} / {{ __('app.time') }}:</dt>
+                        <dd class="col-12 col-sm-9 col-xl-10">{{ $formDoc->date }} {{ $formDoc->time }}</dd>
+
                         @if ($formDoc->isSubmitted())
                             <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">{{ __('formDoc.submitted') }}:</dt>
                             <dd class="col-12 col-sm-9 col-xl-10">{{ \App\format_datetime($formDoc->submitted_at) }}</dd>

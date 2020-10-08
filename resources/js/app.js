@@ -55,9 +55,25 @@ $(async function() {
         zIndexOffset: 1031,
     });
 
-    let $autoFocusFields = $("[autofocus]");
 
-    console.log($autoFocusFields);
+    $('.timepicker').each(function() {
+
+        let $this = $(this);
+
+        $this.attr('data-target', '#' + $this.attr('id'));
+        $this.attr('data-toggle', 'datetimepicker');
+
+        $this.datetimepicker({
+            format: 'LT'
+        });
+
+        $this.focusout(function() {
+            $this.datetimepicker('hide');
+        });
+
+    });
+
+    let $autoFocusFields = $("[autofocus]");
 
     if (!$autoFocusFields.length) {
         $('.dataTables_filter input[type=search]').focus();

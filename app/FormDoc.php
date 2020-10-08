@@ -20,6 +20,28 @@ class FormDoc extends Model
         'submitted_at',
     ];
 
+    public function getDateAttribute($value)
+    {
+        return ($value) ? \App\format_date_string($value) : null;
+    }
+
+    public function setDateAttribute($value)
+    {
+        $this->attributes['date'] = date('Y-m-d', strtotime($value));
+    }
+
+    public function getTimeAttribute($value)
+    {
+        return \App\format_timeString($value);
+    }
+
+    public function setTimeAttribute($value)
+    {
+        $this->attributes['time'] = \App\format_timeStringForDatabase($value);
+    }
+
+
+
     public function workItemListHref()
     {
         if ($this->submitted_at) {

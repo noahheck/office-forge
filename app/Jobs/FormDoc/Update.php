@@ -12,6 +12,8 @@ class Update
     use Dispatchable, Queueable;
 
     private $formDoc;
+    private $date;
+    private $time;
     private $submitted;
     private $fieldDetails;
 
@@ -20,9 +22,11 @@ class Update
      *
      * @return void
      */
-    public function __construct(FormDoc $formDoc, $submitted, $fieldDetails)
+    public function __construct(FormDoc $formDoc, $date, $time, $submitted, $fieldDetails)
     {
         $this->formDoc = $formDoc;
+        $this->date = $date;
+        $this->time = $time;
         $this->submitted = $submitted;
         $this->fieldDetails = $fieldDetails;
     }
@@ -34,12 +38,14 @@ class Update
      */
     public function handle(DataMapper $dataMapper)
     {
+        $this->formDoc->date = $this->date;
+        $this->formDoc->time = $this->time;
+
         if ($this->submitted) {
             $this->formDoc->submitted_at = now();
-            $this->formDoc->save();
-        } else {
-            $this->formDoc->touch();
         }
+
+        $this->formDoc->save();
 
         foreach ($this->formDoc->fields as $field) {
             $dataMapper->updateFieldValue($field, $field, $this->fieldDetails);

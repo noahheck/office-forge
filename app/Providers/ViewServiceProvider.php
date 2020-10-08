@@ -142,6 +142,7 @@ EOT;
         \Blade::include('_form/checkbox',          'checkboxField');
         \Blade::include('_form/checkboxSwitch',    'checkboxSwitchField');
         \Blade::include('_form/date',              'dateField');
+        \Blade::include('_form/time',              'timeField');
         \Blade::include('_form/phone',             'phoneField');
         \Blade::include('_form/money',             'moneyField');
         \Blade::include('_form/integer',           'integerField');

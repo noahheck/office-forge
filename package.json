@@ -30,8 +30,10 @@
     "datatables.net-bs4": "^1.10.22",
     "datatables.net-buttons": "^1.6.4",
     "datatables.net-buttons-bs4": "^1.6.4",
+    "moment": "^2.29.1",
     "sortablejs": "^1.12.0",
     "stimulus": "^1.1.1",
+    "tempusdominus-bootstrap-4": "^5.1.2",
     "trix": "^1.3.0"
   }
 }

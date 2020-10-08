@@ -85,6 +85,16 @@ function format_date_string($dateString) {
     return date('m/d/Y', strtotime($dateString));
 }
 
+function format_timeString($timeString) {
+
+    return date('g:ia ', strtotime($timeString));
+}
+
+function format_timeStringForDatabase($timeString) {
+
+    return date('H:i:00', strtotime($timeString));
+}
+
 // https://stackoverflow.com/a/2510459/2422852
 function format_filesize($bytes) {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
