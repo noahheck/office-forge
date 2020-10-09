@@ -2,7 +2,8 @@
  * sass/formDocs.scss
  */
 
-// @import "files/panel";
+@import "variables";
+@import "mixins";
 
 .formDoc--fields {
 
@@ -20,6 +21,95 @@
 
     .checkbox-container {
         font-size: 1.1rem;
+    }
+
+}
+
+.form-docs--index {
+
+    .form-docs--list {
+        max-height: calc(100vh - 108px);
+        overflow-y: auto;
+    }
+
+    @include media-breakpoint-up(md) {
+
+        .form-docs--list {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 120px;
+            z-index: 1;
+            max-height: calc(100vh - 125px);
+        }
+
+    }
+
+    @include media-breakpoint-up(lg) {
+
+        .form-docs--filters-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 120px;
+            z-index: 2;
+        }
+
+        .form-docs--list {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 270px;
+            max-height: calc(100vh - 300px);
+        }
+
+    }
+
+
+    .form-docs--list {
+
+        overflow-y: auto;
+
+        .icon-container {
+            flex-grow: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-doc--icon {
+            font-size: 18px;
+            background-color: $med-dark-gray;
+            border: 1px solid $med-dark-gray;
+
+            color: $white;
+            @include border-radius(4px);
+            padding: 1px 7px;
+
+        }
+
+        .form-doc--title {
+            font-weight: bold;
+        }
+
+        .submitted {
+            .form-doc--icon {
+                background-color: $purple;
+                border: 1px solid $purple;
+                @include shadow(1px, 2px, 2px);
+            }
+
+            .form-doc--title {
+                color: $blue;
+            }
+        }
+
+    }
+
+    .form-docs--display-container {
+
+        @include media-breakpoint-down(sm) {
+            margin-top: 10px;
+        }
+
     }
 
 }

@@ -2,6 +2,10 @@
  * sass/formDocs.scss
  */
 
+/**
+ * sass/_mixins.scss
+ */
+
 .formDoc--fields .panel-field {
   padding-bottom: 10px;
 }
@@ -16,5 +20,81 @@
 
 .formDoc--fields .checkbox-container {
   font-size: 1.1rem;
+}
+
+.form-docs--index .form-docs--list {
+  max-height: calc(100vh - 108px);
+  overflow-y: auto;
+}
+
+@media (min-width: 768px) {
+  .form-docs--index .form-docs--list {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+    z-index: 1;
+    max-height: calc(100vh - 125px);
+  }
+}
+
+@media (min-width: 992px) {
+  .form-docs--index .form-docs--filters-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+    z-index: 2;
+  }
+
+  .form-docs--index .form-docs--list {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 270px;
+    max-height: calc(100vh - 300px);
+  }
+}
+
+.form-docs--index .form-docs--list {
+  overflow-y: auto;
+}
+
+.form-docs--index .form-docs--list .icon-container {
+  -webkit-box-flex: 0;
+          flex-grow: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.form-docs--index .form-docs--list .form-doc--icon {
+  font-size: 18px;
+  background-color: #999;
+  border: 1px solid #999;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 7px;
+}
+
+.form-docs--index .form-docs--list .form-doc--title {
+  font-weight: bold;
+}
+
+.form-docs--index .form-docs--list .submitted .form-doc--icon {
+  background-color: #9561e2;
+  border: 1px solid #9561e2;
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form-docs--index .form-docs--list .submitted .form-doc--title {
+  color: #3490dc;
+}
+
+@media (max-width: 767.98px) {
+  .form-docs--index .form-docs--display-container {
+    margin-top: 10px;
+  }
 }
 

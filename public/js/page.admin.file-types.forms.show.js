@@ -144,11 +144,7 @@ ajax.post = function (route, data, multipart, additionalProperties) {
     }
   } else {
     data._token = csrf_token;
-  } // console.log('Ajax POST');
-  // console.log(route);
-  // console.log(data);
-  // console.log(multipart);
-
+  }
 
   return ajaxRequest('POST', route, data, multipart, additionalProperties);
 };

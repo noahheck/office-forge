@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\File;
 use App\FormDoc;
+use App\FormDoc\Provider as FormDocProvider;
 use App\FormDoc\Template;
+use App\FormDoc\Template\TemplateProvider;
 use App\Http\Requests\FormDoc\Store as StoreRequest;
 use App\Http\Requests\FormDoc\Update as UpdateRequest;
 use App\Http\Requests\FormDoc\Destroy as DestroyRequest;
@@ -12,6 +14,7 @@ use App\Jobs\FormDoc\Create;
 use App\Jobs\FormDoc\Delete;
 use App\Jobs\FormDoc\Update;
 use App\Team\MemberProvider;
+use App\User;
 use Illuminate\Http\Request;
 use function App\flash_error;
 use function App\flash_info;
@@ -25,28 +28,45 @@ class FormDocController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, TemplateProvider $templateProvider, FormDocProvider $formDocProvider)
     {
         $user = $request->user();
 
-        // Temporarily return all instances
-        $formDocs = FormDoc::submitted()->orderBy('submitted_at', 'DESC')->get();
-        $formDocs->load(['creator', 'file', 'teams']);
+        $userOptions = User::ordered()->active()->get();
 
-        $formDocs = $formDocs->filter(function($formDoc, $key) use ($user) {
+        $selectedUsers = collect([]);
 
-            return $user->can('view', $formDoc);
-        });
+        if ($selectedUserIds = $request->query('users')) {
+            $selectedUsers = User::find($selectedUserIds);
+        }
 
-        // @todo Replace with TemplateProvider
-        $templates = Template::whereNull('file_type_id')->active()->orderBy('name')->get();
-        $templates->load('teams');
-        $templates = $templates->filter(function($template) use ($user) {
+        $selectedDocs = collect($request->query('docs') ?? []);
 
-            return $user->can('create', [FormDoc::class, $template]);
-        });
+        $from = $request->query('from') ?? $user->today()->format('m/d/Y');
+        $to = $request->query('to') ?? $user->today()->format('m/d/Y');
+        $includeDrafts = $request->query('includeDrafts') ?? '0';
 
-        return $this->view('form-docs.index', compact('formDocs', 'templates'));
+        $formDocs = $formDocProvider->getFormDocsAccessibleByUser(
+            $user,
+            $from,
+            $to,
+            $selectedDocs->toArray(),
+            $selectedUserIds ?? [],
+            $includeDrafts
+        );
+
+        $templates = $templateProvider->getTemplatesCreatableByUser($user, null);
+
+        return $this->view('form-docs.index', compact(
+            'formDocs',
+            'templates',
+            'userOptions',
+            'selectedUsers',
+            'selectedDocs',
+            'from',
+            'to',
+            'includeDrafts'
+        ));
     }
 
     /**
@@ -169,6 +189,11 @@ class FormDocController extends Controller
     public function show(Request $request, FormDoc $formDoc)
     {
         if (!$request->user()->can('view', $formDoc)) {
+
+            if ($request->ajax() && $request->acceptsJson()) {
+                return $this->json(false, [], [__('formDoc.error_unableToAccessFormDoc')]);
+            }
+
             flash_error(__('formDoc.error_unableToAccessFormDoc'));
 
             return redirect()->route('form-docs.index');
@@ -177,6 +202,19 @@ class FormDocController extends Controller
         $file = $formDoc->file;
 
         $activity = $formDoc->activity;
+
+        if ($request->ajax() && $request->acceptsJson()) {
+
+            $data = [
+                'id' => $formDoc->id,
+                'title' => $formDoc->name,
+                'creator' => $formDoc->creator,
+                'content' => $this->view('form-docs._form-doc', compact('formDoc', 'file', 'activity'))->render(),
+            ];
+
+            return $this->json(true, $data);
+        }
+
 
         return $this->view('form-docs.show', compact('formDoc', 'file', 'activity'));
     }
