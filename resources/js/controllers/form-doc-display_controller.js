@@ -7,10 +7,9 @@ import { Controller } from "stimulus"
 let $ = require('jquery');
 
 let ajax = require('Services/ajax');
+let queryParams = require('Services/query-string-params');
 
 export default class extends Controller {
-
-
 
     static get targets () {
         return [ "displayContainer", "link" ];
@@ -18,7 +17,22 @@ export default class extends Controller {
 
     connect() {
 
+        let formDocId = queryParams.getParam('formDocId', false);
+
+        if (formDocId) {
+            this.loadFormDoc(formDocId);
+        }
+
+        this.popStateListener = window.addEventListener('popstate', (event) => {
+            let formDocId = queryParams.getParam('formDocId', false);
+
+            if (formDocId) {
+                this.loadFormDoc(formDocId);
+            }
+        });
     }
+
+
 
     async load(event) {
 
@@ -28,7 +42,16 @@ export default class extends Controller {
 
         let formDocId = $target.data('formDocId');
 
-        // FormDoc is currently displayed
+        this.loadFormDoc(formDocId);
+
+        queryParams.setParam('formDocId', formDocId);
+    }
+
+    async loadFormDoc(formDocId) {
+
+        let $target = $("#formDocEntry_" + formDocId);
+
+        // Selected FormDoc is currently displayed
         if (formDocId.toString() === this.data.get("currentFormDocId")) {
 
             return;
@@ -40,7 +63,8 @@ export default class extends Controller {
         $target.addClass('current-item');
 
         let route = {
-            url: event.currentTarget.getAttribute('href')
+            name: 'form-docs.show',
+            params: [formDocId]
         };
 
         let response = await ajax.get(route)

@@ -61,7 +61,7 @@
             <hr class="separator">
         @endif
 
-        @include('_panel_field.' . $field->field_type, [
+        @include('_form-doc-display_field.' . $field->field_type, [
             'field' => $field,
             'value' => $field,
             'preview' => false,

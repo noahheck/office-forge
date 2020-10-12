@@ -193,7 +193,7 @@ form-docs--index
 
                             @endphp
 
-                            <a class="form-doc--entry list-group-item list-group-item-action d-flex {{ ($formDoc->submitted_at) ? 'submitted' : 'in-progress' }}" href="{{ route('form-docs.show', [$formDoc]) }}" title="{{ $formDoc->name }} - {{ ($formDoc->submitted_at ?? false) ? __('formDoc.submitted') . ': ' . \App\format_datetime($formDoc->submitted_at) : __('formDoc.inProgress') }}" data-form-doc-id="{{ $formDoc->id }}" data-target="form-doc-display.link" data-action="form-doc-display#load">
+                            <a id="formDocEntry_{{ $formDoc->id }}" class="form-doc--entry list-group-item list-group-item-action d-flex {{ ($formDoc->submitted_at) ? 'submitted' : 'in-progress' }}" href="{{ route('form-docs.show', [$formDoc]) }}" title="{{ $formDoc->name }} - {{ ($formDoc->submitted_at ?? false) ? __('formDoc.submitted') . ': ' . \App\format_datetime($formDoc->submitted_at) : __('formDoc.inProgress') }}" data-form-doc-id="{{ $formDoc->id }}" data-target="form-doc-display.link" data-action="form-doc-display#load">
 
                                 <div class="icon-container px-2">
                                     <span class="form-doc--icon">

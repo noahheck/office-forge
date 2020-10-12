@@ -28808,6 +28808,8 @@ var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"
 
 var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
 
+var queryParams = __webpack_require__(/*! Services/query-string-params */ "./resources/js/services/query-string-params.js");
+
 var _default =
 /*#__PURE__*/
 function (_Controller) {
@@ -28821,47 +28823,83 @@ function (_Controller) {
 
   _createClass(_default, [{
     key: "connect",
-    value: function connect() {}
+    value: function connect() {
+      var _this = this;
+
+      var formDocId = queryParams.getParam('formDocId', false);
+
+      if (formDocId) {
+        this.loadFormDoc(formDocId);
+      }
+
+      this.popStateListener = window.addEventListener('popstate', function (event) {
+        var formDocId = queryParams.getParam('formDocId', false);
+
+        if (formDocId) {
+          _this.loadFormDoc(formDocId);
+        }
+      });
+    }
   }, {
     key: "load",
     value: function load(event) {
-      var $target, formDocId, route, response;
+      var $target, formDocId;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function load$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               event.preventDefault();
               $target = $(event.currentTarget);
-              formDocId = $target.data('formDocId'); // FormDoc is currently displayed
+              formDocId = $target.data('formDocId');
+              this.loadFormDoc(formDocId);
+              queryParams.setParam('formDocId', formDocId);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    }
+  }, {
+    key: "loadFormDoc",
+    value: function loadFormDoc(formDocId) {
+      var $target, route, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function loadFormDoc$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              $target = $("#formDocEntry_" + formDocId); // Selected FormDoc is currently displayed
 
               if (!(formDocId.toString() === this.data.get("currentFormDocId"))) {
-                _context.next = 5;
+                _context2.next = 3;
                 break;
               }
 
-              return _context.abrupt("return");
+              return _context2.abrupt("return");
 
-            case 5:
+            case 3:
               this.data.set("currentFormDocId", formDocId);
               $(this.linkTargets).removeClass('current-item');
               $target.addClass('current-item');
               route = {
-                url: event.currentTarget.getAttribute('href')
+                name: 'form-docs.show',
+                params: [formDocId]
               };
-              _context.next = 11;
+              _context2.next = 9;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get(route));
 
-            case 11:
-              response = _context.sent;
+            case 9:
+              response = _context2.sent;
               $(this.displayContainerTarget).html(response.data.content); // I want to revisit this after getting the rest of the mobile-friendly behavior completed
               // Right now, scrolling to the top only looks good when the filter container is always visible. Otherwise, this
               // causes the screen to scroll to the top with the container in view again on the smaller screens and doesn't
               // look or feel right.
               // $(window).scrollTop(0);
 
-            case 13:
+            case 11:
             case "end":
-              return _context.stop();
+              return _context2.stop();
           }
         }
       }, null, this);
@@ -29144,6 +29182,53 @@ notify.error = function (message) {
 
 window.notify = notify;
 module.exports = notify;
+
+/***/ }),
+
+/***/ "./resources/js/services/query-string-params.js":
+/*!******************************************************!*\
+  !*** ./resources/js/services/query-string-params.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * js/services/query-string-params.js
+ */
+var stringParams = {};
+
+stringParams.setParam = function (parameterName, value) {
+  if (history.pushState) {
+    var params = new URLSearchParams(window.location.search);
+    params.set(parameterName, value);
+    var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.toString();
+    window.history.pushState({
+      path: newUrl
+    }, '', newUrl);
+  }
+};
+
+stringParams.getParam = function (parameterName, defaultValue) {
+  var params = new URLSearchParams(window.location.search);
+
+  if (!params.has(parameterName)) {
+    return defaultValue;
+  }
+
+  return params.get(parameterName);
+};
+
+stringParams.getParams = function (parameterName, defaultValue) {
+  var params = new URLSearchParams(window.location.search);
+
+  if (!params.has(parameterName)) {
+    return defaultValue;
+  }
+
+  return params.getAll(parameterName);
+};
+
+module.exports = stringParams;
 
 /***/ }),
 
