@@ -10,6 +10,7 @@ return [
     'submitted' => 'Submitted',
     'started' => 'Started',
     'creator' => 'Creator',
+    'inProgress' => 'In Progress',
 
     'name' => 'Name',
     'nameExamples' => 'Progress Update, Shift Report, etc...',
@@ -40,4 +41,13 @@ return [
     'error_fileIdMismatch' => 'This FormDoc cannot be created for this file type.',
     'error_fileTypeIdMismatch' => 'This FormDoc cannot be created unless attached to a file.',
     'error_formDocAlreadySubmitted' => 'This FormDoc has already been submitted and cannot be edited.',
+
+
+    'allDocuments' => 'All Documents',
+    'submittedBy' => 'Submitted By',
+    'allUsers' => 'All Users',
+    'between' => 'Between',
+    'and' => 'and',
+    'showInProgressFormDocs' => 'Show In-Progress FormDocs',
+    'selectFormDocFromListToView' => 'Select a FormDoc from the list to view it',
 ];

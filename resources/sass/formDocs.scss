@@ -34,12 +34,15 @@
 
     @include media-breakpoint-up(md) {
 
-        .form-docs--list {
+        .form-docs--list-container {
             position: -webkit-sticky;
             position: sticky;
             top: 120px;
             z-index: 1;
-            max-height: calc(100vh - 125px);
+        }
+
+        .form-docs--list {
+            max-height: calc(100vh - 162px);
         }
 
     }
@@ -53,19 +56,31 @@
             z-index: 2;
         }
 
-        .form-docs--list {
+        .form-docs--list-container {
             position: -webkit-sticky;
             position: sticky;
             top: 270px;
-            max-height: calc(100vh - 300px);
+        }
+
+        .form-docs--list {
+            max-height: calc(100vh - 337px);
         }
 
     }
 
+    .form-docs--list-header {
+        background-color: $light-gray;
+        padding: 6px;
+    }
 
     .form-docs--list {
 
         overflow-y: auto;
+
+
+        .current-item {
+            background-color: $blue-highlight;
+        }
 
         .icon-container {
             flex-grow: 0;
@@ -88,6 +103,9 @@
 
         .form-doc--title {
             font-weight: bold;
+            min-width: 0;
+            display: block;
+            @include overflow-ellipsis();
         }
 
         .submitted {

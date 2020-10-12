@@ -11527,6 +11527,10 @@ a.text-dark:focus {
   text-overflow: ellipsis;
 }
 
+.min-width-0 {
+  min-width: 0;
+}
+
 .no-text-decoration,
 .no-text-decoration:hover {
   text-decoration: none;

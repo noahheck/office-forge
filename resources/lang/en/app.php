@@ -3,7 +3,9 @@
 return [
     'yes' => 'Yes',
     'no' => 'No',
+    'go' => 'Go',
     'view' => 'View',
+    'show' => 'Show',
     'close' => 'Close',
     'update' => 'Update',
     'save' => 'Save',
@@ -20,6 +22,7 @@ return [
     'createNew' => 'Create New',
     'continue' => 'Continue',
     'skipToContent' => 'Skip to content',
+    'noResults' => 'No Results',
     'accessDetails' => 'Access Details',
 
     'confirmDelete' => 'Confirm Delete',

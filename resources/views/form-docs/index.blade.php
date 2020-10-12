@@ -30,18 +30,18 @@ form-docs--index
 
                                 <div class="col-2">
                                     @label([
-                                        'for' => 'docTypesToShow',
-                                        'label' => 'Show',
+                                        'for' => 'docs',
+                                        'label' => __('app.show'),
                                     ])
                                 </div>
 
                                 <div class="col-10">
                                     @multiSelectField([
                                         'name' => 'docs',
-                                        'label' => 'Show',
+                                        'label' => '',
                                         'values' => $selectedDocs,
                                         'options' => $templates->pluck('name', 'id'),
-                                        'placeholder' => 'All Documents',
+                                        'placeholder' => __('formDoc.allDocuments'),
                                         'description' => '',
                                         'required' => false,
                                         'autofocus' => true,
@@ -61,17 +61,17 @@ form-docs--index
                                 <div class="col-4 col-md-5 col-lg-4 col-xl-3">
                                     @label([
                                         'for' => 'users',
-                                        'label' => 'Submitted By',
+                                        'label' => __('formDoc.submittedBy'),
                                     ])
                                 </div>
 
                                 <div class="col-8 col-md-7 col-lg-8 col-xl-9">
                                     @userMultiSelectField([
                                         'name' => 'users',
-                                        'label' => 'Submitted By',
+                                        'label' => '',
                                         'values' => $selectedUsers,
                                         'users' => $userOptions,
-                                        'placeholder' => 'All Users',
+                                        'placeholder' => __('formDoc.allUsers'),
                                         'description' => '',
                                         'required' => false,
                                         'autofocus' => false,
@@ -89,7 +89,7 @@ form-docs--index
                                 <div class="flex-grow-0 p-2">
                                     @label([
                                         'for' => 'from',
-                                        'label' => 'Between',
+                                        'label' => __('formDoc.between'),
                                     ])
                                 </div>
                                 <div class="flex-grow-1">
@@ -110,14 +110,14 @@ form-docs--index
                                 <div class="flex-grow-0 p-2">
                                     @label([
                                         'for' => 'to',
-                                        'label' => 'and',
+                                        'label' => __('formDoc.and'),
                                     ])
                                 </div>
 
                                 <div class="flex-grow-1">
                                     @dateField([
                                         'name' => 'to',
-                                        'label' => 'and',
+                                        'label' => '',
                                         'details' => '',
                                         'value' => $to,
                                         'placeholder' => '',
@@ -139,7 +139,7 @@ form-docs--index
                                 @checkboxSwitchField([
                                     'name' => 'includeDrafts',
                                     'id' => 'includeDrafts',
-                                    'label' => 'Show In Progress FormDocs',
+                                    'label' => __('formDoc.showInProgressFormDocs'),
                                     'details' => '',
                                     'checked' => (bool) $includeDrafts,
                                     'value' => '1',
@@ -150,8 +150,8 @@ form-docs--index
 
                             <div class="flex-grow-0">
 
-                                <button type="submit" class="btn sssbtn-sm btn-primary">
-                                    {{ __('app.view') }}
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('app.go') }}
                                 </button>
 
                             </div>
@@ -171,45 +171,52 @@ form-docs--index
 
         @if (count($formDocs) > 0)
 
-            <div class="col-12 col-sm-4 col-xl-3 form-docs--list-container">
+            <div class="col-12 col-sm-4 col-xl-3">
 
-                <div class="list-group form-docs--list">
+                <div class="form-docs--list-container">
 
-                    @foreach($formDocs as $formDoc)
+                    <div class="form-docs--list-header">
+                        {{ $formDocs->count() }} Entries
+                    </div>
 
-                        @php
-                        $file = $formDoc->file;
+                    <div class="list-group form-docs--list">
 
-                        if ($file && !Auth::user()->can('view', $file)) {
+                        @foreach($formDocs as $formDoc)
 
-                            continue;
-                        }
+                            @php
+                            $file = $formDoc->file;
 
-                        @endphp
+                            if ($file && !Auth::user()->can('view', $file)) {
 
-                        <a class="list-group-item list-group-item-action d-flex {{ ($formDoc->submitted_at) ? 'submitted' : 'in-progress' }}" href="{{ route('form-docs.show', [$formDoc]) }}" title="{{ ($formDoc->submitted_at ?? false) ? 'Submitted: ' . \App\format_datetime($formDoc->submitted_at) : 'In Progress' }}" data-form-doc-id="{{ $formDoc->id }}" data-action="form-doc-display#load">
+                                continue;
+                            }
 
-                            <div class="icon-container px-2">
-                                <span class="form-doc--icon">
+                            @endphp
 
-                                {!! \App\icon\formDocs([]) !!}
-                                </span>
-                            </div>
-                            <div class="flex-grow-1">
-                                <span class="form-doc--title">{{ $formDoc->name }}</span>
-                                <p class="mb-0">
-                                    {!! $formDoc->creator->icon(['mhw-25p']) !!}
-                                    {{ $formDoc->date }} {{ $formDoc->time }}
-                                </p>
-                                @if ($file)
-                                    <p class="mt-1 mb-0">
-                                        {!! $file->icon(['mr-2', 'mhw-25p']) !!}{{ $file->name }}
+                            <a class="form-doc--entry list-group-item list-group-item-action d-flex {{ ($formDoc->submitted_at) ? 'submitted' : 'in-progress' }}" href="{{ route('form-docs.show', [$formDoc]) }}" title="{{ $formDoc->name }} - {{ ($formDoc->submitted_at ?? false) ? __('formDoc.submitted') . ': ' . \App\format_datetime($formDoc->submitted_at) : __('formDoc.inProgress') }}" data-form-doc-id="{{ $formDoc->id }}" data-target="form-doc-display.link" data-action="form-doc-display#load">
+
+                                <div class="icon-container px-2">
+                                    <span class="form-doc--icon">
+                                        {!! \App\icon\formDocs([]) !!}
+                                    </span>
+                                </div>
+                                <div class="flex-grow-1 min-width-0">
+                                    <span class="form-doc--title">{{ $formDoc->name }}</span>
+                                    <p class="mb-0 overflow-x-ellipsis">
+                                        {!! $formDoc->creator->icon(['mhw-25p']) !!}
+                                        {{ $formDoc->date }} {{ $formDoc->time }}
                                     </p>
-                                @endif
-                            </div>
-                        </a>
+                                    @if ($file)
+                                        <p class="mt-1 mb-0 overflow-x-ellipsis">
+                                            {!! $file->icon(['mr-2', 'mhw-25p']) !!}{{ $file->name }}
+                                        </p>
+                                    @endif
+                                </div>
+                            </a>
 
-                    @endforeach
+                        @endforeach
+
+                    </div>
 
                 </div>
 
@@ -221,7 +228,7 @@ form-docs--index
 
                     <div class="card shadow document">
                         <div class="card-body" data-target="form-doc-display.displayContainer">
-
+                            <em>{{ __('formDoc.selectFormDocFromListToView') }}</em>
                         </div>
 
                     </div>
@@ -234,7 +241,7 @@ form-docs--index
 
                 <div class="card">
                     <div class="card-body">
-                        No results
+                        {{ __('app.noResults') }}
                     </div>
                 </div>
 

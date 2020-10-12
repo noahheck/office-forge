@@ -28825,24 +28825,41 @@ function (_Controller) {
   }, {
     key: "load",
     value: function load(event) {
-      var route, response;
+      var $target, formDocId, route, response;
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function load$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               event.preventDefault();
+              $target = $(event.currentTarget);
+              formDocId = $target.data('formDocId'); // FormDoc is currently displayed
+
+              if (!(formDocId.toString() === this.data.get("currentFormDocId"))) {
+                _context.next = 5;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 5:
+              this.data.set("currentFormDocId", formDocId);
+              $(this.linkTargets).removeClass('current-item');
+              $target.addClass('current-item');
               route = {
                 url: event.currentTarget.getAttribute('href')
               };
-              _context.next = 4;
+              _context.next = 11;
               return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get(route));
 
-            case 4:
+            case 11:
               response = _context.sent;
-              $(this.displayContainerTarget).html(response.data.content);
-              console.log(response);
+              $(this.displayContainerTarget).html(response.data.content); // I want to revisit this after getting the rest of the mobile-friendly behavior completed
+              // Right now, scrolling to the top only looks good when the filter container is always visible. Otherwise, this
+              // causes the screen to scroll to the top with the container in view again on the smaller screens and doesn't
+              // look or feel right.
+              // $(window).scrollTop(0);
 
-            case 7:
+            case 13:
             case "end":
               return _context.stop();
           }
@@ -28852,7 +28869,7 @@ function (_Controller) {
   }], [{
     key: "targets",
     get: function get() {
-      return ["displayContainer"];
+      return ["displayContainer", "link"];
     }
   }]);
 
