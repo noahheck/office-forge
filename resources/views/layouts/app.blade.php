@@ -273,7 +273,7 @@ if ($__isFilesRoute) {
 
     @yield('location-bar')
 
-    <main id="mainContent" class="main-content">
+    <main id="mainContent" class="main-content @yield('content-body-class')">
 
         <div class="container-fluid">
             @yield('content')

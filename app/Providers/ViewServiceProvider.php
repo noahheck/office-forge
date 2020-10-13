@@ -133,6 +133,7 @@ EOT;
 
 
 
+        \Blade::include('_form/label',             'label');
         \Blade::include('_form/text',              'textField');
         \Blade::include('_form/email',             'emailField');
         \Blade::include('_form/password',          'passwordField');

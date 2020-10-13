@@ -12,7 +12,14 @@ class FormDocPolicy
 {
     use HandlesAuthorization;
 
+    /**
+     * @var SharedTeamMembership
+     */
     private $sharedTeamMembership;
+
+    /**
+     * @var Administrator
+     */
     private $administrator;
 
     public function __construct(SharedTeamMembership $sharedTeamMembership, Administrator $administrator)
@@ -44,6 +51,11 @@ class FormDocPolicy
         if ($user->id == $formDoc->creator_id) {
 
             return true;
+        }
+
+        if (!$formDoc->isSubmitted()) {
+
+            return $this->administrator->authorize($user);
         }
 
         return $this->administrator->authorize($user)

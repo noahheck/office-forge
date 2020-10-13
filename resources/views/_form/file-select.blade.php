@@ -11,13 +11,16 @@
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
     'readonly' => 'boolean: whether the field is in read-only state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group">
-    <label for="{{ $name }}">{{ $label }}</label>
-    @if ($description ?? false)
-        <p>{{ $description }}</p>
-    @endif
+@unless($fieldOnly ?? false)
+    <div class="form-group">
+        <label for="{{ $name }}">{{ $label }}</label>
+        @if ($description ?? false)
+            <p>{{ $description }}</p>
+        @endif
+@endunless
     <div class="input-group {{ ($required ?? false) ? 'required' : '' }}">
         <div class="input-group-prepend" title="{{ $fileType->name }}">
             <span class="input-group-text">
@@ -33,4 +36,6 @@
             @endforeach
         </select>
     </div>
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless

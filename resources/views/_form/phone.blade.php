@@ -8,14 +8,17 @@
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
     'readonly' => 'boolean: whether the field is in read-only state',
+    'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
 ])
 --}}
-<div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
-    <label for="{{ $name }}">{{ $label }}</label>
-    @if ($details ?? false)
-        - {{ $details }}
-    @endif
-    <small class="text-muted">(xxx) xxx-xxxx</small>
+@unless($fieldOnly ?? false)
+    <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
+        <label for="{{ $name }}">{{ $label }}</label>
+        @if ($details ?? false)
+            - {{ $details }}
+        @endif
+        <small class="text-muted">(xxx) xxx-xxxx</small>
+@endunless
     <div class="input-group">
         <div class="input-group-prepend">
             <div class="input-group-text">
@@ -24,4 +27,6 @@
         </div>
         <input type="tel" class="phone-field form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="(123) 456-7890" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>
     </div>
-</div>
+@unless($fieldOnly ?? false)
+    </div>
+@endunless

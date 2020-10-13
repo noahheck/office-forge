@@ -6,6 +6,10 @@
  * sass/_mixins.scss
  */
 
+.document-container {
+  width: 100%;
+}
+
 @media (min-width: 1200px) {
   .document-container {
     max-width: 800px;

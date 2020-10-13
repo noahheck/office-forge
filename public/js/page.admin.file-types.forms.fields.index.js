@@ -144,11 +144,7 @@ ajax.post = function (route, data, multipart, additionalProperties) {
     }
   } else {
     data._token = csrf_token;
-  } // console.log('Ajax POST');
-  // console.log(route);
-  // console.log(data);
-  // console.log(multipart);
-
+  }
 
   return ajaxRequest('POST', route, data, multipart, additionalProperties);
 };
@@ -297,7 +293,7 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 17:
+/***/ 18:
 /*!************************************************************************!*\
   !*** multi ./resources/js/page/admin/file-types/forms/fields/index.js ***!
   \************************************************************************/
@@ -309,4 +305,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[17,"/js/manifest","/js/vendor"]]]);
+},[[18,"/js/manifest","/js/vendor"]]]);

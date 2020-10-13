@@ -17,6 +17,12 @@ function spinner($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function filterOptions($classes = []) {
+    $classes[] = "fas fa-sliders-h";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function go($classes = []) {
     $classes[] = "far fa-arrow-alt-circle-right";
 

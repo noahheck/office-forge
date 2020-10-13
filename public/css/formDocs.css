@@ -2,6 +2,10 @@
  * sass/formDocs.scss
  */
 
+/**
+ * sass/_mixins.scss
+ */
+
 .formDoc--fields .panel-field {
   padding-bottom: 10px;
 }
@@ -16,5 +20,197 @@
 
 .formDoc--fields .checkbox-container {
   font-size: 1.1rem;
+}
+
+.form-docs--index .form-docs--filters-display-button {
+  position: fixed;
+  top: 108px;
+  right: 50px;
+  height: 50px;
+  width: 50px;
+  border: 1px solid #3490dc;
+  background-color: #3490dc;
+  z-index: 3;
+  box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding-top: 10px;
+  text-align: center;
+  color: #fff;
+  font-size: 24px;
+}
+
+.form-docs--index .form-docs--filters-display-button.shown {
+  top: 327px;
+}
+
+@media (min-width: 768px) {
+  .form-docs--index .form-docs--filters-display-button.shown {
+    top: 250px;
+  }
+}
+
+.form-docs--index .form-docs--filters-container {
+  position: fixed;
+  top: 120px;
+  z-index: 3;
+  height: 0;
+  overflow-y: hidden;
+  border: 0;
+}
+
+.form-docs--index .form-docs--filters-container.shown {
+  height: auto;
+  overflow: visible;
+  border: 1px solid #e3e3e3;
+}
+
+@media (min-width: 992px) {
+  .form-docs--index .form-docs--filters-display-button {
+    display: none;
+  }
+
+  .form-docs--index .form-docs--filters-container {
+    position: -webkit-sticky;
+    position: sticky;
+    height: auto;
+    overflow-y: visible;
+    border: 1px solid #e3e3e3;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .form-docs--index .form-docs--list-column {
+    position: fixed;
+    top: 128px;
+    width: 300px;
+    z-index: 2;
+    padding-left: 0;
+    padding-right: 0;
+    display: none;
+  }
+
+  .form-docs--index .form-docs--list-column.shown {
+    display: block;
+  }
+
+  .form-docs--index .form-docs--list {
+    max-height: calc(100vh - 178px);
+  }
+
+  .form-docs--index .form-docs--list-display-button {
+    position: fixed;
+    top: 168px;
+    left: 0;
+    height: 50px;
+    width: 50px;
+    border: 1px solid #e3e3e3;
+    background-color: #fff;
+    z-index: 3;
+    box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.5);
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding-top: 2px;
+    text-align: center;
+    color: #3490dc;
+    font-size: 24px;
+  }
+
+  .form-docs--index .form-docs--list-display-button.shown {
+    left: 300px;
+  }
+}
+
+.form-docs--index .form-docs--list {
+  overflow-y: auto;
+  box-shadow: 2px 4px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+@media (min-width: 768px) {
+  .form-docs--index .form-docs--list-display-button {
+    display: none;
+  }
+
+  .form-docs--index .form-docs--list-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+    z-index: 1;
+  }
+
+  .form-docs--index .form-docs--list {
+    max-height: calc(100vh - 162px);
+  }
+}
+
+@media (min-width: 992px) {
+  .form-docs--index .form-docs--list-container {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 270px;
+  }
+
+  .form-docs--index .form-docs--list {
+    max-height: calc(100vh - 337px);
+  }
+}
+
+.form-docs--index .form-docs--list-header {
+  background-color: #e3e3e3;
+  padding: 6px;
+}
+
+.form-docs--index .form-docs--list {
+  overflow-y: auto;
+}
+
+.form-docs--index .form-docs--list .current-item {
+  background-color: #e3f3ff;
+}
+
+.form-docs--index .form-docs--list .icon-container {
+  -webkit-box-flex: 0;
+          flex-grow: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+
+.form-docs--index .form-docs--list .form-doc--icon {
+  font-size: 18px;
+  background-color: #999;
+  border: 1px solid #999;
+  color: #fff;
+  border-radius: 4px;
+  padding: 1px 7px;
+}
+
+.form-docs--index .form-docs--list .form-doc--title {
+  font-weight: bold;
+  min-width: 0;
+  display: block;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.form-docs--index .form-docs--list .submitted .form-doc--icon {
+  background-color: #9561e2;
+  border: 1px solid #9561e2;
+  box-shadow: 1px 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
+.form-docs--index .form-docs--list .submitted .form-doc--title {
+  color: #3490dc;
+}
+
+@media (max-width: 767.98px) {
+  .form-docs--index .form-docs--display-container {
+    margin-top: 10px;
+  }
 }
 

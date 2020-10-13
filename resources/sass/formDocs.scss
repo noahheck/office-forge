@@ -2,7 +2,8 @@
  * sass/formDocs.scss
  */
 
-// @import "files/panel";
+@import "variables";
+@import "mixins";
 
 .formDoc--fields {
 
@@ -20,6 +21,226 @@
 
     .checkbox-container {
         font-size: 1.1rem;
+    }
+
+}
+
+.form-docs--index {
+
+
+    .form-docs--filters-display-button {
+        position: fixed;
+        top: 108px;
+        right: 50px;
+        height: 50px;
+        width: 50px;
+        border: 1px solid $blue;
+        background-color: $blue;
+        z-index: 3;
+        @include shadow();
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+
+        padding-top: 10px;
+        text-align: center;
+        color: $white;
+        font-size: 24px;
+
+        &.shown {
+
+            top: 327px;
+
+            @include media-breakpoint-up(md) {
+
+                top: 250px;
+            }
+        }
+    }
+
+    .form-docs--filters-container {
+        position: fixed;
+        top: 120px;
+        z-index: 3;
+        height: 0;
+        overflow-y: hidden;
+        border: 0;
+
+        &.shown {
+            height: auto;
+            overflow: visible;
+            border: 1px solid $light-gray;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+
+        .form-docs--filters-display-button {
+            display: none;
+        }
+
+        .form-docs--filters-container {
+            position: -webkit-sticky;
+            position: sticky;
+
+            height: auto;
+            overflow-y: visible;
+            border: 1px solid $light-gray;
+        }
+    }
+
+
+
+
+
+
+
+
+    @include media-breakpoint-down(sm) {
+
+        .form-docs--list-column {
+            position: fixed;
+            top: 128px;
+            width: 300px;
+            z-index: 2;
+            padding-left: 0;
+            padding-right: 0;
+            display: none;
+
+            &.shown {
+                display: block;
+            }
+        }
+
+        .form-docs--list {
+            max-height: calc(100vh - 178px);
+        }
+
+        .form-docs--list-display-button {
+            position: fixed;
+            top: 168px;
+            left: 0;
+            height: 50px;
+            width: 50px;
+            border: 1px solid $light-gray;
+            background-color: $white;
+            z-index: 3;
+            @include shadow();
+            border-top-right-radius: 4px;
+            border-bottom-right-radius: 4px;
+
+            padding-top: 2px;
+            text-align: center;
+            color: $blue;
+            font-size: 24px;
+
+            &.shown {
+                left: 300px;
+            }
+        }
+
+    }
+
+    .form-docs--list {
+        overflow-y: auto;
+        @include shadow();
+    }
+
+    @include media-breakpoint-up(md) {
+
+        .form-docs--list-display-button {
+            display: none;
+        }
+
+
+        .form-docs--list-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 120px;
+            z-index: 1;
+        }
+
+        .form-docs--list {
+            max-height: calc(100vh - 162px);
+        }
+
+    }
+
+    @include media-breakpoint-up(lg) {
+
+        .form-docs--list-container {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 270px;
+        }
+
+        .form-docs--list {
+            max-height: calc(100vh - 337px);
+        }
+
+    }
+
+
+
+    .form-docs--list-header {
+        background-color: $light-gray;
+        padding: 6px;
+    }
+
+    .form-docs--list {
+
+        overflow-y: auto;
+
+
+        .current-item {
+            background-color: $blue-highlight;
+        }
+
+        .icon-container {
+            flex-grow: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .form-doc--icon {
+            font-size: 18px;
+            background-color: $med-dark-gray;
+            border: 1px solid $med-dark-gray;
+
+            color: $white;
+            @include border-radius(4px);
+            padding: 1px 7px;
+
+        }
+
+        .form-doc--title {
+            font-weight: bold;
+            min-width: 0;
+            display: block;
+            @include overflow-ellipsis();
+        }
+
+        .submitted {
+            .form-doc--icon {
+                background-color: $purple;
+                border: 1px solid $purple;
+                @include shadow(1px, 2px, 2px);
+            }
+
+            .form-doc--title {
+                color: $blue;
+            }
+        }
+
+    }
+
+    .form-docs--display-container {
+
+        @include media-breakpoint-down(sm) {
+            margin-top: 10px;
+        }
+
     }
 
 }

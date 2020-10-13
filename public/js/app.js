@@ -28601,7 +28601,8 @@ addEventListener("trix-attachment-remove", function _callee2(event) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./drag-drop-file-upload_controller.js": "./resources/js/controllers/drag-drop-file-upload_controller.js"
+	"./drag-drop-file-upload_controller.js": "./resources/js/controllers/drag-drop-file-upload_controller.js",
+	"./form-doc-display_controller.js": "./resources/js/controllers/form-doc-display_controller.js"
 };
 
 
@@ -28765,6 +28766,162 @@ function (_Controller) {
 
 /***/ }),
 
+/***/ "./resources/js/controllers/form-doc-display_controller.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/controllers/form-doc-display_controller.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _default; });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var stimulus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! stimulus */ "./node_modules/stimulus/index.js");
+
+
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+/**
+ * js/controllers/form-doc-display_controller.js
+ */
+
+
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+var ajax = __webpack_require__(/*! Services/ajax */ "./resources/js/services/ajax.js");
+
+var queryParams = __webpack_require__(/*! Services/query-string-params */ "./resources/js/services/query-string-params.js");
+
+var _default =
+/*#__PURE__*/
+function (_Controller) {
+  _inherits(_default, _Controller);
+
+  function _default() {
+    _classCallCheck(this, _default);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(_default).apply(this, arguments));
+  }
+
+  _createClass(_default, [{
+    key: "connect",
+    value: function connect() {
+      var _this = this;
+
+      var formDocId = queryParams.getParam('formDocId', false);
+
+      if (!formDocId) {
+        formDocId = $(this.linkTargets).first().data('formDocId');
+      }
+
+      if (formDocId) {
+        this.loadFormDoc(formDocId);
+      }
+
+      this.popStateListener = window.addEventListener('popstate', function (event) {
+        var formDocId = queryParams.getParam('formDocId', false);
+
+        if (formDocId) {
+          _this.loadFormDoc(formDocId);
+        }
+      });
+    }
+  }, {
+    key: "load",
+    value: function load(event) {
+      var $target, formDocId;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function load$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              event.preventDefault();
+              $target = $(event.currentTarget);
+              formDocId = $target.data('formDocId');
+              this.loadFormDoc(formDocId);
+              queryParams.setParam('formDocId', formDocId);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, null, this);
+    }
+  }, {
+    key: "loadFormDoc",
+    value: function loadFormDoc(formDocId) {
+      var $target, route, response;
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function loadFormDoc$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              $target = $("#formDocEntry_" + formDocId); // Selected FormDoc is currently displayed
+
+              if (!(formDocId.toString() === this.data.get("currentFormDocId"))) {
+                _context2.next = 3;
+                break;
+              }
+
+              return _context2.abrupt("return");
+
+            case 3:
+              this.data.set("currentFormDocId", formDocId);
+              $(this.linkTargets).removeClass('current-item');
+              $target.addClass('current-item');
+              route = {
+                name: 'form-docs.show',
+                params: [formDocId]
+              };
+              _context2.next = 9;
+              return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get(route));
+
+            case 9:
+              response = _context2.sent;
+              $(this.displayContainerTarget).html(response.data.content); // I want to revisit this after getting the rest of the mobile-friendly behavior completed
+              // Right now, scrolling to the top only looks good when the filter container is always visible. Otherwise, this
+              // causes the screen to scroll to the top with the container in view again on the smaller screens and doesn't
+              // look or feel right.
+              // $(window).scrollTop(0);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, null, this);
+    }
+  }], [{
+    key: "targets",
+    get: function get() {
+      return ["displayContainer", "link"];
+    }
+  }]);
+
+  return _default;
+}(stimulus__WEBPACK_IMPORTED_MODULE_1__["Controller"]);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/services/ajax.js":
 /*!***************************************!*\
   !*** ./resources/js/services/ajax.js ***!
@@ -28837,11 +28994,7 @@ ajax.post = function (route, data, multipart, additionalProperties) {
     }
   } else {
     data._token = csrf_token;
-  } // console.log('Ajax POST');
-  // console.log(route);
-  // console.log(data);
-  // console.log(multipart);
-
+  }
 
   return ajaxRequest('POST', route, data, multipart, additionalProperties);
 };
@@ -29033,6 +29186,53 @@ notify.error = function (message) {
 
 window.notify = notify;
 module.exports = notify;
+
+/***/ }),
+
+/***/ "./resources/js/services/query-string-params.js":
+/*!******************************************************!*\
+  !*** ./resources/js/services/query-string-params.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/**
+ * js/services/query-string-params.js
+ */
+var stringParams = {};
+
+stringParams.setParam = function (parameterName, value) {
+  if (history.pushState) {
+    var params = new URLSearchParams(window.location.search);
+    params.set(parameterName, value);
+    var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + params.toString();
+    window.history.pushState({
+      path: newUrl
+    }, '', newUrl);
+  }
+};
+
+stringParams.getParam = function (parameterName, defaultValue) {
+  var params = new URLSearchParams(window.location.search);
+
+  if (!params.has(parameterName)) {
+    return defaultValue;
+  }
+
+  return params.get(parameterName);
+};
+
+stringParams.getParams = function (parameterName, defaultValue) {
+  var params = new URLSearchParams(window.location.search);
+
+  if (!params.has(parameterName)) {
+    return defaultValue;
+  }
+
+  return params.getAll(parameterName);
+};
+
+module.exports = stringParams;
 
 /***/ }),
 
