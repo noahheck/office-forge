@@ -24,7 +24,10 @@ class Provider
         $includeDrafts = false
     ) {
         $query = $this->formDoc
-            ->whereBetween('date', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))]);
+            ->whereBetween('date', [date('Y-m-d', strtotime($from)), date('Y-m-d', strtotime($to))])
+            ->orderBy('DATE', 'DESC')
+            ->orderBy('TIME', 'DESC')
+            ->orderBy('id', 'DESC');
 
         if (count($templateIds) > 0) {
             $query->whereIn('form_doc_template_id', $templateIds);
@@ -40,7 +43,7 @@ class Provider
 
         $formDocs = $query->get();
 
-        $formDocs->load(['creator', 'file', 'teams']);
+        $formDocs->load(['creator', 'creator.headshots', 'file', 'teams', 'file.headshots']);
 
         $formDocs = $formDocs->filter(function($formDoc, $key) use ($user) {
 

@@ -33,6 +33,7 @@ class FormDocController extends Controller
         $user = $request->user();
 
         $userOptions = User::ordered()->active()->get();
+        $userOptions->load('headshots');
 
         $selectedUsers = collect([]);
 

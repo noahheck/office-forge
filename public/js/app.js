@@ -28828,6 +28828,10 @@ function (_Controller) {
 
       var formDocId = queryParams.getParam('formDocId', false);
 
+      if (!formDocId) {
+        formDocId = $(this.linkTargets).first().data('formDocId');
+      }
+
       if (formDocId) {
         this.loadFormDoc(formDocId);
       }
