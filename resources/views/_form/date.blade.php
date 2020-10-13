@@ -21,7 +21,7 @@
 @endunless
     <div class="input-group">
         <div class="input-group-prepend">
-            <label for="{{ $name }}" class="input-group-text">
+            <label for="{{ $name }}" class="input-group-text no-required-indicator">
                 {!! \App\icon\calendar() !!}
             </label>
         </div>

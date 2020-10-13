@@ -14309,7 +14309,7 @@ trix-editor:empty:not(:focus)::before {
   transition: padding 0.2s, margin 0.2s;
 }
 
-.form-group.required label::after {
+.form-group.required label:not(.no-required-indicator)::after {
   content: " *";
   color: #e3342f;
 }

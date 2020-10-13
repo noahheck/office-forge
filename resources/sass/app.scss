@@ -91,7 +91,7 @@
 }
 
 
-.form-group.required label::after {
+.form-group.required label:not(.no-required-indicator)::after {
     content: ' *';
     color: $red;
 }
