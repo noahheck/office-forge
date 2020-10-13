@@ -16,7 +16,7 @@ $(function () {});
 
 /***/ }),
 
-/***/ 7:
+/***/ 8:
 /*!************************************************!*\
   !*** multi ./resources/js/page/files/index.js ***!
   \************************************************/
@@ -28,4 +28,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[7,"/js/manifest","/js/vendor"]]]);
+},[[8,"/js/manifest","/js/vendor"]]]);

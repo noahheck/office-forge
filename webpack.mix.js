@@ -32,6 +32,9 @@ mix
     .js('resources/js/page/drives/files/_form.js', 'public/js/page.drives.files._form.js')
     // .js('resources/js/page/drives/files/show.js', 'public/js/page.drives.files.show.js')
 
+    // FormDocs
+    .js('resources/js/page/form-docs/index.js', 'public/js/page.form-docs.index.js')
+
     // User Activity
     .sass('resources/sass/user-activity.scss', 'public/css')
     .js('resources/js/page/user-activity.js', 'public/js/page.user-activity.js')

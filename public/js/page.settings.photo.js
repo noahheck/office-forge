@@ -29,7 +29,7 @@ $(function () {
 
 /***/ }),
 
-/***/ 3:
+/***/ 4:
 /*!***************************************************!*\
   !*** multi ./resources/js/page/settings/photo.js ***!
   \***************************************************/
@@ -41,4 +41,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[3,"/js/manifest","/js/vendor"]]]);
+},[[4,"/js/manifest","/js/vendor"]]]);

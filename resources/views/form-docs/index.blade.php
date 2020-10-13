@@ -5,6 +5,10 @@
     @style('css/formDocs.css')
 @endpush
 
+@push('scripts')
+    @script('js/page.form-docs.index.js')
+@endpush
+
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\FormDocs\Index),
 ])
@@ -15,7 +19,11 @@ form-docs--index
 
 @section('content')
 
-    <div class="card mb-3 form-docs--filters-container">
+    <button class="form-docs--filters-display-button" id="formDocsFiltersDisplayButton">
+        {!! \App\icon\filterOptions(['icon']) !!}
+    </button>
+
+    <div class="card shadow mb-3 form-docs--filters-container" id="formDocsFiltersContainer">
         <div class="card-body">
 
             <form class="bold-labels" action="" method="GET">
