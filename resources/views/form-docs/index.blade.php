@@ -23,6 +23,10 @@ form-docs--index
         {!! \App\icon\filterOptions(['icon']) !!}
     </button>
 
+    <button class="form-docs--list-display-button" id="formDocsListDisplayButton">
+        {!! \App\icon\forms(['icon']) !!}
+    </button>
+
     <div class="card shadow mb-3 form-docs--filters-container" id="formDocsFiltersContainer">
         <div class="card-body">
 
@@ -179,7 +183,7 @@ form-docs--index
 
         @if (count($formDocs) > 0)
 
-            <div class="col-12 col-sm-4 col-xl-3">
+            <div class="col-md-4 d-md-block col-xl-3 form-docs--list-column" id="formDocsListColumn">
 
                 <div class="form-docs--list-container">
 
@@ -230,7 +234,7 @@ form-docs--index
 
             </div>
 
-            <div class="col-12 col-sm-8 col-xl-9 d-flex justify-content-center">
+            <div class="col-12 col-md-8 col-xl-9 d-flex justify-content-center">
 
                 <div class="document-container form-docs--display-container" id="formDocsDisplayContainer">
 

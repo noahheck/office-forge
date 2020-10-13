@@ -19,6 +19,12 @@ $(function () {
     $filtersContainer.toggleClass('shown');
     $filtersDisplayButton.toggleClass('shown');
   });
+  var $listContainer = $("#formDocsListColumn");
+  var $listButton = $("#formDocsListDisplayButton");
+  $listButton.click(function () {
+    $listContainer.toggleClass('shown');
+    $listButton.toggleClass('shown');
+  });
 });
 
 /***/ }),

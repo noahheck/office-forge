@@ -14,4 +14,12 @@ $(function() {
         $filtersDisplayButton.toggleClass('shown');
     });
 
+
+    let $listContainer = $("#formDocsListColumn");
+    let $listButton = $("#formDocsListDisplayButton");
+
+    $listButton.click(function() {
+        $listContainer.toggleClass('shown');
+        $listButton.toggleClass('shown');
+    })
 });
