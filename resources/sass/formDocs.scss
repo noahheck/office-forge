@@ -113,8 +113,6 @@
 
         .form-docs--list {
             max-height: calc(100vh - 178px);
-            overflow-y: auto;
-            @include shadow();
         }
 
         .form-docs--list-display-button {
@@ -142,6 +140,10 @@
 
     }
 
+    .form-docs--list {
+        overflow-y: auto;
+        @include shadow();
+    }
 
     @include media-breakpoint-up(md) {
 
@@ -149,10 +151,6 @@
             display: none;
         }
 
-        .form-docs--list {
-            overflow-y: auto;
-            @include shadow(0px, 0px, 0px, 0, transparent);
-        }
 
         .form-docs--list-container {
             position: -webkit-sticky;
