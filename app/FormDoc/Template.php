@@ -47,7 +47,7 @@ class Template extends Model
 
     public function activeFields()
     {
-        return $this->fields()->where('active', true);
+        return $this->fields()->where('active', true)->orderBy('order');
     }
 
     public function instances()

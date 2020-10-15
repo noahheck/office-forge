@@ -11,6 +11,7 @@ return [
     'started' => 'Started',
     'creator' => 'Creator',
     'inProgress' => 'In Progress',
+    'entries' => 'Entry|Entries',
 
     'name' => 'Name',
     'nameExamples' => 'Progress Update, Shift Report, etc...',

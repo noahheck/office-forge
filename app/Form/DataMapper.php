@@ -10,6 +10,53 @@ class DataMapper
 
     }
 
+    public function getFieldValue($field)
+    {
+        if (in_array($field->field_type, ['text', 'email', 'phone', 'select'])) {
+            return $field->value_text1;
+        }
+
+        if (in_array($field->field_type, ['money', 'decimal'])) {
+            return $field->value_decimal;
+        }
+
+        if ($field->field_type === 'user') {
+
+            return $field->valueUser;
+        }
+
+        if ($field->field_type === 'file') {
+
+            return $field->valueFile;
+        }
+
+        if ($field->field_type === 'integer') {
+            return $field->value_integer;
+        }
+
+        if ($field->field_type === 'date') {
+            return $field->valueDate;
+        }
+
+        if ($field->field_type === 'checkbox') {
+            return $field->value_boolean;
+        }
+
+        if ($field->field_type === 'textarea') {
+            return $field->value_longtext;
+        }
+
+        if ($field->field_type === 'name') {
+
+            return $field->valueName();
+        }
+
+        if ($field->field_type === 'address') {
+
+            return $field->valueAddress();
+        }
+    }
+
 
     public function updateFieldValue($field, $value, $inputData)
     {

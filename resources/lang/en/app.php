@@ -30,6 +30,7 @@ return [
 
     'date' => 'Date',
     'time' => 'Time',
+    'dateTime' => 'Date/Time',
 
     'upload' => 'Upload',
     'download' => 'Download',
@@ -44,6 +45,9 @@ return [
     'toggleNavigation' => 'Toggle Navigation',
 
     'viewHelpDocs' => 'View the Help Docs',
+
+    'openDocumentSpreadsheet' => 'Open-Document Spreadsheet',
+    'excelSpreadsheet' => 'Excel Spreadsheet',
 
     'home' => 'Home',
     'messages' => 'Messages',

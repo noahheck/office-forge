@@ -15,6 +15,25 @@ class Provider
         $this->formDoc = $formDoc;
     }
 
+    public function getFormDocsByFormDocIdAccessibleByUser($user, $formDocIds)
+    {
+        $formDocs = $this->formDoc
+            ->whereIn('id', $formDocIds)
+            ->orderBy('DATE', 'ASC')
+            ->orderBy('TIME', 'ASC')
+            ->orderBy('id', 'ASC')
+            ->get();
+
+        $formDocs->load(['creator', 'creator.headshots', 'file', 'teams', 'file.headshots']);
+
+        $formDocs = $formDocs->filter(function($formDoc, $key) use ($user) {
+
+            return $user->can('view', $formDoc);
+        });
+
+        return $formDocs;
+    }
+
     public function getFormDocsAccessibleByUser(
         $user,
         $from,

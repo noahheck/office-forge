@@ -7,6 +7,7 @@ use App\FormDoc;
 use App\FormDoc\Provider as FormDocProvider;
 use App\FormDoc\Template;
 use App\FormDoc\Template\TemplateProvider;
+use App\FormDoc\Transformer\Spreadsheet;
 use App\Http\Requests\FormDoc\Store as StoreRequest;
 use App\Http\Requests\FormDoc\Update as UpdateRequest;
 use App\Http\Requests\FormDoc\Destroy as DestroyRequest;
@@ -15,6 +16,8 @@ use App\Jobs\FormDoc\Delete;
 use App\Jobs\FormDoc\Update;
 use App\Team\MemberProvider;
 use App\User;
+use Illuminate\Contracts\Filesystem\Factory;
+use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use function App\flash_error;
 use function App\flash_info;
@@ -307,5 +310,41 @@ class FormDocController extends Controller
         flash_info(__('formDoc.deletedSuccessfully'));
 
         return redirect()->route('home');
+    }
+
+
+    /**
+     * @param Request $request
+     * @param FormDocProvider $provider
+     * @param Spreadsheet $transformer
+     * @return false|string
+     */
+    public function downloadSpreadsheet(Request $request, FormDocProvider $provider, Spreadsheet $transformer)
+    {
+        $formDocs = $provider->getFormDocsByFormDocIdAccessibleByUser($request->user(), $request->get('formDocIds'));
+
+        $spreadsheet = $transformer->transform($formDocs);
+
+        $user = $request->user();
+        $tempFilename = $user->id . '_' . now()->format('Y-m-d_g_i_a');
+        $filename = $user->today()->format('Y-m-d_g-ia');
+
+        $format = $request->downloadFormat ?? 'ods';
+
+        if ('xlsx' === $format) {
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
+            $tempFilename .= '.xlsx';
+            $filename .= '.xlsx';
+        } else {
+            $writer = new \PhpOffice\PhpSpreadsheet\Writer\Ods($spreadsheet);
+            $tempFilename .= '.ods';
+            $filename .= '.ods';
+        }
+
+
+
+        $writer->save(\App\temp_directory_path() . "/{$tempFilename}");
+
+        return $this->download(\App\temp_directory_path() . "/{$tempFilename}")->deleteFileAfterSend(true);
     }
 }

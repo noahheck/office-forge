@@ -188,7 +188,34 @@ form-docs--index
                 <div class="form-docs--list-container">
 
                     <div class="form-docs--list-header">
-                        {{ $formDocs->count() }} Entries
+
+                        <form action="{{ route('form-docs.download-spreadsheet') }}" method="POST">
+                            @csrf
+                            @foreach ($formDocs as $formDoc)
+                                @hiddenField([
+                                    'name' => 'formDocIds[]',
+                                    'id' => 'exportForm_formDocId_' . $formDoc->id,
+                                    'value' => $formDoc->id,
+                                ])
+                            @endforeach
+                            <div class="dropdown float-right">
+                                <button class="btn btn-sm btn-link dropdown-toggle" type="button" id="exportOptionsToggleButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {!! \App\icon\mediaFileDownload([]) !!}
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="exportOptionsToggleButton">
+                                    <button type="submit" class="dropdown-item" name="downloadFormat" value="ods">
+                                        {!! \App\icon\file_spreadsheet(['mr-2']) !!}{{ __('app.openDocumentSpreadsheet') }}
+                                    </button>
+                                    <button type="submit" class="dropdown-item" name="downloadFormat" value="xlsx">
+                                        {!! \App\icon\file_spreadsheet(['mr-2']) !!}{{ __('app.excelSpreadsheet') }}
+                                    </button>
+
+                                </div>
+                            </div>
+
+                        </form>
+
+                        {{ $formDocsCount = $formDocs->count() }} {{ trans_choice('formDoc.entries', $formDocsCount) }}
                     </div>
 
                     <div class="list-group form-docs--list">

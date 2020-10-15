@@ -33,4 +33,15 @@ class Controller extends BaseController
     {
         return new AjaxResponse($success, $data, $errors);
     }
+
+    /**
+     * @param $pathToFile
+     * @param null $name
+     * @param array $headers
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    protected function download($pathToFile, $name = null, $headers = [])
+    {
+        return response()->download($pathToFile, $name, $headers);
+    }
 }

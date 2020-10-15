@@ -89,6 +89,7 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
     // FormDocs
     Route::resource('/form-docs', 'FormDocController');
+    Route::post('/form-docs/download/spreadsheet', 'FormDocController@downloadSpreadsheet')->name('form-docs.download-spreadsheet');
 
 
     // Files
