@@ -334,17 +334,17 @@ class FormDocController extends Controller
         if ('xlsx' === $format) {
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Xlsx($spreadsheet);
             $tempFilename .= '.xlsx';
-            $filename .= '.xlsx';
+            $filename     .= '.xlsx';
         } else {
             $writer = new \PhpOffice\PhpSpreadsheet\Writer\Ods($spreadsheet);
             $tempFilename .= '.ods';
-            $filename .= '.ods';
+            $filename     .= '.ods';
         }
 
 
 
         $writer->save(\App\temp_directory_path() . "/{$tempFilename}");
 
-        return $this->download(\App\temp_directory_path() . "/{$tempFilename}")->deleteFileAfterSend(true);
+        return $this->download(\App\temp_directory_path() . "/{$tempFilename}", $filename)->deleteFileAfterSend(true);
     }
 }
