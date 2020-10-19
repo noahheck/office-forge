@@ -1,14 +1,15 @@
-@fileSelectField([
+@fileSearchField([
     'name' => $field->fieldName(),
     'label' => $field->label,
-    'value' => old($field->fieldName(), (int) $value->value_file),
+    'value' => $value->valueFile,
     'fileType' => $field->fileType,
-    'files' => $field->fileType->files()->ordered()->get(),
-    'placeholder' => $field->placeholder,
+    'placeholder' => $field->placeholder ?? __("app.searchItems", ['itemName' => Str::plural($field->fileType->name)]),
     'description' => $field->description,
     'required' => false,
     'autofocus' => $autofocus ?? false,
     'error' => $errors->has($field->fieldName()),
+    'readonly' => $readonly ?? false,
+    'fieldOnly' => false,
 ])
 
 @errors($field->fieldName())

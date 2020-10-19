@@ -28,7 +28,7 @@
         </div>
         <select data-display="static" class="file-search show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true" {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-file-type-id="{{ ($fileType ?? false) ? $fileType->id : "" }}">
             @if ($value)
-                <option value="{{ $value->id }}" selected data-content="{!! $value->icon(['mr-2']) !!}{{ $value->name }}">{{ $value->name }}</option>
+                <option value="{{ $value->id }}" selected data-content="{!! $value->icon(['mr-2', 'mhw-35p']) !!}{{ $value->name }}">{{ $value->name }}</option>
             @endif
         </select>
     </div>

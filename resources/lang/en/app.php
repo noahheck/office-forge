@@ -101,6 +101,8 @@ return [
     'password' => 'Password',
     'rememberMe' => 'Remember Me',
 
+    'searchItems' => 'Search :itemName',
+
 
 
     'setup.welcome' => 'Welcome to your new Office Forge server!',

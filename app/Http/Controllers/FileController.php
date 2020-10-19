@@ -315,7 +315,7 @@ class FileController extends Controller
                 'id' => $file->id,
                 'name' => $file->name,
                 'fileType' => $file->fileType->name,
-                'icon' => $file->icon(['file-icon']),
+                'icon' => $file->icon(['file-icon', 'mhw-35p']),
                 'url' => route("files.show", [$file]),
             ];
         });
