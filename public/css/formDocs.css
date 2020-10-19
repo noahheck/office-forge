@@ -41,12 +41,12 @@
 }
 
 .form-docs--index .form-docs--filters-display-button.shown {
-  top: 327px;
+  top: 368px;
 }
 
 @media (min-width: 768px) {
   .form-docs--index .form-docs--filters-display-button.shown {
-    top: 250px;
+    top: 286px;
   }
 }
 
@@ -139,7 +139,7 @@
   }
 
   .form-docs--index .form-docs--list {
-    max-height: calc(100vh - 162px);
+    max-height: calc(100vh - 185px);
   }
 }
 
@@ -147,11 +147,11 @@
   .form-docs--index .form-docs--list-container {
     position: -webkit-sticky;
     position: sticky;
-    top: 270px;
+    top: 303px;
   }
 
   .form-docs--index .form-docs--list {
-    max-height: calc(100vh - 337px);
+    max-height: calc(100vh - 370px);
   }
 }
 

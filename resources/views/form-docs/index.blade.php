@@ -96,6 +96,40 @@ form-docs--index
 
                         <div class="col-12 col-md-6">
 
+                            <div class="row mb-1">
+
+                                <div class="col-2">
+                                    @label([
+                                        'for' => 'file_id',
+                                        'label' => 'For',
+                                    ])
+                                </div>
+
+                                <div class="col-10">
+
+                                    @fileSearchField([
+                                        'name' => 'file_id',
+                                        'label' => 'For',
+                                        'value' => $file,
+                                        'fileType' => '',
+                                        'files' => [],
+                                        'placeholder' => 'No File Filter',
+                                        'description' => '',
+                                        'required' => false,
+                                        'autofocus' => false,
+                                        'error' => $errors->has('file_id'),
+                                        'readonly' => false,
+                                        'fieldOnly' => true,
+                                    ])
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-12 col-md-6">
+
                             <div class="d-flex">
 
                                 <div class="flex-grow-0 p-2">

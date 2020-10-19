@@ -40,6 +40,7 @@ class Provider
         $to,
         $templateIds = [],
         $submittedBy = [],
+        $fileId = null,
         $includeDrafts = false
     ) {
         $query = $this->formDoc
@@ -54,6 +55,10 @@ class Provider
 
         if (count($submittedBy) > 0) {
             $query->whereIn('creator_id', $submittedBy);
+        }
+
+        if ($fileId) {
+            $query->where('file_id', $fileId);
         }
 
         if (! (bool) $includeDrafts) {

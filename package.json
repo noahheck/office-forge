@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.0",
+    "ajax-bootstrap-select": "^1.4.5",
     "bootstrap-datepicker": "^1.9.0",
     "bootstrap-select": "^1.13.18",
     "datatables.net": "^1.10.22",
