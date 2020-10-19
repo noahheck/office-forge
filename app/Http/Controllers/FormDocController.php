@@ -16,13 +16,10 @@ use App\Jobs\FormDoc\Delete;
 use App\Jobs\FormDoc\Update;
 use App\Team\MemberProvider;
 use App\User;
-use Illuminate\Contracts\Filesystem\Factory;
-use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
 use function App\flash_error;
 use function App\flash_info;
 use function App\flash_success;
-use function App\format_date;
 
 class FormDocController extends Controller
 {
@@ -31,8 +28,12 @@ class FormDocController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, TemplateProvider $templateProvider, FormDocProvider $formDocProvider)
-    {
+    public function index(
+        Request $request,
+        TemplateProvider $templateProvider,
+        FormDocProvider $formDocProvider,
+        File $fileModel
+    ) {
         $user = $request->user();
 
         $userOptions = User::ordered()->active()->get();
@@ -49,6 +50,7 @@ class FormDocController extends Controller
         $from = $request->query('from') ?? $user->today()->format('m/d/Y');
         $to = $request->query('to') ?? $user->today()->format('m/d/Y');
         $includeDrafts = $request->query('includeDrafts') ?? '0';
+        $fileId = $request->query('file_id') ?? null;
 
         $formDocs = $formDocProvider->getFormDocsAccessibleByUser(
             $user,
@@ -56,8 +58,11 @@ class FormDocController extends Controller
             $to,
             $selectedDocs->toArray(),
             $selectedUserIds ?? [],
+            $fileId,
             $includeDrafts
         );
+
+        $file = $fileId ? $fileModel->find($fileId) : false;
 
         $templates = $templateProvider->getTemplatesCreatableByUser($user, null);
 
@@ -69,6 +74,7 @@ class FormDocController extends Controller
             'selectedDocs',
             'from',
             'to',
+            'file',
             'includeDrafts'
         ));
     }

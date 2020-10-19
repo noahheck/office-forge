@@ -17,6 +17,7 @@ try {
 
     require('bootstrap');
     require('bootstrap-select');
+    require('ajax-bootstrap-select');
     require('bootstrap-datepicker');
     require('tempusdominus-bootstrap-4');
 
@@ -35,6 +36,7 @@ try {
     require('Component/integer-field');
     require('Component/decimal-field');
     require('Component/file-input-field');
+    require('Component/file-search-field');
 
 
     let dt = require('datatables.net-bs4');

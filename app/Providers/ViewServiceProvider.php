@@ -157,6 +157,7 @@ EOT;
         \Blade::include('_form/team-multi-select', 'teamMultiSelectField');
         \Blade::include('_form/file-type-select',  'fileTypeSelectField');
         \Blade::include('_form/file-select',       'fileSelectField');
+        \Blade::include('_form/file-search',       'fileSearchField');
 
 
         \Blade::component('manual.components.tip', 'tip');

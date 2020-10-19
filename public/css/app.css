@@ -13860,6 +13860,14 @@ trix-editor:empty:not(:focus)::before {
  * sass/_utilities.scss
  */
 
+.w-25p {
+  width: 25px;
+}
+
+.w-35p {
+  width: 35px;
+}
+
 .w-50p {
   width: 50px;
 }
@@ -14439,6 +14447,7 @@ trix-editor:empty:not(:focus)::before {
   box-shadow: 0 0 0 0.2rem rgba(52, 144, 220, 0.25);
 }
 
+.bootstrap-select .file-icon,
 .bootstrap-select .user-icon,
 .bootstrap-select .team-icon {
   max-height: 25px;

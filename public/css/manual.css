@@ -11398,6 +11398,14 @@ a.text-dark:focus {
  * sass/_utilities.scss
  */
 
+.w-25p {
+  width: 25px;
+}
+
+.w-35p {
+  width: 35px;
+}
+
 .w-50p {
   width: 50px;
 }

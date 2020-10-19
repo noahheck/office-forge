@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Activity\ActivityProvider;
 use App\Document\DocumentProvider;
 use App\File;
+use App\File\Search;
 use App\FileType;
 use App\FormDoc\Template\TemplateProvider;
 use App\Jobs\File\Create;
@@ -293,5 +294,33 @@ class FileController extends Controller
         });
 
         return $this->view('files.access', compact('file', 'fileType', 'accessingUsers'));
+    }
+
+
+    /**
+     * @param Request $request
+     * @return \App\Http\Response\AjaxResponse|\Illuminate\Http\Response
+     */
+    public function search(Request $request, Search $fileSearch)
+    {
+        $files = $fileSearch->searchForFilesAccessibleByUser(
+            $request->user(),
+            $request->search,
+            $request->fileTypeId ?? null
+        );
+
+
+        $results = $files->map(function($file) {
+            return [
+                'id' => $file->id,
+                'name' => $file->name,
+                'fileType' => $file->fileType->name,
+                'icon' => $file->icon(['file-icon']),
+                'url' => route("files.show", [$file]),
+            ];
+        });
+
+
+        return $this->json(true, ['files' => $results]);
     }
 }
