@@ -36,6 +36,6 @@ class Search
         return $files->filter(function($file) use ($user) {
 
             return $user->can('view', $file);
-        });
+        })->values();
     }
 }
