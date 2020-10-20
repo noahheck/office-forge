@@ -59,7 +59,7 @@ class FormDocPolicy
         }
 
         return $this->administrator->authorize($user)
-            || $this->sharedTeamMembership->authorize($user, $formDoc);
+            || $this->sharedTeamMembership->authorize($user, $formDoc->template, 'reviewingTeams');
     }
 
     /**
@@ -70,7 +70,7 @@ class FormDocPolicy
      */
     public function create(User $user, $template)
     {
-        return $this->sharedTeamMembership->authorize($user, $template);
+        return $this->sharedTeamMembership->authorize($user, $template, 'creatingTeams');
     }
 
     /**

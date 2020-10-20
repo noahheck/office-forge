@@ -13,6 +13,7 @@ return [
     'inProgress' => 'In Progress',
     'entries' => 'Entry|Entries',
 
+    'details' => 'Details',
     'name' => 'Name',
     'nameExamples' => 'Progress Update, Shift Report, etc...',
     'active' => 'Active',
@@ -20,7 +21,11 @@ return [
     'activeDescription' => 'FormDocs marked inactive can not have new instances created. Existing instances will not be affected. You can re-activate a FormDoc if necessary.',
 
     'teamAccessApproval' => 'Team Access Approval',
-    'teamAccessApprovalDescription' => 'This FormDoc will only be accessible by members of these teams. If no teams are selected, this FormDoc will be accessible by all of your staff.',
+    'create' => 'Create',
+    'review' => 'Review',
+    'teamAccessApprovalDescription' => 'This FormDoc will only be accessible by members of these teams.
+        "Create" allows members of the specified teams to create new instances of this FormDoc. "Review" allows members of the specified teams to see instances of this FormDoc created by other users. Users will always be able to review the FormDocs they create.
+        If no teams are selected, this FormDoc will be accessible by all of your staff.',
     'teamAccessApprovalShortDescription' => 'This FormDoc is only accessible by members of these teams.',
     'unrestrictedDescription' => 'This FormDoc is accessible by all of your staff.',
 

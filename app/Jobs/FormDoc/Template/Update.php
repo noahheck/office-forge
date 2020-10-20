@@ -13,7 +13,8 @@ class Update
 
     private $template;
     private $name;
-    private $teams;
+    private $creatingTeams;
+    private $reviewingTeams;
     private $file_type_id;
     private $active;
 
@@ -22,11 +23,12 @@ class Update
      *
      * @return void
      */
-    public function __construct(Template $template, $name, $teams, $file_type_id, $active)
+    public function __construct(Template $template, $name, $creatingTeams, $reviewingTeams, $file_type_id, $active)
     {
         $this->template = $template;
         $this->name = $name;
-        $this->teams = $teams;
+        $this->creatingTeams = $creatingTeams;
+        $this->reviewingTeams = $reviewingTeams;
         $this->file_type_id = $file_type_id;
         $this->active = $active;
     }
@@ -48,6 +50,9 @@ class Update
 
         $template->save();
 
-        $template->teams()->sync($this->teams);
+        $teamData = Template::getTeamSyncStructure($this->creatingTeams, $this->reviewingTeams);
+
+        $template->teams()->sync($teamData);
     }
+
 }

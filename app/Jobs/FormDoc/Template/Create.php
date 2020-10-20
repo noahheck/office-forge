@@ -11,7 +11,8 @@ class Create
     use Dispatchable, Queueable;
 
     private $name;
-    private $teams;
+    private $creatingTeams;
+    private $reviewingTeams;
     private $file_type_id;
 
     private $template;
@@ -21,10 +22,11 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $teams, $file_type_id = null)
+    public function __construct($name, $creatingTeams, $reviewingTeams, $file_type_id = null)
     {
         $this->name = $name;
-        $this->teams = $teams;
+        $this->creatingTeams = $creatingTeams;
+        $this->reviewingTeams = $reviewingTeams;
         $this->file_type_id = $file_type_id;
     }
 
@@ -47,7 +49,9 @@ class Create
 
         $template->save();
 
-        $template->teams()->sync($this->teams);
+        $teamData = Template::getTeamSyncStructure($this->creatingTeams, $this->reviewingTeams);
+
+        $template->teams()->sync($teamData);
 
         $this->template = $template;
     }

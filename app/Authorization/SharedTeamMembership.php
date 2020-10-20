@@ -11,9 +11,9 @@ class SharedTeamMembership
 
     }
 
-    public function authorize($user, $item)
+    public function authorize($user, $item, $teamCollectionAccessor = 'teams')
     {
-        $itemTeams = $item->teams;
+        $itemTeams = $item->$teamCollectionAccessor;
 
         if ($itemTeams->count() < 1) {
 

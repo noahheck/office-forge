@@ -43,6 +43,7 @@ class FormDocController extends Controller
         }
 
         $teamOptions = Team::orderBy('name')->get();
+        $teamOptions->load('members', 'members.headshots');
 
         $canSelectFileType = true;
         $fileTypeSelectOptions = FileType::orderBy('name')->get();
@@ -65,7 +66,8 @@ class FormDocController extends Controller
     {
         $this->dispatchNow($templateCreated = new Create(
             $request->name,
-            $request->teams,
+            $request->creators ?? [],
+            $request->reviewers ?? [],
             $request->file_type_id
         ));
 
@@ -100,6 +102,7 @@ class FormDocController extends Controller
         $template = $formDoc;
 
         $teamOptions = Team::orderBy('name')->get();
+        $teamOptions->load('members', 'members.headshots');
 
         $canSelectFileType = is_null($template->last_created_at);
         $fileTypeSelectOptions = FileType::orderBy('name')->get();
@@ -125,7 +128,8 @@ class FormDocController extends Controller
         $this->dispatchNow($templateUpdated = new Update(
             $template,
             $request->name,
-            $request->teams,
+            $request->creators ?? [],
+            $request->reviewers ?? [],
             $request->file_type_id,
             $request->has('active')
         ));

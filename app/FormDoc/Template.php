@@ -40,6 +40,16 @@ class Template extends Model
         return $this->belongsToMany(Team::class, 'form_doc_templates_teams', 'form_doc_template_id', 'team_id')->withTimestamps();
     }
 
+    public function creatingTeams()
+    {
+        return $this->teams()->wherePivot('create', 1);
+    }
+
+    public function reviewingTeams()
+    {
+        return $this->teams()->wherePivot('review', 1);
+    }
+
     public function fields()
     {
         return $this->hasMany(Field::class, 'form_doc_template_id')->orderBy('order');
@@ -53,5 +63,24 @@ class Template extends Model
     public function instances()
     {
         return $this->hasMany(FormDoc::class, 'form_doc_template_id');
+    }
+
+
+
+    public static function getTeamSyncStructure($creatingTeams, $reviewingTeams)
+    {
+        $response = [];
+
+        foreach ($creatingTeams as $team) {
+            $response[$team]['create'] = 1;
+            $response[$team]['review'] = 0;
+        }
+
+        foreach ($reviewingTeams as $team) {
+            $response[$team]['create'] = $response[$team]['create'] ?? 0;
+            $response[$team]['review'] = 1;
+        }
+
+        return $response;
     }
 }
