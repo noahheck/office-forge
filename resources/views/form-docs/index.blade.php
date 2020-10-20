@@ -52,7 +52,7 @@ form-docs--index
                                         'name' => 'docs',
                                         'label' => '',
                                         'values' => $selectedDocs,
-                                        'options' => $templates->pluck('name', 'id'),
+                                        'options' => $templateOptions, //$templates->pluck('name', 'id'),
                                         'placeholder' => __('formDoc.allDocuments'),
                                         'description' => '',
                                         'required' => false,

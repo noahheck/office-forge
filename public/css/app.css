@@ -14464,6 +14464,10 @@ trix-editor:empty:not(:focus)::before {
   max-height: 25px;
 }
 
+.bootstrap-select .dropdown-divider + .dropdown-header {
+  margin-top: -8px;
+}
+
 .datepicker-dropdown {
   z-index: 1020;
 }

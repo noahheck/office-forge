@@ -64,11 +64,24 @@ class FormDocController extends Controller
 
         $file = $fileId ? $fileModel->find($fileId) : false;
 
-        $templates = $templateProvider->getTemplatesCreatableByUser($user, null);
+        $templates = $templateProvider->getTemplatesReviewableByUser($user);
+
+        $templateOptions = [];
+
+        // Key the template options by filetype name
+        foreach ($templates as $template) {
+            $key = ($template->file_type_id) ? $template->fileType->name : '';
+            if ($key) {
+                $templateOptions[$key][$template->id] = $template->name;
+                continue;
+            }
+            $templateOptions[$template->id] = $template->name;
+        }
 
         return $this->view('form-docs.index', compact(
             'formDocs',
             'templates',
+            'templateOptions',
             'userOptions',
             'selectedUsers',
             'selectedDocs',

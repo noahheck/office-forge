@@ -216,6 +216,10 @@
     .headshot {
         max-height: 25px;
     }
+
+    .dropdown-divider + .dropdown-header {
+        margin-top: -8px;
+    }
 }
 
 

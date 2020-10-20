@@ -21,9 +21,17 @@
             <p>{{ $description }}</p>
         @endif
 @endunless
-    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} multiple>
+    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-display="static" multiple>
         @foreach ($options as $key => $option)
-            <option value="{{ $key }}"{{ ($values->contains($key)) ? " selected" : "" }}>{{ $option }}</option>
+            @if(is_array($option))
+                <optgroup{!! ($key) ? ' label="' . e($key) . '"' : "" !!}>
+                    @foreach($option as $optKey => $optText)
+                        <option value="{{ $optKey }}"{{ ($values->contains($optKey)) ? " selected" : "" }}>{{ $optText }}</option>
+                    @endforeach
+                </optgroup>
+            @else
+                <option value="{{ $key }}"{{ ($values->contains($key)) ? " selected" : "" }}>{{ $option }}</option>
+            @endif
         @endforeach
     </select>
 @unless($fieldOnly ?? false)

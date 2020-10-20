@@ -74,6 +74,17 @@ class FormDocPolicy
     }
 
     /**
+     * Determine whether the user can review form docs created from the provided template
+     * @param User $user
+     * @param $template
+     * @return mixed
+     */
+    public function review(User $user, $template)
+    {
+        return $this->sharedTeamMembership->authorize($user, $template, 'reviewingTeams');
+    }
+
+    /**
      * Determine whether the user can update the form doc.
      *
      * @param  \App\User  $user
