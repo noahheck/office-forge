@@ -70,8 +70,7 @@ class FormDocController extends Controller
 
         // Key the template options by filetype name
         foreach ($templates as $template) {
-            $key = ($template->file_type_id) ? $template->fileType->name : '';
-            if ($key) {
+            if ($template->file_type_id && $key = $template->fileType->name) {
                 $templateOptions[$key][$template->id] = $template->name;
                 continue;
             }
