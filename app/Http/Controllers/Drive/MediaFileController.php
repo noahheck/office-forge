@@ -189,7 +189,7 @@ class MediaFileController extends Controller
             ->setLastModified($file->updated_at);
     }
 
-    public function download(Request $request, Drive $drive, MediaFile $file, $filename)
+    public function downloadFile(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
         abort_unless($drive->id === $file->drive_id, 400);
