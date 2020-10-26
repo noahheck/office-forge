@@ -54,7 +54,7 @@ class BackupsController extends Controller
         return $this->view('admin.backups.show', compact('backup'));
     }
 
-    public function download(Backup $backup, Filesystem $disk)
+    public function downloadBackup(Backup $backup, Filesystem $disk)
     {
         abort_unless($disk->exists('/backups/' . $backup->filename), 404);
 
