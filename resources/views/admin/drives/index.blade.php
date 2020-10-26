@@ -22,6 +22,7 @@
                     <table id="users" class="table table-striped table-bordered dt-table">
                         <thead>
                             <tr>
+                                <th>{{ __('file.file') }}</th>
                                 <th>{{ __('fileStore.drive_name') }}</th>
                                 <th>{{ __('fileStore.drive_teamAccessApproval') }}</th>
                             </tr>
@@ -29,6 +30,11 @@
                         <tbody>
                             @foreach($drives as $drive)
                                 <tr>
+                                    <td>
+                                        @if ($fileType = $drive->fileType)
+                                            {!! $fileType->icon(['mr-2']) !!}{{ $fileType->name }}
+                                        @endif
+                                    </td>
                                     <td data-sort="{{ $drive->name }}" data-search="{{ $drive->name }}">
                                         <a href="{{ route('admin.drives.show', [$drive]) }}">
                                             {{ $drive->name }}

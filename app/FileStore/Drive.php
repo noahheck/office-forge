@@ -2,6 +2,7 @@
 
 namespace App\FileStore;
 
+use App\FileType;
 use App\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,6 +16,11 @@ class Drive extends Model
     public function teams()
     {
         return $this->belongsToMany(Team::class, 'filestore_drives_teams', 'filestore_drive_id', 'team_id');
+    }
+
+    public function fileType()
+    {
+        return $this->belongsTo(FileType::class, 'file_type_id');
     }
 
     public function folders()

@@ -5,6 +5,24 @@
         @method($method)
     @endif
 
+    @if ($fileType = $drive->fileType)
+
+        <h4>{!! $fileType->icon(['mr-2']) !!}{{ $fileType->name }}</h4>
+
+        <hr>
+
+        @hiddenField([
+            'name' => 'file_type_id',
+            'value' => $drive->file_type_id,
+        ])
+
+    @endif
+
+    @hiddenField([
+        'name' => 'return',
+        'value' => old('return', url()->previous()),
+    ])
+
     <div class="row">
 
         <div class="col-12">

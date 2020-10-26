@@ -33,9 +33,11 @@ class DriveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $drive = new Drive();
+
+        $drive->file_type_id = ($request->has('file_type_id')) ? $request->file_type_id : null;
 
         $teamOptions = Team::orderBy('name')->get();
 
@@ -53,12 +55,18 @@ class DriveController extends Controller
         $this->dispatchNow($driveCreated = new Create(
             $request->name,
             $request->description,
-            $request->teams
+            $request->teams,
+            $request->file_type_id ?? null
         ));
 
         $drive = $driveCreated->getDrive();
 
-        flash_success(__('admin.'));
+        flash_success(__('admin.drive_created'));
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
 
         return redirect()->route('admin.drives.show', [$drive]);
     }
@@ -104,6 +112,11 @@ class DriveController extends Controller
         ));
 
         flash_success(__('admin.drive_updated'));
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
 
         return redirect()->route('admin.drives.show', [$drive]);
     }

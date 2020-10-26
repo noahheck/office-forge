@@ -13,6 +13,7 @@ class Create
     private $name;
     private $description;
     private $teams;
+    private $file_type_id;
 
     private $drive;
 
@@ -21,11 +22,12 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $description, $teams)
+    public function __construct($name, $description, $teams, $file_type_id = null)
     {
         $this->name = $name;
         $this->description = $description;
         $this->teams = $teams;
+        $this->file_type_id = $file_type_id;
     }
 
     public function getDrive(): Drive
@@ -43,6 +45,7 @@ class Create
         $drive = new Drive;
         $drive->name = $this->name;
         $drive->description = $this->description;
+        $drive->file_type_id = $this->file_type_id;
 
         $drive->save();
 

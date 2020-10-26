@@ -30,6 +30,10 @@
                         {!! \App\icon\drive(['mr-2']) !!}{{ $drive->name }}
                     </h2>
 
+                    @if ($fileType = $drive->fileType)
+                        <h5 class="pl-4">{!! $fileType->icon(['mr-2']) !!}<a href="{{ route('admin.file-types.show', [$fileType]) }}">{{ $fileType->name }}</a></h5>
+                    @endif
+
                     <hr>
 
                     <div class="d-flex justify-content-between">
