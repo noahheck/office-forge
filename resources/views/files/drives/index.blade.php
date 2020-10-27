@@ -47,7 +47,7 @@
 
                         <div class="card shadow drive">
 
-                            <a class="card-body" href="{{ route('drives.show', [$drive]) }}">
+                            <a class="card-body" href="{{ route('files.drives.show', [$file, $drive]) }}">
 
                                 <div class="icon-container">
                                     {!! \App\icon\drive(['drive-icon']) !!}

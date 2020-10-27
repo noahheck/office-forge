@@ -386,7 +386,12 @@
             @if ($drives->count() > 0)
                 <div class="card shadow fileStore-card mb-3">
                     <div class="card-header d-flex">
-                        <h4 class="mb-0 flex-grow-0">{!! \App\icon\drive(['mr-2']) !!}{{ __('app.fileStore') }}</h4>
+                        <h4 class="mb-0 flex-grow-0">{!! \App\icon\drive(['mr-2']) !!}{{ __('app.fileStore') }}
+
+                            <a href="{{ route('files.drives.index', [$file]) }}">
+                                {!! \App\icon\go([]) !!}
+                            </a>
+                        </h4>
                         {{--<div class="d-flex flex-grow-1">
                             <div class="dropdown flex-grow-1 ml-3">
 
@@ -460,24 +465,7 @@
                                 </div>
                             @endif
 
-                            {{--<div class="card shadow drive mb-2">
 
-                                <a class="card-body" href="{{ route('drives.show', [$drive]) }}">
-
-                                    <div class="icon-container">
-                                        {!! \App\icon\drive(['drive-icon']) !!}
-                                    </div>
-
-                                    <div class="name--description">
-
-                                        <h2>{{ $drive->name }}</h2>
-                                        <p class="text-muted">{!! nl2br(e($drive->description)) !!}</p>
-
-                                    </div>
-
-                                </a>
-
-                            </div>--}}
 
                         @endforeach
 
