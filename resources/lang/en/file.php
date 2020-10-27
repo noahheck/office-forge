@@ -51,6 +51,7 @@ return [
     'fileOfTypeRestrictedByAccessLocks' => 'This :type File is restricted to users with Keys for one of these Access Locks:',
     'fileOfTypeAccessibleByUsers' => 'This :type File is accessible by these Staff Members:',
 
+    'backToFileType' => 'Back to :fileType',
 
     'forms' => 'Forms',
     'form' => 'Form',

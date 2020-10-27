@@ -160,7 +160,7 @@ class FileController extends Controller
 
         $fileType = $file->fileType;
 
-        $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields']);
+        $fileType->load(['forms', 'forms.teams', 'panels', 'panels.teams', 'panels.fields', 'drives', 'drives.teams']);
 
         $forms = $fileType->forms->filter(function($form) use($user) {
             return $user->can('view', $form);
@@ -168,6 +168,10 @@ class FileController extends Controller
 
         $panels = $fileType->panels->filter(function($panel) use($user) {
             return $user->can('view', $panel);
+        });
+
+        $drives = $fileType->drives->filter(function($drive) use($user) {
+            return $user->can('view', $drive);
         });
 
         $formDocTemplates = $templateProvider->getTemplatesCreatableByUser($user, $file->file_type_id);
@@ -202,6 +206,7 @@ class FileController extends Controller
             'fileType',
             'forms',
             'panels',
+            'drives',
             'processesToCreate',
             'values',
             'activities',

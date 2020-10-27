@@ -29,6 +29,12 @@ function go($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function goBack($classes = []) {
+    $classes[] = "far fa-arrow-alt-circle-left";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 function warning($classes = []) {
     $classes[] = "fas fa-exclamation-circle";
 

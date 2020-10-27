@@ -20,13 +20,13 @@
                 <div class="card-body">
 
                     <h1 class="h2">
-                        {!! $fileType->icon() !!} {{ $file->name }}
+                        {!! $file->icon() !!} {{ $file->name }}
                     </h1>
 
                     <hr>
 
                     <h2 class="h4">
-                        {{--<span class="far fa-list-alt mr-2"></span>--}}{!! \App\icon\forms(['mr-2']) !!}{{ __('file.forms') }}
+                        {!! \App\icon\forms(['mr-2']) !!}{{ __('file.forms') }}
                     </h2>
 
                     @if ($forms->count() > 0)

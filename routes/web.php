@@ -105,6 +105,9 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::get('/forms/{form}', 'FormController@show')->name('forms.show');
         Route::put('/forms/{form}', 'FormController@update')->name('forms.update');
 
+        // FileStore
+        Route::get('/drives', 'DriveController@index')->name('drives.index');
+
     });
 
     Route::post('/my-files/add/{file}', 'MyFilesController@addToMyFiles')->name('add-to-my-files');
