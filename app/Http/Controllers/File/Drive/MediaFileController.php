@@ -208,7 +208,7 @@ class MediaFileController extends Controller
             return redirect()->route('files.drives.folders.show', [$file, $drive, $folder]);
         }
 
-        return redirect()->route('files,drives.show', [$file, $drive]);
+        return redirect()->route('files.drives.show', [$file, $drive]);
     }
 
 
