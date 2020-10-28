@@ -5,7 +5,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => new \App\Navigation\LocationBar\Admin\Drives\Create(),
+    'locationBar' => new \App\Navigation\LocationBar\Admin\Drives\Edit($drive),
 ])
 
 @section('content')
