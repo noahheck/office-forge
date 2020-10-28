@@ -12,7 +12,7 @@
 @endpush
 
 @push('scripts')
-{{--    @script('js/page.drives.files.show.js')--}}
+
 @endpush
 
 @include("_component._location-bar", [
@@ -99,28 +99,36 @@
 
                     </div>
 
-                    <hr>
 
-                    <div class="text-right">
-                        <div class="btn-group dropup">
-                            <a class="btn btn-primary btn-sm" href="{{ route('drives.files.edit', [$drive, $mediaFile]) }}">
-                                {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}
-                            </a>
-                            <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">{{ __('app.moreOptions') }}</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <form id="deleteFileForm" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
-                                    </button>
-                                </form>
+                    @can('update', $mediaFile)
+
+                        <hr>
+
+                        <div class="text-right">
+                            <div class="btn-group dropup">
+                                <a class="btn btn-primary btn-sm" href="{{ route('drives.files.edit', [$drive, $mediaFile]) }}">
+                                    {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}
+                                </a>
+                                <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">{{ __('app.moreOptions') }}</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form id="deleteFileForm" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                                        </button>
+                                    </form>
+                                </div>
+
                             </div>
-
                         </div>
-                    </div>
+
+                    @endcan
+
+
+
 
                 </div>
 

@@ -8,12 +8,17 @@ return [
     'fileStoreDrives' => 'FileStore Drives',
     'drives' => 'Drives',
 
+    'drive_details' => 'Details',
     'drive_name' => 'Name',
     'drive_nameExamples' => '',
     'drive_description' => 'Description',
     'drive_descriptionExamples' => '',
     'drive_teamAccessApproval' => 'Team Access Approval',
-    'drive_teamAccessApprovalDescription' => 'This Drive will only be accessible by members of these teams. If no teams are selected, this Drive will be accessible by all of your staff.',
+    'drive_teamAccessView' => 'View',
+    'drive_teamAccessEdit' => 'Edit',
+    'drive_teamAccessApprovalDescription' => 'This Drive will only be accessible by members of these teams.
+        "View" allows members of the specified teams to view the contents of the Drive. "Edit" allows members of the specified teams to make changes to the contents of the Drive, including adding, editing, and deleting Media Files ("Edit" implicitly provides Team Members with "View" access to the Drive).
+        If no teams are selected, this Drive will be accessible by all of your staff.',
     'drive_teamAccessApprovalShortDescription' => 'This Drive is only accessible by members of these teams.',
     'drive_unrestrictedDescription' => 'This Drive is accessible by all of your staff.',
 

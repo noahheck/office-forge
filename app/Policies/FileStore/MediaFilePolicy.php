@@ -38,7 +38,7 @@ class MediaFilePolicy
      */
     public function view(User $user, MediaFile $mediaFile)
     {
-        return $this->sharedTeamMembership->authorize($user, $mediaFile->drive);
+        return $user->can('view', $mediaFile->drive);
     }
 
     /**
@@ -61,7 +61,7 @@ class MediaFilePolicy
      */
     public function update(User $user, MediaFile $mediaFile)
     {
-        return $this->sharedTeamMembership->authorize($user, $mediaFile->drive);
+        return $user->can('editContents', $mediaFile->drive);
     }
 
     /**
@@ -73,7 +73,7 @@ class MediaFilePolicy
      */
     public function delete(User $user, MediaFile $mediaFile)
     {
-        return $this->sharedTeamMembership->authorize($user, $mediaFile->drive);
+        return $user->can('editContents', $mediaFile->drive);
     }
 
     /**

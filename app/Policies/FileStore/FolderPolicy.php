@@ -78,7 +78,7 @@ class FolderPolicy
             return false;
         }
 
-        return $this->sharedTeamMembership->authorize($user, $folder->drive);
+        return $user->can('editContents', $folder->drive);
     }
 
     /**

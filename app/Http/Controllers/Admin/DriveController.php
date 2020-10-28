@@ -40,6 +40,7 @@ class DriveController extends Controller
         $drive->file_type_id = ($request->has('file_type_id')) ? $request->file_type_id : null;
 
         $teamOptions = Team::orderBy('name')->get();
+        $teamOptions->load('members', 'members.headshots');
 
         return $this->view('admin.drives.create', compact('drive', 'teamOptions'));
     }
@@ -55,7 +56,8 @@ class DriveController extends Controller
         $this->dispatchNow($driveCreated = new Create(
             $request->name,
             $request->description,
-            $request->teams,
+            $request->viewers ?? [],
+            $request->editors ?? [],
             $request->file_type_id ?? null
         ));
 
@@ -91,6 +93,7 @@ class DriveController extends Controller
     public function edit(Drive $drive)
     {
         $teamOptions = Team::orderBy('name')->get();
+        $teamOptions->load('members', 'members.headshots');
 
         return $this->view('admin.drives.edit', compact('drive', 'teamOptions'));
     }
@@ -108,7 +111,8 @@ class DriveController extends Controller
             $drive,
             $request->name,
             $request->description,
-            $request->teams
+            $request->viewers ?? [],
+            $request->editors ?? []
         ));
 
         flash_success(__('admin.drive_updated'));

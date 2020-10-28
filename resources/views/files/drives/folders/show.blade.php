@@ -27,33 +27,37 @@
 
     @endforeach
 
-    <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
+    @can('editContents', $drive)
+        <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
 
-        <form action="{{ route('files.drives.upload-files', [$file, $drive]) }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
+            <form action="{{ route('files.drives.upload-files', [$file, $drive]) }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
 
-            @csrf
+                @csrf
 
-            @hiddenField([
-                'name' => 'return',
-                'value' => url()->current(),
-            ])
+                @hiddenField([
+                    'name' => 'return',
+                    'value' => url()->current(),
+                ])
 
-            @hiddenField([
-                'name' => 'folder_id',
-                'value' => $folder->id,
-            ])
+                @hiddenField([
+                    'name' => 'folder_id',
+                    'value' => $folder->id,
+                ])
 
-            <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
+                <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
 
-            <label for="files_input">
-                {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $folder->name]))) !!}
-            </label>
+                <label for="files_input">
+                    {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $folder->name]))) !!}
+                </label>
 
-            <span class="files-are-uploading-indicator">
-                {!! \App\icon\spinner(['fa-spin']) !!}
-            </span>
+                <span class="files-are-uploading-indicator">
+                    {!! \App\icon\spinner(['fa-spin']) !!}
+                </span>
 
-        </form>
+            </form>
+        @else
+            <div class="card shadow document">
+        @endcan
 
         <div class="card-body">
 
@@ -77,25 +81,27 @@
 
                 <div class="flex-grow-0">
 
-                    <div class="btn-group">
-                        <a class="btn btn-primary btn-sm" href="{{ route('files.drives.folders.edit', [$file, $drive, $folder]) }}">
-                            {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFolder') }}
-                        </a>
-                        @can('delete', $folder)
-                            <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="sr-only">{{ __('app.moreOptions') }}</span>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right">
-                                <form id="deleteFolderForm" action="{{ route('files.drives.folders.destroy', [$file, $drive, $folder]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $folder->name }}">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFolder') }}
-                                    </button>
-                                </form>
-                            </div>
-                        @endcan
-                    </div>
+                    @can('editContents', $drive)
+                        <div class="btn-group">
+                            <a class="btn btn-primary btn-sm" href="{{ route('files.drives.folders.edit', [$file, $drive, $folder]) }}">
+                                {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFolder') }}
+                            </a>
+                            @can('delete', $folder)
+                                <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="sr-only">{{ __('app.moreOptions') }}</span>
+                                </button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <form id="deleteFolderForm" action="{{ route('files.drives.folders.destroy', [$file, $drive, $folder]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $folder->name }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFolder') }}
+                                        </button>
+                                    </form>
+                                </div>
+                            @endcan
+                        </div>
+                    @endcan
 
                 </div>
 
@@ -117,16 +123,18 @@
 
             </div>
 
-            <div class="text-right mb-3">
+            @can('editContents', $drive)
+                <div class="text-right mb-3">
 
-                <a href="{{ route('files.drives.mediaFiles.create', [$file, $drive, 'folder_id' => $folder->id]) }}" class="btn btn-primary btn-sm">
-                    {!! \App\icon\mediaFileUpload(['mr-2']) !!}{{ __('fileStore.uploadFile') }}
-                </a>
+                    <a href="{{ route('files.drives.mediaFiles.create', [$file, $drive, 'folder_id' => $folder->id]) }}" class="btn btn-primary btn-sm">
+                        {!! \App\icon\mediaFileUpload(['mr-2']) !!}{{ __('fileStore.uploadFile') }}
+                    </a>
 
-                <a class="btn btn-primary btn-sm" href="{{ route('files.drives.folders.create', [$file, $drive, 'parent_folder_id' => $folder->id]) }}">
-                    {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
-                </a>
-            </div>
+                    <a class="btn btn-primary btn-sm" href="{{ route('files.drives.folders.create', [$file, $drive, 'parent_folder_id' => $folder->id]) }}">
+                        {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
+                    </a>
+                </div>
+            @endcan
 
             @if ($folder->folders->count() > 0 || $folder->mediaFiles->count() > 0)
                 @include('files.drives._folders-and-files', [

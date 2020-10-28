@@ -13,19 +13,21 @@ class Update
     private $drive;
     private $name;
     private $description;
-    private $teams;
+    private $viewers;
+    private $editors;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Drive $drive, $name, $description, $teams = [])
+    public function __construct(Drive $drive, $name, $description, $viewers = [], $editors = [])
     {
         $this->drive = $drive;
         $this->name = $name;
         $this->description = $description;
-        $this->teams = $teams;
+        $this->viewers = $viewers;
+        $this->editors = $editors;
     }
 
     /**
@@ -42,6 +44,8 @@ class Update
 
         $drive->save();
 
-        $drive->teams()->sync($this->teams);
+        $teamData = Drive::getTeamSyncStructure($this->viewers, $this->editors);
+
+        $drive->teams()->sync($teamData);
     }
 }

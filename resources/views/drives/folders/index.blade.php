@@ -29,13 +29,15 @@
 
                     <hr>
 
-                    <div class="text-right">
-                        <a href="{{ route('drives.folders.create', [$drive]) }}" class="btn btn-primary btn-sm">
-                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
-                        </a>
-                    </div>
+                    @can('editContents', $drive)
+                        <div class="text-right">
+                                <a href="{{ route('drives.folders.create', [$drive]) }}" class="btn btn-primary btn-sm">
+                                    {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
+                                </a>
+                        </div>
 
-                    <hr>
+                        <hr>
+                    @endcan
 
                     <h3>{!! \App\icon\folder(['mr-2']) !!}{{ __('fileStore.folders') }}</h3>
 

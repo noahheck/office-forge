@@ -34,7 +34,7 @@ class FolderController extends Controller
      */
     public function create(Request $request, Drive $drive)
     {
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         $folder = new Folder;
 
@@ -52,6 +52,8 @@ class FolderController extends Controller
      */
     public function store(StoreRequest $request, Drive $drive)
     {
+        abort_unless($request->user()->can('editContents', $drive), 403);
+
         $this->dispatchNow($folderCreated = new Create(
             $drive,
             $request->name,
@@ -91,7 +93,7 @@ class FolderController extends Controller
     public function edit(Request $request, Drive $drive, Folder $folder)
     {
         abort_unless($folder->drive_id === $drive->id, 403);
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         return $this->view('drives.folders.edit', compact('drive', 'folder'));
     }
@@ -106,7 +108,7 @@ class FolderController extends Controller
     public function update(UpdateRequest $request, Drive $drive, Folder $folder)
     {
         abort_unless($folder->drive_id === $drive->id, 403);
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         $this->dispatchNow($folderUpdated = new Update($folder, $request->name, $request->description));
 
@@ -133,6 +135,7 @@ class FolderController extends Controller
         flash_info(__('fileStore.folder_deleted'));
 
         if ($parentFolder) {
+
             return redirect()->route('drives.folders.show', [$drive, $parentFolder]);
         }
 

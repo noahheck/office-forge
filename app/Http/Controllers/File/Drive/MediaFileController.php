@@ -58,7 +58,7 @@ class MediaFileController extends Controller
     {
         $user = $request->user();
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
-        abort_unless($user->can('view', $drive), 403);
+        abort_unless($user->can('editContents', $drive), 403);
 
         if ($folder_id = $request->query('folder_id')) {
             $folder = Folder::find($folder_id);
@@ -87,7 +87,7 @@ class MediaFileController extends Controller
     {
         $user = $request->user();
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
-        abort_unless($user->can('view', $drive), 403);
+        abort_unless($user->can('editContents', $drive), 403);
 
         if ($folder_id = $request->folder_id) {
             $folder = Folder::find($folder_id);

@@ -26,6 +26,7 @@ class DriveController extends Controller
         $fileType = $file->fileType;
 
         $drives = $fileType->drives->filter(function($drive) use ($user) {
+
             return $user->can('view', $drive);
         });
 
@@ -52,7 +53,7 @@ class DriveController extends Controller
 
     public function uploadFiles(UploadFilesRequest $request, File $file, Drive $drive, FilenameParser $filenameParser)
     {
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
 
         $count = 0;

@@ -45,7 +45,7 @@ class FolderController extends Controller
     public function create(Request $request, File $file, Drive $drive)
     {
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         if ($parent_folder_id = $request->query('parent_folder_id')) {
             $parentFolder = Folder::find($parent_folder_id);
@@ -72,7 +72,7 @@ class FolderController extends Controller
     public function store(StoreRequest $request, File $file, Drive $drive)
     {
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         $this->dispatchNow($folderCreated = new Create(
             $drive,
@@ -120,7 +120,7 @@ class FolderController extends Controller
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($folder->drive_id === $drive->id, 404);
         abort_unless($folder->file_id === $file->id, 404);
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         $fileType = $file->fileType;
 
@@ -139,7 +139,7 @@ class FolderController extends Controller
         abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($folder->drive_id === $drive->id, 404);
         abort_unless($folder->file_id === $file->id, 404);
-        abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($request->user()->can('editContents', $drive), 403);
 
         $this->dispatchNow($folderUpdated = new Update($folder, $request->name, $request->description));
 

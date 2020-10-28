@@ -13,11 +13,18 @@ class SharedTeamMembership
 
     public function authorize($user, $item, $teamCollectionAccessor = 'teams')
     {
-        $itemTeams = $item->$teamCollectionAccessor;
+        // We evaluate unrestrictedness (tm) by the absence of any team restrictions (regardless of accessor method)
+        $itemTeams = $item->teams;
 
+        // Unrestricted
         if ($itemTeams->count() < 1) {
 
             return true;
+        }
+
+        if ($teamCollectionAccessor !== 'teams') {
+
+            $itemTeams = $item->$teamCollectionAccessor;
         }
 
         $userTeams = $user->teams;

@@ -46,7 +46,7 @@ class MediaFileController extends Controller
     public function create(Request $request, Drive $drive)
     {
         $user = $request->user();
-        abort_unless($user->can('view', $drive), 403);
+        abort_unless($user->can('editContents', $drive), 403);
 
         $mediaFile = new MediaFile;
         $mediaFile->drive_id = $drive->id;
@@ -66,7 +66,7 @@ class MediaFileController extends Controller
     public function store(StoreRequest $request, Drive $drive)
     {
         $user = $request->user();
-        abort_unless($user->can('view', $drive), 403);
+        abort_unless($user->can('editContents', $drive), 403);
 
         $this->dispatchNow($mediaFileCreated = new Create(
             $drive,

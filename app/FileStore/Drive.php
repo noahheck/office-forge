@@ -19,6 +19,16 @@ class Drive extends Model
         return $this->belongsToMany(Team::class, 'filestore_drives_teams', 'filestore_drive_id', 'team_id');
     }
 
+    public function viewingTeams()
+    {
+        return $this->teams()->wherePivot('view', 1);
+    }
+
+    public function editingTeams()
+    {
+        return $this->teams()->wherePivot('edit', 1);
+    }
+
     public function fileType()
     {
         return $this->belongsTo(FileType::class, 'file_type_id');
@@ -57,5 +67,24 @@ class Drive extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('name');
+    }
+
+
+
+    public static function getTeamSyncStructure($viewingTeams, $editingTeams)
+    {
+        $response = [];
+
+        foreach ($viewingTeams as $team) {
+            $response[$team]['view'] = 1;
+            $response[$team]['edit'] = 0;
+        }
+
+        foreach ($editingTeams as $team) {
+            $response[$team]['view'] = $response[$team]['view'] ?? 0;
+            $response[$team]['edit'] = 1;
+        }
+
+        return $response;
     }
 }

@@ -41,6 +41,8 @@ class DriveController extends Controller
 
     public function uploadFiles(UploadFilesRequest $request, Drive $drive, FilenameParser $filenameParser)
     {
+        abort_unless($request->user()->can('editContents', $drive), 403);
+
         $count = 0;
         foreach ($request->file('files') as $file) {
 

@@ -12,28 +12,34 @@
 
 @section('resource-content')
 
-    <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
+    @can('editContents', $drive)
 
-        <form action="{{ route('files.drives.upload-files', [$file, $drive]) }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
+        <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
 
-            @csrf
+            <form action="{{ route('files.drives.upload-files', [$file, $drive]) }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
 
-            @hiddenField([
-                'name' => 'return',
-                'value' => url()->current(),
-            ])
+                @csrf
 
-            <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
+                @hiddenField([
+                    'name' => 'return',
+                    'value' => url()->current(),
+                ])
 
-            <label for="files_input">
-                {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $drive->name]))) !!}
-            </label>
+                <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
 
-            <span class="files-are-uploading-indicator">
-                        {!! \App\icon\spinner(['fa-spin']) !!}
-                    </span>
+                <label for="files_input">
+                    {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $drive->name]))) !!}
+                </label>
 
-        </form>
+                <span class="files-are-uploading-indicator">
+                            {!! \App\icon\spinner(['fa-spin']) !!}
+                        </span>
+
+            </form>
+
+        @else
+            <div class="card shadow document">
+        @endcan
 
         <div class="card-body">
 
@@ -51,16 +57,20 @@
                 <hr>
             @endif
 
-            <div class="text-right">
+            @can('editContents', $drive)
 
-                <a href="{{ route('files.drives.mediaFiles.create', [$file, $drive]) }}" class="btn btn-primary btn-sm">
-                    {!! \App\icon\mediaFileUpload(['mr-2']) !!}{{ __('fileStore.uploadFile') }}
-                </a>
+                <div class="text-right">
 
-                <a href="{{ route('files.drives.folders.create', [$file, $drive]) }}" class="btn btn-primary btn-sm">
-                    {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
-                </a>
-            </div>
+                    <a href="{{ route('files.drives.mediaFiles.create', [$file, $drive]) }}" class="btn btn-primary btn-sm">
+                        {!! \App\icon\mediaFileUpload(['mr-2']) !!}{{ __('fileStore.uploadFile') }}
+                    </a>
+
+                    <a href="{{ route('files.drives.folders.create', [$file, $drive]) }}" class="btn btn-primary btn-sm">
+                        {!! \App\icon\folderPlus(['mr-2']) !!}{{ __('fileStore.addFolder') }}
+                    </a>
+                </div>
+
+            @endcan
 
             @if ($drive->topLevelFoldersForFile($file)->count() > 0
                 || $drive->topLevelMediaFilesForFile($file)->count() > 0)

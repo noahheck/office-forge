@@ -12,6 +12,8 @@ class Create
 
     private $name;
     private $description;
+    private $viewers;
+    private $editors;
     private $teams;
     private $file_type_id;
 
@@ -22,11 +24,12 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $description, $teams, $file_type_id = null)
+    public function __construct($name, $description, $viewers, $editors, $file_type_id = null)
     {
         $this->name = $name;
         $this->description = $description;
-        $this->teams = $teams;
+        $this->viewers = $viewers;
+        $this->editors = $editors;
         $this->file_type_id = $file_type_id;
     }
 
@@ -49,7 +52,9 @@ class Create
 
         $drive->save();
 
-        $drive->teams()->sync($this->teams);
+        $teamData = Drive::getTeamSyncStructure($this->viewers, $this->editors);
+
+        $drive->teams()->sync($teamData);
 
         $this->drive = $drive;
     }

@@ -42,6 +42,17 @@ class DrivePolicy
     }
 
     /**
+     * Determine whether the user can make modifications to the content of the drive (add/change/remove files/folders)
+     * @param User $user
+     * @param Drive $drive
+     * @return mixed
+     */
+    public function editContents(User $user, Drive $drive)
+    {
+        return $this->sharedTeamMembership->authorize($user, $drive, 'editingTeams');
+    }
+
+    /**
      * Determine whether the user can create drives.
      *
      * @param  \App\User  $user
