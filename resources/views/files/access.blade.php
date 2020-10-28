@@ -83,29 +83,31 @@
                         @if ($loop->first)
                             <ul class="list-group">
                         @endif
-                            <li class="list-group-item d-flex">
-                                <div>
-                                    {!! $accessingUser->icon(['sssmhw-35p']) !!}
+
+                        <li class="list-group-item d-flex">
+                            <div>
+                                {!! $accessingUser->icon(['sssmhw-35p']) !!}
+                            </div>
+                            <div class="pl-3">
+                                <h6>
+                                    @if ($accessingUser->administrator)
+                                        {!! \App\icon\userAdmin(['mr-1']) !!}
+                                    @endif
+                                    <strong>{!! $accessingUser->name !!}</strong>
+                                </h6>
+                                <div class="fs-12px">
+                                    @foreach ($accessingUser->teams as $userTeam)
+                                        {!! $userTeam->icon() !!}
+                                    @endforeach
+                                    @foreach ($accessingUser->accessKeysForFileType($fileType) as $key)
+                                        <span class="border rounded mr-1 p-1" style="white-space: nowrap;">
+                                            {!! \App\icon\accessKey(['mr-1']) !!}{{ $key->name }}
+                                        </span>
+                                    @endforeach
                                 </div>
-                                <div class="pl-3">
-                                    <h6>
-                                        @if ($accessingUser->administrator)
-                                            {!! \App\icon\userAdmin(['mr-1']) !!}
-                                        @endif
-                                        {!! $accessingUser->name !!}
-                                    </h6>
-                                    <div class="fs-12px">
-                                        @foreach ($accessingUser->teams as $userTeam)
-                                            {!! $userTeam->icon() !!}
-                                        @endforeach
-                                        @foreach ($accessingUser->accessKeysForFileType($fileType) as $key)
-                                            <span class="border rounded mr-1 p-1" style="white-space: nowrap;">
-                                                {!! \App\icon\accessKey(['mr-1']) !!}{{ $key->name }}
-                                            </span>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </li>
+                            </div>
+                        </li>
+
                         @if ($loop->last)
                             </ul>
                         @endif

@@ -130,7 +130,7 @@ class FolderController extends Controller
 
         $folder->delete();
 
-        flash_info(__('fileStore.file_deleted'));
+        flash_info(__('fileStore.folder_deleted'));
 
         if ($parentFolder) {
             return redirect()->route('drives.folders.show', [$drive, $parentFolder]);

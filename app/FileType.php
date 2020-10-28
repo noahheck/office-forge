@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\FileStore\Drive;
 use App\FileType\AccessLock;
 use App\FileType\Form;
 use App\FileType\Panel;
@@ -131,6 +132,11 @@ class FileType extends Model
     public function accessLocks()
     {
         return $this->hasMany(AccessLock::class)->orderBy('name');
+    }
+
+    public function drives()
+    {
+        return $this->hasMany(Drive::class);
     }
 
 

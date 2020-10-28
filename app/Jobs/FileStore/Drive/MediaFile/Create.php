@@ -22,6 +22,7 @@ class Create
     private $name;
     private $description;
     private $uploaded_by;
+    private $file_id;
 
     private $mediaFile;
 
@@ -30,14 +31,22 @@ class Create
      *
      * @return void
      */
-    public function __construct(Drive $drive, $folder_id, UploadedFile $file, $name, $description, User $uploaded_by)
-    {
+    public function __construct(
+        Drive $drive,
+        $folder_id,
+        UploadedFile $file,
+        $name,
+        $description,
+        User $uploaded_by,
+        $file_id = null
+    ) {
         $this->drive = $drive;
         $this->folder_id = $folder_id;
         $this->file = $file;
         $this->name = $name;
         $this->description = $description;
         $this->uploaded_by = $uploaded_by;
+        $this->file_id = $file_id;
     }
 
     public function getMediaFile(): MediaFile
@@ -57,6 +66,7 @@ class Create
 
         $mediaFile = new MediaFile;
         $mediaFile->drive_id = $this->drive->id;
+        $mediaFile->file_id = $this->file_id;
         $mediaFile->folder_id = $this->folder_id;
         $mediaFile->name = $name;
         $mediaFile->description = $this->description;

@@ -18,11 +18,21 @@ class MediaFile extends Model implements IsHeadshottable
 
     public function downloadUrl()
     {
+        if ($this->file_id) {
+
+            return route('files.drives.mediaFiles.download', [$this->file_id, $this->drive, $this, $this->name]);
+        }
+
         return route('drives.files.download', [$this->drive, $this, $this->name]);
     }
 
     public function previewUrl()
     {
+        if ($this->file_id) {
+
+            return route('files.drives.mediaFiles.preview', [$this->file_id, $this->drive, $this, $this->name]);
+        }
+
         return route('drives.files.preview', [$this->drive, $this, $this->name]);
     }
 

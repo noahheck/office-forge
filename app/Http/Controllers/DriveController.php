@@ -15,7 +15,7 @@ class DriveController extends Controller
     {
         $user = $request->user();
 
-        $drives = Drive::ordered()->get();
+        $drives = Drive::whereNull('file_type_id')->ordered()->get();
 
         $drives = $drives->filter(function($drive) use ($user) {
             return $user->can('view', $drive);

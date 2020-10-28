@@ -98,12 +98,26 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     Route::get('/files/{file}/access', 'FileController@access')->name('files.access');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->middleware('can:view,file')->group(function() {
 
-        // Access
-
         // Forms
         Route::get('/forms', 'FormController@index')->name('forms.index');
         Route::get('/forms/{form}', 'FormController@show')->name('forms.show');
         Route::put('/forms/{form}', 'FormController@update')->name('forms.update');
+
+        // FileStore
+        Route::get('/drives', 'DriveController@index')->name('drives.index');
+        Route::get('/drives/{drive}', 'DriveController@show')->name('drives.show');
+        Route::post('/drives/{drive}/upload-files', 'DriveController@uploadFiles')->name('drives.upload-files');
+
+        Route::prefix('/drives/{drive}')->namespace('Drive')->name('drives.')->group(function() {
+
+            Route::resource('/folders', 'FolderController');
+
+            Route::resource('/mediaFiles', 'MediaFileController');
+
+            Route::get('/mediaFiles/{mediaFile}/preview/{filename}', 'MediaFileController@preview')->name('mediaFiles.preview');
+            Route::get('/mediaFiles/{mediaFile}/download/{filename}', 'MediaFileController@downloadFile')->name('mediaFiles.download');
+
+        });
 
     });
 

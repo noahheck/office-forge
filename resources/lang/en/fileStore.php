@@ -5,6 +5,7 @@ return [
     'description' => 'FileStore allows you to upload and share documents and media files with staff in your organization.',
     'noAccessDescription' => "You don't have access to any FileStore Drives yet. Contact your administrator for more information.",
     'drive' => 'Drive',
+    'fileStoreDrives' => 'FileStore Drives',
     'drives' => 'Drives',
 
     'drive_name' => 'Name',

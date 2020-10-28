@@ -5,7 +5,8 @@
 @import "variables";
 @import "mixins";
 
-.index {
+.index,
+.fileStore-index {
 
     .no-drives-available {
         text-align: center;
