@@ -110,6 +110,17 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::get('/drives/{drive}', 'DriveController@show')->name('drives.show');
         Route::post('/drives/{drive}/upload-files', 'DriveController@uploadFiles')->name('drives.upload-files');
 
+        Route::prefix('/drives/{drive}')->namespace('Drive')->name('drives.')->group(function() {
+
+            Route::resource('/folders', 'FolderController');
+
+            Route::resource('/mediaFiles', 'MediaFileController');
+
+            Route::get('/mediaFiles/{mediaFile}/preview/{filename}', 'MediaFileController@preview')->name('mediaFiles.preview');
+            Route::get('/mediaFiles/{mediaFile}/download/{filename}', 'MediaFileController@downloadFile')->name('mediaFiles.download');
+
+        });
+
     });
 
     Route::post('/my-files/add/{file}', 'MyFilesController@addToMyFiles')->name('add-to-my-files');

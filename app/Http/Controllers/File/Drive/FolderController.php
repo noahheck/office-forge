@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers\Drive;
+namespace App\Http\Controllers\File\Drive;
 
+use App\File;
 use App\FileStore\Drive;
 use App\FileStore\Folder;
 use App\Http\Controllers\Controller;
@@ -20,11 +21,14 @@ class FolderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Drive $drive)
+    public function index(Request $request, File $file, Drive $drive)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($request->user()->can('view', $drive), 403);
 
-        return $this->view('drives.folders.index', compact('drive'));
+        $fileType = $file->fileType;
+
+        return $this->view('files.drives.folders.index', compact('file', 'fileType', 'drive'));
     }
 
     /**
@@ -32,16 +36,20 @@ class FolderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Drive $drive)
+    public function create(Request $request, File $file, Drive $drive)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($request->user()->can('view', $drive), 403);
+
+        $fileType = $file->fileType;
 
         $folder = new Folder;
 
         $folder->drive_id = $drive->id;
+        $folder->file_id = $file->id;
         $folder->parent_folder_id = $request->query('parent_folder_id');
 
-        return $this->view('drives.folders.create', compact('folder', 'drive'));
+        return $this->view('files.drives.folders.create', compact('file', 'fileType', 'folder', 'drive'));
     }
 
     /**
@@ -50,20 +58,24 @@ class FolderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, Drive $drive)
+    public function store(StoreRequest $request, File $file, Drive $drive)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
+
         $this->dispatchNow($folderCreated = new Create(
             $drive,
             $request->name,
             $request->description,
-            $request->parent_folder_id
+            $request->parent_folder_id,
+            $file->id
         ));
 
         flash_success(__('fileStore.folder_created'));
 
         $folder = $folderCreated->getFolder();
 
-        return redirect()->route('drives.folders.show', [$drive, $folder]);
+        return redirect()->route('files.drives.folders.show', [$file, $drive, $folder]);
     }
 
     /**
@@ -72,14 +84,17 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Drive $drive, Folder $folder)
+    public function show(Request $request, File $file, Drive $drive, Folder $folder)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('view', $drive), 403);
 
+        $fileType = $file->fileType;
+
         $folder->load('mediaFiles', 'mediaFiles.headshots', 'mediaFiles.drive', 'mediaFiles.drive.teams');
 
-        return $this->view('drives.folders.show', compact('drive', 'folder'));
+        return $this->view('files.drives.folders.show', compact('file', 'fileType', 'drive', 'folder'));
     }
 
     /**
@@ -88,12 +103,15 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Drive $drive, Folder $folder)
+    public function edit(Request $request, File $file, Drive $drive, Folder $folder)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('view', $drive), 403);
 
-        return $this->view('drives.folders.edit', compact('drive', 'folder'));
+        $fileType = $file->fileType;
+
+        return $this->view('files.drives.folders.edit', compact('file', 'fileType', 'drive', 'folder'));
     }
 
     /**
@@ -103,8 +121,9 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Drive $drive, Folder $folder)
+    public function update(UpdateRequest $request, File $file, Drive $drive, Folder $folder)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('view', $drive), 403);
 
@@ -112,7 +131,7 @@ class FolderController extends Controller
 
         flash_success(__('fileStore.folder_updated'));
 
-        return redirect()->route('drives.folders.show', [$drive, $folder]);
+        return redirect()->route('files.drives.folders.show', [$file, $drive, $folder]);
     }
 
     /**
@@ -121,8 +140,9 @@ class FolderController extends Controller
      * @param  \App\FileStore\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, Drive $drive, Folder $folder)
+    public function destroy(Request $request, File $file, Drive $drive, Folder $folder)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('delete', $folder), 403);
 
@@ -133,9 +153,9 @@ class FolderController extends Controller
         flash_info(__('fileStore.folder_deleted'));
 
         if ($parentFolder) {
-            return redirect()->route('drives.folders.show', [$drive, $parentFolder]);
+            return redirect()->route('files.drives.folders.show', [$file, $drive, $parentFolder]);
         }
 
-        return redirect()->route('drives.show', [$drive]);
+        return redirect()->route('files.drives.show', [$file, $drive]);
     }
 }
