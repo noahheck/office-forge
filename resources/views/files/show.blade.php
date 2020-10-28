@@ -457,7 +457,7 @@
                                 <div class="list-group drives">
                             @endif
 
-                                <a class="list-group-item list-group-item-action" href="{{ route("drives.show", [$drive]) }}">
+                                <a class="list-group-item list-group-item-action" href="{{ route("files.drives.show", [$file, $drive]) }}">
                                     {!! \App\icon\drive(['mr-2']) !!}{{ $drive->name }}
                                 </a>
 

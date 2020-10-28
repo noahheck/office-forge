@@ -6,7 +6,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar\Files\Drives\Folders\Create($fileType, $file, $drive)),
+    'locationBar' => (new \App\Navigation\LocationBar\Files\Drives\Folders\Create($fileType, $file, $drive, $folder)),
 ])
 
 @section('resource-content')

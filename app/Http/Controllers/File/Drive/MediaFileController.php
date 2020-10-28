@@ -35,7 +35,9 @@ class MediaFileController extends Controller
     {
         abort_unless($request->user()->can('view', $drive), 403);
 
-        return $this->view('drives.media-files.index', compact('drive'));
+        $fileType = $file->fileType;
+
+        return $this->view('files.drives.media-files.index', compact('file', 'fileType', 'drive'));
     }
 
     /**
@@ -49,12 +51,15 @@ class MediaFileController extends Controller
         $user = $request->user();
         abort_unless($user->can('view', $drive), 403);
 
+        $fileType = $file->fileType;
+
         $mediaFile = new MediaFile;
         $mediaFile->drive_id = $drive->id;
+        $mediaFile->file_id = $file->id;
         $mediaFile->folder_id = $request->query('folder_id');
         $mediaFile->uploaded_by = $user->id;
 
-        return $this->view('drives.media-files.create', compact('drive', 'mediaFile'));
+        return $this->view('files.drives.media-files.create', compact('file', 'fileType', 'drive', 'mediaFile'));
     }
 
     /**
@@ -75,7 +80,8 @@ class MediaFileController extends Controller
             $request->file,
             $request->name,
             $request->description,
-            $request->user()
+            $request->user(),
+            $file->id
         ));
 
         flash_success(__('fileStore.file_uploaded'));
@@ -83,7 +89,7 @@ class MediaFileController extends Controller
         $mediaFile = $mediaFileCreated->getMediaFile();
 
         if (!$return = $request->return) {
-            $return = route('drives.files.show', [$drive, $mediaFile]);
+            $return = route('files.drives.files.show', [$file, $drive, $mediaFile]);
         }
 
         return redirect($return);
@@ -100,10 +106,12 @@ class MediaFileController extends Controller
     public function show(Request $request, File $file, Drive $drive, MediaFile $mediaFile)
     {
         $user = $request->user();
-        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($drive->id === $mediaFile->drive_id, 400);
         abort_unless($user->can('view', $mediaFile), 403);
 
-        return $this->view('drives.media-files.show', compact('drive', 'mediaFile'));
+        $fileType = $file->fileType;
+
+        return $this->view('files.drives.media-files.show', compact('file', 'fileType', 'drive', 'mediaFile'));
     }
 
     /**
@@ -119,7 +127,9 @@ class MediaFileController extends Controller
         abort_unless($drive->id === $mediaFile->drive_id, 400);
         abort_unless($user->can('update', $mediaFile), 403);
 
-        return $this->view('drives.media-files.edit', compact('drive', 'mediaFile'));
+        $fileType = $file->fileType;
+
+        return $this->view('files.drives.media-files.edit', compact('file', 'fileType', 'drive', 'mediaFile'));
     }
 
     /**

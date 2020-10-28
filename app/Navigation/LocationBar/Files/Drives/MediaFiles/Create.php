@@ -1,20 +1,20 @@
 <?php
 
 
-namespace App\Navigation\LocationBar\Files\Drives\Folders;
+namespace App\Navigation\LocationBar\Files\Drives\MediaFiles;
 
 
 use App\File;
 use App\FileStore\Drive;
-use App\FileStore\Folder;
+use App\FileStore\MediaFile;
 use App\FileType;
 use App\Navigation\LocationBar;
 
 class Create extends LocationBar
 {
-    public function __construct(FileType $fileType, File $file, Drive $drive, Folder $newFolder)
+    public function __construct(FileType $fileType, File $file, Drive $drive, MediaFile $mediaFile)
     {
-        parent::__construct(__('fileStore.newFolder'));
+        parent::__construct(__('fileStore.uploadFile'));
 
         $this->addLink(new \App\Navigation\Link\Files);
         $this->addLink(new \App\Navigation\Link\Files\FilteredFiles($fileType));
@@ -22,7 +22,7 @@ class Create extends LocationBar
         $this->addLink(new \App\Navigation\Link\Files\Drives($file));
         $this->addLink(new \App\Navigation\Link\Files\Drives\Show($file, $drive));
 
-        if ($folder = $newFolder->parentFolder) {
+        if ($folder = $mediaFile->folder) {
 
             $folders = collect([$folder]);
 
