@@ -13,6 +13,12 @@ use function App\flash_success;
 
 class DriveController extends Controller
 {
+
+    /**
+     * Routes file specifies the can:view,file middleware for this Controller file, so no need to verify user can view
+     * the file
+     */
+
     public function index(Request $request, File $file)
     {
         $user = $request->user();
@@ -28,8 +34,8 @@ class DriveController extends Controller
 
     public function show(Request $request, File $file, Drive $drive)
     {
-        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($request->user()->can('view', $drive), 403);
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
 
         $fileType = $file->fileType;
 

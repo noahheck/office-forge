@@ -4,6 +4,7 @@ namespace App\Http\Controllers\File\Drive;
 
 use App\File;
 use App\FileStore\Drive;
+use App\FileStore\Folder;
 use App\FileStore\MediaFile;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Drive\File\Store as StoreRequest;
@@ -18,6 +19,12 @@ use function App\flash_success;
 
 class MediaFileController extends Controller
 {
+
+    /**
+     * Routes file specifies the can:view,file middleware for this Controller file, so no need to verify user can view
+     * the file
+     */
+
     private $filesystem;
 
     public function __construct(Filesystem $filesystem)
@@ -33,6 +40,7 @@ class MediaFileController extends Controller
      */
     public function index(Request $request, File $file, Drive $drive)
     {
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($request->user()->can('view', $drive), 403);
 
         $fileType = $file->fileType;
@@ -49,14 +57,20 @@ class MediaFileController extends Controller
     public function create(Request $request, File $file, Drive $drive)
     {
         $user = $request->user();
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($user->can('view', $drive), 403);
+
+        if ($folder_id = $request->query('folder_id')) {
+            $folder = Folder::find($folder_id);
+            abort_unless($drive->id === $folder->drive_id, 404);
+        }
 
         $fileType = $file->fileType;
 
         $mediaFile = new MediaFile;
         $mediaFile->drive_id = $drive->id;
         $mediaFile->file_id = $file->id;
-        $mediaFile->folder_id = $request->query('folder_id');
+        $mediaFile->folder_id = $folder_id;
         $mediaFile->uploaded_by = $user->id;
 
         return $this->view('files.drives.media-files.create', compact('file', 'fileType', 'drive', 'mediaFile'));
@@ -72,7 +86,13 @@ class MediaFileController extends Controller
     public function store(StoreRequest $request, File $file, Drive $drive)
     {
         $user = $request->user();
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($user->can('view', $drive), 403);
+
+        if ($folder_id = $request->folder_id) {
+            $folder = Folder::find($folder_id);
+            abort_unless($drive->id === $folder->drive_id, 404);
+        }
 
         $this->dispatchNow($mediaFileCreated = new Create(
             $drive,
@@ -106,7 +126,9 @@ class MediaFileController extends Controller
     public function show(Request $request, File $file, Drive $drive, MediaFile $mediaFile)
     {
         $user = $request->user();
-        abort_unless($drive->id === $mediaFile->drive_id, 400);
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
+        abort_unless($drive->id === $mediaFile->drive_id, 404);
+        abort_unless($file->id === $mediaFile->file_id, 404);
         abort_unless($user->can('view', $mediaFile), 403);
 
         $fileType = $file->fileType;
@@ -124,7 +146,9 @@ class MediaFileController extends Controller
     public function edit(Request $request, File $file, Drive $drive, MediaFile $mediaFile)
     {
         $user = $request->user();
-        abort_unless($drive->id === $mediaFile->drive_id, 400);
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
+        abort_unless($drive->id === $mediaFile->drive_id, 404);
+        abort_unless($file->id === $mediaFile->file_id, 404);
         abort_unless($user->can('update', $mediaFile), 403);
 
         $fileType = $file->fileType;
@@ -143,7 +167,9 @@ class MediaFileController extends Controller
     public function update(UpdateRequest $request, File $file, Drive $drive, MediaFile $mediaFile)
     {
         $user = $request->user();
-        abort_unless($drive->id === $mediaFile->drive_id, 400);
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
+        abort_unless($drive->id === $mediaFile->drive_id, 404);
+        abort_unless($file->id === $mediaFile->file_id, 404);
         abort_unless($user->can('update', $mediaFile), 403);
 
         $this->dispatchNow($mediaFileUpdated = new Update($mediaFile, $request->name, $request->description));
@@ -167,7 +193,9 @@ class MediaFileController extends Controller
     public function destroy(Request $request, File $file, Drive $drive, MediaFile $mediaFile)
     {
         $user = $request->user();
-        abort_unless($drive->id === $mediaFile->drive_id, 400);
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
+        abort_unless($drive->id === $mediaFile->drive_id, 404);
+        abort_unless($file->id === $mediaFile->file_id, 404);
         abort_unless($user->can('delete', $mediaFile), 403);
 
         $folder = $mediaFile->folder;
@@ -187,7 +215,9 @@ class MediaFileController extends Controller
     public function preview(Request $request, File $file, Drive $drive, MediaFile $mediaFile, $filename)
     {
         $user = $request->user();
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($drive->id == $mediaFile->drive_id, 404, 'Drive ids mismatch');
+        abort_unless($file->id === $mediaFile->file_id, 404);
         abort_unless($user->can('view', $mediaFile), 403);
 
         return response()->file($this->filesystem->path('/media-files/' . $mediaFile->filename), [
@@ -199,7 +229,9 @@ class MediaFileController extends Controller
     public function downloadFile(Request $request, File $file, Drive $drive, MediaFile $mediaFile, $filename)
     {
         $user = $request->user();
+        abort_unless($drive->file_type_id === $file->file_type_id, 404);
         abort_unless($drive->id == $mediaFile->drive_id, 404, 'Drive ids mismatch');
+        abort_unless($file->id === $mediaFile->file_id, 404);
         abort_unless($user->can('view', $mediaFile), 403);
 
         return response()->file($this->filesystem->path('/media-files/' . $mediaFile->filename), [
