@@ -11,52 +11,44 @@
 
 @section('resource-content')
 
-    {{--<div class="row justify-content-center document-print-container">
+    <div class="card shadow document">
 
-        <div class="col-12 col-md-10 document-container">--}}
+        <div class="card-body">
 
-            <div class="card shadow document">
+            <h1 class="h2">
+                {!! $file->icon() !!} {{ $file->name }}
+            </h1>
 
-                <div class="card-body">
+            <hr>
 
-                    <h1 class="h2">
-                        {!! $file->icon() !!} {{ $file->name }}
-                    </h1>
+            <h2 class="h4">
+                {!! \App\icon\forms(['mr-2']) !!}{{ __('file.forms') }}
+            </h2>
 
-                    <hr>
+            @if ($forms->count() > 0)
 
-                    <h2 class="h4">
-                        {!! \App\icon\forms(['mr-2']) !!}{{ __('file.forms') }}
-                    </h2>
+                <div class="list-group">
+                    @foreach ($forms as $form)
 
-                    @if ($forms->count() > 0)
+                        <a class="list-group-item list-group-item-action" href="{{ route('files.forms.show', [$file, $form]) }}">
+                            {{ $form->name }}
+                        </a>
 
-                        <div class="list-group">
-                            @foreach ($forms as $form)
-
-                                <a class="list-group-item list-group-item-action" href="{{ route('files.forms.show', [$file, $form]) }}">
-                                    {{ $form->name }}
-                                </a>
-
-                            @endforeach
-                        </div>
-
-                    @else
-
-                        <hr>
-
-                        <p>{{ __('admin.form_description') }}</p>
-
-                        <p>{{ __('file.form_noFormsToView') }}</p>
-
-                    @endif
-
+                    @endforeach
                 </div>
 
-            </div>
+            @else
 
-        {{--</div>
+                <hr>
 
-    </div>--}}
+                <p>{{ __('admin.form_description') }}</p>
+
+                <p>{{ __('file.form_noFormsToView') }}</p>
+
+            @endif
+
+        </div>
+
+    </div>
 
 @endsection

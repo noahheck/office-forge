@@ -9,26 +9,32 @@
 ])
 
 @section('resource-content')
-    @foreach ($drives as $drive)
 
-        <div class="card shadow drive mb-2">
+    <div class="fileStore-index">
 
-            <a class="card-body" href="{{ route('files.drives.show', [$file, $drive]) }}">
+        @foreach ($drives as $drive)
 
-                <div class="icon-container">
-                    {!! \App\icon\drive(['drive-icon']) !!}
-                </div>
+            <div class="card shadow drive mb-2">
 
-                <div class="name--description">
+                <a class="card-body" href="{{ route('files.drives.show', [$file, $drive]) }}">
 
-                    <h2>{{ $drive->name }}</h2>
-                    <p class="text-muted">{!! nl2br(e($drive->description)) !!}</p>
+                    <div class="icon-container">
+                        {!! \App\icon\drive(['drive-icon']) !!}
+                    </div>
 
-                </div>
+                    <div class="name--description">
 
-            </a>
+                        <h2>{{ $drive->name }}</h2>
+                        <p class="text-muted">{!! nl2br(e($drive->description)) !!}</p>
 
-        </div>
+                    </div>
 
-    @endforeach
+                </a>
+
+            </div>
+
+        @endforeach
+
+    </div>
+
 @endsection

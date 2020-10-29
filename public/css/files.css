@@ -255,6 +255,14 @@ hr.separator {
   margin-bottom: 20px;
 }
 
+@media (min-width: 768px) {
+  .file-resource .file-identifier {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+  }
+}
+
 .file-form .file-type-thumbnail-container {
   margin-bottom: 10px;
 }
