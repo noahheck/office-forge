@@ -2,6 +2,7 @@
 
 namespace App\FileStore;
 
+use App\FileStore\MediaFile\Version;
 use App\Interfaces\Headshottable as IsHeadshottable;
 use App\Traits\Headshottable;
 use App\User;
@@ -96,7 +97,6 @@ class MediaFile extends Model implements IsHeadshottable
         }
 
         return '.' . array_pop($nameParts);
-
     }
 
     public function scopeOrdered($query)
@@ -117,5 +117,10 @@ class MediaFile extends Model implements IsHeadshottable
     public function uploadedBy()
     {
         return $this->belongsTo(User::class, 'uploaded_by');
+    }
+
+    public function versions()
+    {
+        return $this->hasMany(Version::class, 'media_file_id');
     }
 }

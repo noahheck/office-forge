@@ -15,7 +15,7 @@ class Store extends FormRequest
     {
         $drive = $this->route('drive');
 
-        return $drive && $this->user()->can('view', $drive);
+        return $drive && $this->user()->can('editContents', $drive);
     }
 
     /**

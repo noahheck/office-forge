@@ -53,6 +53,7 @@ return [
     'deleteFile' => 'Delete File',
     'noFiles' => 'There are no Files here yet.',
     'uploadFileNow' => 'Upload a File now',
+    'file_uploadNewVersion' => 'Upload a New Version',
     'file_name' => 'Name',
     'file_nameExamples' => '',
     'file_description' => 'Description',
@@ -66,4 +67,5 @@ return [
     'file_updated' => 'File updated',
     'file_deleted' => 'File deleted',
     'files_uploaded' => 'File uploaded|:count files uploaded',
+    'file_newVersionUploaded' => 'File updated - new version uploaded',
 ];

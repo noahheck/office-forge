@@ -92,8 +92,8 @@
 
         </div>
 
-        @if($mediaFile->id)
-            @can('delete', $mediaFile)
+        @if($mediaFile->id && $moreOptions)
+            @can('update', $mediaFile)
                 <div>
                     <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
                         {{ __('app.moreOptions') }}
@@ -108,20 +108,33 @@
 </form>
 
 
-@if ($mediaFile->id)
-    @can('delete', $mediaFile)
+@if ($mediaFile->id && $moreOptions)
+    @can('update', $mediaFile)
 
-        <div class="collapse text-right" id="moreOptionsContainer">
+        <div class="collapse" id="moreOptionsContainer">
 
             <hr>
 
-            <form class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger">
-                    {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
-                </button>
-            </form>
+            <div class="d-flex">
+
+                <div class="flex-grow-1">
+                    <a class="btn btn-primary" href="{{ route('drives.files.new-version', [$drive, $mediaFile]) }}">
+                        {{ __('fileStore.file_uploadNewVersion') }}
+                    </a>
+                </div>
+
+                <div class="flex-grow-0">
+                    @can('update', $mediaFile)
+                        <form class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">
+                                {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                            </button>
+                        </form>
+                    @endcan
+                </div>
+            </div>
 
         </div>
 

@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Drive;
 use App\FileStore\Drive;
 use App\FileStore\MediaFile;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Drive\File\NewVersion as NewVersionRequest;
 use App\Http\Requests\Drive\File\Store as StoreRequest;
 use App\Http\Requests\Drive\File\Update as UpdateRequest;
+use App\Jobs\FileStore\Drive\MediaFile\AddNewVersion;
 use App\Jobs\FileStore\Drive\MediaFile\Create;
 use App\Jobs\FileStore\Drive\MediaFile\Update;
 use Illuminate\Http\Request;
@@ -175,6 +177,44 @@ class MediaFileController extends Controller
 
         return redirect()->route('drives.show', [$drive]);
     }
+
+
+
+    public function newVersion(Request $request, Drive $drive, MediaFile $file)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('update', $file), 403);
+
+        $mediaFile = $file;
+
+        return $this->view('drives.media-files.new-version', compact('drive', 'mediaFile'));
+    }
+
+    public function uploadNewVersion(NewVersionRequest $request, Drive $drive, MediaFile $file)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($user->can('update', $file), 403);
+
+        $this->dispatchNow($mediaFileCreated = new AddNewVersion(
+            $file,
+            $request->file,
+            $request->name,
+            $request->description,
+            $request->user()
+        ));
+
+        flash_success(__('fileStore.file_newVersionUploaded'));
+
+        $mediaFile = $mediaFileCreated->getMediaFile();
+
+        $return = route('drives.files.show', [$drive, $mediaFile]);
+
+        return redirect($return);
+    }
+
+
 
 
     public function preview(Request $request, Drive $drive, MediaFile $file, $filename)

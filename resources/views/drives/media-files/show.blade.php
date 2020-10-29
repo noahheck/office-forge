@@ -113,11 +113,15 @@
                                     <span class="sr-only">{{ __('app.moreOptions') }}</span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item" href="{{ route('drives.files.new-version', [$drive, $mediaFile]) }}">
+                                        {!! \App\icon\mediaFileUpload(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_uploadNewVersion') }}
+                                    </a>
+                                    <div class="dropdown-divider"></div>
                                     <form id="deleteFileForm" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="dropdown-item text-danger">
-                                            {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                                            {!! \App\icon\trash(['fa-fw', 'mr-2']) !!}{{ __('fileStore.deleteFile') }}
                                         </button>
                                     </form>
                                 </div>

@@ -13,19 +13,17 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Contracts\Filesystem\Filesystem;
 
-class Create
+class AddNewVersion
 {
     use Dispatchable, Queueable;
 
-    private $drive;
-    private $folder_id;
+    private $mediaFile;
     private $file;
     private $name;
     private $description;
     private $uploaded_by;
     private $file_id;
 
-    private $mediaFile;
 
     /**
      * Create a new job instance.
@@ -33,16 +31,14 @@ class Create
      * @return void
      */
     public function __construct(
-        Drive $drive,
-        $folder_id,
+        MediaFile $mediaFile,
         UploadedFile $file,
         $name,
         $description,
         User $uploaded_by,
         $file_id = null
     ) {
-        $this->drive = $drive;
-        $this->folder_id = $folder_id;
+        $this->mediaFile = $mediaFile;
         $this->file = $file;
         $this->name = $name;
         $this->description = $description;
@@ -65,10 +61,7 @@ class Create
         $dotExtension = ($extension = $this->file->getClientOriginalExtension()) ? '.' . $extension : '';
         $name = $this->name . $dotExtension;
 
-        $mediaFile = new MediaFile;
-        $mediaFile->drive_id = $this->drive->id;
-        $mediaFile->file_id = $this->file_id;
-        $mediaFile->folder_id = $this->folder_id;
+        $mediaFile = $this->mediaFile;
         $mediaFile->name = $name;
         $mediaFile->description = $this->description;
         $mediaFile->uploaded_by = $this->uploaded_by->id;
@@ -79,7 +72,12 @@ class Create
 
         $mediaFile->save();
 
-        $filename = $mediaFile->id . $dotExtension;
+        $numVersions = $mediaFile->versions()->count();
+
+        $nextVersion = $numVersions + 1;
+
+        $filename = $mediaFile->id . '_' . $nextVersion . $dotExtension;
+
         $mediaFile->filename = $filename;
 
         $mediaFile->save();
@@ -97,6 +95,10 @@ class Create
             ));
 
         }
+
+        $mediaFile->versions()->update([
+            'current_version' => false
+        ]);
 
         $version = new Version();
         $version->media_file_id = $mediaFile->id;

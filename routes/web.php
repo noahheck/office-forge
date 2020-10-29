@@ -61,6 +61,9 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
         Route::resource('/files', 'MediaFileController');
 
+        Route::get('/files/{file}/new-version', 'MediaFileController@newVersion')->name('files.new-version');
+        Route::put('/files/{file}/new-version', 'MediaFileController@uploadNewVersion')->name('files.upload-new-version');
+
         Route::get('/files/{file}/preview/{filename}', 'MediaFileController@preview')->name('files.preview');
         Route::get('/files/{file}/download/{filename}', 'MediaFileController@downloadFile')->name('files.download');
 
