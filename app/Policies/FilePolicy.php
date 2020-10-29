@@ -76,11 +76,12 @@ class FilePolicy
      */
     public function update(User $user, File $file)
     {
-        return $this->administrator->authorize($user)
-            || (
+        // For the time being, only administrators can edit Files because that allows them to update access keys
+        return $this->administrator->authorize($user);
+            /*|| (
                    $this->sharedTeamMembership->authorize($user, $file->fileType)
                 && $this->accessLockAndKey->authorize($user, $file)
-            );
+            );*/
     }
 
     /**

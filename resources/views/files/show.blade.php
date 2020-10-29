@@ -92,16 +92,18 @@
 
                     </div>
 
+                    @admin
 
+                        <hr>
 
+                        <div class="text-center">
+                                <a class="btn btn-primary" href="{{ route('files.edit', [$file]) }}">
+                                    {!! \App\icon\edit(['mr-2']) !!}{{ __('app.edit') }} {{ $fileType->name }}
+                                </a>
+                        </div>
 
-                    <hr>
+                    @endadmin
 
-                    <div class="text-center">
-                        <a class="btn btn-primary" href="{{ route('files.edit', [$file]) }}">
-                            {!! \App\icon\edit(['mr-2']) !!}{{ __('app.edit') }} {{ $fileType->name }}
-                        </a>
-                    </div>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("files.file_resource")
 
 @push('styles')
     @style('css/files.css')
@@ -9,66 +9,58 @@
     'locationBar' => (new \App\Navigation\LocationBar\Files\Forms\Show($fileType, $file, $form)),
 ])
 
-@section('content')
+@section('resource-content')
 
-    <div class="row justify-content-center">
+    <div class="card shadow document">
 
-        <div class="col-12 col-md-10 document-container">
+        <div class="card-body">
 
-            <div class="card shadow document">
+            <h1 class="h5">
+                {!! $fileType->icon() !!} {{ $file->name }}
+            </h1>
 
-                <div class="card-body">
+            <hr>
 
-                    <h1 class="h5">
-                        {!! $fileType->icon() !!} {{ $file->name }}
-                    </h1>
+            <h2 class="h3">
+                {!! \App\icon\forms(['mr-2']) !!}{{ $form->name }}
+            </h2>
 
-                    <hr>
+            @formError
 
-                    <h2 class="h3">
-                        {!! \App\icon\forms(['mr-2']) !!}{{ $form->name }}
-                    </h2>
+            <hr>
 
-                    @formError
+            <form class="bold-labels px-md-3 px-lg-4 px-xl-5" action="{{ route('files.forms.update', [$file, $form]) }}" method="POST">
 
-                    <hr>
+                @csrf
 
-                    <form class="bold-labels px-md-3 px-lg-4 px-xl-5" action="{{ route('files.forms.update', [$file, $form]) }}" method="POST">
+                @method('PUT')
 
-                        @csrf
+                @hiddenField([
+                    'name' => 'return',
+                    'value' => old('return', url()->previous()),
+                ])
 
-                        @method('PUT')
+                @foreach ($form->activeFields as $field)
 
-                        @hiddenField([
-                            'name' => 'return',
-                            'value' => old('return', url()->previous()),
-                        ])
+                    @include('_form_field.' . $field->field_type, [
+                        'field' => $field,
+                        'value' => optional($values->firstWhere('file_type_form_field_id', $field->id)),
+                        'autofocus' => $loop->first,
+                    ])
 
-                        @foreach ($form->activeFields as $field)
+                @endforeach
 
-                            @include('_form_field.' . $field->field_type, [
-                                'field' => $field,
-                                'value' => optional($values->firstWhere('file_type_form_field_id', $field->id)),
-                                'autofocus' => $loop->first,
-                            ])
+                <hr>
 
-                        @endforeach
+                <button type="submit" class="btn btn-primary">
+                    {{ __('app.save') }}
+                </button>
 
-                        <hr>
+                <a class="btn btn-secondary" href="{{ old('return', url()->previous(route('files.show', [$file]))) }}">
+                    {{ __('app.cancel') }}
+                </a>
 
-                        <button type="submit" class="btn btn-primary">
-                            {{ __('app.save') }}
-                        </button>
-
-                        <a class="btn btn-secondary" href="{{ old('return', url()->previous(route('files.show', [$file]))) }}">
-                            {{ __('app.cancel') }}
-                        </a>
-
-                    </form>
-
-                </div>
-
-            </div>
+            </form>
 
         </div>
 

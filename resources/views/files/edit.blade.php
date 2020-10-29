@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("files/file_resource")
 
 @include("_component._location-bar", [
     'locationBar' => (new \App\Navigation\LocationBar\Files\Edit($fileType, $file))
@@ -8,29 +8,24 @@
     @style('css/files.css')
 @endpush
 
-@section('content')
+@section('resource-content')
 
-    <div class="row justify-content-center">
+    <h1>
+        {!! $fileType->icon(['mr-2']) !!}{{ __('app.edit') }} {{ $fileType->name }}
+    </h1>
 
-        <div class="col-12 col-sm-10 col-md-8 col-xl-6">
+    <hr>
 
-            <h1>
-                {!! $fileType->icon(['mr-2']) !!}{{ __('app.edit') }} {{ $fileType->name }}
-            </h1>
+    <div class="card shadow">
+        <div class="card-body">
 
-            <hr>
+            @include('files._form', [
+                'action' => route('files.update', [$file]),
+                'method' => 'PUT',
+            ])
 
-            <div class="card shadow">
-                <div class="card-body">
-
-                    @include('files._form', [
-                        'action' => route('files.update', [$file]),
-                        'method' => 'PUT',
-                    ])
-
-                </div>
-            </div>
         </div>
+
     </div>
 
 @endsection

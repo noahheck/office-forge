@@ -1,4 +1,4 @@
-@extends("layouts.app")
+@extends("files.file_resource")
 
 @push('styles')
     @style('css/files.css')
@@ -9,11 +9,11 @@
     'locationBar' => (new \App\Navigation\LocationBar\Files\Forms\Index($fileType, $file)),
 ])
 
-@section('content')
+@section('resource-content')
 
-    <div class="row justify-content-center document-print-container">
+    {{--<div class="row justify-content-center document-print-container">
 
-        <div class="col-12 col-md-10 document-container">
+        <div class="col-12 col-md-10 document-container">--}}
 
             <div class="card shadow document">
 
@@ -55,8 +55,8 @@
 
             </div>
 
-        </div>
+        {{--</div>
 
-    </div>
+    </div>--}}
 
 @endsection
