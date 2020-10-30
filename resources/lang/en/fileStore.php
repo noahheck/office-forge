@@ -53,6 +53,7 @@ return [
     'deleteFile' => 'Delete File',
     'noFiles' => 'There are no Files here yet.',
     'uploadFileNow' => 'Upload a File now',
+    'file_uploadNewVersion' => 'Upload a New Version',
     'file_name' => 'Name',
     'file_nameExamples' => '',
     'file_description' => 'Description',
@@ -60,10 +61,14 @@ return [
     'file_descriptionExamples' => '',
     'file_extensionExample' => '.extension',
     'file_uploadedBy' => 'Uploaded by',
+    'file_versions' => 'Versions',
+    'file_currentVersion' => 'Current Version',
+    'file_seeAllVersions' => 'See all versions of this file',
 
 
     'file_uploaded' => 'File uploaded',
     'file_updated' => 'File updated',
     'file_deleted' => 'File deleted',
     'files_uploaded' => 'File uploaded|:count files uploaded',
+    'file_newVersionUploaded' => 'File updated - new version uploaded',
 ];

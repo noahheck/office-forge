@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Drive;
 
 use App\FileStore\Drive;
 use App\FileStore\MediaFile;
+use App\FileStore\MediaFile\Version;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Drive\File\NewVersion as NewVersionRequest;
 use App\Http\Requests\Drive\File\Store as StoreRequest;
 use App\Http\Requests\Drive\File\Update as UpdateRequest;
+use App\Jobs\FileStore\Drive\MediaFile\AddNewVersion;
 use App\Jobs\FileStore\Drive\MediaFile\Create;
 use App\Jobs\FileStore\Drive\MediaFile\Update;
 use Illuminate\Http\Request;
@@ -99,7 +102,7 @@ class MediaFileController extends Controller
     public function show(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
-        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
         $mediaFile = $file;
@@ -160,7 +163,7 @@ class MediaFileController extends Controller
     public function destroy(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
-        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('delete', $file), 403);
 
         $folder = $file->folder;
@@ -177,10 +180,61 @@ class MediaFileController extends Controller
     }
 
 
+    public function allVersions(Request $request, Drive $drive, MediaFile $file)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 404);
+        abort_unless($user->can('view', $file), 403);
+
+        $mediaFile = $file;
+
+        $versions = $mediaFile->versions;
+
+        return $this->view('drives.media-files.versions', compact('drive', 'mediaFile', 'versions'));
+    }
+
+
+    public function newVersion(Request $request, Drive $drive, MediaFile $file)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 404);
+        abort_unless($user->can('update', $file), 403);
+
+        $mediaFile = $file;
+
+        return $this->view('drives.media-files.new-version', compact('drive', 'mediaFile'));
+    }
+
+    public function uploadNewVersion(NewVersionRequest $request, Drive $drive, MediaFile $file)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 404);
+        abort_unless($user->can('update', $file), 403);
+
+        $this->dispatchNow($mediaFileCreated = new AddNewVersion(
+            $file,
+            $request->file,
+            $request->name,
+            $request->description,
+            $request->user()
+        ));
+
+        flash_success(__('fileStore.file_newVersionUploaded'));
+
+        $mediaFile = $mediaFileCreated->getMediaFile();
+
+        $return = route('drives.files.show', [$drive, $mediaFile]);
+
+        return redirect($return);
+    }
+
+
+
+
     public function preview(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
-        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
         return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
@@ -192,12 +246,38 @@ class MediaFileController extends Controller
     public function downloadFile(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
-        abort_unless($drive->id === $file->drive_id, 400);
+        abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
         return response()->file($this->filesystem->path('/media-files/' . $file->filename), [
                 'Content-Disposition' => 'attachment; filename="' . $file->name . '"',
             ])
             ->setLastModified($file->updated_at);
+    }
+
+
+
+    public function previewVersion(Request $request, Drive $drive, MediaFile $file, Version $version, $filename)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 404);
+        abort_unless($user->can('view', $file), 403);
+
+        return response()->file($this->filesystem->path('/media-files/' . $version->filename), [
+            'Content-Disposition' => 'inline',
+        ])
+            ->setLastModified($version->updated_at);
+    }
+
+    public function downloadVersion(Request $request, Drive $drive, MediaFile $file, Version $version, $filename)
+    {
+        $user = $request->user();
+        abort_unless($drive->id === $file->drive_id, 404);
+        abort_unless($user->can('view', $file), 403);
+
+        return $this->download($this->filesystem->path('/media-files/' . $version->filename), $version->name, [
+            'Content-Disposition' => 'attachment; filename="' . $version->name . '"',
+        ])
+            ->setLastModified($version->updated_at);
     }
 }

@@ -41,5 +41,11 @@ class Update
         $file->description = $this->description;
 
         $file->save();
+
+        $version = $file->currentVersion();
+
+        $version->name = $file->name;
+
+        $version->save();
     }
 }

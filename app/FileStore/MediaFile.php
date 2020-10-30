@@ -2,8 +2,10 @@
 
 namespace App\FileStore;
 
+use App\FileStore\MediaFile\Version;
 use App\Interfaces\Headshottable as IsHeadshottable;
 use App\Traits\Headshottable;
+use App\Traits\MediaFiles\MediaFileResource;
 use App\User;
 use App\Utility\MimeTypeIconFunctionMapper;
 use Illuminate\Database\Eloquent\Model;
@@ -12,7 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class MediaFile extends Model implements IsHeadshottable
 {
     use SoftDeletes,
-        Headshottable;
+        Headshottable,
+        MediaFileResource;
 
     protected $table = 'filestore_media_files';
 
@@ -34,42 +37,6 @@ class MediaFile extends Model implements IsHeadshottable
         }
 
         return route('drives.files.preview', [$this->drive, $this, $this->name]);
-    }
-
-    public function canPreviewInBrowser(): bool
-    {
-        $previewableMimeTypes = [
-            'image/jpeg',
-            'image/png',
-            'image/gif',
-            'application/pdf',
-        ];
-
-        return in_array($this->mimetype, $previewableMimeTypes);
-    }
-
-    public function icon($withClasses = [])
-    {
-        if ($headshot = $this->currentHeadshot()) {
-            $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'icon',])));
-
-            return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'icon', $headshot->icon_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
-        }
-
-        return MimeTypeIconFunctionMapper::iconForMimetype($this->mimetype, $withClasses);
-    }
-
-    public function thumbnail($withClasses = [])
-    {
-        if ($headshot = $this->currentHeadshot()) {
-            $classes = implode(' ', array_unique(array_merge($withClasses, ['headshot', 'thumbnail',])));
-
-            return "<img class='" . e($classes) . "' src='" . route('headshot', [$headshot->id, 'thumb', $headshot->thumb_filename]) . "' title='" . e($this->name) . "' alt='" . e($this->name) . "'>";
-        }
-
-        $withClasses = array_merge($withClasses, ['thumbnail']);
-
-        return MimeTypeIconFunctionMapper::iconForMimetype($this->mimetype, $withClasses);
     }
 
     public function getNameWithoutExtensionAttribute()
@@ -96,7 +63,6 @@ class MediaFile extends Model implements IsHeadshottable
         }
 
         return '.' . array_pop($nameParts);
-
     }
 
     public function scopeOrdered($query)
@@ -117,5 +83,15 @@ class MediaFile extends Model implements IsHeadshottable
     public function uploadedBy()
     {
         return $this->belongsTo(User::class, 'uploaded_by');
+    }
+
+    public function versions()
+    {
+        return $this->hasMany(Version::class, 'media_file_id')->orderBy('created_at', 'DESC');
+    }
+
+    public function currentVersion()
+    {
+        return $this->versions->firstWhere('current_version', true);
     }
 }

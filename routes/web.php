@@ -61,9 +61,15 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
         Route::resource('/files', 'MediaFileController');
 
+        Route::get('/files/{file}/all-versions', 'MediaFileController@allVersions')->name('files.all-versions');
+        Route::get('/files/{file}/new-version', 'MediaFileController@newVersion')->name('files.new-version');
+        Route::put('/files/{file}/new-version', 'MediaFileController@uploadNewVersion')->name('files.upload-new-version');
+
         Route::get('/files/{file}/preview/{filename}', 'MediaFileController@preview')->name('files.preview');
         Route::get('/files/{file}/download/{filename}', 'MediaFileController@downloadFile')->name('files.download');
 
+        Route::get('/files/{file}/preview/{version}/{filename}', 'MediaFileController@previewVersion')->name('files.preview-version');
+        Route::get('/files/{file}/download/{version}/{filename}', 'MediaFileController@downloadVersion')->name('files.download-version');
     });
 
 
@@ -114,9 +120,15 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
 
             Route::resource('/mediaFiles', 'MediaFileController');
 
+            Route::get('/mediaFiles/{mediaFile}/all-versions', 'MediaFileController@allVersions')->name('mediaFiles.all-versions');
+            Route::get('/mediaFiles/{mediaFile}/new-version', 'MediaFileController@newVersion')->name('mediaFiles.new-version');
+            Route::put('/mediaFiles/{mediaFile}/new-version', 'MediaFileController@uploadNewVersion')->name('mediaFiles.upload-new-version');
+
             Route::get('/mediaFiles/{mediaFile}/preview/{filename}', 'MediaFileController@preview')->name('mediaFiles.preview');
             Route::get('/mediaFiles/{mediaFile}/download/{filename}', 'MediaFileController@downloadFile')->name('mediaFiles.download');
 
+            Route::get('/mediaFiles/{mediaFile}/preview/{version}/{filename}', 'MediaFileController@previewVersion')->name('mediaFiles.preview-version');
+            Route::get('/mediaFiles/{mediaFile}/download/{version}/{filename}', 'MediaFileController@downloadVersion')->name('mediaFiles.download-version');
         });
 
     });
