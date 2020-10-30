@@ -6,7 +6,7 @@
 @endpush
 
 @include("_component._location-bar", [
-    'locationBar' => (new \App\Navigation\LocationBar\Files\Drives\MediaFiles\Edit($file, $fileType, $drive, $mediaFile)),
+    'locationBar' => (new \App\Navigation\LocationBar\Files\Drives\MediaFiles\NewVersion($file, $fileType, $drive, $mediaFile)),
 ])
 
 @section('resource-content')
@@ -34,11 +34,11 @@
 
             <hr>
 
-            @include('files.drives.media-files._form', [
-                'action' => route('files.drives.mediaFiles.update', [$file, $drive, $mediaFile]),
+            @include('drives.media-files._form', [
+                'action' => route('files.drives.mediaFiles.upload-new-version', [$file, $drive, $mediaFile]),
                 'method' => 'PUT',
-                'upload' => false,
-                'moreOptions' => true,
+                'upload' => true,
+                'moreOptions' => false,
             ])
 
         </div>

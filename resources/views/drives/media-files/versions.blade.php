@@ -57,7 +57,7 @@
                                     <h5>
                                         {{ $version->name }}
                                         @if ($version->current_version)
-                                            <small class="text-success font-italic">{!! \App\icon\circleCheck(['']) !!} Current Version</small>
+                                            <small class="text-success font-italic">{!! \App\icon\circleCheck(['mr-1']) !!}{{ __('fileStore.file_currentVersion') }}</small>
                                         @endif
                                     </h5>
                                     <p>

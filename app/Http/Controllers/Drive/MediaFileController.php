@@ -267,11 +267,6 @@ class MediaFileController extends Controller
             'Content-Disposition' => 'inline',
         ])
             ->setLastModified($version->updated_at);
-
-        /*return $this->download($this->filesystem->path('/media-files/' . $version->filename), $version->name, [
-            'Content-Disposition' => 'inline',
-        ])
-        ->setLastModified($version->updated_at);*/
     }
 
     public function downloadVersion(Request $request, Drive $drive, MediaFile $file, Version $version, $filename)

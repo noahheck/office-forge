@@ -62,6 +62,7 @@ return [
     'file_extensionExample' => '.extension',
     'file_uploadedBy' => 'Uploaded by',
     'file_versions' => 'Versions',
+    'file_currentVersion' => 'Current Version',
     'file_seeAllVersions' => 'See all versions of this file',
 
 

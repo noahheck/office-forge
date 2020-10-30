@@ -92,8 +92,8 @@
 
         </div>
 
-        @if($mediaFile->id)
-            @can('delete', $mediaFile)
+        @if($mediaFile->id && $moreOptions)
+            @can('update', $mediaFile)
                 <div>
                     <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
                         {{ __('app.moreOptions') }}
@@ -109,19 +109,31 @@
 
 
 @if ($mediaFile->id)
-    @can('delete', $mediaFile)
+    @can('update', $mediaFile)
 
-        <div class="collapse text-right" id="moreOptionsContainer">
+        <div class="collapse" id="moreOptionsContainer">
 
             <hr>
 
-            <form class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}" action="{{ route('files.drives.mediaFiles.destroy', [$file, $drive, $mediaFile]) }}" method="post">
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-danger">
-                    {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
-                </button>
-            </form>
+            <div class="d-flex">
+
+                <div class="flex-grow-1">
+                    <a class="btn btn-primary" href="{{ route('files.drives.mediaFiles.new-version', [$file, $drive, $mediaFile]) }}">
+                        {{ __('fileStore.file_uploadNewVersion') }}
+                    </a>
+                </div>
+
+                <div class="flex-grow-0">
+                    <form class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}" action="{{ route('files.drives.mediaFiles.destroy', [$file, $drive, $mediaFile]) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger">
+                            {!! \App\icon\trash(['mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                        </button>
+                    </form>
+                </div>
+
+            </div>
 
         </div>
 

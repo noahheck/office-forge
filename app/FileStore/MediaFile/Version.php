@@ -22,7 +22,7 @@ class Version extends Model implements IsHeadshottable
 
     public function downloadUrl()
     {
-        if ($this->file_id) {
+        if ($this->mediaFile->file_id) {
 
             return route('files.drives.mediaFiles.download-version', [$this->mediaFile->file_id, $this->mediaFile->drive, $this->mediaFile, $this, $this->name]);
         }
@@ -32,7 +32,7 @@ class Version extends Model implements IsHeadshottable
 
     public function previewUrl()
     {
-        if ($this->file_id) {
+        if ($this->mediaFile->file_id) {
 
             return route('files.drives.mediaFiles.preview-version', [$this->mediaFile->file_id, $this->mediaFile->drive, $this->mediaFile, $this, $this->name]);
         }
