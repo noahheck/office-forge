@@ -61,6 +61,8 @@ return [
     'file_descriptionExamples' => '',
     'file_extensionExample' => '.extension',
     'file_uploadedBy' => 'Uploaded by',
+    'file_versions' => 'Versions',
+    'file_seeAllVersions' => 'See all versions of this file',
 
 
     'file_uploaded' => 'File uploaded',

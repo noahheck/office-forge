@@ -88,6 +88,19 @@ class Create
 
         $this->mediaFile = $mediaFile;
 
+        $version = new Version();
+        $version->media_file_id = $mediaFile->id;
+        $version->uploaded_by = $mediaFile->uploaded_by;
+        $version->name = $mediaFile->name;
+        $version->mimetype = $mediaFile->mimetype;
+        $version->filename = $mediaFile->filename;
+        $version->original_filename = $mediaFile->original_filename;
+        $version->filesize = $mediaFile->filesize;
+        $version->current_version = true;
+
+        $version->save();
+
+
         if (in_array($mediaFile->mimetype, ['image/jpeg', 'image/png'])) {
 
             $dispatcher->dispatchNow($headshotHandled = new Upload(
@@ -96,17 +109,12 @@ class Create
                 $this->uploaded_by
             ));
 
+            $dispatcher->dispatchNow($headshotHandled = new Upload(
+                $version,
+                $this->file,
+                $this->uploaded_by
+            ));
+
         }
-
-        $version = new Version();
-        $version->media_file_id = $mediaFile->id;
-        $version->uploaded_by = $mediaFile->uploaded_by;
-        $version->mimetype = $mediaFile->mimetype;
-        $version->filename = $mediaFile->filename;
-        $version->original_filename = $mediaFile->original_filename;
-        $version->filesize = $mediaFile->filesize;
-        $version->current_version = true;
-
-        $version->save();
     }
 }

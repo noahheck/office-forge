@@ -84,16 +84,9 @@ class AddNewVersion
 
         $filesystem->putFileAs(DIRECTORY_SEPARATOR . 'media-files' . DIRECTORY_SEPARATOR, $this->file, $filename);
 
-        $this->mediaFile = $mediaFile;
-
-        if (in_array($mediaFile->mimetype, ['image/jpeg', 'image/png'])) {
-
-            $dispatcher->dispatchNow($headshotHandled = new Upload(
-                $mediaFile,
-                $this->file,
-                $this->uploaded_by
-            ));
-
+        if ($currentHeadShot = $mediaFile->currentHeadshot()) {
+            $currentHeadShot->current = false;
+            $currentHeadShot->save();
         }
 
         $mediaFile->versions()->update([
@@ -103,6 +96,7 @@ class AddNewVersion
         $version = new Version();
         $version->media_file_id = $mediaFile->id;
         $version->uploaded_by = $mediaFile->uploaded_by;
+        $version->name = $mediaFile->name;
         $version->mimetype = $mediaFile->mimetype;
         $version->filename = $mediaFile->filename;
         $version->original_filename = $mediaFile->original_filename;
@@ -110,5 +104,21 @@ class AddNewVersion
         $version->current_version = true;
 
         $version->save();
+
+        if (in_array($mediaFile->mimetype, ['image/jpeg', 'image/png'])) {
+
+            $dispatcher->dispatchNow($headshotHandled = new Upload(
+                $mediaFile,
+                $this->file,
+                $this->uploaded_by
+            ));
+
+            $dispatcher->dispatchNow($headshotHandled = new Upload(
+                $version,
+                $this->file,
+                $this->uploaded_by
+            ));
+
+        }
     }
 }

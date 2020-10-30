@@ -116,6 +116,11 @@
                                     <a class="dropdown-item" href="{{ route('drives.files.new-version', [$drive, $mediaFile]) }}">
                                         {!! \App\icon\mediaFileUpload(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_uploadNewVersion') }}
                                     </a>
+                                    @if ($mediaFile->versions()->count() > 1)
+                                        <a class="dropdown-item" href="{{ route('drives.files.all-versions', [$drive, $mediaFile]) }}">
+                                            {!! \App\icon\history(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_seeAllVersions') }}
+                                        </a>
+                                    @endif
                                     <div class="dropdown-divider"></div>
                                     <form id="deleteFileForm" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}">
                                         @csrf

@@ -19,6 +19,7 @@ class CreateFilestoreMediaFileVersionsTable extends Migration
 
             $table->bigInteger('media_file_id');
             $table->bigInteger('uploaded_by');
+            $table->string('name');
             $table->string('mimetype');
             $table->string('filename')->nullable();
             $table->string('original_filename');
