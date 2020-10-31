@@ -35,6 +35,7 @@ class MediaFileController extends Controller
      */
     public function index(Request $request, Drive $drive)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($request->user()->can('view', $drive), 403);
 
         return $this->view('drives.media-files.index', compact('drive'));
@@ -49,6 +50,7 @@ class MediaFileController extends Controller
     public function create(Request $request, Drive $drive)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($user->can('editContents', $drive), 403);
 
         $mediaFile = new MediaFile;
@@ -69,6 +71,7 @@ class MediaFileController extends Controller
     public function store(StoreRequest $request, Drive $drive)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($user->can('editContents', $drive), 403);
 
         $this->dispatchNow($mediaFileCreated = new Create(
@@ -102,6 +105,7 @@ class MediaFileController extends Controller
     public function show(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
@@ -120,6 +124,7 @@ class MediaFileController extends Controller
     public function edit(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 400);
         abort_unless($user->can('update', $file), 403);
 
@@ -139,6 +144,7 @@ class MediaFileController extends Controller
     public function update(UpdateRequest $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 400);
         abort_unless($user->can('update', $file), 403);
 
@@ -163,6 +169,7 @@ class MediaFileController extends Controller
     public function destroy(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('delete', $file), 403);
 
@@ -183,6 +190,7 @@ class MediaFileController extends Controller
     public function allVersions(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
@@ -197,6 +205,7 @@ class MediaFileController extends Controller
     public function newVersion(Request $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('update', $file), 403);
 
@@ -208,6 +217,7 @@ class MediaFileController extends Controller
     public function uploadNewVersion(NewVersionRequest $request, Drive $drive, MediaFile $file)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('update', $file), 403);
 
@@ -234,6 +244,7 @@ class MediaFileController extends Controller
     public function preview(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
@@ -246,6 +257,7 @@ class MediaFileController extends Controller
     public function downloadFile(Request $request, Drive $drive, MediaFile $file, $filename)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
@@ -260,6 +272,7 @@ class MediaFileController extends Controller
     public function previewVersion(Request $request, Drive $drive, MediaFile $file, Version $version, $filename)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 
@@ -272,6 +285,7 @@ class MediaFileController extends Controller
     public function downloadVersion(Request $request, Drive $drive, MediaFile $file, Version $version, $filename)
     {
         $user = $request->user();
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($drive->id === $file->drive_id, 404);
         abort_unless($user->can('view', $file), 403);
 

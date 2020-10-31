@@ -26,6 +26,7 @@ class DriveController extends Controller
 
     public function show(Request $request, Drive $drive)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($request->user()->can('view', $drive), 403);
 
          $drive->load('topLevelFolders');
@@ -41,6 +42,7 @@ class DriveController extends Controller
 
     public function uploadFiles(UploadFilesRequest $request, Drive $drive, FilenameParser $filenameParser)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($request->user()->can('editContents', $drive), 403);
 
         $count = 0;

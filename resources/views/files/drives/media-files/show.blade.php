@@ -113,7 +113,7 @@
                     <div class="flex-grow-0">
 
                         @can('update', $mediaFile)
-                            
+
                             <div class="btn-group dropup">
                                 <a class="btn btn-primary btn-sm" href="{{ route('files.drives.mediaFiles.edit', [$file, $drive, $mediaFile]) }}">
                                     {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}

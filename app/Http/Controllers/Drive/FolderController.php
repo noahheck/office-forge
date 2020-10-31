@@ -22,6 +22,7 @@ class FolderController extends Controller
      */
     public function index(Request $request, Drive $drive)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($request->user()->can('view', $drive), 403);
 
         return $this->view('drives.folders.index', compact('drive'));
@@ -34,6 +35,7 @@ class FolderController extends Controller
      */
     public function create(Request $request, Drive $drive)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($request->user()->can('editContents', $drive), 403);
 
         $folder = new Folder;
@@ -52,6 +54,7 @@ class FolderController extends Controller
      */
     public function store(StoreRequest $request, Drive $drive)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($request->user()->can('editContents', $drive), 403);
 
         $this->dispatchNow($folderCreated = new Create(
@@ -76,6 +79,7 @@ class FolderController extends Controller
      */
     public function show(Request $request, Drive $drive, Folder $folder)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('view', $drive), 403);
 
@@ -92,6 +96,7 @@ class FolderController extends Controller
      */
     public function edit(Request $request, Drive $drive, Folder $folder)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('editContents', $drive), 403);
 
@@ -107,6 +112,7 @@ class FolderController extends Controller
      */
     public function update(UpdateRequest $request, Drive $drive, Folder $folder)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('editContents', $drive), 403);
 
@@ -125,6 +131,7 @@ class FolderController extends Controller
      */
     public function destroy(Request $request, Drive $drive, Folder $folder)
     {
+        abort_unless(is_null($drive->file_type_id), 404);
         abort_unless($folder->drive_id === $drive->id, 403);
         abort_unless($request->user()->can('delete', $folder), 403);
 
