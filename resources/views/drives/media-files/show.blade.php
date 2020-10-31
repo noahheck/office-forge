@@ -87,12 +87,12 @@
 
                             @if ($mediaFile->canPreviewInBrowser())
                                 <a class="btn btn-primary btn-sm" target="_blank"  href="{{ $mediaFile->previewUrl() }}">
-                                    {!! \App\icon\mediaFilePreview(['mr-2']) !!}{{ __('app.preview') }}
+                                    {!! \App\icon\mediaFilePreview(['mr-sm-2']) !!}<span class="d-none d-sm-inline">{{ __('app.preview') }}</span>
                                 </a>
                             @endif
 
                             <a class="btn btn-primary btn-sm" href="{{ $mediaFile->downloadUrl() }}">
-                                {!! \App\icon\mediaFileDownload(['mr-2']) !!}{{ __('app.download') }}
+                                {!! \App\icon\mediaFileDownload(['mr-sm-2']) !!}<span class="d-none d-sm-inline">{{ __('app.download') }}</span>
                             </a>
 
                         </div>
@@ -100,41 +100,55 @@
                     </div>
 
 
-                    @can('update', $mediaFile)
+                    @if($mediaFile->versions()->count() > 1 || Auth::user()->can('update', $mediaFile))
 
                         <hr>
 
-                        <div class="text-right">
-                            <div class="btn-group dropup">
-                                <a class="btn btn-primary btn-sm" href="{{ route('drives.files.edit', [$drive, $mediaFile]) }}">
-                                    {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}
-                                </a>
-                                <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">{{ __('app.moreOptions') }}</span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item" href="{{ route('drives.files.new-version', [$drive, $mediaFile]) }}">
-                                        {!! \App\icon\mediaFileUpload(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_uploadNewVersion') }}
+                        <div class="d-flex">
+
+                            <div class="flex-grow-1">
+                                @if ($mediaFile->versions()->count() > 1)
+                                    <a class="" href="{{ route('drives.files.all-versions', [$drive, $mediaFile]) }}">
+                                        {!! \App\icon\history(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_seeAllVersions') }}
                                     </a>
-                                    @if ($mediaFile->versions()->count() > 1)
-                                        <a class="dropdown-item" href="{{ route('drives.files.all-versions', [$drive, $mediaFile]) }}">
-                                            {!! \App\icon\history(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_seeAllVersions') }}
+                                @endif
+                            </div>
+
+
+                            <div class="flex-grow-0">
+
+                                @can('update', $mediaFile)
+
+                                    <div class="btn-group dropup">
+                                        <a class="btn btn-primary btn-sm" href="{{ route('drives.files.edit', [$drive, $mediaFile]) }}">
+                                            {!! \App\icon\edit(['mr-2']) !!}{{ __('fileStore.editFile') }}
                                         </a>
-                                    @endif
-                                    <div class="dropdown-divider"></div>
-                                    <form id="deleteFileForm" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            {!! \App\icon\trash(['fa-fw', 'mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                                        <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="sr-only">{{ __('app.moreOptions') }}</span>
                                         </button>
-                                    </form>
-                                </div>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="{{ route('drives.files.new-version', [$drive, $mediaFile]) }}">
+                                                {!! \App\icon\mediaFileUpload(['fa-fw', 'mr-2']) !!}{{ __('fileStore.file_uploadNewVersion') }}
+                                            </a>
+                                            <div class="dropdown-divider"></div>
+                                            <form id="deleteFileForm" action="{{ route('drives.files.destroy', [$drive, $mediaFile]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $mediaFile->name }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger">
+                                                    {!! \App\icon\trash(['fa-fw', 'mr-2']) !!}{{ __('fileStore.deleteFile') }}
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                @endcan
 
                             </div>
+
                         </div>
 
-                    @endcan
+                    @endif
 
 
 
