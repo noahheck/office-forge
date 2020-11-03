@@ -394,80 +394,29 @@
                                 {!! \App\icon\go([]) !!}
                             </a>
                         </h4>
-                        {{--<div class="d-flex flex-grow-1">
-                            <div class="dropdown flex-grow-1 ml-3">
-
-                                // Potential place for a filter dropdown or similar
-                                <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="showActivitiesDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    @switch($activityView)
-
-                                        @case('open')
-                                        {{ __('activity.openActivities') }}
-                                        @break
-
-                                        @case('all')
-                                        {{ __('activity.allActivities') }}
-                                        @break
-
-                                    @endswitch
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="showActivitiesDropdownMenuButton">
-
-                                    @switch($activityView)
-
-                                        @case('open')
-                                        <a class="dropdown-item" href="{{ route('files.show', [$file, 'show_activities' => 'all']) }}">{{ __('activity.allActivities') }}</a>
-                                        @break
-
-                                        @case('all')
-                                        <a class="dropdown-item" href="{{ route('files.show', [$file]) }}">{{ __('activity.openActivities') }}</a>
-                                        @break
-
-                                    @endswitch
-
-                                </div>
-                            </div>
-                            <div class="dropdown ml-2">
-                                <button class="btn btn-sm btn-outline-secondary border-0 dropdown-toggle" type="button" id="newActivityDropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {!! \App\icon\circlePlus([]) !!}
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="newActivityDropdownMenuButton">
-
-                                    @forelse ($formDocTemplates as $__template)
-                                        @if ($loop->first)
-                                            <span class="dropdown-header">{!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}</span>
-                                        @endif
-
-                                        <a class="dropdown-item" href="{{ route('form-docs.create', ['file_id' => $file->id, 'form_doc_template_id' => $__template->id]) }}">
-                                            {{ $__template->name }}
-                                        </a>
-                                    @empty
-                                        <div class="p-3 text-muted">
-                                            {{ __('file.formDoc_noFormDocsForThisFileType', ['fileType' => $file->fileType->name]) }}.
-                                        </div>
-                                    @endforelse
-                                </div>
-                            </div>
-                        </div>--}}
                     </div>
-                    <div class="card-body">
-
+                    <div class="card-body fileStore-index">
 
                         @foreach ($drives as $drive)
 
-                            @if($loop->first)
-                                <div class="list-group drives">
-                            @endif
+                            <div class="card shadow drive mb-2">
 
-                                <a class="list-group-item list-group-item-action" href="{{ route("files.drives.show", [$file, $drive]) }}">
-                                    {!! \App\icon\drive(['mr-2']) !!}{{ $drive->name }}
+                                <a class="card-body" href="{{ route('files.drives.show', [$file, $drive]) }}">
+
+                                    <div class="icon-container">
+                                        {!! \App\icon\drive(['drive-icon']) !!}
+                                    </div>
+
+                                    <div class="name--description">
+
+                                        <h2>{{ $drive->name }}</h2>
+                                        <p class="text-muted">{!! nl2br(e($drive->description)) !!}</p>
+
+                                    </div>
+
                                 </a>
 
-                            @if($loop->last)
-                                </div>
-                            @endif
-
-
+                            </div>
 
                         @endforeach
 
