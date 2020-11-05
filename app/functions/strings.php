@@ -120,7 +120,7 @@ function misc_email() {
     return array_rand($emails);
 }
 
-function misc_integer() {
+function misc_integer($min = 0, $max = 42) {
     static $integers = false;
 
     if (!$integers) {
@@ -133,7 +133,13 @@ function misc_integer() {
         ]);
     }
 
-    return array_rand($integers);
+    $val = array_rand($integers);
+
+    if ($val < $min || $val > $max) {
+        $val = array_rand([$min, $max]);
+    }
+
+    return $val;
 }
 
 function misc_decimal($decimalPlaces = 2) {
