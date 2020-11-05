@@ -189,6 +189,86 @@
 
             </div>
 
+
+            <div class="form-field-option row justify-content-center hidden" id="form-field-options_range" style="display: none;">
+
+                <div class="col-10">
+
+                    <div class="card shadow">
+
+                        <div class="card-header">
+                            <h5>{{ __('file.field_fieldTypeRange') }} {{ __('app.options') }}</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            @rangeField([
+                                'name' => 'range_min',
+                                'label' => __('file.field_fieldTypeRange_minimumValue'),
+                                'details' => '',
+                                'value' => $field->rangeMin(),
+                                'min' => 0,
+                                'max' => 1,
+                                'min_label' => '0',
+                                'max_label' => '1',
+                                'required' => false,
+                                'autofocus' => false,
+                                'error' => $errors->has('range_min'),
+                                'readonly' => false,
+                                'fieldOnly' => false,
+                            ])
+
+                            @rangeField([
+                                'name' => 'range_max',
+                                'label' => __('file.field_fieldTypeRange_minimumValue'),
+                                'details' => '',
+                                'value' => $field->rangeMax(),
+                                'min' => 3,
+                                'max' => 10,
+                                'min_label' => '3',
+                                'max_label' => '10',
+                                'required' => false,
+                                'autofocus' => false,
+                                'error' => $errors->has('range_max'),
+                                'readonly' => false,
+                                'fieldOnly' => false,
+                            ])
+
+                            @textField([
+                                'name' => 'range_min_label',
+                                'label' => __('file.field_fieldTypeRange_lowLabel'),
+                                'details' => __('app.optional'),
+                                'value' => $field->rangeMinLabel(),
+                                'placeholder' => __('file.field_fieldTypeRange_lowLabelExamples'),
+                                'required' => false,
+                                'autofocus' => false,
+                                'error' => $errors->has('range_min_label'),
+                                'readonly' => false,
+                                'fieldOnly' => false,
+                            ])
+
+                            @textField([
+                                'name' => 'range_max_label',
+                                'label' => __('file.field_fieldTypeRange_highLabel'),
+                                'details' => __('app.optional'),
+                                'value' => $field->rangeMaxLabel(),
+                                'placeholder' => __('file.field_fieldTypeRange_highLabelExamples'),
+                                'required' => false,
+                                'autofocus' => false,
+                                'error' => $errors->has('range_max_label'),
+                                'readonly' => false,
+                                'fieldOnly' => false,
+                            ])
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
             @if ($showActive ?? false)
 
                 <hr>

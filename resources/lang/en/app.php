@@ -24,6 +24,8 @@ return [
     'skipToContent' => 'Skip to content',
     'noResults' => 'No Results',
     'accessDetails' => 'Access Details',
+    'required' => 'Required',
+    'optional' => 'Optional',
 
     'confirmDelete' => 'Confirm Delete',
     'sureDeleteThis' => 'Are you sure you want to delete this?',

@@ -70,16 +70,16 @@ class DataMapper
             $value->value_decimal = $inputData['field_' . $field_id] ?? null;
         }
 
+        if (in_array($field->field_type, ['integer', 'range'])) {
+            $value->value_integer = $inputData['field_' . $field_id] ?? null;
+        }
+
         if ($field->field_type === 'user') {
             $value->value_user = $inputData['field_' . $field_id] ?? null;
         }
 
         if ($field->field_type === 'file') {
             $value->value_file = $inputData['field_' . $field_id] ?? null;
-        }
-
-        if ($field->field_type === 'integer') {
-            $value->value_integer = $inputData['field_' . $field_id] ?? null;
         }
 
         if ($field->field_type === 'date') {

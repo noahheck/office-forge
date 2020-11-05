@@ -37,4 +37,29 @@ trait Field
     {
         return $this->fileTypeId();
     }
+
+    public function rangeIncludeZero()
+    {
+        return optional($this->options)->range_include_zero;
+    }
+
+    public function rangeMin()
+    {
+        return optional($this->options)->range_min;
+    }
+
+    public function rangeMax()
+    {
+        return optional($this->options)->range_max;
+    }
+
+    public function rangeMinLabel()
+    {
+        return optional($this->options)->range_min_label;
+    }
+
+    public function rangeMaxLabel()
+    {
+        return optional($this->options)->range_max_label;
+    }
 }

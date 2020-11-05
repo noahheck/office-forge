@@ -34,7 +34,7 @@
                     </div>
                 @endif
 @endunless
-                <input type="range" class="custom-range range-field {{ ($error ?? false) ? 'is-invalid' : '' }}" min="{{ $min ?? '0' }}" max="{{ $max ?? '10' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '0' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>
+                <input type="range" class="custom-range range-field {{ ($error ?? false) ? 'is-invalid' : '' }}" min="{{ $min ?? '0' }}" max="{{ $max ?? '10' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '0' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly disabled' : '' }}>
 @unless($fieldOnly ?? false)
             </div>
             <div class="flex-grow-0">
