@@ -129,6 +129,11 @@ class FileType extends Model
         return $this->hasMany(Template::class);
     }
 
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
     public function accessLocks()
     {
         return $this->hasMany(AccessLock::class)->orderBy('name');

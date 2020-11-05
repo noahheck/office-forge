@@ -56,4 +56,9 @@ class Team extends Model
     {
         return $this->belongsToMany(Drive::class, 'filestore_drives_teams', 'team_id', 'filestore_drive_id');
     }
+
+    public function reports()
+    {
+        return $this->belongsToMany(Report::class, 'reports_teams', 'team_id', 'report_id');
+    }
 }

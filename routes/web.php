@@ -204,6 +204,11 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::post('/form-docs/{formDoc}/fields/update-order', 'FormDoc\FieldController@updateOrder')
             ->name('form-docs.fields.update-order');
 
+
+        // Reports
+        Route::resource('/reports', 'ReportController');
+
+
         // Processes
         Route::resource('/processes', 'ProcessController');
         Route::post('/processes/{process}/add-template', 'ProcessController@addTemplate')
