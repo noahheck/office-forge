@@ -20,6 +20,11 @@ class Update
     private $userTeam;
     private $fileType;
 
+    private $rangeMin;
+    private $rangeMax;
+    private $rangeMinLabel;
+    private $rangeMaxLabel;
+
     /**
      * Create a new job instance.
      *
@@ -34,7 +39,11 @@ class Update
         $selectOptions,
         $decimalPlaces,
         $userTeam,
-        $fileType
+        $fileType,
+        $rangeMin,
+        $rangeMax,
+        $rangeMinLabel,
+        $rangeMaxLabel
     ) {
         $this->field = $field;
         $this->label = $label;
@@ -45,6 +54,11 @@ class Update
         $this->decimalPlaces = $decimalPlaces;
         $this->userTeam = $userTeam;
         $this->fileType = $fileType;
+
+        $this->rangeMin = $rangeMin;
+        $this->rangeMax = $rangeMax;
+        $this->rangeMinLabel = $rangeMinLabel;
+        $this->rangeMaxLabel = $rangeMaxLabel;
     }
 
     /**
@@ -65,6 +79,10 @@ class Update
         $options->decimal_places = $this->decimalPlaces;
         $options->user_team = $this->userTeam;
         $options->file_type = $this->fileType;
+        $options->range_min = $this->rangeMin;
+        $options->range_max = $this->rangeMax;
+        $options->range_min_label = $this->rangeMinLabel;
+        $options->range_max_label = $this->rangeMaxLabel;
 
         $field->options = $options;
 

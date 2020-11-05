@@ -19,16 +19,16 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p class="mb-0">{{ $details }}</p>
         @endif
-        <div class="d-flex">
+        <div class="d-flex border p-2">
             <div class="flex-grow-1 d-flex flex-column align-items-center">
                 @if(($min_label ?? false) || ($max_label ?? false))
                     <div class="d-flex w-100 range-field-labels">
                         <div class="flex-grow-1">
                             {{ $min_label ?? '' }}
                         </div>
-                        <div class="flex-grow-0">
+                        <div class="flex-grow-0 text-right">
                             {{ $max_label ?? '' }}
                         </div>
                     </div>

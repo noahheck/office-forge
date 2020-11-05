@@ -74,7 +74,11 @@ class FieldController extends Controller
             $request->select_options,
             $request->decimal_places,
             $request->user_team,
-            $request->file_type
+            $request->file_type,
+            $request->range_min,
+            $request->range_max,
+            $request->range_min_label,
+            $request->range_max_label
         ));
 
         flash_success(__('admin.field_created'));
@@ -138,7 +142,11 @@ class FieldController extends Controller
             $request->select_options,
             $request->decimal_places,
             $request->user_team,
-            $request->file_type
+            $request->file_type,
+            $request->range_min,
+            $request->range_max,
+            $request->range_min_label,
+            $request->range_max_label
         ));
 
         flash_success(__('admin.field_updated'));
