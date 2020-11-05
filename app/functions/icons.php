@@ -347,6 +347,14 @@ function formFields($classes = []) {
 }
 
 
+// Reports
+function reports($classes = []) {
+    $classes[] = "fas fa-chart-bar";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
 
 // Activities
 function tasks($classes = []) {

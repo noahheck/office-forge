@@ -13,9 +13,13 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Report $report)
     {
-        //
+        $reports = $report->orderBy('name')->get();
+
+        \Debugbar::info($reports);
+
+        return $this->view('admin.reports.index', compact('reports'));
     }
 
     /**
@@ -23,9 +27,11 @@ class ReportController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $report = new Report;
+
+
     }
 
     /**

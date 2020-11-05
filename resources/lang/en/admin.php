@@ -172,6 +172,19 @@ return [
     'formDoc_updated' => 'FormDoc updated',
 
 
+
+    'report_description' => 'Reports are structured documents that help you easily aggregate and analyze the data collected in Office Forge. Display this information in tables and charts to help identify trends or problem areas, and monitor all of your business initiatives!',
+    'newReport' => 'New Report',
+    'newReport_shortDescription' => 'Create a new Report',
+    'editReport' => 'Edit Report',
+    'editReport_shortDescription' => 'Edit a Report',
+    'report_createFirstReportNow' => 'Create your first Report now!',
+
+    'report_created' => 'Report created',
+    'report_updated' => 'Report updated',
+
+
+
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',
     'fileStore_driveDescription' => 'FileStore organizes these resources into Drives to provide access only to Team members who need it.',
     'fileStore_versionsDescription' => "FileStore also keeps track of each version of the files you upload, so you'll never lose track of your work!",

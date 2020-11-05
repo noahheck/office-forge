@@ -80,6 +80,8 @@ return [
     'fileType' => 'File Type',
     'formDocs' => 'FormDocs',
     'formDoc' => 'FormDoc',
+    'reports' => 'Reports',
+    'report' => 'Report',
     'processes' => 'Processes',
     'activities' => 'Activities',
     'projects' => 'Projects (Change Me)',
