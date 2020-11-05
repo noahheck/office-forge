@@ -29744,6 +29744,8 @@ try {
 
   __webpack_require__(/*! Component/integer-field */ "./resources/js/component/integer-field.js");
 
+  __webpack_require__(/*! Component/range-field */ "./resources/js/component/range-field.js");
+
   __webpack_require__(/*! Component/decimal-field */ "./resources/js/component/decimal-field.js");
 
   __webpack_require__(/*! Component/file-input-field */ "./resources/js/component/file-input-field.js");
@@ -30148,6 +30150,55 @@ $(function () {
     var newVal = areaCode + firstSet + lastSet + ext;
     $this.val(newVal);
   });
+});
+
+/***/ }),
+
+/***/ "./resources/js/component/range-field.js":
+/*!***********************************************!*\
+  !*** ./resources/js/component/range-field.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * js/component/phone-field.js
+ */
+var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+
+function setRangeDisplayValueForElement(element) {
+  var id = element.getAttribute("id");
+  document.getElementById(id + "_display").innerHTML = element.value;
+}
+
+$(function () {
+  var elements = document.getElementsByClassName("range-field");
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    for (var _iterator = elements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      var e = _step.value;
+      setRangeDisplayValueForElement(e);
+      $(e).on("input", function () {
+        setRangeDisplayValueForElement(this);
+      });
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+        _iterator["return"]();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
 });
 
 /***/ }),

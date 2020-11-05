@@ -20,6 +20,11 @@ class Create
     private $userTeam;
     private $fileType;
 
+    private $rangeMin;
+    private $rangeMax;
+    private $rangeMinLabel;
+    private $rangeMaxLabel;
+
     private $field;
 
     /**
@@ -35,7 +40,11 @@ class Create
         $selectOptions,
         $decimalPlaces,
         $userTeam,
-        $fileType
+        $fileType,
+        $rangeMin,
+        $rangeMax,
+        $rangeMinLabel,
+        $rangeMaxLabel
     ) {
         $this->template = $template;
         $this->label = $label;
@@ -45,6 +54,11 @@ class Create
         $this->decimalPlaces = $decimalPlaces;
         $this->userTeam = $userTeam;
         $this->fileType = $fileType;
+
+        $this->rangeMin = $rangeMin;
+        $this->rangeMax = $rangeMax;
+        $this->rangeMinLabel = $rangeMinLabel;
+        $this->rangeMaxLabel = $rangeMaxLabel;
     }
 
     public function getField(): Field
@@ -72,6 +86,10 @@ class Create
         $options->decimal_places = $this->decimalPlaces;
         $options->user_team = $this->userTeam;
         $options->file_type = $this->fileType;
+        $options->range_min = $this->rangeMin;
+        $options->range_max = $this->rangeMax;
+        $options->range_min_label = $this->rangeMinLabel;
+        $options->range_max_label = $this->rangeMaxLabel;
 
         $field->options = $options;
 

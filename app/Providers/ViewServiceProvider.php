@@ -147,6 +147,7 @@ EOT;
         \Blade::include('_form/phone',             'phoneField');
         \Blade::include('_form/money',             'moneyField');
         \Blade::include('_form/integer',           'integerField');
+        \Blade::include('_form/range',             'rangeField');
         \Blade::include('_form/decimal',           'decimalField');
         \Blade::include('_form/textarea',          'textareaField');
         \Blade::include('_form/text-editor',       'textEditorField');

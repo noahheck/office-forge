@@ -34,6 +34,7 @@ try {
     require('Component/phone-field');
     require('Component/money-field');
     require('Component/integer-field');
+    require('Component/range-field');
     require('Component/decimal-field');
     require('Component/file-input-field');
     require('Component/file-search-field');

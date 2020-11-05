@@ -108,6 +108,16 @@ return [
     'field_fieldTypeDecimal' => 'Decimal',
     'field_fieldTypeDecimal_numberOfDecimalPlaces' => 'Number of decimal places',
 
+    'field_fieldTypeRange' => 'Range',
+    'field_fieldTypeRange_minimumValue' => 'Minimum Value',
+    'field_fieldTypeRange_maximumValue' => 'Maximum Value',
+    'field_fieldTypeRange_lowLabel' => 'Low-end Label',
+    'field_fieldTypeRange_lowLabelExamples' => 'Low, 0, etc...',
+    'field_fieldTypeRange_highLabel' => 'High-end Label',
+    'field_fieldTypeRange_highLabelExamples' => 'High, 10, etc...',
+
+
+
     'field_fieldTypeCheckbox' => 'Checkbox',
     'field_fieldTypeSelect' => 'Select Box',
     'field_fieldTypeSelect_options' => 'Options',
