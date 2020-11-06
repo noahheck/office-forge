@@ -72,7 +72,7 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
-        //
+        return $this->view('admin.reports.show', compact('report'));
     }
 
     /**

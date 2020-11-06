@@ -159,6 +159,7 @@ EOT;
         \Blade::include('_form/file-type-select',  'fileTypeSelectField');
         \Blade::include('_form/file-search',       'fileSearchField');
 
+        \Blade::include('_component.text-editor-content', 'textEditorContent');
 
         \Blade::component('manual.components.tip', 'tip');
         \Blade::component('manual.components.note', 'note');
