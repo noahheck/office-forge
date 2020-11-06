@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Reports\Store as StoreRequest;
+use App\Http\Requests\Admin\Reports\Update as UpdateRequest;
 use App\Jobs\Report\Create;
+use App\Jobs\Report\Update;
 use App\Report;
 use App\Team;
 use Illuminate\Http\Request;
@@ -83,7 +85,9 @@ class ReportController extends Controller
      */
     public function edit(Report $report)
     {
-        //
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.reports.edit', compact('report', 'teamOptions'));
     }
 
     /**
@@ -93,9 +97,19 @@ class ReportController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report)
+    public function update(UpdateRequest $request, Report $report)
     {
-        //
+        $this->dispatchNow($reportUpdated = new Update(
+            $report,
+            $request->name,
+            $request->description,
+            $request->has('active'),
+            $request->teams
+        ));
+
+        flash_success(__('admin.report_updated'));
+
+        return redirect()->route('admin.reports.show', [$report]);
     }
 
     /**
