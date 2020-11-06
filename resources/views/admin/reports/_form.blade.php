@@ -1,0 +1,105 @@
+<form action="{{ $action }}" method="POST" class="bold-labels">
+    @csrf
+
+    @if($method ?? false)
+        @method($method)
+    @endif
+
+
+    <div class="row">
+
+        <div class="col-12">
+
+            @if ($canSelectFileType ?? false)
+
+                @fileTypeSelectField([
+                    'name' => 'file_type_id',
+                    'label' => __('app.fileType'),
+                    'value' => $template->file_type_id,
+                    'fileTypes' => $fileTypeSelectOptions,
+                    'placeholder' => '',
+                    'description' => '',
+                    'required' => false,
+                    'autofocus' => true,
+                    'error' => $errors->has('file_type_id'),
+                ])
+
+            @elseif ($fileType = $report->fileType)
+                <h5>{!! $fileType->iconAndName() !!}</h5>
+
+                @hiddenField([
+                    'name' => 'file_type_id',
+                    'value' => $fileType->id,
+                ])
+
+                <hr>
+            @endif
+
+            @errors('name', 'active', 'teams')
+
+            @textField([
+                'name' => 'name',
+                'label' => __('report.name'),
+                'value' => old('name', $report->name),
+                'placeholder' => __('report.nameExamples'),
+                'required' => true,
+                'autofocus' => true,
+                'error' => $errors->has('name'),
+            ])
+
+            @textEditorField([
+                'name' => 'description',
+                'id' => 'report_description',
+                'label' => __('report.description'),
+                'required' => false,
+                'value' => $report->description,
+                'placeholder' => __('report.descriptionExample'),
+                'description' => __('report.descriptionDescription'),
+                'toolbar' => 'full',
+                'resourceType' => get_class($report),
+                'resourceId' => $report->id,
+            ])
+
+            <hr>
+
+            @checkboxSwitchField([
+                'name' => 'active',
+                'id' => 'report_active',
+                'label' => __('report.active'),
+                'details' => __('report.activeDescription'),
+                'checked' => old('active', $report->active),
+                'value' => '1',
+                'required' => false,
+                'error' => $errors->has('active'),
+            ])
+
+            <hr>
+
+            @teamMultiSelectField([
+                'name' => 'teams',
+                'label' => __('report.teamAccessApproval'),
+                'values' => old('teams', $report->teams),
+                'teams' => $teamOptions,
+                'placeholder' => __('app.selectTeams'),
+                'description' => __('report.teamAccessApprovalDescription'),
+                'required' => false,
+                'autofocus' => false,
+                'error' => $errors->has('teams'),
+                'fieldOnly' => false,
+            ])
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <button type="submit" class="btn btn-primary">
+        {{ __('app.save') }}
+    </button>
+
+    <a class="btn btn-secondary" href="{{ url()->previous(route('admin.form-docs.index')) }}">
+        {{ __('app.cancel') }}
+    </a>
+
+</form>

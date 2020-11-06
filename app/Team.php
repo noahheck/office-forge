@@ -59,6 +59,6 @@ class Team extends Model
 
     public function reports()
     {
-        return $this->belongsToMany(Report::class, 'reports_teams', 'team_id', 'report_id');
+        return $this->belongsToMany(Report::class, 'reports_teams', 'team_id', 'report_id')->withTimestamps();
     }
 }

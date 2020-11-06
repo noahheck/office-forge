@@ -9,6 +9,10 @@ class Report extends Model
 {
     use SoftDeletes;
 
+    protected $casts = [
+        'active' => 'boolean',
+    ];
+
     public function fileType()
     {
         return $this->belongsTo(FileType::class, 'file_type_id');
@@ -16,6 +20,6 @@ class Report extends Model
 
     public function teams()
     {
-        return $this->belongsToMany(Team::class, 'reports_teams', 'report_id', 'team_id');
+        return $this->belongsToMany(Team::class, 'reports_teams', 'report_id', 'team_id')->withTimestamps();
     }
 }

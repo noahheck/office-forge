@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Reports\Store as StoreRequest;
+use App\Jobs\Report\Create;
 use App\Report;
+use App\Team;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class ReportController extends Controller
 {
@@ -31,7 +35,11 @@ class ReportController extends Controller
     {
         $report = new Report;
 
+        $report->active = true;
 
+        $teamOptions = Team::orderBy('name')->get();
+
+        return $this->view('admin.reports.create', compact('report', 'teamOptions'));
     }
 
     /**
@@ -40,9 +48,20 @@ class ReportController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $this->dispatchNow($reportCreated = new Create(
+            $request->name,
+            $request->description,
+            $request->has('active'),
+            $request->teams
+        ));
+
+        flash_success(__('admin.report_created'));
+
+        $report = $reportCreated->getReport();
+
+        return redirect()->route('admin.reports.show', [$report]);
     }
 
     /**
