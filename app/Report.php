@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Report\Dataset;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,5 +22,10 @@ class Report extends Model
     public function teams()
     {
         return $this->belongsToMany(Team::class, 'reports_teams', 'report_id', 'team_id')->withTimestamps();
+    }
+
+    public function datasets()
+    {
+        return $this->hasMany(Dataset::class, 'report_id');
     }
 }
