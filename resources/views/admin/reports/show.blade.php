@@ -91,6 +91,14 @@
                                 </a>
                             @endforeach
                         </div>
+
+                        <hr>
+
+                        <div class="text-right">
+                            <a href="{{ route("admin.reports.datasets.create", [$report]) }}" class="btn btn-primary btn-sm">
+                                {!! \App\Icon\circlePlus(['mr-2']) !!}{{ __('admin.newDataset') }}
+                            </a>
+                        </div>
                     @else
                         <div class="empty-resource">
                             {!! \App\icon\datasets(['empty-resource-icon']) !!}

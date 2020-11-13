@@ -25,6 +25,16 @@
 
                     <hr>
 
+                    <div class="mb-2">
+
+                        <div class="text-right">
+                            <a href="{{ route("admin.reports.datasets.create", [$report]) }}" class="btn btn-primary btn-sm">
+                                {!! \App\Icon\circlePlus(['mr-2']) !!}{{ __('admin.newDataset') }}
+                            </a>
+                        </div>
+
+                    </div>
+
                     @if ($datasets->count() > 0)
                         <div class="list-group">
                             @foreach ($report->datasets as $dataset)

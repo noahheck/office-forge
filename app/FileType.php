@@ -7,10 +7,11 @@ use App\FileType\AccessLock;
 use App\FileType\Form;
 use App\FileType\Panel;
 use App\FormDoc\Template;
+use App\Interfaces\Datasetable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class FileType extends Model
+class FileType extends Model implements Datasetable
 {
     use SoftDeletes;
 

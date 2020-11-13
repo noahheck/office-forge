@@ -6,15 +6,27 @@ use App\FileType;
 use App\FormDoc\Template\TemplateProvider;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Reports\Datasets\Store as StoreRequest;
+use App\Http\Requests\Admin\Reports\Datasets\Update as UpdateRequest;
 use App\Jobs\Report\Dataset\Create;
+use App\Jobs\Report\Dataset\Update;
 use App\Report;
 use App\Report\Dataset;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use function App\flash_success;
 
 class DatasetController extends Controller
 {
 
+    /**
+     * @var TemplateProvider
+     */
+    private $templateProvider;
+
+    public function __construct(TemplateProvider $templateProvider)
+    {
+        $this->templateProvider = $templateProvider;
+    }
 
     private function getDatasetableIdFromRequest($request)
     {
@@ -35,7 +47,23 @@ class DatasetController extends Controller
         return $datasetableId;
     }
 
+    private function getFormDocTemplateOptions()
+    {
+        $templates = $this->templateProvider->getAllTemplates(false);
 
+        $templates->load('fileType');
+
+        $formDocTemplateOptions = $templates->groupBy(function($template) {
+
+            return ($template->file_type_id) ? $template->fileType->name : "";
+        })
+        ->map(function($templateSet, $fileTypeName) {
+
+            return $templateSet->pluck('name', 'id');
+        });
+
+        return $formDocTemplateOptions;
+    }
 
     /**
      * Display a listing of the resource.
@@ -62,18 +90,7 @@ class DatasetController extends Controller
         $dataset->report_id = $report->id;
 
         $fileTypeOptions = FileType::ordered()->get();
-        $templates = $templateProvider->getAllTemplates(false);
-
-        $templates->load('fileType');
-
-        $formDocTemplateOptions = $templates->groupBy(function($template) {
-            return ($template->file_type_id) ? $template->fileType->name : "";
-        })->map(function($templateSet, $fileTypeName) {
-
-            return $templateSet->transform(function($template) {
-                return [$template->id => $template->name];
-            })->flatten();
-        });
+        $formDocTemplateOptions = $this->getFormDocTemplateOptions();
 
         return $this->view('admin.reports.datasets.create', compact(
             'report',
@@ -103,7 +120,7 @@ class DatasetController extends Controller
 
         $dataset = $datasetCreated->getDataset();
 
-        flash_success(__('report.dataset_created'));
+        flash_success(__('admin.dataset_created'));
 
         return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
@@ -117,7 +134,8 @@ class DatasetController extends Controller
      */
     public function show(Report $report, Dataset $dataset)
     {
-        //
+
+        return $this->view('admin.reports.datasets.show', compact('report', 'dataset'));
     }
 
     /**
@@ -129,7 +147,15 @@ class DatasetController extends Controller
      */
     public function edit(Report $report, Dataset $dataset)
     {
-        //
+        $fileTypeOptions = FileType::ordered()->get();
+        $formDocTemplateOptions = $this->getFormDocTemplateOptions();
+
+        return $this->view('admin.reports.datasets.edit', compact(
+            'report',
+            'dataset',
+            'fileTypeOptions',
+            'formDocTemplateOptions'
+        ));
     }
 
     /**
@@ -140,9 +166,18 @@ class DatasetController extends Controller
      * @param  \App\Report\Dataset  $dataset
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report, Dataset $dataset)
+    public function update(UpdateRequest $request, Report $report, Dataset $dataset)
     {
-        //
+        $this->dispatchNow($datasetUpdated = new Update(
+            $dataset,
+            $request->name,
+            $request->datasetable_type,
+            $this->getDatasetableIdFromRequest($request)
+        ));
+
+        flash_success(__('admin.dataset_updated'));
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 
     /**

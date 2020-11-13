@@ -190,6 +190,8 @@ return [
     'editDataset_shortDescription' => 'Edit a Dataset',
     'dataset_createFirstDatasetNow' => 'Create your first Dataset now!',
 
+    'dataset_created' => 'Dataset Created',
+    'dataset_updated' => 'Dataset Updated',
 
 
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',

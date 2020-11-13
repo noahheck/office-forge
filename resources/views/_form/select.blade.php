@@ -29,9 +29,11 @@
                 @if ($key)
                     <optgroup{!! ($key) ? ' label="' . e($key) . '"' : ''!!}>
                 @endif
-                    @foreach ($option as $optKey => $optText)
-                        <option value="{{ $optKey }}"{{ $value === $optKey ? " selected" : "" }}>{{ $optText }}</option>
-                    @endforeach
+
+                @foreach ($option as $optKey => $optText)
+                    <option value="{{ $optKey }}"{{ ($value === $optKey) ? " selected" : "" }}>{{ $optText }}</option>
+                @endforeach
+
                 @if ($key)
                     </optgroup>
                 @endif

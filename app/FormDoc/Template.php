@@ -5,12 +5,13 @@ namespace App\FormDoc;
 use App\FileType;
 use App\FormDoc;
 use App\FormDoc\Template\Field;
+use App\Interfaces\Datasetable;
 use App\Process;
 use App\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Template extends Model
+class Template extends Model implements Datasetable
 {
     use SoftDeletes;
 
@@ -28,6 +29,11 @@ class Template extends Model
     public function scopeOrdered($query)
     {
         return $query->orderBy('name', 'ASC');
+    }
+
+    public function icon(array $withClasses = [])
+    {
+        return \App\icon\formDocs($withClasses);
     }
 
     public function fileType()
