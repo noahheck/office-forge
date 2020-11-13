@@ -80,7 +80,10 @@ mix
         .js('resources/js/page/admin/file-types/panels/index.js', 'public/js/page.admin.file-types.panels.index.js')
         .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
 
+        //Reports
 
+        //Datasets
+        .js('resources/js/page/admin/reports/datasets/_form.js', 'public/js/page.admin.reports.datasets._form.js')
 
 
 

@@ -17,4 +17,14 @@ return [
     'teamAccessApprovalShortDescription' => 'This Report is only accessible by members of these teams:',
     'unrestrictedDescription' => 'This Report is accessible by all of your staff.',
 
+
+    'datasets' => 'Datasets',
+    'dataset_name' => 'Name',
+    'dataset_nameExamples' => 'Current Employees, Active Action Plans, etc...',
+    'dataset_whatKindOfData' => 'What kind of data should this Dataset be composed of',
+
+    'dataset_pleaseSelectDataTypeForDataset' => 'Please select a data type for this Dataset',
+    'dataset_pleaseSelectFileTypeForDataset' => 'Please select a FileType for this Dataset',
+    'dataset_pleaseSelectFormDocForDataset' => 'Please select a FormDoc Template for this Dataset',
+
 ];

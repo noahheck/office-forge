@@ -183,6 +183,13 @@ return [
     'report_created' => 'Report created',
     'report_updated' => 'Report updated',
 
+    'dataset_description' => 'Datasets are collections of information that are to be analyzed in a report. Specify the type of information that should show up, add Filters to show only the relevant records, and select which Fields should show up in the report. After defining a Dataset, you\'ll be able to create charts and widgets to make visualizing your data a breeze!',
+    'newDataset' => 'New Dataset',
+    'newDataset_shortDescription' => 'Create a new Dataset',
+    'editDataset' => 'Edit Dataset',
+    'editDataset_shortDescription' => 'Edit a Dataset',
+    'dataset_createFirstDatasetNow' => 'Create your first Dataset now!',
+
 
 
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',

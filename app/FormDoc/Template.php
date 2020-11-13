@@ -25,6 +25,11 @@ class Template extends Model
         return $query->where('active', true);
     }
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('name', 'ASC');
+    }
+
     public function fileType()
     {
         return $this->belongsTo(FileType::class);

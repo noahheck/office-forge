@@ -99,6 +99,11 @@ class FileType extends Model
         return $query->where('active', true);
     }
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('name', 'ASC');
+    }
+
     public function files()
     {
         return $this->hasMany(File::class, 'file_type_id');

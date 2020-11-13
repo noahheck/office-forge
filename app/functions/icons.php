@@ -354,6 +354,12 @@ function reports($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function datasets($classes = []) {
+    $classes[] = "fas fa-table";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 
 // Activities

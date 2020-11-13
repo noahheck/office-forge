@@ -71,140 +71,39 @@
                     <hr>
 
                     @if($report->description)
+
                         @textEditorContent([
                             'content' => $report->description,
                             'classes' => [],
                         ])
+
+                        <hr>
+
                     @endif
 
-                    {{--<div class="d-flex mt-3 mb-3">
-                        <h3 class="h4 flex-grow-1">
-                            {!! \App\icon\formFields(['mr-2']) !!}{{ __('formDoc.fields') }}
-                            <a href="{{ route('admin.form-docs.fields.index', [$template]) }}">{!! \App\icon\go() !!}</a>
-                        </h3>
-                        <div class="flex-grow-0">
-                            <a href="{{ route('admin.form-docs.fields.create', [$template]) }}" class="btn btn-sm btn-outline-primary">
-                                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
-                            </a>
+                    <h3 class="h4">{!! \App\icon\datasets(['mr-2']) !!}{{ __('report.datasets') }}</h3>
+
+                    @if ($report->datasets()->count() > 0)
+                        <div class="list-group">
+                            @foreach ($report->datasets as $dataset)
+                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.show', [$report, $dataset]) }}">
+                                    {{ $dataset->name }}
+                                </a>
+                            @endforeach
                         </div>
-                    </div>
-
-
-
-
-                    @if ($template->fields->count() > 0)
-
-                        @foreach ($template->fields->where('active', true) as $field)
-
-                            @if ($loop->first)
-                                <ul class="list-group form-fields" id="formDocFields_active">
-                            @endif
-
-                                <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
-                                    <div class="flex-grow-1">
-
-                                        @include('_form_field.' . $field->field_type, [
-                                            'field' => $field,
-                                            'value' => optional((object) []),
-                                            'readonly' => true,
-                                        ])
-
-                                    </div>
-                                    <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
-
-                                        <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-primary" href="{{ route('admin.form-docs.fields.edit', [$template, $field]) }}">
-                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
-                                            </a>
-                                        </div>
-                                        <div>
-                                            {!! \App\icon\verticalSort(['sort-handle']) !!}
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                            @if ($loop->last)
-                                </ul>
-                            @endif
-
-                        @endforeach
-
-                        <p class="text-right mt-3">
-                            <a href="{{ route('admin.form-docs.fields.create', [$template]) }}" class="btn btn-primary btn-sm">
-                                {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newField') }}
-                            </a>
-                        </p>
-
-
-                        @foreach ($template->fields->where('active', false) as $field)
-
-                            @if ($loop->first)
-
-                                <h4 class="text-muted mt-4">{{ __('admin.inactive_fields') }}</h4>
-
-                                <ul class="list-group form-fields" id="formFields_inactive">
-                            @endif
-
-                                <li class="list-group-item d-flex form-field-list-item" data-id="{{ $field->id }}">
-                                    <div class="flex-grow-1">
-
-                                        @if ($field->separator)
-                                            <hr class="separator">
-                                        @endif
-
-                                        @include('_form_field.' . $field->field_type, [
-                                            'field' => $field,
-                                            'value' => optional((object) []),
-                                            'readonly' => true,
-                                        ])
-
-                                    </div>
-                                    <div class="d-flex flex-column pl-3 text-center flex-shrink-0">
-
-                                        <div class="flex-grow-1">
-                                            <a class="btn btn-sm btn-secondary" href="{{ route('admin.form-docs.fields.edit', [$template, $field]) }}">
-                                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}
-                                            </a>
-                                        </div>
-
-                                    </div>
-                                </li>
-
-                            @if ($loop->last)
-                                </ul>
-                            @endif
-
-                        @endforeach
-
                     @else
-
-                        <div class="row justify-content-center">
-
-                            <div class="col-12 col-sm-10 col-lg-8">
-
-                                <div class="card">
-                                    <div class="card-body text-center">
-
-                                        <div class="empty-resource">
-                                            {!! \App\icon\formFields(['empty-resource-icon']) !!}
-                                        </div>
-
-                                        <p>{{ __('formDoc.field_description') }}</p>
-
-                                        <p>{{ __('formDoc.field_typesDescription') }}</p>
-
-                                        <hr>
-
-                                        <a class="btn btn-primary" href="{{ route('admin.form-docs.fields.create', [$template]) }}">{{ __('admin.field_createFirstFieldNow') }}</a>
-                                    </div>
-                                </div>
-
-                            </div>
-
+                        <div class="empty-resource">
+                            {!! \App\icon\datasets(['empty-resource-icon']) !!}
                         </div>
 
-                    @endif--}}
+                        <p>{{ __('admin.dataset_description') }}</p>
+
+                        <hr>
+
+                        <p class="text-center">
+                            <a class="btn btn-primary" href="{{ route('admin.reports.datasets.create', [$report]) }}">{{ __('admin.dataset_createFirstDatasetNow') }}</a>
+                        </p>
+                    @endif
 
                 </div>
             </div>

@@ -20,12 +20,24 @@
             - {{ $details }}
         @endif
 @endunless
-    <select class="custom-select" id="{{ $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
+    <select class="custom-select {{ ($error ?? false) ? 'is-invalid' : '' }}" id="{{ $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
         @if (!($required ?? false))
             <option value="">--</option>
         @endif
-        @foreach ($options as $key => $text)
-            <option value="{{ $key }}"{{ ($value === $key) ? " selected" : "" }}>{{ $text }}</option>
+        @foreach ($options as $key => $option)
+            @if (is_iterable($option))
+                @if ($key)
+                    <optgroup{!! ($key) ? ' label="' . e($key) . '"' : ''!!}>
+                @endif
+                    @foreach ($option as $optKey => $optText)
+                        <option value="{{ $optKey }}"{{ $value === $optKey ? " selected" : "" }}>{{ $optText }}</option>
+                    @endforeach
+                @if ($key)
+                    </optgroup>
+                @endif
+            @else
+                <option value="{{ $key }}"{{ ($value === $key) ? " selected" : "" }}>{{ $option }}</option>
+            @endif
         @endforeach
     </select>
 @unless($fieldOnly ?? false)

@@ -26,6 +26,6 @@ class Report extends Model
 
     public function datasets()
     {
-        return $this->hasMany(Dataset::class, 'report_id');
+        return $this->hasMany(Dataset::class, 'report_id')->orderBy('order', 'ASC');
     }
 }
