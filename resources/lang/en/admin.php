@@ -179,9 +179,11 @@ return [
     'editReport' => 'Edit Report',
     'editReport_shortDescription' => 'Edit a Report',
     'report_createFirstReportNow' => 'Create your first Report now!',
+    'deleteReport' => 'Delete Report',
 
     'report_created' => 'Report created',
     'report_updated' => 'Report updated',
+    'report_deleted' => 'Report deleted',
 
     'dataset_description' => 'Datasets are collections of information that are to be analyzed in a report. Specify the type of information that should show up, add Filters to show only the relevant records, and select which Fields should show up in the report. After defining a Dataset, you\'ll be able to create charts and widgets to make visualizing your data a breeze!',
     'newDataset' => 'New Dataset',
@@ -189,9 +191,11 @@ return [
     'editDataset' => 'Edit Dataset',
     'editDataset_shortDescription' => 'Edit a Dataset',
     'dataset_createFirstDatasetNow' => 'Create your first Dataset now!',
+    'deleteDataset' => 'Delete Dataset',
 
-    'dataset_created' => 'Dataset Created',
-    'dataset_updated' => 'Dataset Updated',
+    'dataset_created' => 'Dataset created',
+    'dataset_updated' => 'Dataset updated',
+    'dataset_deleted' => 'Dataset deleted',
 
 
     'filter_description' => 'Filters let you specify guidelines for including or excluding records from your dataset.This lets you report and visualize only the data that is meaningful in the context of this report.',
@@ -200,13 +204,15 @@ return [
     'editFilter' => 'Edit Filter',
     'editFilter_shortDescription' => 'Edit a Filter',
     'filter_createFirstFilterNow' => 'Create your first Filter now!',
+    'deleteFilter' => 'Delete Filter',
 
     'filter_filterFormInformation' => 'You are establishing a filter to narrow down the :dataset Dataset which contains :dataType records.',
     'filter_fieldToFilter' => 'Please select a field in the Dataset to apply this filter to:',
     'filter_operator' => 'Records will be included where this value',
 
-    'filter_created' => 'Filter Created',
-    'filter_updated' => 'Filter Updated',
+    'filter_created' => 'Filter created',
+    'filter_updated' => 'Filter updated',
+    'filter_deleted' => 'Filter deleted',
 
 
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',

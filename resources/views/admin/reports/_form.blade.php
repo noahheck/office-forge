@@ -124,12 +124,46 @@
 
     <hr>
 
-    <button type="submit" class="btn btn-primary">
-        {{ __('app.save') }}
-    </button>
+    <div class="d-flex">
 
-    <a class="btn btn-secondary" href="{{ url()->previous(route('admin.form-docs.index')) }}">
-        {{ __('app.cancel') }}
-    </a>
+        <div class="flex-grow-1">
+
+            <button type="submit" class="btn btn-primary">
+                {{ __('app.save') }}
+            </button>
+
+            <a class="btn btn-secondary" href="{{ url()->previous(route('admin.form-docs.index')) }}">
+                {{ __('app.cancel') }}
+            </a>
+
+        </div>
+
+        @if ($report->id)
+            <div class="flex-grow-0">
+                <button type="button" class="btn btn-outline-primary" data-toggle="collapse" data-target="#moreOptionsContainer">
+                    {{ __('app.moreOptions') }}
+                    {!! \App\icon\chevronDown() !!}
+                </button>
+            </div>
+        @endif
+
+    </div>
 
 </form>
+
+@if($report->id)
+    <div class="collapse text-right" id="moreOptionsContainer">
+
+        <hr>
+
+        <form action="{{ route("admin.reports.destroy", [$report]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $report->name }}">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger btn-sm">
+                {!! \App\icon\trash() !!}
+                {{ __('admin.deleteReport') }}
+            </button>
+        </form>
+
+    </div>
+@endif

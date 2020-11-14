@@ -13,6 +13,7 @@ use App\Report;
 use App\Report\Dataset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use function App\flash_info;
 use function App\flash_success;
 
 class DatasetController extends Controller
@@ -189,6 +190,10 @@ class DatasetController extends Controller
      */
     public function destroy(Report $report, Dataset $dataset)
     {
-        //
+        $dataset->delete();
+
+        flash_info(__('admin.dataset_deleted'));
+
+        return redirect()->route('admin.reports.show', [$report]);
     }
 }

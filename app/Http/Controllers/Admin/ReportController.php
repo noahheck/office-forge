@@ -10,6 +10,7 @@ use App\Jobs\Report\Update;
 use App\Report;
 use App\Team;
 use Illuminate\Http\Request;
+use function App\flash_info;
 use function App\flash_success;
 
 class ReportController extends Controller
@@ -125,6 +126,10 @@ class ReportController extends Controller
      */
     public function destroy(Report $report)
     {
-        //
+        $report->delete();
+
+        flash_info(__('admin.report_deleted'));
+
+        return redirect()->route('admin.reports.index');
     }
 }

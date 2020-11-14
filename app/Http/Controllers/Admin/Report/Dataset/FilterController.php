@@ -11,6 +11,7 @@ use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter;
 use Illuminate\Http\Request;
+use function App\flash_info;
 use function App\flash_success;
 
 class FilterController extends Controller
@@ -132,6 +133,10 @@ class FilterController extends Controller
      */
     public function destroy(Report $report, Dataset $dataset, Filter $filter)
     {
-        //
+        $filter->delete();
+
+        flash_info(__('admin.filter_deleted'));
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 }
