@@ -39,7 +39,7 @@
                         <div class="list-group">
                             @foreach ($filters as $filter)
                                 <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.filters.show', [$report, $dataset, $filter]) }}">
-                                    $filter->name or something
+                                    {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $filter->descriptor() }}
                                 </a>
                             @endforeach
                         </div>

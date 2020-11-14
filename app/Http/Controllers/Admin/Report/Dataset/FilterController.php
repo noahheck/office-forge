@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin\Report\Dataset;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Reports\Datasets\Filters\Store as StoreRequest;
+use App\Http\Requests\Admin\Reports\Datasets\Filters\Update as UpdateRequest;
 use App\Jobs\Report\Dataset\Filter\Create;
+use App\Jobs\Report\Dataset\Filter\Update;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter;
@@ -75,7 +77,11 @@ class FilterController extends Controller
      */
     public function show(Report $report, Dataset $dataset, Filter $filter)
     {
-        //
+        return $this->view('admin.reports.datasets.filters.show', compact(
+            'report',
+            'dataset',
+            'filter'
+        ));
     }
 
     /**
@@ -86,7 +92,11 @@ class FilterController extends Controller
      */
     public function edit(Report $report, Dataset $dataset, Filter $filter)
     {
-        //
+        return $this->view('admin.reports.datasets.filters.edit', compact(
+            'report',
+            'dataset',
+            'filter'
+        ));
     }
 
     /**
@@ -96,9 +106,22 @@ class FilterController extends Controller
      * @param  \App\Report\Dataset\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report, Dataset $dataset, Filter $filter)
+    public function update(UpdateRequest $request, Report $report, Dataset $dataset, Filter $filter)
     {
-        //
+        $this->dispatchNow($filterUpdated = new Update(
+            $filter,
+            $request->field_id,
+            $request->operator
+        ));
+
+        flash_success(__('admin.filter_updated'));
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 
     /**

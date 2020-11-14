@@ -47,6 +47,26 @@ class Filter extends Model
         return $this->belongsTo(Dataset::class, 'dataset_id');
     }
 
+    public function descriptor()
+    {
+        $fieldGroupOptions = $this->dataset->datasetable->filterableFieldOptions();
+
+        $fieldDescriptor = '';
+
+        foreach ($fieldGroupOptions as $fieldGroup) {
+            foreach ($fieldGroup as $field) {
+                if ($field['value'] == $this->field_id) {
+                    $fieldDescriptor = $field['label'];
+                    break 2;
+                }
+            }
+        }
+
+        $operatorDescriptor = $this->operatorOptions()[$this->operator] ?? "";
+
+        return $fieldDescriptor . ' ' . $operatorDescriptor;
+    }
+
     public static function operatorOptions()
     {
         return [

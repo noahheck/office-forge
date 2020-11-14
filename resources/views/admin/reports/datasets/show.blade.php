@@ -41,16 +41,21 @@
 
                     <hr>
 
-                    <h5>
-                        {!! \App\icon\filters(['mr-2']) !!}{{ __('report.filters') }}
-                    </h5>
+                    <div class="d-flex mb-2">
+                        <h5 class="flex-grow-1">
+                            {!! \App\icon\filters(['mr-2']) !!}{{ __('report.filters') }}
+                        </h5>
+                        <a class="btn btn-primary btn-sm flex-grow-0" href="{{ route('admin.reports.datasets.filters.create', [$report, $dataset]) }}">
+                            {!! \App\icon\circlePlus(['mr-2']) !!}{{ __('admin.newFilter') }}
+                        </a>
+                    </div>
 
                     @if ($dataset->filters()->count() > 0)
 
                         <div class="list-group">
                             @foreach ($dataset->filters as $filter)
-                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.filters.show', [$report, $dataset, $filter]) }}">
-                                    $filter->name or something
+                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.filters.edit', [$report, $dataset, $filter]) }}">
+                                    {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $filter->descriptor() }}
                                 </a>
                             @endforeach
                         </div>

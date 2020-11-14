@@ -9,6 +9,11 @@
         @method($method)
     @endif
 
+    @hiddenField([
+        'name' => 'return',
+        'value' => old('return', url()->previous()),
+    ])
+
     <div class="row">
 
         <div class="col-12">
@@ -29,7 +34,7 @@
                         @endif
 
                         @foreach ($fields as $field)
-                            <option value="{{ $field['value'] }}" data-type="{{ $field['type'] }}">{{ $field['label'] }}</option>
+                            <option value="{{ $field['value'] }}" data-type="{{ $field['type'] }}" {{ ($field['value'] == $filter->field_id) ? 'selected' : '' }}>{{ $field['label'] }}</option>
                         @endforeach
 
                         @if ($optgroup)

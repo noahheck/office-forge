@@ -14,7 +14,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Template extends Model implements Datasetable
 {
-    const DATASET_FILTER_DATE = 'created_date';
+    const DATASET_FILTER_DATE = 'date';
+    const DATASET_FILTER_CREATED_DATE = 'created_date';
     const DATASET_FILTER_CREATED_BY = 'created_by';
 
     use SoftDeletes;
@@ -83,7 +84,8 @@ class Template extends Model implements Datasetable
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [
-            Filter::makeFilterOption(self::DATASET_FILTER_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE),
+            Filter::makeFilterOption(self::DATASET_FILTER_DATE, 'Date', Filter::FILTER_OPTION_TYPE_DATE),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE),
             Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER),
         ];
 
