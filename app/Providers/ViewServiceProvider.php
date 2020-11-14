@@ -142,6 +142,7 @@ EOT;
         \Blade::include('_form/multi-select',      'multiSelectField');
         \Blade::include('_form/checkbox',          'checkboxField');
         \Blade::include('_form/checkboxSwitch',    'checkboxSwitchField');
+        \Blade::include('_form/radioGroup',        'radioGroupField');
         \Blade::include('_form/date',              'dateField');
         \Blade::include('_form/time',              'timeField');
         \Blade::include('_form/phone',             'phoneField');

@@ -36,6 +36,7 @@ return [
     'field_description' => 'Fields are the containers your staff will input data into. Each Field represents a single, distinct data point your organization is interested in for this FormDoc.',
     'field_typesDescription' => 'Office Forge contains several different field types to help ensure your organization is able to collect the information it needs for you to do your work effectively.',
 
+    'formName_fields' => ':formName Fields',
 
 
     'submittedSuccessfully' => 'Your form has been submitted successfully.',

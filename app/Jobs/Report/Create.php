@@ -12,6 +12,8 @@ class Create
 
     private $name;
     private $description;
+    private $filter_user;
+    private $filter_date;
     private $active;
     private $teams;
 
@@ -22,10 +24,12 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $description, $active, $teams)
+    public function __construct($name, $description, $filter_user, $filter_date, $active, $teams)
     {
         $this->name = $name;
         $this->description = $description;
+        $this->filter_user = $filter_user;
+        $this->filter_date = $filter_date;
         $this->active = $active;
         $this->teams = $teams;
     }
@@ -45,6 +49,8 @@ class Create
         $report = new Report;
         $report->name = $this->name;
         $report->description = $this->description;
+        $report->filter_user = $this->filter_user;
+        $report->filter_date = $this->filter_date;
         $report->active = $this->active;
 
         $report->save();

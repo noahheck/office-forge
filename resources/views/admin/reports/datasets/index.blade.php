@@ -14,9 +14,9 @@
 
         <div class="col-12 col-md-10 document-container">
 
-            <h1>
-                {!! \App\icon\reports(['mr-2']) !!}{{ __('app.reports') }}
-            </h1>
+            <h3>
+                {!! \App\icon\reports(['mr-2']) !!}{{ $report->name }}
+            </h3>
 
             <div class="card document">
                 <div class="card-body">

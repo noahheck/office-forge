@@ -11548,6 +11548,10 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .print-only {
   display: none;
 }

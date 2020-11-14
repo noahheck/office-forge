@@ -208,6 +208,7 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         // Reports
         Route::resource('reports', 'ReportController');
         Route::resource('reports.datasets', 'Report\DatasetController');
+        Route::resource('reports.datasets.filters', 'Report\Dataset\FilterController');
 
 
         // Processes

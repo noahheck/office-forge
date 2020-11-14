@@ -8,12 +8,16 @@ use App\FileType\Form;
 use App\FileType\Panel;
 use App\FormDoc\Template;
 use App\Interfaces\Datasetable;
+use App\Report\Dataset\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class FileType extends Model implements Datasetable
 {
     use SoftDeletes;
+
+    const DATASET_FILTER_CREATED_DATE = 'created_date';
+    const DATASET_FILTER_CREATED_BY = 'created_by';
 
     const DEFAULT_ICON = 'fas fa-address-book';
 
@@ -171,5 +175,37 @@ class FileType extends Model implements Datasetable
         }
 
         return $output;
+    }
+
+    public function filterableFieldOptions()
+    {
+        $implicitFieldOptions = [
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER),
+        ];
+
+        $response = [
+            $implicitFieldOptions,
+        ];
+
+        foreach ($this->forms as $form) {
+
+            $formFields = [];
+
+            foreach ($form->fields as $field) {
+
+                if (!Filter::isValidFilterFieldType($field->field_type)) {
+                    continue;
+                }
+
+                $formFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type);
+            }
+
+            if (count($formFields) > 0) {
+                $response[$form->name] = $formFields;
+            }
+        }
+
+        return $response;
     }
 }

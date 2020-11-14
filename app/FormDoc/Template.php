@@ -7,12 +7,16 @@ use App\FormDoc;
 use App\FormDoc\Template\Field;
 use App\Interfaces\Datasetable;
 use App\Process;
+use App\Report\Dataset\Filter;
 use App\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Template extends Model implements Datasetable
 {
+    const DATASET_FILTER_DATE = 'created_date';
+    const DATASET_FILTER_CREATED_BY = 'created_by';
+
     use SoftDeletes;
 
     protected $table = 'form_doc_templates';
@@ -74,6 +78,32 @@ class Template extends Model implements Datasetable
     public function instances()
     {
         return $this->hasMany(FormDoc::class, 'form_doc_template_id');
+    }
+
+    public function filterableFieldOptions()
+    {
+        $implicitFieldOptions = [
+            Filter::makeFilterOption(self::DATASET_FILTER_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER),
+        ];
+
+        $templateFields = [];
+
+        foreach ($this->activeFields as $field) {
+
+            if (!Filter::isValidFilterFieldType($field->field_type)) {
+                continue;
+            }
+
+            $templateFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type);
+        }
+
+        $response = [
+            "" => $implicitFieldOptions,
+            __("formDoc.formName_fields", ['formName' => $this->name]) => $templateFields,
+        ];
+
+        return $response;
     }
 
 

@@ -62,6 +62,36 @@
 
             <hr>
 
+            <h4>{!! \App\icon\filters(['mr-2']) !!}{{ __('report.filters') }}</h4>
+
+            <p>{{ __('report.report_filters_description') }}</p>
+
+            @errors('filter_user')
+
+            @checkboxSwitchField([
+                'name' => 'filter_user',
+                'id' => 'filter_user',
+                'label' => __('report.report_filter_user'),
+                'details' => __('report.report_filter_userDescription'),
+                'checked' => old('filter_user', $report->filter_user),
+                'value' => '1',
+                'required' => false,
+                'error' => $errors->has('filter_user'),
+            ])
+
+            @radioGroupField([
+                'name' => 'filter_date',
+                'label' => __('report.report_filter_date_label'),
+                'value' => old('report_date', $report->filter_date),
+                'options' => \App\Report::dateFilterOptions(),
+                'description' => '',
+                'required' => false,
+                'autofocus' => false,
+                'error' => $errors->has('filter_date'),
+            ])
+
+            <hr>
+
             @checkboxSwitchField([
                 'name' => 'active',
                 'id' => 'report_active',

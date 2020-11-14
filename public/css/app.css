@@ -14010,6 +14010,10 @@ trix-editor:empty:not(:focus)::before {
   text-decoration: none;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .print-only {
   display: none;
 }
@@ -14205,6 +14209,14 @@ trix-editor:empty:not(:focus)::before {
 
 .file-upload-group .file-upload-image-preview-container.previewing-image {
   display: block;
+}
+
+.of-radio-group label {
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: flex;
+  cursor: pointer;
+  font-weight: normal;
 }
 
 .range-field-display {

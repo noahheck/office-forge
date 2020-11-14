@@ -194,6 +194,21 @@ return [
     'dataset_updated' => 'Dataset Updated',
 
 
+    'filter_description' => 'Filters let you specify guidelines for including or excluding records from your dataset.This lets you report and visualize only the data that is meaningful in the context of this report.',
+    'newFilter' => 'New Filter',
+    'newFilter_shortDescription' => 'Create a new Filter',
+    'editFilter' => 'Edit Filter',
+    'editFilter_shortDescription' => 'Edit a Filter',
+    'filter_createFirstFilterNow' => 'Create your first Filter now!',
+
+    'filter_filterFormInformation' => 'You are establishing a filter to narrow down the :dataset Dataset which contains :dataType records.',
+    'filter_fieldToFilter' => 'Please select a field in the Dataset to apply this filter to:',
+    'filter_operator' => 'Records will be included where this value',
+
+    'filter_created' => 'Filter Created',
+    'filter_updated' => 'Filter Updated',
+
+
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',
     'fileStore_driveDescription' => 'FileStore organizes these resources into Drives to provide access only to Team members who need it.',
     'fileStore_versionsDescription' => "FileStore also keeps track of each version of the files you upload, so you'll never lose track of your work!",

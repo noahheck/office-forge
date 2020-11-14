@@ -360,6 +360,12 @@ function datasets($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function filters($classes = []) {
+    $classes[] = "fas fa-sliders-h";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 
 // Activities

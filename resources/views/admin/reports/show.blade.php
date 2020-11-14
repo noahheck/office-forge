@@ -50,6 +50,30 @@
 
                     </div>
 
+                    <hr>
+
+                    <h3 class="h4">{!! \App\icon\filters(['mr-2']) !!}{{ __('report.filters') }}</h3>
+
+                    @if ($report->filter_user || $report->filter_date)
+
+                        <p>{{ __('report.report_filter_hasFilters') }}</p>
+                        <p class="pl-2">
+                            @if ($report->filter_user)
+                                {!! \App\icon\users(['fa-fw', 'mr-2']) !!}{{ __('report.report_filter_user') }}<br>
+                            @endif
+                            @if ($report->filter_date === \App\Report::REPORT_FILTER_DATE_DATE)
+                                {!! \App\icon\calendarDay(['fa-fw', 'mr-2']) !!}{{ __('report.report_filter_date_date') }}<br>
+                            @endif
+                            @if ($report->filter_date === \App\Report::REPORT_FILTER_DATE_RANGE)
+                                {!! \App\icon\calendarWeek(['fa-fw', 'mr-2']) !!}{{ __('report.report_filter_date_date_range') }}<br>
+                            @endif
+                        </p>
+                    @else
+                        <p><em>{{ __('report.report_filter_noFilters') }}</em></p>
+                    @endif
+
+                    <hr>
+
 
                     <h3 class="h4">{!! \App\icon\teams(['mr-2']) !!}{{ __('report.teamAccessApproval') }}</h3>
 

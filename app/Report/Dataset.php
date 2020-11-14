@@ -3,6 +3,7 @@
 namespace App\Report;
 
 use App\Report;
+use App\Report\Dataset\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -24,5 +25,10 @@ class Dataset extends Model
     public function datasetable()
     {
         return $this->morphTo();
+    }
+
+    public function filters()
+    {
+        return $this->hasMany(Filter::class, 'dataset_id');
     }
 }

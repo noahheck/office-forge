@@ -37,6 +37,7 @@ class ReportController extends Controller
     {
         $report = new Report;
 
+        $report->filter_date = 0;
         $report->active = true;
 
         $teamOptions = Team::orderBy('name')->get();
@@ -55,6 +56,8 @@ class ReportController extends Controller
         $this->dispatchNow($reportCreated = new Create(
             $request->name,
             $request->description,
+            $request->has('filter_user'),
+            $request->filter_date,
             $request->has('active'),
             $request->teams
         ));
@@ -103,6 +106,8 @@ class ReportController extends Controller
             $report,
             $request->name,
             $request->description,
+            $request->has('filter_user'),
+            $request->filter_date,
             $request->has('active'),
             $request->teams
         ));

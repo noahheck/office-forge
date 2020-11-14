@@ -20,6 +20,8 @@ class CreateReportsTable extends Migration
             $table->string('name');
             $table->longText('description')->nullable();
             $table->boolean('active')->default(false);
+            $table->boolean('filter_user')->default(false);
+            $table->integer('filter_date')->default(0);
 
             $table->timestamps();
             $table->softDeletes();
