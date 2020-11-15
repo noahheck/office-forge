@@ -9,4 +9,6 @@ interface Datasetable
     public function icon(array $withClasses = []);
 
     public function filterableFieldOptions();
+
+    public function reportableFieldOptions();
 }

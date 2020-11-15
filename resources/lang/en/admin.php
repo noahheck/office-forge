@@ -224,6 +224,11 @@ return [
     'dataset_field_createFirstFieldNow' => 'Add your first Field to this Dataset now!',
     'dataset_deleteField' => 'Delete Field',
 
+    'dataset_field_fieldFormInformation' => 'You are selecting a Field to appear on the :dataset Dataset which contains :dataType records.',
+    'dataset_field_fieldToAppear' => 'Please select a field in the Dataset to appear in the Report:',
+    'dataset_field_label' => 'Indicate how this Field should be labeled in the Dataset:',
+    'dataset_field_labelDescription' => 'Shorter labels can help improve the aesthetics and readability of the report.',
+
     'dataset_field_created' => 'Field add to Dataset',
     'dataset_field_updated' => 'Dataset Field updated',
     'dataset_field_deleted' => 'Field removed from Dataset',

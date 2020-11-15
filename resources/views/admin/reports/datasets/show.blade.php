@@ -83,7 +83,7 @@
                     @if ($dataset->fields->count() > 0)
                         <div class="list-group">
                             @foreach ($dataset->fields as $field)
-                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.fields.show', [$report, $dataset, $field]) }}">
+                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.fields.edit', [$report, $dataset, $field]) }}">
                                     {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $field->label }}
                                 </a>
                             @endforeach

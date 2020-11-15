@@ -17,6 +17,7 @@ class CreateReportDatasetFieldsTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('dataset_id');
+            $table->string('template_field_type');
             $table->morphs('field');
             $table->string('label')->nullable();
             $table->bigInteger('order');

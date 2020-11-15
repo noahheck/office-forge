@@ -108,6 +108,15 @@ class Template extends Model implements Datasetable
         return $response;
     }
 
+    public function reportableFieldOptions()
+    {
+        $filterableFields = $this->filterableFieldOptions();
+
+        unset($filterableFields[""]);
+
+        return $filterableFields;
+    }
+
 
 
     public static function getTeamSyncStructure($creatingTeams, $reviewingTeams)

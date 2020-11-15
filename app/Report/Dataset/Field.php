@@ -11,11 +11,16 @@ class Field extends Model
 
     public function dataset()
     {
-        return $this->belongsTo(Dataset::class, 'dataset_id')->withPivot('label', 'order');
+        return $this->belongsTo(Dataset::class, 'dataset_id');
     }
 
     public function field()
     {
         return $this->morphTo();
+    }
+
+    public function templateField()
+    {
+        return $this->morphTo('template_field', null, 'field_id');
     }
 }

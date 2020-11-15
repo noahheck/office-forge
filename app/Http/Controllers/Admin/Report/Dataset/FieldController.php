@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Admin\Report\Dataset;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Reports\Datasets\Fields\Store as StoreRequest;
+use App\Http\Requests\Admin\Reports\Datasets\Fields\Update as UpdateRequest;
+use App\Jobs\Report\Dataset\Field\Create;
+use App\Jobs\Report\Dataset\Field\Update;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Field;
 use Illuminate\Http\Request;
+use function App\flash_success;
 
 class FieldController extends Controller
 {
@@ -33,7 +38,14 @@ class FieldController extends Controller
      */
     public function create(Report $report, Dataset $dataset)
     {
-        //
+        $field = new Field;
+        $field->dataset_id = $dataset->id;
+
+        return $this->view('admin.reports.datasets.fields.create', compact(
+            'report',
+            'dataset',
+            'field'
+        ));
     }
 
     /**
@@ -42,9 +54,22 @@ class FieldController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Report $report, Dataset $dataset)
+    public function store(StoreRequest $request, Report $report, Dataset $dataset)
     {
-        //
+        $this->dispatchNow($fieldCreated = new Create(
+            $dataset,
+            $request->field_id,
+            $request->label
+        ));
+
+        flash_success(__('admin.dataset_field_created'));
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 
     /**
@@ -55,7 +80,11 @@ class FieldController extends Controller
      */
     public function show(Report $report, Dataset $dataset, Field $field)
     {
-        //
+        return $this->view('admin.reports.datasets.fields.show', compact(
+            'report',
+            'dataset',
+            'field'
+        ));
     }
 
     /**
@@ -66,7 +95,11 @@ class FieldController extends Controller
      */
     public function edit(Report $report, Dataset $dataset, Field $field)
     {
-        //
+        return $this->view('admin.reports.datasets.fields.edit', compact(
+            'report',
+            'dataset',
+            'field'
+        ));
     }
 
     /**
@@ -76,9 +109,18 @@ class FieldController extends Controller
      * @param  \App\Report\Dataset\Field  $field
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report, Dataset $dataset, Field $field)
+    public function update(UpdateRequest $request, Report $report, Dataset $dataset, Field $field)
     {
-        //
+        $this->dispatchNow($fieldUpdated = new Update($field, $request->field_id, $request->label));
+
+        flash_success(__('admin.dataset_field_updated'));
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 
     /**

@@ -208,4 +208,13 @@ class FileType extends Model implements Datasetable
 
         return $response;
     }
+
+    public function reportableFieldOptions()
+    {
+        $filterableFields = $this->filterableFieldOptions();
+
+        unset($filterableFields[0]);
+
+        return $filterableFields;
+    }
 }
