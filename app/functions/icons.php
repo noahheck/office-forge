@@ -366,6 +366,12 @@ function filters($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function datasetFields($classes = []) {
+    $classes[] = "fas fa-columns";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 
 // Activities

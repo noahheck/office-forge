@@ -56,6 +56,6 @@ return [
     'filter_operator_has_value' => 'Has A Value',
     'filter_operator_does_not_have_value' => 'Does Not Have A Value',
 
-
+    'fields' => 'Fields',
 
 ];

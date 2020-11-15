@@ -198,7 +198,8 @@ return [
     'dataset_deleted' => 'Dataset deleted',
 
 
-    'filter_description' => 'Filters let you specify guidelines for including or excluding records from your dataset.This lets you report and visualize only the data that is meaningful in the context of this report.',
+
+    'filter_description' => 'Filters let you specify guidelines for including or excluding records from your dataset. This lets you report and visualize only the data that is meaningful in the context of this report.',
     'newFilter' => 'New Filter',
     'newFilter_shortDescription' => 'Create a new Filter',
     'editFilter' => 'Edit Filter',
@@ -213,6 +214,19 @@ return [
     'filter_created' => 'Filter created',
     'filter_updated' => 'Filter updated',
     'filter_deleted' => 'Filter deleted',
+
+
+    'dataset_field_description' => 'After your Dataset has been filtered, you can specify which Fields from that result set should be output in the report. Select Fields that will allow you to review and visualize pieces of the records that help you interpret the information in the report meaningfully.',
+    'dataset_newField' => 'New Field',
+    'dataset_newField_shortDescription' => 'Add a new Field to a Dataset',
+    'dataset_editField' => 'Edit Field',
+    'dataset_editField_shortDescription' => 'Edit a Field in a Dataset',
+    'dataset_field_createFirstFieldNow' => 'Add your first Field to this Dataset now!',
+    'dataset_deleteField' => 'Delete Field',
+
+    'dataset_field_created' => 'Field add to Dataset',
+    'dataset_field_updated' => 'Dataset Field updated',
+    'dataset_field_deleted' => 'Field removed from Dataset',
 
 
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',

@@ -3,6 +3,7 @@
 namespace App\Report;
 
 use App\Report;
+use App\Report\Dataset\Field;
 use App\Report\Dataset\Filter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -30,5 +31,10 @@ class Dataset extends Model
     public function filters()
     {
         return $this->hasMany(Filter::class, 'dataset_id');
+    }
+
+    public function fields()
+    {
+        return $this->hasMany(Field::class, 'dataset_id')->orderBy('order');
     }
 }
