@@ -101,7 +101,7 @@
             @method('DELETE')
             <button type="submit" class="btn btn-danger btn-sm">
                 {!! \App\icon\trash() !!}
-                {{ __('admin.deleteFilter') }}
+                {{ __('admin.dataset_deleteField') }}
             </button>
         </form>
 

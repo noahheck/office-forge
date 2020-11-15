@@ -11,6 +11,7 @@ use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Field;
 use Illuminate\Http\Request;
+use function App\flash_info;
 use function App\flash_success;
 
 class FieldController extends Controller
@@ -131,6 +132,10 @@ class FieldController extends Controller
      */
     public function destroy(Report $report, Dataset $dataset, Field $field)
     {
-        //
+        $field->delete();
+
+        flash_info(__('admin.dataset_field_deleted'));
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 }
