@@ -21,6 +21,7 @@ class CreateReportDatasetFiltersTable extends Migration
             $table->string('operator');
             $table->string('value_1')->nullable();
             $table->string('value_2')->nullable();
+            $table->string('value_3')->nullable();
 
             $table->timestamps();
         });

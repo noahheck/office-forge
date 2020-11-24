@@ -14,6 +14,9 @@ class Create
     private $dataset;
     private $field_id;
     private $operator;
+    private $value1;
+    private $value2;
+    private $value3;
 
     private $filter;
 
@@ -22,11 +25,14 @@ class Create
      *
      * @return void
      */
-    public function __construct(Dataset $dataset, $field_id, $operator)
+    public function __construct(Dataset $dataset, $field_id, $operator, $value1, $value2, $value3)
     {
         $this->dataset = $dataset;
         $this->field_id = $field_id;
         $this->operator = $operator;
+        $this->value1 = $value1;
+        $this->value2 = $value2;
+        $this->value3 = $value3;
     }
 
     public function getFilter(): Filter
@@ -46,6 +52,9 @@ class Create
         $filter->dataset_id = $this->dataset->id;
         $filter->field_id = $this->field_id;
         $filter->operator = $this->operator;
+        $filter->value_1 = $this->value1;
+        $filter->value_2 = $this->value2;
+        $filter->value_3 = $this->value3;
 
         $filter->save();
 

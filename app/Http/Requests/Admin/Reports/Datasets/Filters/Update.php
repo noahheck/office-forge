@@ -25,7 +25,7 @@ class Update extends FormRequest
     {
         return [
             'field_id' => 'required',
-            'operator' => 'required',
+//            'operator' => 'required',
         ];
     }
 }

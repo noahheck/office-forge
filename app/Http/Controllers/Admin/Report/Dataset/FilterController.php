@@ -10,9 +10,13 @@ use App\Jobs\Report\Dataset\Filter\Update;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter;
+use App\Report\Dataset\Filter\Validator;
+use App\User;
 use Illuminate\Http\Request;
+use function App\flash_error;
 use function App\flash_info;
 use function App\flash_success;
+use function App\flash_warning;
 
 class FilterController extends Controller
 {
@@ -42,10 +46,13 @@ class FilterController extends Controller
         $filter = new Filter;
         $filter->dataset_id = $dataset->id;
 
+        $userOptions = User::active()->ordered()->get();
+
         return $this->view('admin.reports.datasets.filters.create', compact(
             'report',
             'dataset',
-            'filter'
+            'filter',
+            'userOptions'
         ));
     }
 
@@ -55,12 +62,29 @@ class FilterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, Report $report, Dataset $dataset)
+    public function store(StoreRequest $request, Report $report, Dataset $dataset, Validator $validator)
     {
-        $this->dispatchNow($filterCreated = new Create(
+        $details = $validator->getValidValuesForFilterForReportAndDataset(
+            $report,
             $dataset,
             $request->field_id,
-            $request->operator
+            $request
+        );
+
+        if (!$details['success']) {
+
+            flash_error(__('admin.filter_error_invalid'));
+
+            return redirect()->back(302);
+        }
+
+        $this->dispatchNow($filterCreated = new Create(
+            $dataset,
+            $details['field_id'],
+            $details['operator'],
+            $details['value_1'],
+            $details['value_2'],
+            $details['value_3']
         ));
 
         $filter = $filterCreated->getFilter();
@@ -93,10 +117,13 @@ class FilterController extends Controller
      */
     public function edit(Report $report, Dataset $dataset, Filter $filter)
     {
+        $userOptions = User::active()->ordered()->get();
+
         return $this->view('admin.reports.datasets.filters.edit', compact(
             'report',
             'dataset',
-            'filter'
+            'filter',
+            'userOptions'
         ));
     }
 
@@ -107,12 +134,29 @@ class FilterController extends Controller
      * @param  \App\Report\Dataset\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Report $report, Dataset $dataset, Filter $filter)
+    public function update(UpdateRequest $request, Report $report, Dataset $dataset, Filter $filter, Validator $validator)
     {
+        $details = $validator->getValidValuesForFilterForReportAndDataset(
+            $report,
+            $dataset,
+            $request->field_id,
+            $request
+        );
+
+        if (!$details['success']) {
+
+            flash_error(__('admin.filter_error_invalid'));
+
+            return redirect()->back(302);
+        }
+
         $this->dispatchNow($filterUpdated = new Update(
             $filter,
-            $request->field_id,
-            $request->operator
+            $details['field_id'],
+            $details['operator'],
+            $details['value_1'],
+            $details['value_2'],
+            $details['value_3']
         ));
 
         flash_success(__('admin.filter_updated'));

@@ -1,6 +1,7 @@
 {{--
 @selectField([
     'name' => 'string: form field name',
+    'id' => 'string: form field id attribute - defaults to name if not provided',
     'label' => 'string: text label for form field',
     'details' => 'string: additional text details to output alongside label',
     'value' => 'string: the field's value',
@@ -20,7 +21,7 @@
             - {{ $details }}
         @endif
 @endunless
-    <select class="custom-select {{ ($error ?? false) ? 'is-invalid' : '' }}" id="{{ $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
+    <select class="custom-select {{ ($error ?? false) ? 'is-invalid' : '' }}" id="{{ $id ?? $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>
         @if (!($required ?? false))
             <option value="">--</option>
         @endif

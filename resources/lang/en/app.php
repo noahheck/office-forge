@@ -3,6 +3,8 @@
 return [
     'yes' => 'Yes',
     'no' => 'No',
+    'and' => 'and',
+    'And' => 'And',
     'go' => 'Go',
     'view' => 'View',
     'show' => 'Show',

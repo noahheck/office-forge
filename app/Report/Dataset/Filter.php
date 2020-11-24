@@ -26,11 +26,21 @@ class Filter extends Model
     const FILTER_OPERATOR_LESS_THAN = 'less_than';
     const FILTER_OPERATOR_LESS_THAN_EQUALS = 'less_than_equals';
     const FILTER_OPERATOR_BETWEEN = 'between';
+    const FILTER_OPERATOR_CHECKED = 'checked';
+    const FILTER_OPERATOR_NOT_CHECKED = 'unchecked';
+
+    const FILTER_VALUE_DATE_SPECIFIC_DATE = 'specific_date';
+    const FILTER_VALUE_DATE_REPORT_FILTERED_DATE = 'report_filtered_date';
+    const FILTER_VALUE_DATE_REPORT_FILTERED_DATE_RANGE = 'report_filtered_date_range';
+
+    const FILTER_VALUE_USER_REPORT_FILTERED_USER = 'report_filtered_user';
+    const FILTER_VALUE_USER_LOGGED_IN_USER = 'logged_in_user';
+    const FILTER_VALUE_USER_SPECIFIC_USER = 'specific_user';
 
     protected static $filterOptionTypes = [
         self::FILTER_OPTION_TYPE_DATE,
         self::FILTER_OPTION_TYPE_USER,
-        self::FILTER_OPTION_TYPE_FILE,
+//        self::FILTER_OPTION_TYPE_FILE, // not now, maybe look at doing this later
         self::FILTER_OPTION_TYPE_RANGE,
         self::FILTER_OPTION_TYPE_INTEGER,
         self::FILTER_OPTION_TYPE_DECIMAL,
@@ -79,15 +89,80 @@ class Filter extends Model
             self::FILTER_OPERATOR_BETWEEN => __('report.filter_operator_between'),
             self::FILTER_OPERATOR_HAS_VALUE => __('report.filter_operator_has_value'),
             self::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE => __('report.filter_operator_does_not_have_value'),
+            self::FILTER_OPERATOR_CHECKED => __('report.filter_operator_checked'),
+            self::FILTER_OPERATOR_NOT_CHECKED => __('report.filter_operator_not_checked'),
         ];
     }
+
+
+
+    public static function checkboxOperatorOptions()
+    {
+        return [
+            self::FILTER_OPERATOR_CHECKED => __('report.filter_operator_checked'),
+            self::FILTER_OPERATOR_NOT_CHECKED => __('report.filter_operator_not_checked'),
+        ];
+    }
+
+    public static function selectOperatorOptions()
+    {
+        return [
+            self::FILTER_OPERATOR_EQUALS => __('report.filter_operator_equals'),
+            self::FILTER_OPERATOR_NOT_EQUALS => __('report.filter_operator_not_equals'),
+            self::FILTER_OPERATOR_HAS_VALUE => __('report.filter_operator_has_value'),
+            self::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE => __('report.filter_operator_does_not_have_value'),
+        ];
+    }
+
+    public static function userOperatorOptions()
+    {
+        return [
+            self::FILTER_OPERATOR_EQUALS => __('report.filter_operator_equals'),
+            self::FILTER_OPERATOR_NOT_EQUALS => __('report.filter_operator_not_equals'),
+            self::FILTER_OPERATOR_HAS_VALUE => __('report.filter_operator_has_value'),
+            self::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE => __('report.filter_operator_does_not_have_value'),
+        ];
+    }
+
+    public static function dateOperatorOptions()
+    {
+        return [
+            self::FILTER_OPERATOR_EQUALS => __('report.filter_operator_equals'),
+            self::FILTER_OPERATOR_NOT_EQUALS => __('report.filter_operator_not_equals'),
+            self::FILTER_OPERATOR_GREATER_THAN => __('report.filter_operator_greater_than'),
+            self::FILTER_OPERATOR_GREATER_THAN_EQUALS => __('report.filter_operator_greater_than_equals'),
+            self::FILTER_OPERATOR_LESS_THAN => __('report.filter_operator_less_than'),
+            self::FILTER_OPERATOR_LESS_THAN_EQUALS => __('report.filter_operator_less_than_equals'),
+            self::FILTER_OPERATOR_BETWEEN => __('report.filter_operator_between'),
+            self::FILTER_OPERATOR_HAS_VALUE => __('report.filter_operator_has_value'),
+            self::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE => __('report.filter_operator_does_not_have_value'),
+        ];
+    }
+
+    public static function numericOperatorOptions()
+    {
+        return [
+            self::FILTER_OPERATOR_EQUALS => __('report.filter_operator_equals'),
+            self::FILTER_OPERATOR_NOT_EQUALS => __('report.filter_operator_not_equals'),
+            self::FILTER_OPERATOR_GREATER_THAN => __('report.filter_operator_greater_than'),
+            self::FILTER_OPERATOR_GREATER_THAN_EQUALS => __('report.filter_operator_greater_than_equals'),
+            self::FILTER_OPERATOR_LESS_THAN => __('report.filter_operator_less_than'),
+            self::FILTER_OPERATOR_LESS_THAN_EQUALS => __('report.filter_operator_less_than_equals'),
+            self::FILTER_OPERATOR_BETWEEN => __('report.filter_operator_between'),
+            self::FILTER_OPERATOR_HAS_VALUE => __('report.filter_operator_has_value'),
+            self::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE => __('report.filter_operator_does_not_have_value'),
+        ];
+    }
+
+
+
 
     public static function isValidFilterFieldType($filterType)
     {
         return in_array($filterType, self::$filterOptionTypes);
     }
 
-    public static function makeFilterOption($value, $label, $filterType)
+    public static function makeFilterOption($value, $label, $filterType, $options)
     {
         if (!self::isValidFilterFieldType($filterType)) {
 
@@ -98,6 +173,7 @@ class Filter extends Model
             'value' => $value,
             'label' => $label,
             'type' => $filterType,
+            'options' => $options,
         ];
     }
 }

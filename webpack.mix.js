@@ -85,10 +85,11 @@ mix
         //Datasets
         .js('resources/js/page/admin/reports/datasets/_form.js', 'public/js/page.admin.reports.datasets._form.js')
 
-        //Datasets \ Fields
+        //Datasets/Fields
         .js('resources/js/page/admin/reports/datasets/fields/_form.js', 'public/js/page.admin.reports.datasets.fields._form.js')
 
-
+        //Datasets/Filters
+        .js('resources/js/page/admin/reports/datasets/filters/_form.js', 'public/js/page.admin.reports.datasets.filters._form.js')
 
 
 

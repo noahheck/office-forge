@@ -84,9 +84,9 @@ class Template extends Model implements Datasetable
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [
-            Filter::makeFilterOption(self::DATASET_FILTER_DATE, 'Date', Filter::FILTER_OPTION_TYPE_DATE),
-            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE),
-            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER),
+            Filter::makeFilterOption(self::DATASET_FILTER_DATE, 'Date', Filter::FILTER_OPTION_TYPE_DATE, []),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE, []),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER, []),
         ];
 
         $templateFields = [];
@@ -97,7 +97,7 @@ class Template extends Model implements Datasetable
                 continue;
             }
 
-            $templateFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type);
+            $templateFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type, $field->options);
         }
 
         $response = [

@@ -180,8 +180,8 @@ class FileType extends Model implements Datasetable
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [
-            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE),
-            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, 'Created Date', Filter::FILTER_OPTION_TYPE_DATE, []),
+            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, 'Created By', Filter::FILTER_OPTION_TYPE_USER, []),
         ];
 
         $response = [
@@ -198,7 +198,7 @@ class FileType extends Model implements Datasetable
                     continue;
                 }
 
-                $formFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type);
+                $formFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type, $field->options);
             }
 
             if (count($formFields) > 0) {

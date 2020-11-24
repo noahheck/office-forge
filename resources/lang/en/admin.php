@@ -209,8 +209,19 @@ return [
 
     'filter_filterFormInformation' => 'You are establishing a filter to narrow down the :dataset Dataset which contains :dataType records.',
     'filter_fieldToFilter' => 'Please select a field in the Dataset to apply this filter to:',
-    'filter_operator' => 'Records will be included where this value',
+    'filter_operator' => 'Records will be included where this field',
 
+
+    'filter_descriptor_userReportFilteredUser' => 'The user selected when generating the report',
+    'filter_descriptor_userReportLoggedInUser' => 'The currently logged in user',
+    'filter_descriptor_userReportSpecificUser' => 'A specific user',
+
+    'filter_descriptor_dateReportFilteredDate' => 'The date selected when generating the report',
+    'filter_descriptor_dateReportFilteredDateRange' => 'The date range selected when generating the report',
+    'filter_descriptor_dateSpecifiedDates' => 'Specific date(s)',
+
+
+    'filter_error_invalid' => 'These Filter values were not accepted. Please try again.',
     'filter_created' => 'Filter created',
     'filter_updated' => 'Filter updated',
     'filter_deleted' => 'Filter deleted',
@@ -229,7 +240,7 @@ return [
     'dataset_field_label' => 'Indicate how this Field should be labeled in the Dataset:',
     'dataset_field_labelDescription' => 'Shorter labels can help improve the aesthetics and readability of the report.',
 
-    'dataset_field_created' => 'Field add to Dataset',
+    'dataset_field_created' => 'Field added to Dataset',
     'dataset_field_updated' => 'Dataset Field updated',
     'dataset_field_deleted' => 'Field removed from Dataset',
 

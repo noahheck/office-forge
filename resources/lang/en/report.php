@@ -55,6 +55,8 @@ return [
     'filter_operator_between' => 'Is Between',
     'filter_operator_has_value' => 'Has A Value',
     'filter_operator_does_not_have_value' => 'Does Not Have A Value',
+    'filter_operator_checked' => 'Is Checked',
+    'filter_operator_not_checked' => 'Is Not Checked',
 
     'fields' => 'Fields',
 
