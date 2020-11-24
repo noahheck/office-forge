@@ -398,7 +398,7 @@ if ($report->filter_date === \App\Report::REPORT_FILTER_DATE_RANGE) {
 
         <hr>
 
-        <form action="{{ route("admin.reports.datasets.filters.destroy", [$report, $dataset, $filter]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $filter->descriptor() }}">
+        <form action="{{ route("admin.reports.datasets.filters.destroy", [$report, $dataset, $filter]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $filterDescriptor->descriptorForFilter($filter) }}">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger btn-sm">

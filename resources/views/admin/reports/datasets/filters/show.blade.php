@@ -27,7 +27,7 @@
 
                     <div class="d-flex">
 
-                        <h5 class="flex-grow-1">{!! $filter->dataset->datasetable->icon(['mr-2']) !!}{{ $filter->descriptor() }}</h5>
+                        <h5 class="flex-grow-1">{!! $filter->dataset->datasetable->icon(['mr-2']) !!}{{ $filterDescriptor->descriptorForFilter($filter) }}</h5>
 
                         <a href="{{ route("admin.reports.datasets.filters.edit", [$report, $dataset, $filter]) }}" class="flex-grow-0 btn btn-primary btn-sm">
                             {!! \App\icon\edit(['mr-2']) !!}{{ __('admin.editFilter') }}

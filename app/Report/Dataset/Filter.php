@@ -57,24 +57,12 @@ class Filter extends Model
         return $this->belongsTo(Dataset::class, 'dataset_id');
     }
 
-    public function descriptor()
+
+
+
+    public static function isBooleanOperator($operator)
     {
-        $fieldGroupOptions = $this->dataset->datasetable->filterableFieldOptions();
-
-        $fieldDescriptor = '';
-
-        foreach ($fieldGroupOptions as $fieldGroup) {
-            foreach ($fieldGroup as $field) {
-                if ($field['value'] == $this->field_id) {
-                    $fieldDescriptor = $field['label'];
-                    break 2;
-                }
-            }
-        }
-
-        $operatorDescriptor = $this->operatorOptions()[$this->operator] ?? "";
-
-        return $fieldDescriptor . ' ' . $operatorDescriptor;
+        return in_array($operator, [self::FILTER_OPERATOR_HAS_VALUE, self::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE]);
     }
 
     public static function operatorOptions()

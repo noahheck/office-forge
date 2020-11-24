@@ -55,7 +55,7 @@
                         <div class="list-group">
                             @foreach ($dataset->filters as $filter)
                                 <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.filters.edit', [$report, $dataset, $filter]) }}">
-                                    {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $filter->descriptor() }}
+                                    {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $filterDescriptor->descriptorForFilter($filter) }}
                                 </a>
                             @endforeach
                         </div>

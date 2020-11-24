@@ -8,12 +8,15 @@ use App\Navigation\LocationBar;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter;
+use App\Report\Dataset\Filter\Descriptor;
 
 class Show extends LocationBar
 {
     public function __construct(Report $report, Dataset $dataset, Filter $filter)
     {
-        parent::__construct($filter->descriptor());
+        $filterDescriptor = app()->make(Descriptor::class);
+
+        parent::__construct($filterDescriptor->descriptorForFilter($filter));
 
         $this->addLink(new \App\Navigation\Link\Admin\Home);
         $this->addLink(new \App\Navigation\Link\Admin\Reports);

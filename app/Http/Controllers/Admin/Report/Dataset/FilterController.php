@@ -10,6 +10,7 @@ use App\Jobs\Report\Dataset\Filter\Update;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter;
+use App\Report\Dataset\Filter\Descriptor;
 use App\Report\Dataset\Filter\Validator;
 use App\User;
 use Illuminate\Http\Request;
@@ -25,14 +26,15 @@ class FilterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Report $report, Dataset $dataset)
+    public function index(Report $report, Dataset $dataset, Descriptor $filterDescriptor)
     {
         $filters = $dataset->filters;
 
         return $this->view('admin.reports.datasets.filters.index', compact(
             'report',
             'dataset',
-            'filters'
+            'filters',
+            'filterDescriptor'
         ));
     }
 
@@ -41,7 +43,7 @@ class FilterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Report $report, Dataset $dataset)
+    public function create(Report $report, Dataset $dataset, Descriptor $filterDescriptor)
     {
         $filter = new Filter;
         $filter->dataset_id = $dataset->id;
@@ -52,7 +54,8 @@ class FilterController extends Controller
             'report',
             'dataset',
             'filter',
-            'userOptions'
+            'userOptions',
+            'filterDescriptor'
         ));
     }
 
@@ -75,7 +78,7 @@ class FilterController extends Controller
 
             flash_error(__('admin.filter_error_invalid'));
 
-            return redirect()->back(302);
+            return redirect()->back(302)->withInput();
         }
 
         $this->dispatchNow($filterCreated = new Create(
@@ -100,12 +103,13 @@ class FilterController extends Controller
      * @param  \App\Report\Dataset\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report, Dataset $dataset, Filter $filter)
+    public function show(Report $report, Dataset $dataset, Filter $filter, Descriptor $filterDescriptor)
     {
         return $this->view('admin.reports.datasets.filters.show', compact(
             'report',
             'dataset',
-            'filter'
+            'filter',
+            'filterDescriptor'
         ));
     }
 
@@ -115,7 +119,7 @@ class FilterController extends Controller
      * @param  \App\Report\Dataset\Filter  $filter
      * @return \Illuminate\Http\Response
      */
-    public function edit(Report $report, Dataset $dataset, Filter $filter)
+    public function edit(Report $report, Dataset $dataset, Filter $filter, Descriptor $filterDescriptor)
     {
         $userOptions = User::active()->ordered()->get();
 
@@ -123,7 +127,8 @@ class FilterController extends Controller
             'report',
             'dataset',
             'filter',
-            'userOptions'
+            'userOptions',
+            'filterDescriptor'
         ));
     }
 
@@ -147,7 +152,7 @@ class FilterController extends Controller
 
             flash_error(__('admin.filter_error_invalid'));
 
-            return redirect()->back(302);
+            return redirect()->back(302)->withInput();
         }
 
         $this->dispatchNow($filterUpdated = new Update(

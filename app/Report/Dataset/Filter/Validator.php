@@ -74,7 +74,7 @@ class Validator
 
     private function isBooleanOperator($operator)
     {
-        return in_array($operator, [Filter::FILTER_OPERATOR_HAS_VALUE, Filter::FILTER_OPERATOR_DOES_NOT_HAVE_VALUE]);
+        return Filter::isBooleanOperator($operator);
     }
 
 

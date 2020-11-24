@@ -11,6 +11,7 @@ use App\Jobs\Report\Dataset\Create;
 use App\Jobs\Report\Dataset\Update;
 use App\Report;
 use App\Report\Dataset;
+use App\Report\Dataset\Filter\Descriptor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use function App\flash_info;
@@ -133,10 +134,10 @@ class DatasetController extends Controller
      * @param  \App\Report\Dataset  $dataset
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report, Dataset $dataset)
+    public function show(Report $report, Dataset $dataset, Descriptor $filterDescriptor)
     {
 
-        return $this->view('admin.reports.datasets.show', compact('report', 'dataset'));
+        return $this->view('admin.reports.datasets.show', compact('report', 'dataset', 'filterDescriptor'));
     }
 
     /**
