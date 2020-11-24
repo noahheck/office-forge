@@ -1,7 +1,7 @@
 @extends("layouts.admin")
 
 @push('scripts')
-{{--    @script('js/page.admin.form-docs.show.js')--}}
+    @script('js/page.admin.reports.show.js')
 @endpush
 
 @push('styles')
@@ -9,6 +9,7 @@
 @endpush
 
 @push('meta')
+    @meta('reportId', $report->id)
 @endpush
 
 @include("_component._location-bar", [
@@ -108,10 +109,15 @@
                     <h3 class="h4">{!! \App\icon\datasets(['mr-2']) !!}{{ __('report.datasets') }}</h3>
 
                     @if ($report->datasets()->count() > 0)
-                        <div class="list-group">
+                        <div class="list-group" id="reportDatasets">
                             @foreach ($report->datasets as $dataset)
-                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.show', [$report, $dataset]) }}">
-                                    {{ $dataset->name }}
+                                <a class="list-group-item list-group-item-action d-flex" href="{{ route('admin.reports.datasets.show', [$report, $dataset]) }}" data-id="{{ $dataset->id }}">
+                                    <div class="flex-grow-1">
+                                        {{ $dataset->name }}
+                                    </div>
+                                    <div class="flex-grow-0 soft-handle pl-3 sort-handle cursor-grabbing">
+                                        {!! \App\icon\verticalSort([]) !!}
+                                    </div>
                                 </a>
                             @endforeach
                         </div>

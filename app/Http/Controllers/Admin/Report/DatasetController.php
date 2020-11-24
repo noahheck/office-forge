@@ -9,6 +9,7 @@ use App\Http\Requests\Admin\Reports\Datasets\Store as StoreRequest;
 use App\Http\Requests\Admin\Reports\Datasets\Update as UpdateRequest;
 use App\Jobs\Report\Dataset\Create;
 use App\Jobs\Report\Dataset\Update;
+use App\Jobs\Report\Dataset\UpdateOrder;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter\Descriptor;
@@ -196,5 +197,20 @@ class DatasetController extends Controller
         flash_info(__('admin.dataset_deleted'));
 
         return redirect()->route('admin.reports.show', [$report]);
+    }
+
+
+    /**
+     * @param Request $request
+     * @param Report $report
+     * @return \App\Http\Response\AjaxResponse|\Illuminate\Http\Response
+     */
+    public function updateOrder(Request $request, Report $report)
+    {
+        $this->dispatchNow($datasetsOrdered = new UpdateOrder($report, $request->orderedDatasets));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.datasets_ordered'),
+        ]);
     }
 }

@@ -196,6 +196,7 @@ return [
     'dataset_created' => 'Dataset created',
     'dataset_updated' => 'Dataset updated',
     'dataset_deleted' => 'Dataset deleted',
+    'datasets_ordered' => 'Datasets order updated',
 
 
 

@@ -81,6 +81,7 @@ mix
         .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
 
         //Reports
+        .js('resources/js/page/admin/reports/show.js', 'public/js/page.admin.reports.show.js')
 
         //Datasets
         .js('resources/js/page/admin/reports/datasets/_form.js', 'public/js/page.admin.reports.datasets._form.js')

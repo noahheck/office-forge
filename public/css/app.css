@@ -14014,6 +14014,11 @@ trix-editor:empty:not(:focus)::before {
   cursor: pointer !important;
 }
 
+.cursor-grabbing {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
+}
+
 .print-only {
   display: none;
 }
