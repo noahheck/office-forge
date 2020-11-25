@@ -6,6 +6,10 @@ return [
     'deleteFormDoc' => 'Delete FormDoc',
     'deleteFormDocForGood' => 'Delete this FormDoc for good',
 
+    'date' => 'Date',
+    'createdDate' => 'Created Date',
+    'createdBy' => 'Created By',
+
     'submissionDate' => 'Date',
     'submitted' => 'Submitted',
     'started' => 'Started',
