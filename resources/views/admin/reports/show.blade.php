@@ -115,7 +115,7 @@
                                     <div class="flex-grow-1">
                                         {{ $dataset->name }}
                                     </div>
-                                    <div class="flex-grow-0 soft-handle pl-3 sort-handle cursor-grabbing">
+                                    <div class="flex-grow-0 pl-3 sort-handle cursor-grabbing">
                                         {!! \App\icon\verticalSort([]) !!}
                                     </div>
                                 </a>

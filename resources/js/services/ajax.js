@@ -38,6 +38,7 @@ function ajaxRequest(method, route, data, multipart, additionalProperties) {
             },
             error   : function(obj, error, exc) {
                 // Probably want to do something more than this
+                notify.error(error + ": " + exc);
                 reject();
             },
             complete: function() {

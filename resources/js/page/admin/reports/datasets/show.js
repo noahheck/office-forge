@@ -1,5 +1,5 @@
 /**
- * js/page/admin/reports/show.js
+ * js/page/admin/reports/datasets/show.js
  */
 
 let $ = require('jquery');
@@ -8,25 +8,28 @@ import Sortable from 'sortablejs';
 let meta   = require('Services/meta');
 let notify = require('Services/notify');
 
-let report = require('App/report');
+let dataset = require('App/report/dataset');
 
 $(function() {
 
     let reportId = meta.get('reportId');
+    let datasetId = meta.get('datasetId');
 
 
-    let datasets = document.getElementById('reportDatasets');
+    let fields = document.getElementById('datasetFields');
 
-    if (datasets) {
+    if (fields) {
 
-        let sortable = Sortable.create(datasets, {
+        let sortable = Sortable.create(fields, {
             handle: '.sort-handle',
             animation: 150,
             direction: 'vertical',
             onEnd: function(evt) {
-                report.updateDatasetOrder(reportId, sortable.toArray()).then(response => {
+                dataset.updateFieldsOrder(reportId, datasetId, sortable.toArray()).then(response => {
 
                     notify.success(response.data.successMessage);
+                }).catch(error => {
+
                 });
             }
         });

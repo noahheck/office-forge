@@ -244,6 +244,7 @@ return [
     'dataset_field_created' => 'Field added to Dataset',
     'dataset_field_updated' => 'Dataset Field updated',
     'dataset_field_deleted' => 'Field removed from Dataset',
+    'dataset_fields_ordered' => 'Dataset fields order updated',
 
 
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',

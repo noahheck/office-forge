@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Reports\Datasets\Fields\Store as StoreRequest;
 use App\Http\Requests\Admin\Reports\Datasets\Fields\Update as UpdateRequest;
 use App\Jobs\Report\Dataset\Field\Create;
 use App\Jobs\Report\Dataset\Field\Update;
+use App\Jobs\Report\Dataset\Field\UpdateOrder;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Field;
@@ -137,5 +138,15 @@ class FieldController extends Controller
         flash_info(__('admin.dataset_field_deleted'));
 
         return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
+    }
+
+
+    public function updateOrder(Request $request, Report $report, Dataset $dataset)
+    {
+        $this->dispatchNow($fieldsOrdered = new UpdateOrder($dataset, $request->orderedFields));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.dataset_fields_ordered'),
+        ]);
     }
 }

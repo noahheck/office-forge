@@ -56,16 +56,20 @@ var report = __webpack_require__(/*! App/report */ "./resources/js/app/report.js
 
 $(function () {
   var reportId = meta.get('reportId');
-  var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(document.getElementById('reportDatasets'), {
-    handle: '.sort-handle',
-    animation: 150,
-    direction: 'vertical',
-    onEnd: function onEnd(evt) {
-      report.updateDatasetOrder(reportId, sortable.toArray()).then(function (response) {
-        notify.success(response.data.successMessage);
-      });
-    }
-  });
+  var datasets = document.getElementById('reportDatasets');
+
+  if (datasets) {
+    var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(datasets, {
+      handle: '.sort-handle',
+      animation: 150,
+      direction: 'vertical',
+      onEnd: function onEnd(evt) {
+        report.updateDatasetOrder(reportId, sortable.toArray()).then(function (response) {
+          notify.success(response.data.successMessage);
+        });
+      }
+    });
+  }
 });
 
 /***/ }),
@@ -112,6 +116,7 @@ function ajaxRequest(method, route, data, multipart, additionalProperties) {
       },
       error: function error(obj, _error, exc) {
         // Probably want to do something more than this
+        notify.error(_error + ": " + exc);
         reject();
       },
       complete: function complete() {}

@@ -1,7 +1,16 @@
 @extends("layouts.admin")
 
+@push('meta')
+    @meta('reportId', $report->id)
+    @meta('datasetId', $dataset->id)
+@endpush
+
 @push('styles')
     @style('css/document.css')
+@endpush
+
+@push('scripts')
+    @script('js/page.admin.reports.datasets.show.js')
 @endpush
 
 @include("_component._location-bar", [
@@ -81,10 +90,15 @@
                     </div>
 
                     @if ($dataset->fields->count() > 0)
-                        <div class="list-group">
+                        <div class="list-group" id="datasetFields">
                             @foreach ($dataset->fields as $field)
-                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.fields.edit', [$report, $dataset, $field]) }}">
-                                    {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $field->label }}
+                                <a class="list-group-item list-group-item-action d-flex" href="{{ route('admin.reports.datasets.fields.edit', [$report, $dataset, $field]) }}" data-id="{{ $field->id }}">
+                                    <div class="flex-grow-1">
+                                        {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $field->label }}
+                                    </div>
+                                    <div class="flex-grow-0 pl-3 sort-handle cursor-grabbing">
+                                        {!! \App\icon\verticalSort([]) !!}
+                                    </div>
                                 </a>
                             @endforeach
                         </div>
