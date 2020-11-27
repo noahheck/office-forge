@@ -25,9 +25,9 @@ class Descriptor
 
         $fieldDescriptor = $this->getFieldDescriptor($filterField);
 
-        $operatorDescriptor = $this->getOperatorDescriptor($filter);
+        $operatorDescriptor = strtolower($this->getOperatorDescriptor($filter));
 
-        $valueDescriptor = $this->getValueDescriptor($filter, $filterField);
+        $valueDescriptor = strtolower($this->getValueDescriptor($filter, $filterField));
 
         return $fieldDescriptor . ' ' . $operatorDescriptor . ' ' . $valueDescriptor;
     }
@@ -99,9 +99,9 @@ class Descriptor
             return $user->name;
         }
 
-        if ($filter->value_1 === Filter::FILTER_VALUE_USER_LOGGED_IN_USER) {
+        if ($filter->value_1 === Filter::FILTER_VALUE_USER_GENERATING_REPORT) {
 
-            return __('admin.filter_descriptor_userReportLoggedInUser');
+            return __('admin.filter_descriptor_userUserGeneratingReport');
         }
 
         if ($filter->value_1 === Filter::FILTER_VALUE_USER_REPORT_FILTERED_USER) {

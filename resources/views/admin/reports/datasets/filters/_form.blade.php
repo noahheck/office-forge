@@ -14,11 +14,11 @@
 $userValue1Options = $report->filter_user ?
     [
         \App\Report\Dataset\Filter::FILTER_VALUE_USER_REPORT_FILTERED_USER => __('admin.filter_descriptor_userReportFilteredUser'),
-        \App\Report\Dataset\Filter::FILTER_VALUE_USER_LOGGED_IN_USER => __('admin.filter_descriptor_userReportLoggedInUser'),
+        \App\Report\Dataset\Filter::FILTER_VALUE_USER_GENERATING_REPORT => __('admin.filter_descriptor_userUserGeneratingReport'),
         \App\Report\Dataset\Filter::FILTER_VALUE_USER_SPECIFIC_USER => __('admin.filter_descriptor_userReportSpecificUser'),
     ] :
     [
-        \App\Report\Dataset\Filter::FILTER_VALUE_USER_LOGGED_IN_USER => __('admin.filter_descriptor_userReportLoggedInUser'),
+        \App\Report\Dataset\Filter::FILTER_VALUE_USER_GENERATING_REPORT => __('admin.filter_descriptor_userUserGeneratingReport'),
         \App\Report\Dataset\Filter::FILTER_VALUE_USER_SPECIFIC_USER => __('admin.filter_descriptor_userReportSpecificUser'),
     ];
 

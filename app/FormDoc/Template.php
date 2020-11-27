@@ -112,7 +112,7 @@ class Template extends Model implements Datasetable
     {
         $filterableFields = $this->filterableFieldOptions();
 
-        unset($filterableFields[""]);
+//        unset($filterableFields[""]);
 
         return $filterableFields;
     }

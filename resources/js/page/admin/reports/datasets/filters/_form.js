@@ -53,7 +53,7 @@ let FILTER_OPERATOR_HAS_VALUE = 'has_value';
 let FILTER_OPERATOR_DOES_NOT_HAVE_VALUE = 'does_not_have_value';
 
 let FILTER_VALUE_USER_REPORT_FILTERED_USER = 'report_filtered_user';
-let FILTER_VALUE_USER_LOGGED_IN_USER = 'logged_in_user';
+let FILTER_VALUE_USER_GENERATING_REPORT = 'user_generating_report';
 let FILTER_VALUE_USER_SPECIFIC_USER = 'specific_user';
 
 let FILTER_VALUE_DATE_SPECIFIC_DATE = 'specific_date';

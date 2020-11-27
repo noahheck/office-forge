@@ -44,6 +44,7 @@ return [
 
     'filter' => 'Filter',
     'filters' => 'Filters',
+    'filter_s' => 'Filter|Filters',
     'filter_filterField' => '',
 
     'filter_operator_equals' => 'Is Equal To',
@@ -59,5 +60,6 @@ return [
     'filter_operator_not_checked' => 'Is Not Checked',
 
     'fields' => 'Fields',
+    'field_s' => 'Field|Fields',
 
 ];

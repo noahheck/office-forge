@@ -34,7 +34,7 @@ class Filter extends Model
     const FILTER_VALUE_DATE_REPORT_FILTERED_DATE_RANGE = 'report_filtered_date_range';
 
     const FILTER_VALUE_USER_REPORT_FILTERED_USER = 'report_filtered_user';
-    const FILTER_VALUE_USER_LOGGED_IN_USER = 'logged_in_user';
+    const FILTER_VALUE_USER_GENERATING_REPORT = 'user_generating_report';
     const FILTER_VALUE_USER_SPECIFIC_USER = 'specific_user';
 
     protected static $filterOptionTypes = [

@@ -15,7 +15,7 @@
         <div class="col-12 col-md-10 document-container">
 
             <h1>
-                {!! \App\icon\filters(['mr-2']) !!}{{ __('admin.dataset_newField') }}
+                {!! \App\icon\datasetFields(['mr-2']) !!}{{ __('admin.dataset_newField') }}
             </h1>
 
             <p class="text-muted">{{ __('admin.dataset_newField_shortDescription') }}</p>

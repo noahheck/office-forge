@@ -214,7 +214,7 @@ return [
 
 
     'filter_descriptor_userReportFilteredUser' => 'The user selected when generating the report',
-    'filter_descriptor_userReportLoggedInUser' => 'The currently logged in user',
+    'filter_descriptor_userUserGeneratingReport' => 'The user generating the report',
     'filter_descriptor_userReportSpecificUser' => 'A specific user',
 
     'filter_descriptor_dateReportFilteredDate' => 'The date selected when generating the report',

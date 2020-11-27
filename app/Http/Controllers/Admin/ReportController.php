@@ -78,6 +78,8 @@ class ReportController extends Controller
      */
     public function show(Report $report)
     {
+        $report->load('datasets', 'datasets.filters', 'datasets.fields');
+
         return $this->view('admin.reports.show', compact('report'));
     }
 

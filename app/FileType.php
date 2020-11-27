@@ -213,7 +213,7 @@ class FileType extends Model implements Datasetable
     {
         $filterableFields = $this->filterableFieldOptions();
 
-        unset($filterableFields[0]);
+//        unset($filterableFields[0]);
 
         return $filterableFields;
     }

@@ -140,7 +140,7 @@ class Validator
 
         $value1 = $request->user_value_1;
 
-        if ($value1 === Filter::FILTER_VALUE_USER_LOGGED_IN_USER) {
+        if ($value1 === Filter::FILTER_VALUE_USER_GENERATING_REPORT) {
 
             return $this->response(true, $field_id, $operator, $value1);
         }
