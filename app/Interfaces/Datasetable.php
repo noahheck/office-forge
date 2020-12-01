@@ -11,4 +11,6 @@ interface Datasetable
     public function filterableFieldOptions();
 
     public function reportableFieldOptions();
+
+    public function instances();
 }

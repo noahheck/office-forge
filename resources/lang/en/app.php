@@ -36,6 +36,8 @@ return [
     'time' => 'Time',
     'dateTime' => 'Date/Time',
 
+    'user' => 'User',
+
     'upload' => 'Upload',
     'download' => 'Download',
     'preview' => 'Preview',

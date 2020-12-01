@@ -59,6 +59,10 @@ mix
     .js('resources/js/page/admin/form-docs/show.js', 'public/js/page.admin.form-docs.show.js')
     .js('resources/js/page/admin/form-docs/fields/index.js', 'public/js/page.admin.form-docs.fields.index.js')
 
+    // Reports
+    .sass('resources/sass/reports.scss', 'public/css')
+    .js('resources/js/page/reports/reports.js', 'public/js/page.reports.js')
+
     // Admin
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/admin/server.scss', 'public/css/admin.server.css')

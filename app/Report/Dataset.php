@@ -81,4 +81,22 @@ class Dataset extends Model
 
         return $fieldType;
     }
+
+
+    public function instanceAttributeFilters()
+    {
+        return $this->filters->filter(function($filter) {
+            return !is_numeric($filter->field_id);
+        });
+    }
+
+    public function instanceFormFilters()
+    {
+        return $this->filters->filter(function($filter) {
+            return is_numeric($filter->field_id);
+        });
+    }
+
+
+
 }

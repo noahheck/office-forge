@@ -28,6 +28,10 @@ class ViewServiceProvider extends ServiceProvider
             'layouts.app', 'App\Http\View\Composers\Layouts\AppComposer'
         );
 
+        View::composer(
+            'reports._dataset', 'App\Http\View\Composers\Reports\DatasetComposer'
+        );
+
 
 
 

@@ -177,6 +177,11 @@ class FileType extends Model implements Datasetable
         return $output;
     }
 
+    public function instances()
+    {
+        return $this->files();
+    }
+
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [

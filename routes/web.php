@@ -98,6 +98,9 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     Route::post('/form-docs/download/spreadsheet', 'FormDocController@downloadSpreadsheet')->name('form-docs.download-spreadsheet');
 
 
+    // Reports
+    Route::get('/reports', 'ReportController@index')->name('reports.index');
+
     // Files
     Route::get('/files/search', 'FileController@search')->name('files.search');
     Route::resource('/files', 'FileController');

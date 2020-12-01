@@ -96,6 +96,11 @@ class Create
 
         $field->save();
 
+        // @todo Add empty field in file_formfield_values table for each file of this type
+        foreach ($this->form->fileType->files as $file) {
+
+        }
+
         $this->field = $field;
     }
 }

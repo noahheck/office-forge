@@ -1,0 +1,16 @@
+/**
+ * /sass/reports.scss
+ */
+
+/**
+ * sass/_mixins.scss
+ */
+
+@media (min-width: 768px) {
+  .report-select-options {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 120px;
+  }
+}
+

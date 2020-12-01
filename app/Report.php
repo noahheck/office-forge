@@ -36,6 +36,11 @@ class Report extends Model
         'active' => 'boolean',
     ];
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('name');
+    }
+
     public function fileType()
     {
         return $this->belongsTo(FileType::class, 'file_type_id');
