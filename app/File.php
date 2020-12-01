@@ -23,6 +23,11 @@ class File extends Model implements Headshottable
         return $query->orderBy('name');
     }
 
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
     public function teams()
     {
         return $this->fileType->teams();
