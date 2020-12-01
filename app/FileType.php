@@ -9,6 +9,7 @@ use App\FileType\Panel;
 use App\FormDoc\Template;
 use App\Interfaces\Datasetable;
 use App\Report\Dataset\Filter;
+use App\Report\Dataset\Field;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -18,6 +19,9 @@ class FileType extends Model implements Datasetable
 
     const DATASET_FILTER_CREATED_DATE = 'created_date';
     const DATASET_FILTER_CREATED_BY = 'created_by';
+
+    const DATASET_FIELD_CREATED_DATE = 'created_date';
+    const DATASET_FIELD_CREATED_BY = 'created_by';
 
     const DEFAULT_ICON = 'fas fa-address-book';
 
@@ -193,6 +197,8 @@ class FileType extends Model implements Datasetable
             $implicitFieldOptions,
         ];
 
+        $this->loadMissing('forms', 'forms.fields');
+
         foreach ($this->forms as $form) {
 
             $formFields = [];
@@ -216,10 +222,36 @@ class FileType extends Model implements Datasetable
 
     public function reportableFieldOptions()
     {
-        $filterableFields = $this->filterableFieldOptions();
 
-//        unset($filterableFields[0]);
+        $implicitFieldOptions = [
+            Field::makeFieldOption(self::DATASET_FIELD_CREATED_DATE, __('file.createdDate'), Field::FIELD_OPTION_TYPE_DATE, []),
+            Filter::makeFilterOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), Field::FIELD_OPTION_TYPE_USER, []),
+        ];
 
-        return $filterableFields;
+        $response = [
+            $implicitFieldOptions,
+        ];
+
+        $this->loadMissing('forms', 'forms.fields');
+
+        foreach ($this->forms as $form) {
+
+            $formFields = [];
+
+            foreach ($form->fields as $field) {
+
+                if (!Field::isValidReportableFieldType($field->field_type)) {
+                    continue;
+                }
+
+                $formFields[] = Field::makeFieldOption($field->id, $field->label, $field->field_type, $field->options);
+            }
+
+            if (count($formFields) > 0) {
+                $response[$form->name] = $formFields;
+            }
+        }
+
+        return $response;
     }
 }

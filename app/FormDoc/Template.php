@@ -119,6 +119,9 @@ class Template extends Model implements Datasetable
 
 
 
+
+
+
     public static function getTeamSyncStructure($creatingTeams, $reviewingTeams)
     {
         $response = [];

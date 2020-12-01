@@ -66,13 +66,14 @@ class Renderer
 
         // Apply non-numeric field filters to dataset here, then get instances
         foreach ($dataset->instanceAttributeFilters() as $filter) {
-            \Debugbar::info($filter);
-
             $valueColumn = $this->getAttributeValueColumn($filter);
 
             if ($valueColumn === 'created_at') {
 
                 $instancesQueryBuilder->whereBetween($valueColumn, $this->queryValue($filter));
+            } else {
+
+                $instancesQueryBuilder->where($valueColumn, $this->queryOperator($filter), $this->queryValue($filter));
             }
 
         }
@@ -115,8 +116,20 @@ class Renderer
         foreach ($instances as $record) {
             $columns = [$record->name];
 
+//            $dataset->load('fields', 'fields.field');
+
             foreach ($dataset->fields as $field) {
+
                 $field_id = $field->field_id;
+
+                if ($attrColumnAccessor = $this->getAttributeColumnAccessor($field_id)) {
+
+                    $columnValue = $record->$attrColumnAccessor;
+
+                    $columns[] = $this->getStringValueFromValue($columnValue);
+
+                    continue;
+                }
 
                 $value = $record->formFieldValues->where('file_type_form_field_id', $field_id)->first();
 
@@ -128,7 +141,7 @@ class Renderer
                 $value->field_type = $field->field->field_type;
 
 
-                $columns[] = $this->dataMapper->getFieldValue($value);
+                $columns[] = $this->getStringValueFromValue( $this->dataMapper->getFieldValue($value) );
             }
 
             yield($columns);
@@ -137,13 +150,50 @@ class Renderer
     }
 
 
+    private function getStringValueFromValue($value)
+    {
+        if (is_string($value)) {
+
+            return $value;
+        }
+
+        if ($value instanceof \DateTime) {
+
+            return \App\format_date_in_user_timezone($value);
+        }
+
+        if (is_object($value)) {
+
+            return $value->name;
+        }
+
+        if (is_array($value)) {
+
+            return implode("\n", $value);
+        }
+
+        return $value;
+    }
+
+
     private function getAttributeValueColumn($filter)
     {
         $map = [
             'created_date' => 'created_at',
+            'created_by' => 'created_by',
         ];
 
-        return $map[$filter->field_id];
+        return $map[$filter->field_id] ?? null;
+    }
+
+    private function getAttributeColumnAccessor($fieldId)
+    {
+        $map = [
+            'created_date' => 'created_at',
+            'created_by' => 'createdBy',
+        ];
+
+        return $map[$fieldId] ?? null;
     }
 
 
@@ -299,8 +349,16 @@ class Renderer
 
             case Filter::FILTER_OPERATOR_EQUALS:
             case Filter::FILTER_OPERATOR_NOT_EQUALS:
+            case Filter::FILTER_OPERATOR_GREATER_THAN:
+            case Filter::FILTER_OPERATOR_GREATER_THAN_EQUALS:
+            case Filter::FILTER_OPERATOR_LESS_THAN:
+            case Filter::FILTER_OPERATOR_LESS_THAN_EQUALS:
 
                 $value = $filter->value_1;
+                break;
+
+            case Filter::FILTER_OPERATOR_BETWEEN:
+                $value = [$filter->value_1, $filter->value_2];
                 break;
 
         endswitch;

@@ -34,6 +34,8 @@ class ReportController extends Controller
 
         if ($report_id) {
             $report = $reportModel->find($report_id);
+
+//            $report->load('datasets', 'datasets.datasetable', 'datasets.datasetable', 'datasets.fields', 'datasets.fields.field');
         }
 
         $datasetRenderer->setReportOptions($request->user(), $user_id, $date, $date_from, $date_to);

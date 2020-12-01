@@ -29,7 +29,7 @@
             @foreach($datasetRenderer->records($dataset) as $record)
                 <tr>
                     @foreach ($record as $column)
-                        <td>{{ $column }}</td>
+                        <td>{!! nl2br(e($column)) !!}</td>
                     @endforeach
                 </tr>
             @endforeach

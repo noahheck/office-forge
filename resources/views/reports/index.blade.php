@@ -129,7 +129,7 @@
 
         </div>
 
-        <div class="col-12 col-md-8 col-xl-9">
+        <div class="col-12 col-md-8 col-xl-9 print-full">
 
             @if ($report)
 
