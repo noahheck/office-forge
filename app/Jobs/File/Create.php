@@ -4,6 +4,7 @@ namespace App\Jobs\File;
 
 use App\File;
 use App\FileType;
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 
@@ -14,6 +15,7 @@ class Create
     private $fileType;
     private $name;
     private $accessLocks;
+    private $creatingUser;
 
     private $file;
 
@@ -22,11 +24,12 @@ class Create
      *
      * @return void
      */
-    public function __construct(FileType $fileType, $name, $accessLocks)
+    public function __construct(FileType $fileType, $name, $accessLocks, User $creatingUser)
     {
         $this->fileType = $fileType;
         $this->name = $name;
         $this->accessLocks = $accessLocks;
+        $this->creatingUser = $creatingUser;
     }
 
     public function getFile(): File
@@ -44,6 +47,7 @@ class Create
         $file = new File;
         $file->file_type_id = $this->fileType->id;
         $file->name = $this->name;
+        $file->created_by = $this->creatingUser->id;
 
         $file->save();
 

@@ -118,7 +118,8 @@ class FileController extends Controller
         $this->dispatchNow($fileCreated = new Create(
             $fileType,
             $request->name,
-            $request->accessLocks
+            $request->accessLocks,
+            $request->user()
         ));
 
         $file = $fileCreated->getFile();
