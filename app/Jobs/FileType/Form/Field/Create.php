@@ -96,6 +96,17 @@ class Create
 
         $field->save();
 
+        // Add empty entry for each file this form belongs to so report queries execute correctly
+        $fileType = $this->form->fileType;
+        $allInstances = $fileType->files()->withTrashed()->get();
+        $keyedIds = $allInstances->pluck('id')->map(function($item) {
+
+            return ['file_id' => $item];
+        });
+
+        $field->values()->createMany($keyedIds);
+
+
         $this->field = $field;
     }
 }
