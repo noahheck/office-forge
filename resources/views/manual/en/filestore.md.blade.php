@@ -65,6 +65,9 @@ For desktop browsers that support the drag-and-drop api (most modern browsers), 
 
 @manualImage('fileStore_dragAndDrop.png', 'FileStore Drive showing a file being dragged over it causing it to be highlighted and have instructions on how to upload the file to the Drive appear.')
 
+@technote
+PHP provides technical safeguards to limit the maximum number of files uploaded per request as well as the maximum combined size of uploaded files. These safeguards are configurable through their respective `php.ini` directives. See the <a href="https://www.php.net/manual/en/ini.core.php#ini.sect.file-uploads" target="_blank">PHP Manual entry on File Uploads ini directives</a> for more information.
+@endtechnote
 
 ### Deleting Files
 
