@@ -203,7 +203,7 @@ class FileType extends Model implements Datasetable
 
             $formFields = [];
 
-            foreach ($form->fields as $field) {
+            foreach ($form->activeFields as $field) {
 
                 if (!Filter::isValidFilterFieldType($field->field_type)) {
                     continue;
@@ -238,7 +238,7 @@ class FileType extends Model implements Datasetable
 
             $formFields = [];
 
-            foreach ($form->fields as $field) {
+            foreach ($form->activeFields as $field) {
 
                 if (!Field::isValidReportableFieldType($field->field_type)) {
                     continue;

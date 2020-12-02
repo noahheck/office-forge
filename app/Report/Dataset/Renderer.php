@@ -58,6 +58,10 @@ class Renderer
         return $headers;
     }
 
+    /**
+     * @param Dataset $dataset
+     * @return \Generator
+     */
     public function records(Dataset $dataset)
     {
         $records = [];
@@ -96,7 +100,19 @@ class Renderer
             if ($filter->operator === Filter::FILTER_OPERATOR_BETWEEN) {
                 $queryBuilder->whereBetween($valueColumn, $this->queryValue($filter));
             } else {
-                $queryBuilder->where($valueColumn, $this->queryOperator($filter), $this->queryValue($filter));
+
+                // Not checked needs to include the check for NULL column value because of, well, reasons
+                if ($filter->operator === Filter::FILTER_OPERATOR_NOT_CHECKED) {
+
+                    $queryBuilder->where(function($query) use ($valueColumn, $filter) {
+                        $query->where($valueColumn, $this->queryOperator($filter), $this->queryValue($filter))
+                            ->orWhereNull($valueColumn);
+                    });
+
+                } else {
+
+                    $queryBuilder->where($valueColumn, $this->queryOperator($filter), $this->queryValue($filter));
+                }
             }
 
             $queryBuilder->whereIn('file_id', $instanceIds);
@@ -131,7 +147,7 @@ class Renderer
                     continue;
                 }
 
-                $value = $record->formFieldValues->where('file_type_form_field_id', $field_id)->first();
+                $value = $record->formFieldValues->firstWhere('file_type_form_field_id', $field_id);
 
                 if (!$value) {
                     $columns[] = '';
@@ -216,7 +232,7 @@ class Renderer
                 break;
 
             case Filter::FILTER_OPERATOR_NOT_CHECKED:
-                $operator = '=';
+                $operator = '!=';
                 break;
 
             case Filter::FILTER_OPERATOR_EQUALS:
@@ -340,11 +356,8 @@ class Renderer
                 break;
 
             case Filter::FILTER_OPERATOR_CHECKED:
-                $value = 1;
-                break;
-
             case Filter::FILTER_OPERATOR_NOT_CHECKED:
-                $value = 0;
+                $value = 1;
                 break;
 
             case Filter::FILTER_OPERATOR_EQUALS:
