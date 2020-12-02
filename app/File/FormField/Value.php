@@ -11,6 +11,11 @@ class Value extends Model
 {
     use ValueTrait;
 
+    protected $fillable = [
+        'file_id',
+        'file_type_form_field_id',
+    ];
+
     protected $table = 'file_formfield_values';
 
     public function file()

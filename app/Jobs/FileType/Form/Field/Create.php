@@ -96,10 +96,16 @@ class Create
 
         $field->save();
 
-        // @todo Add empty field in file_formfield_values table for each file of this type
-        foreach ($this->form->fileType->files as $file) {
+        // Add empty entry for each file this form belongs to so report queries execute correctly
+        $fileType = $this->form->fileType;
+        $allInstances = $fileType->files()->withTrashed()->get();
+        $keyedIds = $allInstances->pluck('id')->map(function($item) {
 
-        }
+            return ['file_id' => $item];
+        });
+
+        $field->values()->createMany($keyedIds);
+
 
         $this->field = $field;
     }

@@ -50,7 +50,7 @@ class Field extends Model
     }
 
 
-
+    // This has to stay for the File fields to function correctly (there is no file_type_id column on the table)
     public function fileType()
     {
         return $this->belongsTo(FileType::class, 'file_type_id');
