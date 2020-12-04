@@ -186,6 +186,21 @@ class FileType extends Model implements Datasetable
         return $this->files();
     }
 
+    public function datasetableInstances()
+    {
+        return $this->instances();
+    }
+
+    public function instanceFieldValueRelationshipIdentifier()
+    {
+        return 'formFieldValues';
+    }
+
+    public function instanceFieldValueFieldIdentifier()
+    {
+        return 'file_type_form_field_id';
+    }
+
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [
@@ -225,7 +240,7 @@ class FileType extends Model implements Datasetable
 
         $implicitFieldOptions = [
             Field::makeFieldOption(self::DATASET_FIELD_CREATED_DATE, __('file.createdDate'), Field::FIELD_OPTION_TYPE_DATE, []),
-            Filter::makeFilterOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), Field::FIELD_OPTION_TYPE_USER, []),
+            Field::makeFieldOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), Field::FIELD_OPTION_TYPE_USER, []),
         ];
 
         $response = [

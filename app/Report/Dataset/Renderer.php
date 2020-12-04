@@ -66,7 +66,14 @@ class Renderer
     {
         $records = [];
 
-        $instancesQueryBuilder = $dataset->datasetable->instances();
+        $datasetable = $dataset->datasetable;
+
+
+
+        $fieldValueRelationshipIdentifier = $datasetable->instanceFieldValueRelationshipIdentifier();
+        $fieldValueFieldIdentifier = $datasetable->instanceFieldValueFieldIdentifier();
+
+        $instancesQueryBuilder = $datasetable->datasetableInstances();
 
         // Apply non-numeric field filters to dataset here, then get instances
         foreach ($dataset->instanceAttributeFilters() as $filter) {
@@ -81,8 +88,6 @@ class Renderer
             }
 
         }
-
-//        $instancesQueryBuilder->dump();
 
         $instances = $instancesQueryBuilder->get();
 
@@ -117,22 +122,21 @@ class Renderer
 
             $queryBuilder->whereIn('file_id', $instanceIds);
 
-//            \Debugbar::info($queryBuilder);
-//            $queryBuilder->dump();
-
             $results = $queryBuilder->get();
 
             $instanceIds = $results->pluck('file_id');
         }
 
-        $instances = $dataset->datasetable->instances()->find($instanceIds);
+        $instances = $datasetable->datasetableInstances()->find($instanceIds);
 
-        $instances->load('formFieldValues');
+        $instances->load($fieldValueRelationshipIdentifier);
+
+        \Debugbar::info($instances);
 
         foreach ($instances as $record) {
             $columns = [$record->name];
 
-//            $dataset->load('fields', 'fields.field');
+            $dataset->load('fields');
 
             foreach ($dataset->fields as $field) {
 
@@ -147,17 +151,21 @@ class Renderer
                     continue;
                 }
 
-                $value = $record->formFieldValues->firstWhere('file_type_form_field_id', $field_id);
+                $value = $record->$fieldValueRelationshipIdentifier->firstWhere($fieldValueFieldIdentifier, $field_id);
+
 
                 if (!$value) {
                     $columns[] = '';
                     continue;
                 }
 
-                $value->field_type = $field->field->field_type;
+                // FileType Form Field Values don't have a field_type property, so we will add one here
+                if (!$value->field_type) {
 
+                    $value->field_type = $field->field->field_type;
+                }
 
-                $columns[] = $this->getStringValueFromValue( $this->dataMapper->getFieldValue($value) );
+                $columns[] = $this->getOutputValueFromValue($value);
             }
 
             yield($columns);
@@ -166,29 +174,36 @@ class Renderer
     }
 
 
-    private function getStringValueFromValue($value)
+    private function getOutputValueFromValue($value)
     {
+        $columnValue = $this->dataMapper->getFieldValue($value);
+
+        if ($value->field_type === 'money') {
+
+            return \App\format_money($columnValue);
+        }
+
         if (is_string($value)) {
 
-            return $value;
+            return $columnValue;
         }
 
-        if ($value instanceof \DateTime) {
+        if ($columnValue instanceof \DateTime) {
 
-            return \App\format_date_in_user_timezone($value);
+            return \App\format_date_in_user_timezone($columnValue);
         }
 
-        if (is_object($value)) {
+        if (is_object($columnValue)) {
 
-            return $value->name;
+            return $columnValue->name;
         }
 
-        if (is_array($value)) {
+        if (is_array($columnValue)) {
 
-            return implode("\n", $value);
+            return implode("\n", $columnValue);
         }
 
-        return $value;
+        return $columnValue;
     }
 
 
@@ -197,6 +212,7 @@ class Renderer
         $map = [
             'created_date' => 'created_at',
             'created_by' => 'created_by',
+            'date' => 'date',
         ];
 
         return $map[$filter->field_id] ?? null;
@@ -207,6 +223,7 @@ class Renderer
         $map = [
             'created_date' => 'created_at',
             'created_by' => 'createdBy',
+            'date' => 'date',
         ];
 
         return $map[$fieldId] ?? null;

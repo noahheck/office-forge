@@ -123,6 +123,11 @@ function format_filesize($bytes) {
     return round($bytes, 1) . ' ' . $units[$pow];
 }
 
+function format_money($value) {
+
+    return number_format($value, 2, '.', ',');
+}
+
 
 
 function temp_directory_path() {

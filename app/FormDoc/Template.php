@@ -8,6 +8,7 @@ use App\FormDoc\Template\Field;
 use App\Interfaces\Datasetable;
 use App\Process;
 use App\Report\Dataset\Filter;
+use App\Report\Dataset\Field as DatasetField;
 use App\Team;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,6 +18,10 @@ class Template extends Model implements Datasetable
     const DATASET_FILTER_DATE = 'date';
     const DATASET_FILTER_CREATED_DATE = 'created_date';
     const DATASET_FILTER_CREATED_BY = 'created_by';
+
+    const DATASET_FIELD_DATE = 'date';
+    const DATASET_FIELD_CREATED_DATE = 'created_date';
+    const DATASET_FIELD_CREATED_BY = 'created_by';
 
     use SoftDeletes;
 
@@ -81,6 +86,22 @@ class Template extends Model implements Datasetable
         return $this->hasMany(FormDoc::class, 'form_doc_template_id');
     }
 
+    public function datasetableInstances()
+    {
+        // Make sure to report against only submitted FormDocs
+        return $this->instances()->submitted();
+    }
+
+    public function instanceFieldValueRelationshipIdentifier()
+    {
+        return 'fields';
+    }
+
+    public function instanceFieldValueFieldIdentifier()
+    {
+        return 'form_doc_template_field_id';
+    }
+
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [
@@ -110,11 +131,28 @@ class Template extends Model implements Datasetable
 
     public function reportableFieldOptions()
     {
-        $filterableFields = $this->filterableFieldOptions();
+        $implicitFieldOptions = [
+            DatasetField::makeFieldOption(self::DATASET_FIELD_DATE, __('formDoc.date'), DatasetField::FIELD_OPTION_TYPE_DATE, []),
+            DatasetField::makeFieldOption(self::DATASET_FIELD_CREATED_DATE, __('file.createdDate'), DatasetField::FIELD_OPTION_TYPE_DATE, []),
+            DatasetField::makeFieldOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), DatasetField::FIELD_OPTION_TYPE_USER, []),
+        ];
 
-//        unset($filterableFields[""]);
+        $templateFields = [];
 
-        return $filterableFields;
+        foreach ($this->activeFields as $field) {
+
+            if (!DatasetField::isValidReportableFieldType($field->field_type)) {
+
+                continue;
+            }
+
+            $templateFields[] = DatasetField::makeFieldOption($field->id, $field->label, $field->field_type, $field->options);
+        }
+
+        return [
+            $implicitFieldOptions,
+            __("formDoc.formName_fields", ['formName' => $this->name]) => $templateFields,
+        ];
     }
 
 

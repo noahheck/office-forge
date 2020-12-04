@@ -12,5 +12,9 @@ interface Datasetable
 
     public function reportableFieldOptions();
 
-    public function instances();
+    public function datasetableInstances();
+
+    public function instanceFieldValueRelationshipIdentifier();
+
+    public function instanceFieldValueFieldIdentifier();
 }
