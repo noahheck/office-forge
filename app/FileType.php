@@ -210,70 +210,80 @@ class FileType extends Model implements Datasetable
 
     public function filterableFieldOptions()
     {
-        $implicitFieldOptions = [
-            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, __('file.createdDate'), Filter::FILTER_OPTION_TYPE_DATE, []),
-            Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, __('file.createdBy'), Filter::FILTER_OPTION_TYPE_USER, []),
-        ];
+        static $fieldOptions = false;
 
-        $response = [
-            $implicitFieldOptions,
-        ];
+        if ($fieldOptions === false) {
 
-        $this->loadMissing('forms', 'forms.fields');
+            $implicitFieldOptions = [
+                Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, __('file.createdDate'), Filter::FILTER_OPTION_TYPE_DATE, []),
+                Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, __('file.createdBy'), Filter::FILTER_OPTION_TYPE_USER, []),
+            ];
 
-        foreach ($this->forms as $form) {
+            $fieldOptions = [
+                $implicitFieldOptions,
+            ];
 
-            $formFields = [];
+            $this->loadMissing('forms', 'forms.activeFields');
 
-            foreach ($form->activeFields as $field) {
+            foreach ($this->forms as $form) {
 
-                if (!Filter::isValidFilterFieldType($field->field_type)) {
-                    continue;
+                $formFields = [];
+
+                foreach ($form->activeFields as $field) {
+
+                    if (!Filter::isValidFilterFieldType($field->field_type)) {
+                        continue;
+                    }
+
+                    $formFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type, $field->options);
                 }
 
-                $formFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type, $field->options);
-            }
-
-            if (count($formFields) > 0) {
-                $response[$form->name] = $formFields;
+                if (count($formFields) > 0) {
+                    $fieldOptions[$form->name] = $formFields;
+                }
             }
         }
 
-        return $response;
+        return $fieldOptions;
     }
 
     public function reportableFieldOptions()
     {
+        static $fieldOptions = false;
 
-        $implicitFieldOptions = [
-            Field::makeFieldOption(self::DATASET_FIELD_CREATED_DATE, __('file.createdDate'), Field::FIELD_OPTION_TYPE_DATE, []),
-            Field::makeFieldOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), Field::FIELD_OPTION_TYPE_USER, []),
-        ];
+        if ($fieldOptions === false) {
 
-        $response = [
-            $implicitFieldOptions,
-        ];
+            $implicitFieldOptions = [
+                Field::makeFieldOption(self::DATASET_FIELD_CREATED_DATE, __('file.createdDate'), Field::FIELD_OPTION_TYPE_DATE, []),
+                Field::makeFieldOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), Field::FIELD_OPTION_TYPE_USER, []),
+            ];
 
-        $this->loadMissing('forms', 'forms.fields');
+            $fieldOptions = [
+                $implicitFieldOptions,
+            ];
 
-        foreach ($this->forms as $form) {
+            $this->loadMissing('forms', 'forms.fields');
 
-            $formFields = [];
+            foreach ($this->forms as $form) {
 
-            foreach ($form->activeFields as $field) {
+                $formFields = [];
 
-                if (!Field::isValidReportableFieldType($field->field_type)) {
-                    continue;
+                foreach ($form->activeFields as $field) {
+
+                    if (!Field::isValidReportableFieldType($field->field_type)) {
+                        continue;
+                    }
+
+                    $formFields[] = Field::makeFieldOption($field->id, $field->label, $field->field_type, $field->options);
                 }
 
-                $formFields[] = Field::makeFieldOption($field->id, $field->label, $field->field_type, $field->options);
+                if (count($formFields) > 0) {
+                    $fieldOptions[$form->name] = $formFields;
+                }
             }
 
-            if (count($formFields) > 0) {
-                $response[$form->name] = $formFields;
-            }
         }
 
-        return $response;
+        return $fieldOptions;
     }
 }

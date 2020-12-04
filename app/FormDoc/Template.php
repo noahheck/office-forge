@@ -17,11 +17,11 @@ class Template extends Model implements Datasetable
 {
     const DATASET_FILTER_DATE = 'date';
     const DATASET_FILTER_CREATED_DATE = 'created_date';
-    const DATASET_FILTER_CREATED_BY = 'created_by';
+    const DATASET_FILTER_CREATED_BY = 'creator_id';
 
     const DATASET_FIELD_DATE = 'date';
     const DATASET_FIELD_CREATED_DATE = 'created_date';
-    const DATASET_FIELD_CREATED_BY = 'created_by';
+    const DATASET_FIELD_CREATED_BY = 'creator_id';
 
     use SoftDeletes;
 

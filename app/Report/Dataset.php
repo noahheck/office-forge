@@ -44,6 +44,16 @@ class Dataset extends Model
         return $this->hasMany(Field::class, 'dataset_id')->orderBy('order');
     }
 
+    public function isFileType(): bool
+    {
+        return $this->datasetable_type === FileType::class;
+    }
+
+    public function isFormDocTemplate()
+    {
+        return $this->datasetable_type === Template::class;
+    }
+
     public function datasetableFieldType()
     {
         $fieldType = '';
