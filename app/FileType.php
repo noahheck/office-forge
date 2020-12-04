@@ -201,6 +201,13 @@ class FileType extends Model implements Datasetable
         return 'file_type_form_field_id';
     }
 
+    public function instanceFieldRecordIdentifier()
+    {
+        return 'file_id';
+    }
+
+
+
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [

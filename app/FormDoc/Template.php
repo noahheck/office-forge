@@ -102,6 +102,13 @@ class Template extends Model implements Datasetable
         return 'form_doc_template_field_id';
     }
 
+    public function instanceFieldRecordIdentifier()
+    {
+        return 'form_doc_id';
+    }
+
+
+
     public function filterableFieldOptions()
     {
         $implicitFieldOptions = [

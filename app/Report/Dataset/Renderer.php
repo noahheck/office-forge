@@ -5,9 +5,11 @@ namespace App\Report\Dataset;
 
 
 use App\File\FormField\Value;
+use App\FileType;
 use App\Form\DataMapper;
+use App\FormDoc\Template;
+use App\FormDoc\Field as FormDocField;
 use App\Report\Dataset;
-use App\Report\Provider;
 use App\User;
 use Carbon\Carbon;
 
@@ -17,6 +19,11 @@ class Renderer
      * @var Value
      */
     private $valueModel;
+
+    /**
+     * @var FormDocField
+     */
+    private $formDocFieldModel;
 
     /**
      * @var DataMapper
@@ -29,9 +36,10 @@ class Renderer
     private $date_from;
     private $date_to;
 
-    public function __construct(Value $valueModel, DataMapper $dataMapper)
+    public function __construct(Value $valueModel, FormDocField $formDocFieldModel, DataMapper $dataMapper)
     {
         $this->valueModel = $valueModel;
+        $this->formDocFieldModel = $formDocFieldModel;
         $this->dataMapper = $dataMapper;
     }
 
@@ -64,22 +72,21 @@ class Renderer
      */
     public function records(Dataset $dataset)
     {
-        $records = [];
-
         $datasetable = $dataset->datasetable;
-
-
 
         $fieldValueRelationshipIdentifier = $datasetable->instanceFieldValueRelationshipIdentifier();
         $fieldValueFieldIdentifier = $datasetable->instanceFieldValueFieldIdentifier();
+
+        $fieldRecordIdentifier = $datasetable->instanceFieldRecordIdentifier();
 
         $instancesQueryBuilder = $datasetable->datasetableInstances();
 
         // Apply non-numeric field filters to dataset here, then get instances
         foreach ($dataset->instanceAttributeFilters() as $filter) {
+
             $valueColumn = $this->getAttributeValueColumn($filter);
 
-            if ($valueColumn === 'created_at') {
+            if ($valueColumn === 'created_at' || $valueColumn === 'date') {
 
                 $instancesQueryBuilder->whereBetween($valueColumn, $this->queryValue($filter));
             } else {
@@ -93,14 +100,32 @@ class Renderer
 
         $instanceIds = $instances->pluck('id');
 
+
         foreach ($dataset->instanceFormFilters() as $filter) {
 
-            $formField = \App\FileType\Form\Field::find($filter->field_id);
 
-            $valueColumn = $this->dataMapper->getFieldValueColumn($formField);
+            if ($datasetable instanceof FileType) {
 
-            $queryBuilder = $this->valueModel
-                ->where('file_type_form_field_id', $filter->field_id);
+                $formField = \App\FileType\Form\Field::find($filter->field_id);
+
+                $valueColumn = $this->dataMapper->getFieldValueColumn($formField);
+
+                $queryBuilder = $this->valueModel
+                    ->where('file_type_form_field_id', $filter->field_id);
+
+            } elseif ($datasetable instanceof Template) {
+
+                $formField = \App\FormDoc\Template\Field::find($filter->field_id);
+
+                $valueColumn = $this->dataMapper->getFieldValueColumn($formField);
+
+                $queryBuilder = $this->formDocFieldModel
+                    ->where('form_doc_template_field_id', $filter->field_id);
+
+            }
+
+
+
 
             if ($filter->operator === Filter::FILTER_OPERATOR_BETWEEN) {
                 $queryBuilder->whereBetween($valueColumn, $this->queryValue($filter));
@@ -120,18 +145,20 @@ class Renderer
                 }
             }
 
-            $queryBuilder->whereIn('file_id', $instanceIds);
+            $queryBuilder->whereIn($fieldRecordIdentifier, $instanceIds);
 
             $results = $queryBuilder->get();
 
-            $instanceIds = $results->pluck('file_id');
+            $instanceIds = $results->pluck($fieldRecordIdentifier);
         }
+
+
+
+
 
         $instances = $datasetable->datasetableInstances()->find($instanceIds);
 
         $instances->load($fieldValueRelationshipIdentifier);
-
-        \Debugbar::info($instances);
 
         foreach ($instances as $record) {
             $columns = [$record->name];
@@ -174,16 +201,9 @@ class Renderer
     }
 
 
-    private function getOutputValueFromValue($value)
+    private function getStringValueFromValue($columnValue)
     {
-        $columnValue = $this->dataMapper->getFieldValue($value);
-
-        if ($value->field_type === 'money') {
-
-            return \App\format_money($columnValue);
-        }
-
-        if (is_string($value)) {
+        if (is_string($columnValue)) {
 
             return $columnValue;
         }
@@ -204,6 +224,18 @@ class Renderer
         }
 
         return $columnValue;
+    }
+
+    private function getOutputValueFromValue($value)
+    {
+        $columnValue = $this->dataMapper->getFieldValue($value);
+
+        if ($value->field_type === 'money') {
+
+            return \App\format_money($columnValue);
+        }
+
+        return $this->getStringValueFromValue($columnValue);
     }
 
 

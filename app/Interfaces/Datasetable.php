@@ -17,4 +17,6 @@ interface Datasetable
     public function instanceFieldValueRelationshipIdentifier();
 
     public function instanceFieldValueFieldIdentifier();
+
+    public function instanceFieldRecordIdentifier();
 }
