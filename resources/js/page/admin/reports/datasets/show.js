@@ -20,12 +20,33 @@ $(function() {
 
     if (fields) {
 
-        let sortable = Sortable.create(fields, {
+        let fieldSortable = Sortable.create(fields, {
             handle: '.sort-handle',
             animation: 150,
             direction: 'vertical',
             onEnd: function(evt) {
-                dataset.updateFieldsOrder(reportId, datasetId, sortable.toArray()).then(response => {
+                dataset.updateFieldsOrder(reportId, datasetId, fieldSortable.toArray()).then(response => {
+
+                    notify.success(response.data.successMessage);
+                }).catch(error => {
+
+                });
+            }
+        });
+
+    }
+
+
+    let filters = document.getElementById('datasetFilters');
+
+    if (filters) {
+
+        let filterSortable = Sortable.create(filters, {
+            handle: '.sort-handle',
+            animation: 150,
+            direction: 'vertical',
+            onEnd: function(evt) {
+                dataset.updateFiltersOrder(reportId, datasetId, filterSortable.toArray()).then(response => {
 
                     notify.success(response.data.successMessage);
                 }).catch(error => {

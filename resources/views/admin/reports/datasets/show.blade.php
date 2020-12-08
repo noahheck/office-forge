@@ -61,10 +61,15 @@
 
                     @if ($dataset->filters()->count() > 0)
 
-                        <div class="list-group">
+                        <div class="list-group" id="datasetFilters">
                             @foreach ($dataset->filters as $filter)
-                                <a class="list-group-item list-group-item-action" href="{{ route('admin.reports.datasets.filters.edit', [$report, $dataset, $filter]) }}">
-                                    {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $filterDescriptor->descriptorForFilter($filter) }}
+                                <a class="list-group-item list-group-item-action d-flex" href="{{ route('admin.reports.datasets.filters.edit', [$report, $dataset, $filter]) }}" data-id="{{ $filter->id }}">
+                                    <div class="flex-grow-1">
+                                        {!! $dataset->datasetable->icon(['fa-fw', 'mr-2']) !!}{{ $filterDescriptor->descriptorForFilter($filter) }}
+                                    </div>
+                                    <div class="flex-grow-0 pl-3 sort-handle cursor-grabbing">
+                                        {!! \App\icon\verticalSort([]) !!}
+                                    </div>
                                 </a>
                             @endforeach
                         </div>

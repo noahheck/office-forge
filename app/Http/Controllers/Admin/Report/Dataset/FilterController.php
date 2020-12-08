@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Reports\Datasets\Filters\Store as StoreRequest;
 use App\Http\Requests\Admin\Reports\Datasets\Filters\Update as UpdateRequest;
 use App\Jobs\Report\Dataset\Filter\Create;
 use App\Jobs\Report\Dataset\Filter\Update;
+use App\Jobs\Report\Dataset\Filter\UpdateOrder;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Filter;
@@ -187,5 +188,16 @@ class FilterController extends Controller
         flash_info(__('admin.filter_deleted'));
 
         return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
+    }
+
+
+
+    public function updateOrder(Request $request, Report $report, Dataset $dataset)
+    {
+        $this->dispatchNow($fieldsOrdered = new UpdateOrder($dataset, $request->orderedFilters));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.filters_ordered'),
+        ]);
     }
 }

@@ -226,6 +226,7 @@ return [
     'filter_created' => 'Filter created',
     'filter_updated' => 'Filter updated',
     'filter_deleted' => 'Filter deleted',
+    'filters_ordered' => 'Dataset filters order updated',
 
 
     'dataset_field_description' => 'After your Dataset has been filtered, you can specify which Fields from that result set should be output in the report. Select Fields that will allow you to review and visualize pieces of the records that help you interpret the information in the report meaningfully.',

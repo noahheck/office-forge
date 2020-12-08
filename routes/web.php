@@ -213,7 +213,9 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::post('/reports/{report}/datasets/update-order', 'Report\DatasetController@updateOrder')->name('reports.datasets.update-order');
 
         Route::resource('reports.datasets', 'Report\DatasetController');
+
         Route::resource('reports.datasets.filters', 'Report\Dataset\FilterController');
+        Route::post('/reports/{report}/datasets/{dataset}/filters/update-order', 'Report\Dataset\FilterController@updateOrder')->name('reports.datasets.filters.update-order');
 
         Route::resource('reports.datasets.fields', 'Report\Dataset\FieldController');
         Route::post('/reports/{report}/datasets/{dataset}/fields/update-order', 'Report\Dataset\FieldController@updateOrder')->name('reports.datasets.fields.update-order');

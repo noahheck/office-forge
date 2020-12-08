@@ -57,6 +57,11 @@ class Filter extends Model
         return $this->belongsTo(Dataset::class, 'dataset_id');
     }
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('order');
+    }
+
 
 
 

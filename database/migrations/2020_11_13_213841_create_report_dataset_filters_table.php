@@ -17,6 +17,7 @@ class CreateReportDatasetFiltersTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('dataset_id');
+            $table->integer('order');
             $table->string('field_id');
             $table->string('operator');
             $table->string('value_1')->nullable();

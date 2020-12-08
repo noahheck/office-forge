@@ -26,6 +26,20 @@ dataset.updateFieldsOrder = function (reportId, datasetId, orderedFields) {
   return ajax.post(route, data);
 };
 
+dataset.updateFiltersOrder = function (reportId, datasetId, orderedFilters) {
+  var route = {
+    name: "admin.reports.datasets.filters.update-order",
+    params: {
+      report: reportId,
+      dataset: datasetId
+    }
+  };
+  var data = {
+    orderedFilters: orderedFilters
+  };
+  return ajax.post(route, data);
+};
+
 module.exports = dataset;
 
 /***/ }),
@@ -59,12 +73,27 @@ $(function () {
   var fields = document.getElementById('datasetFields');
 
   if (fields) {
-    var sortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(fields, {
+    var fieldSortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(fields, {
       handle: '.sort-handle',
       animation: 150,
       direction: 'vertical',
       onEnd: function onEnd(evt) {
-        dataset.updateFieldsOrder(reportId, datasetId, sortable.toArray()).then(function (response) {
+        dataset.updateFieldsOrder(reportId, datasetId, fieldSortable.toArray()).then(function (response) {
+          notify.success(response.data.successMessage);
+        })["catch"](function (error) {});
+      }
+    });
+  }
+
+  var filters = document.getElementById('datasetFilters');
+
+  if (filters) {
+    var filterSortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(filters, {
+      handle: '.sort-handle',
+      animation: 150,
+      direction: 'vertical',
+      onEnd: function onEnd(evt) {
+        dataset.updateFiltersOrder(reportId, datasetId, filterSortable.toArray()).then(function (response) {
           notify.success(response.data.successMessage);
         })["catch"](function (error) {});
       }

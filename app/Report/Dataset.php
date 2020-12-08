@@ -36,7 +36,7 @@ class Dataset extends Model
 
     public function filters()
     {
-        return $this->hasMany(Filter::class, 'dataset_id');
+        return $this->hasMany(Filter::class, 'dataset_id')->ordered();
     }
 
     public function fields()

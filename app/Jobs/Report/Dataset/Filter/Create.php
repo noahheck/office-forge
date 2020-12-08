@@ -50,6 +50,8 @@ class Create
         $filter = new Filter;
 
         $filter->dataset_id = $this->dataset->id;
+        $filter->order = $this->dataset->filters()->max('order') + 1;
+
         $filter->field_id = $this->field_id;
         $filter->operator = $this->operator;
         $filter->value_1 = $this->value1;

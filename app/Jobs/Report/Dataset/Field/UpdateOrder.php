@@ -45,20 +45,5 @@ class UpdateOrder
             $field->order = $fieldOrderMap[$field->id] + 1;
             $field->save();
         }
-
-        /*$datasetOrderMap = array_flip($this->orderedDatasetIds);
-
-        $datasets = $this->report->datasets;
-
-        foreach ($datasets as $dataset) {
-
-            if (!array_key_exists($dataset->id, $datasetOrderMap)) {
-
-                continue;
-            }
-
-            $dataset->order = $datasetOrderMap[$dataset->id] + 1;
-            $dataset->save();
-        }*/
     }
 }
