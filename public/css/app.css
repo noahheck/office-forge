@@ -13726,26 +13726,26 @@ trix-editor:empty:not(:focus)::before {
 }
 
 .editor-content h2 {
-  font-size: 1.8em;
+  font-size: 1.4em;
   margin: 10px 0 6px 0;
   font-weight: bold;
 }
 
 @media (max-width: 767.98px) {
   .editor-content h2 {
-    font-size: 1.4em;
+    font-size: 1.3em;
   }
 }
 
 .editor-content h3 {
-  font-size: 1.4em;
+  font-size: 1.2em;
   margin: 8px 0 6px 0;
   font-weight: bold;
 }
 
 @media (max-width: 767.98px) {
   .editor-content h3 {
-    font-size: 1.25em;
+    font-size: 1.12em;
   }
 }
 
