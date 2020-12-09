@@ -53,6 +53,22 @@ class Create
 
         $file->accessLocks()->sync($this->accessLocks);
 
+        // Add empty entry for each FileType Form Field for this new File
+        $allFields = [];
+
+        $this->fileType->loadMissing('forms', 'forms.fields');
+
+        foreach ($this->fileType->forms as $form) {
+            foreach ($form->fields as $field) {
+                $allFields[] = [
+                    'file_id' => $file->id,
+                    'file_type_form_field_id' => $field->id,
+                ];
+            }
+        }
+
+        $file->formFieldValues()->createMany($allFields);
+
         $this->file = $file;
     }
 }

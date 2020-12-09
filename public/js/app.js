@@ -29817,7 +29817,7 @@ function isCodeAllowed(code, hasDecimal) {
     return true;
   }
 
-  if (code >= 35 && code <= 57 || code >= 96 && code <= 105) {
+  if (code >= 35 && code <= 57 || code >= 96 && code <= 105 || [109, 173].indexOf(code) !== -1) {
     return true;
   }
 
@@ -29841,14 +29841,23 @@ $(function () {
 
     if (!isCodeAllowed(charCode, hasDecimal)) {
       return false;
+    }
+
+    var curCursorPosition = e.target.selectionStart; // Allow negative sign to be added at the beginning of the sequence
+
+    if ([109, 173].indexOf(charCode) !== -1) {
+      if (curVal.match(/-/)) {
+        return false;
+      }
+
+      return curCursorPosition === 0;
     } // Limit the content to 2 decimal places
 
 
     if (hasDecimal) {
       var numDecimalPlaces = $this.data('decimalPlaces'); // Account for 0-based indexing
 
-      var decimalPosition = curVal.indexOf('.') + 1;
-      var curCursorPosition = e.target.selectionStart; // Cursor is on the left side of the decimal
+      var decimalPosition = curVal.indexOf('.') + 1; // Cursor is on the left side of the decimal
 
       if (curCursorPosition < decimalPosition) {
         return true;
@@ -29860,6 +29869,12 @@ $(function () {
         return false;
       }
     }
+  }).change(function (e) {
+    // The browser doesn't let us distinguish between - and _ keycodes, so if a _ was added, we'll change it to a
+    // - after the change event
+    var $this = $(this);
+    var curVal = $this.val();
+    $this.val(curVal.replace("_", "-"));
   });
 });
 
@@ -30009,7 +30024,7 @@ function isCodeAllowed(code) {
     return true;
   }
 
-  if (code >= 35 && code <= 57 || code >= 96 && code <= 105) {
+  if (code >= 35 && code <= 57 || code >= 96 && code <= 105 || [109, 173].indexOf(code) !== -1) {
     return true;
   }
 
@@ -30031,6 +30046,16 @@ $(function () {
 
     if (!isCodeAllowed(charCode)) {
       return false;
+    }
+
+    var curCursorPosition = e.target.selectionStart; // Allow negative sign to be added at the beginning of the sequence
+
+    if ([109, 173].indexOf(charCode) !== -1) {
+      if (curVal.match(/-/)) {
+        return false;
+      }
+
+      return curCursorPosition === 0;
     }
   });
 });
@@ -30061,7 +30086,7 @@ function isCodeAllowed(code, hasDecimal) {
     return true;
   }
 
-  if (code >= 35 && code <= 57 || code >= 96 && code <= 105) {
+  if (code >= 35 && code <= 57 || code >= 96 && code <= 105 || [109, 173].indexOf(code) !== -1) {
     return true;
   }
 
@@ -30084,13 +30109,22 @@ $(function () {
 
     if (!isCodeAllowed(charCode, hasDecimal)) {
       return false;
+    }
+
+    var curCursorPosition = e.target.selectionStart; // Allow negative sign to be added at the beginning of the sequence
+
+    if ([109, 173].indexOf(charCode) !== -1) {
+      if (curVal.match(/-/)) {
+        return false;
+      }
+
+      return curCursorPosition === 0;
     } // Limit the content to 2 decimal places
 
 
     if (hasDecimal) {
       // Account for 0-based indexing
-      var decimalPosition = curVal.indexOf('.') + 1;
-      var curCursorPosition = e.target.selectionStart; // Cursor is on the left side of the decimal
+      var decimalPosition = curVal.indexOf('.') + 1; // Cursor is on the left side of the decimal
 
       if (curCursorPosition < decimalPosition) {
         return true;
@@ -30102,6 +30136,12 @@ $(function () {
         return false;
       }
     }
+  }).change(function (e) {
+    // The browser doesn't let us distinguish between - and _ keycodes, so if a _ was added, we'll change it to a
+    // - after the change event
+    var $this = $(this);
+    var curVal = $this.val();
+    $this.val(curVal.replace("_", "-"));
   });
 });
 
