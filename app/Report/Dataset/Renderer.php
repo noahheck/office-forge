@@ -81,11 +81,6 @@ class Renderer
 
         $dataset->load('fields');
 
-        if ($dataset->isFileType()) {
-
-            $dataset->load('fields.field');
-        }
-
         // Apply non-numeric field filters to dataset here, then get instances
         foreach ($dataset->instanceAttributeFilters() as $filter) {
 

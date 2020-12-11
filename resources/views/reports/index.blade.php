@@ -131,7 +131,7 @@
 
         <div class="col-12 col-md-8 col-xl-9 print-full">
 
-            @if ($report)
+            @if ($compiledReport)
 
                 <div class="row justify-content-center document-print-container">
 
@@ -142,7 +142,7 @@
                             <div class="card-body">
 
                                 @include('reports._report', [
-                                    'report' => $report,
+                                    'compiledReport' => $compiledReport,
                                 ])
 
                             </div>

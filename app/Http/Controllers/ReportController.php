@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Report;
+use App\Report\RuntimeValues;
+use App\Report\Compiler;
 use App\Report\Provider;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,9 +16,9 @@ class ReportController extends Controller
         Provider $reportProvider,
         User $user,
         Report $reportModel,
-        Report\Dataset\Renderer $datasetRenderer
-    )
-    {
+        Report\Dataset\Renderer $datasetRenderer,
+        Compiler $reportCompiler
+    ) {
         $reports = $reportProvider->getReportsAccessibleByUser($request->user(), null);
 
         $userOptions = $user->active()->ordered()->get();
@@ -31,12 +33,17 @@ class ReportController extends Controller
         $date_to = $request->query('date_to', '');
 
         $report = false;
+        $compiledReport = false;
 
         if ($report_id) {
             $report = $reportModel->find($report_id);
+            $report->load('datasets', 'datasets.datasetable', 'datasets.datasetable', 'datasets.fields', 'datasets.fields');
 
-//            $report->load('datasets', 'datasets.datasetable', 'datasets.datasetable', 'datasets.fields', 'datasets.fields.field');
+            $runtimeValues = RuntimeValues::fromRequest($request);
+
+            $compiledReport = $reportCompiler->compileReport($report, $runtimeValues);
         }
+
 
         $datasetRenderer->setReportOptions($request->user(), $user_id, $date, $date_from, $date_to);
 
@@ -50,7 +57,8 @@ class ReportController extends Controller
             'date_from',
             'date_to',
             'report',
-            'datasetRenderer'
+            'datasetRenderer',
+            'compiledReport'
         ));
     }
 }

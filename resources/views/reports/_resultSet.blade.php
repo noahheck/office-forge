@@ -1,15 +1,17 @@
 {{--
 
 --}}
-<h4>{{ $dataset->name }}</h4>
+<h4>{{ $resultSet->name }}</h4>
 
 {{-- Visualizations here --}}
+
+
 
 <div class="table-responsive">
     <table class="table table-sm">
         <caption>
-            {{ Str::plural($dataset->datasetable->name) }}
-            @foreach($dataset->filters as $filter)
+            {{ Str::plural($resultSet->dataset->datasetable->name) }}
+            @foreach($resultSet->dataset->filters as $filter)
                 @if($loop->first)
                     -
                 @else
@@ -20,16 +22,18 @@
         </caption>
         <thead>
             <tr>
-                @foreach($datasetRenderer->headers($dataset) as $header)
+                @foreach($resultSet->headers() as $header)
                     <th>{{ $header }}</th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach($datasetRenderer->records($dataset) as $record)
+            @foreach ($resultSet->records() as $record)
                 <tr>
-                    @foreach ($record as $column)
-                        <td>{!! nl2br(e($column)) !!}</td>
+                    <td>{{ $record->resource->name }}</td>
+
+                    @foreach ($record->fields() as $field)
+                        <td>{!! nl2br(e($field->label)) !!}</td>
                     @endforeach
                 </tr>
             @endforeach

@@ -29,7 +29,7 @@ class ViewServiceProvider extends ServiceProvider
         );
 
         View::composer(
-            'reports._dataset', 'App\Http\View\Composers\Reports\DatasetComposer'
+            'reports._resultSet', 'App\Http\View\Composers\Reports\ResultSetComposer'
         );
 
 
