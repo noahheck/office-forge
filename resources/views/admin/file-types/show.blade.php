@@ -471,6 +471,79 @@
 
 
 
+
+
+
+
+
+
+
+                <div class="col-12 col-xl-6 mb-3">
+
+                    <div class="card">
+
+                        <div class="card-body">
+
+                            <div class="d-flex">
+
+                                <h3 class="h4 flex-grow-1 mb-0">
+                                    {!! \App\icon\reports(['mr-2']) !!}{{ __("report.reports") }}
+                                </h3>
+
+                                <a href="{{ route('admin.reports.create', ['file_type_id' => $fileType]) }}" class="btn btn-sm btn-primary">
+                                    {!! \App\icon\circlePlus(['mr-1']) !!}{{ __('admin.newReport') }}
+                                </a>
+
+                            </div>
+                            <hr>
+
+                            @if($fileType->reports->count() > 0)
+
+                                <ul class="list-group fileType-resource-list-group">
+
+                                    @foreach ($fileType->reports as $report)
+
+                                        <li class="list-group-item">
+                                            <a href="{{ route('admin.reports.show', [$report]) }}">{{ $report->name }}</a>
+                                            {{-- Will be outputting the team restrictions here as well --}}
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            @else
+
+                                <div class="text-center">
+
+                                    <div class="empty-resource">
+                                        {!! \App\icon\reports(['empty-resource-icon']) !!}
+                                    </div>
+
+                                    <p>{{ __('admin.report_description') }}</p>
+
+                                    <hr>
+
+                                    <a class="btn btn-primary" href="{{ route('admin.reports.create', ['file_type_id' => $fileType]) }}">{{ __('admin.report_createFirstReportNow') }}</a>
+
+                                </div>
+
+                            @endif
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+
             </div>
 
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\FileType;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Reports\Store as StoreRequest;
 use App\Http\Requests\Admin\Reports\Update as UpdateRequest;
@@ -41,9 +42,19 @@ class ReportController extends Controller
         $report->filter_date = 0;
         $report->active = true;
 
+        if ($file_type_id = $request->file_type_id) {
+            $report->file_type_id = $file_type_id;
+        }
+
         $teamOptions = Team::orderBy('name')->get();
 
-        return $this->view('admin.reports.create', compact('report', 'teamOptions'));
+        $fileTypeSelectOptions = FileType::orderBy('name')->get();
+
+        return $this->view('admin.reports.create', compact(
+            'report',
+            'teamOptions',
+            'fileTypeSelectOptions'
+        ));
     }
 
     /**
@@ -60,7 +71,8 @@ class ReportController extends Controller
             $request->has('filter_user'),
             $request->filter_date,
             $request->has('active'),
-            $request->teams
+            $request->teams,
+            $request->file_type_id
         ));
 
         flash_success(__('admin.report_created'));

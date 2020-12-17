@@ -23,6 +23,8 @@ return [
     'addNew' => 'Add New',
     'createNew' => 'Create New',
     'continue' => 'Continue',
+    'from' => 'From',
+    'to' => 'To',
     'skipToContent' => 'Skip to content',
     'noResults' => 'No Results',
     'accessDetails' => 'Access Details',
@@ -33,6 +35,7 @@ return [
     'sureDeleteThis' => 'Are you sure you want to delete this?',
 
     'date' => 'Date',
+    'dateRange' => 'Date Range',
     'time' => 'Time',
     'dateTime' => 'Date/Time',
 

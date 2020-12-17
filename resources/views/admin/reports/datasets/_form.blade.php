@@ -29,22 +29,29 @@
 
             @errors('datasetable_type')
 
-            @selectField([
-                'name' => 'datasetable_type',
-                'label' => __('report.dataset_whatKindOfData'),
-                'details' => '',
-                'value' => old('datasetable_type', $dataset->datasetable_type),
-                'options' => [
-                    'App\FileType' => __('app.files'),
-                    'App\FormDoc\Template' => __('app.formDocs'),
-                ],
-                'placeholder' => __('report.dataset_whatKindOfData'),
-                'required' => true,
-                'autofocus' => false,
-                'error' => $errors->has('datasetable_type'),
-                'readonly' => false,
-                'fieldOnly' => false,
-            ])
+            @if($report->file_type_id)
+                @hiddenField([
+                    'name' => 'datasetable_type',
+                    'value' => 'App\FormDoc\Template',
+                ])
+            @else
+                @selectField([
+                    'name' => 'datasetable_type',
+                    'label' => __('report.dataset_whatKindOfData'),
+                    'details' => '',
+                    'value' => old('datasetable_type', $dataset->datasetable_type),
+                    'options' => [
+                        'App\FileType' => __('app.files'),
+                        'App\FormDoc\Template' => __('app.formDocs'),
+                    ],
+                    'placeholder' => __('report.dataset_whatKindOfData'),
+                    'required' => true,
+                    'autofocus' => false,
+                    'error' => $errors->has('datasetable_type'),
+                    'readonly' => false,
+                    'fieldOnly' => false,
+                ])
+            @endif
 
             <div class="datasetable_type_option_container d-none" id="App_FileType_datasetable_type_option_container">
 

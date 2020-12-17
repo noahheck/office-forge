@@ -6,7 +6,7 @@
 @endpush
 
 @push('scripts')
-    @script('js/page.reports.js')
+    @script('js/page._reports.js')
 @endpush
 
 @include("_component._location-bar", [

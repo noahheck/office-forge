@@ -105,7 +105,19 @@
                     @endadmin
 
                 </div>
+
             </div>
+
+            @if ($reports->count() > 0)
+                <a class="card shadow mb-3" href="{{ route('files.reports', [$file]) }}">
+                    <div class="card-footer">
+                        <h4 class="mb-0">
+                            {!! \App\icon\reports(['mr-2']) !!}
+                            {{ __('app.reports') }}
+                        </h4>
+                    </div>
+                </a>
+            @endif
 
             @if ($forms->count() > 0)
                 <div class="card shadow">

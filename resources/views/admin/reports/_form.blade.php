@@ -15,7 +15,7 @@
                 @fileTypeSelectField([
                     'name' => 'file_type_id',
                     'label' => __('app.fileType'),
-                    'value' => $template->file_type_id,
+                    'value' => $report->file_type_id,
                     'fileTypes' => $fileTypeSelectOptions,
                     'placeholder' => '',
                     'description' => '',

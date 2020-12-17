@@ -13,8 +13,6 @@ $(function() {
 
         let selectedValue = $datasetableType.val().replace(/\\/gi, '_');
 
-        console.log(selectedValue);
-
         $(".datasetable_type_option_container").addClass('d-none');
         $("#" + selectedValue + "_datasetable_type_option_container").removeClass('d-none');
     }

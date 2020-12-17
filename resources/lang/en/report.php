@@ -2,6 +2,8 @@
 
 return [
 
+    'report' => 'Report',
+    'reports' => 'Reports',
     'name' => 'Name',
     'description' => 'Description',
     'active' => 'Active',
@@ -61,5 +63,11 @@ return [
 
     'fields' => 'Fields',
     'field_s' => 'Field|Fields',
+
+
+
+    'selectAReport' => 'Select a Report',
+    'dateRange' => 'Date Range',
+    'generate' => 'Generate',
 
 ];

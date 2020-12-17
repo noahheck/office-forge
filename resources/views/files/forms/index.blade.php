@@ -15,12 +15,6 @@
 
         <div class="card-body">
 
-            <h1 class="h2">
-                {!! $file->icon() !!} {{ $file->name }}
-            </h1>
-
-            <hr>
-
             <h2 class="h4">
                 {!! \App\icon\forms(['mr-2']) !!}{{ __('file.forms') }}
             </h2>

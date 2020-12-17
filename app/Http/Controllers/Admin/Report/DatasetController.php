@@ -50,9 +50,11 @@ class DatasetController extends Controller
         return $datasetableId;
     }
 
-    private function getFormDocTemplateOptions()
+    private function getFormDocTemplateOptions($report)
     {
-        $templates = $this->templateProvider->getAllTemplates(false);
+        $fileTypeFilter = ($report->file_type_id) ? true : false;
+
+        $templates = $this->templateProvider->getAllTemplates($fileTypeFilter, $report->file_type_id);
 
         $templates->load('fileType');
 
@@ -87,13 +89,13 @@ class DatasetController extends Controller
      * @param  \App\Report  $report
      * @return \Illuminate\Http\Response
      */
-    public function create(Report $report, TemplateProvider $templateProvider)
+    public function create(Report $report)
     {
         $dataset = new Dataset;
         $dataset->report_id = $report->id;
 
         $fileTypeOptions = FileType::ordered()->get();
-        $formDocTemplateOptions = $this->getFormDocTemplateOptions();
+        $formDocTemplateOptions = $this->getFormDocTemplateOptions($report);
 
         return $this->view('admin.reports.datasets.create', compact(
             'report',
@@ -151,7 +153,7 @@ class DatasetController extends Controller
     public function edit(Report $report, Dataset $dataset)
     {
         $fileTypeOptions = FileType::ordered()->get();
-        $formDocTemplateOptions = $this->getFormDocTemplateOptions();
+        $formDocTemplateOptions = $this->getFormDocTemplateOptions($report);
 
         return $this->view('admin.reports.datasets.edit', compact(
             'report',

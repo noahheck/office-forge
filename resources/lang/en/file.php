@@ -154,4 +154,8 @@ return [
     'formDoc_active' => 'Active',
 
     'formDoc_noFormDocsForThisFileType' => 'There are no FormDocs for you to fill out for this :fileType',
+
+
+    'reports_noReportsToView' => "You don't have access to any Reports for this file.",
+
 ];

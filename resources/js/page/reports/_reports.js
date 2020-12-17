@@ -1,5 +1,5 @@
 /**
- * js/page/reports/reports.js
+ * js/page/reports/_reports.js
  */
 
 let $ = require('jquery');

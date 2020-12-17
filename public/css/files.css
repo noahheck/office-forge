@@ -256,10 +256,12 @@ hr.separator {
 }
 
 @media (min-width: 768px) {
-  .file-resource .file-identifier {
+  .file-resource .resource-sidebar {
     position: -webkit-sticky;
     position: sticky;
     top: 120px;
+    max-height: calc(100vh - 120px - 15px);
+    overflow-y: auto;
   }
 }
 

@@ -16,6 +16,7 @@ class Create
     private $filter_date;
     private $active;
     private $teams;
+    private $file_type_id;
 
     private $report;
 
@@ -24,7 +25,7 @@ class Create
      *
      * @return void
      */
-    public function __construct($name, $description, $filter_user, $filter_date, $active, $teams)
+    public function __construct($name, $description, $filter_user, $filter_date, $active, $teams, $file_type_id)
     {
         $this->name = $name;
         $this->description = $description;
@@ -32,6 +33,7 @@ class Create
         $this->filter_date = $filter_date;
         $this->active = $active;
         $this->teams = $teams;
+        $this->file_type_id = $file_type_id;
     }
 
     public function getReport(): Report
@@ -52,6 +54,7 @@ class Create
         $report->filter_user = $this->filter_user;
         $report->filter_date = $this->filter_date;
         $report->active = $this->active;
+        $report->file_type_id = $this->file_type_id;
 
         $report->save();
 

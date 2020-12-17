@@ -25,6 +25,7 @@
 
                     @include('admin.reports._form', [
                         'action' => route('admin.reports.store'),
+                        'canSelectFileType' => true,
                     ])
 
                 </div>

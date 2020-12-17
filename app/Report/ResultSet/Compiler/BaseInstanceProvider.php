@@ -30,6 +30,12 @@ class BaseInstanceProvider
 
         $dataset->loadMissing('fields');
 
+        if ($runtimeValues->file_id) {
+
+            // Will be the FormDoc query builder
+            $instancesQueryBuilder->where('file_id', $runtimeValues->file_id);
+        }
+
         // Apply instance field filters to dataset here, then get instance ids
         foreach ($dataset->instanceAttributeFilters() as $filter) {
 

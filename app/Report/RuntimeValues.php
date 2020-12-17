@@ -15,6 +15,8 @@ class RuntimeValues
     public $user;
     public $generatingUser;
 
+    public $file_id;
+
     public function __construct($date, $date_from, $date_to, $user, $generatingUser)
     {
         $this->date = $date;
@@ -31,5 +33,12 @@ class RuntimeValues
         $filters = new static($request->date, $request->date_from, $request->date_to, $user, $request->user());
 
         return $filters;
+    }
+
+    public function withFileId($file_id)
+    {
+        $this->file_id = $file_id;
+
+        return $this;
     }
 }

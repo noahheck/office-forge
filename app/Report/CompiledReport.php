@@ -45,7 +45,7 @@ class CompiledReport
 
     public function __get($name)
     {
-        if ($this->properties[$name] ?? false) {
+        if (array_key_exists($name, $this->properties)) {
 
             return $this->properties[$name];
         }

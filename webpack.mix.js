@@ -61,7 +61,7 @@ mix
 
     // Reports
     .sass('resources/sass/reports.scss', 'public/css')
-    .js('resources/js/page/reports/reports.js', 'public/js/page.reports.js')
+    .js('resources/js/page/reports/_reports.js', 'public/js/page._reports.js')
 
     // Admin
     .sass('resources/sass/admin.scss', 'public/css')
