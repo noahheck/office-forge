@@ -3,7 +3,6 @@
 namespace App\Http\View\Composers\Reports;
 
 use App\Report\Dataset\Filter\Descriptor;
-use App\Report\Dataset\Renderer;
 use Illuminate\View\View;
 
 class ResultSetComposer
