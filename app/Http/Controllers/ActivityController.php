@@ -62,7 +62,7 @@ class ActivityController extends Controller
     public function create(Request $request)
     {
         $activity = new Activity();
-        $activity->due_date = now();
+        $activity->due_date = $request->user()->today();
         $activity->owner_id = $request->user()->id;
 
         $file = ($fileId = $request->query('file_id')) ? File::find($fileId) : false;
