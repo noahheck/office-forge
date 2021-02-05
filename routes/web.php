@@ -42,6 +42,11 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     Route::post('/editor-images', 'EditorImageController@upload')->name('editor-images.upload');
     Route::get('/editor-images/{editorImage}', 'EditorImageController@show')->name('editor-images.show');
 
+    // Resource files
+    Route::post('/resource-files', 'ResourceFileController@uploadFiles')->name('resource-files.upload');
+    Route::get('/resource-files/{resourceFile}/preview/{filename}', 'ResourceFileController@preview')->name('resource-files.preview');
+    Route::get('/resource-files/{resourceFile}/download/{filename}', 'ResourceFileController@downloadFile')->name('resource-files.download');
+    Route::delete('/resource-files/{resourceFile}', 'ResourceFileController@delete')->name('resource-files.delete');
 
     // Help Docs
     Route::get('/manual/{key?}', 'ManualController@index')->name('manual');

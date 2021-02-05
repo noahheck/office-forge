@@ -39,6 +39,7 @@ return [
     'preview' => 'Preview',
 
     'itemUpdated' => ':itemName updated',
+    'itemDeleted' => ':itemName deleted',
     'options' => 'Options',
     'moreOptions' => 'More Options',
 

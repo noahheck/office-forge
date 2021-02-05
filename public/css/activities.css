@@ -90,23 +90,84 @@
           align-items: flex-end;
 }
 
-.projects .headshot {
+/**
+ * sass/_resource-files.scss
+ */
+
+/**
+ * sass/_mixins.scss
+ */
+
+.resource-files-cards-container .resource-file {
+  border: 1px solid #e3e3e3;
+  text-align: center;
+  margin-bottom: 15px;
+  box-shadow: 1px 2px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+.resource-files-cards-container .resource-file .thumbnail-container {
+  height: 58px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+}
+
+.resource-files-cards-container .resource-file .resource-file-thumbnail {
+  font-size: 48px;
+  max-height: 48px;
+  max-width: 100%;
+}
+
+.resource-files-cards-container .resource-file .title {
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  padding: 3px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.resource-files-cards-container .resource-file .actions a {
+  padding: 3px;
+}
+
+.resource-files-cards-container .resource-file .actions a:hover,
+.resource-files-cards-container .resource-file .actions a:focus {
+  background-color: #e3f3ff;
+}
+
+.resource-files-cards-container .resource-file .actions a:nth-child(2) {
+  border-left: 1px solid #e3e3e3;
+}
+
+.resource-files-cards-container .resource-file .actions button {
+  all: unset;
+  padding: 3px 5px;
+  cursor: pointer;
+  border-left: 1px solid #e3e3e3;
+}
+
+.resource-files-cards-container .resource-file .actions button:hover,
+.resource-files-cards-container .resource-file .actions button:focus {
+  color: red;
+  background-color: #fff3f3;
+}
+
+.projects .project-details .headshot {
   max-height: 30px;
   max-width: 30px;
 }
 
-.projects .user-icon {
+.projects .project-details .user-icon {
   max-height: 35px;
   padding: 2px;
-}
-
-.project .headshot {
-  max-height: 35px;
 }
 
 .project .project-details {
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.project .project-details .headshot {
+  max-height: 35px;
 }
 
 .project .project-details dd {

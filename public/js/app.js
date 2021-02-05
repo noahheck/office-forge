@@ -30508,6 +30508,10 @@ function (_Controller) {
 
         _this.acceptFiles(e.dataTransfer.files);
       });
+      var $formTarget = $(this.formTarget);
+      this.inputTarget.addEventListener("change", function (e) {
+        $formTarget.submit();
+      });
     }
   }, {
     key: "showUploadingIndicator",
@@ -30565,7 +30569,7 @@ function (_Controller) {
   }], [{
     key: "targets",
     get: function get() {
-      return ["container", "form"];
+      return ["container", "form", "input"];
     }
   }]);
 
