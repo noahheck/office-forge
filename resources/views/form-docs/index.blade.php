@@ -19,11 +19,11 @@ form-docs--index
 
 @section('content')
 
-    <button class="form-docs--filters-display-button" id="formDocsFiltersDisplayButton">
+    <button class="form-docs--filters-display-button no-print" id="formDocsFiltersDisplayButton">
         {!! \App\icon\filterOptions(['icon']) !!}
     </button>
 
-    <button class="form-docs--list-display-button" id="formDocsListDisplayButton">
+    <button class="form-docs--list-display-button no-print" id="formDocsListDisplayButton">
         {!! \App\icon\forms(['icon']) !!}
     </button>
 
