@@ -1,9 +1,17 @@
 {{--
-
+Usage, e.g.:
+@if ($activity->resourceFiles->count() > 0)
+    @include("_resource-files.cards", [
+        'resourceFiles' => $activity->resourceFiles,
+    ])
+@endif
 --}}
+@php
+$resourceFiles->loadMissing('resource', 'headshots');
+@endphp
 <div class="resource-files-cards-container row">
     @foreach ($resourceFiles as $file)
-        <div class="col-6 col-sm-4 col-lg-3 ssscol-xl-2">
+        <div class="col-6 col-sm-4 col-lg-3">
 
             <div class="resource-file" title="{{ $file->name }}">
                 <div class="thumbnail-container">
@@ -23,6 +31,20 @@
                             <span class="sr-only">{{ __('app.preview') }}</span>
                         </a>
                     @endif
+                    @can('delete', $file)
+                        <form action="{{ route('resource-files.delete', [$file]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $file->name }}">
+                            @csrf
+                            @method('DELETE')
+                            @hiddenField([
+                                'name' => 'return',
+                                'value' => url()->current(),
+                            ])
+                            <button type="submit" class="flex-grow-0">
+                                {!! \App\icon\trash() !!}
+                                <span class="sr-only">{{ __('app.delete') }}</span>
+                            </button>
+                        </form>
+                    @endcan
                 </div>
             </div>
 

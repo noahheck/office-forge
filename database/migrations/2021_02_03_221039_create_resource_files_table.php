@@ -25,6 +25,8 @@ class CreateResourceFilesTable extends Migration
             $table->bigInteger('uploaded_by');
 
             $table->timestamps();
+
+            $table->bigInteger('deleted_by')->nullable();
             $table->softDeletes();
         });
     }

@@ -6,6 +6,7 @@ use App\Jobs\ResourceFile\Create;
 use App\ResourceFile;
 use Illuminate\Contracts\Filesystem\Filesystem;
 use Illuminate\Http\Request;
+use function App\flash_info;
 use function App\flash_success;
 
 class ResourceFileController extends Controller
@@ -56,9 +57,8 @@ class ResourceFileController extends Controller
     public function preview(Request $request, ResourceFile $resourceFile, $filename)
     {
         $user = $request->user();
-        $resource = $resourceFile->resource;
 
-        abort_unless($user->can('view', $resource), 403);
+        abort_unless($user->can('view', $resourceFile), 403);
 
         return response()->file($this->filesystem->path('/resource-files/' . $resourceFile->filename), [
             'Content-Disposition' => 'inline',
@@ -69,9 +69,8 @@ class ResourceFileController extends Controller
     public function downloadFile(Request $request, ResourceFile $resourceFile, $filename)
     {
         $user = $request->user();
-        $resource = $resourceFile->resource;
 
-        abort_unless($user->can('view', $resource), 403);
+        abort_unless($user->can('view', $resourceFile), 403);
 
         return response()->file($this->filesystem->path('/resource-files/' . $resourceFile->filename), [
             'Content-Disposition' => 'attachment; filename="' . $resourceFile->name . '"',
@@ -79,4 +78,21 @@ class ResourceFileController extends Controller
             ->setLastModified($resourceFile->updated_at);
     }
 
+    public function delete(Request $request, ResourceFile $resourceFile)
+    {
+        $user = $request->user();
+
+        abort_unless($user->can('delete', $resourceFile), 403);
+
+        $filename = $resourceFile->name;
+
+        $resourceFile->deleted_by = $user->id;
+        $resourceFile->save();
+
+        $resourceFile->delete();
+
+        flash_info(__('app.itemDeleted', ['itemName' => $filename]));
+
+        return redirect($request->return);
+    }
 }
