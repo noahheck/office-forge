@@ -9,7 +9,7 @@ let $ = require('jquery');
 export default class extends Controller {
 
     static get targets () {
-        return [ "container", "form" ];
+        return [ "container", "form", "input" ];
     }
 
     connect() {
@@ -31,6 +31,12 @@ export default class extends Controller {
             this.showUploadingIndicator();
 
             this.acceptFiles(e.dataTransfer.files);
+        });
+
+        let $formTarget = $(this.formTarget);
+
+        this.inputTarget.addEventListener("change", (e) => {
+            $formTarget.submit();
         });
     }
 

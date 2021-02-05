@@ -151,6 +151,11 @@ class Activity extends Model
         return $this->belongsTo(Process::class);
     }
 
+    public function resourceFiles()
+    {
+        return $this->morphMany(ResourceFile::class, 'resource');
+    }
+
 
 
     public function earliestOpenTaskWithDueDate()

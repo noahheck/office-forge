@@ -5,6 +5,7 @@
 @push('styles')
     @style('css/activities.css')
     @style('css/document.css')
+    @style('css/fileStore.css')
 @endpush
 
 @push('scripts')
@@ -24,7 +25,49 @@
     <div class="row project justify-content-center document-print-container">
 
         <div class="col-12 col-md-10 document-container">
-            <div class="card shadow document">
+
+            @can('update', $activity)
+
+                <div class="card shadow document drag-drop-file-upload-target" data-controller="drag-drop-file-upload" data-target="drag-drop-file-upload.container">
+
+                    <form action="{{ route('resource-files.upload') }}" class="drag-drop-file-upload-form" method="POST" enctype="multipart/form-data" data-target="drag-drop-file-upload.form">
+
+                        @csrf
+
+                        @hiddenField([
+                            'name' => 'return',
+                            'value' => url()->current(),
+                        ])
+
+                        @hiddenField([
+                            'name' => 'resource_type',
+                            'value' => get_class($activity),
+                        ])
+
+                        @hiddenField([
+                            'name' => 'resource_id',
+                            'value' => $activity->id,
+                        ])
+
+                        <input type="file" id="resourceFiles_input" name="files[]" class="d-none show-for-sr" multiple data-target="drag-drop-file-upload.input">
+
+                        <label for="resourceFiles_input">
+                            {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $activity->getFullName()]))) !!}
+                        </label>
+
+                        <span class="files-are-uploading-indicator">
+                            {!! \App\icon\spinner(['fa-spin']) !!}
+                        </span>
+
+                    </form>
+
+            @else
+
+                <div class="card shadow document">
+
+            @endcan
+
+
                 <div class="card-body">
 
                     <div class="border-bottom mb-3">
@@ -175,6 +218,27 @@
                                     <em>{{ __('activity.noDetails') }}</em>
                                 </p>
                             @endunless
+
+
+                            <h4 class="separator">
+                                <span>
+                                    {!! \App\icon\mediaFile(['mr-1']) !!}{{ __('activity.mediaFiles') }}
+                                </span>
+                            </h4>
+
+                            @if ($activity->resourceFiles->count() > 0)
+                                @include("_resource-files.cards", [
+                                    'resourceFiles' => $activity->resourceFiles,
+                                ])
+                            @endif
+
+                            @can('update', $activity)
+                                <label for="resourceFiles_input" class="btn btn-sm btn-primary">
+                                    {!! \App\icon\mediaFileUpload(['mr-1']) !!}{{ __('activity.uploadFile') }}
+                                </label>
+                            @endcan
+
+
 
 
                             @if ($activity->formDocs->count() > 0)
