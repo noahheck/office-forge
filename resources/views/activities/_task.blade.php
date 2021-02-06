@@ -35,7 +35,7 @@
                 @endif
                 @if ($task->completed)
                     <span title="{{ __('activity.completed') }} {{ \App\format_datetime($task->completed_at) }}">
-                        {!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_date($task->completed_at) }}
+                        {!! \App\icon\calendarCheck(['mr-1']) !!}{{ \App\format_datetime($task->completed_at, 'm/d/Y') }}
                     </span>
                 @endif
             </div>

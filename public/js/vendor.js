@@ -60377,15 +60377,18 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/sortablejs/modular/sortable.complete.esm.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/sortablejs/modular/sortable.complete.esm.js ***!
-  \******************************************************************/
-/*! exports provided: default */
+/***/ "./node_modules/sortablejs/modular/sortable.esm.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/sortablejs/modular/sortable.esm.js ***!
+  \*********************************************************/
+/*! exports provided: default, MultiDrag, Sortable, Swap */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MultiDrag", function() { return MultiDragPlugin; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Sortable", function() { return Sortable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Swap", function() { return SwapPlugin; });
 /**!
  * Sortable 1.13.0
  * @author	RubaXa   <trash@rubaxa.org>
@@ -64095,10 +64098,8 @@ function removeMultiDragElements() {
 Sortable.mount(new AutoScrollPlugin());
 Sortable.mount(Remove, Revert);
 
-Sortable.mount(new SwapPlugin());
-Sortable.mount(new MultiDragPlugin());
-
 /* harmony default export */ __webpack_exports__["default"] = (Sortable);
+
 
 
 /***/ }),
@@ -64296,7 +64297,7 @@ __webpack_require__(/*! axios */"./node_modules/axios/index.js");
 __webpack_require__(/*! bootstrap-datepicker */"./node_modules/bootstrap-datepicker/dist/js/bootstrap-datepicker.js");
 __webpack_require__(/*! bootstrap-select */"./node_modules/bootstrap-select/dist/js/bootstrap-select.js");
 __webpack_require__(/*! trix */"./node_modules/trix/dist/trix.js");
-module.exports = __webpack_require__(/*! sortablejs */"./node_modules/sortablejs/modular/sortable.complete.esm.js");
+module.exports = __webpack_require__(/*! sortablejs */"./node_modules/sortablejs/modular/sortable.esm.js");
 
 
 /***/ })
