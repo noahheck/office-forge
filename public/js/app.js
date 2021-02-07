@@ -31198,6 +31198,24 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/**
+ * We use this to determine if the drag event is being initiated by dragging an element present on the HTML page. Files
+ * dragged in from the OS don't fire the 'dragstart' or 'dragend' events, so we know if these events are fired, they
+ * originate from within the page and aren't a file being dragged in for upload
+ * @type {boolean}
+ */
+
+
+var browserDrag = false;
+window.addEventListener('dragstart', function (e) {
+  browserDrag = true;
+}, false);
+window.addEventListener('dragend', function (e) {
+  browserDrag = false;
+}, false);
+window.addEventListener('drop', function (e) {
+  browserDrag = false;
+}, false);
 
 var _default =
 /*#__PURE__*/
@@ -31215,20 +31233,36 @@ function (_Controller) {
     value: function connect() {
       var _this = this;
 
+      // We use dragTimer to remove the dropzone highlight on a timer because dragleave seems to fire continuously in
+      // chromium
+      var dragTimer;
       ['dragenter', 'dragover'].forEach(function (eventName) {
         _this.containerTarget.addEventListener(eventName, function (e) {
+          if (browserDrag) {
+            return;
+          }
+
           _this.highlightDropArea();
 
           e.preventDefault();
+          window.clearTimeout(dragTimer);
         }, false);
       });
       ['dragleave'].forEach(function (eventName) {
         _this.containerTarget.addEventListener(eventName, function (e) {
-          _this.unHighlightDropArea();
+          dragTimer = setTimeout(function (e) {
+            _this.unHighlightDropArea();
+          }, 25);
         }, false);
       });
       this.containerTarget.addEventListener("drop", function (e) {
         e.preventDefault();
+
+        if (!e.dataTransfer.files.length) {
+          _this.unHighlightDropArea();
+
+          return;
+        }
 
         _this.showUploadingIndicator();
 
