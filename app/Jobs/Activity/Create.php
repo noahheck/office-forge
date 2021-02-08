@@ -126,6 +126,8 @@ class Create
                     $file,
                     $activity,
                     $this->creator,
+                    $this->creator->today(),
+                    $this->creator->today(),
                     false,
                     []
                 ));

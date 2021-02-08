@@ -668,6 +668,11 @@ function file_csv($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function file_attachment($classes = []) {
+    $classes[] = "fas fa-paperclip";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
 
 
 

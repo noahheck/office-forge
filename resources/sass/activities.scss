@@ -5,30 +5,35 @@
 @import "variables";
 @import "mixins";
 @import "_component/form-doc";
+@import "_resource-files";
 
 .projects {
 
-    .headshot {
-        max-height: 30px;
-        max-width: 30px;
-    }
+    .project-details {
 
-    .user-icon {
-        max-height: 35px;
-        padding: 2px;
+        .headshot {
+            max-height: 30px;
+            max-width: 30px;
+        }
+
+        .user-icon {
+            max-height: 35px;
+            padding: 2px;
+        }
     }
 }
 
 .project {
 
-    .headshot {
-        max-height: 35px;
-    }
 
     .project-details {
 
         padding-top: 10px;
         padding-bottom: 10px;
+
+        .headshot {
+            max-height: 35px;
+        }
 
         dd {
 

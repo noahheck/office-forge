@@ -50,7 +50,7 @@
                             'value' => $folder->id,
                         ])
 
-                        <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple>
+                        <input type="file" id="files_input" name="files" class="d-none show-for-sr" multiple data-target="drag-drop-file-upload.input">
 
                         <label for="files_input">
                             {!! nl2br(e(__('fileStore.dropFilesToTarget', ['target' => $folder->name]))) !!}

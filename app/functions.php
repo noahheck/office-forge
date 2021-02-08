@@ -84,7 +84,14 @@ function format_time($dateTime = null) {
     return $dateTime->copy()->tz($userTimezone)->format('g:i a');
 }
 
-function format_datetime($datetime) {
+/**
+ * Formats Datetime in user's timezone
+ *
+ * @param \Carbon\Carbon $datetime
+ * @param string $format
+ * @return mixed|string
+ */
+function format_datetime($datetime, $format = 'm/d/Y g:ia') {
 
     static $userTimezone = false;
 
@@ -92,7 +99,7 @@ function format_datetime($datetime) {
         $userTimezone = \Auth::user()->timezone;
     }
 
-    return ($datetime) ? $datetime->copy()->tz($userTimezone)->format('m/d/Y g:ia') : '';
+    return ($datetime) ? $datetime->copy()->tz($userTimezone)->format($format) : '';
 }
 
 function format_date_string($dateString) {

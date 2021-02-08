@@ -41,7 +41,7 @@ class Create
         bool $active,
         bool $administrator,
         bool $system_administrator,
-        array $accessKeys = []
+        array $accessKeys = null
     )
     {
         $this->name                 = $name;

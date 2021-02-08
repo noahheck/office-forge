@@ -41,7 +41,7 @@ module.exports = panel;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.complete.esm.js");
+/* harmony import */ var sortablejs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sortablejs */ "./node_modules/sortablejs/modular/sortable.esm.js");
 /**
  * js/page/admin/file-types/forms/show.js
  */
@@ -343,7 +343,7 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 22:
+/***/ 21:
 /*!*****************************************************************!*\
   !*** multi ./resources/js/page/admin/file-types/panels/show.js ***!
   \*****************************************************************/
@@ -355,4 +355,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[22,"/js/manifest","/js/vendor"]]]);
+},[[21,"/js/manifest","/js/vendor"]]]);
