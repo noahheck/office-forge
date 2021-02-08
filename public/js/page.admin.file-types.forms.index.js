@@ -305,7 +305,7 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 16:
+/***/ 17:
 /*!*****************************************************************!*\
   !*** multi ./resources/js/page/admin/file-types/forms/index.js ***!
   \*****************************************************************/
@@ -317,4 +317,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[16,"/js/manifest","/js/vendor"]]]);
+},[[17,"/js/manifest","/js/vendor"]]]);
