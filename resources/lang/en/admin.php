@@ -208,7 +208,8 @@ return [
     'filter_createFirstFilterNow' => 'Create your first Filter now!',
     'deleteFilter' => 'Delete Filter',
 
-    'filter_filterFormInformation' => 'You are establishing a filter to narrow down the :dataset Dataset which contains :dataType records.',
+    // Make sure to escape the dataset name and record type names as they are provided by users
+    'filter_filterFormInformation' => 'You are establishing a filter to narrow down the ' . \App\icon\datasets([]) . ' <strong>:dataset</strong> Dataset which contains :dataTypeIcon <strong>:dataType</strong> records.',
     'filter_fieldToFilter' => 'Please select a field in the Dataset to apply this filter to:',
     'filter_operator' => 'Records will be included where this field',
 
@@ -237,7 +238,7 @@ return [
     'dataset_field_createFirstFieldNow' => 'Add your first Field to this Dataset now!',
     'dataset_deleteField' => 'Delete Field',
 
-    'dataset_field_fieldFormInformation' => 'You are selecting a Field to appear on the :dataset Dataset which contains :dataType records.',
+    'dataset_field_fieldFormInformation' => 'You are selecting a Field to appear on the ' . \App\icon\datasets([]) . ' <strong>:dataset</strong> Dataset which contains :dataTypeIcon <strong>:dataType</strong> records.',
     'dataset_field_fieldToAppear' => 'Please select a field in the Dataset to appear in the Report:',
     'dataset_field_label' => 'Indicate how this Field should be labeled in the Dataset:',
     'dataset_field_labelDescription' => 'Shorter labels can help improve the aesthetics and readability of the report.',

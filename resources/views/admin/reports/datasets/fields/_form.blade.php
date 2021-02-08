@@ -19,7 +19,7 @@
         <div class="col-12">
 
             <p>
-                {{ __('admin.dataset_field_fieldFormInformation', ['dataset' => $dataset->name, 'dataType' => $dataset->datasetable->name]) }}
+                {!! __('admin.dataset_field_fieldFormInformation', ['dataset' => e($dataset->name), 'dataTypeIcon' => $dataset->datasetable->icon(), 'dataType' => e($dataset->datasetable->name)]) !!}
             </p>
 
             <hr>

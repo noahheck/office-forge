@@ -64,7 +64,7 @@ if ($report->filter_date === \App\Report::REPORT_FILTER_DATE_RANGE) {
         <div class="col-12">
 
             <p>
-                {{ __('admin.filter_filterFormInformation', ['dataset' => $dataset->name, 'dataType' => $dataset->datasetable->name]) }}
+                {!! __('admin.filter_filterFormInformation', ['dataset' => e($dataset->name), 'dataTypeIcon' => $dataset->datasetable->icon(), 'dataType' => e($dataset->datasetable->name)]) !!}
             </p>
 
             <hr>
