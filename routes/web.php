@@ -228,6 +228,7 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::resource('reports.datasets.fields', 'Report\Dataset\FieldController');
         Route::post('/reports/{report}/datasets/{dataset}/fields/update-order', 'Report\Dataset\FieldController@updateOrder')->name('reports.datasets.fields.update-order');
 
+        Route::resource('reports.datasets.visualizations', 'Report\Dataset\VisualizationController');
 
         // Processes
         Route::resource('/processes', 'ProcessController');

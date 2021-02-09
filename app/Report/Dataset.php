@@ -7,6 +7,7 @@ use App\FormDoc\Template;
 use App\Report;
 use App\Report\Dataset\Field;
 use App\Report\Dataset\Filter;
+use App\Report\Dataset\Visualization;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -42,6 +43,11 @@ class Dataset extends Model
     public function fields()
     {
         return $this->hasMany(Field::class, 'dataset_id')->orderBy('order');
+    }
+
+    public function visualizations()
+    {
+        return $this->hasMany(Visualization::class, 'dataset_id')->ordered();
     }
 
     public function isFileType(): bool

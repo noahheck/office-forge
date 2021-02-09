@@ -372,6 +372,12 @@ function datasetFields($classes = []) {
     return "<span class='" . implode(' ', $classes) . "'></span>";
 }
 
+function visualizations($classes = []) {
+    $classes[] = "fas fa-chart-area";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
 
 
 // Activities
