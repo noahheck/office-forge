@@ -14,7 +14,7 @@ class Visualization extends Model
     public static function visualizationTypeOptions()
     {
         return collect([
-            self::VISUALIZATION_TYPE_TOTAL_RECORDS_COUNT => __('report.visualizationType_totalRecordsCount'),
+            self::VISUALIZATION_TYPE_TOTAL_RECORDS_COUNT => __('report.visualizationType_total_records_count'),
         ]);
     }
 

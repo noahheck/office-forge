@@ -70,7 +70,7 @@ return [
     'visualizations' => 'Visualizations',
     'visualization_s' => 'Visualization|Visualizations',
 
-    'visualizationType_totalRecordsCount' => 'Total Records Count',
+    'visualizationType_total_records_count' => 'Total Records Count',
 
 
 

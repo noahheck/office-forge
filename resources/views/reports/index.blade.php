@@ -120,7 +120,7 @@
                         <hr>
 
                         <button type="submit" class="btn btn-primary btn-sm">
-                            Generate
+                            {{ __('report.generate') }}
                         </button>
                     </form>
 

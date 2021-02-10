@@ -16,6 +16,8 @@ class ResultSet
         'name' => '',
     ];
 
+    private $visualizations;
+
     /**
      * @var Collection
      */
@@ -28,7 +30,14 @@ class ResultSet
         $this->properties['dataset'] = $dataset;
         $this->properties['name'] = $dataset->name;
 
+        $this->visualizations = $dataset->visualizations;
+
         $this->records = collect([]);
+    }
+
+    public function visualizations()
+    {
+        return $this->visualizations;
     }
 
     public function addRecord(Record $record)

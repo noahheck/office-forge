@@ -32,7 +32,7 @@ class Validator
 
         if (in_array($field_id, ['date', 'created_date'])) {
             $filterType = 'date';
-        } elseif ($field_id === 'created_by') {
+        } elseif (in_array($field_id, ['created_by', 'creator_id'])) {
             $filterType = 'user';
         } else {
             $field = $dataset->datasetableTemplateFieldType()::find($field_id);

@@ -1,11 +1,26 @@
 {{--
 
 --}}
-<h4>{{ $resultSet->name }}</h4>
+<h4 class="resultSet-name">{{ $resultSet->name }}</h4>
 
 {{-- Visualizations here --}}
 
+@foreach ($resultSet->visualizations() as $visualization)
 
+    @if ($loop->first)
+        <div class="row mb-5">
+    @endif
+
+    @include('reports._visualizations.' . $visualization->type, [
+        'resultSet' => $resultSet,
+        'visualization' => $visualization,
+    ])
+
+    @if ($loop->last)
+        </div>
+    @endif
+
+@endforeach
 
 <div class="table-responsive">
     <table class="table table-sm">

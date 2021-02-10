@@ -5,9 +5,12 @@
 
 <hr>
 
-<div class="editor-content mb-3">
-    {!! \App\safe_text_editor_content($compiledReport->description) !!}
-</div>
+@if ($compiledReport->description)
+    <div class="editor-content mb-3">
+        {!! \App\safe_text_editor_content($compiledReport->description) !!}
+    </div>
+    <hr>
+@endif
 
 @foreach ($compiledReport->resultSets() as $resultSet)
 
