@@ -66,6 +66,14 @@ return [
 
 
 
+    'visualization' => 'Visualization',
+    'visualizations' => 'Visualizations',
+    'visualization_s' => 'Visualization|Visualizations',
+
+    'visualizationType_totalRecordsCount' => 'Total Records Count',
+
+
+
     'selectAReport' => 'Select a Report',
     'dateRange' => 'Date Range',
     'generate' => 'Generate',

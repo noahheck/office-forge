@@ -118,6 +118,7 @@
                                         <small>
                                             {!! \App\icon\filters(['mr-1']) !!}{{ $dataset->filters->count() }} {{ trans_choice('report.filter_s', $dataset->filters->count()) }}
                                             - {!! \App\icon\datasetFields(['mr-1']) !!}{{ $dataset->fields->count() }} {{ trans_choice('report.field_s', $dataset->fields->count()) }}
+                                            - {!! \App\icon\visualizations(['mr-1']) !!}{{ $dataset->visualizations->count() }} {{ trans_choice('report.visualization_s', $dataset->visualizations->count()) }}
                                         </small>
                                     </div>
                                     <div class="flex-grow-0 pl-3 sort-handle cursor-grabbing">

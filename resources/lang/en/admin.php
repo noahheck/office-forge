@@ -246,7 +246,22 @@ return [
     'dataset_field_created' => 'Field added to Dataset',
     'dataset_field_updated' => 'Dataset Field updated',
     'dataset_field_deleted' => 'Field removed from Dataset',
-    'dataset_fields_ordered' => 'Dataset fields order updated',
+    'dataset_fields_ordered' => 'Dataset Fields order updated',
+
+
+    'dataset_visualization_description' => 'Once your Dataset contains records, you can display that information in a variety of ways. Totals, averages, line charts, and pie charts can help you identify trends, spot opportunities, and illustrate your business data eloquently.',
+    'dataset_newVisualization' => 'New Visualization',
+    'dataset_newVisualization_shortDescription' => 'Add a new Visualization to a Dataset',
+    'dataset_visualization_createFirstFieldNow' => 'Add your first Visualization to this Dataset now!',
+
+    'dataset_visualization_label' => 'Label',
+    'dataset_visualization_labelDescription' => '',
+    'dataset_visualization_type' => 'Visualization Type',
+
+    'dataset_visualization_created' => 'Visualization added to Dataset',
+    'dataset_visualization_updated' => 'Dataset Visualization updated',
+    'dataset_visualization_deleted' => 'Visualization removed from Dataset',
+    'dataset_visualizations_ordered' => 'Dataset Visualizations order updated',
 
 
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',
