@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin\Report\Dataset;
 
 use App\Http\Controllers\Controller;
 use App\Jobs\Report\Dataset\Visualization\Create;
+use App\Jobs\Report\Dataset\Visualization\Update;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Visualization;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\Reports\Datasets\Visualizations\Store as StoreRequest;
+use App\Http\Requests\Admin\Reports\Datasets\Visualizations\Update as UpdateRequest;
+use function App\flash_info;
 use function App\flash_success;
 
 class VisualizationController extends Controller
@@ -79,7 +82,11 @@ class VisualizationController extends Controller
      */
     public function show(Report $report, Dataset $dataset, Visualization $visualization)
     {
-        //
+        return $this->view('admin.reports.datasets.visualizations.show', compact(
+            'report',
+            'dataset',
+            'visualization'
+        ));
     }
 
     /**
@@ -90,7 +97,11 @@ class VisualizationController extends Controller
      */
     public function edit(Report $report, Dataset $dataset, Visualization $visualization)
     {
-        //
+        return $this->view('admin.reports.datasets.visualizations.edit', compact(
+            'report',
+            'dataset',
+            'visualization'
+        ));
     }
 
     /**
@@ -100,9 +111,22 @@ class VisualizationController extends Controller
      * @param  \App\Report\Dataset\Visualization  $visualization
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report, Dataset $dataset, Visualization $visualization)
+    public function update(UpdateRequest $request, Report $report, Dataset $dataset, Visualization $visualization)
     {
-        //
+        $this->dispatchNow($visualizationUpdated = new Update(
+            $visualization,
+            $request->label,
+            $request->type
+        ));
+
+        flash_success(__('admin.dataset_visualization_updated'));
+
+        if ($return = $request->return) {
+
+            return redirect($return);
+        }
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 
     /**
@@ -113,6 +137,10 @@ class VisualizationController extends Controller
      */
     public function destroy(Report $report, Dataset $dataset, Visualization $visualization)
     {
-        //
+        $visualization->delete();
+
+        flash_info(__('admin.dataset_visualization_deleted'));
+
+        return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
     }
 }

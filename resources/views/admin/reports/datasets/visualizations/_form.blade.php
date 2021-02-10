@@ -22,7 +22,7 @@
                 {!! __('admin.dataset_field_fieldFormInformation', ['dataset' => e($dataset->name), 'dataTypeIcon' => $dataset->datasetable->icon(), 'dataType' => e($dataset->datasetable->name)]) !!}
             </p>--}}
 
-            <hr>
+{{--            <hr>--}}
 
             {{--<div class="form-group required">
                 <label for="field_id">{{ __('admin.dataset_field_fieldToAppear') }}</label>
@@ -111,12 +111,12 @@
 
         <hr>
 
-        <form action="{{ route("admin.reports.datasets.fields.destroy", [$report, $dataset, $field]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $field->label }}">
+        <form action="{{ route("admin.reports.datasets.visualizations.destroy", [$report, $dataset, $visualization]) }}" method="POST" class="confirm-delete-form" data-delete-item-title="{{ $visualization->label }}">
             @csrf
             @method('DELETE')
             <button type="submit" class="btn btn-danger btn-sm">
                 {!! \App\icon\trash() !!}
-                {{ __('admin.dataset_deleteField') }}
+                {{ __('admin.dataset_deleteVisualization') }}
             </button>
         </form>
 

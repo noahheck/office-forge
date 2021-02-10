@@ -253,6 +253,9 @@ return [
     'dataset_newVisualization' => 'New Visualization',
     'dataset_newVisualization_shortDescription' => 'Add a new Visualization to a Dataset',
     'dataset_visualization_createFirstFieldNow' => 'Add your first Visualization to this Dataset now!',
+    'dataset_editVisualization' => 'Edit Visualization',
+    'dataset_editVisualization_shortDescription' => 'Edit a Visualization in a Dataset',
+    'dataset_deleteVisualization' => 'Delete Visualization',
 
     'dataset_visualization_label' => 'Label',
     'dataset_visualization_labelDescription' => '',
