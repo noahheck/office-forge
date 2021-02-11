@@ -57,4 +57,24 @@ $(function() {
 
     }
 
+
+    let visualizations = document.getElementById('datasetVisualizations');
+
+    if (visualizations) {
+
+        let visualizationSortable = Sortable.create(visualizations, {
+            handle: '.sort-handle',
+            animation: 150,
+            direction: 'vertical',
+            onEnd: function(evt) {
+                dataset.updateVisualizationsOrder(reportId, datasetId, visualizationSortable.toArray()).then(response => {
+
+                    notify.success(response.data.successMessage);
+                }).catch(error => {
+
+                });
+            }
+        });
+    }
+
 });

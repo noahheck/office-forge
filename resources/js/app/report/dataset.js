@@ -36,4 +36,20 @@ dataset.updateFiltersOrder = function(reportId, datasetId, orderedFilters) {
     return ajax.post(route, data);
 }
 
+dataset.updateVisualizationsOrder = function(reportId, datasetId, orderedVisualizations) {
+    let route = {
+        name: "admin.reports.datasets.visualizations.update-order",
+        params: {
+            report: reportId,
+            dataset: datasetId
+        }
+    };
+
+    let data = {
+        orderedVisualizations: orderedVisualizations
+    };
+
+    return ajax.post(route, data);
+}
+
 module.exports = dataset;

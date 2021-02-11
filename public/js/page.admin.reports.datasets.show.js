@@ -40,6 +40,20 @@ dataset.updateFiltersOrder = function (reportId, datasetId, orderedFilters) {
   return ajax.post(route, data);
 };
 
+dataset.updateVisualizationsOrder = function (reportId, datasetId, orderedVisualizations) {
+  var route = {
+    name: "admin.reports.datasets.visualizations.update-order",
+    params: {
+      report: reportId,
+      dataset: datasetId
+    }
+  };
+  var data = {
+    orderedVisualizations: orderedVisualizations
+  };
+  return ajax.post(route, data);
+};
+
 module.exports = dataset;
 
 /***/ }),
@@ -94,6 +108,21 @@ $(function () {
       direction: 'vertical',
       onEnd: function onEnd(evt) {
         dataset.updateFiltersOrder(reportId, datasetId, filterSortable.toArray()).then(function (response) {
+          notify.success(response.data.successMessage);
+        })["catch"](function (error) {});
+      }
+    });
+  }
+
+  var visualizations = document.getElementById('datasetVisualizations');
+
+  if (visualizations) {
+    var visualizationSortable = sortablejs__WEBPACK_IMPORTED_MODULE_0__["default"].create(visualizations, {
+      handle: '.sort-handle',
+      animation: 150,
+      direction: 'vertical',
+      onEnd: function onEnd(evt) {
+        dataset.updateVisualizationsOrder(reportId, datasetId, visualizationSortable.toArray()).then(function (response) {
           notify.success(response.data.successMessage);
         })["catch"](function (error) {});
       }

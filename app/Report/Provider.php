@@ -21,7 +21,7 @@ class Provider
 
     public function getReportsAccessibleByUser(User $user, $fileTypeId = null)
     {
-        $reports = $this->report->ordered()->where('file_type_id', $fileTypeId)->get();
+        $reports = $this->report->ordered()->where('file_type_id', $fileTypeId)->where('active', true)->get();
 
         $reports->load('teams');
 

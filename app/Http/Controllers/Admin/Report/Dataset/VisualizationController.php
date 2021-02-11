@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Report\Dataset;
 use App\Http\Controllers\Controller;
 use App\Jobs\Report\Dataset\Visualization\Create;
 use App\Jobs\Report\Dataset\Visualization\Update;
+use App\Jobs\Report\Dataset\Visualization\UpdateOrder;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Visualization;
@@ -144,5 +145,15 @@ class VisualizationController extends Controller
         flash_info(__('admin.dataset_visualization_deleted'));
 
         return redirect()->route('admin.reports.datasets.show', [$report, $dataset]);
+    }
+
+
+    public function updateOrder(Request $request, Report $report, Dataset $dataset)
+    {
+        $this->dispatchNow($visualizationsOrdered = new UpdateOrder($dataset, $request->orderedVisualizations));
+
+        return $this->json(true, [
+            'successMessage' => __('admin.dataset_visualizations_ordered'),
+        ]);
     }
 }
