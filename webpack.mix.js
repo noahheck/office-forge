@@ -97,6 +97,10 @@ mix
         //Datasets/Filters
         .js('resources/js/page/admin/reports/datasets/filters/_form.js', 'public/js/page.admin.reports.datasets.filters._form.js')
 
+        //Datasets/Visualizations
+        .js('resources/js/page/admin/reports/datasets/visualizations/_form.js', 'public/js/page.admin.reports.datasets.visualizations._form.js')
+
+
 
 
 

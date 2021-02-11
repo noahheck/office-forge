@@ -4,7 +4,7 @@ namespace App;
 
 use App\Utility\RandomColorGenerator;
 use Illuminate\Support\Str;
-use function foo\func;
+//use function foo\func;
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/strings.php";
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/icons.php";

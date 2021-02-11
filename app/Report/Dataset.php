@@ -50,6 +50,26 @@ class Dataset extends Model
         return $this->hasMany(Visualization::class, 'dataset_id')->ordered();
     }
 
+    public function sumOrAverageableFieldOptions()
+    {
+        $sumOrAverageableFieldTypes = collect([
+            Field::FIELD_OPTION_TYPE_RANGE,
+            Field::FIELD_OPTION_TYPE_INTEGER,
+            Field::FIELD_OPTION_TYPE_DECIMAL,
+            Field::FIELD_OPTION_TYPE_MONEY,
+        ]);
+
+        return $this->fields->filter(function($field) use ($sumOrAverageableFieldTypes) {
+
+            if ($field->isImplicitField()) {
+
+                return false;
+            }
+
+            return $sumOrAverageableFieldTypes->contains($field->templateField->field_type);
+        });
+    }
+
     public function isFileType(): bool
     {
         return $this->datasetable_type === FileType::class;

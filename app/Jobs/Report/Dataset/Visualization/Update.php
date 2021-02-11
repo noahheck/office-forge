@@ -12,17 +12,19 @@ class Update
     private $visualization;
     private $label;
     private $type;
+    private $field_id;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Visualization $visualization, $label, $type)
+    public function __construct(Visualization $visualization, $label, $type, $field_id)
     {
         $this->visualization = $visualization;
         $this->label = $label;
         $this->type = $type;
+        $this->field_id = $field_id;
     }
 
     /**
@@ -35,6 +37,7 @@ class Update
         $visualization = $this->visualization;
         $visualization->label = $this->label;
         $visualization->type = $this->type;
+        $visualization->field_id = $this->field_id;
 
         $visualization->save();
     }

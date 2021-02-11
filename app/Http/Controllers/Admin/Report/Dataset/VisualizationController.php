@@ -61,7 +61,8 @@ class VisualizationController extends Controller
         $this->dispatchNow($visualizationCreated = new Create(
             $dataset,
             $request->label,
-            $request->type
+            $request->type,
+            $request->sum_average_field_id
         ));
 
         flash_success(__('admin.dataset_visualization_created'));
@@ -116,7 +117,8 @@ class VisualizationController extends Controller
         $this->dispatchNow($visualizationUpdated = new Update(
             $visualization,
             $request->label,
-            $request->type
+            $request->type,
+            $request->sum_average_field_id
         ));
 
         flash_success(__('admin.dataset_visualization_updated'));

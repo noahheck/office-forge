@@ -37,7 +37,7 @@ class Compiler
                 $columnValue = $instance->$attrColumnAccessor;
 
                 $record->addField(new Field(
-                    $field_id, $columnValue, $this->getStringValueFromValue($columnValue)
+                    $field->id, $field_id, $columnValue, $this->getStringValueFromValue($columnValue)
                 ));
 
                 continue;
@@ -47,7 +47,7 @@ class Compiler
 
 
             if (!$value) {
-                $record->addField(new Field($field_id, '', ''));
+                $record->addField(new Field($field->id, $field_id, '', ''));
 
                 continue;
             }
@@ -58,7 +58,7 @@ class Compiler
                 $value->field_type = $field->field->field_type;
             }
 
-            $record->addField(new Field($field_id, $value, $this->getOutputValueFromValue($value)));
+            $record->addField(new Field($field->id, $field_id, $value, $this->getOutputValueFromValue($value)));
 
         }
 

@@ -3,6 +3,7 @@
 namespace App\Report\Dataset;
 
 use App\Report\Dataset;
+use App\Report\Dataset\Field\ImplicitField;
 use Illuminate\Database\Eloquent\Model;
 
 class Field extends Model
@@ -56,6 +57,10 @@ class Field extends Model
         return $this->morphTo('template_field', null, 'field_id');
     }
 
+    public function isImplicitField()
+    {
+        return $this->template_field_type === ImplicitField::class;
+    }
 
     public static function isValidReportableFieldType($fieldType)
     {

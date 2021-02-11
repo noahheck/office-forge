@@ -5,7 +5,10 @@
         </div>
         <div class="card-body text-center">
             <span class="display-3">
-                {{ $resultSet->records()->count() }}
+                {{ $resultSet->records()->sum(function($record) use ($visualization) {
+                        return $record->fields()->firstWhere('datasetFieldId', $visualization->field_id)->label;
+                    })
+                }}
             </span>
         </div>
     </div>

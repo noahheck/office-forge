@@ -71,6 +71,8 @@ return [
     'visualization_s' => 'Visualization|Visualizations',
 
     'visualizationType_total_records_count' => 'Total Records Count',
+    'visualizationType_field_value_sum' => 'Field Value Sum',
+    'visualizationType_field_value_average' => 'Field Value Average',
 
 
 

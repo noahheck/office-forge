@@ -11,7 +11,7 @@
         <div class="row mb-5">
     @endif
 
-    @include('reports._visualizations.' . $visualization->type, [
+    @includeIf('reports._visualizations.' . $visualization->type, [
         'resultSet' => $resultSet,
         'visualization' => $visualization,
     ])

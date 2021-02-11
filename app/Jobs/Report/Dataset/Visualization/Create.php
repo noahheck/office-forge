@@ -13,6 +13,7 @@ class Create
     private $dataset;
     private $label;
     private $type;
+    private $field_id;
 
     private $visualization;
 
@@ -21,11 +22,12 @@ class Create
      *
      * @return void
      */
-    public function __construct(Dataset $dataset, $label, $type)
+    public function __construct(Dataset $dataset, $label, $type, $field_id)
     {
         $this->dataset = $dataset;
         $this->label = $label;
         $this->type = $type;
+        $this->field_id = $field_id;
     }
 
     public function getVisualization(): Visualization
@@ -44,6 +46,7 @@ class Create
         $visualization->dataset_id = $this->dataset->id;
         $visualization->label = $this->label;
         $visualization->type = $this->type;
+        $visualization->field_id = $this->field_id;
 
         $visualization->order = $this->dataset->visualizations()->max('order') + 1;
 

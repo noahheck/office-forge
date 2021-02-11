@@ -1,5 +1,5 @@
 @push('scripts')
-{{--    @script('js/page.admin.reports.datasets.fields._form.js')--}}
+    @script('js/page.admin.reports.datasets.visualizations._form.js')
 @endpush
 
 <form action="{{ $action }}" method="POST" class="bold-labels">
@@ -72,6 +72,29 @@
                 'readonly' => false,
                 'fieldOnly' => false,
             ])
+
+
+
+            <div class="visualization-type-options-container" id="visualizationTypeOptionsContainer">
+
+                <div class="visualization-type-options sssd-none" id="sum_averageOptions">
+                    @selectField([
+                        'name' => 'sum_average_field_id',
+                        'id' => 'sum_average_field_id',
+                        'label' => 'Which Report field do you want to apply this operation to?',
+                        'details' => '',
+                        'value' => old('sum_average_field_id', $visualization->field_id),
+                        'options' => $dataset->sumOrAverageableFieldOptions()->pluck('label', 'id'),
+                        'placeholder' => 'Select a field',
+                        'required' => false,
+                        'autofocus' => false,
+                        'error' => $errors->has('sum_average_field_id'),
+                        'readonly' => false,
+                        'fieldOnly' => false,
+                    ])
+                </div>
+
+            </div>
 
         </div>
 
