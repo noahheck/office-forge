@@ -3,7 +3,6 @@
 namespace App\Process;
 
 use App\Process;
-use App\Process\Instance\Task;
 use App\Traits\IsEditorResource;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
