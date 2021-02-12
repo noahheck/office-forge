@@ -30,21 +30,6 @@ class UpdateOrder
      */
     public function handle()
     {
-        //$filterOrderMap = array_flip($this->orderedFilterIds);
-        //
-        //        $filters = $this->dataset->filters;
-        //
-        //        foreach ($filters as $filter) {
-        //
-        //            if (!array_key_exists($filter->id, $filterOrderMap)) {
-        //
-        //                continue;
-        //            }
-        //
-        //            $filter->order = $filterOrderMap[$filter->id] + 1;
-        //            $filter->save();
-        //        }
-
         $visualizationOrderMap = array_flip($this->orderedVisualizationIds);
 
         $visualizations = $this->dataset->visualizations;
