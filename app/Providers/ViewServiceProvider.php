@@ -28,6 +28,10 @@ class ViewServiceProvider extends ServiceProvider
             'layouts.app', 'App\Http\View\Composers\Layouts\AppComposer'
         );
 
+        View::composer(
+            'reports._resultSet', 'App\Http\View\Composers\Reports\ResultSetComposer'
+        );
+
 
 
 
@@ -142,6 +146,7 @@ EOT;
         \Blade::include('_form/multi-select',      'multiSelectField');
         \Blade::include('_form/checkbox',          'checkboxField');
         \Blade::include('_form/checkboxSwitch',    'checkboxSwitchField');
+        \Blade::include('_form/radioGroup',        'radioGroupField');
         \Blade::include('_form/date',              'dateField');
         \Blade::include('_form/time',              'timeField');
         \Blade::include('_form/phone',             'phoneField');
@@ -159,6 +164,7 @@ EOT;
         \Blade::include('_form/file-type-select',  'fileTypeSelectField');
         \Blade::include('_form/file-search',       'fileSearchField');
 
+        \Blade::include('_component.text-editor-content', 'textEditorContent');
 
         \Blade::component('manual.components.tip', 'tip');
         \Blade::component('manual.components.note', 'note');

@@ -103,11 +103,17 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
     Route::post('/form-docs/download/spreadsheet', 'FormDocController@downloadSpreadsheet')->name('form-docs.download-spreadsheet');
 
 
+    // Reports
+    Route::get('/reports', 'ReportController@index')->name('reports.index');
+
     // Files
     Route::get('/files/search', 'FileController@search')->name('files.search');
     Route::resource('/files', 'FileController');
     Route::get('/files/{file}/access', 'FileController@access')->name('files.access');
     Route::namespace('File')->prefix('/files/{file}')->name('files.')->middleware('can:view,file')->group(function() {
+
+        // Reports
+        Route::get('/reports', 'ReportController@index')->name('reports');
 
         // Forms
         Route::get('/forms', 'FormController@index')->name('forms.index');
@@ -208,6 +214,22 @@ Route::middleware(['auth', 'user.active', 'server.setup'])->group(function() {
         Route::resource('form-docs.fields', 'FormDoc\FieldController');
         Route::post('/form-docs/{formDoc}/fields/update-order', 'FormDoc\FieldController@updateOrder')
             ->name('form-docs.fields.update-order');
+
+
+        // Reports
+        Route::resource('reports', 'ReportController');
+        Route::post('/reports/{report}/datasets/update-order', 'Report\DatasetController@updateOrder')->name('reports.datasets.update-order');
+
+        Route::resource('reports.datasets', 'Report\DatasetController');
+
+        Route::resource('reports.datasets.filters', 'Report\Dataset\FilterController');
+        Route::post('/reports/{report}/datasets/{dataset}/filters/update-order', 'Report\Dataset\FilterController@updateOrder')->name('reports.datasets.filters.update-order');
+
+        Route::resource('reports.datasets.fields', 'Report\Dataset\FieldController');
+        Route::post('/reports/{report}/datasets/{dataset}/fields/update-order', 'Report\Dataset\FieldController@updateOrder')->name('reports.datasets.fields.update-order');
+
+        Route::resource('reports.datasets.visualizations', 'Report\Dataset\VisualizationController');
+        Route::post('/reports/{report}/datasets/{dataset}/visualizations/update-order', 'Report\Dataset\VisualizationController@updateOrder')->name('reports.datasets.visualizations.update-order');
 
         // Processes
         Route::resource('/processes', 'ProcessController');

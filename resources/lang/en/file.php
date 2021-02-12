@@ -14,6 +14,8 @@ return [
     'active' => 'Active',
     'active_description' => 'FileType types marked inactive can not have new FileTypes of that type created',
 
+    'createdDate' => 'Created Date',
+    'createdBy' => 'Created By',
 
     'emptyFileType_description' => "FileTypes help you keep the information that's important to your business organized. They allow you to collect, track, and share all of the :fileTypeName information important to your organization.",
     'emptyFileType_openFirstNow' => 'Open your first :fileTypeName file now!',
@@ -152,4 +154,8 @@ return [
     'formDoc_active' => 'Active',
 
     'formDoc_noFormDocsForThisFileType' => 'There are no FormDocs for you to fill out for this :fileType',
+
+
+    'reports_noReportsToView' => "You don't have access to any Reports for this file.",
+
 ];

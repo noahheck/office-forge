@@ -17,7 +17,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p>{{ $details }}</p>
         @endif
 @endunless
     @if ($inputGroupAppendText ?? false)

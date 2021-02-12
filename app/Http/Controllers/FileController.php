@@ -8,6 +8,7 @@ use App\File;
 use App\File\Search;
 use App\FileType;
 use App\FormDoc\Template\TemplateProvider;
+use App\Report\Provider as ReportProvider;
 use App\Jobs\File\Create;
 use App\Jobs\File\Update;
 use App\Jobs\Headshottable\Upload;
@@ -145,7 +146,8 @@ class FileController extends Controller
         ActivityProvider $activityProvider,
         DocumentProvider $documentProvider,
         TemplateProvider $templateProvider,
-        ProcessProvider $processProvider
+        ProcessProvider $processProvider,
+        ReportProvider $reportProvider
     ) {
         $user     = $request->user();
 
@@ -174,6 +176,8 @@ class FileController extends Controller
         $drives = $fileType->drives->filter(function($drive) use($user) {
             return $user->can('view', $drive);
         });
+
+        $reports = $reportProvider->getReportsAccessibleByUser($user, $fileType->id);
 
         $formDocTemplates = $templateProvider->getTemplatesCreatableByUser($user, $file->file_type_id);
 
@@ -208,6 +212,7 @@ class FileController extends Controller
             'forms',
             'panels',
             'drives',
+            'reports',
             'processesToCreate',
             'values',
             'activities',

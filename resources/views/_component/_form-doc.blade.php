@@ -12,7 +12,7 @@ $__context = $context ?? false;
         <div class="details">
             <div class="doc-details">
                 @if ($formDoc->isSubmitted())
-                    <div>{{ \App\format_datetime($formDoc->submitted_at) }}</div>
+                    <div>{{ $formDoc->date }} {{ $formDoc->time }}</div>
                 @else
                     <div><small><strong>{{ __('formDoc.started') }}:</strong> {{ \App\format_datetime($formDoc->created_at) }}</small></div>
                 @endif

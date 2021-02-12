@@ -7,12 +7,21 @@ use App\FileType\AccessLock;
 use App\FileType\Form;
 use App\FileType\Panel;
 use App\FormDoc\Template;
+use App\Interfaces\Datasetable;
+use App\Report\Dataset\Filter;
+use App\Report\Dataset\Field;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class FileType extends Model
+class FileType extends Model implements Datasetable
 {
     use SoftDeletes;
+
+    const DATASET_FILTER_CREATED_DATE = 'created_date';
+    const DATASET_FILTER_CREATED_BY = 'created_by';
+
+    const DATASET_FIELD_CREATED_DATE = 'created_date';
+    const DATASET_FIELD_CREATED_BY = 'created_by';
 
     const DEFAULT_ICON = 'fas fa-address-book';
 
@@ -99,6 +108,11 @@ class FileType extends Model
         return $query->where('active', true);
     }
 
+    public function scopeOrdered($query)
+    {
+        return $query->orderBy('name', 'ASC');
+    }
+
     public function files()
     {
         return $this->hasMany(File::class, 'file_type_id');
@@ -127,6 +141,11 @@ class FileType extends Model
     public function formDocTemplates()
     {
         return $this->hasMany(Template::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
     }
 
     public function accessLocks()
@@ -160,5 +179,111 @@ class FileType extends Model
         }
 
         return $output;
+    }
+
+    public function instances()
+    {
+        return $this->files();
+    }
+
+    public function datasetableInstances()
+    {
+        return $this->instances();
+    }
+
+    public function instanceFieldValueRelationshipIdentifier()
+    {
+        return 'formFieldValues';
+    }
+
+    public function instanceFieldValueFieldIdentifier()
+    {
+        return 'file_type_form_field_id';
+    }
+
+    public function instanceFieldRecordIdentifier()
+    {
+        return 'file_id';
+    }
+
+
+
+    public function filterableFieldOptions()
+    {
+        static $fieldOptions = false;
+
+        if ($fieldOptions === false) {
+
+            $implicitFieldOptions = [
+                Filter::makeFilterOption(self::DATASET_FILTER_CREATED_DATE, __('file.createdDate'), Filter::FILTER_OPTION_TYPE_DATE, []),
+                Filter::makeFilterOption(self::DATASET_FILTER_CREATED_BY, __('file.createdBy'), Filter::FILTER_OPTION_TYPE_USER, []),
+            ];
+
+            $fieldOptions = [
+                $implicitFieldOptions,
+            ];
+
+            $this->loadMissing('forms', 'forms.activeFields');
+
+            foreach ($this->forms as $form) {
+
+                $formFields = [];
+
+                foreach ($form->activeFields as $field) {
+
+                    if (!Filter::isValidFilterFieldType($field->field_type)) {
+                        continue;
+                    }
+
+                    $formFields[] = Filter::makeFilterOption($field->id, $field->label, $field->field_type, $field->options);
+                }
+
+                if (count($formFields) > 0) {
+                    $fieldOptions[$form->name] = $formFields;
+                }
+            }
+        }
+
+        return $fieldOptions;
+    }
+
+    public function reportableFieldOptions()
+    {
+        static $fieldOptions = false;
+
+        if ($fieldOptions === false) {
+
+            $implicitFieldOptions = [
+                Field::makeFieldOption(self::DATASET_FIELD_CREATED_DATE, __('file.createdDate'), Field::FIELD_OPTION_TYPE_DATE, []),
+                Field::makeFieldOption(self::DATASET_FIELD_CREATED_BY, __('file.createdBy'), Field::FIELD_OPTION_TYPE_USER, []),
+            ];
+
+            $fieldOptions = [
+                $implicitFieldOptions,
+            ];
+
+            $this->loadMissing('forms', 'forms.fields');
+
+            foreach ($this->forms as $form) {
+
+                $formFields = [];
+
+                foreach ($form->activeFields as $field) {
+
+                    if (!Field::isValidReportableFieldType($field->field_type)) {
+                        continue;
+                    }
+
+                    $formFields[] = Field::makeFieldOption($field->id, $field->label, $field->field_type, $field->options);
+                }
+
+                if (count($formFields) > 0) {
+                    $fieldOptions[$form->name] = $formFields;
+                }
+            }
+
+        }
+
+        return $fieldOptions;
     }
 }

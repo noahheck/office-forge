@@ -11592,6 +11592,15 @@ a.text-dark:focus {
   text-decoration: none;
 }
 
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+.cursor-grabbing {
+  cursor: -webkit-grabbing !important;
+  cursor: grabbing !important;
+}
+
 .print-only {
   display: none;
 }

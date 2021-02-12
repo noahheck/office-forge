@@ -172,6 +172,101 @@ return [
     'formDoc_updated' => 'FormDoc updated',
 
 
+
+    'report_description' => 'Reports are structured documents that help you easily aggregate and analyze the data collected in Office Forge. Display this information in tables and charts to help identify trends or problem areas, and monitor all of your business initiatives!',
+    'newReport' => 'New Report',
+    'newReport_shortDescription' => 'Create a new Report',
+    'editReport' => 'Edit Report',
+    'editReport_shortDescription' => 'Edit a Report',
+    'report_createFirstReportNow' => 'Create your first Report now!',
+    'deleteReport' => 'Delete Report',
+
+    'report_created' => 'Report created',
+    'report_updated' => 'Report updated',
+    'report_deleted' => 'Report deleted',
+
+    'dataset_description' => 'Datasets are collections of information that are to be analyzed in a report. Specify the type of information that should show up, add Filters to show only the relevant records, and select which Fields should show up in the report. After defining a Dataset, you\'ll be able to create charts and widgets to make visualizing your data a breeze!',
+    'newDataset' => 'New Dataset',
+    'newDataset_shortDescription' => 'Create a new Dataset',
+    'editDataset' => 'Edit Dataset',
+    'editDataset_shortDescription' => 'Edit a Dataset',
+    'dataset_createFirstDatasetNow' => 'Create your first Dataset now!',
+    'deleteDataset' => 'Delete Dataset',
+
+    'dataset_created' => 'Dataset created',
+    'dataset_updated' => 'Dataset updated',
+    'dataset_deleted' => 'Dataset deleted',
+    'datasets_ordered' => 'Datasets order updated',
+
+
+
+    'filter_description' => 'Filters let you specify guidelines for including or excluding records from your dataset. This lets you report and visualize only the data that is meaningful in the context of this report.',
+    'newFilter' => 'New Filter',
+    'newFilter_shortDescription' => 'Create a new Filter',
+    'editFilter' => 'Edit Filter',
+    'editFilter_shortDescription' => 'Edit a Filter',
+    'filter_createFirstFilterNow' => 'Create your first Filter now!',
+    'deleteFilter' => 'Delete Filter',
+
+    // Make sure to escape the dataset name and record type names as they are provided by users
+    'filter_filterFormInformation' => 'You are establishing a filter to narrow down the ' . \App\icon\datasets([]) . ' <strong>:dataset</strong> Dataset which contains :dataTypeIcon <strong>:dataType</strong> records.',
+    'filter_fieldToFilter' => 'Please select a field in the Dataset to apply this filter to:',
+    'filter_operator' => 'Records will be included where this field',
+
+
+    'filter_descriptor_userReportFilteredUser' => 'The user selected when generating the report',
+    'filter_descriptor_userUserGeneratingReport' => 'The user generating the report',
+    'filter_descriptor_userReportSpecificUser' => 'A specific user',
+
+    'filter_descriptor_dateReportFilteredDate' => 'The date selected when generating the report',
+    'filter_descriptor_dateReportFilteredDateRange' => 'The date range selected when generating the report',
+    'filter_descriptor_dateSpecifiedDates' => 'Specific date(s)',
+
+
+    'filter_error_invalid' => 'These Filter values were not accepted. Please try again.',
+    'filter_created' => 'Filter created',
+    'filter_updated' => 'Filter updated',
+    'filter_deleted' => 'Filter deleted',
+    'filters_ordered' => 'Dataset filters order updated',
+
+
+    'dataset_field_description' => 'After your Dataset has been filtered, you can specify which Fields from that result set should be output in the report. Select Fields that will allow you to review and visualize pieces of the records that help you interpret the information in the report meaningfully.',
+    'dataset_newField' => 'New Field',
+    'dataset_newField_shortDescription' => 'Add a new Field to a Dataset',
+    'dataset_editField' => 'Edit Field',
+    'dataset_editField_shortDescription' => 'Edit a Field in a Dataset',
+    'dataset_field_createFirstFieldNow' => 'Add your first Field to this Dataset now!',
+    'dataset_deleteField' => 'Delete Field',
+
+    'dataset_field_fieldFormInformation' => 'You are selecting a Field to appear on the ' . \App\icon\datasets([]) . ' <strong>:dataset</strong> Dataset which contains :dataTypeIcon <strong>:dataType</strong> records.',
+    'dataset_field_fieldToAppear' => 'Please select a field in the Dataset to appear in the Report:',
+    'dataset_field_label' => 'Indicate how this Field should be labeled in the Dataset:',
+    'dataset_field_labelDescription' => 'Shorter labels can help improve the aesthetics and readability of the report.',
+
+    'dataset_field_created' => 'Field added to Dataset',
+    'dataset_field_updated' => 'Dataset Field updated',
+    'dataset_field_deleted' => 'Field removed from Dataset',
+    'dataset_fields_ordered' => 'Dataset Fields order updated',
+
+
+    'dataset_visualization_description' => 'Once your Dataset contains records, you can display that information in a variety of ways. Totals, averages, line charts, and pie charts can help you identify trends, spot opportunities, and illustrate your business data eloquently.',
+    'dataset_newVisualization' => 'New Visualization',
+    'dataset_newVisualization_shortDescription' => 'Add a new Visualization to a Dataset',
+    'dataset_visualization_createFirstFieldNow' => 'Add your first Visualization to this Dataset now!',
+    'dataset_editVisualization' => 'Edit Visualization',
+    'dataset_editVisualization_shortDescription' => 'Edit a Visualization in a Dataset',
+    'dataset_deleteVisualization' => 'Delete Visualization',
+
+    'dataset_visualization_label' => 'Label',
+    'dataset_visualization_labelDescription' => '',
+    'dataset_visualization_type' => 'Visualization Type',
+
+    'dataset_visualization_created' => 'Visualization added to Dataset',
+    'dataset_visualization_updated' => 'Dataset Visualization updated',
+    'dataset_visualization_deleted' => 'Visualization removed from Dataset',
+    'dataset_visualizations_ordered' => 'Dataset Visualizations order updated',
+
+
     'fileStore_description' => 'FileStore is a service running on your server that allows you to upload, manage access to, and share documents and media files with staff in your organization.',
     'fileStore_driveDescription' => 'FileStore organizes these resources into Drives to provide access only to Team members who need it.',
     'fileStore_versionsDescription' => "FileStore also keeps track of each version of the files you upload, so you'll never lose track of your work!",

@@ -45,6 +45,17 @@
 }
 
 
+.of-radio-group {
+    label {
+        margin-bottom: 0;
+        display: flex;
+        cursor: pointer;
+        font-weight: normal;
+
+    }
+}
+
+
 .range-field-display {
     border: 1px solid $light-gray;
     text-align: center;

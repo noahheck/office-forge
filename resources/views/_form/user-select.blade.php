@@ -25,7 +25,7 @@
             <option value="">--</option>
         @endif
         @foreach ($users as $user)
-            <option value="{{ $user->id }}"{{ ($value === $user->id) ? " selected" : "" }} data-content="{!! $user->icon() !!} {{ $user->name }}">{{ $user->name }}</option>
+            <option value="{{ $user->id }}" {{ ($value === $user->id) ? "selected" : "" }} data-content="{!! $user->icon() !!} {{ $user->name }}">{{ $user->name }}</option>
         @endforeach
     </select>
 @unless($fieldOnly ?? false)

@@ -4,6 +4,7 @@ namespace App;
 
 use App\FormDoc\Field;
 use App\FormDoc\Template;
+use App\Report\Dataset;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -99,6 +100,11 @@ class FormDoc extends Model
             ['id',                   'form_doc_template_id', 'id'],
             ['form_doc_template_id', 'id',                   'team_id',]
         );
+    }
+
+    public function datasets()
+    {
+        return $this->morphMany(Dataset::class, 'datasetable');
     }
 
     public function scopeSubmitted($query)

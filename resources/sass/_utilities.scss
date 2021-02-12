@@ -153,6 +153,14 @@
     text-decoration: none;
 }
 
+.cursor-pointer {
+    cursor: pointer !important;
+}
+
+.cursor-grabbing {
+    cursor: grabbing !important;
+}
+
 .print-only {
     display: none;
 }

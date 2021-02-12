@@ -59,6 +59,10 @@ mix
     .js('resources/js/page/admin/form-docs/show.js', 'public/js/page.admin.form-docs.show.js')
     .js('resources/js/page/admin/form-docs/fields/index.js', 'public/js/page.admin.form-docs.fields.index.js')
 
+    // Reports
+    .sass('resources/sass/reports.scss', 'public/css')
+    .js('resources/js/page/reports/_reports.js', 'public/js/page._reports.js')
+
     // Admin
     .sass('resources/sass/admin.scss', 'public/css')
     .sass('resources/sass/admin/server.scss', 'public/css/admin.server.css')
@@ -80,8 +84,21 @@ mix
         .js('resources/js/page/admin/file-types/panels/index.js', 'public/js/page.admin.file-types.panels.index.js')
         .js('resources/js/page/admin/file-types/panels/show.js', 'public/js/page.admin.file-types.panels.show.js')
 
+        //Reports
+        .js('resources/js/page/admin/reports/show.js', 'public/js/page.admin.reports.show.js')
 
+        //Datasets
+        .js('resources/js/page/admin/reports/datasets/show.js', 'public/js/page.admin.reports.datasets.show.js')
+        .js('resources/js/page/admin/reports/datasets/_form.js', 'public/js/page.admin.reports.datasets._form.js')
 
+        //Datasets/Fields
+        .js('resources/js/page/admin/reports/datasets/fields/_form.js', 'public/js/page.admin.reports.datasets.fields._form.js')
+
+        //Datasets/Filters
+        .js('resources/js/page/admin/reports/datasets/filters/_form.js', 'public/js/page.admin.reports.datasets.filters._form.js')
+
+        //Datasets/Visualizations
+        .js('resources/js/page/admin/reports/datasets/visualizations/_form.js', 'public/js/page.admin.reports.datasets.visualizations._form.js')
 
 
 

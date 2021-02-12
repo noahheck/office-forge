@@ -4,7 +4,7 @@ namespace App;
 
 use App\Utility\RandomColorGenerator;
 use Illuminate\Support\Str;
-use function foo\func;
+//use function foo\func;
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/strings.php";
 require_once __DIR__ . DIRECTORY_SEPARATOR . "functions/icons.php";
@@ -53,6 +53,21 @@ function timezone_from_description($description) {
 
 function format_date($date = null) {
     return ($date) ? $date->format('m/d/Y') : '';
+}
+
+function format_date_in_user_timezone($date = null) {
+    if (!$date) {
+
+        return '';
+    }
+
+    static $userTimezone = false;
+
+    if (!$userTimezone) {
+        $userTimezone = \Auth::user()->timezone;
+    }
+
+    return $date->copy()->tz($userTimezone)->format('m/d/Y');
 }
 
 function format_time($dateTime = null) {
@@ -113,6 +128,30 @@ function format_filesize($bytes) {
     $bytes /= pow(1024, $pow);
 
     return round($bytes, 1) . ' ' . $units[$pow];
+}
+
+function format_money($value) {
+
+    return number_format($value, 2, '.', ',');
+}
+
+function format_decimal($value, $maxDecimalPlaces = 2) {
+
+    $strLength = strlen($value);
+    $decimalPosition = strpos($value, '.');
+
+    if ($decimalPosition === false) {
+
+        return $value;
+    }
+
+    // strlen starts at 1, strpos starts at 0, so we have to make up for the 0th character here
+    if ($strLength - ($decimalPosition + 1) <= $maxDecimalPlaces) {
+
+        return $value;
+    }
+
+    return number_format($value, $maxDecimalPlaces);
 }
 
 

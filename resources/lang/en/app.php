@@ -3,6 +3,8 @@
 return [
     'yes' => 'Yes',
     'no' => 'No',
+    'and' => 'and',
+    'And' => 'And',
     'go' => 'Go',
     'view' => 'View',
     'show' => 'Show',
@@ -21,6 +23,9 @@ return [
     'addNew' => 'Add New',
     'createNew' => 'Create New',
     'continue' => 'Continue',
+    'from' => 'From',
+    'to' => 'To',
+    'error' => 'Error',
     'skipToContent' => 'Skip to content',
     'noResults' => 'No Results',
     'accessDetails' => 'Access Details',
@@ -31,8 +36,11 @@ return [
     'sureDeleteThis' => 'Are you sure you want to delete this?',
 
     'date' => 'Date',
+    'dateRange' => 'Date Range',
     'time' => 'Time',
     'dateTime' => 'Date/Time',
+
+    'user' => 'User',
 
     'upload' => 'Upload',
     'download' => 'Download',
@@ -81,6 +89,8 @@ return [
     'fileType' => 'File Type',
     'formDocs' => 'FormDocs',
     'formDoc' => 'FormDoc',
+    'reports' => 'Reports',
+    'report' => 'Report',
     'processes' => 'Processes',
     'activities' => 'Activities',
     'projects' => 'Projects (Change Me)',

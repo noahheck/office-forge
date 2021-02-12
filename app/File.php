@@ -5,6 +5,7 @@ namespace App;
 use App\File\FormField\Value;
 use App\FileType\AccessLock;
 use App\Interfaces\Headshottable;
+use App\Report\Dataset;
 use App\Traits\Headshottable as HeadshottableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -58,6 +59,10 @@ class File extends Model implements Headshottable
         return $this->belongsToMany(AccessLock::class, 'file_access_locks')->orderBy('name')->withTimestamps();
     }
 
+    public function datasets()
+    {
+        return $this->morphMany(Dataset::class, 'datasetable');
+    }
 
 
 

@@ -10,6 +10,53 @@ class DataMapper
 
     }
 
+    public function getFieldValueColumn($field)
+    {
+        if (in_array($field->field_type, ['text', 'email', 'phone', 'select'])) {
+            return 'value_text1';
+        }
+
+        if (in_array($field->field_type, ['money', 'decimal'])) {
+            return 'value_decimal';
+        }
+
+        if (in_array($field->field_type, ['integer', 'range'])) {
+            return 'value_integer';
+        }
+
+        if ($field->field_type === 'user') {
+
+            return 'value_user';
+        }
+
+        if ($field->field_type === 'file') {
+
+            return 'value_file';
+        }
+
+        if ($field->field_type === 'date') {
+            return 'value_date';
+        }
+
+        if ($field->field_type === 'checkbox') {
+            return 'value_boolean';
+        }
+
+        if ($field->field_type === 'textarea') {
+            return 'value_longtext';
+        }
+
+        if ($field->field_type === 'name') {
+
+            return $field->valueName();
+        }
+
+        if ($field->field_type === 'address') {
+
+            return $field->valueAddress();
+        }
+    }
+
     public function getFieldValue($field)
     {
         if (in_array($field->field_type, ['text', 'email', 'phone', 'select'])) {
@@ -20,6 +67,10 @@ class DataMapper
             return $field->value_decimal;
         }
 
+        if (in_array($field->field_type, ['integer', 'range'])) {
+            return $field->value_integer;
+        }
+
         if ($field->field_type === 'user') {
 
             return $field->valueUser;
@@ -28,10 +79,6 @@ class DataMapper
         if ($field->field_type === 'file') {
 
             return $field->valueFile;
-        }
-
-        if ($field->field_type === 'integer') {
-            return $field->value_integer;
         }
 
         if ($field->field_type === 'date') {

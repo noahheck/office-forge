@@ -424,3 +424,7 @@ h6 {
     }
 }
 
+// Including here to take precedence
+.d-none {
+    display: none !important;
+}

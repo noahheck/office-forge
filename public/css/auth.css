@@ -11481,6 +11481,14 @@ a.text-dark:focus {
   display: block;
 }
 
+.of-radio-group label {
+  margin-bottom: 0;
+  display: -webkit-box;
+  display: flex;
+  cursor: pointer;
+  font-weight: normal;
+}
+
 .range-field-display {
   border: 1px solid #e3e3e3;
   text-align: center;

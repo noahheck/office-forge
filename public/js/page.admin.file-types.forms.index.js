@@ -125,6 +125,7 @@ function ajaxRequest(method, route, data, multipart, additionalProperties) {
       },
       error: function error(obj, _error, exc) {
         // Probably want to do something more than this
+        notify.error(_error + ": " + exc);
         reject();
       },
       complete: function complete() {}
@@ -304,7 +305,7 @@ module.exports = routing;
 
 /***/ }),
 
-/***/ 16:
+/***/ 17:
 /*!*****************************************************************!*\
   !*** multi ./resources/js/page/admin/file-types/forms/index.js ***!
   \*****************************************************************/
@@ -316,4 +317,4 @@ module.exports = __webpack_require__(/*! /home/noah/Source/noahheck/office-forge
 
 /***/ })
 
-},[[16,"/js/manifest","/js/vendor"]]]);
+},[[17,"/js/manifest","/js/vendor"]]]);

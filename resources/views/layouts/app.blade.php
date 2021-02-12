@@ -3,6 +3,7 @@ $__currentRouteName    = Route::currentRouteName();
 $__isFileStoreRoute    = Str::startsWith($__currentRouteName, 'drives');
 $__isActivitiesRoute   = Str::startsWith($__currentRouteName, 'activities');
 $__isFormDocsRoute     = Str::startsWith($__currentRouteName, 'form-docs');
+$__isReportsRoute      = Str::startsWith($__currentRouteName, 'reports');
 $__isProcessesRoute    = Str::startsWith($__currentRouteName, 'processes');
 $__isAdminRoute        = Str::startsWith($__currentRouteName, 'admin.');
 $__isSettingsRoute     = Str::startsWith($__currentRouteName, 'my-settings.');
@@ -244,6 +245,11 @@ if ($__isFilesRoute) {
             <li>
                 <a href="{{ route('form-docs.index') }}" class="{{ ($__isFormDocsRoute) ? 'current' : '' }}">
                     {!! \App\icon\formDocs(['fa-fw']) !!} {{ __('app.formDocs') }}
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('reports.index') }}" class="{{ ($__isReportsRoute) ? 'current' : '' }}">
+                    {!! \App\icon\reports(['fa-fw']) !!} {{ __('app.reports') }}
                 </a>
             </li>
             <li class="divider">

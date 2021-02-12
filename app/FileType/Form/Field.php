@@ -56,9 +56,4 @@ class Field extends Model
         return $this->belongsTo(FileType::class, 'file_type_id');
     }
 
-
-
-
-
-
 }

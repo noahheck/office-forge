@@ -61,11 +61,15 @@ hr.separator {
 
 .file-resource {
 
-    .file-identifier {
+    //.file-identifier {
+    .resource-sidebar {
 
         @include media-breakpoint-up(md) {
             position: sticky;
             top: $main-content-top-margin;
+
+            max-height: calc(100vh - #{$main-content-top-margin} - 15px);
+            overflow-y: auto;
         }
 
     }

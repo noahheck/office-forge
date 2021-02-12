@@ -7,27 +7,33 @@
 
         <div class="col-12 col-md-4 col-xl-3 mb-3">
 
-            <div class="file-identifier">
+            <div class="resource-sidebar">
 
-                <h4 class="h5 text-muted pl-3">{!! $fileType->icon() !!} - {{ $fileType->name }}</h4>
+                <div class="file-identifier">
 
-                <div class="card shadow mb-3">
-                    <div class="card-body">
-                        <h3>{{ $file->name }}</h3>
+                    <h4 class="h5 text-muted pl-3">{!! $fileType->icon() !!} - {{ $fileType->name }}</h4>
 
-                        <hr>
+                    <div class="card shadow mb-3">
+                        <div class="card-body">
+                            <h3>{{ $file->name }}</h3>
 
-                        <div class="text-center">
-                            {!! $file->thumbnail() !!}
+                            <hr>
+
+                            <div class="text-center">
+                                {!! $file->thumbnail() !!}
+                            </div>
+
+                            <hr>
+
+                            <a href="{{ route('files.show', [$file]) }}">
+                                {!! \App\icon\goBack(['mr-2']) !!}{{ __('file.backToFileType', ['fileType' => $fileType->name]) }}
+                            </a>
                         </div>
-
-                        <hr>
-
-                        <a href="{{ route('files.show', [$file]) }}">
-                            {!! \App\icon\goBack(['mr-2']) !!}{{ __('file.backToFileType', ['fileType' => $fileType->name]) }}
-                        </a>
                     </div>
+
                 </div>
+
+                @yield('resource-sidebar')
 
             </div>
 

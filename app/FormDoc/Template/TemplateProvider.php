@@ -54,4 +54,30 @@ class TemplateProvider
 
         return $templates;
     }
+
+    public function getAllTemplates($filterForFileTypeId, $file_type_id = null)
+    {
+        $templatesQuery = $this->template->ordered();
+
+        if ($filterForFileTypeId) {
+            $templatesQuery->where('file_type_id', $file_type_id);
+        }
+
+        $templates = $templatesQuery->get()->sort(function($template1, $template2) {
+            if (!$template1->file_type_id) {
+
+                return ($template2->file_type_id) ? 0 : -1;
+            }
+
+            if (!$template2->file_type_id) {
+
+                return 1;
+            }
+
+            return strnatcasecmp($template1->fileType->name, $template2->fileType->name);
+        });
+
+        return $templates;
+
+    }
 }

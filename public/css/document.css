@@ -57,5 +57,12 @@
   .document a {
     text-decoration: none;
   }
+
+  .print-full {
+    width: 100%;
+    max-width: 100%;
+    -webkit-box-flex: 0;
+            flex: 0 0 100%;
+  }
 }
 

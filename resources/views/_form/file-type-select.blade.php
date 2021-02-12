@@ -19,7 +19,7 @@
             <p>{{ $description }}</p>
         @endif
 @endunless
-    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true">
+    <select class="selectpicker show-tick form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true">
         @if (!($required ?? false))
             <option value="">--</option>
         @endif

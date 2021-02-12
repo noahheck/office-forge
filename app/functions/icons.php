@@ -347,6 +347,38 @@ function formFields($classes = []) {
 }
 
 
+// Reports
+function reports($classes = []) {
+    $classes[] = "fas fa-chart-bar";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function datasets($classes = []) {
+    $classes[] = "fas fa-table";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function filters($classes = []) {
+    $classes[] = "fas fa-sliders-h";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function datasetFields($classes = []) {
+    $classes[] = "fas fa-columns";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+function visualizations($classes = []) {
+    $classes[] = "fas fa-chart-area";
+
+    return "<span class='" . implode(' ', $classes) . "'></span>";
+}
+
+
 
 // Activities
 function tasks($classes = []) {
