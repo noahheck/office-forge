@@ -79,5 +79,6 @@ return [
     'selectAReport' => 'Select a Report',
     'dateRange' => 'Date Range',
     'generate' => 'Generate',
+    'visualizationTemplateNotFound' => 'Visualization template not found',
 
 ];

@@ -13,3 +13,20 @@
     }
 
 }
+
+.visualization {
+
+    .visualization-header {
+        padding: 4px;
+        font-weight: bold;
+        background-color: $dark-white;
+
+
+    }
+    &.visualization-error {
+        color: $red;
+        background-color: $red-highlight;
+        border: 1px solid $red;
+    }
+
+}

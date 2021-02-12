@@ -135,6 +135,25 @@ function format_money($value) {
     return number_format($value, 2, '.', ',');
 }
 
+function format_decimal($value, $maxDecimalPlaces = 2) {
+
+    $strLength = strlen($value);
+    $decimalPosition = strpos($value, '.');
+
+    if ($decimalPosition === false) {
+
+        return $value;
+    }
+
+    // strlen starts at 1, strpos starts at 0, so we have to make up for the 0th character here
+    if ($strLength - ($decimalPosition + 1) <= $maxDecimalPlaces) {
+
+        return $value;
+    }
+
+    return number_format($value, $maxDecimalPlaces);
+}
+
 
 
 function temp_directory_path() {

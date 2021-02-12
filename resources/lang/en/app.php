@@ -25,6 +25,7 @@ return [
     'continue' => 'Continue',
     'from' => 'From',
     'to' => 'To',
+    'error' => 'Error',
     'skipToContent' => 'Skip to content',
     'noResults' => 'No Results',
     'accessDetails' => 'Access Details',

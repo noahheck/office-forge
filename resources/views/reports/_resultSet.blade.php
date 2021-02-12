@@ -1,6 +1,10 @@
 {{--
 
 --}}
+
+@inject('templateMapper', 'App\Report\ResultSet\Visualization\TemplateMapper')
+@inject('resolverMapper', 'App\Report\ResultSet\Visualization\ResolverMapper')
+
 <h4 class="resultSet-name">{{ $resultSet->name }}</h4>
 
 {{-- Visualizations here --}}
@@ -11,9 +15,10 @@
         <div class="row mb-5">
     @endif
 
-    @includeIf('reports._visualizations.' . $visualization->type, [
+    @include('reports._visualizations.' . $templateMapper->forVisualization($visualization), [
         'resultSet' => $resultSet,
         'visualization' => $visualization,
+        'resolver' => app($resolverMapper->forVisualization($visualization)),
     ])
 
     @if ($loop->last)
