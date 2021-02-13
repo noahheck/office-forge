@@ -12,6 +12,7 @@ use App\Jobs\Activity\Task\Delete;
 use App\Jobs\Activity\Task\Uncomplete;
 use App\Jobs\Activity\Task\Update;
 use App\Activity\Task;
+use App\Url\NamedRouteChecker;
 use App\User;
 use Illuminate\Http\Request;
 use function App\flash_error;
@@ -114,7 +115,7 @@ class TaskController extends Controller
      * @param  \App\Activity\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Activity $activity, Task $task)
+    public function show(Request $request, Activity $activity, Task $task, NamedRouteChecker $routeChecker)
     {
         if (!$request->user()->can('view', $activity)) {
             flash_error(__('activity.error_unableToAccessActivity'));
@@ -200,7 +201,7 @@ class TaskController extends Controller
 
 
 
-    public function complete(Request $request, Activity $activity, Task $task)
+    public function complete(Request $request, Activity $activity, Task $task, NamedRouteChecker $routeChecker)
     {
         if (!$request->user()->can('update', $task)) {
             flash_error(__('activity.error_unableToAccessActivity'));
@@ -211,6 +212,16 @@ class TaskController extends Controller
         $this->dispatchNow($taskCompleted = new Complete($task, $request->user()));
 
         flash_success(__('activity.taskUpdated'));
+
+        if ($return = $request->return) {
+
+            // Don't send the user back to the task edit screen, or the task create screen, for example
+            if ($routeChecker->urlIs($return, 'activities.tasks.*')) {
+                $return = route('activities.tasks.show', [$activity, $task]);
+            }
+
+            return redirect($return);
+        }
 
         return redirect()->route('activities.show', [$activity]);
     }

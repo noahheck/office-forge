@@ -102,6 +102,12 @@
                                         @else
                                             <form action="{{ route('activities.complete', [$activity]) }}" method="POST" class="no-print">
                                                 @csrf
+
+                                                @hiddenField([
+                                                    'name' => 'return',
+                                                    'value' => url()->previous(),
+                                                ])
+
                                                 <button type="submit" class="btn btn-light">
                                                     {!! \App\icon\uncheckedBox(['fa-lg']) !!}
                                                     {{ __('activity.complete') }}

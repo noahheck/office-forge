@@ -48,6 +48,12 @@
                                 @can('update', $task)
                                     <form action="{{ route('activities.tasks.complete', [$activity, $task]) }}" method="POST">
                                         @csrf
+
+                                        @hiddenField([
+                                            'name' => 'return',
+                                            'value' => url()->previous(),
+                                        ])
+
                                         <button type="submit" class="btn btn-light no-print">
                                             {!! \App\icon\uncheckedBox(['fa-lg', 'mr-1']) !!}{{ __('activity.completeTask') }}
                                         </button>

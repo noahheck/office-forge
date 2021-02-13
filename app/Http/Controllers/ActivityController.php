@@ -13,6 +13,7 @@ use App\Jobs\Activity\Uncomplete;
 use App\Jobs\Activity\Update;
 use App\Activity;
 use App\Process;
+use App\Url\NamedRouteChecker;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Activity\Store as StoreRequest;
@@ -242,7 +243,7 @@ class ActivityController extends Controller
     }
 
 
-    public function complete(Request $request, Activity $activity)
+    public function complete(Request $request, Activity $activity, NamedRouteChecker $routeChecker)
     {
         if (!$request->user()->can('update', $activity)) {
             flash_error(__('activity.error_unableToEditActivity'));
@@ -253,6 +254,16 @@ class ActivityController extends Controller
         $this->dispatchNow($activityCompleted = new Complete($activity, $request->user()));
 
         \App\flash_success(__('activity.activityUpdated'));
+
+        if ($return = $request->return) {
+
+            // Don't send the user back to the task edit screen, or the task create screen, for example
+            if ($routeChecker->urlIs($return, 'activities.*')) {
+                $return = route('activities.show', [$activity]);
+            }
+
+            return redirect($return);
+        }
 
         return redirect()->route('activities.show', [$activity]);
     }
