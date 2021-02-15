@@ -2,9 +2,6 @@
 
 --}}
 
-@inject('templateMapper', 'App\Report\ResultSet\Visualization\TemplateMapper')
-@inject('resolverMapper', 'App\Report\ResultSet\Visualization\ResolverMapper')
-
 <h4 class="resultSet-name">{{ $resultSet->name }}</h4>
 
 {{-- Visualizations here --}}
