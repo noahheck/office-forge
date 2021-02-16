@@ -77,7 +77,11 @@
 
             <div class="visualization-type-options-container" id="visualizationTypeOptionsContainer">
 
-                <div class="visualization-type-options sssd-none" id="sum_averageOptions">
+                <div class="visualization-type-options d-none" id="total_recordsOptions">
+
+                </div>
+
+                <div class="visualization-type-options d-none" id="sum_averageOptions">
                     @selectField([
                         'name' => 'sum_average_field_id',
                         'id' => 'sum_average_field_id',
@@ -92,6 +96,27 @@
                         'readonly' => false,
                         'fieldOnly' => false,
                     ])
+                </div>
+
+
+
+                <div class="visualization-type-options d-none" id="aggregateOptions">
+
+                    @selectField([
+                        'name' => 'aggregate_field_id',
+                        'id' => 'aggregate_field_id',
+                        'label' => 'Which Report field do you want to apply this operation to?',
+                        'details' => '',
+                        'value' => old('aggregate_field_id', $visualization->field_id),
+                        'options' => $dataset->aggregateFieldOptions()->pluck('label', 'id'),
+                        'placeholder' => 'Select a field',
+                        'required' => false,
+                        'autofocus' => false,
+                        'error' => $errors->has('aggregate_field_id'),
+                        'readonly' => false,
+                        'fieldOnly' => false,
+                    ])
+
                 </div>
 
             </div>

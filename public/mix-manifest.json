@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js?id=cdcc0baac116a4476ba9",
+    "/js/app.js": "/js/app.js?id=79679970bec3c1edac07",
     "/css/manual.css": "/css/manual.css?id=0f2e8c4aa4471e588f8f",
     "/css/auth.css": "/css/auth.css?id=558528207eeeea4a1f03",
     "/css/app.css": "/css/app.css?id=08b7c352157e39a822a6",
@@ -37,7 +37,7 @@
     "/js/page.admin.reports.datasets.fields._form.js": "/js/page.admin.reports.datasets.fields._form.js?id=b14d9b24a8d70098f0b1",
     "/js/page.admin.reports.datasets.filters._form.js": "/js/page.admin.reports.datasets.filters._form.js?id=3d9efb69a522cfa2ca93",
     "/js/page.admin.reports.datasets.show.js": "/js/page.admin.reports.datasets.show.js?id=478e169404d53497444f",
-    "/js/page.admin.reports.datasets.visualizations._form.js": "/js/page.admin.reports.datasets.visualizations._form.js?id=eb3a9d721952604f150d",
+    "/js/page.admin.reports.datasets.visualizations._form.js": "/js/page.admin.reports.datasets.visualizations._form.js?id=bd6178d788dd5d04a675",
     "/js/page.admin.reports.show.js": "/js/page.admin.reports.show.js?id=83b779cf5927ac9b1ccd",
     "/js/page.drives.files._form.js": "/js/page.drives.files._form.js?id=06389fa9905fb0cf2111",
     "/js/page.files._form.js": "/js/page.files._form.js?id=35113444f2af10146ac1",
@@ -45,5 +45,5 @@
     "/js/page.form-docs.index.js": "/js/page.form-docs.index.js?id=f3e7bb8f61bde606a92b",
     "/js/page.settings.photo.js": "/js/page.settings.photo.js?id=6a1a870aa6159aca88bc",
     "/js/page.user-activity.js": "/js/page.user-activity.js?id=cad6f353ae36468bbf92",
-    "/js/vendor.js": "/js/vendor.js?id=0450803c4ff790732571"
+    "/js/vendor.js": "/js/vendor.js?id=f8cca95c2152c9c551dd"
 }

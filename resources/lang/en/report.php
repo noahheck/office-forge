@@ -74,6 +74,8 @@ return [
     'visualizationType_field_value_sum' => 'Field Value Sum',
     'visualizationType_field_value_average' => 'Field Value Average',
 
+    'visualizationType_field_value_aggregate_analysis' => 'Field Value Aggregate Analysis (Pie Chart)',
+
 
 
     'selectAReport' => 'Select a Report',

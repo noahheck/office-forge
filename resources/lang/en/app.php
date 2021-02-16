@@ -28,6 +28,7 @@ return [
     'error' => 'Error',
     'skipToContent' => 'Skip to content',
     'noResults' => 'No Results',
+    'noValue' => 'No Value',
     'accessDetails' => 'Access Details',
     'required' => 'Required',
     'optional' => 'Optional',

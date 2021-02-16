@@ -19,6 +19,7 @@ class TemplateMapper
             Visualization::VISUALIZATION_TYPE_TOTAL_RECORDS_COUNT => 'single_value',
             Visualization::VISUALIZATION_TYPE_FIELD_VALUE_SUM     => 'single_value',
             Visualization::VISUALIZATION_TYPE_FIELD_VALUE_AVERAGE => 'single_value',
+            Visualization::VISUALIZATION_TYPE_FIELD_AGGREGATE_ANALYSIS => 'table_with_chart',
         ];
     }
 

@@ -11,7 +11,16 @@ require('Services/ajax');
 require('Services/notify');
 let confirm = require('Services/confirm');
 
+let chart = require('chart.js');
+
 $(async function() {
+
+    $('.of-chart-canvas').each(function(e) {
+
+        let chartData = $(this).data('chartData');
+
+        $(this).data('chart', new chart(this, chartData));
+    });
 
     let $body = $('body');
 

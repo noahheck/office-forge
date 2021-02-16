@@ -9,6 +9,7 @@ use App\Jobs\Report\Dataset\Visualization\UpdateOrder;
 use App\Report;
 use App\Report\Dataset;
 use App\Report\Dataset\Visualization;
+use App\Report\Dataset\Visualization\Validator;
 use Illuminate\Http\Request;
 
 use App\Http\Requests\Admin\Reports\Datasets\Visualizations\Store as StoreRequest;
@@ -57,13 +58,23 @@ class VisualizationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request, Report $report, Dataset $dataset)
+    public function store(StoreRequest $request, Report $report, Dataset $dataset, Validator $validator)
     {
+        $validRequest = $validator->getValidValuesForVisualizationForDataset($dataset, $request);
+
+        if (!$validRequest['success']) {
+
+            return redirect()->back(302)->withInput();
+        }
+
+        $type = $validRequest['type'];
+        $field_id = $validRequest['field_id'];
+
         $this->dispatchNow($visualizationCreated = new Create(
             $dataset,
             $request->label,
-            $request->type,
-            $request->sum_average_field_id
+            $type,
+            $field_id
         ));
 
         flash_success(__('admin.dataset_visualization_created'));
@@ -113,13 +124,29 @@ class VisualizationController extends Controller
      * @param  \App\Report\Dataset\Visualization  $visualization
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, Report $report, Dataset $dataset, Visualization $visualization)
-    {
+    public function update(
+        UpdateRequest $request,
+        Report $report,
+        Dataset $dataset,
+        Visualization $visualization,
+        Validator $validator
+    ) {
+
+        $validRequest = $validator->getValidValuesForVisualizationForDataset($dataset, $request);
+
+        if (!$validRequest['success']) {
+
+            return redirect()->back(302)->withInput();
+        }
+
+        $type = $validRequest['type'];
+        $field_id = $validRequest['field_id'];
+
         $this->dispatchNow($visualizationUpdated = new Update(
             $visualization,
             $request->label,
-            $request->type,
-            $request->sum_average_field_id
+            $type,
+            $field_id
         ));
 
         flash_success(__('admin.dataset_visualization_updated'));

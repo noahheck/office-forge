@@ -13,6 +13,27 @@
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
 var meta = __webpack_require__(/*! Services/meta */ "./resources/js/services/meta.js");
+
+var visualizationTypeOptionsContainerMap = {
+  'total_records_count': 'total_recordsOptions',
+  'field_value_sum': 'sum_averageOptions',
+  'field_value_average': 'sum_averageOptions',
+  'field_value_aggregate_analysis': 'aggregateOptions'
+};
+$(function () {
+  var $visualizationTypeField = $('#visualization_type');
+  var $visualizationTypeOptionDivs = $(".visualization-type-options");
+
+  function showVisualizationTypeOptionsBasedOnSelectedVisualizationType() {
+    var visualizationType = $visualizationTypeField.val();
+    $visualizationTypeOptionDivs.addClass('d-none');
+    var visualizationTypeOptionDivToShow = visualizationTypeOptionsContainerMap[visualizationType];
+    $('#' + visualizationTypeOptionDivToShow).removeClass('d-none');
+  }
+
+  $visualizationTypeField.change(showVisualizationTypeOptionsBasedOnSelectedVisualizationType);
+  showVisualizationTypeOptionsBasedOnSelectedVisualizationType();
+});
 /*let fieldTypeOperators = {
     'checkbox': ['checked', 'unchecked'],
     'date': ['equals', 'greater_than', 'greater_than_equals', 'less_than', 'less_than_equals', 'between', 'has_value', 'does_not_have_value'],

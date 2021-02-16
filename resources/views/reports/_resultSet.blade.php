@@ -18,6 +18,15 @@
         'resolver' => app($resolverMapper->forVisualization($visualization)),
     ])
 
+            {{--<div class="col-12 col-sm-6 mb-3">
+                <div class="card h-100 visualization">
+
+                    <div class="card-body">
+                        @include('_component.chart')
+                    </div>
+                </div>
+            </div>--}}
+
     @if ($loop->last)
         </div>
     @endif

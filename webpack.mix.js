@@ -116,7 +116,8 @@ mix
         'bootstrap-datepicker',
         'bootstrap-select',
         'trix',
-        'sortablejs'
+        'sortablejs',
+        'chart.js'
     ])
 ;
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Chart\PieChart;
 use App\Report;
 use App\Report\RuntimeValues;
 use App\Report\Compiler;
@@ -42,6 +43,19 @@ class ReportController extends Controller
 
             $compiledReport = $reportCompiler->compileReport($report, $runtimeValues);
         }
+
+
+
+
+        /*$chart = new PieChart('Test Chart');
+
+        $chart->addDataToDataset('Noah', 30)
+            ->addDataToDataset('Heidi', 50)
+            ->addDataToDataset('Ella', 15)
+            ->addDataToDataset('Kenji', 10);*/
+
+
+
 
 
         return $this->view('reports.index', compact(

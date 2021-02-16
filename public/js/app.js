@@ -30295,26 +30295,32 @@ __webpack_require__(/*! Services/notify */ "./resources/js/services/notify.js");
 
 var confirm = __webpack_require__(/*! Services/confirm */ "./resources/js/services/confirm.js");
 
+var chart = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
+
 $(function _callee2() {
   var $body, notifications, $autoFocusFields;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee2$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
+          $('.of-chart-canvas').each(function (e) {
+            var chartData = $(this).data('chartData');
+            $(this).data('chart', new chart(this, chartData));
+          });
           $body = $('body');
           $('#toggleApplicationSidebarButton').click(function () {
             $body.toggleClass('sidebar-shown');
           });
 
           if (!meta.get('check-notifications', false)) {
-            _context2.next = 10;
+            _context2.next = 11;
             break;
           }
 
-          _context2.next = 5;
+          _context2.next = 6;
           return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(ajax.get('notifications'));
 
-        case 5:
+        case 6:
           notifications = _context2.sent;
           notifications.data.success.forEach(function (message) {
             notify.success(message);
@@ -30329,7 +30335,7 @@ $(function _callee2() {
             notify.error(message);
           });
 
-        case 10:
+        case 11:
           $('[data-toggle="popover"]').popover();
           $('[data-toggle="tooltip"]').tooltip();
           $('.dt-table').DataTable();
@@ -30396,7 +30402,7 @@ $(function _callee2() {
             }, null, this);
           });
 
-        case 18:
+        case 19:
         case "end":
           return _context2.stop();
       }

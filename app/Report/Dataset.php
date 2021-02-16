@@ -70,6 +70,27 @@ class Dataset extends Model
         });
     }
 
+    public function aggregateFieldOptions()
+    {
+        $aggregateFieldTypes = collect([
+            Field::FIELD_OPTION_TYPE_DATE,
+            Field::FIELD_OPTION_TYPE_CHECKBOX,
+            Field::FIELD_OPTION_TYPE_SELECT,
+            Field::FIELD_OPTION_TYPE_USER,
+            Field::FIELD_OPTION_TYPE_FILE,
+        ]);
+
+        return $this->fields->filter(function($field) use ($aggregateFieldTypes) {
+
+            if ($field->isImplicitField()) {
+
+                return true;
+            }
+
+            return $aggregateFieldTypes->contains($field->templateField->field_type);
+        });
+    }
+
     public function isFileType(): bool
     {
         return $this->datasetable_type === FileType::class;

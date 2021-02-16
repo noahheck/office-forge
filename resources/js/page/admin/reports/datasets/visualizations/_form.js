@@ -5,6 +5,35 @@
 let $ = require('jquery');
 let meta = require('Services/meta');
 
+let visualizationTypeOptionsContainerMap = {
+    'total_records_count': 'total_recordsOptions',
+    'field_value_sum': 'sum_averageOptions',
+    'field_value_average': 'sum_averageOptions',
+    'field_value_aggregate_analysis': 'aggregateOptions'
+};
+
+$(function() {
+
+    let $visualizationTypeField = $('#visualization_type');
+
+    let $visualizationTypeOptionDivs = $(".visualization-type-options");
+
+    function showVisualizationTypeOptionsBasedOnSelectedVisualizationType() {
+        let visualizationType = $visualizationTypeField.val();
+
+        $visualizationTypeOptionDivs.addClass('d-none');
+
+        let visualizationTypeOptionDivToShow = visualizationTypeOptionsContainerMap[visualizationType];
+        $('#' + visualizationTypeOptionDivToShow).removeClass('d-none');
+    }
+
+    $visualizationTypeField.change(showVisualizationTypeOptionsBasedOnSelectedVisualizationType);
+
+    showVisualizationTypeOptionsBasedOnSelectedVisualizationType();
+
+});
+
+
 /*let fieldTypeOperators = {
     'checkbox': ['checked', 'unchecked'],
     'date': ['equals', 'greater_than', 'greater_than_equals', 'less_than', 'less_than_equals', 'between', 'has_value', 'does_not_have_value'],
