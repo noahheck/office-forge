@@ -9,7 +9,7 @@ use App\Chart\Table;
 use App\Report\Dataset\Visualization;
 use App\Report\ResultSet;
 
-class FieldAggregateAnalysis
+class SingleFieldAggregate
 {
     public function __construct()
     {

@@ -32,7 +32,7 @@ class Validator
                 $fieldAccessor = 'sum_average_field_id';
                 break;
 
-            case Visualization::VISUALIZATION_TYPE_FIELD_AGGREGATE_ANALYSIS:
+            case Visualization::VISUALIZATION_TYPE_SINGLE_FIELD_AGGREGATE:
 
                 $fieldAccessor = 'aggregate_field_id';
                 break;
