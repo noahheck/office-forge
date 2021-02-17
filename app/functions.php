@@ -154,6 +154,10 @@ function format_decimal($value, $maxDecimalPlaces = 2) {
     return number_format($value, $maxDecimalPlaces);
 }
 
+function format_float($value) {
+
+    return floatval(str_replace(',', '', $value));
+}
 
 
 function temp_directory_path() {

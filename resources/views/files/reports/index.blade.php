@@ -3,6 +3,7 @@
 @push('styles')
     @style('css/files.css')
     @style('css/document.css')
+    @style('css/reports.css')
 @endpush
 
 @push('scripts')

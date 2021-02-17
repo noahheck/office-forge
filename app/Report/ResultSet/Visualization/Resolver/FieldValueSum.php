@@ -20,7 +20,7 @@ class FieldValueSum
 
             $field = $record->fields()->firstWhere('datasetFieldId', $visualization->field_id);
 
-            return $field->label;
+            return \App\format_float($field->label);
         });
     }
 }
