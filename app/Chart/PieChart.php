@@ -21,7 +21,7 @@ class PieChart implements \JsonSerializable
 
     private $datasets;
 
-    public function __construct($title = '', $description = '', $height = 225, $width = 300)
+    public function __construct($title = '', $description = '', $height = 200, $width = 300)
     {
         $this->title = $title;
         $this->description = $description;
@@ -77,12 +77,7 @@ class PieChart implements \JsonSerializable
             $datasets = array_merge([__('app.noValue') => $noKeyValue], $datasets);
         }
 
-        $colors = [
-            'rgb(123, 103, 156)',
-            'rgb(103, 123, 156)',
-            'rgb(156, 123, 103)',
-            'rgb(156, 103, 123)',
-        ];
+        $colors = Colors::getColors(count($datasets));
 
         return [
             'type' => 'pie',

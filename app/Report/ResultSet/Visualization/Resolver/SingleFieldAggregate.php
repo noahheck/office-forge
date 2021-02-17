@@ -18,7 +18,8 @@ class SingleFieldAggregate
 
     public function resolve(ResultSet $resultSet, Visualization $visualization)
     {
-        $chart = new PieChart($visualization->label);
+//        $chart = new PieChart($visualization->label);
+        $chart = new PieChart();
 
         $table = new Table($visualization->label);
         $table->setHeaders([
