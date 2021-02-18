@@ -57,6 +57,7 @@ class Dataset extends Model
             Field::FIELD_OPTION_TYPE_INTEGER,
             Field::FIELD_OPTION_TYPE_DECIMAL,
             Field::FIELD_OPTION_TYPE_MONEY,
+            Field::FIELD_OPTION_TYPE_CHECKBOX,
         ]);
 
         return $this->fields->filter(function($field) use ($sumOrAverageableFieldTypes) {

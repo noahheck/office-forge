@@ -15,6 +15,7 @@ class Table
     public function __construct($title = '')
     {
         $this->title = $title;
+        $this->records = [];
     }
 
     public function getTitle()
