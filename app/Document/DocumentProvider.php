@@ -29,14 +29,14 @@ class DocumentProvider
             ->createdFormDocs()
             ->whereNotNull('submitted_at')
             ->submittedSince($since)
-            ->orderBy('submitted_at', 'DESC')
+            ->orderBy('DATE', 'DESC')
         ->get();
     }
 
 
     public function getDocumentsForFileAccessibleByUser(File $file, User $user)
     {
-        $allFormDocs = $file->formDocs()->submitted()->orderBy('submitted_at', 'DESC')->get();
+        $allFormDocs = $file->formDocs()->submitted()->orderBy('DATE', 'DESC')->get();
 
         $allFormDocs->load('teams');
 

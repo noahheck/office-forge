@@ -42,6 +42,11 @@ class FormDoc extends Model
     }
 
 
+    public function reportDatasetTitle()
+    {
+        return $this->date;
+    }
+
 
     public function workItemListHref()
     {

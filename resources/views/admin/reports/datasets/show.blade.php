@@ -141,8 +141,15 @@
                         <div class="list-group" id="datasetVisualizations">
                             @foreach ($dataset->visualizations as $visualization)
                                 <a class="list-group-item list-group-item-action d-flex" href="{{ route('admin.reports.datasets.visualizations.edit', [$report, $dataset, $visualization]) }}" data-id="{{ $visualization->id }}">
+                                    <div class="flex-grow-0">
+                                        {!! \App\icon\visualizations(['fa-fw', 'mr-2']) !!}
+                                    </div>
                                     <div class="flex-grow-1">
-                                        {!! \App\icon\visualizations(['fa-fw', 'mr-2']) !!}{{ $visualization->label }}
+                                        {{ $visualization->label }}
+                                        <small>
+                                            <br>
+                                            {{ __('report.visualizationType_' . $visualization->type) }}
+                                        </small>
                                     </div>
                                     <div class="flex-grow-0 pl-3 sort-handle cursor-grabbing">
                                         {!! \App\icon\verticalSort([]) !!}

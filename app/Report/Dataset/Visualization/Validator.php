@@ -37,6 +37,11 @@ class Validator
                 $fieldAccessor = 'aggregate_field_id';
                 break;
 
+            case Visualization::VISUALIZATION_TYPE_RANGE_FIELD_AVERAGE:
+
+                $fieldAccessor = 'range_field_average_id';
+                break;
+
         endswitch;
 
         if (!$fieldAccessor) {

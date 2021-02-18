@@ -20,6 +20,7 @@ class ResolverMapper
             Visualization::VISUALIZATION_TYPE_FIELD_VALUE_SUM     => 'FieldValueSum',
             Visualization::VISUALIZATION_TYPE_FIELD_VALUE_AVERAGE => 'FieldValueAverage',
             Visualization::VISUALIZATION_TYPE_SINGLE_FIELD_AGGREGATE => 'SingleFieldAggregate',
+            Visualization::VISUALIZATION_TYPE_RANGE_FIELD_AVERAGE => 'RangeFieldAverage',
         ];
     }
 

@@ -65,6 +65,12 @@ class File extends Model implements Headshottable
     }
 
 
+    public function reportDatasetTitle()
+    {
+        return $this->name;
+    }
+
+
 
     public function icon(array $withClasses = [])
     {

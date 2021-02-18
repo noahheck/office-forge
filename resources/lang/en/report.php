@@ -76,6 +76,9 @@ return [
 
     'visualizationType_single_field_aggregate' => 'Single Field Value Aggregate (Pie Chart)',
 
+    'visualizationType_range_field_average' => 'Range Field Average (Gauge Chart)',
+
+
 
 
     'selectAReport' => 'Select a Report',

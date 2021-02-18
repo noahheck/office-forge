@@ -6,6 +6,11 @@ namespace App\Chart;
 
 class Colors
 {
+    public static function getBackgroundColor()
+    {
+        return 'rgb(196, 196, 225)';
+    }
+
     public static function getColors(int $numberOfColors)
     {
         $colors = [

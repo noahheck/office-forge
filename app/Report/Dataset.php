@@ -92,6 +92,23 @@ class Dataset extends Model
         });
     }
 
+    public function rangeFieldAverageOptions()
+    {
+        $rangeFieldTypes = collect([
+            Field::FIELD_OPTION_TYPE_RANGE,
+        ]);
+
+        return $this->fields->filter(function($field) use ($rangeFieldTypes) {
+
+            if ($field->isImplicitField()) {
+
+                return false;
+            }
+
+            return $rangeFieldTypes->contains($field->templateField->field_type);
+        });
+    }
+
     public function isFileType(): bool
     {
         return $this->datasetable_type === FileType::class;

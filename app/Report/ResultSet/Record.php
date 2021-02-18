@@ -45,6 +45,11 @@ class Record
         return $this->fields;
     }
 
+    public function resourceTitle()
+    {
+        return $this->resource->reportDatasetTitle();
+    }
+
     public function __get($name)
     {
         if ($this->properties[$name] ?? false) {

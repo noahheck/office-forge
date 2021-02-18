@@ -18,32 +18,6 @@
 
         <div class="col-12">
 
-            {{--<p>
-                {!! __('admin.dataset_field_fieldFormInformation', ['dataset' => e($dataset->name), 'dataTypeIcon' => $dataset->datasetable->icon(), 'dataType' => e($dataset->datasetable->name)]) !!}
-            </p>--}}
-
-{{--            <hr>--}}
-
-            {{--<div class="form-group required">
-                <label for="field_id">{{ __('admin.dataset_field_fieldToAppear') }}</label>
-                <select class="custom-select" id="field_id" name="field_id" autofocus>
-                    <option value="">--</option>
-                    @foreach ($dataset->datasetable->reportableFieldOptions() as $optgroup => $fields)
-                        @if ($optgroup)
-                            <optgroup label="{{ $optgroup }}">
-                        @endif
-
-                        @foreach ($fields as $fieldOption)
-                            <option value="{{ $fieldOption['value'] }}" data-type="{{ $fieldOption['type'] }}" {{ ($fieldOption['value'] == $field->field_id) ? 'selected' : '' }}>{{ $fieldOption['label'] }}</option>
-                        @endforeach
-
-                        @if ($optgroup)
-                            </optgroup>
-                        @endif
-                    @endforeach
-                </select>
-            </div>--}}
-
             @textField([
                 'name' => 'label',
                 'label' => __('admin.dataset_visualization_label'),
@@ -113,6 +87,26 @@
                         'required' => false,
                         'autofocus' => false,
                         'error' => $errors->has('aggregate_field_id'),
+                        'readonly' => false,
+                        'fieldOnly' => false,
+                    ])
+
+                </div>
+
+
+                <div class="visualization-type-options d-none" id="rangeFieldAverageOptions">
+
+                    @selectField([
+                        'name' => 'range_field_average_id',
+                        'id' => 'range_field_average_id',
+                        'label' => 'Which Report field do you want to apply this operation to?',
+                        'details' => '',
+                        'value' => old('range_field_average_id', $visualization->field_id),
+                        'options' => $dataset->rangeFieldAverageOptions()->pluck('label', 'id'),
+                        'placeholder' => 'Select a field',
+                        'required' => false,
+                        'autofocus' => false,
+                        'error' => $errors->has('range_field_average_id'),
                         'readonly' => false,
                         'fieldOnly' => false,
                     ])

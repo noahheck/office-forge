@@ -9,7 +9,8 @@ let visualizationTypeOptionsContainerMap = {
     'total_records_count': 'total_recordsOptions',
     'field_value_sum': 'sum_averageOptions',
     'field_value_average': 'sum_averageOptions',
-    'single_field_aggregate': 'aggregateOptions'
+    'single_field_aggregate': 'aggregateOptions',
+    'range_field_average': 'rangeFieldAverageOptions'
 };
 
 $(function() {
