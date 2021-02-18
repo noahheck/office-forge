@@ -6,6 +6,7 @@ namespace App\Report\ResultSet\Visualization\Resolver;
 
 use App\Report\Dataset\Visualization;
 use App\Report\ResultSet;
+use function App\format_float;
 
 class FieldValueAverage
 {
@@ -20,7 +21,7 @@ class FieldValueAverage
 
             $field = $record->fields()->firstWhere('datasetFieldId', $visualization->field_id);
 
-            return $field->label;
+            return format_float($field->label);
         });
 
         return \App\format_decimal($average);
