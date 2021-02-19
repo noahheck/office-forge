@@ -98,6 +98,9 @@ class RadarChart implements \JsonSerializable
                         'suggestedMax' => (int) $this->max,
                     ],
                 ],
+                'tooltips' => [
+                    'enabled' => false,
+                ],
             ],
             'data' => [
                 'datasets' => [[
