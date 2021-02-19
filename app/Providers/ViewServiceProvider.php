@@ -77,7 +77,7 @@ class ViewServiceProvider extends ServiceProvider
          */
         \Blade::directive('style', function($expression) {
             return <<<EOT
-<?php echo "<link rel='stylesheet' href='" . mix({$expression}) . "'>"; ?>
+<?php echo "<link rel='stylesheet' href='" . mix(config('app.env') . "/" . {$expression}) . "'>"; ?>
 EOT;
         });
         /**
@@ -91,7 +91,7 @@ EOT;
          */
         \Blade::directive('script', function($expression) {
             return <<<EOT
-<?php echo "<script type='text/javascript' src='" . mix({$expression}) . "'></script>"; ?>
+<?php echo "<script type='text/javascript' src='" . mix(config('app.env') . "/" . {$expression}) . "'></script>"; ?>
 EOT;
         });
 
