@@ -1,6 +1,7 @@
 {{--
 @multiSelectField([
     'name' => 'string: form field name',
+    'id' => 'string: form field id',
     'label' => 'string: text label for form field',
     'values' => 'collection: the field's value',
     'options' => 'collection: collection of key=>value options to display in the field',
@@ -21,7 +22,7 @@
             <p>{{ $description }}</p>
         @endif
 @endunless
-    <select class="selectpicker show-tick form-control" id="{{ $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-display="static" multiple>
+    <select class="selectpicker show-tick form-control" id="{{ $id ?? $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-display="static" multiple>
         @foreach ($options as $key => $option)
             @if(is_array($option))
                 <optgroup{!! ($key) ? ' label="' . e($key) . '"' : "" !!}>

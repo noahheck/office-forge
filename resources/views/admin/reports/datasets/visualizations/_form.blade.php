@@ -113,6 +113,24 @@
 
                 </div>
 
+                <div class="visualization-type-options d-none" id="multiRangeFieldAverageOptions">
+
+                    @multiSelectField([
+                        'name' => 'multi_range_field_average_id',
+                        'id' => 'multi_range_field_average_id',
+                        'label' => 'Which Report fields do you want to apply this operation to?',
+                        'values' => collect(optional($visualization->options)->multiple_field_ids ?? []),
+                        'options' => $dataset->rangeFieldAverageOptions()->pluck('label', 'id'),
+                        'placeholder' => 'Select at least 3 fields',
+                        'description' => '',
+                        'required' => false,
+                        'autofocus' => false,
+                        'error' => $errors->has('multi_range_field_average_id'),
+                        'fieldOnly' => false,
+                    ])
+
+                </div>
+
             </div>
 
         </div>

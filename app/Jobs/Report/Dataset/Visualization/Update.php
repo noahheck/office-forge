@@ -34,10 +34,21 @@ class Update
      */
     public function handle()
     {
+        $options = new \stdClass;
+
         $visualization = $this->visualization;
         $visualization->label = $this->label;
         $visualization->type = $this->type;
-        $visualization->field_id = $this->field_id;
+
+        $visualization->field_id = null;
+
+        if (is_array($this->field_id)) {
+            $options->multiple_field_ids = $this->field_id;
+        } else {
+            $visualization->field_id = $this->field_id;
+        }
+
+        $visualization->options = $options;
 
         $visualization->save();
     }

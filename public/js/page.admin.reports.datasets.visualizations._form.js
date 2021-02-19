@@ -19,7 +19,8 @@ var visualizationTypeOptionsContainerMap = {
   'field_value_sum': 'sum_averageOptions',
   'field_value_average': 'sum_averageOptions',
   'single_field_aggregate': 'aggregateOptions',
-  'range_field_average': 'rangeFieldAverageOptions'
+  'range_field_average': 'rangeFieldAverageOptions',
+  'multi_range_field_average': 'multiRangeFieldAverageOptions'
 };
 $(function () {
   var $visualizationTypeField = $('#visualization_type');

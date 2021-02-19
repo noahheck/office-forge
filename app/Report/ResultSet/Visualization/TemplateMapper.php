@@ -21,6 +21,7 @@ class TemplateMapper
             Visualization::VISUALIZATION_TYPE_FIELD_VALUE_AVERAGE => 'single_value',
             Visualization::VISUALIZATION_TYPE_SINGLE_FIELD_AGGREGATE => 'table_with_chart',
             Visualization::VISUALIZATION_TYPE_RANGE_FIELD_AVERAGE => 'table_with_chart',
+            Visualization::VISUALIZATION_TYPE_MULTI_RANGE_FIELD_AVERAGE => 'table_with_chart',
         ];
     }
 

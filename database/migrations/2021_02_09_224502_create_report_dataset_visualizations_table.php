@@ -20,6 +20,8 @@ class CreateReportDatasetVisualizationsTable extends Migration
             $table->integer('order')->nullable();
             $table->string('type');
             $table->bigInteger('field_id')->nullable();
+            $table->json('options')->nullable();
+
             $table->timestamps();
         });
     }

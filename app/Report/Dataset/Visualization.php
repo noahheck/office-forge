@@ -14,8 +14,13 @@ class Visualization extends Model
     const VISUALIZATION_TYPE_SINGLE_FIELD_AGGREGATE = 'single_field_aggregate';
 
     const VISUALIZATION_TYPE_RANGE_FIELD_AVERAGE = 'range_field_average';
+    const VISUALIZATION_TYPE_MULTI_RANGE_FIELD_AVERAGE = 'multi_range_field_average';
 
     protected $table = 'report_dataset_visualizations';
+
+    protected $casts = [
+        'options' => 'object',
+    ];
 
     public static function visualizationTypeOptions()
     {
@@ -25,6 +30,7 @@ class Visualization extends Model
             self::VISUALIZATION_TYPE_FIELD_VALUE_AVERAGE => __('report.visualizationType_field_value_average'),
             self::VISUALIZATION_TYPE_SINGLE_FIELD_AGGREGATE => __('report.visualizationType_single_field_aggregate'),
             self::VISUALIZATION_TYPE_RANGE_FIELD_AVERAGE => __('report.visualizationType_range_field_average'),
+            self::VISUALIZATION_TYPE_MULTI_RANGE_FIELD_AVERAGE => __('report.visualizationType_multi_range_field_average'),
         ]);
     }
 

@@ -42,13 +42,22 @@ class Create
      */
     public function handle()
     {
+        $options = new \stdClass;
+
         $visualization = new Visualization;
         $visualization->dataset_id = $this->dataset->id;
         $visualization->label = $this->label;
         $visualization->type = $this->type;
-        $visualization->field_id = $this->field_id;
+
+        if (is_array($this->field_id)) {
+            $options->multiple_field_ids = $this->field_id;
+        } else {
+            $visualization->field_id = $this->field_id;
+        }
 
         $visualization->order = $this->dataset->visualizations()->max('order') + 1;
+
+        $visualization->options = $options;
 
         $visualization->save();
 
