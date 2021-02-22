@@ -11,6 +11,7 @@
     'autofocus' => 'boolean: whether the field should be focused on load',
     'error' => 'boolean: whether the field is in error state',
     'fieldOnly' => 'boolean: whether the field should be wrapped in a div.form-group with label',
+    'maxOptions' => 'integer: max number of options to be selected',
 ])
 --}}
 @unless($fieldOnly ?? false)
@@ -22,7 +23,7 @@
             <p>{{ $description }}</p>
         @endif
 @endunless
-    <select class="selectpicker show-tick form-control" id="{{ $id ?? $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-display="static" multiple>
+    <select class="selectpicker show-tick form-control" {!! ($maxOptions ?? false) ? 'data-max-options="' . e($maxOptions) . '"' : '' !!} id="{{ $id ?? $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-display="static" multiple>
         @foreach ($options as $key => $option)
             @if(is_array($option))
                 <optgroup{!! ($key) ? ' label="' . e($key) . '"' : "" !!}>

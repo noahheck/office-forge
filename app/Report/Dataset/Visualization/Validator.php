@@ -47,6 +47,11 @@ class Validator
                 $fieldAccessor = 'multi_range_field_average_id';
                 break;
 
+            case Visualization::VISUALIZATION_TYPE_MULTI_FIELD_TREND_WITH_AVERAGE:
+
+                $fieldAccessor = 'multi_field_trend_with_average_id';
+                break;
+
         endswitch;
 
         if (!$fieldAccessor) {

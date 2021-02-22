@@ -41,6 +41,9 @@ return [
     'time' => 'Time',
     'dateTime' => 'Date/Time',
 
+    'sum' => 'Sum',
+    'average' => 'Average',
+
     'user' => 'User',
 
     'upload' => 'Upload',

@@ -11,7 +11,8 @@ let visualizationTypeOptionsContainerMap = {
     'field_value_average': 'sum_averageOptions',
     'single_field_aggregate': 'aggregateOptions',
     'range_field_average': 'rangeFieldAverageOptions',
-    'multi_range_field_average': 'multiRangeFieldAverageOptions'
+    'multi_range_field_average': 'multiRangeFieldAverageOptions',
+    'multi_field_trend_with_average': 'multiFieldTrendWithAverageOptions'
 };
 
 $(function() {

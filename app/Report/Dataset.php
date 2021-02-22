@@ -60,15 +60,7 @@ class Dataset extends Model
             Field::FIELD_OPTION_TYPE_CHECKBOX,
         ]);
 
-        return $this->fields->filter(function($field) use ($sumOrAverageableFieldTypes) {
-
-            if ($field->isImplicitField()) {
-
-                return false;
-            }
-
-            return $sumOrAverageableFieldTypes->contains($field->templateField->field_type);
-        });
+        return $this->filteredFieldOptions($sumOrAverageableFieldTypes, false);
     }
 
     public function aggregateFieldOptions()
@@ -81,15 +73,7 @@ class Dataset extends Model
             Field::FIELD_OPTION_TYPE_FILE,
         ]);
 
-        return $this->fields->filter(function($field) use ($aggregateFieldTypes) {
-
-            if ($field->isImplicitField()) {
-
-                return true;
-            }
-
-            return $aggregateFieldTypes->contains($field->templateField->field_type);
-        });
+        return $this->filteredFieldOptions($aggregateFieldTypes, true);
     }
 
     public function rangeFieldAverageOptions()
@@ -98,16 +82,42 @@ class Dataset extends Model
             Field::FIELD_OPTION_TYPE_RANGE,
         ]);
 
-        return $this->fields->filter(function($field) use ($rangeFieldTypes) {
+        return $this->filteredFieldOptions($rangeFieldTypes, false);
+    }
+
+    public function trendableFieldWithAverageOptions()
+    {
+        $trendableFieldTypes = collect([
+            Field::FIELD_OPTION_TYPE_MONEY,
+            Field::FIELD_OPTION_TYPE_DECIMAL,
+            Field::FIELD_OPTION_TYPE_INTEGER,
+            Field::FIELD_OPTION_TYPE_RANGE,
+        ]);
+
+        return $this->filteredFieldOptions($trendableFieldTypes, false);
+    }
+
+
+    private function filteredFieldOptions($acceptableFields, bool $withImplicitFields)
+    {
+        return $this->fields->filter(function($field) use ($acceptableFields, $withImplicitFields) {
 
             if ($field->isImplicitField()) {
 
-                return false;
+                return $withImplicitFields;
             }
 
-            return $rangeFieldTypes->contains($field->templateField->field_type);
+            return $acceptableFields->contains($field->templateField->field_type);
         });
     }
+
+
+
+
+
+
+
+
 
     public function isFileType(): bool
     {

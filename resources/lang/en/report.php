@@ -79,6 +79,7 @@ return [
     'visualizationType_range_field_average' => 'Range Field Average (Gauge Chart)',
     'visualizationType_multi_range_field_average' => 'Multi-Range Field Average (Radar Chart)',
 
+    'visualizationType_multi_field_trend_with_average' => 'Multiple Field Trend With Average (Line Chart)',
 
 
 

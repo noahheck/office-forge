@@ -25,8 +25,6 @@ class ReportController extends Controller
     {
         $reports = $report->orderBy('name')->get();
 
-        \Debugbar::info($reports);
-
         return $this->view('admin.reports.index', compact('reports'));
     }
 

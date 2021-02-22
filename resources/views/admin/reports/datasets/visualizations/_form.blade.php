@@ -131,6 +131,25 @@
 
                 </div>
 
+                <div class="visualization-type-options d-none" id="multiFieldTrendWithAverageOptions">
+
+                    @multiSelectField([
+                        'name' => 'multi_field_trend_with_average_id',
+                        'id' => 'multi_field_trend_with_average_id',
+                        'label' => 'Which Report fields do you want to apply this operation to?',
+                        'values' => collect(optional($visualization->options)->multiple_field_ids ?? []),
+                        'options' => $dataset->trendableFieldWithAverageOptions()->pluck('label', 'id'),
+                        'placeholder' => 'Select at least 1 field',
+                        'description' => '',
+                        'required' => false,
+                        'autofocus' => false,
+                        'error' => $errors->has('multi_field_trend_with_average'),
+                        'fieldOnly' => false,
+                        'maxOptions' => 2,
+                    ])
+
+                </div>
+
             </div>
 
         </div>
