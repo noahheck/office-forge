@@ -11,6 +11,48 @@ class Colors
         return 'rgb(196, 196, 225)';
     }
 
+    public static function blue($withTransparency = false)
+    {
+        $alpha = ($withTransparency) ? 'a' : '';
+        $transparency = ($withTransparency) ? ', 0.5' : '';
+
+        return "rgb{$alpha}(103, 123, 156{$transparency})";
+    }
+
+    public static function green($withTransparency = false)
+    {
+        $alpha = ($withTransparency) ? 'a' : '';
+        $transparency = ($withTransparency) ? ', 0.5' : '';
+
+        return "rgb{$alpha}(103, 156, 123{$transparency})";
+    }
+
+    public static function red($withTransparency = false)
+    {
+        $alpha = ($withTransparency) ? 'a' : '';
+        $transparency = ($withTransparency) ? ', 0.5' : '';
+
+        return "rgb{$alpha}(156, 123, 103{$transparency})";
+    }
+
+    public static function brown($withTransparency = false)
+    {
+        $alpha = ($withTransparency) ? 'a' : '';
+        $transparency = ($withTransparency) ? ', 0.5' : '';
+
+        return "rgb{$alpha}(156, 123, 103{$transparency})";
+    }
+
+    public static function purple($withTransparency = false)
+    {
+        $alpha = ($withTransparency) ? 'a' : '';
+        $transparency = ($withTransparency) ? ', 0.5' : '';
+
+        return "rgb{$alpha}(123, 103, 156{$transparency})";
+    }
+
+
+
     public static function getColors(int $numberOfColors, $withTransparency = false)
     {
         $alpha = ($withTransparency) ? 'a' : '';

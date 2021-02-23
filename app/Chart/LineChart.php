@@ -129,6 +129,7 @@ class LineChart implements \JsonSerializable
                 'scaleLabel' => [
                     'display' => true,
                     'labelString' => $key,
+                    'fontColor' => $borderColors[$x],
                 ],
             ];
 
