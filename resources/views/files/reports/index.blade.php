@@ -1,5 +1,13 @@
 @extends("files.file_resource")
 
+@if ($compiledReport)
+
+@section('title')
+    {{ $compiledReport->title }}
+@endsection
+
+@endif
+
 @push('styles')
     @style('css/files.css')
     @style('css/document.css')

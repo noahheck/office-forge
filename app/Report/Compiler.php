@@ -21,7 +21,7 @@ class Compiler
 
     public function compileReport(Report $report, RuntimeValues $runtimeValues)
     {
-        $compiledReport = new CompiledReport($report);
+        $compiledReport = new CompiledReport($report, $runtimeValues);
 
         foreach ($report->datasets as $dataset) {
             $compiledReport->addResultSet(

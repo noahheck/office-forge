@@ -32,6 +32,10 @@ class ViewServiceProvider extends ServiceProvider
             'reports._resultSet', 'App\Http\View\Composers\Reports\ResultSetComposer'
         );
 
+        View::composer(
+            'reports._report', '\App\Http\View\Composers\Reports\ReportComposer'
+        );
+
 
 
 

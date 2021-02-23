@@ -14,8 +14,10 @@ class RuntimeValues
     public $date_to;
     public $user;
     public $generatingUser;
+    public $time;
 
     public $file_id;
+    public $file;
 
     public function __construct($date, $date_from, $date_to, $user, $generatingUser)
     {
@@ -24,6 +26,7 @@ class RuntimeValues
         $this->date_to = $date_to;
         $this->user = $user;
         $this->generatingUser = $generatingUser;
+        $this->time = now();
     }
 
     public static function fromRequest(Request $request)
@@ -35,9 +38,10 @@ class RuntimeValues
         return $filters;
     }
 
-    public function withFileId($file_id)
+    public function withFileId($file_id, $file)
     {
         $this->file_id = $file_id;
+        $this->file = $file;
 
         return $this;
     }

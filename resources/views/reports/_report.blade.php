@@ -1,7 +1,10 @@
-{{--
+<h2>{!! \App\icon\reports(['mr-2']) !!}{{ $compiledReport->title }}</h2>
 
---}}
-<h2>{!! \App\icon\reports(['mr-2']) !!}{{ $compiledReport->name }}</h2>
+<hr>
+
+<div class="report-headers">
+    {!! $reportDescriptor->headers($compiledReport) !!}
+</div>
 
 <hr>
 

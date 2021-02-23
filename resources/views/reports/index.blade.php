@@ -1,5 +1,13 @@
 @extends("layouts.app")
 
+@if ($compiledReport)
+
+@section('title')
+    {{ $compiledReport->title }}
+@endsection
+
+@endif
+
 @push('styles')
     @style('css/document.css')
     @style('css/reports.css')

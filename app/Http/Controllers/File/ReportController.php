@@ -42,7 +42,7 @@ class ReportController extends Controller
             $report = $reportModel->find($report_id);
             $report->load('datasets', 'datasets.datasetable', 'datasets.datasetable', 'datasets.fields', 'datasets.fields');
 
-            $runtimeValues = RuntimeValues::fromRequest($request)->withFileId($file->id);
+            $runtimeValues = RuntimeValues::fromRequest($request)->withFileId($file->id, $file);
 
             $compiledReport = $reportCompiler->compileReport($report, $runtimeValues);
         }
