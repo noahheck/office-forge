@@ -5,7 +5,7 @@
 
     <div class="row file-resource">
 
-        <div class="col-12 col-md-4 col-xl-3 mb-3">
+        <div class="col-12 col-md-4 col-xl-3 mb-3 no-print">
 
             <div class="resource-sidebar">
 

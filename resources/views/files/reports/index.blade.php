@@ -24,7 +24,7 @@
 
 @section('resource-content')
 
-    <div class="card shadow document">
+    <div class="card shadow document mb-4 no-print">
 
         <div class="card-body">
 
@@ -184,7 +184,7 @@
 
     @if ($compiledReport)
 
-        <div class="d-flex justify-content-center document-print-container mt-4">
+        <div class="d-flex justify-content-center document-print-container">
 
             <div class="document-container">
 

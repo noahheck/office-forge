@@ -1,4 +1,6 @@
 @php
+    $columnCounter->add(2);
+
     $visData = $resolver->resolve($resultSet, $visualization);
     $chart = $visData['chart'];
     $table = $visData['table'];
