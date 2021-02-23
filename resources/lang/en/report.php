@@ -70,6 +70,11 @@ return [
     'visualizations' => 'Visualizations',
     'visualization_s' => 'Visualization|Visualizations',
 
+    'whichReportFieldApplyTo' => 'Which Report Field do you want to apply this operation to?',
+    'whichReportFieldsApplyTo' => 'Which Report Fields do you want to apply this operation to?',
+    'selectAtLeast3Fields' => 'Select at least 3 fields',
+    'selectUpTo2Fields' => 'Select up to 2 fields',
+
     'visualizationType_total_records_count' => 'Total Records Count',
     'visualizationType_field_value_sum' => 'Field Value Sum',
     'visualizationType_field_value_average' => 'Field Value Average',

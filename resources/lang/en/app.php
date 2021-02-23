@@ -32,6 +32,7 @@ return [
     'accessDetails' => 'Access Details',
     'required' => 'Required',
     'optional' => 'Optional',
+    'selectAField' => 'Select a Field',
 
     'confirmDelete' => 'Confirm Delete',
     'sureDeleteThis' => 'Are you sure you want to delete this?',
