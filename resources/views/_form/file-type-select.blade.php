@@ -16,7 +16,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($description ?? false)
-            <p>{{ $description }}</p>
+            <p>{!! nl2br(e($description)) !!}</p>
         @endif
 @endunless
     <select class="selectpicker show-tick form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" id="{{ $name }}" name="{{ $name }}" title="{{ $placeholder }}" data-live-search="true">

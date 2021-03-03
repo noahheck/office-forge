@@ -85,7 +85,7 @@ These fields provide specialized handling of the data types they are intended to
 @dateField([
     'name' => 'date',
     'label' => 'Date',
-    'details' => 'Use this field for date values; a calendar will appear to help make selecting the correct date easy!',
+    'details' => 'Use this field for date values. A calendar will appear to help make selecting the correct date easy!',
     'value' => '',
     'placeholder' => '',
     'required' => false,
@@ -100,7 +100,7 @@ These fields provide specialized handling of the data types they are intended to
 @phoneField([
     'name' => 'phone',
     'label' => 'Phone Number',
-    'details' => 'Use this field for phone numbers; the phone number will be formatted as the user enters it to help ensure accuracy!',
+    'details' => 'Use this field for phone numbers. The phone number will be formatted as the user enters it to help ensure accuracy!',
     'value' => '',
     'required' => false,
     'autofocus' => false,
@@ -122,7 +122,7 @@ Office Forge offers a number of fields to capture numeric information. Using the
 @integerField([
     'name' => 'integer',
     'label' => 'Integer Field',
-    'details' => 'Use this field for integer data points; many browsers will include a widget for these fields to help make selecting the appropriate value easier.',
+    'details' => 'Use this field for integer data points. Many browsers will include a widget for these fields to help make selecting the appropriate value easier.',
     'value' => '',
     'placeholder' => '',
     'required' => false,
@@ -137,7 +137,7 @@ Office Forge offers a number of fields to capture numeric information. Using the
 @decimalField([
     'name' => 'decimal',
     'label' => 'Decimal Field',
-    'details' => 'Used to gather numeric values with a decimal point; the number of decimal points the field will accept and validate is configurable (up to 4 decimal points). This field has a configured value of 2 decimal points.',
+    'details' => 'Used to gather numeric values with a decimal point. The number of decimal points the field will accept and validate is configurable (up to 4 decimal points). This field has a configured value of 2 decimal points.',
     'value' => '',
     'decimalPlaces' => '2',
     'placeholder' => '',
@@ -197,7 +197,7 @@ Office Forge also provides some enhanced specialized fields to help gather data 
     'name' => 'checkbox',
     'id' => 'checkbox',
     'label' => 'Checkbox Field',
-    'details' => 'Checkbox fields are used to indicate a value as affirmative or negative. Use them to indicate state (e.g., Follow Up Required), or to indicate the presence or absence of a condition (e.g., Restricted Diet).',
+    'details' => 'Checkbox fields are used to indicate a value as affirmative or negative. Use them to indicate state (e.g., Follow Up Required), or to indicate the presence/absence of a condition (e.g., Restricted Diet, Wears Glasses, or Requires Notification).',
     'checked' => false,
     'value' => '',
     'required' => false,
@@ -238,12 +238,14 @@ Office Forge also comes with some pre-configured combination field types to help
 
 <div class="field-example">
 
-**Name Field**
-
-The Name Field is used to collect a person's name, including First, Middle, and Last name, and a possible suffix.
+@php
+    $nameField = new \App\FormDoc\Template\Field;
+    $nameField->label = 'Name Field';
+    $nameField->description = "The Name Field is used to collect a person's name, including First, Middle, and Last name, and a possible suffix.";
+@endphp
 
 @include('_form_field.name', [
-    'field' => new \App\FormDoc\Template\Field(),
+    'field' => $nameField,
     'value' => optional((object) []),
     'readonly' => false,
 ])
@@ -252,12 +254,14 @@ The Name Field is used to collect a person's name, including First, Middle, and 
 
 <div class="field-example">
 
-**Address Field**
-
-Use the Address Field to collect all of the details for a US address.
+@php
+    $addressField = new \App\FormDoc\Template\Field;
+    $addressField->label = 'Address Field';
+    $addressField->description = "Use the Address Field to collect all of the details for a US address.";
+@endphp
 
 @include('_form_field.address', [
-    'field' => new \App\FormDoc\Template\Field(),
+    'field' => $addressField,
     'value' => optional((object) []),
     'readonly' => false,
 ])
@@ -276,7 +280,7 @@ Office Forge also presents unique fields for referencing other Entities within O
     'name' => 'user',
     'label' => 'User Field',
     'value' => '',
-    'users' => \App\User::active()->get(),
+    'users' => collect([Auth::user()]),
     'placeholder' => 'Select a user',
     'description' => "The User Field allows staff to select an Office Forge user for a field's value. The options that appear in the list can be filtered by Team to ensure only appropriate user's can be selected for an individual field.",
     'required' => false,
@@ -310,7 +314,7 @@ Office Forge also presents unique fields for referencing other Entities within O
 
 ### Additional Fields
 
-<div class="field-example">
+<div class="field-example" style="padding-top: 0;">
 
 @include('_form_field.section-header', [
     'field' => (object) [

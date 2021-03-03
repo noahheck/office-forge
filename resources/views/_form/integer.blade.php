@@ -16,7 +16,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            <p>{{ $details }}</p>
+            <p>{!! nl2br(e($details)) !!}</p>
         @endif
 @endunless
     <input type="number" class="integer-field form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>

@@ -14,6 +14,6 @@
     <input type="checkbox" class="custom-control-input" value="{{ $value ?? 1 }}" id="{{ $id }}" name="{{ $name }}" {{ ($checked ?? false) ? 'checked' : '' }} {{ ($required ?? false) ? 'required' : '' }}>
     <label class="custom-control-label" for="{{ $id }}">{{ $label }}</label>
     @if ($details ?? false)
-        <p>{{ $details }}</p>
+        <p>{!! nl2br(e($details)) !!}</p>
     @endif
 </div>

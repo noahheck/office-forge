@@ -20,7 +20,7 @@
             <label for="{{ $name }}">{{ $label }}</label>
         @endif
         @if ($description ?? false)
-            <p>{{ $description }}</p>
+            <p>{!! nl2br(e($description)) !!}</p>
         @endif
 @endunless
     <select class="selectpicker show-tick form-control" {!! ($maxOptions ?? false) ? 'data-max-options="' . e($maxOptions) . '"' : '' !!} id="{{ $id ?? $name }}" name="{{ $name }}[]" title="{{ $placeholder }}" data-live-search="true" {{ ($readonly ?? false) ? 'disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }} data-display="static" multiple>

@@ -15,7 +15,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p>{!! nl2br(e($details)) !!}</p>
         @endif
 @endunless
     <input type="password" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }}>

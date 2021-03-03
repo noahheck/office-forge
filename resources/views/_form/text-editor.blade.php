@@ -19,7 +19,7 @@
 <div class="editor-container">
     <label for="{{ $id }}">{{ $label }}</label>
     @if ($description ?? false)
-        <p>{{ $description }}</p>
+        <p>{!! nl2br(e($description)) !!}</p>
     @endif
     <trix-toolbar id="{{ $id }}__toolbar">
         <div class="trix-button-row">

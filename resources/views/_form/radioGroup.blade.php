@@ -24,7 +24,7 @@
 <p>
     <strong>{{ $label }}</strong>
     @if ($description)
-        <br>{{ $description }}
+        <br>{!! nl2br(e($description)) !!}
     @endif
 </p>
 

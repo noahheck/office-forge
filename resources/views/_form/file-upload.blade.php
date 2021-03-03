@@ -15,7 +15,7 @@
     <div class="form-group file-upload-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p>{!! nl2br(e($details)) !!}</p>
         @endif
         <div class="file-upload-image-preview-container" id="fileUploadImagePreviewContainer_{{ $name }}">
             <img id="fileUploadImagePreview_{{ $name }}" alt="" src="">

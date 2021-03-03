@@ -18,7 +18,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            <p>{{ $details }}</p>
+            <p>{!! nl2br(e($details)) !!}</p>
         @endif
 @endunless
     <select class="custom-select {{ ($error ?? false) ? 'is-invalid' : '' }}" id="{{ $id ?? $name }}" name="{{ $name }}" {{ ($readonly ?? false) ? 'readonly disabled' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>

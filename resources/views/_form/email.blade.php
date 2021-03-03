@@ -16,7 +16,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            <p>{{ $details }}</p>
+            <p>{!! nl2br(e($details)) !!}</p>
         @endif
 @endunless
     <div class="input-group">

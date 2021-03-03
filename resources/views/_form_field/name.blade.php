@@ -2,6 +2,9 @@
     <div class="form-row mb-3">
         <div class="col-12">
             <label for="{{ $field->fieldName() }}_1">{{ $field->label }}</label>
+            @if($description = $field->description)
+                <p>{!! nl2br(e($description)) !!}</p>
+            @endif
         </div>
         <div class="col-8">
             <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_1') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_1" id="{{ $field->fieldName() }}_1" value="{{ old($field->fieldName() . '_1', $value->value_text1) }}" placeholder="{{ __('file.field_fieldTypeNamePreviewFirstNamePlaceholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }} {{ ($autofocus ?? false) ? 'autofocus' : '' }}>

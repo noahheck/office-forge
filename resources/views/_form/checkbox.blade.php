@@ -18,7 +18,7 @@
     <div class="checkbox-label-container">
         <label for="{{ $id }}">{{ $label }}</label>
         @if ($details ?? false)
-            <p>{{ $details }}</p>
+            <p>{!! nl2br(e($details)) !!}</p>
         @endif
     </div>
 </div>
