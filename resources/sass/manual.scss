@@ -8,12 +8,22 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Bootstrap select
+@import '~bootstrap-select/sass/bootstrap-select';
+
+// Bootstrap datepicker
+@import '~bootstrap-datepicker/dist/css/bootstrap-datepicker3.css';
+
+// Bootstrap timepicker (tempusdominus)
+@import '~tempusdominus-bootstrap-4/build/css/tempusdominus-bootstrap-4.min.css';
+
 // Fontawesome
 @import '~@fortawesome/fontawesome-free/css/all.min.css';
 
 @import '_utilities.scss';
 @import '_mixins.scss';
 @import '_header-navbar.scss';
+@import '_form.scss';
 
 
 body {
@@ -27,6 +37,10 @@ h1 {
     padding-bottom: 15px;
     margin-bottom: 15px;
 
+}
+
+h3 {
+    margin-top: 30px;
 }
 
 p {
@@ -160,4 +174,18 @@ p {
         max-width: 100%;
     }
 
+}
+
+
+.field-example {
+    border: 1px solid $light-gray;
+    padding: 15px;
+    margin-bottom: 15px;
+
+    @include border-radius();
+    @include shadow(1px, 2px, 3px);
+
+    label {
+        font-weight: bold;
+    }
 }

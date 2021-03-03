@@ -2,6 +2,45 @@
  * scss/_form.scss
  */
 
+@import '_mixins.scss';
+
+// Bootstrap select
+.bootstrap-select {
+
+    .btn.dropdown-toggle {
+        @include border-radius();
+        border: 1px solid $light-gray;
+
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            background-color: $white;
+        }
+
+        &.btn-light:focus {
+            @include shadow(0, 0, 0, 0.2rem, rgba(52, 144, 220, 0.25));
+        }
+    }
+
+    .file-icon,
+    .user-icon,
+    .team-icon {
+        max-height: 25px;
+        padding: 2px;
+        font-size: .9em;
+        margin-right: 3px;
+    }
+
+    .headshot {
+        max-height: 25px;
+    }
+
+    .dropdown-divider + .dropdown-header {
+        margin-top: -8px;
+    }
+}
+
 .checkbox-field {
 
     display: flex;

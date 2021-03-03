@@ -15,9 +15,10 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p>{{ $details }}</p>
+        @else
+            <small class="text-muted">(xxx) xxx-xxxx</small>
         @endif
-        <small class="text-muted">(xxx) xxx-xxxx</small>
 @endunless
     <div class="input-group">
         <div class="input-group-prepend">
@@ -28,5 +29,6 @@
         <input type="tel" class="phone-field form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="(123) 456-7890" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>
     </div>
 @unless($fieldOnly ?? false)
-    </div>
+
+</div>
 @endunless

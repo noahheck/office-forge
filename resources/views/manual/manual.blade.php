@@ -12,10 +12,13 @@
     <!-- Scripts -->
     @script('js/manifest.js')
     @script('js/vendor.js')
-    <script src="{{ asset('js/app.js') }}" ></script>
+
+    @routes
+    @script('js/app.js')
 
     <!-- Styles -->
-    <link href="{{ asset('css/manual.css') }}" rel="stylesheet">
+    @style('css/manual.css')
+
 
     <!-- ****** faviconit.com favicons ****** -->
     <link rel="shortcut icon" href="/favicon/favicon.ico">
@@ -119,6 +122,9 @@
                                 </a>
                                 <a class="list-group-item list-group-item-action{{ $key == 'filestore' ? ' active' : '' }}" href="{{ route('manual', ['filestore']) }}">
                                     FileStore
+                                </a>
+                                <a class="list-group-item list-group-item-action{{ $key == 'form-fields' ? ' active' : '' }}" href="{{ route('manual', ['form-fields']) }}">
+                                    Form Fields
                                 </a>
                                 {{--<a class="list-group-item list-group-item-action{{ $key == 'dashboard' ? ' active' : '' }}" href="{{ route('manual', ['dashboard']) }}">
                                     Dashboard

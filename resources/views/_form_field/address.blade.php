@@ -22,10 +22,10 @@
                 @endforeach
             </select>
 
-        </div>
-        <div class="col-6 col-md-3">
-            <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_5') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_5" id="{{ $field->fieldName() }}_5" value="{{ old($field->fieldName() . '_5', $value->value_text5) }}" placeholder="{{ __('file.field_fieldTypeAddressPreviewZipPlaceholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }}>
-        </div>
+</div>
+<div class="col-6 col-md-3">
+    <input type="text" class="form-control {{ ($errors->has($field->fieldName() . '_5') ?? false) ? 'is-invalid' : '' }}" name="{{ $field->fieldName() }}_5" id="{{ $field->fieldName() }}_5" value="{{ old($field->fieldName() . '_5', $value->value_text5) }}" placeholder="{{ __('file.field_fieldTypeAddressPreviewZipPlaceholder') }}" {{ ($readonly ?? false) ? 'readonly' : '' }}>
+</div>
     </div>
 </div>
 

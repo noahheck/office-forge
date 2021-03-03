@@ -17,10 +17,11 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p>{{ $details }}</p>
         @endif
 @endunless
     <input type="text" data-decimal-places="{{ $decimalPlaces }}" class="decimal-field form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>
 @unless($fieldOnly ?? false)
-    </div>
+
+</div>
 @endunless

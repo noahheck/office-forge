@@ -32,5 +32,6 @@
         </div>
     @endif
 @unless($fieldOnly ?? false)
-    </div>
+
+</div>
 @endunless

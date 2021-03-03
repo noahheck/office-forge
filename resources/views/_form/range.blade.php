@@ -19,7 +19,7 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            <p class="mb-0">{{ $details }}</p>
+            <p class="mb-0">{!! nl2br(e($details)) !!}</p>
         @endif
         <div class="d-flex border p-2">
             <div class="flex-grow-1 d-flex flex-column align-items-center">
@@ -36,12 +36,13 @@
 @endunless
                 <input type="range" class="custom-range range-field {{ ($error ?? false) ? 'is-invalid' : '' }}" min="{{ $min ?? '0' }}" max="{{ $max ?? '10' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" value="{{ $value ?? '0' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly disabled' : '' }}>
 @unless($fieldOnly ?? false)
-            </div>
-            <div class="flex-grow-0">
-                <div class="range-field-display" id="{{ $name }}_display">
-                    {{ $value ?? '0' }}
-                </div>
-            </div>
-        </div>
-    </div>
+
+</div>
+<div class="flex-grow-0">
+<div class="range-field-display" id="{{ $name }}_display">
+{{ $value ?? '0' }}
+</div>
+</div>
+</div>
+</div>
 @endunless

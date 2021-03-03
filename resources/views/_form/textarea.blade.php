@@ -17,10 +17,11 @@
     <div class="form-group {{ ($required ?? false) ? 'required' : '' }}">
         <label for="{{ $name }}">{{ $label }}</label>
         @if ($details ?? false)
-            - {{ $details }}
+            <p>{{ $details }}</p>
         @endif
 @endunless
     <textarea rows="{{ $rows ?? 10 }}" class="form-control {{ ($error ?? false) ? 'is-invalid' : '' }}" name="{{ $name }}" id="{{ $name }}" placeholder="{{ $placeholder ?? '' }}" {{ ($autofocus ?? false) ? 'autofocus' : '' }} {{ ($required ?? false) ? 'required' : '' }} {{ ($readonly ?? false) ? 'readonly' : '' }}>{{ $value ?? '' }}</textarea>
 @unless($fieldOnly ?? false)
-    </div>
+
+</div>
 @endunless
