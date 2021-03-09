@@ -10,14 +10,14 @@
     <title>{{ config('app.name', 'Office Forge') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @script('js/app.js')
 
     <!-- Fonts -->
 {{--    <link rel="dns-prefetch" href="//fonts.gstatic.com">--}}
 {{--    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">--}}
 
     <!-- Styles -->
-    <link href="{{ asset('css/auth.css') }}" rel="stylesheet">
+    @style('css/auth.css')
 </head>
 <body>
 
