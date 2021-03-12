@@ -36,7 +36,7 @@ class Create
         string $name,
         string $email,
         string $timezone,
-        string $job_title,
+        string $job_title = null,
         string $password,
         bool $active,
         bool $administrator,

@@ -32,7 +32,7 @@ class Update
         string $name,
         string $email,
         string $timezone,
-        string $job_title,
+        string $job_title = null,
         bool $active,
         bool $administrator,
         bool $system_administrator,
