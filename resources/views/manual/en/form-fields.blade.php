@@ -1,30 +1,30 @@
-# Form Fields
+<h1>Form Fields</h1>
 
-There are a variety of ways to collect information in Office Forge. The form systems in Office Forge are designed to help you and your staff collect the information you need to do your jobs efficiently. The type of field you choose to use for collecting a piece of information will depend on a variety of things, including the type of information, how it should be reported on, and the values you can expect to be input by your staff.
+<p>There are a variety of ways to collect information in Office Forge. The form systems in Office Forge are designed to help you and your staff collect the information you need to do your jobs efficiently. The type of field you choose to use for collecting a piece of information will depend on a variety of things, including the type of information, how it should be reported on, and the values you can expect to be input by your staff.</p>
 
-Here, we'll present the different types of form fields available within Office Forge. We'll present the use case for each field type along with the tradeoffs between selecting one field versus another.
+<p>Here, we'll present the different types of form fields available within Office Forge. We'll present the use case for each field type along with the tradeoffs between selecting one field versus another.</p>
 
 <hr>
 
-### Common Features
+<h3>Common Features</h3>
 
-Most Form Fields in Office Forge have some common features:
+<p>Most Form Fields in Office Forge have some common features:</p>
 
-##### Label
+<h5>Label</h5>
 
-The Label for a form field indicates what information should be recorded in that field. The form systems in Office Forge make a field's label **bold** to help orient the user to the field.
+<p>The Label for a form field indicates what information should be recorded in that field. The form systems in Office Forge make a field's label <strong>bold</strong> to help orient the user to the field.</p>
 
-##### Description
+<h5>Description</h5>
 
-A field's Description is additional information about the data point presented to your staff to help ensure they fill in the data correctly.
+<p>A field's Description is additional information about the data point presented to your staff to help ensure they fill in the data correctly.</p>
 
-In the examples below, each field is output with the name of the field as the field's label and the supporting information displayed as the description. This will help show how a field will look when you configure it for your own forms.
+<p>In the examples below, each field is output with the name of the field as the field's label and the supporting information displayed as the description. This will help show how a field will look when you configure it for your own forms.</p>
 
 <hr />
 
-### Text Fields
+<h3>Text Fields</h3>
 
-The following text fields accept unstructured text input from staff. These fields don't have any input requirements, so they are good choices for data that doesn't require validation.
+<p>The following text fields accept unstructured text input from staff. These fields don't have any input requirements, so they are good choices for data that doesn't require validation.</p>
 
 <div class="field-example">
 
@@ -61,9 +61,9 @@ The following text fields accept unstructured text input from staff. These field
 
 
 
-### Specialized Text Fields
+<h3>Specialized Text Fields</h3>
 
-These fields provide specialized handling of the data types they are intended to capture. You should use these types of fields whenever possible to help staff members input and validate the information they are entering.
+<p>These fields provide specialized handling of the data types they are intended to capture. You should use these types of fields whenever possible to help staff members input and validate the information they are entering.</p>
 
 <div class="field-example">
 
@@ -113,9 +113,9 @@ These fields provide specialized handling of the data types they are intended to
 
 
 
-### Numeric Fields
+<h3>Numeric Fields</h3>
 
-Office Forge offers a number of fields to capture numeric information. Using the appropriate field type for each data point in a form can help make sure the data collected is accurate and can help make reporting on that information much more pleasant.
+<p>Office Forge offers a number of fields to capture numeric information. Using the appropriate field type for each data point in a form can help make sure the data collected is accurate and can help make reporting on that information much more pleasant.</p>
 
 <div class="field-example">
 
@@ -166,9 +166,9 @@ Office Forge offers a number of fields to capture numeric information. Using the
 
 
 
-### Specialized Field Types
+<h3>Specialized Field Types</h3>
 
-Office Forge also provides some enhanced specialized fields to help gather data easily and efficiently.
+<p>Office Forge also provides some enhanced specialized fields to help gather data easily and efficiently.</p>
 
 <div class="field-example">
 
@@ -232,9 +232,9 @@ Office Forge also provides some enhanced specialized fields to help gather data 
 
 
 
-### Combination Fields
+<h3>Combination Fields</h3>
 
-Office Forge also comes with some pre-configured combination field types to help make gathering and using data more straightforward!
+<p>Office Forge also comes with some pre-configured combination field types to help make gathering and using data more straightforward!</p>
 
 <div class="field-example">
 
@@ -270,9 +270,9 @@ Office Forge also comes with some pre-configured combination field types to help
 
 
 
-### Entity Fields
+<h3>Entity Fields</h3>
 
-Office Forge also presents unique fields for referencing other Entities within Office Forge. These specialized fields allow you to organize your information in ways that truly match the way you work.
+<p>Office Forge also presents unique fields for referencing other Entities within Office Forge. These specialized fields allow you to organize your information in ways that truly match the way you work.</p>
 
 <div class="field-example">
 
@@ -312,7 +312,7 @@ Office Forge also presents unique fields for referencing other Entities within O
 
 
 
-### Additional Fields
+<h3>Additional Fields</h3>
 
 <div class="field-example" style="padding-top: 0;">
 

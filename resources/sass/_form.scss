@@ -107,3 +107,52 @@
     padding: 0 5px;
     font-size: .9em;
 }
+
+
+.numeric-form-group {
+
+    margin-bottom: 10px;
+
+    & + .numeric-form-group {
+        margin-top: -11px;
+    }
+
+    border: 1px solid $light-gray;
+
+    label {
+        padding: 7px 0 7px 7px;
+        margin-bottom: 0;
+        background-color: $really-dark-white;
+        display: block;
+    }
+
+    p {
+        padding: 7px;
+        margin: 0;
+    }
+
+    .field-container {
+
+        input {
+            width: 125px;
+            border-radius: 0;
+            border-right: none;
+            border-top: none;
+
+            text-align: right;
+
+            &[type='number'] {
+                -moz-appearance: textfield;
+
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            }
+
+        }
+    }
+
+}
+

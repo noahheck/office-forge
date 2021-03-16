@@ -23,6 +23,37 @@
         font-size: 1.1rem;
     }
 
+    .numeric-field-group {
+
+        padding: 0;
+        border: 1px solid $light-gray;
+
+        margin-bottom: 10px;
+
+        & + .numeric-field-group {
+            margin-top: -11px;
+        }
+
+        .field-label {
+            display: block;
+            padding: 7px;
+            background-color: $really-dark-white;
+        }
+
+        .field-value {
+            width: 125px;
+            text-align: right;
+            padding: 7px;
+            border-left: 1px solid $light-gray;
+            border-bottom: 1px solid $light-gray;
+        }
+
+        p {
+            margin: 0;
+            padding: 7px;
+        }
+    }
+
 }
 
 .form-docs--index {
