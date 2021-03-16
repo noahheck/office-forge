@@ -40,16 +40,14 @@ class MultiFieldTrendWithAverage
 
         foreach ($fieldIds as $fieldId) {
 
-            $label = '';
+            $fieldDetails = $resultSet->fieldDetails($fieldId);
+
+            $label = $fieldDetails->label;
             $values = [];
 
-            $average = $resultSet->records()->avg(function($record) use ($fieldId, &$label, &$values) {
+            $average = $resultSet->records()->avg(function($record) use ($fieldId, &$values) {
 
                 $field = $record->fields()->firstWhere('datasetFieldId', $fieldId);
-
-                if (!$label) {
-                    $label = $field->value->label;
-                }
 
                 $values[] = $field->label;
 

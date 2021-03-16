@@ -34,9 +34,11 @@ class MultiRangeFieldAverage
 
         foreach ($fieldIds as $fieldId) {
 
-            $label = '';
+            $fieldDetails = $resultSet->fieldDetails($fieldId);
 
-            $average = $resultSet->records()->avg(function($record) use ($fieldId, &$label, &$max) {
+            $label = $fieldDetails->label;
+
+            $average = $resultSet->records()->avg(function($record) use ($fieldId, &$max) {
 
                 $field = $record->fields()->firstWhere('datasetFieldId', $fieldId);
 
@@ -44,10 +46,6 @@ class MultiRangeFieldAverage
 
                 if ($fieldMax > $max) {
                     $max = $fieldMax;
-                }
-
-                if (!$label) {
-                    $label = $field->value->label;
                 }
 
                 return format_float($field->label);

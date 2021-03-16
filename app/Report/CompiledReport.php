@@ -29,8 +29,6 @@ class CompiledReport
         $this->report = $report;
         $this->runtimeValues = $runtimeValues;
 
-        \Debugbar::info($runtimeValues);
-
         $title = $report->name;
         if ($runtimeValues->file) {
             $title .= ' - ' . $runtimeValues->file->name;

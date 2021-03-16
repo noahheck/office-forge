@@ -60,6 +60,11 @@ class ResultSet
         return $headers;
     }
 
+    public function fieldDetails($fieldId)
+    {
+        return $this->dataset->fields->firstWhere('id', $fieldId);
+    }
+
     public function records()
     {
         return $this->records;
