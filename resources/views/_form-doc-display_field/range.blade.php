@@ -1,4 +1,4 @@
-<div class="panel-field">
+<div class="field">
     <span class="field-label">{{ $field->label }}</span>
     @if ($field->description ?? false)
         <p class="mb-0"><em>{{ $field->description }}</em></p>

@@ -8,7 +8,7 @@ if ($preview ?? false) {
 }
 
 @endphp
-<div class="panel-field">
+<div class="field">
     <span class="checkbox-container">
         <span class="far fa{{ $__check }}-square"></span>
     </span>

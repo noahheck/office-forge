@@ -1,4 +1,4 @@
-<div class="panel-field numeric-field-group">
+<div class="field numeric-field-group">
     <div class="d-flex">
         <span class="flex-grow-1 field-label">{{ $field->label }}</span>
         <div class="flex-grow-0 field-value">

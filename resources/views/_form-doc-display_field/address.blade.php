@@ -3,7 +3,7 @@
     $__addressParts = ($__addressParts) ? $__addressParts : [];
     $__address = implode("<br>", array_map('e', $__addressParts));
 @endphp
-<div class="panel-field">
+<div class="field">
     <span class="field-label">{{ $field->label }}</span>
     <div class="field-value">
         {!! $__address !!}
