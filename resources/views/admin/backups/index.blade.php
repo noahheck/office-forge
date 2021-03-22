@@ -59,19 +59,19 @@
                     <tbody>
                         @foreach($backups as $backup)
                             <tr>
-                                <td class="text-center">
+                                <td class="text-center" data-sort="{{ $backup->successful }}">
                                     @if ($backup->successful)
                                         {!! \App\icon\checkedBox() !!}
                                     @else
                                         {!! \App\icon\uncheckedBox() !!}
                                     @endif
                                 </td>
-                                <td>
+                                <td data-sort="{{ $backup->started->format('U') }}">
                                     <a href="{{ route('admin.backups.show', [$backup]) }}">
                                         {{ \App\format_datetime($backup->started) }}
                                     </a>
                                 </td>
-                                <td>{{ \App\format_datetime($backup->completed) }}</td>
+                                <td data-sort="{{ $backup->completed->format('U') }}">{{ \App\format_datetime($backup->completed) }}</td>
                                 <td>
                                     {{ $backup->filename }}
                                 </td>

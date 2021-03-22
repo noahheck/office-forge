@@ -39,12 +39,12 @@
                                     {!! \App\icon\uncheckedBox() !!}
                                 @endif
                             </td>
-                            <td>
+                            <td data-sort="{{ $update->created_at->format('U') }}">
                                 <a href="{{ route('admin.server.updates.history.update', [$update]) }}">
                                     {{ \App\format_datetime($update->created_at) }}
                                 </a>
                             </td>
-                            <td>{{ \App\format_datetime($update->updated_at) }}</td>
+                            <td data-sort="{{ $update->updated_at->format('U') }}">{{ \App\format_datetime($update->updated_at) }}</td>
                         </tr>
                     @endforeach
                     </tbody>
