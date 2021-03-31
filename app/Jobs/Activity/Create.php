@@ -113,6 +113,7 @@ class Create
                 $task->title = $taskTemplate->name;
                 $task->process_task_details = $taskTemplate->details;
                 $task->order = $taskTemplate->order;
+                $task->due_date = $activity->due_date;
 
                 $task->activity_id = $activity->id;
                 $task->created_by = $this->creator->id;

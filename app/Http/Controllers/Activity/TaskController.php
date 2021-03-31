@@ -52,6 +52,7 @@ class TaskController extends Controller
         $newTask = new Task;
         $newTask->project_id = $activity->id;
         $newTask->assigned_to = $user->id;
+        $newTask->due_date = $activity->due_date;
 
         $taskUserOptions = $activity->participantUsers()->push($activity->owner)->unique();
 
@@ -74,6 +75,7 @@ class TaskController extends Controller
         $task = new Task;
         $task->project_id = $activity->id;
         $task->assigned_to = $request->user()->id;
+        $task->due_date = $activity->due_date;
 
         $users = $activity->participantUsers()->push($activity->owner)->unique();
 

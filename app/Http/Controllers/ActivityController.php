@@ -165,6 +165,7 @@ class ActivityController extends Controller
         $newTask = new Task;
         $newTask->project_id = $activity->id;
         $newTask->assigned_to = $user->id;
+        $newTask->due_date = $activity->due_date;
 
         $taskUserOptions = $activity->participantUsers()->push($activity->owner)->unique();
 

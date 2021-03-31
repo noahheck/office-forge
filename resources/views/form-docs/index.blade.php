@@ -23,9 +23,11 @@ form-docs--index
         {!! \App\icon\filterOptions(['icon']) !!}
     </button>
 
-    <button class="form-docs--list-display-button no-print" id="formDocsListDisplayButton">
-        {!! \App\icon\forms(['icon']) !!}
-    </button>
+    @if (count($formDocs) > 0)
+        <button class="form-docs--list-display-button no-print" id="formDocsListDisplayButton">
+            {!! \App\icon\forms(['icon']) !!}
+        </button>
+    @endif
 
     <div class="card shadow mb-3 form-docs--filters-container" id="formDocsFiltersContainer">
         <div class="card-body">

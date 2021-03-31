@@ -82,6 +82,14 @@
                     <dd class="col-12 col-sm-9 col-xl-10 task--due-date due-date">
                         {!! $task->completedBy->iconAndName() !!}
                     </dd>
+                @else
+                    @can('update', $task)
+                        <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">&nbsp;</dt>
+                        <dd class="col-12 col-sm-9 col-xl-10">
+                            <a href="{{ route('activities.tasks.edit', [$activity, $task]) }}">
+                                {!! \App\icon\edit(['mr-1']) !!}{{ __('app.edit') }}</a>
+                        </dd>
+                    @endcan
                 @endif
 
             </dl>

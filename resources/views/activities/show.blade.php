@@ -198,6 +198,14 @@
                                     @empty
                                         <em class="text-muted">{{ __('activity.noParticipants') }}</em>
                                     @endforelse
+                                    <hr>
+                                </dd>
+
+                                <dt class="col-12 col-sm-3 col-xl-2 text-sm-right">
+                                    <a href="#tasks">{{ __('activity.tasks') }}</a>
+                                </dt>
+                                <dd class="col-12 col-sm-9 col-xl-10">
+                                    {{ $activity->numberOfCompletedTasks() }}<span class="p-half">/</span>{{ $activity->numberOfTotalTasks() }}
                                 </dd>
 
 
@@ -270,7 +278,7 @@
                             @endif
 
 
-                            <h4 class="separator">
+                            <h4 class="separator" id="tasks">
                                 <span>{!! \App\icon\tasks(['mr-1']) !!}{{ __('activity.tasks') }}
                                     @if ($activity->tasks->count() > 0)
                                         <small class="text-muted" title="{{ __('activity.countOfTotalTasksCompleted', ['completed' => $activity->numberOfCompletedTasks(), 'total' => $activity->numberOfTotalTasks()]) }}">
